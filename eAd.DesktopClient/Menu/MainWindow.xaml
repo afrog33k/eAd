@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="DesktopClient.Menu.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		
+       Height="Auto" Width="Auto" Name="eAdWindow">
+    <UserControl.Resources>
+		<Storyboard x:Key="eAd"/>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
+			<BeginStoryboard Storyboard="{StaticResource eAd}"/>
+		</EventTrigger>
+        <EventTrigger RoutedEvent="UserControl.Loaded">
+            <BeginStoryboard>
+                <Storyboard Name="FormFade">
+                    <DoubleAnimation  Name="FormFadeAnimation"
+                                            Storyboard.TargetName="eAdWindow"
+                                            Storyboard.TargetProperty="(UserControl.Opacity)"
+                                            From="0.0" To="1.0" Duration="0:0:2"
+                                            AutoReverse="False" RepeatBehavior="1x"
+                                         />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UserControl.Unloaded">
+            <BeginStoryboard>
+                <Storyboard Name="FormFadeOut" Completed="FormFadeOutCompleted">
+                    <DoubleAnimation  Name="FormFadeOutAnimation"
+                                            Storyboard.TargetName="eAdWindow"
+                                            Storyboard.TargetProperty="(UserControl.Opacity)"
+                                            From="1.0" To="0.0" Duration="00:00:2"
+                                            AutoReverse="False" RepeatBehavior="1x"
+                                         />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="Fill">
+        <Grid>
+            <Viewbox Panel.ZIndex="1" OpacityMask="#FFCE5959" Cursor="None" Margin="0,0,0,-9" Stretch="Fill">
+                <Grid Width="1271.723" Height="958.223">
+                    <Viewbox
+      Margin="4"
+      VerticalAlignment="Stretch"
+      Height="Auto" Name="PlayerViewBox">
+                        <!-- The textblock and its contents are 
+      stretched to fill its parent -->
+                        <!-- The textblock and its contents are 
+      stretched to fill its parent -->
+
+                        <MediaElement Height="76.953" Width="100"  LoadedBehavior="Manual"  UnloadedBehavior="Manual" Stretch="Fill"  Source="\\psf\Home\Desktop\Projects\eAd\Ads\Nissan 370z _ Fairlady Ad Malaysia(720p_H.264-AAC).mp4" AllowDrop="True" MediaOpened="MediaElementMediaOpened" Name="Player" MediaEnded="PlayerMediaEnded" Unloaded="PlayerUnloaded" />
+
+                    </Viewbox>
+                </Grid>
+            </Viewbox>
+            <Viewbox
+      Margin="0,0,0,4"
+      Height="53.777" VerticalAlignment="Bottom">
+                <TextBox Margin="0,0,0,0" TextWrapping="Wrap" Text="Status" VerticalAlignment="Bottom" Background="#FFC8F1DE" Foreground="#FFB20F0F" SelectionBrush="#FF12389D" BorderBrush="#0010161A" Height="57.777" FontFamily="/eAd;component/Fonts/#Tahoma" FontSize="32" Name="StatusBox">
+                    <TextBox.Effect>
+                        <DropShadowEffect ShadowDepth="3" Color="#FF21686A"/>
+                    </TextBox.Effect>
+                </TextBox>
+            </Viewbox>
+        </Grid>
+    </Viewbox>
+</UserControl>

@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="eAdDataModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="eAdDataModelStoreContainer">
+          <EntitySet Name="Cars" EntityType="eAdDataModel.Store.Cars" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="eAdDataModel.Store.Customers" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="eAdDataModel.Store.Messages" store:Type="Tables" />
+          <EntitySet Name="Stations" EntityType="eAdDataModel.Store.Stations" store:Type="Tables" />
+          <AssociationSet Name="FK_CarCustomer" Association="eAdDataModel.Store.FK_CarCustomer">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="CarID" />
+          </Key>
+          <Property Name="CustomerID" Type="bigint" Nullable="false" />
+          <Property Name="Make" Type="nvarchar" MaxLength="100" />
+          <Property Name="Model" Type="nvarchar" MaxLength="100" />
+          <Property Name="License" Type="nvarchar" MaxLength="100" />
+          <Property Name="BatteryCharge" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastRechargeDate" Type="datetime" />
+          <Property Name="CarID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="RFID" Type="nvarchar" MaxLength="100" />
+          <Property Name="Balance" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastBillAmount" Type="nvarchar" MaxLength="100" />
+          <Property Name="Picture" Type="nvarchar" MaxLength="300" />
+          <Property Name="Email" Type="nvarchar" MaxLength="300" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="CustomerID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Text" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Sent" Type="bit" Nullable="false" />
+          <Property Name="StationID" Type="bigint" Nullable="false" />
+          <Property Name="UserID" Type="bigint" Nullable="false" />
+          <Property Name="Command" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Stations">
+          <Key>
+            <PropertyRef Name="StationID" />
+          </Key>
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Available" Type="bit" />
+          <Property Name="StationID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LastCheckIn" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_CarCustomer">
+          <End Role="Customers" Type="eAdDataModel.Store.Customers" Multiplicity="1" />
+          <End Role="Cars" Type="eAdDataModel.Store.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="eAdDataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="eAdDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cars" EntityType="eAdDataModel.Car" />
+          <EntitySet Name="Customers" EntityType="eAdDataModel.Customer" />
+          <EntitySet Name="Messages" EntityType="eAdDataModel.Message" />
+          <EntitySet Name="Stations" EntityType="eAdDataModel.Station" />
+          <AssociationSet Name="FK_CarCustomer" Association="eAdDataModel.FK_CarCustomer">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="CarID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int64" Nullable="false" />
+          <Property Name="Make" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Model" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="License" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="BatteryCharge" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="LastRechargeDate" Type="DateTime" Precision="3" />
+          <Property Name="CarID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Customer" Relationship="eAdDataModel.FK_CarCustomer" FromRole="Cars" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="RFID" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Balance" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="LastBillAmount" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Picture" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="CustomerID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Cars" Relationship="eAdDataModel.FK_CarCustomer" FromRole="Customers" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Text" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="Sent" Type="Boolean" Nullable="false" />
+          <Property Name="StationID" Type="Int64" Nullable="false" />
+          <Property Name="UserID" Type="Int64" Nullable="false" />
+          <Property Name="Command" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Station">
+          <Key>
+            <PropertyRef Name="StationID" />
+          </Key>
+          <Property Name="Location" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Available" Type="Boolean" />
+          <Property Name="StationID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastCheckIn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_CarCustomer">
+          <End Role="Customers" Type="eAdDataModel.Customer" Multiplicity="1" />
+          <End Role="Cars" Type="eAdDataModel.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="eAdDataModelStoreContainer" CdmEntityContainer="eAdDataEntities">
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="eAdDataModel.Car">
+              <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Make" ColumnName="Make" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="License" ColumnName="License" />
+                <ScalarProperty Name="BatteryCharge" ColumnName="BatteryCharge" />
+                <ScalarProperty Name="LastRechargeDate" ColumnName="LastRechargeDate" />
+                <ScalarProperty Name="CarID" ColumnName="CarID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="eAdDataModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="LastBillAmount" ColumnName="LastBillAmount" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="eAdDataModel.Message">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Sent" ColumnName="Sent" />
+                <ScalarProperty Name="StationID" ColumnName="StationID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Command" ColumnName="Command" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stations">
+            <EntityTypeMapping TypeName="eAdDataModel.Station">
+              <MappingFragment StoreEntitySet="Stations">
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="StationID" ColumnName="StationID" />
+                <ScalarProperty Name="LastCheckIn" ColumnName="LastCheckIn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

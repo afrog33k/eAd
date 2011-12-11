@@ -1,20 +1,22 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using eAd.Website.DataService;
+using System.Web.Services.Description;
+using eAd.Website.eAdDataService;
+
 
 namespace eAd.Website.Controllers
 {
     public class StationController : Controller
     {
-        private DataServiceClient _service;
-        private DataServiceClient Service
+        private ServiceClient _service;
+        private ServiceClient Service
         {
             get
             {
 
                 if (_service == null)
                 {
-                    _service = new DataServiceClient();
+                    _service = new ServiceClient();
                     if (HttpContext.Request.UserHostAddress != "1.9.13.61")
                     {
                         _service.ClientCredentials.Windows.ClientCredential.UserName = "admin";
@@ -24,7 +26,7 @@ namespace eAd.Website.Controllers
                 return _service;
             }
         }
-        //
+        
         // GET: /Station/
 
         public ActionResult Index()
@@ -37,14 +39,14 @@ namespace eAd.Website.Controllers
 
         public ActionResult List()
         {
-            Response.AddHeader("Refresh", "5");
+            Response.AddHeader("Refresh", "10");
             ViewBag.StationsCount = Service.GetAllStations().Count();
             ViewBag.StationsOnlineCount = Service.GetOnlineStations().Count();
             ViewBag.StationSummary = Service.GetAllStations();
-            MessageViewModel firstOrDefault = Service.GetAllMyMessages(1).OrderByDescending(m=>m.ID).FirstOrDefault();
+            MessageViewModel firstOrDefault = Service.GetAllMyMessages(1).OrderByDescending(m => m.ID).FirstOrDefault();
             if (firstOrDefault != null)
             {
-                ViewBag.LastMessage = firstOrDefault.Text + "(1/" + Service.GetAllMyMessages(1) .Count()+ ")";
+                ViewBag.LastMessage = firstOrDefault.Text + "(1/" + Service.GetAllMyMessages(1).Count() + ")";
             }
             return View();
         }
@@ -134,13 +136,13 @@ namespace eAd.Website.Controllers
             }
         }
 
-        public ActionResult Engage(long stationID)
+        public ActionResult Engage(long stationID, string rfidCode)
         {
            //var station = Service.GetAllStations().Where(s=>s.StationID ==stationID).FirstOrDefault();
            // if(station!=null)
            // {
             //  station.Available = false;
-                Service.MakeStationUnAvailable(stationID,"1");
+            Service.MakeStationUnAvailable(stationID, rfidCode);
           //  }
                 return RedirectToAction("List");
         }

@@ -1,0 +1,108 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:Controls1="clr-namespace:DesktopClient.Controls" mc:Ignorable="d" 
+	x:Class="DesktopClient.Menu.CustomerPage"
+	x:Name="eADWindow"
+	d:DesignWidth="1380" d:DesignHeight="1740">
+
+    <UserControl.Resources>
+        <Storyboard x:Key="eAd"/>
+        <DataTemplate x:Key="image">
+            <Image x:Name="TheImage" />
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Path=IsTrue}" Value="true">
+                    <Setter TargetName="TheImage" Property="Source" Value="Images/Computer.png" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=IsTrue}" Value="false">
+                    <Setter TargetName="TheImage" Property="Source" Value="Images/error.png" />
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+    </UserControl.Resources>
+
+   
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource eAd}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UserControl.Loaded">
+            <BeginStoryboard>
+                <Storyboard Name="FormFade">
+                    <DoubleAnimation  Name="FormFadeAnimation"
+                                            Storyboard.TargetName="eADWindow"
+                                            Storyboard.TargetProperty="(UserControl.Opacity)"
+                                            From="0.0" To="1.0" Duration="0:0:2"
+                                            AutoReverse="False" RepeatBehavior="1x"
+                                         />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UserControl.Unloaded">
+            <BeginStoryboard>
+                <Storyboard Name="FormFadeOut" Completed="FormFadeOut_Completed">
+                    <DoubleAnimation  Name="FormFadeOutAnimation"
+                                            Storyboard.TargetName="eADWindow"
+                                            Storyboard.TargetProperty="(UserControl.Opacity)"
+                                            From="1.0" To="0.0" Duration="00:00:2"
+                                            AutoReverse="False" RepeatBehavior="1x"
+                                         />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="Fill">
+   
+    <Grid x:Name="LayoutRoot" Background="White" Height="Auto" Width="Auto">
+        <WebBrowser Height="538" HorizontalAlignment="Right" Name="GoogleMap" VerticalAlignment="Bottom" Width="883" ClipToBounds="True" Margin="0,0,23,419" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.IsDeferredScrollingEnabled="False" ScrollViewer.CanContentScroll="False" />
+        
+        <Image Height="208" HorizontalAlignment="Stretch"  Stretch="Fill" VerticalAlignment="Top" Name="bannerAd1" Source="/Ads\ad1.png" />
+        <Image Height="208" HorizontalAlignment="Stretch" Name="bannerAd3" Stretch="Fill" VerticalAlignment="Bottom" Source="/Ads\ad2.png" Margin="724,0,0,0" />
+        <Image Height="254" HorizontalAlignment="Left" Margin="12,317,0,0" Name="CustomerProfilePicture" Stretch="Fill" VerticalAlignment="Top" Width="375" />
+        <Image Height="208" HorizontalAlignment="Right" Margin="0,238,16,0" Source="/Ads/ad1.png" Stretch="Fill" VerticalAlignment="Top" Width="897" Name="bannerAd2" MinHeight="208" />
+        <Label Content="Name" Height="42" HorizontalAlignment="Left" Margin="411,319,0,0" Name="CustomerName" VerticalAlignment="Top" Width="472" FontSize="24" FontWeight="Bold" />
+        <Label Content="Phone:" FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="411,367,0,0" Name="label1" VerticalAlignment="Top" Width="108" />
+        <Label Content="Email:" FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="411,415,0,0" Name="label5" VerticalAlignment="Top" Width="108" />
+        <Label Content="Address:" FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="411,463,0,0" Name="label2" VerticalAlignment="Top" Width="126" />
+        <Label FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="543,367,0,0" Name="CustomerPhone" VerticalAlignment="Top" Width="329" />
+        <Label FontSize="24" FontWeight="Bold" Height="110" HorizontalAlignment="Left" Margin="543,463,0,0" Name="CustomerAddress" VerticalAlignment="Top" Width="329" />
+        <Label FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="543,415,0,0" Name="CustomerEmail" VerticalAlignment="Top" Width="329" />
+        <Label Content="License Plate:" FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="16,702,0,0" Name="label4" VerticalAlignment="Top" Width="220" />
+        <Label Content="Model:" FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="16,750,0,0" Name="label6" VerticalAlignment="Top" Width="108" />
+        <Label Content="Make:" FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="16,798,0,0" Name="label7" VerticalAlignment="Top" Width="126" />
+        <Label FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="270,702,0,0" Name="CarPlate" VerticalAlignment="Top" Width="444" />
+        <Label FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="270,750,0,0" Name="CarModel" VerticalAlignment="Top" Width="444" />
+        <Separator Height="18" HorizontalAlignment="Left" Margin="11,678,0,0" Name="separator1" VerticalAlignment="Top" Width="1003" />
+        <Label FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="270,798,0,0" Name="CarMake" VerticalAlignment="Top" Width="444" />
+        <Label Content="Location" FontSize="56" FontWeight="Bold" Height="80" HorizontalAlignment="Right" Margin="0,455,311,0" Name="CustomerLocation" VerticalAlignment="Top" Width="594" />
+            <ListView Height="141" HorizontalAlignment="Right" Margin="0,0,22,248" Name="StationOverview" VerticalAlignment="Bottom" Width="884" BorderBrush="#FF00AF00" FontSize="24">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Station" DisplayMemberBinding="{Binding Path=Name}" Width="618"/>
+                        <!--<GridViewColumn Header="Available" CellTemplate="{StaticResource image}" DisplayMemberBinding="{Binding Path=IsTrue}"/>-->
+                        <GridViewColumn Header="Available" DisplayMemberBinding="{Binding Path=Available}" Width="265"/>
+                     
+                    </GridView>
+                </ListView.View>
+            </ListView>
+              
+                <Label Content="Car" FontSize="48" FontWeight="Bold" Height="66" HorizontalAlignment="Left" Margin="16,606,0,0" Name="label3" VerticalAlignment="Top" Width="472" />
+        <Separator Height="18" HorizontalAlignment="Left" Margin="11,292,0,0" Name="separator2" VerticalAlignment="Top" Width="993" />
+        <Label Content="Profile" FontSize="48" FontWeight="Bold" Height="72" HorizontalAlignment="Left" Margin="12,214,0,0" Name="Profile" VerticalAlignment="Top" Width="472" />
+        <Label Content="Current Charge:" FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="16,1040,0,0" Name="label11" VerticalAlignment="Top" Width="220" />
+        <Label Content="Last Charged On:" FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="16,1088,0,0" Name="label12" VerticalAlignment="Top" Width="248" />
+        <Label FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="270,1040,0,0" Name="CurrentCharge" VerticalAlignment="Top" Width="444" />
+        <Label FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="270,1088,0,0" Name="LastCharged" VerticalAlignment="Top" Width="444" />
+        <Separator Height="18" HorizontalAlignment="Left" Margin="11,1016,0,0" Name="separator3" VerticalAlignment="Top" Width="1003" />
+        <Label Content="Battery Information" FontSize="48" FontWeight="Bold" Height="66" HorizontalAlignment="Left" Margin="16,944,0,0" Name="label17" VerticalAlignment="Top" Width="500" />
+        <Grid Height="274" HorizontalAlignment="Left" Margin="16,1218,0,0" Name="grid1" VerticalAlignment="Bottom" Width="698" >
+            <Controls1:BatteryRecharging Margin="58,15,240,-149" x:Name="BatteryAnimation"></Controls1:BatteryRecharging>
+        </Grid>
+            <Label Content="Account Balance:" FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="16,1138,0,0" Name="label8" VerticalAlignment="Top" Width="248" />
+            <Label FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Right" Margin="0,1136,1222,0" Name="AccountBalance" VerticalAlignment="Top" Width="444" />
+        </Grid>
+    </Viewbox>
+</UserControl>

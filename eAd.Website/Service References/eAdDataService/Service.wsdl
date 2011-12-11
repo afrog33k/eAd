@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost/DataAccess/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost/DataAccess/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/DataAccess/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService_GetHi_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHi" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetHi_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHiResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SayHi_InputMessage">
+    <wsdl:part name="parameters" element="tns:SayHi" />
+  </wsdl:message>
+  <wsdl:message name="IService_SayHi_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SayHiResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DoIHaveUpdates_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoIHaveUpdates" />
+  </wsdl:message>
+  <wsdl:message name="IService_DoIHaveUpdates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoIHaveUpdatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_MakeStationUnAvailable_InputMessage">
+    <wsdl:part name="parameters" element="tns:MakeStationUnAvailable" />
+  </wsdl:message>
+  <wsdl:message name="IService_MakeStationUnAvailable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MakeStationUnAvailableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_MakeStationAvailable_InputMessage">
+    <wsdl:part name="parameters" element="tns:MakeStationAvailable" />
+  </wsdl:message>
+  <wsdl:message name="IService_MakeStationAvailable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MakeStationAvailableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_MessageRead_InputMessage">
+    <wsdl:part name="parameters" element="tns:MessageRead" />
+  </wsdl:message>
+  <wsdl:message name="IService_MessageRead_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MessageReadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetCustomerByRFID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerByRFID" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetCustomerByRFID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerByRFIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAllMyMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMyMessages" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAllMyMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMyMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAllCustomers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCustomers" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAllCustomers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCustomersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAllStations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllStations" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAllStations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllStationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetOnlineStations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOnlineStations" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetOnlineStations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOnlineStationsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService">
+    <wsdl:operation name="GetHi">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetHi" message="tns:IService_GetHi_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetHiResponse" message="tns:IService_GetHi_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SayHi">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SayHi" message="tns:IService_SayHi_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SayHiResponse" message="tns:IService_SayHi_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DoIHaveUpdates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DoIHaveUpdates" message="tns:IService_DoIHaveUpdates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DoIHaveUpdatesResponse" message="tns:IService_DoIHaveUpdates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeStationUnAvailable">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/MakeStationUnAvailable" message="tns:IService_MakeStationUnAvailable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/MakeStationUnAvailableResponse" message="tns:IService_MakeStationUnAvailable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeStationAvailable">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/MakeStationAvailable" message="tns:IService_MakeStationAvailable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/MakeStationAvailableResponse" message="tns:IService_MakeStationAvailable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MessageRead">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/MessageRead" message="tns:IService_MessageRead_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/MessageReadResponse" message="tns:IService_MessageRead_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerByRFID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetCustomerByRFID" message="tns:IService_GetCustomerByRFID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetCustomerByRFIDResponse" message="tns:IService_GetCustomerByRFID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMyMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetAllMyMessages" message="tns:IService_GetAllMyMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetAllMyMessagesResponse" message="tns:IService_GetAllMyMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCustomers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetAllCustomers" message="tns:IService_GetAllCustomers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetAllCustomersResponse" message="tns:IService_GetAllCustomers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetAllStations" message="tns:IService_GetAllStations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetAllStationsResponse" message="tns:IService_GetAllStations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOnlineStations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetOnlineStations" message="tns:IService_GetOnlineStations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetOnlineStationsResponse" message="tns:IService_GetOnlineStations_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetHi">
+      <soap:operation soapAction="http://tempuri.org/IService/GetHi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SayHi">
+      <soap:operation soapAction="http://tempuri.org/IService/SayHi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoIHaveUpdates">
+      <soap:operation soapAction="http://tempuri.org/IService/DoIHaveUpdates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakeStationUnAvailable">
+      <soap:operation soapAction="http://tempuri.org/IService/MakeStationUnAvailable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakeStationAvailable">
+      <soap:operation soapAction="http://tempuri.org/IService/MakeStationAvailable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MessageRead">
+      <soap:operation soapAction="http://tempuri.org/IService/MessageRead" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerByRFID">
+      <soap:operation soapAction="http://tempuri.org/IService/GetCustomerByRFID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMyMessages">
+      <soap:operation soapAction="http://tempuri.org/IService/GetAllMyMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCustomers">
+      <soap:operation soapAction="http://tempuri.org/IService/GetAllCustomers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStations">
+      <soap:operation soapAction="http://tempuri.org/IService/GetAllStations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOnlineStations">
+      <soap:operation soapAction="http://tempuri.org/IService/GetOnlineStations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="BasicHttpBinding_IService" binding="tns:BasicHttpBinding_IService">
+      <soap:address location="http://localhost/DataAccess/Service.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
