@@ -1,0 +1,30 @@
+﻿<h2> Station Summary </h2>
+Number Of Stations Deployed:  <b>@ViewBag.StationsCount</b> <br/>
+Number Of Stations Online:  <b>@ViewBag.StationsOnlineCount</b><br/>
+<br/>
+@{
+    var summary = (IEnumerable<DataViewModels.StationViewModel>)ViewBag.StationSummary;
+}
+<table>
+<tr>
+<td>Name &nbsp;&nbsp;</td>
+<td>Last CheckIn &nbsp;&nbsp;</td>
+<td>Available &nbsp;&nbsp;</td>
+<td colspan="2">Actions &nbsp;&nbsp;</td>
+</tr>
+  
+@foreach (var station in summary)
+{ 
+    <tr>
+
+    <td>@station.Name &nbsp;&nbsp;</td>
+<td>@(station.LastCheckIn!=null?station.LastCheckIn.ToString():"Never") &nbsp;&nbsp;</td>
+<td>@(station.Available?"Yes":"No") &nbsp;&nbsp;</td>
+     <td>@Html.ActionLink("Engage", "Engage", "Station", new { stationID = station.StationID }, null)</td>
+     <td>@Html.ActionLink("DisEngage", "DisEngage", "Station", new { stationID = station.StationID }, null)</td>
+    </tr>
+}
+</table>
+
+<br/>
+Last Sent Message: @ViewBag.LastMessage
