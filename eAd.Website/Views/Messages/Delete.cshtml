@@ -1,0 +1,48 @@
+﻿@model eAd.DataAccess.Message
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Message</legend>
+
+    <div class="display-label">Type</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Type)
+    </div>
+
+    <div class="display-label">Text</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Text)
+    </div>
+
+    <div class="display-label">Sent</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sent)
+    </div>
+
+    <div class="display-label">Station</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Station.Location)
+    </div>
+
+    <div class="display-label">UserID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserID)
+    </div>
+
+    <div class="display-label">Command</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Command)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

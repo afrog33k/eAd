@@ -78,8 +78,9 @@
     <Compile Include="Controls\BatteryRecharging.xaml.cs" />
     <Compile Include="DispatcherHelper.cs" />
     <Compile Include="Entities\Direction.cs" />
+    <Compile Include="GoogleMaps.cs" />
     <Compile Include="ISwitchable.cs" />
-    <Compile Include="Menu\GoogleMaps.xaml.cs" />
+    <Compile Include="Menu\Constants.xaml.cs" />
     <Compile Include="Menu\RFIDDetected.xaml.cs">
       <DependentUpon>RFIDDetected.xaml</DependentUpon>
     </Compile>
@@ -400,12 +401,6 @@
     <WCFMetadataStorage Include="Service References\eAdDataAccess\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataViewModels\DataViewModels.csproj">
-      <Project>{4B57C0F6-D384-4378-B078-ED1AA4180A7E}</Project>
-      <Name>DataViewModels</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
@@ -426,6 +421,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eAd.DataViewModels\eAd.DataViewModels.csproj">
+      <Project>{47A32603-2D64-4BD5-A503-F1142A5C2733}</Project>
+      <Name>eAd.DataViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.0\Microsoft.Expression.Blend.WPF.targets" />

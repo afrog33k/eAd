@@ -4,12 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f4d73d65429a43058cc9d227038e06cc" Name="Diagram1">
-        <EntityTypeShape EntityType="eAdDataModel.Car" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="eAdDataModel.Customer" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="eAdDataModel.Message" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="eAdDataModel.Station" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="eAdDataModel.FK_CarCustomer" ManuallyRouted="false" />
+      <Diagram DiagramId="d82f36040f344ff7a26d9152adf331d1" Name="Diagram1" >
+        <EntityTypeShape EntityType="eAdModel.Car" Width="1.5" PointX="5" PointY="7.375" />
+        <EntityTypeShape EntityType="eAdModel.Customer" Width="1.5" PointX="2.75" PointY="7.125" />
+        <EntityTypeShape EntityType="eAdModel.Grouping" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="eAdModel.Medium" Width="1.5" PointX="0.75" PointY="6.25" />
+        <EntityTypeShape EntityType="eAdModel.Message" Width="1.5" PointX="5.25" PointY="3.375" />
+        <EntityTypeShape EntityType="eAdModel.Station" Width="1.5" PointX="3" PointY="3.5" />
+        <EntityTypeShape EntityType="eAdModel.Theme" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="eAdModel.FK_CarCustomer" />
+        <AssociationConnector Association="eAdModel.FK_MessageStation" />
+        <AssociationConnector Association="eAdModel.GroupingStation" />
+        <AssociationConnector Association="eAdModel.GroupingTheme" />
+        <AssociationConnector Association="eAdModel.ThemeMedium" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

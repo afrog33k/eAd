@@ -1,0 +1,75 @@
+﻿@model eAd.DataAccess.Car
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Car</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CustomerID, "Customer")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CustomerID", String.Empty)
+            @Html.ValidationMessageFor(model => model.CustomerID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Make)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Make)
+            @Html.ValidationMessageFor(model => model.Make)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Model)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Model)
+            @Html.ValidationMessageFor(model => model.Model)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.License)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.License)
+            @Html.ValidationMessageFor(model => model.License)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BatteryCharge)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BatteryCharge)
+            @Html.ValidationMessageFor(model => model.BatteryCharge)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastRechargeDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastRechargeDate)
+            @Html.ValidationMessageFor(model => model.LastRechargeDate)
+        </div>
+
+        @Html.HiddenFor(model => model.CarID)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

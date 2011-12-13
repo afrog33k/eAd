@@ -46,7 +46,7 @@ section {
 ----------------------------------------------------------*/
 h1, h2, h3, h4, h5, h6 {
     font-size: 1.5em;
-    color: #000;
+    color: #004e05;
 }
 
 h1 {
@@ -322,3 +322,165 @@ div#title {
 .tri-state {
     width: 6em;
 }
+
+#mainframe{
+	margin: 0 auto; 
+	width: 970px;
+	background:url(images/bkg-main.jpg) repeat-y;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+.divider{
+	height: 10px;	
+}
+
+
+#login-space{
+	padding: 10px 0 0 10px;	
+	height: 23px;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	
+}
+
+#facebook-login{
+	background:url(images/bkg-white-top.jpg) no-repeat;
+	width: 970px;
+	height: 27px;
+	padding-top: 8px;
+}
+
+
+#content-mid{
+	background: url(images/bkg-white-mid.jpg) repeat-y;	
+}
+
+#content-bottom{
+	background: url(images/bkg-white-bottom.jpg) no-repeat;	
+	height: 45px;
+}
+#coupon-visual{
+	width: 236px;
+	height: 215px;
+	background:url(images/bkg-coupon.jpg) no-repeat;
+	padding: 20px 0 0 68px;
+}
+
+
+#coupon-details{
+	width: 250px;
+	padding: 0 20px 0 10px;
+	border: 1px #666 solid;
+	margin-left: 20px;
+}
+
+#coupon-sales{
+	background: url(images/icon-sales.jpg) no-repeat;
+	width: 140px;
+	height: 81px;
+	padding-top: 26px;
+}
+
+#orange-box{
+	width: 900px;
+	margin-left: 18px;
+	border: 2px #FC0 double;
+	padding: 10px;
+	
+}
+
+
+
+#footer{
+	height: 150px;	
+	padding: 20px;
+}
+
+
+.maintxt{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	
+}			
+
+.greyboldTxt{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666;
+	font-weight:bold;
+	font-style:italic;
+	margin-left: 15px;
+}
+
+.orangeboldTxt{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #F60;
+	font-weight:bold;
+}
+
+.redpriceTxt{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 38px;
+	color:#F30;
+	font-weight:bold;
+	margin-left: 18px;
+}
+
+.coupon-title{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	font-weight:bold;
+	height:90px;
+	overflow:auto;
+}			
+
+.coupon-date{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color:#F60;
+}
+
+.coupon-price{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color:#F30;
+}
+
+a:link {
+  color: #39F;
+  font-weight:bold;
+  font-size:10px;
+}
+
+a:visited {
+  color: #39F;
+  font-weight:bold;
+  font-size:10px;
+}
+
+
+a:hover {
+  color: #FC3;
+  font-weight:bold;
+  font-size:10px;
+}
+
+
+
+a:active {
+  color: #39F;
+  font-weight:bold;
+  font-size:10px;
+}
+
+/*
+Time Pikcer Addon*/
+
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; }
+.ui-timepicker-div dl dd { margin: -25px 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+

@@ -45,7 +45,7 @@ namespace eAd.DataAccess
         public bool DoIHaveUpdates(long stationID)
         {
 
-            eAdDataEntities entities = new eAdDataEntities();
+            eAdEntities entities = new eAdEntities();
 
             return entities.Messages.Where(s => s.StationID == stationID && s.Sent == false).Count() > 0;
 
@@ -61,7 +61,7 @@ namespace eAd.DataAccess
 
 
 
-                eAdDataEntities entities = new eAdDataEntities();
+                eAdEntities entities = new eAdEntities();
 
                 var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
 
@@ -113,7 +113,7 @@ namespace eAd.DataAccess
 
 
 
-                eAdDataEntities entities = new eAdDataEntities();
+                eAdEntities entities = new eAdEntities();
 
                 var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
 
@@ -155,14 +155,18 @@ namespace eAd.DataAccess
 
         }
 
-
+        public bool GetMyMedia()
+        {
+            return true
+                ;
+        }
 
 
 
         public bool MessageRead(long messageID)
         {
 
-            eAdDataEntities entities = new eAdDataEntities();
+            eAdEntities entities = new eAdEntities();
 
             var messages = entities.Messages.Where(s => s.MessageID == messageID && s.Sent == false);
 
@@ -188,7 +192,7 @@ namespace eAd.DataAccess
         public List<MessageViewModel> GetAllMyMessages(long clientID)
         {
 
-            eAdDataEntities entities = new eAdDataEntities();
+            eAdEntities entities = new eAdEntities();
 
             var messages = entities.Messages.Where(s => s.StationID == clientID && s.Sent == false);
 
@@ -211,7 +215,7 @@ namespace eAd.DataAccess
         public CustomerViewModel GetCustomerByRFID(string tag)
         {
 
-            eAdDataEntities entities = new eAdDataEntities();
+            eAdEntities entities = new eAdEntities();
           var customer =  entities.Customers.Where(e => e.RFID == tag).FirstOrDefault();
           if (customer!=null)
           {
@@ -230,7 +234,7 @@ namespace eAd.DataAccess
         public List<CustomerViewModel> GetAllCustomers()
         {
 
-            eAdDataEntities entities = new eAdDataEntities();
+            eAdEntities entities = new eAdEntities();
 
             return entities.Customers.ToList().Select(c => c.CreateModel()).ToList();
 
@@ -250,7 +254,7 @@ namespace eAd.DataAccess
         public List<StationViewModel> GetAllStations()
         {
 
-            eAdDataEntities entities = new eAdDataEntities();
+            eAdEntities entities = new eAdEntities();
 
             return entities.Stations.ToList().Select(c => c.CreateModel()).ToList();
 
@@ -263,7 +267,7 @@ namespace eAd.DataAccess
         public string SayHi(long clientID)
         {
 
-            eAdDataEntities entities = new eAdDataEntities();
+            eAdEntities entities = new eAdEntities();
 
             var thisstation = entities.Stations.Where(s => s.StationID == clientID).FirstOrDefault();
 

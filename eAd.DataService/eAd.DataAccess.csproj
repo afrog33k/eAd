@@ -32,6 +32,22 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Deploy|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="eAdEntities-Deployment" Order="1" xmlns="">
+          <Destination Path="Data Source=.\SQL%3bInitial Catalog=eAd%3bIntegrated Security=True%3bApplication Name=EntityFramework" />
+          <Object Type="dbFullSql">
+            <PreSource Path="Data Source=WIN-H88PSEJK38G\SQLEXPRESS%3bInitial Catalog=eAd%3bIntegrated Security=True%3bApplication Name=EntityFramework" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Deploy\AutoScripts\eAdEntities-Deployment_SchemaAndData.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
+    <IncludeIisSettings>true</IncludeIisSettings>
+    <IncludeAppPool>true</IncludeAppPool>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.Entity" />
@@ -84,6 +100,9 @@
       <Project>{47A32603-2D64-4BD5-A503-F1142A5C2733}</Project>
       <Name>eAd.DataViewModels</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Deploy.config" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="eAdData.edmx">
