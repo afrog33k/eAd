@@ -19,12 +19,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CustomerViewModel" nillable="true" type="tns:CustomerViewModel" />
-  <xs:complexType name="ArrayOfMessageViewModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="MessageViewModel" nillable="true" type="tns:MessageViewModel" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfMessageViewModel" nillable="true" type="tns:ArrayOfMessageViewModel" />
   <xs:complexType name="MessageViewModel">
     <xs:sequence>
       <xs:element minOccurs="0" name="Command" nillable="true" type="xs:string" />
@@ -37,6 +31,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MessageViewModel" nillable="true" type="tns:MessageViewModel" />
+  <xs:complexType name="ArrayOfMessageViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MessageViewModel" nillable="true" type="tns:MessageViewModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMessageViewModel" nillable="true" type="tns:ArrayOfMessageViewModel" />
   <xs:complexType name="ArrayOfCustomerViewModel">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerViewModel" nillable="true" type="tns:CustomerViewModel" />

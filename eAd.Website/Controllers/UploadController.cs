@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using eAd.Utilities;
 using eAd.Website.Extensions;
 using eAd.Website.Repositories;
 using irio.mvc.fileupload;
@@ -14,8 +15,17 @@ namespace eAd.Website.Controllers
         {
             private UploadType _type = UploadType.Media;
             private string _currentMedia = "";
+            string _path
+            {
+                get
+                {
+                    return HttpContext.Request.Url.Scheme + "://" + HttpContext.Request.Url.Authority + HttpContext.Request.ApplicationPath;
+                }
+            }
 
-           // [Authorize]
+          
+
+            // [Authorize]
             public ActionResult Index(string MediaId, UploadType type)
             {
                 switch (type)
@@ -61,7 +71,7 @@ namespace eAd.Website.Controllers
             /// </remarks>
             /// <seealso cref="http://malsup.com/jquery/form/#code-samples"/>
        //     [Authorize]
-            public FileUploadJsonResult AjaxUpload(IEnumerable<HttpPostedFileBase> fileCollection, UploadType type)
+            public FileUploadJsonResult AjaxUpload(IEnumerable<HttpPostedFileBase> fileCollection, UploadType type, string uploadPath)
             {
 
 
@@ -79,11 +89,30 @@ namespace eAd.Website.Controllers
                 //lastSavedFile.Add(ResolvePath(physicalPath));
                 foreach (string file in Request.Files)
                 {
-
-                    UploadRepository.StoreImageTemp(HttpContext, Request.Files[file], _type);
+                    var postedFile = Request.Files[file];
+                    string thumbPath;
+                    UploadRepository.StoreMediaTemp(HttpContext, postedFile, _type, out thumbPath, out uploadPath);
                     // Return JSON
-                    return new FileUploadJsonResult { Data = new { message = string.Format("{0} uploaded successfully.", System.IO.Path.GetFileName(file)) } };
-
+                    if (postedFile != null)
+                    {
+                        if (Request.Url != null)
+                        {
+                            var result=new FileUploadJsonResult
+                                           {
+                                               Data =
+                                                   new
+                                                       {
+                                                           message =
+                                                   string.Format("{0} uploaded successfully.", postedFile.FileName),
+                                                           thumbnail = _path +"/"+ thumbPath.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty),
+                                                           type = MimeExtensionHelper.FindMime(uploadPath, true),
+                                                           text = MimeExtensionHelper.FindMime(uploadPath, true).Contains("text") ? thumbPath : "",
+                                                           path = uploadPath.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty)
+                                                       }
+                                           };
+                            return result;
+                        }
+                    }
                 }
 
 

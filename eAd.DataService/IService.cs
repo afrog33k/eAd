@@ -20,7 +20,8 @@ namespace eAd.DataAccess
 
         string SayHi(long clientID);
 
-
+           [OperationContract]
+         List<MediaListModel> GetMyMedia(long stationID);
 
         [OperationContract]
 
@@ -51,6 +52,11 @@ namespace eAd.DataAccess
         CustomerViewModel GetCustomerByRFID(string tag);
 
 
+        [OperationContract]
+        bool SendMessageToStation(long stationID, MessageViewModel message);
+
+        [OperationContract]
+        bool SendMessageToGroup(long groupID, MessageViewModel message);
 
         [OperationContract]
 

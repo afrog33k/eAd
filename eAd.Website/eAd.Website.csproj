@@ -47,9 +47,6 @@
     <Reference Include="irio.mvc.fileupload">
       <HintPath>..\..\qponkini.com\irio.mvc.fileupload\bin\Debug\irio.mvc.fileupload.dll</HintPath>
     </Reference>
-    <Reference Include="irio.utilities">
-      <HintPath>..\..\qponkini.com\irio.utilities\bin\Debug\irio.utilities.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -1135,6 +1132,7 @@
     <Content Include="Scripts\additional-methods.js" />
     <Content Include="Scripts\curvycorners.js" />
     <Content Include="Scripts\datepicker.js" />
+    <Content Include="Scripts\draggableoptions.js" />
     <Content Include="Scripts\errorhandler.js" />
     <Content Include="Scripts\fileUpload.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
@@ -1168,6 +1166,7 @@
     <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\jquery.hoverIntent.js" />
     <Content Include="Scripts\jquery.livequery.js" />
+    <Content Include="Scripts\jquery.marquee.js" />
     <Content Include="Scripts\jquery.selectboxes.min.js" />
     <Content Include="Scripts\jquery.timers.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
@@ -1277,6 +1276,51 @@
     <Content Include="Scripts\txtdropdown\txtdropdown-btn.png" />
     <Content Include="Scripts\txtdropdown\txtdropdown.css" />
     <Content Include="Scripts\txtdropdown\txtdropdown.js" />
+    <Content Include="Tools\FFmpeg\avconv.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\FFmpeg\doc\avconv.html" />
+    <Content Include="Tools\FFmpeg\doc\developer.html" />
+    <Content Include="Tools\FFmpeg\doc\faq.html" />
+    <Content Include="Tools\FFmpeg\doc\fate.html" />
+    <Content Include="Tools\FFmpeg\doc\ffmpeg.html" />
+    <Content Include="Tools\FFmpeg\doc\ffplay.html" />
+    <Content Include="Tools\FFmpeg\doc\ffprobe.html" />
+    <Content Include="Tools\FFmpeg\doc\general.html" />
+    <Content Include="Tools\FFmpeg\doc\git-howto.html" />
+    <Content Include="Tools\FFmpeg\doc\libavfilter.html" />
+    <Content Include="Tools\FFmpeg\doc\platform.html" />
+    <Content Include="Tools\FFmpeg\ffmpeg.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\FFmpeg\ffplay.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\FFmpeg\ffprobe.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tools\FFmpeg\licenses\bzip2.txt" />
+    <Content Include="Tools\FFmpeg\licenses\ffmpeg.txt" />
+    <Content Include="Tools\FFmpeg\licenses\freetype.txt" />
+    <Content Include="Tools\FFmpeg\licenses\frei0r.txt" />
+    <Content Include="Tools\FFmpeg\licenses\gsm.txt" />
+    <Content Include="Tools\FFmpeg\licenses\lame.txt" />
+    <Content Include="Tools\FFmpeg\licenses\libvpx.txt" />
+    <Content Include="Tools\FFmpeg\licenses\opencore-amr.txt" />
+    <Content Include="Tools\FFmpeg\licenses\openjpeg.txt" />
+    <Content Include="Tools\FFmpeg\licenses\rtmp.txt" />
+    <Content Include="Tools\FFmpeg\licenses\schroedinger.txt" />
+    <Content Include="Tools\FFmpeg\licenses\sdl.txt" />
+    <Content Include="Tools\FFmpeg\licenses\speex.txt" />
+    <Content Include="Tools\FFmpeg\licenses\theora.txt" />
+    <Content Include="Tools\FFmpeg\licenses\vo-aacenc.txt" />
+    <Content Include="Tools\FFmpeg\licenses\vo-amrwbenc.txt" />
+    <Content Include="Tools\FFmpeg\licenses\vorbis.txt" />
+    <Content Include="Tools\FFmpeg\licenses\x264.txt" />
+    <Content Include="Tools\FFmpeg\licenses\xavs.txt" />
+    <Content Include="Tools\FFmpeg\licenses\xvid.txt" />
+    <Content Include="Tools\FFmpeg\licenses\zlib.txt" />
+    <Content Include="Tools\FFmpeg\README.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1356,6 +1400,13 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Map\Index.cshtml" />
+    <None Include="Tools\FFmpeg\presets\libvpx-1080p.ffpreset" />
+    <None Include="Tools\FFmpeg\presets\libvpx-1080p50_60.ffpreset" />
+    <None Include="Tools\FFmpeg\presets\libvpx-360p.ffpreset" />
+    <None Include="Tools\FFmpeg\presets\libvpx-720p.ffpreset" />
+    <None Include="Tools\FFmpeg\presets\libvpx-720p50_60.ffpreset" />
+    <None Include="Tools\FFmpeg\presets\libx264-ipod320.ffpreset" />
+    <None Include="Tools\FFmpeg\presets\libx264-ipod640.ffpreset" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\.svn\props\" />
@@ -1402,9 +1453,17 @@
     <WCFMetadataStorage Include="Service References\eAdDataService\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\qponkini.com\irio.utilities\irio.utilities.csproj">
+      <Project>{7DF57062-342C-40A6-84CC-E504534B0189}</Project>
+      <Name>irio.utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\eAd.DataService\eAd.DataAccess.csproj">
       <Project>{0FCFE42B-027D-43DB-9149-068ED514303C}</Project>
       <Name>eAd.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eAd.Utilities\eAd.Utilities.csproj">
+      <Project>{ECD7174B-B905-46AF-B371-72D8A81103F1}</Project>
+      <Name>eAd.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

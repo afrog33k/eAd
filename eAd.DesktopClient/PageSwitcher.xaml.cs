@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Net;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,12 +12,15 @@ using DesktopClient.eAdDataAccess;
 
 namespace DesktopClient
 {
+
+
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
     public partial class PageSwitcher : Window
     {
-     
+
+        public static List<string> Playlist = new List<string>();
         public PageSwitcher()
         {
             InitializeComponent();
@@ -37,7 +44,7 @@ namespace DesktopClient
                     //BootStrap WCF (otherwise slow)
                     myService.ClientCredentials.Windows.ClientCredential.UserName = "admin";
                     myService.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
-                    var hi = myService.SayHi(1);
+                    var hi = myService.SayHi(Constants.MyStationID);
                     if (hi != "Hi there")
                     {
                         Console.WriteLine("Server Down");
@@ -64,12 +71,12 @@ namespace DesktopClient
                                                      {
 
                                                     
-                                                     Thread.Sleep(1000);
+                                                     Thread.Sleep(Constants.MessageWaitTime);
                                                      ServiceClient myService2 = new ServiceClient();
                                                      //BootStrap WCF (otherwise slow)
                                                      myService2.ClientCredentials.Windows.ClientCredential.UserName = "admin";
                                                      myService2.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
-                                                     var hi2 = myService2.DoIHaveUpdates(1);
+                                                     var hi2 = myService2.DoIHaveUpdates(Constants.MyStationID);
                                                      if (hi2)
                                                      {
                                                          Switcher.PageSwitcher.Dispatcher.BeginInvoke(
@@ -79,10 +86,10 @@ namespace DesktopClient
   , new DispatcherOperationCallback(delegate
   {
 
-      var messages = myService2.GetAllMyMessages(1);
+      var messages = myService2.GetAllMyMessages(Constants.MyStationID);
       foreach (var message in messages)
       {
-          var status = myService2.MessageRead(message.ID);
+         
           if (message.Type == "Info")
           {
 
@@ -94,6 +101,51 @@ namespace DesktopClient
                                                             OKCancel,
                                                         MessageBoxImage.
                                                             Warning);
+              var status = myService2.MessageRead(message.ID);
+          }
+
+          if (message.Type == "Media")
+          {
+             var mediaList= myService2.GetMyMedia(Constants.MyStationID);
+            
+              ThreadPool.QueueUserWorkItem((e4) =>
+                                               {
+                                                   foreach (var item in mediaList)
+                                                   {
+                                                       WebClient client = new WebClient();
+                                                       client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                                                       client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+
+                                                       // Starts the download
+                                                       var path =Constants.AppPath+ item.Location;
+
+                                                       irio.utilities.File.FolderCreate(Path.GetDirectoryName(path));
+                                                       var fileExists = false;
+                                                       if(File.Exists(path)) // Todo: Check if currently playing and also compare properties to prevent unneeded redownloads
+                                                       {
+                                                           //File.Delete(path);
+                                                           fileExists = true;
+                                                       }
+
+                                                       if(!fileExists)
+                                                       client.DownloadFileAsync(new Uri((Constants.ServerUrl+"//"+ item.Location.Replace(@"\\",@"/"))), path);
+
+                                                       if(!Playlist.Contains(path))
+                                                       {
+                                                           Playlist.Add(path);
+                                                       }
+                                                       MainWindow.Instance.UpdatePlayList();
+                                                       //btnStartDownload.Text = "Download In Process";
+                                                       //btnStartDownload.Enabled = false;
+                                                      
+                                                   }
+                                                   ServiceClient myService3 = new ServiceClient();
+                                                   //BootStrap WCF (otherwise slow)
+                                                   myService3.ClientCredentials.Windows.ClientCredential.UserName = "admin";
+                                                   myService3.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
+                                                   var status = myService2.MessageRead(message.ID);
+                                               });
+
           }
 
           if (message.Type == "Status")
@@ -123,8 +175,8 @@ namespace DesktopClient
                                                                     Warning);
                       break;
               }
-          
-             
+
+              var status = myService2.MessageRead(message.ID); 
           }
       }
       //if (result == MessageBoxResult.OK)
@@ -181,6 +233,50 @@ namespace DesktopClient
   //              });
 
         }
+
+        private void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            Switcher.PageSwitcher.Dispatcher.BeginInvoke(
+
+                System.Windows.Threading.DispatcherPriority.Normal
+
+                , new DispatcherOperationCallback(delegate
+                                                      {
+                                                          if (MainWindow.Instance.Update_Progress.Visibility ==
+                                                              Visibility.Visible)
+                                                              MainWindow.Instance.Update_Progress.Visibility =
+                                                                  Visibility.Hidden;
+                                                          return null;
+                                                      }), null);
+         //   MessageBox.Show("Download Completed");
+
+        }
+
+        private void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+          
+
+            Switcher.PageSwitcher.Dispatcher.BeginInvoke(
+
+               System.Windows.Threading.DispatcherPriority.Normal
+
+               , new DispatcherOperationCallback(delegate
+               {
+                   if (MainWindow.Instance.Update_Progress.Visibility == Visibility.Hidden)
+                       MainWindow.Instance.Update_Progress.Visibility = Visibility.Visible;
+
+
+                   double bytesIn = double.Parse(e.BytesReceived.ToString());
+                   double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+                   double percentage = bytesIn / totalBytes * 100;
+
+                   MainWindow.Instance.Update_Progress.Value = percentage;
+                   return null;
+               }), null);
+
+
+        }
+
         protected override void OnActivated(EventArgs e)
         {
             base.OnActivated(e);

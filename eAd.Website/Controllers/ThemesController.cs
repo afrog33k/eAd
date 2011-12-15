@@ -60,6 +60,11 @@ namespace eAd.Website.Controllers
         public ActionResult Edit(long id)
         {
             Theme theme = db.Themes.Single(t => t.ThemeID == id);
+
+            var mystations = theme.Media.ToList();
+            var otherStations = db.Media.ToList().Except(mystations);
+            ViewBag.NonAddedMedia = new SelectList(otherStations, "MediaID", "Name");
+            ViewBag.AddedMedia = new SelectList(mystations, "MediaID", "Name"); 
             return View(theme);
         }
 
@@ -104,6 +109,38 @@ namespace eAd.Website.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+
+        public ActionResult RemoveMedia(long stationID, long groupID)
+        {
+            var grouping = db.Themes.Single(g => g.ThemeID == groupID);
+            var station = grouping.Media.Where(s => s.MediaID == stationID).FirstOrDefault();
+            if (station != null)
+            {
+                grouping.Media.Remove(station);
+                db.SaveChanges();
+                return Json(new { message = "Media Removed" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { message = "Media Does Not Exist" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult AddMedia(long stationID, long groupID)
+        {
+            Theme theme = db.Themes.Single(g => g.ThemeID == groupID);
+            var station = db.Media.Where(s => s.MediaID == stationID).FirstOrDefault();
+            if (station != null)
+            {
+                theme.Media.Add(station);
+                db.SaveChanges();
+                return Json(new { message = "Media Added" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { message = "Media Does Not Exist" }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

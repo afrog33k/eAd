@@ -17,6 +17,7 @@
         <AssociationConnector Association="eAdModel.GroupingStation" />
         <AssociationConnector Association="eAdModel.GroupingTheme" />
         <AssociationConnector Association="eAdModel.ThemeMedium" />
+        <EntityTypeShape EntityType="eAdModel.MediaType" Width="1.5" PointX="5.1065523182538115" PointY="6.209609183580433" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

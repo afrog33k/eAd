@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfMediaListModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MediaListModel" nillable="true" type="tns:MediaListModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMediaListModel" nillable="true" type="tns:ArrayOfMediaListModel" />
+  <xs:complexType name="MediaListModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MediaID" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MediaListModel" nillable="true" type="tns:MediaListModel" />
   <xs:complexType name="CustomerViewModel">
     <xs:sequence>
       <xs:element minOccurs="0" name="AccountBalance" nillable="true" type="xs:string" />
@@ -19,12 +32,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CustomerViewModel" nillable="true" type="tns:CustomerViewModel" />
-  <xs:complexType name="ArrayOfMessageViewModel">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="MessageViewModel" nillable="true" type="tns:MessageViewModel" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfMessageViewModel" nillable="true" type="tns:ArrayOfMessageViewModel" />
   <xs:complexType name="MessageViewModel">
     <xs:sequence>
       <xs:element minOccurs="0" name="Command" nillable="true" type="xs:string" />
@@ -37,6 +44,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MessageViewModel" nillable="true" type="tns:MessageViewModel" />
+  <xs:complexType name="ArrayOfMessageViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MessageViewModel" nillable="true" type="tns:MessageViewModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMessageViewModel" nillable="true" type="tns:ArrayOfMessageViewModel" />
   <xs:complexType name="ArrayOfCustomerViewModel">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerViewModel" nillable="true" type="tns:CustomerViewModel" />

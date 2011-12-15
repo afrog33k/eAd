@@ -69,6 +69,8 @@ namespace eAd.Website.Controllers
         public ActionResult Edit(long id)
         {
             Station station = db.Stations.Single(s => s.StationID == id);
+         
+            
             return View(station);
         }
 

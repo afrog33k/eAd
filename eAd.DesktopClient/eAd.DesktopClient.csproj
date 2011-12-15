@@ -177,90 +177,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Ads\Air New Zealand staff have nothing to hide%28480p_H.264-AAC%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Coke - CHUP! Ad - Malaysia%28240p_H.263-MP3%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Funny TV commercial - Astro Malaysia Ad - Ah Keong%28240p_H.263-MP3%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Funny TV commercial - Astro Malaysia Ad - Ah Keong%28240p_H.264-AAC%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\KFC Malaysia _Vignette_ 2009 Commercial%28240p_H.263-MP3%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\KFC Malaysia _Vignette_ 2009 Commercial%28360p_H.264-AAC%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\KFC Malaysia _Vignette_ 2009 Commercial%28480p_H.264-AAC%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Malaysia Proton Car Ad - Seat Belt Safety%28240p_H.263-MP3%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Malaysia Proton Car Ad - Seat Belt Safety%28240p_H.264-AAC%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Malaysian-Made Deepavali Ad%28240p_H.263-MP3%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Malaysian-Made Deepavali Ad%28240p_H.264-AAC%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Nescafe Malaysia Ad 2011%28240p_H.263-MP3%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Nescafe Malaysia Ad 2011%28360p_H.264-AAC%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Nescafe Malaysia Ad 2011%28480p_H.264-AAC%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Nissan 370z _ Fairlady Ad Malaysia%28240p_H.263-MP3%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Nissan 370z _ Fairlady Ad Malaysia%28360p_H.264-AAC%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Nissan 370z _ Fairlady Ad Malaysia%28480p_H.264-AAC%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Screwdriver - Malaysian Ad%28240p_H.264-AAC%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Top Ten Super Bowl Ads 2008 - Commercials from Super Bowl 42%28240p_H.263-MP3%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Top Ten Super Bowl Ads 2008 - Commercials from Super Bowl 42%28240p_H.264-AAC%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Tourism Malaysia Ads Compilation%28240p_H.263-MP3%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Very Funny Pepsi Commercial%28240p_H.263-MP3%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Very Funny Pepsi Commercial%28240p_H.264-AAC%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Winky D Live iN Malaysia Official Trailer %28Ad%29%28240p_H.263-MP3%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Winky D Live iN Malaysia Official Trailer %28Ad%29%28360p_H.264-AAC%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ads\Winky D Live iN Malaysia Official Trailer %28Ad%29%28480p_H.264-AAC%29.flv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\DataSources\DataViewModels.CustomerViewModel.datasource" />
     <None Include="Properties\DataSources\DataViewModels.MessageViewModel.datasource" />
     <None Include="Properties\DataSources\DataViewModels.StationViewModel.datasource" />
+    <None Include="Properties\DataSources\eAd.DataViewModels.CustomerViewModel.datasource" />
+    <None Include="Properties\DataSources\eAd.DataViewModels.MediaListModel.datasource" />
+    <None Include="Properties\DataSources\eAd.DataViewModels.MessageViewModel.datasource" />
+    <None Include="Properties\DataSources\eAd.DataViewModels.StationViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -297,102 +223,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Service References\eAdDataAccess\Service.disco" />
-    <None Include="Service References\eAdDataAccess\DesktopClient.eAdDataAccess.CustomerViewModel.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\eAdDataAccess\DesktopClient.eAdDataAccess.MessageViewModel.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\eAdDataAccess\DesktopClient.eAdDataAccess.StationViewModel.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\eAdDataAccess\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\eAdDataAccess\configuration.svcinfo" />
     <None Include="Service References\eAdDataAccess\configuration91.svcinfo" />
-    <Resource Include="Ads\ad1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ads\ad2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Content Include="Ads\Air New Zealand staff have nothing to hide%28720p_H.264-AAC%29.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Coke - CHUP! Ad - Malaysia%28240p_H.264-AAC%29.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Funny TV commercial - Astro Malaysia Ad - Ah Keong%28240p_H.264-AAC%29.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Funny TV commercial - Astro Malaysia Ad - Ah Keong%28240p_VP8-Vorbis%29.webm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\KFC Malaysia _Vignette_ 2009 Commercial%28360p_H.264-AAC%29.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Malaysia Proton Car Ad - Seat Belt Safety%28240p_H.264-AAC%29.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Malaysia Proton Car Ad - Seat Belt Safety%28240p_VP8-Vorbis%29.webm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Malaysian-Made Deepavali Ad%28240p_H.264-AAC%29.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Nescafe Malaysia Ad 2011%28360p_H.264-AAC%29.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Nescafe Malaysia Ad 2011%28360p_VP8-Vorbis%29.webm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Nissan 370z _ Fairlady Ad Malaysia%28360p_H.264-AAC%29.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Nissan 370z _ Fairlady Ad Malaysia%28360p_VP8-Vorbis%29.webm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Nissan 370z _ Fairlady Ad Malaysia%28720p_H.264-AAC%29.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Nissan 370z _ Fairlady Ad Malaysia%28720p_VP8-Vorbis%29.webm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Screwdriver - Malaysian Ad%28240p_H.264-AAC%29.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Top Ten Super Bowl Ads 2008 - Commercials from Super Bowl 42%28240p_H.264-AAC%29.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Top Ten Super Bowl Ads 2008 - Commercials from Super Bowl 42%28240p_VP8-Vorbis%29.webm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Tourism Malaysia Ads Compilation%28240p_H.264-AAC%29.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Tourism Malaysia Ads Compilation%28240p_VP8-Vorbis%29.webm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Very Funny Pepsi Commercial%28240p_H.264-AAC%29.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Very Funny Pepsi Commercial%28240p_VP8-Vorbis%29.webm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Winky D Live iN Malaysia Official Trailer %28Ad%29%28360p_H.264-AAC%29.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Winky D Live iN Malaysia Official Trailer %28Ad%29%28360p_VP8-Vorbis%29.webm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Winky D Live iN Malaysia Official Trailer %28Ad%29%28720p_H.264-AAC%29.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Ads\Winky D Live iN Malaysia Official Trailer %28Ad%29%28720p_VP8-Vorbis%29.webm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -423,6 +259,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\qponkini.com\irio.utilities\irio.utilities.csproj">
+      <Project>{7DF57062-342C-40A6-84CC-E504534B0189}</Project>
+      <Name>irio.utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\eAd.DataViewModels\eAd.DataViewModels.csproj">
       <Project>{47A32603-2D64-4BD5-A503-F1142A5C2733}</Project>
       <Name>eAd.DataViewModels</Name>

@@ -9,528 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace DesktopClient.eAdDataAccess {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerViewModel", Namespace="http://schemas.datacontract.org/2004/07/eAd.DataViewModels")]
-    [System.SerializableAttribute()]
-    public partial class CustomerViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AccountBalanceField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AddressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CarLicenseField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CarMakeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CarModelField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ChargeRemainingField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long CustomerIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LastBillAmountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> LastRechargeDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PhoneField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PictureField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RFIDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string AccountBalance {
-            get {
-                return this.AccountBalanceField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AccountBalanceField, value) != true)) {
-                    this.AccountBalanceField = value;
-                    this.RaisePropertyChanged("AccountBalance");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address {
-            get {
-                return this.AddressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
-                    this.AddressField = value;
-                    this.RaisePropertyChanged("Address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CarLicense {
-            get {
-                return this.CarLicenseField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CarLicenseField, value) != true)) {
-                    this.CarLicenseField = value;
-                    this.RaisePropertyChanged("CarLicense");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CarMake {
-            get {
-                return this.CarMakeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CarMakeField, value) != true)) {
-                    this.CarMakeField = value;
-                    this.RaisePropertyChanged("CarMake");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CarModel {
-            get {
-                return this.CarModelField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CarModelField, value) != true)) {
-                    this.CarModelField = value;
-                    this.RaisePropertyChanged("CarModel");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ChargeRemaining {
-            get {
-                return this.ChargeRemainingField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ChargeRemainingField, value) != true)) {
-                    this.ChargeRemainingField = value;
-                    this.RaisePropertyChanged("ChargeRemaining");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public long CustomerID {
-            get {
-                return this.CustomerIDField;
-            }
-            set {
-                if ((this.CustomerIDField.Equals(value) != true)) {
-                    this.CustomerIDField = value;
-                    this.RaisePropertyChanged("CustomerID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Email {
-            get {
-                return this.EmailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
-                    this.EmailField = value;
-                    this.RaisePropertyChanged("Email");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LastBillAmount {
-            get {
-                return this.LastBillAmountField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LastBillAmountField, value) != true)) {
-                    this.LastBillAmountField = value;
-                    this.RaisePropertyChanged("LastBillAmount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> LastRechargeDate {
-            get {
-                return this.LastRechargeDateField;
-            }
-            set {
-                if ((this.LastRechargeDateField.Equals(value) != true)) {
-                    this.LastRechargeDateField = value;
-                    this.RaisePropertyChanged("LastRechargeDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Phone {
-            get {
-                return this.PhoneField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PhoneField, value) != true)) {
-                    this.PhoneField = value;
-                    this.RaisePropertyChanged("Phone");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Picture {
-            get {
-                return this.PictureField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PictureField, value) != true)) {
-                    this.PictureField = value;
-                    this.RaisePropertyChanged("Picture");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string RFID {
-            get {
-                return this.RFIDField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RFIDField, value) != true)) {
-                    this.RFIDField = value;
-                    this.RaisePropertyChanged("RFID");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="MessageViewModel", Namespace="http://schemas.datacontract.org/2004/07/eAd.DataViewModels")]
-    [System.SerializableAttribute()]
-    public partial class MessageViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CommandField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool SentField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long StationIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TextField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long UserIDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Command {
-            get {
-                return this.CommandField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CommandField, value) != true)) {
-                    this.CommandField = value;
-                    this.RaisePropertyChanged("Command");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public long ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Sent {
-            get {
-                return this.SentField;
-            }
-            set {
-                if ((this.SentField.Equals(value) != true)) {
-                    this.SentField = value;
-                    this.RaisePropertyChanged("Sent");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public long StationID {
-            get {
-                return this.StationIDField;
-            }
-            set {
-                if ((this.StationIDField.Equals(value) != true)) {
-                    this.StationIDField = value;
-                    this.RaisePropertyChanged("StationID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Text {
-            get {
-                return this.TextField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TextField, value) != true)) {
-                    this.TextField = value;
-                    this.RaisePropertyChanged("Text");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Type {
-            get {
-                return this.TypeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
-                    this.TypeField = value;
-                    this.RaisePropertyChanged("Type");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public long UserID {
-            get {
-                return this.UserIDField;
-            }
-            set {
-                if ((this.UserIDField.Equals(value) != true)) {
-                    this.UserIDField = value;
-                    this.RaisePropertyChanged("UserID");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="StationViewModel", Namespace="http://schemas.datacontract.org/2004/07/eAd.DataViewModels")]
-    [System.SerializableAttribute()]
-    public partial class StationViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool AvailableField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsOnlineField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> LastCheckInField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LocationField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long StationIDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Available {
-            get {
-                return this.AvailableField;
-            }
-            set {
-                if ((this.AvailableField.Equals(value) != true)) {
-                    this.AvailableField = value;
-                    this.RaisePropertyChanged("Available");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsOnline {
-            get {
-                return this.IsOnlineField;
-            }
-            set {
-                if ((this.IsOnlineField.Equals(value) != true)) {
-                    this.IsOnlineField = value;
-                    this.RaisePropertyChanged("IsOnline");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> LastCheckIn {
-            get {
-                return this.LastCheckInField;
-            }
-            set {
-                if ((this.LastCheckInField.Equals(value) != true)) {
-                    this.LastCheckInField = value;
-                    this.RaisePropertyChanged("LastCheckIn");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Location {
-            get {
-                return this.LocationField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LocationField, value) != true)) {
-                    this.LocationField = value;
-                    this.RaisePropertyChanged("Location");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public long StationID {
-            get {
-                return this.StationIDField;
-            }
-            set {
-                if ((this.StationIDField.Equals(value) != true)) {
-                    this.StationIDField = value;
-                    this.RaisePropertyChanged("StationID");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="eAdDataAccess.IService")]
@@ -551,6 +30,14 @@ namespace DesktopClient.eAdDataAccess {
         System.IAsyncResult BeginSayHi(long clientID, System.AsyncCallback callback, object asyncState);
         
         string EndSayHi(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetMyMedia", ReplyAction="http://tempuri.org/IService/GetMyMediaResponse")]
+        eAd.DataViewModels.MediaListModel[] GetMyMedia(long stationID);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetMyMedia", ReplyAction="http://tempuri.org/IService/GetMyMediaResponse")]
+        System.IAsyncResult BeginGetMyMedia(long stationID, System.AsyncCallback callback, object asyncState);
+        
+        eAd.DataViewModels.MediaListModel[] EndGetMyMedia(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DoIHaveUpdates", ReplyAction="http://tempuri.org/IService/DoIHaveUpdatesResponse")]
         bool DoIHaveUpdates(long clientID);
@@ -585,44 +72,60 @@ namespace DesktopClient.eAdDataAccess {
         bool EndMessageRead(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetCustomerByRFID", ReplyAction="http://tempuri.org/IService/GetCustomerByRFIDResponse")]
-        DesktopClient.eAdDataAccess.CustomerViewModel GetCustomerByRFID(string tag);
+        eAd.DataViewModels.CustomerViewModel GetCustomerByRFID(string tag);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetCustomerByRFID", ReplyAction="http://tempuri.org/IService/GetCustomerByRFIDResponse")]
         System.IAsyncResult BeginGetCustomerByRFID(string tag, System.AsyncCallback callback, object asyncState);
         
-        DesktopClient.eAdDataAccess.CustomerViewModel EndGetCustomerByRFID(System.IAsyncResult result);
+        eAd.DataViewModels.CustomerViewModel EndGetCustomerByRFID(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SendMessageToStation", ReplyAction="http://tempuri.org/IService/SendMessageToStationResponse")]
+        bool SendMessageToStation(long stationID, eAd.DataViewModels.MessageViewModel message);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/SendMessageToStation", ReplyAction="http://tempuri.org/IService/SendMessageToStationResponse")]
+        System.IAsyncResult BeginSendMessageToStation(long stationID, eAd.DataViewModels.MessageViewModel message, System.AsyncCallback callback, object asyncState);
+        
+        bool EndSendMessageToStation(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SendMessageToGroup", ReplyAction="http://tempuri.org/IService/SendMessageToGroupResponse")]
+        bool SendMessageToGroup(long groupID, eAd.DataViewModels.MessageViewModel message);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/SendMessageToGroup", ReplyAction="http://tempuri.org/IService/SendMessageToGroupResponse")]
+        System.IAsyncResult BeginSendMessageToGroup(long groupID, eAd.DataViewModels.MessageViewModel message, System.AsyncCallback callback, object asyncState);
+        
+        bool EndSendMessageToGroup(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetAllMyMessages", ReplyAction="http://tempuri.org/IService/GetAllMyMessagesResponse")]
-        DesktopClient.eAdDataAccess.MessageViewModel[] GetAllMyMessages(long clientID);
+        eAd.DataViewModels.MessageViewModel[] GetAllMyMessages(long clientID);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetAllMyMessages", ReplyAction="http://tempuri.org/IService/GetAllMyMessagesResponse")]
         System.IAsyncResult BeginGetAllMyMessages(long clientID, System.AsyncCallback callback, object asyncState);
         
-        DesktopClient.eAdDataAccess.MessageViewModel[] EndGetAllMyMessages(System.IAsyncResult result);
+        eAd.DataViewModels.MessageViewModel[] EndGetAllMyMessages(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetAllCustomers", ReplyAction="http://tempuri.org/IService/GetAllCustomersResponse")]
-        DesktopClient.eAdDataAccess.CustomerViewModel[] GetAllCustomers();
+        eAd.DataViewModels.CustomerViewModel[] GetAllCustomers();
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetAllCustomers", ReplyAction="http://tempuri.org/IService/GetAllCustomersResponse")]
         System.IAsyncResult BeginGetAllCustomers(System.AsyncCallback callback, object asyncState);
         
-        DesktopClient.eAdDataAccess.CustomerViewModel[] EndGetAllCustomers(System.IAsyncResult result);
+        eAd.DataViewModels.CustomerViewModel[] EndGetAllCustomers(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetAllStations", ReplyAction="http://tempuri.org/IService/GetAllStationsResponse")]
-        DesktopClient.eAdDataAccess.StationViewModel[] GetAllStations();
+        eAd.DataViewModels.StationViewModel[] GetAllStations();
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetAllStations", ReplyAction="http://tempuri.org/IService/GetAllStationsResponse")]
         System.IAsyncResult BeginGetAllStations(System.AsyncCallback callback, object asyncState);
         
-        DesktopClient.eAdDataAccess.StationViewModel[] EndGetAllStations(System.IAsyncResult result);
+        eAd.DataViewModels.StationViewModel[] EndGetAllStations(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetOnlineStations", ReplyAction="http://tempuri.org/IService/GetOnlineStationsResponse")]
-        DesktopClient.eAdDataAccess.StationViewModel[] GetOnlineStations();
+        eAd.DataViewModels.StationViewModel[] GetOnlineStations();
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetOnlineStations", ReplyAction="http://tempuri.org/IService/GetOnlineStationsResponse")]
         System.IAsyncResult BeginGetOnlineStations(System.AsyncCallback callback, object asyncState);
         
-        DesktopClient.eAdDataAccess.StationViewModel[] EndGetOnlineStations(System.IAsyncResult result);
+        eAd.DataViewModels.StationViewModel[] EndGetOnlineStations(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -663,6 +166,25 @@ namespace DesktopClient.eAdDataAccess {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetMyMediaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetMyMediaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public eAd.DataViewModels.MediaListModel[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((eAd.DataViewModels.MediaListModel[])(this.results[0]));
             }
         }
     }
@@ -754,10 +276,48 @@ namespace DesktopClient.eAdDataAccess {
             this.results = results;
         }
         
-        public DesktopClient.eAdDataAccess.CustomerViewModel Result {
+        public eAd.DataViewModels.CustomerViewModel Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((DesktopClient.eAdDataAccess.CustomerViewModel)(this.results[0]));
+                return ((eAd.DataViewModels.CustomerViewModel)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class SendMessageToStationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SendMessageToStationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class SendMessageToGroupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SendMessageToGroupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
             }
         }
     }
@@ -773,10 +333,10 @@ namespace DesktopClient.eAdDataAccess {
             this.results = results;
         }
         
-        public DesktopClient.eAdDataAccess.MessageViewModel[] Result {
+        public eAd.DataViewModels.MessageViewModel[] Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((DesktopClient.eAdDataAccess.MessageViewModel[])(this.results[0]));
+                return ((eAd.DataViewModels.MessageViewModel[])(this.results[0]));
             }
         }
     }
@@ -792,10 +352,10 @@ namespace DesktopClient.eAdDataAccess {
             this.results = results;
         }
         
-        public DesktopClient.eAdDataAccess.CustomerViewModel[] Result {
+        public eAd.DataViewModels.CustomerViewModel[] Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((DesktopClient.eAdDataAccess.CustomerViewModel[])(this.results[0]));
+                return ((eAd.DataViewModels.CustomerViewModel[])(this.results[0]));
             }
         }
     }
@@ -811,10 +371,10 @@ namespace DesktopClient.eAdDataAccess {
             this.results = results;
         }
         
-        public DesktopClient.eAdDataAccess.StationViewModel[] Result {
+        public eAd.DataViewModels.StationViewModel[] Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((DesktopClient.eAdDataAccess.StationViewModel[])(this.results[0]));
+                return ((eAd.DataViewModels.StationViewModel[])(this.results[0]));
             }
         }
     }
@@ -830,10 +390,10 @@ namespace DesktopClient.eAdDataAccess {
             this.results = results;
         }
         
-        public DesktopClient.eAdDataAccess.StationViewModel[] Result {
+        public eAd.DataViewModels.StationViewModel[] Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((DesktopClient.eAdDataAccess.StationViewModel[])(this.results[0]));
+                return ((eAd.DataViewModels.StationViewModel[])(this.results[0]));
             }
         }
     }
@@ -853,6 +413,12 @@ namespace DesktopClient.eAdDataAccess {
         private EndOperationDelegate onEndSayHiDelegate;
         
         private System.Threading.SendOrPostCallback onSayHiCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetMyMediaDelegate;
+        
+        private EndOperationDelegate onEndGetMyMediaDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetMyMediaCompletedDelegate;
         
         private BeginOperationDelegate onBeginDoIHaveUpdatesDelegate;
         
@@ -883,6 +449,18 @@ namespace DesktopClient.eAdDataAccess {
         private EndOperationDelegate onEndGetCustomerByRFIDDelegate;
         
         private System.Threading.SendOrPostCallback onGetCustomerByRFIDCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSendMessageToStationDelegate;
+        
+        private EndOperationDelegate onEndSendMessageToStationDelegate;
+        
+        private System.Threading.SendOrPostCallback onSendMessageToStationCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSendMessageToGroupDelegate;
+        
+        private EndOperationDelegate onEndSendMessageToGroupDelegate;
+        
+        private System.Threading.SendOrPostCallback onSendMessageToGroupCompletedDelegate;
         
         private BeginOperationDelegate onBeginGetAllMyMessagesDelegate;
         
@@ -931,6 +509,8 @@ namespace DesktopClient.eAdDataAccess {
         
         public event System.EventHandler<SayHiCompletedEventArgs> SayHiCompleted;
         
+        public event System.EventHandler<GetMyMediaCompletedEventArgs> GetMyMediaCompleted;
+        
         public event System.EventHandler<DoIHaveUpdatesCompletedEventArgs> DoIHaveUpdatesCompleted;
         
         public event System.EventHandler<MakeStationUnAvailableCompletedEventArgs> MakeStationUnAvailableCompleted;
@@ -940,6 +520,10 @@ namespace DesktopClient.eAdDataAccess {
         public event System.EventHandler<MessageReadCompletedEventArgs> MessageReadCompleted;
         
         public event System.EventHandler<GetCustomerByRFIDCompletedEventArgs> GetCustomerByRFIDCompleted;
+        
+        public event System.EventHandler<SendMessageToStationCompletedEventArgs> SendMessageToStationCompleted;
+        
+        public event System.EventHandler<SendMessageToGroupCompletedEventArgs> SendMessageToGroupCompleted;
         
         public event System.EventHandler<GetAllMyMessagesCompletedEventArgs> GetAllMyMessagesCompleted;
         
@@ -1045,6 +629,56 @@ namespace DesktopClient.eAdDataAccess {
             }
             base.InvokeAsync(this.onBeginSayHiDelegate, new object[] {
                         clientID}, this.onEndSayHiDelegate, this.onSayHiCompletedDelegate, userState);
+        }
+        
+        public eAd.DataViewModels.MediaListModel[] GetMyMedia(long stationID) {
+            return base.Channel.GetMyMedia(stationID);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetMyMedia(long stationID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetMyMedia(stationID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public eAd.DataViewModels.MediaListModel[] EndGetMyMedia(System.IAsyncResult result) {
+            return base.Channel.EndGetMyMedia(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetMyMedia(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long stationID = ((long)(inValues[0]));
+            return this.BeginGetMyMedia(stationID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetMyMedia(System.IAsyncResult result) {
+            eAd.DataViewModels.MediaListModel[] retVal = this.EndGetMyMedia(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetMyMediaCompleted(object state) {
+            if ((this.GetMyMediaCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetMyMediaCompleted(this, new GetMyMediaCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetMyMediaAsync(long stationID) {
+            this.GetMyMediaAsync(stationID, null);
+        }
+        
+        public void GetMyMediaAsync(long stationID, object userState) {
+            if ((this.onBeginGetMyMediaDelegate == null)) {
+                this.onBeginGetMyMediaDelegate = new BeginOperationDelegate(this.OnBeginGetMyMedia);
+            }
+            if ((this.onEndGetMyMediaDelegate == null)) {
+                this.onEndGetMyMediaDelegate = new EndOperationDelegate(this.OnEndGetMyMedia);
+            }
+            if ((this.onGetMyMediaCompletedDelegate == null)) {
+                this.onGetMyMediaCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetMyMediaCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetMyMediaDelegate, new object[] {
+                        stationID}, this.onEndGetMyMediaDelegate, this.onGetMyMediaCompletedDelegate, userState);
         }
         
         public bool DoIHaveUpdates(long clientID) {
@@ -1249,7 +883,7 @@ namespace DesktopClient.eAdDataAccess {
                         messageID}, this.onEndMessageReadDelegate, this.onMessageReadCompletedDelegate, userState);
         }
         
-        public DesktopClient.eAdDataAccess.CustomerViewModel GetCustomerByRFID(string tag) {
+        public eAd.DataViewModels.CustomerViewModel GetCustomerByRFID(string tag) {
             return base.Channel.GetCustomerByRFID(tag);
         }
         
@@ -1259,7 +893,7 @@ namespace DesktopClient.eAdDataAccess {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public DesktopClient.eAdDataAccess.CustomerViewModel EndGetCustomerByRFID(System.IAsyncResult result) {
+        public eAd.DataViewModels.CustomerViewModel EndGetCustomerByRFID(System.IAsyncResult result) {
             return base.Channel.EndGetCustomerByRFID(result);
         }
         
@@ -1269,7 +903,7 @@ namespace DesktopClient.eAdDataAccess {
         }
         
         private object[] OnEndGetCustomerByRFID(System.IAsyncResult result) {
-            DesktopClient.eAdDataAccess.CustomerViewModel retVal = this.EndGetCustomerByRFID(result);
+            eAd.DataViewModels.CustomerViewModel retVal = this.EndGetCustomerByRFID(result);
             return new object[] {
                     retVal};
         }
@@ -1299,7 +933,111 @@ namespace DesktopClient.eAdDataAccess {
                         tag}, this.onEndGetCustomerByRFIDDelegate, this.onGetCustomerByRFIDCompletedDelegate, userState);
         }
         
-        public DesktopClient.eAdDataAccess.MessageViewModel[] GetAllMyMessages(long clientID) {
+        public bool SendMessageToStation(long stationID, eAd.DataViewModels.MessageViewModel message) {
+            return base.Channel.SendMessageToStation(stationID, message);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginSendMessageToStation(long stationID, eAd.DataViewModels.MessageViewModel message, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSendMessageToStation(stationID, message, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndSendMessageToStation(System.IAsyncResult result) {
+            return base.Channel.EndSendMessageToStation(result);
+        }
+        
+        private System.IAsyncResult OnBeginSendMessageToStation(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long stationID = ((long)(inValues[0]));
+            eAd.DataViewModels.MessageViewModel message = ((eAd.DataViewModels.MessageViewModel)(inValues[1]));
+            return this.BeginSendMessageToStation(stationID, message, callback, asyncState);
+        }
+        
+        private object[] OnEndSendMessageToStation(System.IAsyncResult result) {
+            bool retVal = this.EndSendMessageToStation(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnSendMessageToStationCompleted(object state) {
+            if ((this.SendMessageToStationCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SendMessageToStationCompleted(this, new SendMessageToStationCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SendMessageToStationAsync(long stationID, eAd.DataViewModels.MessageViewModel message) {
+            this.SendMessageToStationAsync(stationID, message, null);
+        }
+        
+        public void SendMessageToStationAsync(long stationID, eAd.DataViewModels.MessageViewModel message, object userState) {
+            if ((this.onBeginSendMessageToStationDelegate == null)) {
+                this.onBeginSendMessageToStationDelegate = new BeginOperationDelegate(this.OnBeginSendMessageToStation);
+            }
+            if ((this.onEndSendMessageToStationDelegate == null)) {
+                this.onEndSendMessageToStationDelegate = new EndOperationDelegate(this.OnEndSendMessageToStation);
+            }
+            if ((this.onSendMessageToStationCompletedDelegate == null)) {
+                this.onSendMessageToStationCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSendMessageToStationCompleted);
+            }
+            base.InvokeAsync(this.onBeginSendMessageToStationDelegate, new object[] {
+                        stationID,
+                        message}, this.onEndSendMessageToStationDelegate, this.onSendMessageToStationCompletedDelegate, userState);
+        }
+        
+        public bool SendMessageToGroup(long groupID, eAd.DataViewModels.MessageViewModel message) {
+            return base.Channel.SendMessageToGroup(groupID, message);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginSendMessageToGroup(long groupID, eAd.DataViewModels.MessageViewModel message, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSendMessageToGroup(groupID, message, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndSendMessageToGroup(System.IAsyncResult result) {
+            return base.Channel.EndSendMessageToGroup(result);
+        }
+        
+        private System.IAsyncResult OnBeginSendMessageToGroup(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long groupID = ((long)(inValues[0]));
+            eAd.DataViewModels.MessageViewModel message = ((eAd.DataViewModels.MessageViewModel)(inValues[1]));
+            return this.BeginSendMessageToGroup(groupID, message, callback, asyncState);
+        }
+        
+        private object[] OnEndSendMessageToGroup(System.IAsyncResult result) {
+            bool retVal = this.EndSendMessageToGroup(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnSendMessageToGroupCompleted(object state) {
+            if ((this.SendMessageToGroupCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SendMessageToGroupCompleted(this, new SendMessageToGroupCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SendMessageToGroupAsync(long groupID, eAd.DataViewModels.MessageViewModel message) {
+            this.SendMessageToGroupAsync(groupID, message, null);
+        }
+        
+        public void SendMessageToGroupAsync(long groupID, eAd.DataViewModels.MessageViewModel message, object userState) {
+            if ((this.onBeginSendMessageToGroupDelegate == null)) {
+                this.onBeginSendMessageToGroupDelegate = new BeginOperationDelegate(this.OnBeginSendMessageToGroup);
+            }
+            if ((this.onEndSendMessageToGroupDelegate == null)) {
+                this.onEndSendMessageToGroupDelegate = new EndOperationDelegate(this.OnEndSendMessageToGroup);
+            }
+            if ((this.onSendMessageToGroupCompletedDelegate == null)) {
+                this.onSendMessageToGroupCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSendMessageToGroupCompleted);
+            }
+            base.InvokeAsync(this.onBeginSendMessageToGroupDelegate, new object[] {
+                        groupID,
+                        message}, this.onEndSendMessageToGroupDelegate, this.onSendMessageToGroupCompletedDelegate, userState);
+        }
+        
+        public eAd.DataViewModels.MessageViewModel[] GetAllMyMessages(long clientID) {
             return base.Channel.GetAllMyMessages(clientID);
         }
         
@@ -1309,7 +1047,7 @@ namespace DesktopClient.eAdDataAccess {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public DesktopClient.eAdDataAccess.MessageViewModel[] EndGetAllMyMessages(System.IAsyncResult result) {
+        public eAd.DataViewModels.MessageViewModel[] EndGetAllMyMessages(System.IAsyncResult result) {
             return base.Channel.EndGetAllMyMessages(result);
         }
         
@@ -1319,7 +1057,7 @@ namespace DesktopClient.eAdDataAccess {
         }
         
         private object[] OnEndGetAllMyMessages(System.IAsyncResult result) {
-            DesktopClient.eAdDataAccess.MessageViewModel[] retVal = this.EndGetAllMyMessages(result);
+            eAd.DataViewModels.MessageViewModel[] retVal = this.EndGetAllMyMessages(result);
             return new object[] {
                     retVal};
         }
@@ -1349,7 +1087,7 @@ namespace DesktopClient.eAdDataAccess {
                         clientID}, this.onEndGetAllMyMessagesDelegate, this.onGetAllMyMessagesCompletedDelegate, userState);
         }
         
-        public DesktopClient.eAdDataAccess.CustomerViewModel[] GetAllCustomers() {
+        public eAd.DataViewModels.CustomerViewModel[] GetAllCustomers() {
             return base.Channel.GetAllCustomers();
         }
         
@@ -1359,7 +1097,7 @@ namespace DesktopClient.eAdDataAccess {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public DesktopClient.eAdDataAccess.CustomerViewModel[] EndGetAllCustomers(System.IAsyncResult result) {
+        public eAd.DataViewModels.CustomerViewModel[] EndGetAllCustomers(System.IAsyncResult result) {
             return base.Channel.EndGetAllCustomers(result);
         }
         
@@ -1368,7 +1106,7 @@ namespace DesktopClient.eAdDataAccess {
         }
         
         private object[] OnEndGetAllCustomers(System.IAsyncResult result) {
-            DesktopClient.eAdDataAccess.CustomerViewModel[] retVal = this.EndGetAllCustomers(result);
+            eAd.DataViewModels.CustomerViewModel[] retVal = this.EndGetAllCustomers(result);
             return new object[] {
                     retVal};
         }
@@ -1397,7 +1135,7 @@ namespace DesktopClient.eAdDataAccess {
             base.InvokeAsync(this.onBeginGetAllCustomersDelegate, null, this.onEndGetAllCustomersDelegate, this.onGetAllCustomersCompletedDelegate, userState);
         }
         
-        public DesktopClient.eAdDataAccess.StationViewModel[] GetAllStations() {
+        public eAd.DataViewModels.StationViewModel[] GetAllStations() {
             return base.Channel.GetAllStations();
         }
         
@@ -1407,7 +1145,7 @@ namespace DesktopClient.eAdDataAccess {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public DesktopClient.eAdDataAccess.StationViewModel[] EndGetAllStations(System.IAsyncResult result) {
+        public eAd.DataViewModels.StationViewModel[] EndGetAllStations(System.IAsyncResult result) {
             return base.Channel.EndGetAllStations(result);
         }
         
@@ -1416,7 +1154,7 @@ namespace DesktopClient.eAdDataAccess {
         }
         
         private object[] OnEndGetAllStations(System.IAsyncResult result) {
-            DesktopClient.eAdDataAccess.StationViewModel[] retVal = this.EndGetAllStations(result);
+            eAd.DataViewModels.StationViewModel[] retVal = this.EndGetAllStations(result);
             return new object[] {
                     retVal};
         }
@@ -1445,7 +1183,7 @@ namespace DesktopClient.eAdDataAccess {
             base.InvokeAsync(this.onBeginGetAllStationsDelegate, null, this.onEndGetAllStationsDelegate, this.onGetAllStationsCompletedDelegate, userState);
         }
         
-        public DesktopClient.eAdDataAccess.StationViewModel[] GetOnlineStations() {
+        public eAd.DataViewModels.StationViewModel[] GetOnlineStations() {
             return base.Channel.GetOnlineStations();
         }
         
@@ -1455,7 +1193,7 @@ namespace DesktopClient.eAdDataAccess {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public DesktopClient.eAdDataAccess.StationViewModel[] EndGetOnlineStations(System.IAsyncResult result) {
+        public eAd.DataViewModels.StationViewModel[] EndGetOnlineStations(System.IAsyncResult result) {
             return base.Channel.EndGetOnlineStations(result);
         }
         
@@ -1464,7 +1202,7 @@ namespace DesktopClient.eAdDataAccess {
         }
         
         private object[] OnEndGetOnlineStations(System.IAsyncResult result) {
-            DesktopClient.eAdDataAccess.StationViewModel[] retVal = this.EndGetOnlineStations(result);
+            eAd.DataViewModels.StationViewModel[] retVal = this.EndGetOnlineStations(result);
             return new object[] {
                     retVal};
         }

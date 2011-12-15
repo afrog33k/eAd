@@ -557,6 +557,12 @@ namespace eAd.Website.eAdDataService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetCustomerByRFID", ReplyAction="http://tempuri.org/IService/GetCustomerByRFIDResponse")]
         eAd.Website.eAdDataService.CustomerViewModel GetCustomerByRFID(string tag);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SendMessageToStation", ReplyAction="http://tempuri.org/IService/SendMessageToStationResponse")]
+        bool SendMessageToStation(long stationID, eAd.Website.eAdDataService.MessageViewModel message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SendMessageToGroup", ReplyAction="http://tempuri.org/IService/SendMessageToGroupResponse")]
+        bool SendMessageToGroup(long groupID, eAd.Website.eAdDataService.MessageViewModel message);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetAllMyMessages", ReplyAction="http://tempuri.org/IService/GetAllMyMessagesResponse")]
         eAd.Website.eAdDataService.MessageViewModel[] GetAllMyMessages(long clientID);
         
@@ -623,6 +629,14 @@ namespace eAd.Website.eAdDataService {
         
         public eAd.Website.eAdDataService.CustomerViewModel GetCustomerByRFID(string tag) {
             return base.Channel.GetCustomerByRFID(tag);
+        }
+        
+        public bool SendMessageToStation(long stationID, eAd.Website.eAdDataService.MessageViewModel message) {
+            return base.Channel.SendMessageToStation(stationID, message);
+        }
+        
+        public bool SendMessageToGroup(long groupID, eAd.Website.eAdDataService.MessageViewModel message) {
+            return base.Channel.SendMessageToGroup(groupID, message);
         }
         
         public eAd.Website.eAdDataService.MessageViewModel[] GetAllMyMessages(long clientID) {

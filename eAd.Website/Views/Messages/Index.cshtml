@@ -11,6 +11,9 @@
 </p>
 <table>
     <tr>
+      <th>
+            Date
+        </th>
         <th>
             Type
         </th>
@@ -18,8 +21,12 @@
             Text
         </th>
         <th>
-            Sent
+            Received
         </th>
+        <th>
+            Date Received
+        </th>
+      
         <th>
             Station
         </th>
@@ -34,6 +41,9 @@
 
 @foreach (var item in Model) {
     <tr>
+      <td>
+            @Html.DisplayFor(modelItem => item.DateAdded)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Type)
         </td>
@@ -43,8 +53,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.Sent)
         </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.DateReceived)
+        </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Station.Location)
+            @Html.DisplayFor(modelItem => item.Station.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UserID)

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using eAd.DataViewModels;
-using StationViewModel = DesktopClient.eAdDataAccess.StationViewModel;
+﻿using eAd.DataViewModels;
 
-
-namespace eAd.Utilities
+namespace DesktopClient
 {
     public class GoogleMaps
     {

@@ -12,6 +12,7 @@
           <EntitySet Name="GroupingStation" EntityType="eAdModel.Store.GroupingStation" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="GroupingTheme" EntityType="eAdModel.Store.GroupingTheme" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Media" EntityType="eAdModel.Store.Media" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MediaTypes" EntityType="eAdModel.Store.MediaTypes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Messages" EntityType="eAdModel.Store.Messages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Stations" EntityType="eAdModel.Store.Stations" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="sysdiagrams" EntityType="eAdModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
@@ -107,7 +108,14 @@
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="Location" Type="nvarchar" MaxLength="1000" />
           <Property Name="Tags" Type="nvarchar" MaxLength="250" />
-          <Property Name="Type" Type="nvarchar" MaxLength="100" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MediaTypes">
+          <Key>
+            <PropertyRef Name="MediaTypeID" />
+          </Key>
+          <Property Name="MediaTypeID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Messages">
           <Key>
@@ -120,6 +128,8 @@
           <Property Name="StationID" Type="bigint" Nullable="false" />
           <Property Name="UserID" Type="bigint" Nullable="false" />
           <Property Name="Command" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="DateAdded" Type="date" />
+          <Property Name="DateReceived" Type="date" />
         </EntityType>
         <EntityType Name="Stations">
           <Key>
@@ -285,6 +295,7 @@
             <End Role="Medium" EntitySet="Media" />
             <End Role="Theme" EntitySet="Themes" />
           </AssociationSet>
+          <EntitySet Name="MediaTypes" EntityType="eAdModel.MediaType" />
         </EntityContainer>
         <EntityType Name="Car">
           <Key>
@@ -331,7 +342,7 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Location" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Tags" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Type" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Themes" Relationship="eAdModel.ThemeMedium" FromRole="Medium" ToRole="Theme" />
         </EntityType>
         <EntityType Name="Message">
@@ -346,6 +357,8 @@
           <Property Type="Int64" Name="UserID" Nullable="false" />
           <Property Type="String" Name="Command" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Station" Relationship="eAdModel.FK_MessageStation" FromRole="Message" ToRole="Station" />
+          <Property Type="DateTime" Name="DateAdded" Precision="0" />
+          <Property Type="DateTime" Name="DateReceived" Precision="0" />
         </EntityType>
         <EntityType Name="Station">
           <Key>
@@ -414,6 +427,13 @@
           <End Type="eAdModel.Medium" Role="Medium" Multiplicity="*" />
           <End Type="eAdModel.Theme" Role="Theme" Multiplicity="*" />
         </Association>
+        <EntityType Name="MediaType">
+          <Key>
+            <PropertyRef Name="MediaTypeID" />
+          </Key>
+          <Property Type="Int64" Name="MediaTypeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -470,6 +490,8 @@
           <EntitySetMapping Name="Messages">
             <EntityTypeMapping TypeName="eAdModel.Message">
               <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="Command" ColumnName="Command" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="StationID" ColumnName="StationID" />
@@ -534,6 +556,14 @@
               <ScalarProperty Name="MediaID" ColumnName="Media_MediaID" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="MediaTypes">
+            <EntityTypeMapping TypeName="eAdModel.MediaType">
+              <MappingFragment StoreEntitySet="MediaTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MediaTypeID" ColumnName="MediaTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

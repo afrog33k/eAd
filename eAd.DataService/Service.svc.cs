@@ -51,6 +51,105 @@ namespace eAd.DataAccess
 
         }
 
+        public bool SendMessageToGroup(long groupID, MessageViewModel message)
+        {
+            try
+            {
+
+                eAdEntities entities = new eAdEntities();
+
+                var grouping = entities.Groupings.Where(s => s.GroupingID == groupID).FirstOrDefault();
+
+                if (grouping != null)
+                {
+                    foreach (var station in grouping.Stations)
+                    {
+
+
+                        station.Available = false;
+                       
+                        Message statusChange = new Message();
+                        statusChange.DateAdded = DateTime.Now;
+                        statusChange.StationID = station.StationID;
+
+                        statusChange.Text = message.Text;
+
+                        statusChange.Command = message.Command;
+
+                        statusChange.Type = message.Type;
+
+                        statusChange.UserID = message.UserID;
+
+                        entities.Messages.AddObject(statusChange);
+
+                       
+
+                    }
+                }
+                entities.SaveChanges();
+            }
+               
+            catch (Exception)
+            {
+
+
+
+                return false;
+
+            }
+
+            return true;
+        }
+
+
+        public bool SendMessageToStation(long stationID, MessageViewModel message)
+        {
+            try
+            {
+
+                eAdEntities entities = new eAdEntities();
+
+                var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
+
+                if (station != null)
+                {
+                   
+
+
+                        station.Available = false;
+
+                        Message statusChange = new Message();
+
+                        statusChange.StationID = station.StationID;
+                        statusChange.DateAdded = DateTime.Now;
+                        statusChange.Text = message.Text;
+
+                        statusChange.Command = message.Command;
+
+                        statusChange.Type = message.Type;
+
+                        statusChange.UserID = message.UserID;
+
+                        entities.Messages.AddObject(statusChange);
+
+
+
+                    
+                }
+                entities.SaveChanges();
+            }
+
+            catch (Exception)
+            {
+
+
+
+                return false;
+
+            }
+
+            return true;
+        }
 
 
         public bool MakeStationUnAvailable(long stationID, string rfidCode = "")
@@ -81,7 +180,7 @@ namespace eAd.DataAccess
                     statusChange.Type = "Status";
 
                     statusChange.UserID = 1;
-
+                    statusChange.DateAdded = DateTime.Now;
                     entities.Messages.AddObject(statusChange);
 
                     entities.SaveChanges();
@@ -133,7 +232,7 @@ namespace eAd.DataAccess
                     statusChange.Type = "Status";
 
                     statusChange.UserID = 1;
-
+                    statusChange.DateAdded = DateTime.Now;
                     entities.Messages.AddObject(statusChange);
 
                     entities.SaveChanges();
@@ -155,10 +254,34 @@ namespace eAd.DataAccess
 
         }
 
-        public bool GetMyMedia()
+        public List<MediaListModel> GetMyMedia(long stationID)
         {
-            return true
-                ;
+          
+            var entities = new eAdEntities();
+
+            var list = new List<MediaListModel>();
+            var me = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
+
+            if (me != null)
+            {
+                var myGroups = me.Groupings;
+
+                foreach (var grouping in myGroups)
+                {
+                    foreach (var theme in grouping.Themes)
+                    {
+
+                        foreach (var media in theme.Media)
+                        {
+                         
+                            if(list.Where(l=>l.MediaID==media.MediaID).Count()<=0)
+                                list.Add(new MediaListModel(){MediaID = media.MediaID,Location = media.Location});
+                        }
+                    }
+                }
+                
+            }
+            return list;
         }
 
 
@@ -166,7 +289,7 @@ namespace eAd.DataAccess
         public bool MessageRead(long messageID)
         {
 
-            eAdEntities entities = new eAdEntities();
+            var entities = new eAdEntities();
 
             var messages = entities.Messages.Where(s => s.MessageID == messageID && s.Sent == false);
 
@@ -176,6 +299,7 @@ namespace eAd.DataAccess
                 {
 
                     message.Sent = true;
+                    message.DateReceived = DateTime.Now;
 
                 }
 
@@ -196,17 +320,7 @@ namespace eAd.DataAccess
 
             var messages = entities.Messages.Where(s => s.StationID == clientID && s.Sent == false);
 
-            //foreach (var message in messages)
-
-            //{
-
-            //    message.Sent = true;
-
-            //}
-
-            // entities.SaveChanges();
-
-            return messages.ToList().Select(c => c.CreateModel()).ToList();
+        return messages.ToList().Select(c => c.CreateModel()).ToList();
 
         }
 

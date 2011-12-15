@@ -19,7 +19,7 @@ namespace eAd.Website.Controllers
         public ViewResult Index()
         {
             var messages = db.Messages.Include("Station");
-            return View(messages.ToList());
+            return View(messages.OrderBy(d=>d.DateAdded).ToList());
         }
 
         //
@@ -36,7 +36,7 @@ namespace eAd.Website.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.StationID = new SelectList(db.Stations, "StationID", "Location");
+            ViewBag.StationID = new SelectList(db.Stations, "StationID", "Name");
             return View();
         } 
 
@@ -53,7 +53,7 @@ namespace eAd.Website.Controllers
                 return RedirectToAction("Index");  
             }
 
-            ViewBag.StationID = new SelectList(db.Stations, "StationID", "Location", message.StationID);
+            ViewBag.StationID = new SelectList(db.Stations, "StationID", "Name", message.StationID);
             return View(message);
         }
         
@@ -63,7 +63,7 @@ namespace eAd.Website.Controllers
         public ActionResult Edit(long id)
         {
             Message message = db.Messages.Single(m => m.MessageID == id);
-            ViewBag.StationID = new SelectList(db.Stations, "StationID", "Location", message.StationID);
+            ViewBag.StationID = new SelectList(db.Stations, "StationID", "Name", message.StationID);
             return View(message);
         }
 
@@ -80,7 +80,7 @@ namespace eAd.Website.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.StationID = new SelectList(db.Stations, "StationID", "Location", message.StationID);
+            ViewBag.StationID = new SelectList(db.Stations, "StationID", "Name", message.StationID);
             return View(message);
         }
 

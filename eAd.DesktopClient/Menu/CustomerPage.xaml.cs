@@ -6,7 +6,6 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using DesktopClient.eAdDataAccess;
-using eAd.Utilities;
 
 namespace DesktopClient.Menu
 {

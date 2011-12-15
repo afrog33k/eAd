@@ -51,6 +51,7 @@
                         <MediaElement Height="76.953" Width="100"  LoadedBehavior="Manual"  UnloadedBehavior="Manual" Stretch="Fill"  Source="\\psf\Home\Desktop\Projects\eAd\Ads\Nissan 370z _ Fairlady Ad Malaysia(720p_H.264-AAC).mp4" AllowDrop="True" MediaOpened="MediaElementMediaOpened" Name="Player" MediaEnded="PlayerMediaEnded" Unloaded="PlayerUnloaded" />
 
                     </Viewbox>
+                    <ProgressBar x:Name="Update_Progress" HorizontalAlignment="Right" Height="30.5" Margin="0,56.5,34.223,0" VerticalAlignment="Top" Width="234" Background="#FFA19B91" Foreground="#FF375299" Value="50" Visibility="Hidden" />
                 </Grid>
             </Viewbox>
             <Viewbox

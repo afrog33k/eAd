@@ -201,6 +201,22 @@ namespace eAd.DataAccess
             }
         }
         private ObjectSet<Theme> _Themes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<MediaType> MediaTypes
+        {
+            get
+            {
+                if ((_MediaTypes == null))
+                {
+                    _MediaTypes = base.CreateObjectSet<MediaType>("MediaTypes");
+                }
+                return _MediaTypes;
+            }
+        }
+        private ObjectSet<MediaType> _MediaTypes;
 
         #endregion
 
@@ -268,6 +284,14 @@ namespace eAd.DataAccess
         public void AddToThemes(Theme theme)
         {
             base.AddObject("Themes", theme);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the MediaTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMediaTypes(MediaType mediaType)
+        {
+            base.AddObject("MediaTypes", mediaType);
         }
 
         #endregion
@@ -930,6 +954,87 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="MediaType")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class MediaType : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new MediaType object.
+        /// </summary>
+        /// <param name="mediaTypeID">Initial value of the MediaTypeID property.</param>
+        public static MediaType CreateMediaType(global::System.Int64 mediaTypeID)
+        {
+            MediaType mediaType = new MediaType();
+            mediaType.MediaTypeID = mediaTypeID;
+            return mediaType;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 MediaTypeID
+        {
+            get
+            {
+                return _MediaTypeID;
+            }
+            set
+            {
+                if (_MediaTypeID != value)
+                {
+                    OnMediaTypeIDChanging(value);
+                    ReportPropertyChanging("MediaTypeID");
+                    _MediaTypeID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("MediaTypeID");
+                    OnMediaTypeIDChanged();
+                }
+            }
+        }
+        private global::System.Int64 _MediaTypeID;
+        partial void OnMediaTypeIDChanging(global::System.Int64 value);
+        partial void OnMediaTypeIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="Medium")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -1313,6 +1418,54 @@ namespace eAd.DataAccess
         private global::System.String _Command;
         partial void OnCommandChanging(global::System.String value);
         partial void OnCommandChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> DateAdded
+        {
+            get
+            {
+                return _DateAdded;
+            }
+            set
+            {
+                OnDateAddedChanging(value);
+                ReportPropertyChanging("DateAdded");
+                _DateAdded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateAdded");
+                OnDateAddedChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _DateAdded;
+        partial void OnDateAddedChanging(Nullable<global::System.DateTime> value);
+        partial void OnDateAddedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> DateReceived
+        {
+            get
+            {
+                return _DateReceived;
+            }
+            set
+            {
+                OnDateReceivedChanging(value);
+                ReportPropertyChanging("DateReceived");
+                _DateReceived = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateReceived");
+                OnDateReceivedChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _DateReceived;
+        partial void OnDateReceivedChanging(Nullable<global::System.DateTime> value);
+        partial void OnDateReceivedChanged();
 
         #endregion
 

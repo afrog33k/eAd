@@ -4,8 +4,11 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Web;
+using eAd.Utilities;
 using eAd.Website.Controllers;
 using irio.utilities;
+using System.Linq;
+using File = irio.utilities.File;
 
 namespace eAd.Website.Repositories
 {
@@ -122,11 +125,23 @@ namespace eAd.Website.Repositories
               
 
                 FileUtils.FolderCreate(Path.GetDirectoryName(newPath));
-                System.IO.File.Move(context.Server.MapPath(pictures[0]),
+                System.IO.File.Move(
+                     TempPathForUpload(context, pictures[0], type, GUID)
+                   ,
                                     newPath);
-                System.IO.File.Move(context.Server.MapPath(pictures[1]),
-                                    thumbPath);
+                try //Maybe No Thumbnail
+                {
 
+             
+                System.IO.File.Move(
+                      TempPathForUpload(context, pictures[1], type, GUID),
+                                    thumbPath);
+                }
+                catch (Exception ex)
+                {
+
+                  Console.WriteLine("No Thumbnail" + ex.Message);
+                }
                 uploadedContents.Remove(thisContent);
 
                 context.Session["SavedFileList"] =uploadedContents;
@@ -134,9 +149,9 @@ namespace eAd.Website.Repositories
                 return ResolvePath(context, newPath);
             }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
                 
             }
             return null;
@@ -172,6 +187,11 @@ namespace eAd.Website.Repositories
                         //    Path.Combine(
                         //        context.Server.MapPath("~/Uploads/Temp/Profiles/" + AccountsRepository.MyAccountID),
                         //        ((bool) isThumb ? "Thumb" : "") + _currentMedia + Path.GetExtension(fileName));
+
+                        physicalPath =
+                          Path.Combine(
+                              context.Server.MapPath("~/Uploads/Temp/Profiles/"),
+                              ((bool)isThumb ? "Thumb" : "") + _currentMedia + Path.GetExtension(fileName));
                     }
 
                     //else if (type == UploadType.Coupon)
@@ -225,7 +245,17 @@ namespace eAd.Website.Repositories
             return result;
         }
 
-        public static string StoreImageTemp(HttpContextBase context, HttpPostedFileBase file, UploadType type)
+        public  static string[] ImageExtensions = new string[]
+                                                      {
+                                                          ".jpg",
+                                                          ".png",
+                                                          ".bmp",
+                                                          ".tga",
+                                                          ".tif",
+                                                          ".gif"
+                                                      };
+
+        public static string StoreMediaTemp(HttpContextBase context, HttpPostedFileBase file, UploadType type, out string thumbPath, out string physicalPath, out DateTime duration)
         {
             if (context.Session != null)
             {
@@ -236,21 +266,37 @@ namespace eAd.Website.Repositories
                 if (context.Session["SavedFileList"] != null)
                     lastSavedFile = (List<UploadedContent>) context.Session["SavedFileList"];
 
+                physicalPath = TempPathForUpload(context, file.FileName, type, GUID);
+                thumbPath = TempPathForUpload(context, file.FileName, type, GUID, true);
 
-               
-             
+                //Todo: Use mimes here instead of basic extension check
+                if (ImageExtensions.Contains(Path.GetExtension(file.FileName).ToLower()))
+                {
+                    Bitmap image = (Bitmap) Bitmap.FromStream(file.InputStream);
 
-                Bitmap Image = (Bitmap) Bitmap.FromStream(file.InputStream);
+                 
+                    Bitmap fullImage =
+                        (Bitmap) ImageUtilities.Resize(image, 900, 750, RotateFlipType.RotateNoneFlipNone);
+                    ImageUtilities.SaveImage(fullImage, physicalPath, ImageFormat.Jpeg, true);
 
-                string physicalPath = TempPathForUpload(context, file.FileName, type, GUID);
-                Bitmap fullImage = (Bitmap) ImageUtilities.Resize(Image, 900, 750, RotateFlipType.RotateNoneFlipNone);
-                ImageUtilities.SaveImage(fullImage,physicalPath,ImageFormat.Jpeg,true);
-             
 
-                string thumbPath = TempPathForUpload(context, file.FileName, type, GUID, true);
-                Bitmap thumbNail = (Bitmap)ImageUtilities.Resize(Image, 216, 132, RotateFlipType.RotateNoneFlipNone);
-                ImageUtilities.SaveImage(thumbNail, thumbPath, ImageFormat.Jpeg, true);
-             
+                 
+                    Bitmap thumbNail =
+                        (Bitmap) ImageUtilities.Resize(image, 216, 132, RotateFlipType.RotateNoneFlipNone);
+                    ImageUtilities.SaveImage(thumbNail, thumbPath, ImageFormat.Jpeg, true);
+
+                }
+                else if (Path.GetExtension(file.FileName).ToLower()==(".txt"))
+                {
+                    File.SaveStream(file.InputStream,physicalPath,false);
+                }
+                else // Must Be Video
+                {
+                    File.SaveStream(file.InputStream, physicalPath, false);
+
+
+
+                }
 
                 UploadedContent uploadedContent = new UploadedContent();
                 uploadedContent.MediaGuid = GUID;
@@ -272,6 +318,8 @@ namespace eAd.Website.Repositories
 
                 return "Upload Sucessful";
             }
+            thumbPath = "";
+            physicalPath = "";
             return "Failed To Upload File(s)";
         }
 

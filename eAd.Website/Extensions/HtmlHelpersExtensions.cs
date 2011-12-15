@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Text;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.UI;
+using irio.utilities;
 
 namespace eAd.Website.Extensions
 {
@@ -51,7 +54,9 @@ namespace eAd.Website.Extensions
                             "success: function(result) {{" + Environment.NewLine +
                                 "$(\"#{0}\").unblock();" + Environment.NewLine +
                                 "$(\"#{0}\").resetForm();" + Environment.NewLine +
-                                "$.growlUI('Upload Status','Success');" + Environment.NewLine +
+                                "$.growlUI('Upload Status',result.message);" + Environment.NewLine +
+                                "$(\"#{0}preview\").attr(\"src\",result.thumbnail);" + Environment.NewLine +
+                                 "HandleType(\"{0}\",result.type,result.thumbnail,result.text,result.path);" + Environment.NewLine +
                             "}}," +
                            "error: function(xhr, textStatus, errorThrown) {{" + Environment.NewLine +
                                 "$(\"#{0}\").unblock();" + Environment.NewLine +
@@ -93,8 +98,15 @@ namespace eAd.Website.Extensions
             inputBuilder.Attributes["type"] = "file";
             inputBuilder.Attributes["name"] = name + "file";
 
-            labelBuilder.InnerHtml = label + inputBuilder.ToString() + "(10MB max size)" + "<br/>";
+            labelBuilder.InnerHtml = label + inputBuilder.ToString() + "(" + PrettyPrinter.FormatByteCount((ulong)((HttpRuntimeSection)ConfigurationManager.GetSection("system.web/httpRuntime")).MaxRequestLength * 100) + " Max Upload Size)" + "<br/>";
 
+            //<img id="@(ViewBag.Name)preview" alt="Preview" src="../../Content/check48.png"/>
+
+            TagBuilder imagePreview = new TagBuilder("img");
+            imagePreview.GenerateId(name + "preview");
+            imagePreview.Attributes["src"] = "../../Content/check48.png";
+
+            imagePreview.Attributes["alt"] = "Preview";
 
             TagBuilder ajaxUploadButtonBuilder = new TagBuilder("input");
             ajaxUploadButtonBuilder.GenerateId(name + "ajaxUploadButton");
@@ -102,9 +114,11 @@ namespace eAd.Website.Extensions
 
             ajaxUploadButtonBuilder.Attributes["value"] = "Submit";
 
-            fieldsetBuilder.InnerHtml = legendBuilder.ToString() + "<br/>" +
-                                        labelBuilder.ToString() + "<br/>" +
-                                        hiddenTagBuilder + "<br/>" +
+            fieldsetBuilder.InnerHtml = legendBuilder.ToString() + Environment.NewLine +
+                                        labelBuilder.ToString() + Environment.NewLine +
+                                          imagePreview.ToString() + Environment.NewLine +
+                                        hiddenTagBuilder + Environment.NewLine +
+
                                         ajaxUploadButtonBuilder.ToString();
 
             uploadFormTagBuilder.InnerHtml = fieldsetBuilder.ToString();
