@@ -14,15 +14,19 @@
         <th>
             Name
         </th>
+          <th>
+            Type
+        </th>
+          <th>
+            Duration
+        </th>
         <th>
             Location
         </th>
         <th>
             Tags
         </th>
-        <th>
-            Type
-        </th>
+      
         <th></th>
     </tr>
 
@@ -31,15 +35,19 @@
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.Duration)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Location)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Tags)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
+      
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MediaID }) |
             @Html.ActionLink("Details", "Details", new { id=item.MediaID }) |

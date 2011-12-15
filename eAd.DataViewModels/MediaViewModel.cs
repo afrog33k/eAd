@@ -20,6 +20,21 @@ namespace eAd.DataViewModels
         private global::System.Int64 _MediaID;
 
 
+        public TimeSpan Duration
+        {
+            get
+            {
+                return _duration;
+            }
+            set
+            {
+                _duration = value;
+
+            }
+        }
+        private TimeSpan _duration;
+
+
         public global::System.String Location
         {
             get
@@ -33,6 +48,9 @@ namespace eAd.DataViewModels
 
             }
         }
+
+        public bool Downloaded { get; set; }
+
         private global::System.String _Location;
     }
 

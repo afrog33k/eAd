@@ -56,7 +56,7 @@ namespace eAd.Website.Extensions
                                 "$(\"#{0}\").resetForm();" + Environment.NewLine +
                                 "$.growlUI('Upload Status',result.message);" + Environment.NewLine +
                                 "$(\"#{0}preview\").attr(\"src\",result.thumbnail);" + Environment.NewLine +
-                                 "HandleType(\"{0}\",result.type,result.thumbnail,result.text,result.path);" + Environment.NewLine +
+                                 "HandleType(\"{0}\",result.type,result.thumbnail,result.text,result.path,result.duration);" + Environment.NewLine +
                             "}}," +
                            "error: function(xhr, textStatus, errorThrown) {{" + Environment.NewLine +
                                 "$(\"#{0}\").unblock();" + Environment.NewLine +

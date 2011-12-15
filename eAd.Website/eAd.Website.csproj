@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -1176,6 +1177,9 @@
     <Content Include="Scripts\LocationsMap.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Client\Client1.2b.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Images\.svn\all-wcprops" />
     <None Include="Content\Images\.svn\entries" />
     <None Include="Content\Images\.svn\prop-base\buydeal.png.svn-base" />
@@ -1291,7 +1295,7 @@
     <Content Include="Tools\FFmpeg\doc\libavfilter.html" />
     <Content Include="Tools\FFmpeg\doc\platform.html" />
     <Content Include="Tools\FFmpeg\ffmpeg.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Tools\FFmpeg\ffplay.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1407,6 +1411,7 @@
     <None Include="Tools\FFmpeg\presets\libvpx-720p50_60.ffpreset" />
     <None Include="Tools\FFmpeg\presets\libx264-ipod320.ffpreset" />
     <None Include="Tools\FFmpeg\presets\libx264-ipod640.ffpreset" />
+    <Content Include="Views\Shared\EditorTemplates\TimeSpan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\.svn\props\" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Windows;
@@ -9,57 +10,60 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using DesktopClient.Menu;
 using DesktopClient.eAdDataAccess;
+using eAd.DataViewModels;
 
 namespace DesktopClient
 {
 
 
-    /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
     public partial class PageSwitcher : Window
     {
+        static volatile int runningDownloads = 0;
+        /// <summary>
+        public static List<MediaListModel> Playlist = new List<MediaListModel>();
 
-        public static List<string> Playlist = new List<string>();
+        private object DownLoadsLock = new object();
+
         public PageSwitcher()
         {
             InitializeComponent();
             Switcher.PageSwitcher = this;
             Switcher.Switch(MainWindow.Instance);
 
+
+
             // Keep Alive Thread
             ThreadPool.QueueUserWorkItem(
                 (state) =>
-                    {
-                        while (true)
-                        {
-                            
-                      
-            try
-            {
-
-              
                 {
-                    ServiceClient myService = new ServiceClient();
-                    //BootStrap WCF (otherwise slow)
-                    myService.ClientCredentials.Windows.ClientCredential.UserName = "admin";
-                    myService.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
-                    var hi = myService.SayHi(Constants.MyStationID);
-                    if (hi != "Hi there")
+                    while (true)
                     {
-                        Console.WriteLine("Server Down");
 
+                        try
+                        {
+
+                            ServiceClient myService = new ServiceClient();
+                            //BootStrap WCF (otherwise slow)
+                            myService.ClientCredentials.Windows.ClientCredential.UserName = "admin";
+                            myService.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
+                            var hi = myService.SayHi(Constants.MyStationID);
+                            if (hi != "Hi there")
+                            {
+                                Console.WriteLine("Server Down");
+
+
+                            }
+                        }
+                        catch (Exception exception)
+                        {
+
+                            Console.WriteLine("Server Down" + exception.Message + exception.StackTrace);
+                        }
+                        Thread.Sleep(1000 * 10);
                     }
-                }
-            }
-            catch (Exception exception)
-            {
-
-                Console.WriteLine("Server Down" + exception.Message + exception.StackTrace);
-            }
-            Thread.Sleep(1000 * 10); 
-                        }    
-                    });
+                });
 
             //Messages Thread
             ThreadPool.QueueUserWorkItem((e) =>
@@ -70,133 +74,434 @@ namespace DesktopClient
                                                      try
                                                      {
 
-                                                    
-                                                     Thread.Sleep(Constants.MessageWaitTime);
-                                                     ServiceClient myService2 = new ServiceClient();
-                                                     //BootStrap WCF (otherwise slow)
-                                                     myService2.ClientCredentials.Windows.ClientCredential.UserName = "admin";
-                                                     myService2.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
-                                                     var hi2 = myService2.DoIHaveUpdates(Constants.MyStationID);
-                                                     if (hi2)
-                                                     {
-                                                         Switcher.PageSwitcher.Dispatcher.BeginInvoke(
 
-  System.Windows.Threading.DispatcherPriority.Normal
-
-  , new DispatcherOperationCallback(delegate
-  {
-
-      var messages = myService2.GetAllMyMessages(Constants.MyStationID);
-      foreach (var message in messages)
-      {
-         
-          if (message.Type == "Info")
-          {
+                                                         Thread.Sleep(Constants.MessageWaitTime);
+                                                         using (ServiceClient myService2 = new ServiceClient())
+                                                         {
 
 
-              MessageBoxResult result = MessageBox.Show(this,
-                                                        message.Text,
-                                                        message.Type,
-                                                        MessageBoxButton.
-                                                            OKCancel,
-                                                        MessageBoxImage.
-                                                            Warning);
-              var status = myService2.MessageRead(message.ID);
-          }
+                                                             //BootStrap WCF (otherwise slow)
+                                                             myService2.ClientCredentials.Windows.ClientCredential.UserName
+                                                                 = "admin";
+                                                             myService2.ClientCredentials.Windows.ClientCredential.Password
+                                                                 = "Green2o11";
 
-          if (message.Type == "Media")
-          {
-             var mediaList= myService2.GetMyMedia(Constants.MyStationID);
-            
-              ThreadPool.QueueUserWorkItem((e4) =>
-                                               {
-                                                   foreach (var item in mediaList)
-                                                   {
-                                                       WebClient client = new WebClient();
-                                                       client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
-                                                       client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                                                             var hi2 = myService2.DoIHaveUpdates(Constants.MyStationID);
+                                                             if (hi2)
+                                                             {
+                                                                 Switcher.PageSwitcher.Dispatcher.BeginInvoke(
 
-                                                       // Starts the download
-                                                       var path =Constants.AppPath+ item.Location;
+                                                                     System.Windows.Threading.DispatcherPriority.Normal
 
-                                                       irio.utilities.File.FolderCreate(Path.GetDirectoryName(path));
-                                                       var fileExists = false;
-                                                       if(File.Exists(path)) // Todo: Check if currently playing and also compare properties to prevent unneeded redownloads
-                                                       {
-                                                           //File.Delete(path);
-                                                           fileExists = true;
-                                                       }
-
-                                                       if(!fileExists)
-                                                       client.DownloadFileAsync(new Uri((Constants.ServerUrl+"//"+ item.Location.Replace(@"\\",@"/"))), path);
-
-                                                       if(!Playlist.Contains(path))
-                                                       {
-                                                           Playlist.Add(path);
-                                                       }
-                                                       MainWindow.Instance.UpdatePlayList();
-                                                       //btnStartDownload.Text = "Download In Process";
-                                                       //btnStartDownload.Enabled = false;
-                                                      
-                                                   }
-                                                   ServiceClient myService3 = new ServiceClient();
-                                                   //BootStrap WCF (otherwise slow)
-                                                   myService3.ClientCredentials.Windows.ClientCredential.UserName = "admin";
-                                                   myService3.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
-                                                   var status = myService2.MessageRead(message.ID);
-                                               });
-
-          }
-
-          if (message.Type == "Status")
-          {
-              switch (message.Command)
-              {
-                  case "Make UnAvailable":
-                      {
-                          CustomerPage.CurrentRFID = message.Text;
-                          CustomerPage.Instance.Update();
-                          Switcher.Switch(CustomerPage.Instance);
-                      }
-                      break;
-                  case "Make Available":
-                      {
-                          Switcher.Switch(MainWindow.Instance);
-                      }
-                      break;
-
-                  default:
-                      MessageBoxResult result = MessageBox.Show(this,
-                                                                message.Text,
-                                                                message.Type,
-                                                                MessageBoxButton.
-                                                                    OKCancel,
-                                                                MessageBoxImage.
-                                                                    Warning);
-                      break;
-              }
-
-              var status = myService2.MessageRead(message.ID); 
-          }
-      }
-      //if (result == MessageBoxResult.OK)
-      //{
-      //    // Yes code here
-      //}
-      //else
-      //{
-      //    // No code here
-      //}
+                                                                     , new DispatcherOperationCallback(delegate
+                                                                         {
 
 
-      return null;
+                                                                             using (ServiceClient myService3 = new ServiceClient())
+                                                                             {
+                                                                                 var
+                                                                                     messages
+                                                                                         =
+                                                                                         myService3
+                                                                                             .
+                                                                                             GetAllMyMessages
+                                                                                             (Constants
+                                                                                                  .
+                                                                                                  MyStationID);
 
-  }), null);
-                   
-              
-          
-                                                    
-                                                     }
+                                                                                 foreach (
+                                                                                     var
+                                                                                         message
+                                                                                         in
+                                                                                         messages
+                                                                                     )
+                                                                                 {
+
+                                                                                     if (
+                                                                                         message
+                                                                                             .
+                                                                                             Type ==
+                                                                                         "Info")
+                                                                                     {
+
+
+                                                                                         MessageBoxResult
+                                                                                             result
+                                                                                                 =
+                                                                                                 MessageBox
+                                                                                                     .
+                                                                                                     Show
+                                                                                                     (this,
+                                                                                                      message
+                                                                                                          .
+                                                                                                          Text,
+                                                                                                      message
+                                                                                                          .
+                                                                                                          Type,
+                                                                                                      MessageBoxButton
+                                                                                                          .
+                                                                                                          OKCancel,
+                                                                                                      MessageBoxImage
+                                                                                                          .
+                                                                                                          Warning);
+
+                                                                                         using (ServiceClient myService4 = new ServiceClient())
+                                                                                         {
+                                                                                             var
+                                                                                                 status
+                                                                                                     =
+                                                                                                   myService4
+                                                                                                         .
+                                                                                                         MessageRead
+                                                                                                         (message
+                                                                                                              .
+                                                                                                              ID);
+                                                                                         }
+                                                                                     }
+
+                                                                                     if (
+                                                                                         message
+                                                                                             .
+                                                                                             Type ==
+                                                                                         "Media")
+                                                                                     {
+                                                                                         using (ServiceClient myService5 = new ServiceClient())
+                                                                                         {
+                                                                                             var
+                                                                                                 mediaList
+                                                                                                     =
+                                                                                                     myService5
+                                                                                                         .
+                                                                                                         GetMyMedia
+                                                                                                         (Constants
+                                                                                                              .
+                                                                                                              MyStationID);
+
+                                                                                             //Playlist= new List<MediaListModel>();
+                                                                                             var
+                                                                                                 status
+                                                                                                     =
+                                                                                                     myService5
+                                                                                                         .
+                                                                                                         MessageRead
+                                                                                                         (message
+                                                                                                              .
+                                                                                                              ID);
+                                                                                             ThreadPool
+                                                                                                 .
+                                                                                                 QueueUserWorkItem
+                                                                                                 ((
+                                                                                                     e4)
+                                                                                                  =>
+                                                                                                      {
+                                                                                                          foreach
+                                                                                                              (
+                                                                                                              var
+                                                                                                                  item
+                                                                                                                  in
+                                                                                                                  mediaList
+                                                                                                              )
+                                                                                                          {
+
+
+                                                                                                              var
+                                                                                                                  path
+                                                                                                                      =
+                                                                                                                      Constants
+                                                                                                                          .
+                                                                                                                          AppPath +
+                                                                                                                      item
+                                                                                                                          .
+                                                                                                                          Location;
+                                                                                                              var urlPath = item
+                                                                                                                          .
+                                                                                                                          Location;
+
+                                                                                                              var
+                                                                                                                  fileExists
+                                                                                                                      =
+                                                                                                                      false;
+                                                                                                              if
+                                                                                                                  (
+                                                                                                                  File
+                                                                                                                      .
+                                                                                                                      Exists
+                                                                                                                      (path) && new FileInfo(path).Length > 0)
+                                                                                                              // Todo: Check if currently playing and also compare properties to prevent unneeded redownloads
+                                                                                                              {
+                                                                                                                  //File.Delete(path);
+                                                                                                                  fileExists
+                                                                                                                      =
+                                                                                                                      true;
+                                                                                                              }
+                                                                                                              if
+                                                                                                                  (
+                                                                                                                  Playlist
+                                                                                                                      .
+                                                                                                                      Where
+                                                                                                                      (
+                                                                                                                          i
+                                                                                                                          =>
+                                                                                                                          i
+                                                                                                                              .
+                                                                                                                              Location ==
+                                                                                                                          path)
+                                                                                                                      .
+                                                                                                                      Count
+                                                                                                                      () <=
+                                                                                                                  0)
+                                                                                                              {
+                                                                                                                  var
+                                                                                                                      model
+                                                                                                                          =
+                                                                                                                          item;
+                                                                                                                  model
+                                                                                                                      .
+                                                                                                                      Location
+                                                                                                                      =
+                                                                                                                      path;
+                                                                                                                  if
+                                                                                                                      (
+                                                                                                                      fileExists)
+                                                                                                                  {
+                                                                                                                      model
+                                                                                                                          .
+                                                                                                                          Downloaded
+                                                                                                                          =
+                                                                                                                          true;
+                                                                                                                  }
+
+                                                                                                                  Playlist
+                                                                                                                      .
+                                                                                                                      Add
+                                                                                                                      (model);
+                                                                                                                  if
+                                                                                                                      (
+                                                                                                                      fileExists)
+                                                                                                                      return;
+
+                                                                                                              }
+                                                                                                              irio
+                                                                                                                  .
+                                                                                                                  utilities
+                                                                                                                  .
+                                                                                                                  FileUtilities
+                                                                                                                  .
+                                                                                                                  FolderCreate
+                                                                                                                  (
+                                                                                                                      Path
+                                                                                                                          .
+                                                                                                                          GetDirectoryName
+                                                                                                                          (path));
+                                                                                                              ////BootStrap IIS System ... Who knew :( (Only allows on second try
+                                                                                                              //using (WebClient client = new WebClient())
+                                                                                                              //{
+                                                                                                              //    client.
+                                                                                                              //    DownloadStringAsync
+                                                                                                              //           (
+                                                                                                              //               new Uri
+                                                                                                              //                   (
+                                                                                                              //                   (Constants
+                                                                                                              //                        .
+                                                                                                              //                        ServerUrl +
+                                                                                                              //                    item
+                                                                                                              //                        .
+                                                                                                              //                        Location
+                                                                                                              //                        .
+                                                                                                              //                        Replace
+                                                                                                              //                        ("\\",
+                                                                                                              //                         @"/")))
+                                                                                                              //               );
+                                                                                                              //}
+
+                                                                                                              using
+                                                                                                                  (
+                                                                                                                  WebClient
+                                                                                                                      client
+                                                                                                                          =
+                                                                                                                          new WebClient
+                                                                                                                              ()
+                                                                                                                  )
+                                                                                                              {
+
+                                                                                                                  client
+                                                                                                                      .
+                                                                                                                      DownloadProgressChanged
+                                                                                                                      +=
+                                                                                                                      new DownloadProgressChangedEventHandler
+                                                                                                                          (
+                                                                                                                          client_DownloadProgressChanged);
+                                                                                                                  client
+                                                                                                                      .
+                                                                                                                      DownloadFileCompleted
+                                                                                                                      += delegate(object sender, AsyncCompletedEventArgs args)
+                                                                                                                  {
+                                                                                                                      lock (DownLoadsLock)
+                                                                                                                      {
+                                                                                                                          runningDownloads--;
+                                                                                                                      }
+                                                                                                                      HideProgressBar();
+                                                                                                                      Playlist.Where(i => i.Location == path).First().Downloaded =
+                                                                                                                          true;
+                                                                                                                      if (args.Error == null)
+                                                                                                                      {
+                                                                                                                          lock (DownLoadsLock)
+                                                                                                                              if (runningDownloads == 0)
+                                                                                                                              {
+                                                                                                                                  MainWindow.Instance
+                                                                                                                                      .UpdatePlayList
+                                                                                                                                      ();
+                                                                                                                              }
+                                                                                                                      }
+                                                                                                                  };
+                                                                                                                  //ClientDownloadFileCompleted;
+
+
+
+                                                                                                                  if
+                                                                                                                      (
+                                                                                                                      !fileExists)
+                                                                                                                  {
+                                                                                                                      // Starts the download
+                                                                                                                      lock
+                                                                                                                          (
+                                                                                                                          DownLoadsLock
+                                                                                                                          )
+                                                                                                                          runningDownloads
+                                                                                                                              ++;
+
+                                                                                                                      var
+                                                                                                                          uri
+                                                                                                                              = new Uri(Constants.ServerUrl + urlPath.Replace("\\", @"/"));
+                                                                                                                      client.DownloadFileAsync(uri,path);
+                                                                                                                  }
+
+                                                                                                              }
+                                                                                                              //btnStartDownload.Text = "Download In Process";
+                                                                                                              //btnStartDownload.Enabled = false;
+
+                                                                                                          }
+                                                                                                          //ServiceClient myService3 = new ServiceClient();
+                                                                                                          ////BootStrap WCF (otherwise slow)
+                                                                                                          //myService3.ClientCredentials.Windows.ClientCredential.UserName = "admin";
+                                                                                                          //myService3.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
+
+                                                                                                      });
+                                                                                         }
+
+
+                                                                                     }
+
+                                                                                     if (
+                                                                                         message
+                                                                                             .
+                                                                                             Type ==
+                                                                                         "Status")
+                                                                                     {
+                                                                                         switch
+                                                                                             (
+                                                                                             message
+                                                                                                 .
+                                                                                                 Command
+                                                                                             )
+                                                                                         {
+                                                                                             case
+                                                                                                 "Make UnAvailable"
+                                                                                                 :
+                                                                                                 {
+                                                                                                     CustomerPage
+                                                                                                         .
+                                                                                                         CurrentRFID
+                                                                                                         =
+                                                                                                         message
+                                                                                                             .
+                                                                                                             Text;
+                                                                                                     CustomerPage
+                                                                                                         .
+                                                                                                         Instance
+                                                                                                         .
+                                                                                                         Update
+                                                                                                         ();
+                                                                                                     Switcher
+                                                                                                         .
+                                                                                                         Switch
+                                                                                                         (CustomerPage
+                                                                                                              .
+                                                                                                              Instance);
+                                                                                                 }
+                                                                                                 break;
+                                                                                             case
+                                                                                                 "Make Available"
+                                                                                                 :
+                                                                                                 {
+                                                                                                     Switcher
+                                                                                                         .
+                                                                                                         Switch
+                                                                                                         (MainWindow
+                                                                                                              .
+                                                                                                              Instance);
+                                                                                                 }
+                                                                                                 break;
+
+                                                                                             default
+                                                                                                 :
+                                                                                                 MessageBoxResult
+                                                                                                     result
+                                                                                                         =
+                                                                                                         MessageBox
+                                                                                                             .
+                                                                                                             Show
+                                                                                                             (this,
+                                                                                                              message
+                                                                                                                  .
+                                                                                                                  Text,
+                                                                                                              message
+                                                                                                                  .
+                                                                                                                  Type,
+                                                                                                              MessageBoxButton
+                                                                                                                  .
+                                                                                                                  OKCancel,
+                                                                                                              MessageBoxImage
+                                                                                                                  .
+                                                                                                                  Warning);
+                                                                                                 break;
+                                                                                         }
+
+                                                                                         var
+                                                                                             status
+                                                                                                 =
+                                                                                                 new ServiceClient
+                                                                                                     ()
+                                                                                                     .
+                                                                                                     MessageRead
+                                                                                                     (message
+                                                                                                          .
+                                                                                                          ID);
+                                                                                     }
+                                                                                 }
+
+
+
+                                                                                 //if (result == MessageBoxResult.OK)
+                                                                                 //{
+                                                                                 //    // Yes code here
+                                                                                 //}
+                                                                                 //else
+                                                                                 //{
+                                                                                 //    // No code here
+                                                                                 //}
+
+                                                                             }
+                                                                             return null;
+
+                                                                         }),
+                                                             null)
+                                                             ;
+                                                             }
+
+
+
+                                                         }
                                                      }
                                                      catch (Exception exception)
                                                      {
@@ -207,39 +512,62 @@ namespace DesktopClient
                                              });
 
 
-  //          ThreadPool.QueueUserWorkItem(
-  //              (state) =>
-  //              {
-  //                  Thread.Sleep(5000);
-  //                  Switcher.PageSwitcher.Dispatcher.BeginInvoke(
+            //          ThreadPool.QueueUserWorkItem(
+            //              (state) =>
+            //              {
+            //                  Thread.Sleep(5000);
+            //                  Switcher.PageSwitcher.Dispatcher.BeginInvoke(
 
-  //System.Windows.Threading.DispatcherPriority.Normal
+            //System.Windows.Threading.DispatcherPriority.Normal
 
-  //, new DispatcherOperationCallback(delegate
-  //{
-
-
+            //, new DispatcherOperationCallback(delegate
+            //{
 
 
-  //   // Switcher.Switch(new RFIDDetected());
 
-  //    Switcher.Switch(CustomerPage.Instance);
 
-  //    return null;
+            //   // Switcher.Switch(new RFIDDetected());
 
-  //}), null);
-                   
-              
-  //              });
+            //    Switcher.Switch(CustomerPage.Instance);
+
+            //    return null;
+
+            //}), null);
+
+
+            //              });
 
         }
 
-        private void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        private void ClientDownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+
+            lock (DownLoadsLock)
+            {
+                runningDownloads--;
+            }
+            HideProgressBar();
+            //Playlist.Where(i => i.Location == path).First().Downloaded =
+            //    true;
+            if (e.Error == null)
+            {
+                lock (DownLoadsLock)
+                    if (runningDownloads == 0)
+                    {
+                        MainWindow.Instance
+                            .UpdatePlayList
+                            ();
+                    }
+            }
+
+            //   MessageBox.Show("Download Completed");
+
+        }
+
+        private static void HideProgressBar()
         {
             Switcher.PageSwitcher.Dispatcher.BeginInvoke(
-
                 System.Windows.Threading.DispatcherPriority.Normal
-
                 , new DispatcherOperationCallback(delegate
                                                       {
                                                           if (MainWindow.Instance.Update_Progress.Visibility ==
@@ -248,13 +576,11 @@ namespace DesktopClient
                                                                   Visibility.Hidden;
                                                           return null;
                                                       }), null);
-         //   MessageBox.Show("Download Completed");
-
         }
 
         private void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-          
+
 
             Switcher.PageSwitcher.Dispatcher.BeginInvoke(
 

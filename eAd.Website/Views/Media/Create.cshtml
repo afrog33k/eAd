@@ -30,11 +30,18 @@
             @Html.LabelFor(model => model.Location)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Location)
+            @Html.EditorFor(model => model.Location, new { @disabled = "true" })
             @Html.ValidationMessageFor(model => model.Location)
         </div>
 
-          
+          <div class="editor-label">
+              @Html.LabelFor(model =>  model.Duration) 
+          </div>
+        <div class="editor-field">
+           @Html.EditorFor(model =>  model.Duration)
+            @Html.ValidationMessageFor(model => model.Duration)
+        </div>
+
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Tags)
@@ -70,10 +77,13 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 <script type="text/javascript">
-    function HandleType(uploadid, type,thumbnail,text,path) {
+    function HandleType(uploadid, type, thumbnail, text, path, duration) {
         $("#Type").val(type);
         //   $("#" + uploadid + "preview").attr("src", thumbnail);
         $("#Location").val(path);
+
+        $("#Duration").val(duration);
+        
         if(text!="") {
             $("#marquee").innerHTML(type);
         }

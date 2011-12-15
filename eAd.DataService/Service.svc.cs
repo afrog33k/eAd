@@ -275,7 +275,7 @@ namespace eAd.DataAccess
                         {
                          
                             if(list.Where(l=>l.MediaID==media.MediaID).Count()<=0)
-                                list.Add(new MediaListModel(){MediaID = media.MediaID,Location = media.Location});
+                                list.Add(new MediaListModel(){MediaID = media.MediaID,Location = media.Location,Duration =  (TimeSpan) media.Duration});
                         }
                     }
                 }

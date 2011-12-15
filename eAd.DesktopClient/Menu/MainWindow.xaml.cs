@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Threading;
 using System.Windows.Threading;
 using System.Xml.Serialization;
+using eAd.DataViewModels;
 
 namespace DesktopClient.Menu
 {
@@ -42,12 +43,12 @@ namespace DesktopClient.Menu
             try
             {
 
-          
-            XmlSerializer serializer = new XmlSerializer(typeof(List<string>));
+
+                XmlSerializer serializer = new XmlSerializer(typeof(List<MediaListModel>));
             StreamReader reader = File.OpenText(Constants.PlayListFile);
 
 
-            Playlist = (serializer.Deserialize(reader) as List<string>).Select(i=>new FileInfo(i)).ToList();
+            Playlist = (serializer.Deserialize(reader) as List<MediaListModel>);
 
                reader.Close();
 
@@ -55,7 +56,7 @@ namespace DesktopClient.Menu
             catch (Exception)
             {
 
-               Playlist = new List<FileInfo>();
+               Playlist = new List<MediaListModel>();
             }
             ThreadPool.QueueUserWorkItem(
                 (state)=>
@@ -82,61 +83,52 @@ namespace DesktopClient.Menu
             });
         }
 
-        private List<FileInfo> Playlist;
+        private List<MediaListModel> Playlist;
         private int currentItem = 0;
         private System.Timers.Timer timer;
         private double CurrentDuration = 0;
          void _timer_Elapsed(object sender, ElapsedEventArgs e)
          {
-             Duration playerDuration = new Duration();
-            Player.Dispatcher.BeginInvoke(
+//             Duration playerDuration = new Duration();
+//            Player.Dispatcher.BeginInvoke(
 
-System.Windows.Threading.DispatcherPriority.Normal
+//System.Windows.Threading.DispatcherPriority.Normal
 
-, new DispatcherOperationCallback(delegate
-                                      {
+//, new DispatcherOperationCallback(delegate
+//                                      {
 
 
-                                 playerDuration=         Player.NaturalDuration;
+//                                 playerDuration=         Player.NaturalDuration;
 
-    return null;
+//    return null;
 
-}), null);
+//}), null);
 
-            if ( _lastDuration == Duration.Automatic)
-            {
+          
                
                     timer.Enabled = false;
-                    _lastDuration = playerDuration;
-                    if (playerDuration.HasTimeSpan)
-                    {
-                        //Finally got the length
-                        timer =
-                            new System.Timers.Timer(_lastDuration.TimeSpan.TotalMilliseconds - CurrentDuration);
-                    }
-                    else
-                    {
-                        CurrentDuration += Constants.DefaultDuration;
-                            //Not yet
-                            timer =
-                            new System.Timers.Timer(Constants.DefaultDuration);
+
+                    //if (Playlist[currentItem].Duration==TimeSpan.Zero)
+                    //{
+                    //    CurrentDuration += Constants.DefaultDuration;
+                    //        //Not yet
+                    //        timer =
+                    //        new System.Timers.Timer(Constants.DefaultDuration);
                       
-                    }
-                timer.Elapsed += _timer_Elapsed;
-                    timer.Enabled = true;
-                return;
-            }
-             
-                 
-             
-         
+                    //}
+                    //else
+                    //{
+                    //      //Not yet
+                    //        timer =
+                    //        new System.Timers.Timer(Playlist[currentItem].Duration.TotalMilliseconds);
+                    //}
+             //timer.Elapsed += _timer_Elapsed;
+             //       timer.Enabled = true;
+             //   return;
 
-         
+             PlayNextVideo();
 
-
-            PlayNextVideo();
-         
-        }
+         }
 
         private void PlayNextVideo()
         {
@@ -150,9 +142,14 @@ System.Windows.Threading.DispatcherPriority.Normal
                                                               if (Playlist.Count > 0)
                                                               {
                                                                   currentItem %= Playlist.Count;
+                                                                  if (Player.Source.AbsolutePath != Playlist[currentItem].Location)
+                                                                  {
+                                                                      
+                                                                
                                                                   Player.Position = TimeSpan.Zero;
-                                                                  Player.Source = new Uri(Playlist[currentItem].FullName);
+                                                                  Player.Source = new Uri(Playlist[currentItem].Location);
                                                                   Player.Play();
+                                                                  }
                                                                   //lastDuration = Player.NaturalDuration;
                                                                   //timer.Interval =lastDuration.TimeSpan.TotalMilliseconds;
                                                                   //timer.Enabled = true;
@@ -209,15 +206,33 @@ System.Windows.Threading.DispatcherPriority.Normal
         {
             lock (Playlist)
             {
-                var newPlayList = new List<FileInfo>();
-                newPlayList = PageSwitcher.Playlist.Select(d => new FileInfo(d)).ToList();
-                this.Playlist =newPlayList;
-                PlayNextVideo();
+                //var newPlayList = new List<FileInfo>();
+                //newPlayList = PageSwitcher.Playlist.Select(d => new FileInfo(d)).ToList();
+                this.Playlist = PageSwitcher.Playlist;
+
+                ThreadPool.QueueUserWorkItem((state) =>
+                                                 {
+                                                     bool alldownloaded = false;
+                                                     while (!alldownloaded)
+                                                     {
+                                                         Thread.Sleep(1000);
+                                                         alldownloaded = true;
+                                                         foreach (var mediaListModel in PageSwitcher.Playlist)
+                                                         {
+                                                             if (!mediaListModel.Downloaded)
+                                                             {
+                                                                 alldownloaded = false;
+                                                             }
+                                                         }
+                                                       
+                                                     }
+                                                    Instance.PlayNextVideo();
+                                                 });
                 ThreadPool.QueueUserWorkItem((r) =>
                                                  {
                                                      lock (FileLock)
                                                      {
-                                                     XmlSerializer serializer = new XmlSerializer(typeof (List<string>));
+                                                     XmlSerializer serializer = new XmlSerializer(typeof (List<MediaListModel>));
                                                      FileInfo file = new FileInfo(Constants.PlayListFile);
                                                      if (!File.Exists(Constants.PlayListFile))
                                                      {

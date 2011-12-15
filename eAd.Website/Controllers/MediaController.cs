@@ -37,7 +37,9 @@ namespace eAd.Website.Controllers
         public ActionResult Create()
         {
             UploadRepository.CreateUploadGUID(HttpContext);
-            return View();
+            Medium medium = new Medium();
+            medium.Duration = TimeSpan.Zero;
+            return View(medium);
         } 
 
         //
@@ -50,8 +52,10 @@ namespace eAd.Website.Controllers
             {
                 db.Media.AddObject(medium);
                 db.SaveChanges();
+                UploadedContent upload;
                 medium.Location = UploadRepository.GetFileUrl(this.HttpContext, medium.MediaID.ToString(),
-                                                              medium.MediaID.ToString(), UploadType.Media);
+                                                              medium.MediaID.ToString(), UploadType.Media, out upload);
+                medium.Duration = new TimeSpan(upload.Duration.Ticks);
 
                 db.SaveChanges();
                 return RedirectToAction("Index");  
@@ -67,6 +71,8 @@ namespace eAd.Website.Controllers
         {
             UploadRepository.CreateUploadGUID(HttpContext);
             Medium medium = db.Media.Single(m => m.MediaID == id);
+            if(medium.Duration==null)
+                medium.Duration = TimeSpan.Zero;
             return View(medium);
         }
 
@@ -81,8 +87,11 @@ namespace eAd.Website.Controllers
                 db.Media.Attach(medium);
                 db.ObjectStateManager.ChangeObjectState(medium, EntityState.Modified);
                 db.SaveChanges();
+                UploadedContent upload;
                 medium.Location = UploadRepository.GetFileUrl(this.HttpContext, medium.MediaID.ToString(),
-                                                                 medium.MediaID.ToString(), UploadType.Media);
+                                                                 medium.MediaID.ToString(), UploadType.Media, out upload);
+                medium.Duration = new TimeSpan(upload.Duration.Ticks);
+
 
                 db.SaveChanges();
                 return RedirectToAction("Index");

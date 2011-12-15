@@ -8,7 +8,6 @@ using eAd.Utilities;
 using eAd.Website.Controllers;
 using irio.utilities;
 using System.Linq;
-using File = irio.utilities.File;
 
 namespace eAd.Website.Repositories
 {
@@ -84,8 +83,9 @@ namespace eAd.Website.Repositories
         }
         }
 
-        public static string GetFileUrl(HttpContextBase context, string MediaID, string ownerID , UploadType type)
+        public static string GetFileUrl(HttpContextBase context, string MediaID, string ownerID , UploadType type, out UploadedContent upload)
         {
+            upload = null;
             try
             {
 
@@ -100,6 +100,7 @@ namespace eAd.Website.Repositories
                     content =>
                     content.MediaGuid == GUID && content.Type == type);
 
+                upload = thisContent;
 
                 List<string> pictures = thisContent.
                     Pictures;
@@ -124,7 +125,7 @@ namespace eAd.Website.Repositories
                                                                               true);
               
 
-                FileUtils.FolderCreate(Path.GetDirectoryName(newPath));
+                FileUtilities.FolderCreate(Path.GetDirectoryName(newPath));
                 System.IO.File.Move(
                      TempPathForUpload(context, pictures[0], type, GUID)
                    ,
@@ -255,8 +256,9 @@ namespace eAd.Website.Repositories
                                                           ".gif"
                                                       };
 
-        public static string StoreMediaTemp(HttpContextBase context, HttpPostedFileBase file, UploadType type, out string thumbPath, out string physicalPath, out DateTime duration)
+        public static string StoreMediaTemp(HttpContextBase context, HttpPostedFileBase file, UploadType type, out string thumbPath, out string physicalPath, out TimeSpan duration)
         {
+            duration = TimeSpan.Zero;
             if (context.Session != null)
             {
                 UrlFriendlyGuid GUID = (UrlFriendlyGuid) context.Session["UploadGUID"];
@@ -288,13 +290,16 @@ namespace eAd.Website.Repositories
                 }
                 else if (Path.GetExtension(file.FileName).ToLower()==(".txt"))
                 {
-                    File.SaveStream(file.InputStream,physicalPath,false);
+                    FileUtilities.SaveStream(file.InputStream,physicalPath,false);
                 }
                 else // Must Be Video
                 {
-                    File.SaveStream(file.InputStream, physicalPath, false);
+                    FileUtilities.SaveStream(file.InputStream, physicalPath, false);
 
+                    thumbPath= thumbPath.Replace(Path.GetExtension(thumbPath), ".jpg");
+                    duration = VideoUtilities.GetVideoDuration(physicalPath);
 
+                    VideoUtilities.GetVideoThumbnail(physicalPath,thumbPath);
 
                 }
 
@@ -302,6 +307,7 @@ namespace eAd.Website.Repositories
                 uploadedContent.MediaGuid = GUID;
                 uploadedContent.Type = type;
                 uploadedContent.Pictures = new List<string>(2);
+                uploadedContent.Duration = duration;
 
                 if (physicalPath != null)
                     uploadedContent.Pictures.Add(ResolvePath(context, physicalPath));
@@ -315,11 +321,13 @@ namespace eAd.Website.Repositories
 
                 
                    context.Session["SavedFileList"] = lastSavedFile;
-
+              
+              
                 return "Upload Sucessful";
             }
             thumbPath = "";
             physicalPath = "";
+       
             return "Failed To Upload File(s)";
         }
 

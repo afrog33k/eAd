@@ -4,7 +4,7 @@ namespace DesktopClient.Menu
 {
     public class Constants
     {
-        public static int MyStationID = 2;
+        public static int MyStationID = 3;
 
         public static int MessageWaitTime = 1000;
         public static string ServerUrl = "http://1.9.13.61";

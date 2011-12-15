@@ -91,7 +91,8 @@ namespace eAd.Website.Controllers
                 {
                     var postedFile = Request.Files[file];
                     string thumbPath;
-                    UploadRepository.StoreMediaTemp(HttpContext, postedFile, _type, out thumbPath, out uploadPath);
+                    TimeSpan aduration;
+                    UploadRepository.StoreMediaTemp(HttpContext, postedFile, _type, out thumbPath, out uploadPath, out aduration);
                     // Return JSON
                     if (postedFile != null)
                     {
@@ -107,7 +108,8 @@ namespace eAd.Website.Controllers
                                                            thumbnail = _path +"/"+ thumbPath.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty),
                                                            type = MimeExtensionHelper.FindMime(uploadPath, true),
                                                            text = MimeExtensionHelper.FindMime(uploadPath, true).Contains("text") ? thumbPath : "",
-                                                           path = uploadPath.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty)
+                                                           path = uploadPath.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty),
+                                                           duration = aduration.ToString()
                                                        }
                                            };
                             return result;

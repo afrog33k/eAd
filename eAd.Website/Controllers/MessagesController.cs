@@ -63,6 +63,7 @@ namespace eAd.Website.Controllers
         public ActionResult Edit(long id)
         {
             Message message = db.Messages.Single(m => m.MessageID == id);
+          
             ViewBag.StationID = new SelectList(db.Stations, "StationID", "Name", message.StationID);
             return View(message);
         }
