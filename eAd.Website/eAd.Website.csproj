@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <AutoParameterizationWebConfigConnectionStrings>False</AutoParameterizationWebConfigConnectionStrings>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>
@@ -84,6 +85,7 @@
     <Compile Include="Controllers\GroupingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Controllers\MosaicController.cs" />
     <Compile Include="Controllers\StationController.cs" />
     <Compile Include="Controllers\StationsController.cs" />
     <Compile Include="Controllers\ThemesController.cs" />
@@ -113,7 +115,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\eAdData.sdf" />
+    <Content Include="Client\App_Data\eAdData.sdf" />
     <Content Include="Content\2011.1.224\Black\editor.png" />
     <Content Include="Content\2011.1.224\Black\imagebrowser.png" />
     <Content Include="Content\2011.1.224\Black\loading.gif" />
@@ -1131,12 +1133,14 @@
     <Content Include="Scripts\2011.1.224\telerik.upload.min.js" />
     <Content Include="Scripts\2011.1.224\telerik.window.min.js" />
     <Content Include="Scripts\additional-methods.js" />
+    <Content Include="Scripts\webfxlayout.js" />
     <Content Include="Scripts\curvycorners.js" />
     <Content Include="Scripts\datepicker.js" />
     <Content Include="Scripts\draggableoptions.js" />
     <Content Include="Scripts\errorhandler.js" />
     <Content Include="Scripts\fileUpload.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
+    <Content Include="Scripts\genresize.js" />
     <Content Include="Scripts\jQl.min.js" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
@@ -1412,6 +1416,8 @@
     <None Include="Tools\FFmpeg\presets\libx264-ipod320.ffpreset" />
     <None Include="Tools\FFmpeg\presets\libx264-ipod640.ffpreset" />
     <Content Include="Views\Shared\EditorTemplates\TimeSpan.cshtml" />
+    <Content Include="Views\Mosaic\Index.cshtml" />
+    <Content Include="Views\Mosaic\Index, can be used as gallery or choosing themes etc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\.svn\props\" />
@@ -1458,10 +1464,6 @@
     <WCFMetadataStorage Include="Service References\eAdDataService\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\qponkini.com\irio.utilities\irio.utilities.csproj">
-      <Project>{7DF57062-342C-40A6-84CC-E504534B0189}</Project>
-      <Name>irio.utilities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\eAd.DataService\eAd.DataAccess.csproj">
       <Project>{0FCFE42B-027D-43DB-9149-068ED514303C}</Project>
       <Name>eAd.DataAccess</Name>
@@ -1469,6 +1471,10 @@
     <ProjectReference Include="..\eAd.Utilities\eAd.Utilities.csproj">
       <Project>{ECD7174B-B905-46AF-B371-72D8A81103F1}</Project>
       <Name>eAd.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="X:\CSharp\irio.utilities\irio.utilities.csproj">
+      <Project>{7DF57062-342C-40A6-84CC-E504534B0189}</Project>
+      <Name>irio.utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

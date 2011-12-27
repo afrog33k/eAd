@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using DesktopClient.eAdDataAccess;
+using System.Reflection;
 
 namespace DesktopClient.Menu
 {
@@ -72,8 +73,7 @@ namespace DesktopClient.Menu
 
                           // LocationOverview.ItemsSource = items;
                        CustomerProfilePicture.Source =
-                           new BitmapImage( new Uri(
-                               "pack://application:,,," + customer.Picture));
+                           new BitmapImage(new Uri(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)+(customer.Picture)));
                        CarMake.Content = customer.CarMake;
                        CarModel.Content = customer.CarModel;
                        CarPlate .Content = customer.CarLicense;

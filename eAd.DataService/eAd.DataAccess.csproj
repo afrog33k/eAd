@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <AutoParameterizationWebConfigConnectionStrings>False</AutoParameterizationWebConfigConnectionStrings>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>
@@ -45,8 +46,12 @@
         </ObjectGroup>
       </Objects>
     </PublishDatabaseSettings>
-    <IncludeIisSettings>true</IncludeIisSettings>
+    <IncludeIisSettings>false</IncludeIisSettings>
     <IncludeAppPool>true</IncludeAppPool>
+    <PublishDatabases>false</PublishDatabases>
+    <DeployIisAppPath>Default Web Site/DataAccess</DeployIisAppPath>
+    <DeployIisAppPhysicalPath>C:\eAd.Website\DataService</DeployIisAppPhysicalPath>
+    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

@@ -58,11 +58,11 @@
    
     <Grid x:Name="LayoutRoot" Background="White" Height="Auto" Width="Auto">
         <WebBrowser Height="538" HorizontalAlignment="Right" Name="GoogleMap" VerticalAlignment="Bottom" Width="883" ClipToBounds="True" Margin="0,0,23,419" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.IsDeferredScrollingEnabled="False" ScrollViewer.CanContentScroll="False" />
-        
-        <Image Height="208" HorizontalAlignment="Stretch"  Stretch="Fill" VerticalAlignment="Top" Name="bannerAd1" Source="/Ads\ad1.png" />
-        <Image Height="208" HorizontalAlignment="Stretch" Name="bannerAd3" Stretch="Fill" VerticalAlignment="Bottom" Source="/Ads\ad2.png" Margin="724,0,0,0" />
+
+            <Image Height="208" HorizontalAlignment="Stretch"  Stretch="Fill" VerticalAlignment="Top" Name="bannerAd1" Source="/DataCache\ad1.png" />
+            <Image Height="208" HorizontalAlignment="Stretch" Name="bannerAd3" Stretch="Fill" VerticalAlignment="Bottom" Source="/DataCache\ad2.png" Margin="724,0,0,0" />
         <Image Height="254" HorizontalAlignment="Left" Margin="12,317,0,0" Name="CustomerProfilePicture" Stretch="Fill" VerticalAlignment="Top" Width="375" />
-        <Image Height="208" HorizontalAlignment="Right" Margin="0,238,16,0" Source="/Ads/ad1.png" Stretch="Fill" VerticalAlignment="Top" Width="897" Name="bannerAd2" MinHeight="208" />
+        <Image Height="208" HorizontalAlignment="Right" Margin="0,238,16,0" Source="/DataCache/ad1.png" Stretch="Fill" VerticalAlignment="Top" Width="897" Name="bannerAd2" MinHeight="208" />
         <Label Content="Name" Height="42" HorizontalAlignment="Left" Margin="411,319,0,0" Name="CustomerName" VerticalAlignment="Top" Width="472" FontSize="24" FontWeight="Bold" />
         <Label Content="Phone:" FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="411,367,0,0" Name="label1" VerticalAlignment="Top" Width="108" />
         <Label Content="Email:" FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="411,415,0,0" Name="label5" VerticalAlignment="Top" Width="108" />

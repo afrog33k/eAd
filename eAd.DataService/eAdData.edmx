@@ -607,6 +607,43 @@
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams></Diagrams>
+    <Diagrams>
+      <Diagram Name="eAdData">
+        <EntityTypeShape EntityType="eAdModel.Car" Width="1.5" PointX="5" PointY="8" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="eAdModel.Customer" Width="1.5" PointX="2.75" PointY="7.75" Height="3.1340950520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="eAdModel.Grouping" Width="1.5" PointX="0.75" PointY="3.75" Height="1.9802864583333322" IsExpanded="true" />
+        <EntityTypeShape EntityType="eAdModel.Medium" Width="1.5" PointX="0.75" PointY="7" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="eAdModel.MediaType" Width="1.5" PointX="7.75" PointY="1.5" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="eAdModel.Message" Width="1.5" PointX="5.25" PointY="3.25" Height="2.941793619791667" IsExpanded="true" />
+        <EntityTypeShape EntityType="eAdModel.Station" Width="1.5" PointX="3" PointY="3.5" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="eAdModel.sysdiagram" Width="1.5" PointX="7.75" PointY="4.5" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="eAdModel.Theme" Width="1.5" PointX="3" PointY="0.75" Height="1.9802864583333317" IsExpanded="true" />
+        <AssociationConnector Association="eAdModel.FK_CarCustomer" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.25" PointY="9.37474609375" />
+          <ConnectorPoint PointX="5" PointY="9.37474609375" />
+        </AssociationConnector>
+        <AssociationConnector Association="eAdModel.FK_MessageStation" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="4.7785953776041659" />
+          <ConnectorPoint PointX="5.25" PointY="4.7785953776041659" />
+        </AssociationConnector>
+        <AssociationConnector Association="eAdModel.GroupingStation" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.7401432291666659" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="4.740143229166665" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="4.7401432291666659" />
+          <ConnectorPoint PointX="3" PointY="4.7401432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="eAdModel.GroupingTheme" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="3.75" />
+          <ConnectorPoint PointX="1.5" PointY="1.7401432291666659" />
+          <ConnectorPoint PointX="3" PointY="1.7401432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="eAdModel.ThemeMedium" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="7" />
+          <ConnectorPoint PointX="2.625" PointY="6.625" />
+          <ConnectorPoint PointX="2.625" PointY="2.2664668437499995" />
+          <ConnectorPoint PointX="3" PointY="2.2664668437499995" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
   </Designer>
 </edmx:Edmx>

@@ -221,6 +221,8 @@
     </BlendEmbeddedFont>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="DataCache\ad1.png" />
+    <Resource Include="DataCache\ad2.png" />
     <Content Include="DataCache\blankii.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -264,13 +266,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\qponkini.com\irio.utilities\irio.utilities.csproj">
-      <Project>{7DF57062-342C-40A6-84CC-E504534B0189}</Project>
-      <Name>irio.utilities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\eAd.DataViewModels\eAd.DataViewModels.csproj">
       <Project>{47A32603-2D64-4BD5-A503-F1142A5C2733}</Project>
       <Name>eAd.DataViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="X:\CSharp\irio.utilities\irio.utilities.csproj">
+      <Project>{7DF57062-342C-40A6-84CC-E504534B0189}</Project>
+      <Name>irio.utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

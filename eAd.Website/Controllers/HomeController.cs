@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using eAd.Website.eAdDataService;
 using System.Linq;
+using System.IO;
 namespace eAd.Website.Controllers
 {
     public class HomeController : Controller
@@ -51,5 +52,85 @@ namespace eAd.Website.Controllers
             Instance = this;
             return View();
         }
+
+
+
+        public ActionResult Init(string id, string xmlUrl)
+        {
+
+
+            string path = @"log.txt";
+            // This text is added only once to the file.
+            if (!System.IO.File.Exists(path))
+            {
+                // Create a file to write to.
+                using (StreamWriter log = System.IO.File.CreateText(path))
+                {
+                    log.WriteLine("Init  ID: " + id + " xmlUrl: " + xmlUrl);
+                }
+            }
+
+            // This text is always added, making the file longer over time
+            // if it is not deleted.
+            using (StreamWriter log = System.IO.File.AppendText(path))
+            {
+                log.WriteLine("Init  ID: " + id + " xmlUrl: " + xmlUrl);
+            }	
+
+            return Content("1"); //Success
+            //return Content("Init ID: " + id + " xmlUrl: " + xmlUrl);
+        }
+
+        public ActionResult Start(string id, string xmlUrl)
+        {
+            
+            string path = @"log.txt";
+            // This text is added only once to the file.
+            if (!System.IO.File.Exists(path))
+            {
+                // Create a file to write to.
+                using (StreamWriter log = System.IO.File.CreateText(path))
+                {
+                    log.WriteLine("Start  ID: " + id + " xmlUrl: " + xmlUrl);
+                }
+            }
+
+            // This text is always added, making the file longer over time
+            // if it is not deleted.
+            using (StreamWriter log = System.IO.File.AppendText(path))
+            {
+                log.WriteLine("Start  ID: " + id + " xmlUrl: " + xmlUrl);
+            }	
+
+            return Content("1"); //Success
+     
+           /// return Content("Start  ID: " + id + " xmlUrl: " + xmlUrl);
+        }
+
+        public ActionResult Stop(string id, string xmlUrl)
+        {
+       
+            string path = @"log.txt";
+            // This text is added only once to the file.
+            if (!System.IO.File.Exists(path))
+            {
+                // Create a file to write to.
+                using (StreamWriter log = System.IO.File.CreateText(path))
+                {
+                    log.WriteLine("Stop  ID: " + id + " xmlUrl: " + xmlUrl);
+                }
+            }
+
+            // This text is always added, making the file longer over time
+            // if it is not deleted.
+            using (StreamWriter log = System.IO.File.AppendText(path))
+            {
+                log.WriteLine("Stop  ID: " + id + " xmlUrl: " + xmlUrl);
+            }	
+
+            return Content("1"); //Success
+            //return Content("Stop  ID: " + id + " xmlUrl: " + xmlUrl);
+        }
+
     }
 }

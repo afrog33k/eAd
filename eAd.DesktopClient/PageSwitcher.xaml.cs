@@ -25,7 +25,7 @@ namespace DesktopClient
         public static List<MediaListModel> Playlist = new List<MediaListModel>();
 
         private object DownLoadsLock = new object();
-
+        bool CheckedForNewMessages = false;
         public PageSwitcher()
         {
             InitializeComponent();
@@ -54,6 +54,14 @@ namespace DesktopClient
                                 Console.WriteLine("Server Down");
 
 
+                            }
+                            else
+                            {
+                                if (!CheckedForNewMessages)
+                                {
+                                    GetMedia();
+                                    CheckedForNewMessages = true;
+                                }
                             }
                         }
                         catch (Exception exception)
@@ -165,230 +173,8 @@ namespace DesktopClient
                                                                                              Type ==
                                                                                          "Media")
                                                                                      {
-                                                                                         using (ServiceClient myService5 = new ServiceClient())
-                                                                                         {
-                                                                                             var
-                                                                                                 mediaList
-                                                                                                     =
-                                                                                                     myService5
-                                                                                                         .
-                                                                                                         GetMyMedia
-                                                                                                         (Constants
-                                                                                                              .
-                                                                                                              MyStationID);
 
-                                                                                             //Playlist= new List<MediaListModel>();
-                                                                                             var
-                                                                                                 status
-                                                                                                     =
-                                                                                                     myService5
-                                                                                                         .
-                                                                                                         MessageRead
-                                                                                                         (message
-                                                                                                              .
-                                                                                                              ID);
-                                                                                             ThreadPool
-                                                                                                 .
-                                                                                                 QueueUserWorkItem
-                                                                                                 ((
-                                                                                                     e4)
-                                                                                                  =>
-                                                                                                      {
-                                                                                                          foreach
-                                                                                                              (
-                                                                                                              var
-                                                                                                                  item
-                                                                                                                  in
-                                                                                                                  mediaList
-                                                                                                              )
-                                                                                                          {
-
-
-                                                                                                              var
-                                                                                                                  path
-                                                                                                                      =
-                                                                                                                      Constants
-                                                                                                                          .
-                                                                                                                          AppPath +
-                                                                                                                      item
-                                                                                                                          .
-                                                                                                                          Location;
-                                                                                                              var urlPath = item
-                                                                                                                          .
-                                                                                                                          Location;
-
-                                                                                                              var
-                                                                                                                  fileExists
-                                                                                                                      =
-                                                                                                                      false;
-                                                                                                              if
-                                                                                                                  (
-                                                                                                                  File
-                                                                                                                      .
-                                                                                                                      Exists
-                                                                                                                      (path) && new FileInfo(path).Length > 0)
-                                                                                                              // Todo: Check if currently playing and also compare properties to prevent unneeded redownloads
-                                                                                                              {
-                                                                                                                  //File.Delete(path);
-                                                                                                                  fileExists
-                                                                                                                      =
-                                                                                                                      true;
-                                                                                                              }
-                                                                                                              if
-                                                                                                                  (
-                                                                                                                  Playlist
-                                                                                                                      .
-                                                                                                                      Where
-                                                                                                                      (
-                                                                                                                          i
-                                                                                                                          =>
-                                                                                                                          i
-                                                                                                                              .
-                                                                                                                              Location ==
-                                                                                                                          path)
-                                                                                                                      .
-                                                                                                                      Count
-                                                                                                                      () <=
-                                                                                                                  0)
-                                                                                                              {
-                                                                                                                  var
-                                                                                                                      model
-                                                                                                                          =
-                                                                                                                          item;
-                                                                                                                  model
-                                                                                                                      .
-                                                                                                                      Location
-                                                                                                                      =
-                                                                                                                      path;
-                                                                                                                  if
-                                                                                                                      (
-                                                                                                                      fileExists)
-                                                                                                                  {
-                                                                                                                      model
-                                                                                                                          .
-                                                                                                                          Downloaded
-                                                                                                                          =
-                                                                                                                          true;
-                                                                                                                  }
-
-                                                                                                                  Playlist
-                                                                                                                      .
-                                                                                                                      Add
-                                                                                                                      (model);
-                                                                                                                  if
-                                                                                                                      (
-                                                                                                                      fileExists)
-                                                                                                                      return;
-
-                                                                                                              }
-                                                                                                              irio
-                                                                                                                  .
-                                                                                                                  utilities
-                                                                                                                  .
-                                                                                                                  FileUtilities
-                                                                                                                  .
-                                                                                                                  FolderCreate
-                                                                                                                  (
-                                                                                                                      Path
-                                                                                                                          .
-                                                                                                                          GetDirectoryName
-                                                                                                                          (path));
-                                                                                                              ////BootStrap IIS System ... Who knew :( (Only allows on second try
-                                                                                                              //using (WebClient client = new WebClient())
-                                                                                                              //{
-                                                                                                              //    client.
-                                                                                                              //    DownloadStringAsync
-                                                                                                              //           (
-                                                                                                              //               new Uri
-                                                                                                              //                   (
-                                                                                                              //                   (Constants
-                                                                                                              //                        .
-                                                                                                              //                        ServerUrl +
-                                                                                                              //                    item
-                                                                                                              //                        .
-                                                                                                              //                        Location
-                                                                                                              //                        .
-                                                                                                              //                        Replace
-                                                                                                              //                        ("\\",
-                                                                                                              //                         @"/")))
-                                                                                                              //               );
-                                                                                                              //}
-
-                                                                                                              using
-                                                                                                                  (
-                                                                                                                  WebClient
-                                                                                                                      client
-                                                                                                                          =
-                                                                                                                          new WebClient
-                                                                                                                              ()
-                                                                                                                  )
-                                                                                                              {
-
-                                                                                                                  client
-                                                                                                                      .
-                                                                                                                      DownloadProgressChanged
-                                                                                                                      +=
-                                                                                                                      new DownloadProgressChangedEventHandler
-                                                                                                                          (
-                                                                                                                          client_DownloadProgressChanged);
-                                                                                                                  client
-                                                                                                                      .
-                                                                                                                      DownloadFileCompleted
-                                                                                                                      += delegate(object sender, AsyncCompletedEventArgs args)
-                                                                                                                  {
-                                                                                                                      lock (DownLoadsLock)
-                                                                                                                      {
-                                                                                                                          runningDownloads--;
-                                                                                                                      }
-                                                                                                                      HideProgressBar();
-                                                                                                                      Playlist.Where(i => i.Location == path).First().Downloaded =
-                                                                                                                          true;
-                                                                                                                      if (args.Error == null)
-                                                                                                                      {
-                                                                                                                          lock (DownLoadsLock)
-                                                                                                                              if (runningDownloads == 0)
-                                                                                                                              {
-                                                                                                                                  MainWindow.Instance
-                                                                                                                                      .UpdatePlayList
-                                                                                                                                      ();
-                                                                                                                              }
-                                                                                                                      }
-                                                                                                                  };
-                                                                                                                  //ClientDownloadFileCompleted;
-
-
-
-                                                                                                                  if
-                                                                                                                      (
-                                                                                                                      !fileExists)
-                                                                                                                  {
-                                                                                                                      // Starts the download
-                                                                                                                      lock
-                                                                                                                          (
-                                                                                                                          DownLoadsLock
-                                                                                                                          )
-                                                                                                                          runningDownloads
-                                                                                                                              ++;
-
-                                                                                                                      var
-                                                                                                                          uri
-                                                                                                                              = new Uri(Constants.ServerUrl + urlPath.Replace("\\", @"/"));
-                                                                                                                      client.DownloadFileAsync(uri,path);
-                                                                                                                  }
-
-                                                                                                              }
-                                                                                                              //btnStartDownload.Text = "Download In Process";
-                                                                                                              //btnStartDownload.Enabled = false;
-
-                                                                                                          }
-                                                                                                          //ServiceClient myService3 = new ServiceClient();
-                                                                                                          ////BootStrap WCF (otherwise slow)
-                                                                                                          //myService3.ClientCredentials.Windows.ClientCredential.UserName = "admin";
-                                                                                                          //myService3.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
-
-                                                                                                      });
-                                                                                         }
-
+                                                                                         GetMedia(message);
 
                                                                                      }
 
@@ -537,6 +323,236 @@ namespace DesktopClient
 
             //              });
 
+        }
+
+        private void GetMedia(MessageViewModel message = null)
+        {
+            using (ServiceClient myService5 = new ServiceClient())
+            {
+                var
+                    mediaList
+                        =
+                        myService5
+                            .
+                            GetMyMedia
+                            (Constants
+                                 .
+                                 MyStationID);
+
+                //Playlist= new List<MediaListModel>();
+                if (message != null)
+                {
+                    var
+                        status
+                            =
+                            myService5
+                                .
+                                MessageRead
+                                (message
+                                     .
+                                     ID);
+                }
+                ThreadPool
+                    .
+                    QueueUserWorkItem
+                    ((
+                        e4)
+                     =>
+                    {
+                        foreach
+                            (
+                            var
+                                item
+                                in
+                                mediaList
+                            )
+                        {
+
+
+                            var
+                                path
+                                    =
+                                    Constants
+                                        .
+                                        AppPath +
+                                    item
+                                        .
+                                        Location;
+                            var urlPath = item
+                                        .
+                                        Location;
+
+                            var
+                                fileExists
+                                    =
+                                    false;
+                            if
+                                (
+                                File
+                                    .
+                                    Exists
+                                    (path) && new FileInfo(path).Length > 0)
+                            // Todo: Check if currently playing and also compare properties to prevent unneeded redownloads
+                            {
+                                //File.Delete(path);
+                                fileExists
+                                    =
+                                    true;
+                            }
+                            if
+                                (
+                                Playlist
+                                    .
+                                    Where
+                                    (
+                                        i
+                                        =>
+                                        i
+                                            .
+                                            Location ==
+                                        path)
+                                    .
+                                    Count
+                                    () <=
+                                0)
+                            {
+                                var
+                                    model
+                                        =
+                                        item;
+                                model
+                                    .
+                                    Location
+                                    =
+                                    path;
+                                if
+                                    (
+                                    fileExists)
+                                {
+                                    model
+                                        .
+                                        Downloaded
+                                        =
+                                        true;
+                                }
+
+                                Playlist
+                                    .
+                                    Add
+                                    (model);
+                                if
+                                    (
+                                    fileExists)
+                                    return;
+
+                            }
+                            irio
+                                .
+                                utilities
+                                .
+                                FileUtilities
+                                .
+                                FolderCreate
+                                (
+                                    Path
+                                        .
+                                        GetDirectoryName
+                                        (path));
+                            ////BootStrap IIS System ... Who knew :( (Only allows on second try
+                            //using (WebClient client = new WebClient())
+                            //{
+                            //    client.
+                            //    DownloadStringAsync
+                            //           (
+                            //               new Uri
+                            //                   (
+                            //                   (Constants
+                            //                        .
+                            //                        ServerUrl +
+                            //                    item
+                            //                        .
+                            //                        Location
+                            //                        .
+                            //                        Replace
+                            //                        ("\\",
+                            //                         @"/")))
+                            //               );
+                            //}
+
+                            using
+                                (
+                                WebClient
+                                    client
+                                        =
+                                        new WebClient
+                                            ()
+                                )
+                            {
+
+                                client
+                                    .
+                                    DownloadProgressChanged
+                                    +=
+                                    new DownloadProgressChangedEventHandler
+                                        (
+                                        client_DownloadProgressChanged);
+                                client
+                                    .
+                                    DownloadFileCompleted
+                                    += delegate(object sender, AsyncCompletedEventArgs args)
+                                    {
+                                        lock (DownLoadsLock)
+                                        {
+                                            runningDownloads--;
+                                        }
+                                        HideProgressBar();
+                                        Playlist.Where(i => i.Location == path).First().Downloaded =
+                                            true;
+                                        if (args.Error == null)
+                                        {
+                                            lock (DownLoadsLock)
+                                                if (runningDownloads == 0)
+                                                {
+                                                    MainWindow.Instance
+                                                        .UpdatePlayList
+                                                        ();
+                                                }
+                                        }
+                                    };
+                                //ClientDownloadFileCompleted;
+
+
+
+                                if
+                                    (
+                                    !fileExists)
+                                {
+                                    // Starts the download
+                                    lock
+                                        (
+                                        DownLoadsLock
+                                        )
+                                        runningDownloads
+                                            ++;
+
+                                    var
+                                        uri
+                                            = new Uri(Constants.ServerUrl + urlPath.Replace("\\", @"/"));
+                                    client.DownloadFileAsync(uri, path);
+                                }
+
+                            }
+                            //btnStartDownload.Text = "Download In Process";
+                            //btnStartDownload.Enabled = false;
+
+                        }
+                        //ServiceClient myService3 = new ServiceClient();
+                        ////BootStrap WCF (otherwise slow)
+                        //myService3.ClientCredentials.Windows.ClientCredential.UserName = "admin";
+                        //myService3.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
+
+                    });
+            }
         }
 
         private void ClientDownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
