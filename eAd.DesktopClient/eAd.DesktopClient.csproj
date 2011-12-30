@@ -105,6 +105,9 @@
     <Compile Include="PageSwitcher.xaml.cs">
       <DependentUpon>PageSwitcher.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Player\Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Service References\eAdDataAccess\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -154,6 +157,10 @@
     <Page Include="PageSwitcher.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Player\Window1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SplashScreen.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -270,7 +277,7 @@
       <Project>{47A32603-2D64-4BD5-A503-F1142A5C2733}</Project>
       <Name>eAd.DataViewModels</Name>
     </ProjectReference>
-    <ProjectReference Include="X:\CSharp\irio.utilities\irio.utilities.csproj">
+    <ProjectReference Include="..\irio.utilities\irio.utilities.csproj">
       <Project>{7DF57062-342C-40A6-84CC-E504534B0189}</Project>
       <Name>irio.utilities</Name>
     </ProjectReference>

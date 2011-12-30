@@ -11,7 +11,7 @@ namespace eAd.Website.Controllers
 { 
     public class ThemesController : Controller
     {
-        private eAdEntities db = new eAdEntities();
+        private eAdDataContainer db = new eAdDataContainer();
 
         //
         // GET: /Themes/

@@ -9,33 +9,36 @@ using System.Threading;
 using System.Windows.Threading;
 using System.Xml.Serialization;
 using eAd.DataViewModels;
+using Timer = System.Timers.Timer;
 
 namespace DesktopClient.Menu
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow: UserControl
+    public partial class MainWindow : UserControl
     {
         static MainWindow _instance;
         public static MainWindow Instance
         {
             get
             {
-             
-                if(_instance==null)
+
+                if (_instance == null)
                 {
                     _instance = new MainWindow();
                 }
                 return _instance;
             }
+            set { _instance = value; }
         }
+
         public MainWindow()
         {
-         
+            Instance = this;
             InitializeComponent();
-        //   Player.Play();
-           // ((Viewbox)Player.Parent).Width = ((Window)Player.Parent.Parent)
+            //   Player.Play();
+            // ((Viewbox)Player.Parent).Width = ((Window)Player.Parent.Parent)
             StatusBox.Visibility = Visibility.Collapsed;
             PlayerViewBox.Width = this.Width;
             PlayerViewBox.Height = this.Height;
@@ -45,164 +48,208 @@ namespace DesktopClient.Menu
 
 
                 XmlSerializer serializer = new XmlSerializer(typeof(List<MediaListModel>));
-            StreamReader reader = File.OpenText(Constants.PlayListFile);
+                StreamReader reader = File.OpenText(Constants.PlayListFile);
 
 
-            Playlist = (serializer.Deserialize(reader) as List<MediaListModel>);
+                Playlist = (serializer.Deserialize(reader) as List<MediaListModel>);
 
-               reader.Close();
+                reader.Close();
+
+             
 
             }
             catch (Exception)
             {
 
-               Playlist = new List<MediaListModel>();
+                Playlist = new List<MediaListModel>();
             }
+
             ThreadPool.QueueUserWorkItem(
-                (state)=>
-            {
-                Thread.Sleep(200);
-                Player.Dispatcher.BeginInvoke(
+                (state) =>
+                {
+                    Thread.Sleep(200);
+                    Player.Dispatcher.BeginInvoke(
 
-   System.Windows.Threading.DispatcherPriority.Normal
+       DispatcherPriority.Normal
 
-   , new DispatcherOperationCallback(delegate
-                                         {
+       , new DispatcherOperationCallback(delegate
+                                             {
 
 
-                                           
-                                          
-                                             Player.Play();
 
-                                            
-                                            
-       return null;
 
-   }), null);
-               
-            });
+                                                 Player.Play();
+                                             //    PlayNextVideo();
+
+
+                                                 return null;
+
+                                             }), null);
+
+                });
         }
 
         private List<MediaListModel> Playlist;
         private int currentItem = 0;
-        private System.Timers.Timer timer;
+        private System.Timers.Timer timer = new Timer();
         private double CurrentDuration = 0;
-         void _timer_Elapsed(object sender, ElapsedEventArgs e)
-         {
-//             Duration playerDuration = new Duration();
-//            Player.Dispatcher.BeginInvoke(
+       
+        void _timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            //             Duration playerDuration = new Duration();
+            //            Player.Dispatcher.BeginInvoke(
 
-//System.Windows.Threading.DispatcherPriority.Normal
+            //System.Windows.Threading.DispatcherPriority.Normal
 
-//, new DispatcherOperationCallback(delegate
-//                                      {
+            //, new DispatcherOperationCallback(delegate
+            //                                      {
 
 
-//                                 playerDuration=         Player.NaturalDuration;
+            //                                 playerDuration=         Player.NaturalDuration;
 
-//    return null;
+            //    return null;
 
-//}), null);
+            //}), null);
 
-          
-               
-                    timer.Enabled = false;
 
-                    //if (Playlist[currentItem].Duration==TimeSpan.Zero)
-                    //{
-                    //    CurrentDuration += Constants.DefaultDuration;
-                    //        //Not yet
-                    //        timer =
-                    //        new System.Timers.Timer(Constants.DefaultDuration);
-                      
-                    //}
-                    //else
-                    //{
-                    //      //Not yet
-                    //        timer =
-                    //        new System.Timers.Timer(Playlist[currentItem].Duration.TotalMilliseconds);
-                    //}
-             //timer.Elapsed += _timer_Elapsed;
-             //       timer.Enabled = true;
-             //   return;
 
-             PlayNextVideo();
+            timer.Enabled = false;
 
-         }
+            //if (Playlist[currentItem].Duration==TimeSpan.Zero)
+            //{
+            //    CurrentDuration += Constants.DefaultDuration;
+            //        //Not yet
+            //        timer =
+            //        new System.Timers.Timer(Constants.DefaultDuration);
+
+            //}
+            //else
+            //{
+            //      //Not yet
+            //        timer =
+            //        new System.Timers.Timer(Playlist[currentItem].Duration.TotalMilliseconds);
+            //}
+            //timer.Elapsed += _timer_Elapsed;
+            //       timer.Enabled = true;
+            //   return;
+
+            PlayNextVideo();
+
+        }
+
+        
+       static Queue<string> _playerQueue = new Queue<string>();
+
 
         private void PlayNextVideo()
         {
-            Player.Dispatcher.BeginInvoke(
-                System.Windows.Threading.DispatcherPriority.Normal
+            Instance.Player.Dispatcher.BeginInvoke(
+                DispatcherPriority.Normal
                 , new DispatcherOperationCallback(delegate
                                                       {
                                                           lock (Playlist)
                                                           {
-                                                              currentItem++;
-                                                              if (Playlist.Count > 0)
+                                                              Thread.Sleep(200);
+                                                              if (!_isPlaying)
                                                               {
-                                                                  currentItem %= Playlist.Count;
-                                                                  if (Player.Source.AbsolutePath != Playlist[currentItem].Location)
+                                                                  currentItem++;
+                                                                  if (Playlist.Count > 0)
                                                                   {
-                                                                      
-                                                                
-                                                                  Player.Position = TimeSpan.Zero;
-                                                                  Player.Source = new Uri(Playlist[currentItem].Location);
-                                                                  Player.Play();
+                                                                      currentItem %= Playlist.Count;
+                                                                      if (Instance.Player.Source.AbsolutePath !=
+                                                                          Playlist[currentItem].Location)
+                                                                      {
+                                                                          Instance.Player.Position = TimeSpan.Zero;
+                                                                          Instance.Player.Source =
+                                                                              new Uri(Playlist[currentItem].Location);
+                                                                          Instance.Player.Play();
+                                                                      }
+                                                                      //lastDuration = Player.NaturalDuration;
+                                                                      //timer.Interval =lastDuration.TimeSpan.TotalMilliseconds;
+                                                                      //timer.Enabled = true;
                                                                   }
-                                                                  //lastDuration = Player.NaturalDuration;
-                                                                  //timer.Interval =lastDuration.TimeSpan.TotalMilliseconds;
-                                                                  //timer.Enabled = true;
                                                               }
                                                           }
                                                           return null;
                                                       }), null);
         }
 
-        static Duration _lastDuration = new Duration(TimeSpan.Zero);
+        static  Duration _lastDuration = new Duration(TimeSpan.Zero);
+        private static volatile bool _isPlaying = false;
 
         private void MediaElementMediaOpened(object sender, RoutedEventArgs e)
         {
+            Thread.Sleep(200);
             lock (Playlist)
             {
                 CurrentDuration = 0;
-                _lastDuration = Player.NaturalDuration;
-                if (_lastDuration != Duration.Automatic)
+                _isPlaying = true;
+                try
                 {
+                    _lastDuration = Playlist[currentItem].Duration;
+             
+                }
+                catch (Exception)
+                {
+                    
+                    _lastDuration =new Duration(new TimeSpan(0));
+                }
+
+                if(   Player.NaturalDuration!=Duration.Automatic)
+                {
+                    _lastDuration = Player.NaturalDuration;
+                }
+              
+                if (_lastDuration != new Duration(new TimeSpan(0)))
+                {
+                    timer.Enabled = false;
                     timer = new System.Timers.Timer(_lastDuration.TimeSpan.TotalMilliseconds);
+
+
+                    timer.Elapsed += delegate
+                    {
+                        _isPlaying = false;
+                        PlayNextVideo();
+                    };
+                    timer.Enabled = true;
                 }
                 else
                 {
                     CurrentDuration += Constants.DefaultDuration;
-                  //  timer = new System.Timers.Timer(Constants.DefaultDuration);
-                    var exitImageTimer = new System.Timers.Timer(Constants.DefaultDuration);
-                    exitImageTimer.Elapsed +=  delegate {
-                                                               PlayNextVideo();
-                    };
-                    exitImageTimer.Enabled = true;
+                    //  timer = new System.Timers.Timer(Constants.DefaultDuration);
+                    timer.Enabled = false;
+                    timer = new System.Timers.Timer(Constants.DefaultDuration);
+                    timer.Elapsed += delegate
+                                                  {
+                                                      _isPlaying = false;
+                                                      PlayNextVideo();
+                                                  };
+                    timer.Enabled = true;
                 }
-            //    timer.Elapsed += _timer_Elapsed;
-           //     timer.Enabled = true;
+                //    timer.Elapsed += _timer_Elapsed;
+                //     timer.Enabled = true;
             }
+           
         }
 
         private void PlayerMediaEnded(object sender, RoutedEventArgs e)
         {
-           // _timer_Elapsed(null, (ElapsedEventArgs) new EventArgs());
-            PlayNextVideo();
+     //       
+        //    PlayNextVideo();
         }
 
         private void PlayerUnloaded(object sender, RoutedEventArgs e)
         {
-           
+
         }
 
         private void FormFadeOutCompleted(object sender, EventArgs e)
         {
 
         }
-        public  static  volatile Object FileLock = new object();
-        public void  UpdatePlayList()
+        public static volatile Object FileLock = new object();
+
+        public void UpdatePlayList()
         {
             lock (Playlist)
             {
@@ -219,35 +266,36 @@ namespace DesktopClient.Menu
                                                          alldownloaded = true;
                                                          foreach (var mediaListModel in PageSwitcher.Playlist)
                                                          {
-                                                             if (!mediaListModel.Downloaded)
+                                                             if (!mediaListModel.Downloaded )
                                                              {
                                                                  alldownloaded = false;
                                                              }
                                                          }
-                                                       
+
                                                      }
-                                                    Instance.PlayNextVideo();
+                                                     Instance.PlayNextVideo();
                                                  });
+
                 ThreadPool.QueueUserWorkItem((r) =>
                                                  {
                                                      lock (FileLock)
                                                      {
-                                                     XmlSerializer serializer = new XmlSerializer(typeof (List<MediaListModel>));
-                                                     FileInfo file = new FileInfo(Constants.PlayListFile);
-                                                     if (!File.Exists(Constants.PlayListFile))
-                                                     {
-                                                         StreamWriter writer = file.CreateText();
-                                                         serializer.Serialize(writer, PageSwitcher.Playlist);
-                                                         writer.Close();
+                                                         XmlSerializer serializer = new XmlSerializer(typeof(List<MediaListModel>));
+                                                         FileInfo file = new FileInfo(Constants.PlayListFile);
+                                                         if (!File.Exists(Constants.PlayListFile))
+                                                         {
+                                                             StreamWriter writer = file.CreateText();
+                                                             serializer.Serialize(writer, PageSwitcher.Playlist);
+                                                             writer.Close();
+                                                         }
+                                                         else
+                                                         {
+                                                             file.Delete();
+                                                             StreamWriter writer = file.CreateText();
+                                                             serializer.Serialize(writer, PageSwitcher.Playlist);
+                                                             writer.Close();
+                                                         }
                                                      }
-                                                     else
-                                                     {
-                                                         file.Delete();
-                                                         StreamWriter writer = file.CreateText();
-                                                         serializer.Serialize(writer, PageSwitcher.Playlist);
-                                                         writer.Close();
-                                                     }
-                                                      }
                                                  });
             }
         }

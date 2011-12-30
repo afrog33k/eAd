@@ -9,11 +9,11 @@ namespace eAd.Website.Repositories
 {
     public class MapRepository 
     {
-        eAd.DataAccess.eAdEntities _eAdEntities = new eAdEntities();
+        eAd.DataAccess.eAdDataContainer _eAdDataContainer = new eAdDataContainer();
 
         public Map GetById(int id)
         {
-            var station = _eAdEntities.Stations.Where(s => s.StationID == id).FirstOrDefault();
+            var station = _eAdDataContainer.Stations.Where(s => s.StationID == id).FirstOrDefault();
             var coords = station.Location.Split(',');
 
             return new Map

@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eAd.DesktopClient", "eAd.De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eAd.Utilities", "eAd.Utilities\eAd.Utilities.csproj", "{ECD7174B-B905-46AF-B371-72D8A81103F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "irio.utilities", "X:\CSharp\irio.utilities\irio.utilities.csproj", "{7DF57062-342C-40A6-84CC-E504534B0189}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "irio.utilities", "irio.utilities\irio.utilities.csproj", "{7DF57062-342C-40A6-84CC-E504534B0189}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

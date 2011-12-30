@@ -11,7 +11,7 @@ namespace eAd.Website.Controllers
 { 
     public class CustomersController : Controller
     {
-        private eAdEntities db = new eAdEntities();
+        private eAdDataContainer db = new eAdDataContainer();
 
         //
         // GET: /Customers/

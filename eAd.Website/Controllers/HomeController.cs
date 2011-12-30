@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
+using System.Xml.Serialization;
+using eAd.DataAccess;
 using eAd.Website.eAdDataService;
 using System.Linq;
 using System.IO;
@@ -8,6 +12,51 @@ namespace eAd.Website.Controllers
     public class HomeController : Controller
     {
         public static Controller Instance = null;
+        private eAdDataContainer db = new eAdDataContainer();
+        public void DownloadInfo(HttpContextBase httpContext,string xmlUrl, string stationID)
+        {
+            try
+            {
+               
+                Station station;
+
+                    if(db.Stations.Where(s=>s.UniqueID==stationID).Count() <=0)
+                    {
+                     station  = new Station();
+                        station.UniqueID = stationID;
+                        db.Stations.AddObject(station);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        station = db.Stations.Where(s => s.UniqueID == stationID).FirstOrDefault();
+                    }
+
+                string path = httpContext.Server.MapPath("~/Logs/GreenLots/" + "log.txt");
+            
+            StreamReader reader = new StreamReader(WebRequest.Create(xmlUrl).GetResponse().GetResponseStream());
+            XmlSerializer xSerializer = new XmlSerializer(typeof(proton));
+            proton greenlotsInfo = (proton)xSerializer.Deserialize(reader);
+
+                station.Name = greenlotsInfo.Location.information[0].name;
+                station.Address = greenlotsInfo.Location.information[0].address + "\n" + greenlotsInfo.Location.information[0].address1 + "\n" + greenlotsInfo.Location.information[0].address2;
+                station.PostalCode = greenlotsInfo.Location.information[0].postal;
+                station.Rate = Convert.ToDouble( greenlotsInfo.Location.information[0].rate);
+                Logger.WriteLine(path, "\n--------------- Data Received ---------------");
+                Logger.WriteLine(path, (string) greenlotsInfo.User.information[0].address);
+             //   Logger.WriteLine(path, greenlotsInfo.email);
+                Logger.WriteLine(path, "\n--------------- Data Received End---------------");
+
+            db.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
         public ActionResult Index()
         {
             Instance = this;
@@ -57,77 +106,43 @@ namespace eAd.Website.Controllers
 
         public ActionResult Init(string id, string xmlUrl)
         {
-
-
-            string path = @"log.txt";
-            // This text is added only once to the file.
-            if (!System.IO.File.Exists(path))
+            HttpContextBase httpContext = this.HttpContext;
+            if (httpContext != null)
             {
-                // Create a file to write to.
-                using (StreamWriter log = System.IO.File.CreateText(path))
-                {
-                    log.WriteLine("Init  ID: " + id + " xmlUrl: " + xmlUrl);
-                }
+                string path = httpContext.Server.MapPath("~/Logs/GreenLots/" + "log.txt");
+                Logger.WriteLine(path, "Init ID: " + id + " xmlUrl: " + xmlUrl);
+                DownloadInfo(httpContext, xmlUrl,id);
             }
 
-            // This text is always added, making the file longer over time
-            // if it is not deleted.
-            using (StreamWriter log = System.IO.File.AppendText(path))
-            {
-                log.WriteLine("Init  ID: " + id + " xmlUrl: " + xmlUrl);
-            }	
-
             return Content("1"); //Success
-            //return Content("Init ID: " + id + " xmlUrl: " + xmlUrl);
+         
         }
 
         public ActionResult Start(string id, string xmlUrl)
         {
+             HttpContextBase httpContext = this.HttpContext;
+             if (httpContext != null)
+             {
+                 string path = httpContext.Server.MapPath("~/Logs/GreenLots/" + "log.txt");
+                Logger.WriteLine(path, "Start  ID: " + id + " xmlUrl: " + xmlUrl);
+                DownloadInfo(httpContext, xmlUrl,id);
+                 }
             
-            string path = @"log.txt";
-            // This text is added only once to the file.
-            if (!System.IO.File.Exists(path))
-            {
-                // Create a file to write to.
-                using (StreamWriter log = System.IO.File.CreateText(path))
-                {
-                    log.WriteLine("Start  ID: " + id + " xmlUrl: " + xmlUrl);
-                }
-            }
-
-            // This text is always added, making the file longer over time
-            // if it is not deleted.
-            using (StreamWriter log = System.IO.File.AppendText(path))
-            {
-                log.WriteLine("Start  ID: " + id + " xmlUrl: " + xmlUrl);
-            }	
-
-            return Content("1"); //Success
+             return Content("1"); //Success
      
-           /// return Content("Start  ID: " + id + " xmlUrl: " + xmlUrl);
         }
 
         public ActionResult Stop(string id, string xmlUrl)
         {
        
-            string path = @"log.txt";
-            // This text is added only once to the file.
-            if (!System.IO.File.Exists(path))
-            {
-                // Create a file to write to.
-                using (StreamWriter log = System.IO.File.CreateText(path))
-                {
-                    log.WriteLine("Stop  ID: " + id + " xmlUrl: " + xmlUrl);
-                }
-            }
+          HttpContextBase httpContext = this.HttpContext;
+          if (httpContext != null)
+          {
 
-            // This text is always added, making the file longer over time
-            // if it is not deleted.
-            using (StreamWriter log = System.IO.File.AppendText(path))
-            {
-                log.WriteLine("Stop  ID: " + id + " xmlUrl: " + xmlUrl);
-            }	
-
+              string path = httpContext.Server.MapPath("~/Logs/GreenLots/" + "log.txt");
+              Logger.WriteLine(path, "Stop   ID: " + id + " xmlUrl: " + xmlUrl);
+              DownloadInfo(httpContext, xmlUrl,id);
+          }
             return Content("1"); //Success
             //return Content("Stop  ID: " + id + " xmlUrl: " + xmlUrl);
         }

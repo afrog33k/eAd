@@ -1,109 +1,32 @@
-﻿@model IEnumerable<eAd.DataAccess.Medium>
+﻿@using eAd.DataAccess
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Mosaic Designer</h2>
 
+
+<div class="editor-label">
+          Choose Mosaic  
+        </div>
+        <div class="editor-field">
+           @Html.DropDownList("MosaicID", String.Empty)
+           <button id="CreateNewMosaic">Create New Mosaic</button>
+            <button id="SaveMosaic">Save Mosaic</button>
+        </div>
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+
+
 <style type="text/css">
+    .fluid-img{width:90%;}
 	#container { width: 1280px; height: 800px; }
 	#container h3 { text-align: center; margin: 0; margin-bottom: 10px; }
 	.resizable { background-position: top left; width: 150px; height: 150px; }
 	.resizable, .container { padding: 0.5em; }
 	.ui-resizable-helper { border: 2px dotted #00F; }
-	</style>
-	<script type="text/javascript">
-	    $(function () {
-	        $("#player1").draggable({ containment: "#container", scroll: false, snap: ".resizable", snapMode: "outer" });
-	        $("#player1").resizable({
-	        //    containment: "#container",
-                animate: true,
-                helper: "ui-resizable-helper",
-                grid: 20,
-                ghost: true
-            });
-            $("#player2").draggable({ containment: "#container", scroll: false, snap: ".resizable", snapMode: "outer" });
-	        $("#player2").resizable({
-	         //   containment: "#container",
-                 animate: true,
-                 helper: "ui-resizable-helper",
-                 grid: 20,
-                 ghost: true
-             });
-             $("#player3").draggable({ containment: "#container", scroll: false, snap: ".resizable", snapMode: "outer" });
-	        $("#player3").resizable({
-	           // containment: "#container",
-                 animate: true,
-                 helper: "ui-resizable-helper",
-                 grid: 20,
-                 ghost: true
-             });
-             $("#player4").draggable({ containment: "#container", scroll: false, snap: ".resizable", snapMode: "outer" });
-             $("#player4").resizable({
-                 // containment: "#container",
-                 animate: true,
-                 helper: "ui-resizable-helper",
-                 grid: 20,
-                 ghost: true
-             });
-             $("#player5").draggable({ containment: "#container", scroll: false, snap: ".resizable", snapMode: "outer" });
-             $("#player5").resizable({
-                 // containment: "#container",
-                 animate: true,
-                 helper: "ui-resizable-helper",
-                 grid: 20,
-                 ghost: true
-             });
-             $("#player6").draggable({ containment: "#container", scroll: false, snap: ".resizable", snapMode: "outer" });
-             $("#player6").resizable({
-                 // containment: "#container",
-                 animate: true,
-                 helper: "ui-resizable-helper",
-                 grid: 20,
-                 ghost: true
-             });
-	    });
-	</script>
-
-
-
-<div class="demo">
-	
-<div id="container" class="resizable ui-widget-content">
-	<h3 class="ui-widget-header">Player Screen</h3>
-	<div id="player1" class="resizable ui-state-active">
-		<h3 class="ui-widget-header">Position 1</h3>
-	</div>
-    <div id="player2" class="resizable ui-state-active">
-		<h3 class="ui-widget-header">Position 2</h3>
-	</div>
-    <div id="player3" class="resizable ui-state-active">
-		<h3 class="ui-widget-header">Position 3</h3>
-	</div>
-    <div id="player4" class="resizable ui-state-active">
-		<h3 class="ui-widget-header">Position 4</h3>
-	</div>
-    <div id="player5" class="resizable ui-state-active">
-		<h3 class="ui-widget-header">Position 5</h3>
-	</div>
-  
-</div>
-
-</div><!-- End demo -->
-
-
-
-<div class="demo-description">
-</div><!-- End demo-description -->
-
-
-	
-	
-	
-	
-	
-	
-	<style>
 	#gallery { float: left; width: 65%; min-height: 12em; } * html #gallery { height: 12em; } /* IE6 */
 	.gallery.custom-state-active { background: #eee; }
 	.gallery li { float: left; width: 96px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
@@ -117,8 +40,12 @@
 	#trash h4 .ui-icon { float: left; }
 	#trash .gallery h5 { display: none; }
 	</style>
-	<script>
-	    $(function () {
+
+    	
+	<script type="text/javascript">
+
+	    function ResetDefaults() {
+	  
 	        // there's the gallery and the trash
 	        var $gallery = $("#gallery"),
 			$trash = $(".resizable");
@@ -131,16 +58,6 @@
 	            helper: "clone",
 	            cursor: "move"
 	        });
-
-	        // let the trash be droppable, accepting the gallery items
-	        $trash.droppable({
-	            accept: "#gallery > li",
-	            activeClass: "ui-state-highlight",
-	            drop: function (event, ui) {
-	                addImage(ui.draggable,$this);
-	            }
-	        });
-
 	        // let the gallery be droppable as well, accepting items from the trash
 	        $gallery.droppable({
 	            accept: ".resizable",
@@ -149,17 +66,100 @@
 	                recycleImage(ui.draggable);
 	            }
 	        });
+	        $("#dialog:ui-dialog").dialog("destroy");
 
-	        // image deletion function
-	        var recycle_icon = "<a href='link/to/recycle/script/when/we/have/js/off' title='Recycle this image' class='ui-icon ui-icon-refresh'>Recycle image</a>";
-	        function addImage($item,$object) {
+	        $("#dialog-addposition").dialog({
+	            resizable: false,
+	            height: 140,
+	            modal: true,
+	            buttons: {
+	                "Add": function () {
+	                    $(this).dialog("close");
+	                },
+	                Cancel: function () {
+	                    $(this).dialog("close");
+	                }
+	            }
+	        });
+	        $("#AddNewPosition").button();
+	        $("#AddNewPosition").click(function () { return false; });
+
+	        // When the toolbar button is clicked...
+	        $('#AddNewPosition').click(function () {
+	            getAndSetNewPosition(null);
+	        });
+
+
+
+
+
+
+	        $("#SaveMosaic").button();
+
+
+	        $("#SaveMosaic").click(function () { return false; });
+
+	        // When the toolbar button is clicked...
+	        $('#SaveMosaic').click(function () {
+	            SaveMosaic();
+	        });
+	        
+	        $("#CreateNewMosaic").button();
+	        
+	        
+	        $("#CreateNewMosaic").click(function () { return false; });
+
+	        // When the toolbar button is clicked...
+	        $('#CreateNewMosaic').click(function () {
+	          CreateNewMosaic();
+	        });
+	        
+	        
+	        // resolve the icons behavior with event delegation
+	        $("ul.gallery > li").click(function (event) {
+	            var $item = $(this),
+				$target = $(event.target);
+
+	            if ($target.is("a.ui-icon-trash")) {
+	                window.deleteImage($item);
+	            } else if ($target.is("a.ui-icon-zoomin")) {
+	                viewLargerImage($target);
+	            } else if ($target.is("a.ui-icon-refresh")) {
+	                recycleImage($item);
+	            }
+
+	            return false;
+	        });
+
+	        // let the trash be droppable, accepting the gallery items
+	        $trash.droppable({
+	                accept: "#gallery > li",
+	                activeClass: "ui-state-highlight",
+	                drop: function(event, ui) {
+	                    addImage(ui.draggable, $(this));
+	                }});
+	         
+		$( ".collapsible" ).accordion({
+			collapsible: true,
+			autoHeight: false,
+			navigation: true
+});
+	        
+	    }
+	    
+	        function addImage($item, $object) {
 	            $item.fadeOut(function () {
-	                var $list = $("ul", $object).length ?
-					$("ul", $object) :
-					$("<ul class='gallery ui-helper-reset'/>").appendTo($object);
+	                // image deletion function
+	                var recycleIcon = "<a href='link/to/recycle/script/when/we/have/js/off' title='Recycle this image' class='ui-icon ui-icon-refresh'>Recycle image</a>";
 
+	                var $list = $("ul", $object.find('.collapsible').find('div')).length ?
+					$("ul", $object.find('.collapsible').find('div')) :
+					$("<ul class='gallery ui-helper-reset'/>").appendTo($object.find('.collapsible').find('div'));
+
+	                $object.css("background", "url(" + $item.find("img").attr("src") + ") top left no-repeat");
+	                $object.css("background-size", "100% 100%");
 	                $item.find("a.ui-icon-trash").remove();
-	                $item.append(recycle_icon).appendTo($list).fadeIn(function () {
+	                $item.append(recycleIcon).appendTo($list).fadeIn(function () {
 	                    $item
 						.animate({ width: "48px" })
 						.find("img")
@@ -168,16 +168,17 @@
 	            });
 	        }
 
-	        // image recycle function
-	        var trash_icon = "<a href='link/to/trash/script/when/we/have/js/off' title='Delete this image' class='ui-icon ui-icon-trash'>Delete image</a>";
 	        function recycleImage($item) {
+	            // image recycle function
+	            var trashIcon = "<a href='link/to/trash/script/when/we/have/js/off' title='Delete this image' class='ui-icon ui-icon-trash'>Delete image</a>";
+	            var $gallery = $("#gallery");
 	            $item.fadeOut(function () {
 	                $item
 					.find("a.ui-icon-refresh")
 						.remove()
 					.end()
 					.css("width", "96px")
-					.append(trash_icon)
+					.append(trashIcon)
 					.find("img")
 						.css("height", "72px")
 					.end()
@@ -206,30 +207,181 @@
 	                }, 1);
 	            }
 	        }
+	        function addPosition($item, $object) {
 
-	        // resolve the icons behavior with event delegation
-	        $("ul.gallery > li").click(function (event) {
-	            var $item = $(this),
-				$target = $(event.target);
+	            // image deletion function
+	            var recycleIcon = "<a href='link/to/recycle/script/when/we/have/js/off' title='Recycle this image' class='ui-icon ui-icon-refresh'>Recycle image</a>";
+	         
+	            $item.fadeOut(function () {
+	                var $list = $("ul", $object).length ?
+					$("ul", $object) :
+					$("<ul class='gallery ui-helper-reset'/>").appendTo($object);
 
-	            if ($target.is("a.ui-icon-trash")) {
-	                deleteImage($item);
-	            } else if ($target.is("a.ui-icon-zoomin")) {
-	                viewLargerImage($target);
-	            } else if ($target.is("a.ui-icon-refresh")) {
-	                recycleImage($item);
-	            }
+	                $item.find("a.ui-icon-trash").remove();
+	                $item.append(recycleIcon).appendTo($list).fadeIn(function () {
+	                    $item
+						.animate({ width: "48px" })
+						.find("img")
+							.animate({ height: "36px" });
+	                });
+	            });
+	        }
+	       
+	</script>
+	<script type="text/javascript">
+	    $(function () {
+	        ResetDefaults();
+//	        $("#player1").draggable({ containment: "#container", scroll: false, snap: ".resizable", snapMode: "outer" });
+//	        $("#player1").resizable({
+//	            //    containment: "#container",
+//	            animate: true,
+//	            helper: "ui-resizable-helper",
+//	            grid: 20,
+//	            ghost: true,
+//	            stop: function () {
+//	                //  $(this).find("img")("background", $(this).css("background"));
+//	            }
+//	        });
+            });
+       
+	    
+     
 
-	            return false;
+
+
+   function getAndSetNewPosition(name) {
+      if (name==null) {
+          getNewPositionName(function (value) {
+            getAndSetNewPosition(value);
+        });
+      }
+    else {
+        AddPosition(name);
+    }
+}
+
+
+function CreateNewMosaic() {
+    // Build dialog markup
+    var win = $('<div><p>Enter new mosaic name</p></div>');
+    var userInput = $('<input type="text" style="width:100%"></input>');
+    userInput.appendTo(win);
+
+    // Display dialog
+    $(win).dialog({
+        'modal': true,
+        'buttons': {
+            'Ok': function () {
+
+                $(this).dialog('close');
+                
+                 $.ajax({
+                    url: "@(Url.Action("Create", "Mosaic", null, "http"))",
+                    type: 'POST',
+                    context: document.body,
+                    data: { name: $(userInput).val()},
+                    success: function () {
+                    location.reload();
+
+                    }});
+                
+            },
+            'Cancel': function () {
+                $(this).dialog('close');
+            }
+        
+    }});
+}
+
+function getNewPositionName(callback) {
+    // Build dialog markup
+    var win = $('<div><p>Enter new position name</p></div>');
+    var userInput = $('<input type="text" style="width:100%"></input>');
+    userInput.appendTo(win);
+    
+    // Display dialog
+    $(win).dialog({
+        'modal': true,
+        'buttons': {
+            'Ok': function () {
+                
+                $(this).dialog('close');
+                callback($(userInput).val());
+            },
+            'Cancel': function() {
+                $(this).dialog('close');
+            }
+        }
+    });
+}
+
+function removeSpaces(string) {
+    return string.split(' ').join('');
+}
+
+function checkString(strng) {
+    var error = false;
+    //var illegalChars = /[\u0021-\u002f\u003a-\u0040\u005b-\u005e\u0060\u007b-\u007e]/g; // The /g (for global) is a goof.
+    var illegalChars = /[\u0021-\u002f\u003a-\u0040\u005b-\u005e\u0060\u007b-\u007e]/; // NOT global.
+    error = (illegalChars.test(strng));
+    return error;
+}
+         
+         function AddPosition(name) {
+
+             var recycleIcon = "<a href='link/to/recycle/script/when/we/have/js/off' title='Recycle this image' class='ui-icon ui-icon-refresh'>Recycle image</a>";
+	         
+
+             var jsName = removeSpaces(name);
+
+             $('#container').append('<div id="' + jsName + '" class="resizable ui-state-active">' +
+		'<h3 class="ui-widget-header">' + name + '</h3>' + '<div class="collapsible"><a href="#">Media</a></h3>' +
+	'<div >' +
+		
+	'</div>'+
+	'</div> </div>').fadeIn(function () {
+	    $('#' + jsName)
+						.animate({ width: "100px" })
+							.animate({ height: "100px" });
+	}); ;
+
+             $('#' + jsName).draggable({ containment: "#container", scroll: false, snap: ".resizable", snapMode: "outer" });
+             $('#' + jsName).resizable({
+	            // containment: "#container",
+	            animate: true,
+	            helper: "ui-resizable-helper",
+	            grid: 20,
+	            ghost: true
 	        });
-	    });
+
+	        $('#' + jsName).append(recycleIcon);
+    	    
+             ResetDefaults();
+	    }
+	    
 	</script>
 
 
 
-<div class="demo ui-widget ui-helper-clearfix">
+<div id="demo">
+	  
+   <span>
+<button id="AddNewPosition">Add New Position</button>
+<br/></span>
+<div id="container" class="ui-widget-content">
+	<h3 class="ui-widget-header">Player Screen</h3>
+	@*<div id="player1" class="resizable ui-state-active">
+		<h3 class="ui-widget-header">Position 1</h3>
+	</div>*@
+     
+</div>
+
+</div>
+
+<div class="ui-widget ui-helper-clearfix ">
+<h3 class="ui-widget-header">Gallery</h3>
 <ul id="gallery" class="gallery ui-helper-reset ui-helper-clearfix">
-@foreach (var item in Model)
+@foreach (var item in (List<Medium>)ViewBag.Media)
 {
     <li class="ui-widget-content ui-corner-tr">
 		<h5 class="ui-widget-header">@item.Name</h5>
@@ -242,16 +394,6 @@
 	
 	
 </ul>
-
-<div id="trash" class="ui-widget-content ui-state-default">
-	<h4 class="ui-widget-header"><span class="ui-icon ui-icon-trash">Trash</span> Trash</h4>
 </div>
 
-</div><!-- End demo -->
 
-
-<div class="demo-description">
-<p>You can delete an image either by dragging it to the Trash or by clicking the trash icon.</p>
-<p>You can "recycle" an image by dragging it back to the gallery or by clicking the recycle icon.</p>
-<p>You can view larger image by clicking the zoom icon. jQuery UI dialog widget is used for the modal window.</p>
-</div><!-- End demo-description -->

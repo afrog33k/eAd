@@ -32,8 +32,6 @@ namespace DesktopClient
             Switcher.PageSwitcher = this;
             Switcher.Switch(MainWindow.Instance);
 
-
-
             // Keep Alive Thread
             ThreadPool.QueueUserWorkItem(
                 (state) =>
@@ -493,9 +491,8 @@ namespace DesktopClient
                                     .
                                     DownloadProgressChanged
                                     +=
-                                    new DownloadProgressChangedEventHandler
-                                        (
-                                        client_DownloadProgressChanged);
+                                    client_DownloadProgressChanged;
+
                                 client
                                     .
                                     DownloadFileCompleted
@@ -506,18 +503,36 @@ namespace DesktopClient
                                             runningDownloads--;
                                         }
                                         HideProgressBar();
-                                        Playlist.Where(i => i.Location == path).First().Downloaded =
-                                            true;
+                                        var pitem = Playlist.Where(i => i.Location == path).FirstOrDefault();
+
+                                        if (pitem != null)
+                                        {
+                                            pitem.Downloaded =
+                                                true;
+
+                                            if (!File.Exists(path) || new FileInfo(path).Length <= 0)
+                                            {
+                                                Playlist.Remove(pitem);
+                                                Console.WriteLine("Downloaded Corrupted File");
+                                            }
+                                        }
+
+
                                         if (args.Error == null)
                                         {
                                             lock (DownLoadsLock)
-                                                if (runningDownloads == 0)
-                                                {
-                                                    MainWindow.Instance
-                                                        .UpdatePlayList
-                                                        ();
-                                                }
+                                                Thread.Sleep(200);
+                                            if (runningDownloads == 0)
+                                            {
+                                                MainWindow.Instance
+                                                    .UpdatePlayList
+                                                    ();
+                                            }
                                         }
+
+
+
+
                                     };
                                 //ClientDownloadFileCompleted;
 
@@ -612,7 +627,7 @@ namespace DesktopClient
                    double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
                    double percentage = bytesIn / totalBytes * 100;
 
-                   MainWindow.Instance.Update_Progress.Value = percentage;
+                   MainWindow.Instance.Update_Progress.Value = ((percentage + MainWindow.Instance.Update_Progress.Value) / 2);
                    return null;
                }), null);
 

@@ -14,11 +14,11 @@ namespace eAd.Website.Repositories
     public class UploadRepository
     {
 
-        public static string ResolvePath(HttpContextBase context,string AbsolutePath)
+        public static string ResolvePath(HttpContextBase context,string absolutePath)
         {
-            string FullPath = AbsolutePath.ToLower();
-            string SitePath = context.Server.MapPath("~").ToLower();
-            return FullPath.Replace(SitePath, "\\");
+            string fullPath = absolutePath.ToLower();
+            string sitePath = context.Server.MapPath("~").ToLower();
+            return fullPath.Replace(sitePath, "\\");
         }
 
         public static string PathForUpload(HttpContextBase context,string path, string owner, string id, string filename,UploadType type, bool? isThumb = false) // 0 Media, 1 profile pic, 2 coupon
@@ -65,16 +65,16 @@ namespace eAd.Website.Repositories
             if (context.Session != null)
             {
 
-                List<UploadedContent> uploadedContents =
+                var uploadedContents =
                     ((List<UploadedContent>) context.Session["SavedFileList"]);
               
 
                 if (uploadedContents != null)
                 {
-                    UrlFriendlyGuid GUID = (UrlFriendlyGuid)context.Session["UploadGUID"];
+                    var guid = (UrlFriendlyGuid)context.Session["UploadGUID"];
                 UploadedContent thisContent = uploadedContents.Find(
                     content =>
-                    content.MediaGuid == GUID);
+                    content.MediaGuid == guid);
                 uploadedContents.Remove(thisContent);
 
                 context.Session["SavedFileList"] = uploadedContents;
@@ -83,7 +83,7 @@ namespace eAd.Website.Repositories
         }
         }
 
-        public static string GetFileUrl(HttpContextBase context, string MediaID, string ownerID , UploadType type, out UploadedContent upload)
+        public static string GetFileUrl(HttpContextBase context, string mediaID, string ownerID , UploadType type, out UploadedContent upload)
         {
             upload = null;
             try
@@ -92,13 +92,13 @@ namespace eAd.Website.Repositories
            
             if (context.Session != null)
             {
-                List<UploadedContent> uploadedContents =
+                var uploadedContents =
                     ((List<UploadedContent>) context.Session["SavedFileList"]);
-                UrlFriendlyGuid GUID = (UrlFriendlyGuid)context.Session["UploadGUID"];
+                var guid = (UrlFriendlyGuid)context.Session["UploadGUID"];
 
                 UploadedContent thisContent = uploadedContents.Find(
                     content =>
-                    content.MediaGuid == GUID && content.Type == type);
+                    content.MediaGuid == guid && content.Type == type);
 
                 upload = thisContent;
 
@@ -110,8 +110,8 @@ namespace eAd.Website.Repositories
 
                                                                pictures[0],
                                                                ownerID,
-                                                               MediaID,
-                                                               GUID
+                                                               mediaID,
+                                                               guid
                                                                , type,
                                                                false);
 
@@ -119,23 +119,23 @@ namespace eAd.Website.Repositories
 
                                                                                pictures[0],
                                                                               ownerID,
-                                                                              MediaID,
-                                                                              GUID
+                                                                              mediaID,
+                                                                              guid
                                                                               , type,
                                                                               true);
               
 
                 FileUtilities.FolderCreate(Path.GetDirectoryName(newPath));
                 System.IO.File.Move(
-                     TempPathForUpload(context, pictures[0], type, GUID)
+                     TempPathForUpload(context, pictures[0], type, guid)
                    ,
                                     newPath);
                 try //Maybe No Thumbnail
                 {
 
              
-                System.IO.File.Move(
-                      TempPathForUpload(context, pictures[1], type, GUID),
+                File.Move(
+                      TempPathForUpload(context, pictures[1], type, guid),
                                     thumbPath);
                 }
                 catch (Exception ex)
@@ -206,7 +206,7 @@ namespace eAd.Website.Repositories
                 }
                 return physicalPath;
             }
-            catch
+            catch (Exception)
             {
                 
             }
@@ -287,10 +287,13 @@ namespace eAd.Website.Repositories
                         (Bitmap) ImageUtilities.Resize(image, 216, 132, RotateFlipType.RotateNoneFlipNone);
                     ImageUtilities.SaveImage(thumbNail, thumbPath, ImageFormat.Jpeg, true);
 
+                    duration = new TimeSpan(0,0,10);
+
                 }
                 else if (Path.GetExtension(file.FileName).ToLower()==(".txt"))
                 {
                     FileUtilities.SaveStream(file.InputStream,physicalPath,false);
+                    duration = new TimeSpan(0, 0, 20);
                 }
                 else // Must Be Video
                 {

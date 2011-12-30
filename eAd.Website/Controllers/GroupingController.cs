@@ -12,7 +12,7 @@ namespace eAd.Website.Controllers
 { 
     public class GroupingController : Controller
     {
-        private eAdEntities db = new eAdEntities();
+        private eAdDataContainer db = new eAdDataContainer();
 
         private ServiceClient _service;
         private ServiceClient Service
@@ -66,6 +66,7 @@ namespace eAd.Website.Controllers
         {
             if (ModelState.IsValid)
             {
+                grouping.MosaicID = 1;
                 db.Groupings.AddObject(grouping);
                 db.SaveChanges();
                 return RedirectToAction("Index");  

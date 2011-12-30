@@ -11,14 +11,33 @@ namespace eAd.Website.Controllers
 {
     public class MosaicController : Controller
     {
-        private eAdEntities db = new eAdEntities();
+        private eAdDataContainer db = new eAdDataContainer();
         //
         // GET: /Mosaic/
 
         public ActionResult Index()
         {
-            return View(db.Media.ToList());
+            ViewBag.Media = db.Media.ToList();
+            ViewBag.MosaicID = new SelectList(db.Mosaics, "MosaicID", "Name");
+    
+            return View();
         }
+        
+        [HttpPost]
+        public ActionResult Create(string name)
+        {
+
+            Mosaic mosaic = new Mosaic();
+            mosaic.Name = name;
+            
+                db.Mosaics.AddObject(mosaic);
+                db.SaveChanges();
+              
+            return Json(new { message = "Mosaic Created" }, JsonRequestBehavior.AllowGet);
+       
+        }
+
+
 
     }
 }

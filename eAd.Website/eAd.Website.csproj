@@ -80,12 +80,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CarsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\Logger.cs" />
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\MediaController.cs" />
     <Compile Include="Controllers\GroupingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\MosaicController.cs" />
+    <Compile Include="Controllers\MosaicMockController.cs" />
     <Compile Include="Controllers\StationController.cs" />
     <Compile Include="Controllers\StationsController.cs" />
     <Compile Include="Controllers\ThemesController.cs" />
@@ -98,6 +100,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Globals.cs" />
+    <Compile Include="greenlots.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\eAd\WebsiteContext.cs" />
     <Compile Include="Models\LatLng.cs" />
@@ -1103,6 +1106,9 @@
     <Content Include="Content\Window\Descriptions\RtlSupport.html" />
     <Content Include="Content\Window\window.png" />
     <Content Include="Global.asax" />
+    <Content Include="Logs\GreenLots\donotdelete.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\2011.1.224\jquery-1.4.4.min.js" />
     <Content Include="Scripts\2011.1.224\jquery.validate.js" />
     <Content Include="Scripts\2011.1.224\jquery.validate.min.js" />
@@ -1133,6 +1139,7 @@
     <Content Include="Scripts\2011.1.224\telerik.upload.min.js" />
     <Content Include="Scripts\2011.1.224\telerik.window.min.js" />
     <Content Include="Scripts\additional-methods.js" />
+    <Content Include="Scripts\jquery.slideshow.js" />
     <Content Include="Scripts\webfxlayout.js" />
     <Content Include="Scripts\curvycorners.js" />
     <Content Include="Scripts\datepicker.js" />
@@ -1406,6 +1413,7 @@
     <Content Include="Views\Upload\Index.cshtml" />
     <Content Include="Web.Deploy.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Map\Index.cshtml" />
     <None Include="Tools\FFmpeg\presets\libvpx-1080p.ffpreset" />
@@ -1418,6 +1426,11 @@
     <Content Include="Views\Shared\EditorTemplates\TimeSpan.cshtml" />
     <Content Include="Views\Mosaic\Index.cshtml" />
     <Content Include="Views\Mosaic\Index, can be used as gallery or choosing themes etc.cshtml" />
+    <Content Include="Views\MosaicMock\Index.cshtml" />
+    <Content Include="Views\MosaicMock\Details.cshtml" />
+    <Content Include="Views\MosaicMock\Create.cshtml" />
+    <Content Include="Views\MosaicMock\Edit.cshtml" />
+    <Content Include="Views\MosaicMock\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\.svn\props\" />
@@ -1472,7 +1485,7 @@
       <Project>{ECD7174B-B905-46AF-B371-72D8A81103F1}</Project>
       <Name>eAd.Utilities</Name>
     </ProjectReference>
-    <ProjectReference Include="X:\CSharp\irio.utilities\irio.utilities.csproj">
+    <ProjectReference Include="..\irio.utilities\irio.utilities.csproj">
       <Project>{7DF57062-342C-40A6-84CC-E504534B0189}</Project>
       <Name>irio.utilities</Name>
     </ProjectReference>

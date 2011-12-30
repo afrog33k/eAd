@@ -12,7 +12,7 @@ namespace eAd.Website.Controllers
 { 
     public class MediaController : Controller
     {
-        private eAdEntities db = new eAdEntities();
+        private eAdDataContainer db = new eAdDataContainer();
 
         //
         // GET: /Default1/
@@ -52,10 +52,29 @@ namespace eAd.Website.Controllers
             {
                 db.Media.AddObject(medium);
                 db.SaveChanges();
+
                 UploadedContent upload;
-                medium.Location = UploadRepository.GetFileUrl(this.HttpContext, medium.MediaID.ToString(),
+
+
+
+             var   location = UploadRepository.GetFileUrl(this.HttpContext, medium.MediaID.ToString(),
                                                               medium.MediaID.ToString(), UploadType.Media, out upload);
-                medium.Duration = new TimeSpan(upload.Duration.Ticks);
+          
+
+                if (upload != null)
+                {
+                    if (medium.Duration == TimeSpan.Zero)
+                    {
+                        medium.Duration = new TimeSpan(upload.Duration.Ticks);
+                    }
+                    else
+                    {
+                        
+                    }
+                }
+
+                if (location != null)
+                    medium.Location = location;
 
                 db.SaveChanges();
                 return RedirectToAction("Index");  
@@ -87,10 +106,18 @@ namespace eAd.Website.Controllers
                 db.Media.Attach(medium);
                 db.ObjectStateManager.ChangeObjectState(medium, EntityState.Modified);
                 db.SaveChanges();
+
                 UploadedContent upload;
-                medium.Location = UploadRepository.GetFileUrl(this.HttpContext, medium.MediaID.ToString(),
+               var location = UploadRepository.GetFileUrl(this.HttpContext, medium.MediaID.ToString(),
                                                                  medium.MediaID.ToString(), UploadType.Media, out upload);
-                medium.Duration = new TimeSpan(upload.Duration.Ticks);
+                if (upload!=null)
+                {
+                    medium.Duration = new TimeSpan(upload.Duration.Ticks);
+                }
+           
+                if (location != null) 
+                    medium.Location = location;
+          
 
 
                 db.SaveChanges();

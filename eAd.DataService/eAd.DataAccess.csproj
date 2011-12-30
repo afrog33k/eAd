@@ -37,11 +37,11 @@
     <OutputPath>bin\</OutputPath>
     <PublishDatabaseSettings>
       <Objects>
-        <ObjectGroup Name="eAdEntities-Deployment" Order="1" xmlns="">
+        <ObjectGroup Name="eAdDataContainer-Deployment" Order="1" xmlns="">
           <Destination Path="Data Source=.\SQL%3bInitial Catalog=eAd%3bIntegrated Security=True%3bApplication Name=EntityFramework" />
           <Object Type="dbFullSql">
             <PreSource Path="Data Source=WIN-H88PSEJK38G\SQLEXPRESS%3bInitial Catalog=eAd%3bIntegrated Security=True%3bApplication Name=EntityFramework" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
-            <Source Path="obj\Deploy\AutoScripts\eAdEntities-Deployment_SchemaAndData.sql" Transacted="True" />
+            <Source Path="obj\Deploy\AutoScripts\eAdDataContainer-Deployment_SchemaAndData.sql" Transacted="True" />
           </Object>
         </ObjectGroup>
       </Objects>
@@ -114,11 +114,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>eAdData.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="eAdData.edmx.diagram">
-      <DependentUpon>eAdData.edmx</DependentUpon>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -45,7 +45,7 @@ namespace eAd.DataAccess
         public bool DoIHaveUpdates(long stationID)
         {
 
-            eAdEntities entities = new eAdEntities();
+            eAdDataContainer entities = new eAdDataContainer();
 
             return entities.Messages.Where(s => s.StationID == stationID && s.Sent == false).Count() > 0;
 
@@ -56,7 +56,7 @@ namespace eAd.DataAccess
             try
             {
 
-                eAdEntities entities = new eAdEntities();
+                eAdDataContainer entities = new eAdDataContainer();
 
                 var grouping = entities.Groupings.Where(s => s.GroupingID == groupID).FirstOrDefault();
 
@@ -107,7 +107,7 @@ namespace eAd.DataAccess
             try
             {
 
-                eAdEntities entities = new eAdEntities();
+                eAdDataContainer entities = new eAdDataContainer();
 
                 var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
 
@@ -160,7 +160,7 @@ namespace eAd.DataAccess
 
 
 
-                eAdEntities entities = new eAdEntities();
+                eAdDataContainer entities = new eAdDataContainer();
 
                 var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
 
@@ -212,7 +212,7 @@ namespace eAd.DataAccess
 
 
 
-                eAdEntities entities = new eAdEntities();
+                eAdDataContainer entities = new eAdDataContainer();
 
                 var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
 
@@ -257,7 +257,7 @@ namespace eAd.DataAccess
         public List<MediaListModel> GetMyMedia(long stationID)
         {
           
-            var entities = new eAdEntities();
+            var entities = new eAdDataContainer();
 
             var list = new List<MediaListModel>();
             var me = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
@@ -289,7 +289,7 @@ namespace eAd.DataAccess
         public bool MessageRead(long messageID)
         {
 
-            var entities = new eAdEntities();
+            var entities = new eAdDataContainer();
 
             var messages = entities.Messages.Where(s => s.MessageID == messageID && s.Sent == false);
 
@@ -316,7 +316,7 @@ namespace eAd.DataAccess
         public List<MessageViewModel> GetAllMyMessages(long clientID)
         {
 
-            eAdEntities entities = new eAdEntities();
+            eAdDataContainer entities = new eAdDataContainer();
 
             var messages = entities.Messages.Where(s => s.StationID == clientID && s.Sent == false);
 
@@ -329,7 +329,7 @@ namespace eAd.DataAccess
         public CustomerViewModel GetCustomerByRFID(string tag)
         {
 
-            eAdEntities entities = new eAdEntities();
+            eAdDataContainer entities = new eAdDataContainer();
           var customer =  entities.Customers.Where(e => e.RFID == tag).FirstOrDefault();
           if (customer!=null)
           {
@@ -348,7 +348,7 @@ namespace eAd.DataAccess
         public List<CustomerViewModel> GetAllCustomers()
         {
 
-            eAdEntities entities = new eAdEntities();
+            eAdDataContainer entities = new eAdDataContainer();
 
             return entities.Customers.ToList().Select(c => c.CreateModel()).ToList();
 
@@ -368,7 +368,7 @@ namespace eAd.DataAccess
         public List<StationViewModel> GetAllStations()
         {
 
-            eAdEntities entities = new eAdEntities();
+            eAdDataContainer entities = new eAdDataContainer();
 
             return entities.Stations.ToList().Select(c => c.CreateModel()).ToList();
 
@@ -381,7 +381,7 @@ namespace eAd.DataAccess
         public string SayHi(long clientID)
         {
 
-            eAdEntities entities = new eAdEntities();
+            eAdDataContainer entities = new eAdDataContainer();
 
             var thisstation = entities.Stations.Where(s => s.StationID == clientID).FirstOrDefault();
 

@@ -4,49 +4,59 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="eAdModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="eAdModelStoreContainer">
-          <EntitySet Name="Cars" EntityType="eAdModel.Store.Cars" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Customers" EntityType="eAdModel.Store.Customers" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Groupings" EntityType="eAdModel.Store.Groupings" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="GroupingStation" EntityType="eAdModel.Store.GroupingStation" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="GroupingTheme" EntityType="eAdModel.Store.GroupingTheme" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Media" EntityType="eAdModel.Store.Media" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="MediaTypes" EntityType="eAdModel.Store.MediaTypes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Messages" EntityType="eAdModel.Store.Messages" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Stations" EntityType="eAdModel.Store.Stations" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="eAdModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ThemeMedium" EntityType="eAdModel.Store.ThemeMedium" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Themes" EntityType="eAdModel.Store.Themes" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_CarCustomer" Association="eAdModel.Store.FK_CarCustomer">
+    <Schema Namespace="eAdData.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="eAdDataStoreContainer">
+          <EntitySet Name="Cars" EntityType="eAdData.Store.Cars" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Customers" EntityType="eAdData.Store.Customers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Groupings" EntityType="eAdData.Store.Groupings" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GroupingStation" EntityType="eAdData.Store.GroupingStation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GroupingTheme" EntityType="eAdData.Store.GroupingTheme" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Media" EntityType="eAdData.Store.Media" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MediaTypes" EntityType="eAdData.Store.MediaTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Messages" EntityType="eAdData.Store.Messages" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Mosaics" EntityType="eAdData.Store.Mosaics" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Positions" EntityType="eAdData.Store.Positions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Stations" EntityType="eAdData.Store.Stations" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="eAdData.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ThemeMedium" EntityType="eAdData.Store.ThemeMedium" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Themes" EntityType="eAdData.Store.Themes" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_CarCustomer" Association="eAdData.Store.FK_CarCustomer">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="Cars" EntitySet="Cars" />
           </AssociationSet>
-          <AssociationSet Name="FK_GroupingStation_Groupings" Association="eAdModel.Store.FK_GroupingStation_Groupings">
+          <AssociationSet Name="FK_GroupingStation_Grouping" Association="eAdData.Store.FK_GroupingStation_Grouping">
             <End Role="Groupings" EntitySet="Groupings" />
             <End Role="GroupingStation" EntitySet="GroupingStation" />
           </AssociationSet>
-          <AssociationSet Name="FK_GroupingStation_Stations" Association="eAdModel.Store.FK_GroupingStation_Stations">
+          <AssociationSet Name="FK_GroupingStation_Station" Association="eAdData.Store.FK_GroupingStation_Station">
             <End Role="Stations" EntitySet="Stations" />
             <End Role="GroupingStation" EntitySet="GroupingStation" />
           </AssociationSet>
-          <AssociationSet Name="FK_GroupingTheme_Groupings" Association="eAdModel.Store.FK_GroupingTheme_Groupings">
+          <AssociationSet Name="FK_GroupingTheme_Grouping" Association="eAdData.Store.FK_GroupingTheme_Grouping">
             <End Role="Groupings" EntitySet="Groupings" />
             <End Role="GroupingTheme" EntitySet="GroupingTheme" />
           </AssociationSet>
-          <AssociationSet Name="FK_GroupingTheme_Themes" Association="eAdModel.Store.FK_GroupingTheme_Themes">
+          <AssociationSet Name="FK_GroupingTheme_Theme" Association="eAdData.Store.FK_GroupingTheme_Theme">
             <End Role="Themes" EntitySet="Themes" />
             <End Role="GroupingTheme" EntitySet="GroupingTheme" />
           </AssociationSet>
-          <AssociationSet Name="FK_MessageStation" Association="eAdModel.Store.FK_MessageStation">
+          <AssociationSet Name="FK_MessageStation" Association="eAdData.Store.FK_MessageStation">
             <End Role="Stations" EntitySet="Stations" />
             <End Role="Messages" EntitySet="Messages" />
           </AssociationSet>
-          <AssociationSet Name="FK_ThemeMedium_Media" Association="eAdModel.Store.FK_ThemeMedium_Media">
+          <AssociationSet Name="FK_MosaicGrouping" Association="eAdData.Store.FK_MosaicGrouping">
+            <End Role="Mosaics" EntitySet="Mosaics" />
+            <End Role="Groupings" EntitySet="Groupings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Positions_Mosaics" Association="eAdData.Store.FK_Positions_Mosaics">
+            <End Role="Mosaics" EntitySet="Mosaics" />
+            <End Role="Positions" EntitySet="Positions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThemeMedium_Medium" Association="eAdData.Store.FK_ThemeMedium_Medium">
             <End Role="Media" EntitySet="Media" />
             <End Role="ThemeMedium" EntitySet="ThemeMedium" />
           </AssociationSet>
-          <AssociationSet Name="FK_ThemeMedium_Themes" Association="eAdModel.Store.FK_ThemeMedium_Themes">
+          <AssociationSet Name="FK_ThemeMedium_Theme" Association="eAdData.Store.FK_ThemeMedium_Theme">
             <End Role="Themes" EntitySet="Themes" />
             <End Role="ThemeMedium" EntitySet="ThemeMedium" />
           </AssociationSet>
@@ -86,6 +96,7 @@
           <Property Name="GroupingID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="200" />
           <Property Name="DateAdded" Type="datetime" />
+          <Property Name="MosaicID" Type="bigint" />
         </EntityType>
         <EntityType Name="GroupingStation">
           <Key>
@@ -137,6 +148,26 @@
           <Property Name="DateAdded" Type="datetime" />
           <Property Name="DateReceived" Type="datetime" />
         </EntityType>
+        <EntityType Name="Mosaics">
+          <Key>
+            <PropertyRef Name="MosaicID" />
+          </Key>
+          <Property Name="MosaicID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="PositionID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="80" />
+          <Property Name="ContentURL" Type="nvarchar" MaxLength="1000" />
+          <Property Name="MosaicID" Type="bigint" />
+          <Property Name="X" Type="float" />
+          <Property Name="Y" Type="float" />
+          <Property Name="Width" Type="float" />
+          <Property Name="Height" Type="float" />
+        </EntityType>
         <EntityType Name="Stations">
           <Key>
             <PropertyRef Name="StationID" />
@@ -147,6 +178,10 @@
           <Property Name="StationID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="LastCheckIn" Type="datetime" />
           <Property Name="DateAdded" Type="datetime" />
+          <Property Name="UniqueID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="1000" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="15" />
+          <Property Name="Rate" Type="float" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -175,8 +210,8 @@
           <Property Name="DateAdded" Type="datetime" />
         </EntityType>
         <Association Name="FK_CarCustomer">
-          <End Role="Customers" Type="eAdModel.Store.Customers" Multiplicity="1" />
-          <End Role="Cars" Type="eAdModel.Store.Cars" Multiplicity="*" />
+          <End Role="Customers" Type="eAdData.Store.Customers" Multiplicity="1" />
+          <End Role="Cars" Type="eAdData.Store.Cars" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customers">
               <PropertyRef Name="CustomerID" />
@@ -186,9 +221,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GroupingStation_Groupings">
-          <End Role="Groupings" Type="eAdModel.Store.Groupings" Multiplicity="1" />
-          <End Role="GroupingStation" Type="eAdModel.Store.GroupingStation" Multiplicity="*" />
+        <Association Name="FK_GroupingStation_Grouping">
+          <End Role="Groupings" Type="eAdData.Store.Groupings" Multiplicity="1" />
+          <End Role="GroupingStation" Type="eAdData.Store.GroupingStation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Groupings">
               <PropertyRef Name="GroupingID" />
@@ -198,9 +233,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GroupingStation_Stations">
-          <End Role="Stations" Type="eAdModel.Store.Stations" Multiplicity="1" />
-          <End Role="GroupingStation" Type="eAdModel.Store.GroupingStation" Multiplicity="*" />
+        <Association Name="FK_GroupingStation_Station">
+          <End Role="Stations" Type="eAdData.Store.Stations" Multiplicity="1" />
+          <End Role="GroupingStation" Type="eAdData.Store.GroupingStation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Stations">
               <PropertyRef Name="StationID" />
@@ -210,9 +245,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GroupingTheme_Groupings">
-          <End Role="Groupings" Type="eAdModel.Store.Groupings" Multiplicity="1" />
-          <End Role="GroupingTheme" Type="eAdModel.Store.GroupingTheme" Multiplicity="*" />
+        <Association Name="FK_GroupingTheme_Grouping">
+          <End Role="Groupings" Type="eAdData.Store.Groupings" Multiplicity="1" />
+          <End Role="GroupingTheme" Type="eAdData.Store.GroupingTheme" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Groupings">
               <PropertyRef Name="GroupingID" />
@@ -222,9 +257,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GroupingTheme_Themes">
-          <End Role="Themes" Type="eAdModel.Store.Themes" Multiplicity="1" />
-          <End Role="GroupingTheme" Type="eAdModel.Store.GroupingTheme" Multiplicity="*" />
+        <Association Name="FK_GroupingTheme_Theme">
+          <End Role="Themes" Type="eAdData.Store.Themes" Multiplicity="1" />
+          <End Role="GroupingTheme" Type="eAdData.Store.GroupingTheme" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Themes">
               <PropertyRef Name="ThemeID" />
@@ -235,8 +270,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MessageStation">
-          <End Role="Stations" Type="eAdModel.Store.Stations" Multiplicity="1" />
-          <End Role="Messages" Type="eAdModel.Store.Messages" Multiplicity="*" />
+          <End Role="Stations" Type="eAdData.Store.Stations" Multiplicity="1" />
+          <End Role="Messages" Type="eAdData.Store.Messages" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Stations">
               <PropertyRef Name="StationID" />
@@ -246,9 +281,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ThemeMedium_Media">
-          <End Role="Media" Type="eAdModel.Store.Media" Multiplicity="1" />
-          <End Role="ThemeMedium" Type="eAdModel.Store.ThemeMedium" Multiplicity="*" />
+        <Association Name="FK_MosaicGrouping">
+          <End Role="Mosaics" Type="eAdData.Store.Mosaics" Multiplicity="0..1" />
+          <End Role="Groupings" Type="eAdData.Store.Groupings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mosaics">
+              <PropertyRef Name="MosaicID" />
+            </Principal>
+            <Dependent Role="Groupings">
+              <PropertyRef Name="MosaicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Positions_Mosaics">
+          <End Role="Mosaics" Type="eAdData.Store.Mosaics" Multiplicity="0..1" />
+          <End Role="Positions" Type="eAdData.Store.Positions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mosaics">
+              <PropertyRef Name="MosaicID" />
+            </Principal>
+            <Dependent Role="Positions">
+              <PropertyRef Name="MosaicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThemeMedium_Medium">
+          <End Role="Media" Type="eAdData.Store.Media" Multiplicity="1" />
+          <End Role="ThemeMedium" Type="eAdData.Store.ThemeMedium" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Media">
               <PropertyRef Name="MediaID" />
@@ -258,9 +317,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ThemeMedium_Themes">
-          <End Role="Themes" Type="eAdModel.Store.Themes" Multiplicity="1" />
-          <End Role="ThemeMedium" Type="eAdModel.Store.ThemeMedium" Multiplicity="*" />
+        <Association Name="FK_ThemeMedium_Theme">
+          <End Role="Themes" Type="eAdData.Store.Themes" Multiplicity="1" />
+          <End Role="ThemeMedium" Type="eAdData.Store.ThemeMedium" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Themes">
               <PropertyRef Name="ThemeID" />
@@ -273,34 +332,44 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="eAdModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="eAdEntities" annotation:LazyLoadingEnabled="true" >
-          <EntitySet Name="Cars" EntityType="eAdModel.Car" />
-          <EntitySet Name="Customers" EntityType="eAdModel.Customer" />
-          <EntitySet Name="Groupings" EntityType="eAdModel.Grouping" />
-          <EntitySet Name="Media" EntityType="eAdModel.Medium" />
-          <EntitySet Name="MediaTypes" EntityType="eAdModel.MediaType" />
-          <EntitySet Name="Messages" EntityType="eAdModel.Message" />
-          <EntitySet Name="Stations" EntityType="eAdModel.Station" />
-          <EntitySet Name="sysdiagrams" EntityType="eAdModel.sysdiagram" />
-          <EntitySet Name="Themes" EntityType="eAdModel.Theme" />
-          <AssociationSet Name="FK_CarCustomer" Association="eAdModel.FK_CarCustomer">
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="eAdData" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="eAdDataContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cars" EntityType="eAdData.Car" />
+          <EntitySet Name="Customers" EntityType="eAdData.Customer" />
+          <EntitySet Name="Groupings" EntityType="eAdData.Grouping" />
+          <EntitySet Name="Media" EntityType="eAdData.Medium" />
+          <EntitySet Name="MediaTypes" EntityType="eAdData.MediaType" />
+          <EntitySet Name="Messages" EntityType="eAdData.Message" />
+          <EntitySet Name="Mosaics" EntityType="eAdData.Mosaic" />
+          <EntitySet Name="Positions" EntityType="eAdData.Position" />
+          <EntitySet Name="Stations" EntityType="eAdData.Station" />
+          <EntitySet Name="sysdiagrams" EntityType="eAdData.sysdiagram" />
+          <EntitySet Name="Themes" EntityType="eAdData.Theme" />
+          <AssociationSet Name="FK_CarCustomer" Association="eAdData.FK_CarCustomer">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Car" EntitySet="Cars" />
           </AssociationSet>
-          <AssociationSet Name="FK_MessageStation" Association="eAdModel.FK_MessageStation">
+          <AssociationSet Name="FK_MosaicGrouping" Association="eAdData.FK_MosaicGrouping">
+            <End Role="Mosaic" EntitySet="Mosaics" />
+            <End Role="Grouping" EntitySet="Groupings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageStation" Association="eAdData.FK_MessageStation">
             <End Role="Station" EntitySet="Stations" />
             <End Role="Message" EntitySet="Messages" />
           </AssociationSet>
-          <AssociationSet Name="GroupingStation" Association="eAdModel.GroupingStation">
+          <AssociationSet Name="FK_Positions_Mosaics" Association="eAdData.FK_Positions_Mosaics">
+            <End Role="Mosaic" EntitySet="Mosaics" />
+            <End Role="Position" EntitySet="Positions" />
+          </AssociationSet>
+          <AssociationSet Name="GroupingStation" Association="eAdData.GroupingStation">
             <End Role="Grouping" EntitySet="Groupings" />
             <End Role="Station" EntitySet="Stations" />
           </AssociationSet>
-          <AssociationSet Name="GroupingTheme" Association="eAdModel.GroupingTheme">
+          <AssociationSet Name="GroupingTheme" Association="eAdData.GroupingTheme">
             <End Role="Grouping" EntitySet="Groupings" />
             <End Role="Theme" EntitySet="Themes" />
           </AssociationSet>
-          <AssociationSet Name="ThemeMedium" Association="eAdModel.ThemeMedium">
+          <AssociationSet Name="ThemeMedium" Association="eAdData.ThemeMedium">
             <End Role="Medium" EntitySet="Media" />
             <End Role="Theme" EntitySet="Themes" />
           </AssociationSet>
@@ -314,10 +383,10 @@
           <Property Type="String" Name="Model" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="License" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="BatteryCharge" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="LastRechargeDate" Precision="3" />
+          <Property Type="DateTime" Name="LastRechargeDate" />
           <Property Type="Int64" Name="CarID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="DateAdded" Precision="3" />
-          <NavigationProperty Name="Customer" Relationship="eAdModel.FK_CarCustomer" FromRole="Car" ToRole="Customer" />
+          <Property Type="DateTime" Name="DateAdded" />
+          <NavigationProperty Name="Customer" Relationship="eAdData.FK_CarCustomer" FromRole="Car" ToRole="Customer" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -332,8 +401,8 @@
           <Property Type="String" Name="Phone" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Address" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="CustomerID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="DateAdded" Precision="3" />
-          <NavigationProperty Name="Cars" Relationship="eAdModel.FK_CarCustomer" FromRole="Customer" ToRole="Car" />
+          <Property Type="DateTime" Name="DateAdded" />
+          <NavigationProperty Name="Cars" Relationship="eAdData.FK_CarCustomer" FromRole="Customer" ToRole="Car" />
         </EntityType>
         <EntityType Name="Grouping">
           <Key>
@@ -341,9 +410,11 @@
           </Key>
           <Property Type="Int64" Name="GroupingID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DateAdded" Precision="3" />
-          <NavigationProperty Name="Stations" Relationship="eAdModel.GroupingStation" FromRole="Grouping" ToRole="Station" />
-          <NavigationProperty Name="Themes" Relationship="eAdModel.GroupingTheme" FromRole="Grouping" ToRole="Theme" />
+          <Property Type="DateTime" Name="DateAdded" />
+          <Property Type="Int64" Name="MosaicID" Nullable="false" />
+          <NavigationProperty Name="Mosaic" Relationship="eAdData.FK_MosaicGrouping" FromRole="Grouping" ToRole="Mosaic" />
+          <NavigationProperty Name="Stations" Relationship="eAdData.GroupingStation" FromRole="Grouping" ToRole="Station" />
+          <NavigationProperty Name="Themes" Relationship="eAdData.GroupingTheme" FromRole="Grouping" ToRole="Theme" />
         </EntityType>
         <EntityType Name="Medium">
           <Key>
@@ -354,9 +425,9 @@
           <Property Type="String" Name="Location" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Tags" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DateAdded" Precision="3" />
-          <Property Type="Time" Name="Duration" Precision="7" />
-          <NavigationProperty Name="Themes" Relationship="eAdModel.ThemeMedium" FromRole="Medium" ToRole="Theme" />
+          <Property Type="DateTime" Name="DateAdded" />
+          <Property Type="Time" Name="Duration" />
+          <NavigationProperty Name="Themes" Relationship="eAdData.ThemeMedium" FromRole="Medium" ToRole="Theme" />
         </EntityType>
         <EntityType Name="MediaType">
           <Key>
@@ -364,7 +435,7 @@
           </Key>
           <Property Type="Int64" Name="MediaTypeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DateAdded" Precision="3" />
+          <Property Type="DateTime" Name="DateAdded" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -377,9 +448,32 @@
           <Property Type="Int64" Name="StationID" Nullable="false" />
           <Property Type="Int64" Name="UserID" Nullable="false" />
           <Property Type="String" Name="Command" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DateAdded" Precision="3" />
-          <Property Type="DateTime" Name="DateReceived" Precision="3" />
-          <NavigationProperty Name="Station" Relationship="eAdModel.FK_MessageStation" FromRole="Message" ToRole="Station" />
+          <Property Type="DateTime" Name="DateAdded" />
+          <Property Type="DateTime" Name="DateReceived" />
+          <NavigationProperty Name="Station" Relationship="eAdData.FK_MessageStation" FromRole="Message" ToRole="Station" />
+        </EntityType>
+        <EntityType Name="Mosaic">
+          <Key>
+            <PropertyRef Name="MosaicID" />
+          </Key>
+          <Property Type="Int64" Name="MosaicID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="80" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Groupings" Relationship="eAdData.FK_MosaicGrouping" FromRole="Mosaic" ToRole="Grouping" />
+          <NavigationProperty Name="Positions" Relationship="eAdData.FK_Positions_Mosaics" FromRole="Mosaic" ToRole="Position" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Type="Int64" Name="PositionID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContentURL" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="MosaicID" />
+          <Property Type="Double" Name="X" />
+          <Property Type="Double" Name="Y" />
+          <Property Type="Double" Name="Width" />
+          <Property Type="Double" Name="Height" />
+          <NavigationProperty Name="Mosaic" Relationship="eAdData.FK_Positions_Mosaics" FromRole="Position" ToRole="Mosaic" />
         </EntityType>
         <EntityType Name="Station">
           <Key>
@@ -389,10 +483,14 @@
           <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="Available" />
           <Property Type="Int64" Name="StationID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="LastCheckIn" Precision="3" />
-          <Property Type="DateTime" Name="DateAdded" Precision="3" />
-          <NavigationProperty Name="Messages" Relationship="eAdModel.FK_MessageStation" FromRole="Station" ToRole="Message" />
-          <NavigationProperty Name="Groupings" Relationship="eAdModel.GroupingStation" FromRole="Station" ToRole="Grouping" />
+          <Property Type="DateTime" Name="LastCheckIn" />
+          <Property Type="DateTime" Name="DateAdded" />
+          <NavigationProperty Name="Messages" Relationship="eAdData.FK_MessageStation" FromRole="Station" ToRole="Message" />
+          <NavigationProperty Name="Groupings" Relationship="eAdData.GroupingStation" FromRole="Station" ToRole="Grouping" />
+          <Property Type="String" Name="UniqueID" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PostalCode" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="Rate" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -410,13 +508,13 @@
           </Key>
           <Property Type="Int64" Name="ThemeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DateAdded" Precision="3" />
-          <NavigationProperty Name="Groupings" Relationship="eAdModel.GroupingTheme" FromRole="Theme" ToRole="Grouping" />
-          <NavigationProperty Name="Media" Relationship="eAdModel.ThemeMedium" FromRole="Theme" ToRole="Medium" />
+          <Property Type="DateTime" Name="DateAdded" />
+          <NavigationProperty Name="Groupings" Relationship="eAdData.GroupingTheme" FromRole="Theme" ToRole="Grouping" />
+          <NavigationProperty Name="Media" Relationship="eAdData.ThemeMedium" FromRole="Theme" ToRole="Medium" />
         </EntityType>
         <Association Name="FK_CarCustomer">
-          <End Type="eAdModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="eAdModel.Car" Role="Car" Multiplicity="*" />
+          <End Type="eAdData.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="eAdData.Car" Role="Car" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="CustomerID" />
@@ -426,9 +524,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MosaicGrouping">
+          <End Type="eAdData.Mosaic" Role="Mosaic" Multiplicity="1" />
+          <End Type="eAdData.Grouping" Role="Grouping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mosaic">
+              <PropertyRef Name="MosaicID" />
+            </Principal>
+            <Dependent Role="Grouping">
+              <PropertyRef Name="MosaicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MessageStation">
-          <End Type="eAdModel.Station" Role="Station" Multiplicity="1" />
-          <End Type="eAdModel.Message" Role="Message" Multiplicity="*" />
+          <End Type="eAdData.Station" Role="Station" Multiplicity="1" />
+          <End Type="eAdData.Message" Role="Message" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Station">
               <PropertyRef Name="StationID" />
@@ -438,26 +548,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Positions_Mosaics">
+          <End Type="eAdData.Mosaic" Role="Mosaic" Multiplicity="0..1" />
+          <End Type="eAdData.Position" Role="Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mosaic">
+              <PropertyRef Name="MosaicID" />
+            </Principal>
+            <Dependent Role="Position">
+              <PropertyRef Name="MosaicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="GroupingStation">
-          <End Type="eAdModel.Grouping" Role="Grouping" Multiplicity="*" />
-          <End Type="eAdModel.Station" Role="Station" Multiplicity="*" />
+          <End Type="eAdData.Grouping" Role="Grouping" Multiplicity="*" />
+          <End Type="eAdData.Station" Role="Station" Multiplicity="*" />
         </Association>
         <Association Name="GroupingTheme">
-          <End Type="eAdModel.Grouping" Role="Grouping" Multiplicity="*" />
-          <End Type="eAdModel.Theme" Role="Theme" Multiplicity="*" />
+          <End Type="eAdData.Grouping" Role="Grouping" Multiplicity="*" />
+          <End Type="eAdData.Theme" Role="Theme" Multiplicity="*" />
         </Association>
         <Association Name="ThemeMedium">
-          <End Type="eAdModel.Medium" Role="Medium" Multiplicity="*" />
-          <End Type="eAdModel.Theme" Role="Theme" Multiplicity="*" />
+          <End Type="eAdData.Medium" Role="Medium" Multiplicity="*" />
+          <End Type="eAdData.Theme" Role="Theme" Multiplicity="*" />
         </Association>
-        </Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="eAdModelStoreContainer" CdmEntityContainer="eAdEntities" >
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="eAdData" />
+        <Alias Key="Target" Value="eAdData.Store" />
+        <EntityContainerMapping CdmEntityContainer="eAdDataContainer" StorageEntityContainer="eAdDataStoreContainer">
           <EntitySetMapping Name="Cars">
-            <EntityTypeMapping TypeName="eAdModel.Car">
+            <EntityTypeMapping TypeName="eAdData.Car">
               <MappingFragment StoreEntitySet="Cars">
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="CarID" ColumnName="CarID" />
@@ -471,7 +595,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="eAdModel.Customer">
+            <EntityTypeMapping TypeName="eAdData.Customer">
               <MappingFragment StoreEntitySet="Customers">
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
@@ -487,8 +611,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Groupings">
-            <EntityTypeMapping TypeName="eAdModel.Grouping">
+            <EntityTypeMapping TypeName="eAdData.Grouping">
               <MappingFragment StoreEntitySet="Groupings">
+                <ScalarProperty Name="MosaicID" ColumnName="MosaicID" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="GroupingID" ColumnName="GroupingID" />
@@ -496,7 +621,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Media">
-            <EntityTypeMapping TypeName="eAdModel.Medium">
+            <EntityTypeMapping TypeName="eAdData.Medium">
               <MappingFragment StoreEntitySet="Media">
                 <ScalarProperty Name="Duration" ColumnName="Duration" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
@@ -509,7 +634,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MediaTypes">
-            <EntityTypeMapping TypeName="eAdModel.MediaType">
+            <EntityTypeMapping TypeName="eAdData.MediaType">
               <MappingFragment StoreEntitySet="MediaTypes">
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -518,7 +643,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Messages">
-            <EntityTypeMapping TypeName="eAdModel.Message">
+            <EntityTypeMapping TypeName="eAdData.Message">
               <MappingFragment StoreEntitySet="Messages">
                 <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
@@ -532,9 +657,35 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Mosaics">
+            <EntityTypeMapping TypeName="eAdData.Mosaic">
+              <MappingFragment StoreEntitySet="Mosaics">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MosaicID" ColumnName="MosaicID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="eAdData.Position">
+              <MappingFragment StoreEntitySet="Positions">
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="MosaicID" ColumnName="MosaicID" />
+                <ScalarProperty Name="ContentURL" ColumnName="ContentURL" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Stations">
-            <EntityTypeMapping TypeName="eAdModel.Station">
+            <EntityTypeMapping TypeName="eAdData.Station">
               <MappingFragment StoreEntitySet="Stations">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="LastCheckIn" ColumnName="LastCheckIn" />
                 <ScalarProperty Name="StationID" ColumnName="StationID" />
@@ -545,7 +696,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="eAdModel.sysdiagram">
+            <EntityTypeMapping TypeName="eAdData.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="definition" ColumnName="definition" />
                 <ScalarProperty Name="version" ColumnName="version" />
@@ -556,7 +707,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Themes">
-            <EntityTypeMapping TypeName="eAdModel.Theme">
+            <EntityTypeMapping TypeName="eAdData.Theme">
               <MappingFragment StoreEntitySet="Themes">
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -564,7 +715,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="GroupingStation" TypeName="eAdModel.GroupingStation" StoreEntitySet="GroupingStation">
+          <AssociationSetMapping Name="GroupingStation" TypeName="eAdData.GroupingStation" StoreEntitySet="GroupingStation">
             <EndProperty Name="Station">
               <ScalarProperty Name="StationID" ColumnName="Stations_StationID" />
             </EndProperty>
@@ -572,7 +723,7 @@
               <ScalarProperty Name="GroupingID" ColumnName="Groupings_GroupingID" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="GroupingTheme" TypeName="eAdModel.GroupingTheme" StoreEntitySet="GroupingTheme">
+          <AssociationSetMapping Name="GroupingTheme" TypeName="eAdData.GroupingTheme" StoreEntitySet="GroupingTheme">
             <EndProperty Name="Theme">
               <ScalarProperty Name="ThemeID" ColumnName="Themes_ThemeID" />
             </EndProperty>
@@ -580,7 +731,7 @@
               <ScalarProperty Name="GroupingID" ColumnName="Groupings_GroupingID" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="ThemeMedium" TypeName="eAdModel.ThemeMedium" StoreEntitySet="ThemeMedium">
+          <AssociationSetMapping Name="ThemeMedium" TypeName="eAdData.ThemeMedium" StoreEntitySet="ThemeMedium">
             <EndProperty Name="Theme">
               <ScalarProperty Name="ThemeID" ColumnName="Themes_ThemeID" />
             </EndProperty>
@@ -608,40 +759,47 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="eAdData">
-        <EntityTypeShape EntityType="eAdModel.Car" Width="1.5" PointX="5" PointY="8" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="eAdModel.Customer" Width="1.5" PointX="2.75" PointY="7.75" Height="3.1340950520833317" IsExpanded="true" />
-        <EntityTypeShape EntityType="eAdModel.Grouping" Width="1.5" PointX="0.75" PointY="3.75" Height="1.9802864583333322" IsExpanded="true" />
-        <EntityTypeShape EntityType="eAdModel.Medium" Width="1.5" PointX="0.75" PointY="7" Height="2.5571907552083317" IsExpanded="true" />
-        <EntityTypeShape EntityType="eAdModel.MediaType" Width="1.5" PointX="7.75" PointY="1.5" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="eAdModel.Message" Width="1.5" PointX="5.25" PointY="3.25" Height="2.941793619791667" IsExpanded="true" />
-        <EntityTypeShape EntityType="eAdModel.Station" Width="1.5" PointX="3" PointY="3.5" Height="2.5571907552083317" IsExpanded="true" />
-        <EntityTypeShape EntityType="eAdModel.sysdiagram" Width="1.5" PointX="7.75" PointY="4.5" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="eAdModel.Theme" Width="1.5" PointX="3" PointY="0.75" Height="1.9802864583333317" IsExpanded="true" />
-        <AssociationConnector Association="eAdModel.FK_CarCustomer" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.25" PointY="9.37474609375" />
-          <ConnectorPoint PointX="5" PointY="9.37474609375" />
+      <Diagram Name="eAdData" >
+        <EntityTypeShape EntityType="eAdData.Car" Width="1.5" PointX="8" PointY="8.5" Height="2.7494921874999996" />
+        <EntityTypeShape EntityType="eAdData.Customer" Width="1.5" PointX="5.75" PointY="8.25" Height="3.1340950520833317" />
+        <EntityTypeShape EntityType="eAdData.Grouping" Width="1.5" PointX="3" PointY="4.25" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="eAdData.Medium" Width="1.5" PointX="3" PointY="0.75" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="eAdData.MediaType" Width="1.5" PointX="9.75" PointY="2.125" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="eAdData.Message" Width="1.5" PointX="7.5" PointY="4" Height="2.9417936197916661" />
+        <EntityTypeShape EntityType="eAdData.Mosaic" Width="1.5" PointX="0.75" PointY="6.25" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="eAdData.Position" Width="1.5" PointX="3" PointY="7.625" Height="2.7494921875000005" />
+        <EntityTypeShape EntityType="eAdData.Station" Width="1.5" PointX="5.25" PointY="4.125" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="eAdData.sysdiagram" Width="1.5" PointX="9.75" PointY="5.125" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="eAdData.Theme" Width="1.5" PointX="5.25" PointY="1.5" Height="1.9802864583333353" />
+        <AssociationConnector Association="eAdData.FK_CarCustomer" >
+          <ConnectorPoint PointX="7.25" PointY="9.87474609375" />
+          <ConnectorPoint PointX="8" PointY="9.87474609375" />
         </AssociationConnector>
-        <AssociationConnector Association="eAdModel.FK_MessageStation" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="4.7785953776041659" />
-          <ConnectorPoint PointX="5.25" PointY="4.7785953776041659" />
+        <AssociationConnector Association="eAdData.FK_MosaicGrouping" >
+          <ConnectorPoint PointX="2.25" PointY="6.4324446614583328" />
+          <ConnectorPoint PointX="3" PointY="6.4324446614583328" />
         </AssociationConnector>
-        <AssociationConnector Association="eAdModel.GroupingStation" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="4.7401432291666659" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="4.740143229166665" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="4.7401432291666659" />
-          <ConnectorPoint PointX="3" PointY="4.7401432291666659" />
+        <AssociationConnector Association="eAdData.FK_MessageStation" >
+          <ConnectorPoint PointX="6.75" PointY="5.4035953776041659" />
+          <ConnectorPoint PointX="7.5" PointY="5.4035953776041659" />
         </AssociationConnector>
-        <AssociationConnector Association="eAdModel.GroupingTheme" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="3.75" />
-          <ConnectorPoint PointX="1.5" PointY="1.7401432291666659" />
-          <ConnectorPoint PointX="3" PointY="1.7401432291666659" />
+        <AssociationConnector Association="eAdData.FK_Positions_Mosaics" >
+          <ConnectorPoint PointX="2.25" PointY="7.8314925130208337" />
+          <ConnectorPoint PointX="3" PointY="7.8314925130208337" />
         </AssociationConnector>
-        <AssociationConnector Association="eAdModel.ThemeMedium" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="7" />
-          <ConnectorPoint PointX="2.625" PointY="6.625" />
-          <ConnectorPoint PointX="2.625" PointY="2.2664668437499995" />
-          <ConnectorPoint PointX="3" PointY="2.2664668437499995" />
+        <AssociationConnector Association="eAdData.GroupingStation" >
+          <ConnectorPoint PointX="4.5" PointY="5.4324446614583328" />
+          <ConnectorPoint PointX="5.25" PointY="5.4324446614583328" />
+        </AssociationConnector>
+        <AssociationConnector Association="eAdData.GroupingTheme" >
+          <ConnectorPoint PointX="4.5" PointY="4.25" />
+          <ConnectorPoint PointX="4.875" PointY="3.875" />
+          <ConnectorPoint PointX="4.875" PointY="2.4901432291666676" />
+          <ConnectorPoint PointX="5.25" PointY="2.4901432291666676" />
+        </AssociationConnector>
+        <AssociationConnector Association="eAdData.ThemeMedium" >
+          <ConnectorPoint PointX="4.5" PointY="1.9325716145833338" />
+          <ConnectorPoint PointX="5.25" PointY="1.9325716145833338" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
