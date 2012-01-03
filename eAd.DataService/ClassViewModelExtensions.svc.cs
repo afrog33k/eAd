@@ -37,24 +37,44 @@ namespace eAd.DataAccess
             StationViewModel model = new StationViewModel();
             model.StationID = station.StationID;
             model.Name = station.Name;
-            model.Available = (bool) station.Available;
+            if (station.Available != null) 
+                model.Available = (bool) station.Available;
+            else
+            {
+                model.Available = false;
+            }
             model.Location = station.Location;
             model.LastCheckIn = station.LastCheckIn;
             model.IsOnline = station.LastCheckIn >= DateTime.Now.AddSeconds(-10);
             return model;
         }
+        public static PositionViewModel CreateModel(this Position message)
+        {
+            PositionViewModel model = new PositionViewModel();
+            model.PositionID = (long)message.PositionID;
+            model.MosaicID = message.MosaicID;
+            model.Name = message.Name;
+            model.ContentURL =  message.ContentURL;
+            model.Height = message.Height;
+            model.Width = message.Width;
+            model.X = message.X;
+            model.Y = message.Y;  
+            return model;
+        }
+
         public static MessageViewModel CreateModel(this Message message)
         {
             MessageViewModel model = new MessageViewModel();
-            model.StationID = (long) message.StationID;
-            model.Sent = (bool) message.Sent;
+            model.Command = message.Command;
+            model.ID = message.MessageID;
+            model.Sent = message.Sent;
+            model.StationID = message.StationID;
             model.Text = message.Text;
             model.Type = message.Type;
-            model.UserID = (long) message.UserID;
-            model.ID = message.MessageID;
-            model.Command = message.Command;
+            model.UserID = message.UserID;
             return model;
         }
+      
 
     }
 }

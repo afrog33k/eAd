@@ -11,7 +11,14 @@ body {
     padding: 0;
     color: #696969;
 }
-
+a.MapLink
+{
+    background: url(/Content/mapicon.png) no-repeat top left;
+     display: block;
+     width: 150px;
+     height: 150px;
+     text-indent: -9999px; /* hides the link text */
+}
 a:link {
     color: #034af3;
     text-decoration: underline;

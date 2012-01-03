@@ -100,6 +100,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Globals.cs" />
+    <Compile Include="GoogleMaps.cs" />
     <Compile Include="greenlots.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\eAd\WebsiteContext.cs" />
@@ -883,6 +884,9 @@
     <Content Include="Content\Images\usermenuback.png" />
     <Content Include="Content\Images\wondrous.jpg" />
     <Content Include="Content\Images\wondrous.tif" />
+    <Content Include="Content\mapicon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Menu\Descriptions\Accessibility.html" />
     <Content Include="Content\Menu\Descriptions\AnimationEffects.html" />
     <Content Include="Content\Menu\Descriptions\ClientSideApi.html" />
@@ -1480,6 +1484,10 @@
     <ProjectReference Include="..\eAd.DataService\eAd.DataAccess.csproj">
       <Project>{0FCFE42B-027D-43DB-9149-068ED514303C}</Project>
       <Name>eAd.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eAd.DataViewModels\eAd.DataViewModels.csproj">
+      <Project>{47A32603-2D64-4BD5-A503-F1142A5C2733}</Project>
+      <Name>eAd.DataViewModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\eAd.Utilities\eAd.Utilities.csproj">
       <Project>{ECD7174B-B905-46AF-B371-72D8A81103F1}</Project>

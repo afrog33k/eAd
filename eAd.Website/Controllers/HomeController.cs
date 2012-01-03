@@ -13,13 +13,14 @@ namespace eAd.Website.Controllers
     {
         public static Controller Instance = null;
         private eAdDataContainer db = new eAdDataContainer();
-        public void DownloadInfo(HttpContextBase httpContext,string xmlUrl, string stationID)
+        public void DownloadInfo(HttpContextBase httpContext,string xmlUrl, string stationID, bool start=true)
         {
             try
             {
                
                 Station station;
-
+                Customer customer;
+                Car car;
                     if(db.Stations.Where(s=>s.UniqueID==stationID).Count() <=0)
                     {
                      station  = new Station();
@@ -32,22 +33,95 @@ namespace eAd.Website.Controllers
                         station = db.Stations.Where(s => s.UniqueID == stationID).FirstOrDefault();
                     }
 
+                
+
                 string path = httpContext.Server.MapPath("~/Logs/GreenLots/" + "log.txt");
             
             StreamReader reader = new StreamReader(WebRequest.Create(xmlUrl).GetResponse().GetResponseStream());
             XmlSerializer xSerializer = new XmlSerializer(typeof(proton));
             proton greenlotsInfo = (proton)xSerializer.Deserialize(reader);
 
-                station.Name = greenlotsInfo.Location.information[0].name;
-                station.Address = greenlotsInfo.Location.information[0].address + "\n" + greenlotsInfo.Location.information[0].address1 + "\n" + greenlotsInfo.Location.information[0].address2;
-                station.PostalCode = greenlotsInfo.Location.information[0].postal;
-                station.Rate = Convert.ToDouble( greenlotsInfo.Location.information[0].rate);
+                if (station != null)
+                {
+                    station.Name = greenlotsInfo.Location.information[0].name;
+                    station.Address = greenlotsInfo.Location.information[0].address + "\n" + greenlotsInfo.Location.information[0].address1 + "\n" + greenlotsInfo.Location.information[0].address2;
+                    station.PostalCode = greenlotsInfo.Location.information[0].postal;
+                    station.Rate = Convert.ToDouble( greenlotsInfo.Location.information[0].rate);
+                }
+
+                var customerInfo = greenlotsInfo.User.information[0];
+                if (db.Customers.Where(s => s.Email == customerInfo.email).Count() <= 0)
+                {
+                    customer = new Customer();
+                    customer.Email = greenlotsInfo.User.information[0].email;
+                    db.Customers.AddObject(customer);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    customer = db.Customers.Where(s => s.Email == customerInfo.email).FirstOrDefault();
+                }
+
+                if (customer != null)
+                {
+                    customer.Picture = customerInfo.image;
+                    customer.Name = customerInfo.firstname + " " + customerInfo.lastname;
+                    customer.Address = customerInfo.address + " " + customerInfo.address1 + " " + customerInfo.address2;
+                    customer.Language = customerInfo.language;
+                    customer.SMSAlert =customerInfo.sms_alert=="1";
+                    customer.EmailAlert =customerInfo.email_alert=="1";
+                    customer.Phone = customerInfo.contact;
+                    customer.Balance = customerInfo.credit_balance;
+                }
+
+
+                var carInfo = greenlotsInfo.Vehicle.information[0];
+                var history = greenlotsInfo.History.session[0];
+                if (db.Cars.Where(s => s.RFID == carInfo.rfid).Count() <= 0)
+                {
+                    car = new Car();
+                    car.RFID = carInfo.rfid;
+                    if (customer != null)
+                        car.CustomerID = customer.CustomerID;
+                    db.Cars.AddObject(car);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    car = db.Cars.Where(s => s.RFID == carInfo.rfid).FirstOrDefault();
+                }
+
+                if (car != null)
+                {
+                    car.License = carInfo.license_plate;
+                    car.Make = carInfo.make;
+                    car.Model = carInfo.model;
+                    car.TotalUsage =Convert.ToDouble(carInfo.total_usage);
+                    car.BatteryCycle =Convert.ToInt32(carInfo.battery_cycle);
+                    //Fix up date
+                    var datetxt = history.end;
+                  datetxt=  datetxt.Replace("Today", DateTime.Now.Date.ToShortDateString());
+                  datetxt = datetxt.Replace("Yesterday", DateTime.Now.Date.ToShortDateString());
+                    car.LastRechargeDate =DateTime.Parse(datetxt);
+
+                }
+
+
+
                 Logger.WriteLine(path, "\n--------------- Data Received ---------------");
                 Logger.WriteLine(path, (string) greenlotsInfo.User.information[0].address);
              //   Logger.WriteLine(path, greenlotsInfo.email);
                 Logger.WriteLine(path, "\n--------------- Data Received End---------------");
 
             db.SaveChanges();
+
+                if (station != null && car != null&&start)
+                        Service.MakeStationUnAvailable(station.StationID, car.RFID);
+                else
+                {
+                    if (station != null && car != null)
+                        Service.MakeStationAvailable(station.StationID);
+                }
             }
             catch (Exception)
             {
@@ -56,7 +130,11 @@ namespace eAd.Website.Controllers
             }
         }
 
-
+        public ActionResult GreenLotsLog()
+        {
+            string path =  this.HttpContext.Server.MapPath("~/Logs/GreenLots/" + "log.txt");
+            return Content(new StreamReader(path).ReadToEnd().Replace("\n","<br/>"));
+        }
         public ActionResult Index()
         {
             Instance = this;
@@ -110,8 +188,9 @@ namespace eAd.Website.Controllers
             if (httpContext != null)
             {
                 string path = httpContext.Server.MapPath("~/Logs/GreenLots/" + "log.txt");
-                Logger.WriteLine(path, "Init ID: " + id + " xmlUrl: " + xmlUrl);
+                Logger.WriteLine(path,DateTime.Now +  " Init ID: " + id + " xmlUrl: " + xmlUrl);
                 DownloadInfo(httpContext, xmlUrl,id);
+                Logger.WriteLine(path, DateTime.Now + " Init ID: " + id + " xmlUrl: " + xmlUrl + "Updated Database");
             }
 
             return Content("1"); //Success
@@ -124,8 +203,9 @@ namespace eAd.Website.Controllers
              if (httpContext != null)
              {
                  string path = httpContext.Server.MapPath("~/Logs/GreenLots/" + "log.txt");
-                Logger.WriteLine(path, "Start  ID: " + id + " xmlUrl: " + xmlUrl);
+                 Logger.WriteLine(path, DateTime.Now + "Start  ID: " + id + " xmlUrl: " + xmlUrl);
                 DownloadInfo(httpContext, xmlUrl,id);
+                Logger.WriteLine(path, DateTime.Now + " Start ID: " + id + " xmlUrl: " + xmlUrl + "Updated Database");
                  }
             
              return Content("1"); //Success
@@ -140,8 +220,9 @@ namespace eAd.Website.Controllers
           {
 
               string path = httpContext.Server.MapPath("~/Logs/GreenLots/" + "log.txt");
-              Logger.WriteLine(path, "Stop   ID: " + id + " xmlUrl: " + xmlUrl);
-              DownloadInfo(httpContext, xmlUrl,id);
+              Logger.WriteLine(path, DateTime.Now + " Stop   ID: " + id + " xmlUrl: " + xmlUrl);
+              DownloadInfo(httpContext, xmlUrl,id,false);
+              Logger.WriteLine(path, DateTime.Now + " Stop ID: " + id + " xmlUrl: " + xmlUrl + "Updated Database");
           }
             return Content("1"); //Success
             //return Content("Stop  ID: " + id + " xmlUrl: " + xmlUrl);

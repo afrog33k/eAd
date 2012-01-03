@@ -12,6 +12,9 @@
 </p>
 <table>
     <tr>
+      <th>
+            ID
+        </th>
         <th>
             Location
         </th>
@@ -32,8 +35,14 @@
 
 @foreach (var item in Model) {
     <tr>
+      <td>
+            @Html.DisplayFor(modelItem => item.StationID) 
+       
+        </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Location)
+            @Html.DisplayFor(modelItem => item.Location) 
+            @Html.ActionLink("Map", "Index", "Map", new { stationID = item.StationID }, new { @class = "mapLink" })
+
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)

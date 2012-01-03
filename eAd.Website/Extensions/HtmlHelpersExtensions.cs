@@ -33,8 +33,7 @@ namespace eAd.Website.Extensions
         /// <returns></returns>
         public static MvcHtmlString AjaxUpload(this HtmlHelper helper, string name, string action, string legend, string label)
         {
-            string scriptPath = ("~/Content/jqueryPlugins/uploadify/");
-
+           // string scriptPath = ("~/Content/jqueryPlugins/uploadify/");
 
             StringBuilder sb = new StringBuilder();
             //Include the JS file.

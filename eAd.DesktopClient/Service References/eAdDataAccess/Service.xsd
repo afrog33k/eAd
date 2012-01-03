@@ -9,6 +9,7 @@
   <xs:element name="ArrayOfMediaListModel" nillable="true" type="tns:ArrayOfMediaListModel" />
   <xs:complexType name="MediaListModel">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Downloaded" type="xs:boolean" />
       <xs:element minOccurs="0" name="Duration" type="ser:duration" />
       <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MediaID" type="xs:long" />

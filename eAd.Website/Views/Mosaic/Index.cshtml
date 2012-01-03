@@ -21,6 +21,7 @@
 
 
 <style type="text/css">
+    .position {}
     .fluid-img{width:90%;}
 	#container { width: 1280px; height: 800px; }
 	#container h3 { text-align: center; margin: 0; margin-bottom: 10px; }
@@ -50,6 +51,10 @@
 	        var $gallery = $("#gallery"),
 			$trash = $(".resizable");
 
+	        $("#MosaicID").change(function () {
+	            LoadMosaic($(this).val());
+	        });
+	        
 	        // let the gallery items be draggable
 	        $("li", $gallery).draggable({
 	            cancel: "a.ui-icon", // clicking an icon won't initiate dragging
@@ -101,6 +106,7 @@
 
 	        // When the toolbar button is clicked...
 	        $('#SaveMosaic').click(function () {
+	         
 	            SaveMosaic();
 	        });
 	        
@@ -246,7 +252,61 @@
        
 	    
      
+   function   SaveMosaic()
+      {
+      var playerScreenPos = $("#container").position();
+       $(".position").each(function() {
+           var position = $(this).position();
+           
+           SavePosition($(this).attr('id'),position.left-playerScreenPos.left,position.top-playerScreenPos.top,
+           $(this).height(),$(this).width()
+           );
+         
+       });
+      }
+   
+    function  LoadMosaic() {
+           var mosaic = $("#MosaicID");
+        $.ajax({
+                    url: "@(Url.Action("LoadMosaic", "Mosaic", null, "http"))",
+                    type: 'POST',
+                    context: document.body,
+                    data: { id: mosaic.val()},
+                    success: function (data) {
+                 //   location.reload();
+               //    alert(data);
+                        $('#container').find("div").remove();
+                      $.each(data,function()
+                        {
+                            AddPosition(this.Name, this.X, this.Y, this.Width, this.Height, this.PositionID);
+                        });
+                    },
+            error:  function (data) {
+                //   location.reload();
+                 alert(data);
 
+            }});
+    }
+
+   function SavePosition(name,px,py,pwidth,pheight) {
+       var mosaic = $("#MosaicID");
+        $.ajax({
+                    url: "@(Url.Action("SavePosition", "Mosaic", null, "http"))",
+                    type: 'POST',
+                    context: document.body,
+                    data: { id: mosaic.val(), name: name, x:px ,y:py, width:pwidth, height:pheight},
+                    success: function () {
+                 //   location.reload();
+
+                    },
+            error:  function (data) {
+                //   location.reload();
+                 alert(data);
+
+            }});
+        
+       
+   }
 
 
    function getAndSetNewPosition(name) {
@@ -256,7 +316,7 @@
         });
       }
     else {
-        AddPosition(name);
+        AddPosition(name,0,0,0,0,0);
     }
 }
 
@@ -327,37 +387,54 @@ function checkString(strng) {
     return error;
 }
          
-         function AddPosition(name) {
+         function AddPosition(name,x,y,width,height,id) {
 
-             var recycleIcon = "<a href='link/to/recycle/script/when/we/have/js/off' title='Recycle this image' class='ui-icon ui-icon-refresh'>Recycle image</a>";
-	         
+            
+                 var recycleIcon = "<a href='link/to/recycle/script/when/we/have/js/off' title='Recycle this image' class='ui-icon ui-icon-refresh'>Recycle image</a>";
 
-             var jsName = removeSpaces(name);
 
-             $('#container').append('<div id="' + jsName + '" class="resizable ui-state-active">' +
-		'<h3 class="ui-widget-header">' + name + '</h3>' + '<div class="collapsible"><a href="#">Media</a></h3>' +
-	'<div >' +
-		
-	'</div>'+
-	'</div> </div>').fadeIn(function () {
-	    $('#' + jsName)
-						.animate({ width: "100px" })
-							.animate({ height: "100px" });
-	}); ;
+                 var jsName = removeSpaces(name);
+                  if(   $('#container').find('#' + jsName).length==0)
+             {
+                      $('#container').append('<div id="' + jsName + '" class="resizable ui-state-active position">' +
+                          '<h3 class="ui-widget-header">' + name + '</h3>' + '<div class="collapsible"><a href="#">Media</a></h3>' +
+                          '<div >' +
 
-             $('#' + jsName).draggable({ containment: "#container", scroll: false, snap: ".resizable", snapMode: "outer" });
-             $('#' + jsName).resizable({
-	            // containment: "#container",
-	            animate: true,
-	            helper: "ui-resizable-helper",
-	            grid: 20,
-	            ghost: true
-	        });
+                          '</div>' +
+                          '</div> </div>');
 
-	        $('#' + jsName).append(recycleIcon);
-    	    
-             ResetDefaults();
-	    }
+                 $('#' + jsName).draggable({ containment: "#container", scroll: false, snap: ".resizable", snapMode: "outer" });
+                 $('#' + jsName).resizable({
+                         // containment: "#container",
+                         animate: true,
+                         helper: "ui-resizable-helper",
+                         grid: 20,
+                         ghost: true
+                     });
+
+                 $('#' + jsName).append(recycleIcon);
+                 if (x != 0)
+                 {
+                     $('#' + jsName).fadeIn(function() {
+                         $('#' + jsName).css({ "left": (x) + "px", "top": y + "px" });
+                         
+                         
+                          $('#' + jsName)
+                             .animate({ width: width })
+                             .animate({ height:height });
+                   
+                     });
+                 }
+                      else {
+                     $('#' + jsName) .fadeIn(function() {
+                         $('#' + jsName)
+                             .animate({ width: "100px" })
+                             .animate({ height: "100px" });
+                     }); ;
+                 }
+                 ResetDefaults();
+             }
+         }
 	    
 	</script>
 

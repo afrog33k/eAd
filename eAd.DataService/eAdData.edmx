@@ -73,6 +73,9 @@
           <Property Name="LastRechargeDate" Type="datetime" />
           <Property Name="CarID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="DateAdded" Type="datetime" />
+          <Property Name="RFID" Type="nvarchar" MaxLength="100" />
+          <Property Name="TotalUsage" Type="float" />
+          <Property Name="BatteryCycle" Type="int" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
@@ -88,6 +91,9 @@
           <Property Name="Address" Type="nvarchar" MaxLength="500" />
           <Property Name="CustomerID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="DateAdded" Type="datetime" />
+          <Property Name="Language" Type="nvarchar" MaxLength="20" />
+          <Property Name="SMSAlert" Type="bit" />
+          <Property Name="EmailAlert" Type="bit" />
         </EntityType>
         <EntityType Name="Groupings">
           <Key>
@@ -387,6 +393,9 @@
           <Property Type="Int64" Name="CarID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="DateTime" Name="DateAdded" />
           <NavigationProperty Name="Customer" Relationship="eAdData.FK_CarCustomer" FromRole="Car" ToRole="Customer" />
+          <Property Type="String" Name="RFID" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="TotalUsage" />
+          <Property Type="Int32" Name="BatteryCycle" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -403,6 +412,9 @@
           <Property Type="Int64" Name="CustomerID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="DateTime" Name="DateAdded" />
           <NavigationProperty Name="Cars" Relationship="eAdData.FK_CarCustomer" FromRole="Customer" ToRole="Car" />
+          <Property Type="String" Name="Language" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="SMSAlert" />
+          <Property Type="Boolean" Name="EmailAlert" />
         </EntityType>
         <EntityType Name="Grouping">
           <Key>
@@ -583,6 +595,9 @@
           <EntitySetMapping Name="Cars">
             <EntityTypeMapping TypeName="eAdData.Car">
               <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="BatteryCycle" ColumnName="BatteryCycle" />
+                <ScalarProperty Name="TotalUsage" ColumnName="TotalUsage" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="CarID" ColumnName="CarID" />
                 <ScalarProperty Name="LastRechargeDate" ColumnName="LastRechargeDate" />
@@ -597,6 +612,9 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="eAdData.Customer">
               <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="EmailAlert" ColumnName="EmailAlert" />
+                <ScalarProperty Name="SMSAlert" ColumnName="SMSAlert" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="Address" ColumnName="Address" />

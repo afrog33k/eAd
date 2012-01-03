@@ -13,6 +13,7 @@ Number Of Stations Online:  <b>@ViewBag.StationsOnlineCount</b><br/>
 <td>Last CheckIn &nbsp;&nbsp;</td>
 <td>Online &nbsp;&nbsp;</td>
 <td>Available &nbsp;&nbsp;</td>
+<td>Map &nbsp;&nbsp;</td>
 <td colspan="2">Actions &nbsp;&nbsp;</td>
 </tr>
   
@@ -24,6 +25,7 @@ Number Of Stations Online:  <b>@ViewBag.StationsOnlineCount</b><br/>
 <td>@(station.LastCheckIn!=null?station.LastCheckIn.ToString():"Never") &nbsp;&nbsp;</td>
 <td>@(station.IsOnline?"Yes":"No") &nbsp;&nbsp;</td>
 <td>@(station.Available?"Yes":"No") &nbsp;&nbsp;</td>
+<td>   @Html.ActionLink("Map", "Index", "Map", new { stationID = station.StationID }, new { @class = "mapLink" })</td>
      <td>
      <input type="button" value="Engage" name="Engage" onclick="Engage@(station.StationID)()"/>
    @*  @Html.ActionLink("Engage", "Engage", "Station", new { stationID = station.StationID }, new { onlick = "Engage"+@station.StationID+"();" })*@

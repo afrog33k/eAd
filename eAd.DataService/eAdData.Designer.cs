@@ -571,6 +571,78 @@ namespace eAd.DataAccess
         private Nullable<global::System.DateTime> _DateAdded;
         partial void OnDateAddedChanging(Nullable<global::System.DateTime> value);
         partial void OnDateAddedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String RFID
+        {
+            get
+            {
+                return _RFID;
+            }
+            set
+            {
+                OnRFIDChanging(value);
+                ReportPropertyChanging("RFID");
+                _RFID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("RFID");
+                OnRFIDChanged();
+            }
+        }
+        private global::System.String _RFID;
+        partial void OnRFIDChanging(global::System.String value);
+        partial void OnRFIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> TotalUsage
+        {
+            get
+            {
+                return _TotalUsage;
+            }
+            set
+            {
+                OnTotalUsageChanging(value);
+                ReportPropertyChanging("TotalUsage");
+                _TotalUsage = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TotalUsage");
+                OnTotalUsageChanged();
+            }
+        }
+        private Nullable<global::System.Double> _TotalUsage;
+        partial void OnTotalUsageChanging(Nullable<global::System.Double> value);
+        partial void OnTotalUsageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> BatteryCycle
+        {
+            get
+            {
+                return _BatteryCycle;
+            }
+            set
+            {
+                OnBatteryCycleChanging(value);
+                ReportPropertyChanging("BatteryCycle");
+                _BatteryCycle = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("BatteryCycle");
+                OnBatteryCycleChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _BatteryCycle;
+        partial void OnBatteryCycleChanging(Nullable<global::System.Int32> value);
+        partial void OnBatteryCycleChanged();
 
         #endregion
     
@@ -883,6 +955,78 @@ namespace eAd.DataAccess
         private Nullable<global::System.DateTime> _DateAdded;
         partial void OnDateAddedChanging(Nullable<global::System.DateTime> value);
         partial void OnDateAddedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Language
+        {
+            get
+            {
+                return _Language;
+            }
+            set
+            {
+                OnLanguageChanging(value);
+                ReportPropertyChanging("Language");
+                _Language = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Language");
+                OnLanguageChanged();
+            }
+        }
+        private global::System.String _Language;
+        partial void OnLanguageChanging(global::System.String value);
+        partial void OnLanguageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> SMSAlert
+        {
+            get
+            {
+                return _SMSAlert;
+            }
+            set
+            {
+                OnSMSAlertChanging(value);
+                ReportPropertyChanging("SMSAlert");
+                _SMSAlert = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SMSAlert");
+                OnSMSAlertChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _SMSAlert;
+        partial void OnSMSAlertChanging(Nullable<global::System.Boolean> value);
+        partial void OnSMSAlertChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> EmailAlert
+        {
+            get
+            {
+                return _EmailAlert;
+            }
+            set
+            {
+                OnEmailAlertChanging(value);
+                ReportPropertyChanging("EmailAlert");
+                _EmailAlert = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EmailAlert");
+                OnEmailAlertChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _EmailAlert;
+        partial void OnEmailAlertChanging(Nullable<global::System.Boolean> value);
+        partial void OnEmailAlertChanged();
 
         #endregion
     

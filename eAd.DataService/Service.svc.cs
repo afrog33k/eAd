@@ -330,11 +330,15 @@ namespace eAd.DataAccess
         {
 
             eAdDataContainer entities = new eAdDataContainer();
-          var customer =  entities.Customers.Where(e => e.RFID == tag).FirstOrDefault();
-          if (customer!=null)
-          {
-              return customer.CreateModel();
-          }
+            var firstOrDefault = entities.Cars.Where(e => e.RFID == tag).FirstOrDefault();
+            if (firstOrDefault != null)
+            {
+                var customer =  firstOrDefault.Customer;
+                if (customer!=null)
+                {
+                    return customer.CreateModel();
+                }
+            }
 
             return CustomerViewModel.Empty;
 

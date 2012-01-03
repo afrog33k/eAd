@@ -11,6 +11,7 @@ using System.Windows.Threading;
 using DesktopClient.Menu;
 using DesktopClient.eAdDataAccess;
 using eAd.DataViewModels;
+using eAd.Utilities;
 
 namespace DesktopClient
 {
@@ -105,6 +106,10 @@ namespace DesktopClient
 
                                                                              using (ServiceClient myService3 = new ServiceClient())
                                                                              {
+                                                                                 try
+                                                                                 {
+
+                                                                               
                                                                                  var
                                                                                      messages
                                                                                          =
@@ -275,6 +280,13 @@ namespace DesktopClient
                                                                                  //    // No code here
                                                                                  //}
 
+                                                                             }
+                                                                                  
+                                                                                 catch (Exception exception)
+                                                                                 {
+                                                                                     
+                                                                                  Console.WriteLine("Something Bad Happened ... :( Look Here: "+ exception.Message + "\n"+exception.StackTrace);
+                                                                                 }
                                                                              }
                                                                              return null;
 

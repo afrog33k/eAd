@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientConfiguration.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="MimeExtensionHelper.cs" />
     <Compile Include="GoogleMaps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

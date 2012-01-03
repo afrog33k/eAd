@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +10,7 @@ using System.Threading;
 using System.Windows.Threading;
 using System.Xml.Serialization;
 using eAd.DataViewModels;
+using eAd.Utilities;
 using Timer = System.Timers.Timer;
 
 namespace DesktopClient.Menu
@@ -40,9 +42,12 @@ namespace DesktopClient.Menu
             //   Player.Play();
             // ((Viewbox)Player.Parent).Width = ((Window)Player.Parent.Parent)
             StatusBox.Visibility = Visibility.Collapsed;
-            PlayerViewBox.Width = this.Width;
-            PlayerViewBox.Height = this.Height;
-
+            MediaGrid.Width = SystemParameters.PrimaryScreenWidth;
+         MediaGrid.Height = SystemParameters.PrimaryScreenHeight;
+         MediaCanvas.Width = MediaGrid.Width;
+         MediaCanvas.Height = MediaGrid.Height;
+         Player.Width = MediaGrid.Width;
+                Player.Height = MediaGrid.Height;
             try
             {
 
@@ -77,7 +82,10 @@ namespace DesktopClient.Menu
 
 
 
-
+                                                 Player.Source =
+                                                    new Uri(  System.IO.Path.GetDirectoryName(
+                                                         Assembly.GetExecutingAssembly().Location)+
+                                                    "/DataCache/LoadVideo.m4v");
                                                  Player.Play();
                                              //    PlayNextVideo();
 

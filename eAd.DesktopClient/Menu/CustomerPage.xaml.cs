@@ -4,6 +4,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Threading;
 using DesktopClient.eAdDataAccess;
 using System.Reflection;
@@ -67,17 +68,26 @@ namespace DesktopClient.Menu
                        {
                    try
                    {
-                  
-                  
-                           // Switcher.Switch(new RFIDDetected());
 
-                          // LocationOverview.ItemsSource = items;
-                       CustomerProfilePicture.Source =
-                           new BitmapImage(new Uri(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)+(customer.Picture)));
+
+
+
+                       // LocationOverview.ItemsSource = items;
+                       try
+                       {
+                           CustomerProfilePicture.Source =
+                new BitmapImage(new Uri(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + (customer.Picture)));
+
+                       }
+                       catch (Exception)
+                       {
+
+                           //Default no pic pic
+                       }
                        CarMake.Content = customer.CarMake;
                        CarModel.Content = customer.CarModel;
-                       CarPlate .Content = customer.CarLicense;
-                       CustomerName.Content =( customer).Name;
+                       CarPlate.Content = customer.CarLicense;
+                       CustomerName.Content = (customer).Name;
                        CustomerEmail.Content = customer.Email;
                        CustomerPhone.Content = customer.Phone;
                        CustomerAddress.Content = customer.Address;
@@ -89,6 +99,24 @@ namespace DesktopClient.Menu
                        GoogleMaps.Locations = stations.ToArray();
                        // .Content = (customer).Name;
                        NavigatePage();
+
+
+                       ThreadPool.QueueUserWorkItem((e) =>
+                                                        {
+                                                            Thread.Sleep(40000);
+                                                              Instance.Dispatcher.BeginInvoke(
+
+                       System.Windows.Threading.DispatcherPriority.Normal
+
+                       , new DispatcherOperationCallback(delegate
+                       {
+                                                          
+                                                            Switcher.Switch(MainWindow.Instance);
+                                                     
+                        return null;
+                       }), null);
+                                                        });
+
                    }
                    catch (Exception ex)
                    {
@@ -112,10 +140,39 @@ namespace DesktopClient.Menu
         {
             Uri uri = new Uri(@"pack://application:,,,/Navigator.htm");
             //Stream source = n// Application.GetContentStream(uri).Stream;
-            GoogleMap.NavigateToString(GoogleMaps.Webpage);
+        GoogleMap.NavigateToString(GoogleMaps.Webpage);
+            GoogleMap.Navigated+=GoogleMapNavigated;
         }
 
-        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+	    private void GoogleMapNavigated(object sender, NavigationEventArgs e)
+	    {
+            SuppressScriptErrors(GoogleMap, true); 
+	    }
+
+        /// <summary>
+        /// Supress Script Errors
+        /// </summary>
+        /// <param name="wb"></param>
+        /// <param name="Hide"></param>
+        public void SuppressScriptErrors(System.Windows.Controls.WebBrowser wb, bool Hide)
+        {
+            FieldInfo fi = typeof(System.Windows.Controls.WebBrowser).GetField(
+                "_axIWebBrowser2",
+                BindingFlags.Instance | BindingFlags.NonPublic);
+
+            if (fi != null)
+            {
+                object browser = fi.GetValue(wb);
+
+                if (browser != null)
+                {
+                    browser.GetType().InvokeMember("Silent", BindingFlags.SetProperty,
+                        null, browser, new object[] { Hide });
+
+                }
+            }
+        }
+	    private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             //wbNavigator.InvokeScript("setDirections", new object[] { tbFrom.Text, tbTo.Text, "en" });
         //    _LoadDirectionFromGoogle(_queryBuilder(tbFrom.Text, tbTo.Text));

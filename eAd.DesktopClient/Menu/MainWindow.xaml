@@ -35,34 +35,20 @@
             </BeginStoryboard>
         </EventTrigger>
     </UserControl.Triggers>
-    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="Fill">
-        <Grid>
-            <Viewbox Panel.ZIndex="1" OpacityMask="#FFCE5959" Cursor="None" Margin="0,0,0,-9" Stretch="Fill">
-                <Grid Width="1271.723" Height="958.223">
-                    <Viewbox
-      Margin="4"
-      VerticalAlignment="Stretch"
-      Height="Auto" Name="PlayerViewBox">
-                        <!-- The textblock and its contents are 
-      stretched to fill its parent -->
-                        <!-- The textblock and its contents are 
-      stretched to fill its parent -->
-
-                        <MediaElement Height="76.953" Width="100"  LoadedBehavior="Manual"  UnloadedBehavior="Manual" Stretch="Fill"  Source="\\psf\Home\Desktop\Projects\eAd\Ads\Nissan 370z _ Fairlady Ad Malaysia(720p_H.264-AAC).mp4" AllowDrop="True" MediaOpened="MediaElementMediaOpened" Name="Player" MediaEnded="PlayerMediaEnded" Unloaded="PlayerUnloaded" />
-
-                    </Viewbox>
-                    <ProgressBar x:Name="Update_Progress" HorizontalAlignment="Right" Height="30.5" Margin="0,56.5,34.223,0" VerticalAlignment="Top" Width="234" Background="#FFA19B91" Foreground="#FF375299" Value="50" Visibility="Hidden" />
-                </Grid>
-            </Viewbox>
-            <Viewbox
-      Margin="0,0,0,4"
-      Height="53.777" VerticalAlignment="Bottom">
-                <TextBox Margin="0,0,0,0" TextWrapping="Wrap" Text="Status" VerticalAlignment="Bottom" Background="#FFC8F1DE" Foreground="#FFB20F0F" SelectionBrush="#FF12389D" BorderBrush="#0010161A" Height="57.777" FontFamily="/eAd;component/Fonts/#Tahoma" FontSize="32" Name="StatusBox">
-                    <TextBox.Effect>
-                        <DropShadowEffect ShadowDepth="3" Color="#FF21686A"/>
-                    </TextBox.Effect>
-                </TextBox>
-            </Viewbox>
+    <Viewbox Panel.ZIndex="1" OpacityMask="#FFCE5959" Cursor="None" Margin="0,0,0,-9"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="Fill">
+        <Grid Width="1271.723" Height="958.223" x:Name="MediaGrid">
+            <Canvas x:Name="MediaCanvas"  Height="Auto" Width="Auto" Background="DarkSeaGreen">
+                        <MediaElement  Canvas.Left="0" Canvas.Top="0" Height="Auto" Width="Auto"  LoadedBehavior="Manual"  UnloadedBehavior="Manual" Stretch="Fill"  AllowDrop="False" MediaOpened="MediaElementMediaOpened" Name="Player" MediaEnded="PlayerMediaEnded" Unloaded="PlayerUnloaded" />
+   <Rectangle Canvas.Left="40" Canvas.Top="31" Width="333" Height="105" Fill="Blue"  />
+                    <ProgressBar Canvas.Right="40" x:Name="Update_Progress" HorizontalAlignment="Right" Height="30.5" Margin="0,56.5,34.223,0" VerticalAlignment="Top" Width="234" Background="#FFA19B91" Foreground="#FF375299" Value="50" Visibility="Hidden" />
+                <TextBox Canvas.Top="40" Margin="0,0,0,0" TextWrapping="Wrap" Text="Status" VerticalAlignment="Bottom" Background="#FFC8F1DE" Foreground="#FFB20F0F" SelectionBrush="#FF12389D" BorderBrush="#0010161A" Height="57.777" FontFamily="/eAd;component/Fonts/#Tahoma" FontSize="32" Name="StatusBox">
+                            <TextBox.Effect>
+                                <DropShadowEffect ShadowDepth="3" Color="#FF21686A"/>
+                            </TextBox.Effect>
+                        </TextBox>
+                    </Canvas>
+           
+         
         </Grid>
     </Viewbox>
 </UserControl>
