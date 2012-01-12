@@ -15,6 +15,99 @@ namespace eAd.Website.eAdDataService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MediaListModel", Namespace="http://schemas.datacontract.org/2004/07/eAd.DataViewModels")]
+    [System.SerializableAttribute()]
+    public partial class MediaListModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool DownloadedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.TimeSpan DurationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LocationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long MediaIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Downloaded {
+            get {
+                return this.DownloadedField;
+            }
+            set {
+                if ((this.DownloadedField.Equals(value) != true)) {
+                    this.DownloadedField = value;
+                    this.RaisePropertyChanged("Downloaded");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.TimeSpan Duration {
+            get {
+                return this.DurationField;
+            }
+            set {
+                if ((this.DurationField.Equals(value) != true)) {
+                    this.DurationField = value;
+                    this.RaisePropertyChanged("Duration");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Location {
+            get {
+                return this.LocationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LocationField, value) != true)) {
+                    this.LocationField = value;
+                    this.RaisePropertyChanged("Location");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long MediaID {
+            get {
+                return this.MediaIDField;
+            }
+            set {
+                if ((this.MediaIDField.Equals(value) != true)) {
+                    this.MediaIDField = value;
+                    this.RaisePropertyChanged("MediaID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="CustomerViewModel", Namespace="http://schemas.datacontract.org/2004/07/eAd.DataViewModels")]
     [System.SerializableAttribute()]
     public partial class CustomerViewModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -539,41 +632,114 @@ namespace eAd.Website.eAdDataService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetHi", ReplyAction="http://tempuri.org/IService/GetHiResponse")]
         string GetHi();
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetHi", ReplyAction="http://tempuri.org/IService/GetHiResponse")]
+        System.IAsyncResult BeginGetHi(System.AsyncCallback callback, object asyncState);
+        
+        string EndGetHi(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SayHi", ReplyAction="http://tempuri.org/IService/SayHiResponse")]
         string SayHi(long clientID);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/SayHi", ReplyAction="http://tempuri.org/IService/SayHiResponse")]
+        System.IAsyncResult BeginSayHi(long clientID, System.AsyncCallback callback, object asyncState);
+        
+        string EndSayHi(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetMyMedia", ReplyAction="http://tempuri.org/IService/GetMyMediaResponse")]
+        eAd.Website.eAdDataService.MediaListModel[] GetMyMedia(long stationID);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetMyMedia", ReplyAction="http://tempuri.org/IService/GetMyMediaResponse")]
+        System.IAsyncResult BeginGetMyMedia(long stationID, System.AsyncCallback callback, object asyncState);
+        
+        eAd.Website.eAdDataService.MediaListModel[] EndGetMyMedia(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DoIHaveUpdates", ReplyAction="http://tempuri.org/IService/DoIHaveUpdatesResponse")]
         bool DoIHaveUpdates(long clientID);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/DoIHaveUpdates", ReplyAction="http://tempuri.org/IService/DoIHaveUpdatesResponse")]
+        System.IAsyncResult BeginDoIHaveUpdates(long clientID, System.AsyncCallback callback, object asyncState);
+        
+        bool EndDoIHaveUpdates(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/MakeStationUnAvailable", ReplyAction="http://tempuri.org/IService/MakeStationUnAvailableResponse")]
         bool MakeStationUnAvailable(long stationID, string rfidCode);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/MakeStationUnAvailable", ReplyAction="http://tempuri.org/IService/MakeStationUnAvailableResponse")]
+        System.IAsyncResult BeginMakeStationUnAvailable(long stationID, string rfidCode, System.AsyncCallback callback, object asyncState);
+        
+        bool EndMakeStationUnAvailable(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/MakeStationAvailable", ReplyAction="http://tempuri.org/IService/MakeStationAvailableResponse")]
         bool MakeStationAvailable(long stationID);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/MakeStationAvailable", ReplyAction="http://tempuri.org/IService/MakeStationAvailableResponse")]
+        System.IAsyncResult BeginMakeStationAvailable(long stationID, System.AsyncCallback callback, object asyncState);
+        
+        bool EndMakeStationAvailable(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/MessageRead", ReplyAction="http://tempuri.org/IService/MessageReadResponse")]
         bool MessageRead(long messageID);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/MessageRead", ReplyAction="http://tempuri.org/IService/MessageReadResponse")]
+        System.IAsyncResult BeginMessageRead(long messageID, System.AsyncCallback callback, object asyncState);
+        
+        bool EndMessageRead(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetCustomerByRFID", ReplyAction="http://tempuri.org/IService/GetCustomerByRFIDResponse")]
         eAd.Website.eAdDataService.CustomerViewModel GetCustomerByRFID(string tag);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetCustomerByRFID", ReplyAction="http://tempuri.org/IService/GetCustomerByRFIDResponse")]
+        System.IAsyncResult BeginGetCustomerByRFID(string tag, System.AsyncCallback callback, object asyncState);
+        
+        eAd.Website.eAdDataService.CustomerViewModel EndGetCustomerByRFID(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SendMessageToStation", ReplyAction="http://tempuri.org/IService/SendMessageToStationResponse")]
         bool SendMessageToStation(long stationID, eAd.Website.eAdDataService.MessageViewModel message);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/SendMessageToStation", ReplyAction="http://tempuri.org/IService/SendMessageToStationResponse")]
+        System.IAsyncResult BeginSendMessageToStation(long stationID, eAd.Website.eAdDataService.MessageViewModel message, System.AsyncCallback callback, object asyncState);
+        
+        bool EndSendMessageToStation(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SendMessageToGroup", ReplyAction="http://tempuri.org/IService/SendMessageToGroupResponse")]
         bool SendMessageToGroup(long groupID, eAd.Website.eAdDataService.MessageViewModel message);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/SendMessageToGroup", ReplyAction="http://tempuri.org/IService/SendMessageToGroupResponse")]
+        System.IAsyncResult BeginSendMessageToGroup(long groupID, eAd.Website.eAdDataService.MessageViewModel message, System.AsyncCallback callback, object asyncState);
+        
+        bool EndSendMessageToGroup(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetAllMyMessages", ReplyAction="http://tempuri.org/IService/GetAllMyMessagesResponse")]
         eAd.Website.eAdDataService.MessageViewModel[] GetAllMyMessages(long clientID);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetAllMyMessages", ReplyAction="http://tempuri.org/IService/GetAllMyMessagesResponse")]
+        System.IAsyncResult BeginGetAllMyMessages(long clientID, System.AsyncCallback callback, object asyncState);
+        
+        eAd.Website.eAdDataService.MessageViewModel[] EndGetAllMyMessages(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetAllCustomers", ReplyAction="http://tempuri.org/IService/GetAllCustomersResponse")]
         eAd.Website.eAdDataService.CustomerViewModel[] GetAllCustomers();
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetAllCustomers", ReplyAction="http://tempuri.org/IService/GetAllCustomersResponse")]
+        System.IAsyncResult BeginGetAllCustomers(System.AsyncCallback callback, object asyncState);
+        
+        eAd.Website.eAdDataService.CustomerViewModel[] EndGetAllCustomers(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetAllStations", ReplyAction="http://tempuri.org/IService/GetAllStationsResponse")]
         eAd.Website.eAdDataService.StationViewModel[] GetAllStations();
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetAllStations", ReplyAction="http://tempuri.org/IService/GetAllStationsResponse")]
+        System.IAsyncResult BeginGetAllStations(System.AsyncCallback callback, object asyncState);
+        
+        eAd.Website.eAdDataService.StationViewModel[] EndGetAllStations(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetOnlineStations", ReplyAction="http://tempuri.org/IService/GetOnlineStationsResponse")]
         eAd.Website.eAdDataService.StationViewModel[] GetOnlineStations();
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetOnlineStations", ReplyAction="http://tempuri.org/IService/GetOnlineStationsResponse")]
+        System.IAsyncResult BeginGetOnlineStations(System.AsyncCallback callback, object asyncState);
+        
+        eAd.Website.eAdDataService.StationViewModel[] EndGetOnlineStations(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -582,7 +748,357 @@ namespace eAd.Website.eAdDataService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetHiCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetHiCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class SayHiCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SayHiCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetMyMediaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetMyMediaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public eAd.Website.eAdDataService.MediaListModel[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((eAd.Website.eAdDataService.MediaListModel[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class DoIHaveUpdatesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public DoIHaveUpdatesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class MakeStationUnAvailableCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public MakeStationUnAvailableCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class MakeStationAvailableCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public MakeStationAvailableCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class MessageReadCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public MessageReadCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetCustomerByRFIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetCustomerByRFIDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public eAd.Website.eAdDataService.CustomerViewModel Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((eAd.Website.eAdDataService.CustomerViewModel)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class SendMessageToStationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SendMessageToStationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class SendMessageToGroupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SendMessageToGroupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetAllMyMessagesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetAllMyMessagesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public eAd.Website.eAdDataService.MessageViewModel[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((eAd.Website.eAdDataService.MessageViewModel[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetAllCustomersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetAllCustomersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public eAd.Website.eAdDataService.CustomerViewModel[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((eAd.Website.eAdDataService.CustomerViewModel[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetAllStationsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetAllStationsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public eAd.Website.eAdDataService.StationViewModel[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((eAd.Website.eAdDataService.StationViewModel[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetOnlineStationsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetOnlineStationsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public eAd.Website.eAdDataService.StationViewModel[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((eAd.Website.eAdDataService.StationViewModel[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ServiceClient : System.ServiceModel.ClientBase<eAd.Website.eAdDataService.IService>, eAd.Website.eAdDataService.IService {
+        
+        private BeginOperationDelegate onBeginGetHiDelegate;
+        
+        private EndOperationDelegate onEndGetHiDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetHiCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSayHiDelegate;
+        
+        private EndOperationDelegate onEndSayHiDelegate;
+        
+        private System.Threading.SendOrPostCallback onSayHiCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetMyMediaDelegate;
+        
+        private EndOperationDelegate onEndGetMyMediaDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetMyMediaCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginDoIHaveUpdatesDelegate;
+        
+        private EndOperationDelegate onEndDoIHaveUpdatesDelegate;
+        
+        private System.Threading.SendOrPostCallback onDoIHaveUpdatesCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginMakeStationUnAvailableDelegate;
+        
+        private EndOperationDelegate onEndMakeStationUnAvailableDelegate;
+        
+        private System.Threading.SendOrPostCallback onMakeStationUnAvailableCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginMakeStationAvailableDelegate;
+        
+        private EndOperationDelegate onEndMakeStationAvailableDelegate;
+        
+        private System.Threading.SendOrPostCallback onMakeStationAvailableCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginMessageReadDelegate;
+        
+        private EndOperationDelegate onEndMessageReadDelegate;
+        
+        private System.Threading.SendOrPostCallback onMessageReadCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetCustomerByRFIDDelegate;
+        
+        private EndOperationDelegate onEndGetCustomerByRFIDDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetCustomerByRFIDCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSendMessageToStationDelegate;
+        
+        private EndOperationDelegate onEndSendMessageToStationDelegate;
+        
+        private System.Threading.SendOrPostCallback onSendMessageToStationCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSendMessageToGroupDelegate;
+        
+        private EndOperationDelegate onEndSendMessageToGroupDelegate;
+        
+        private System.Threading.SendOrPostCallback onSendMessageToGroupCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetAllMyMessagesDelegate;
+        
+        private EndOperationDelegate onEndGetAllMyMessagesDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetAllMyMessagesCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetAllCustomersDelegate;
+        
+        private EndOperationDelegate onEndGetAllCustomersDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetAllCustomersCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetAllStationsDelegate;
+        
+        private EndOperationDelegate onEndGetAllStationsDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetAllStationsCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetOnlineStationsDelegate;
+        
+        private EndOperationDelegate onEndGetOnlineStationsDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetOnlineStationsCompletedDelegate;
         
         public ServiceClient() {
         }
@@ -603,56 +1119,730 @@ namespace eAd.Website.eAdDataService {
                 base(binding, remoteAddress) {
         }
         
+        public event System.EventHandler<GetHiCompletedEventArgs> GetHiCompleted;
+        
+        public event System.EventHandler<SayHiCompletedEventArgs> SayHiCompleted;
+        
+        public event System.EventHandler<GetMyMediaCompletedEventArgs> GetMyMediaCompleted;
+        
+        public event System.EventHandler<DoIHaveUpdatesCompletedEventArgs> DoIHaveUpdatesCompleted;
+        
+        public event System.EventHandler<MakeStationUnAvailableCompletedEventArgs> MakeStationUnAvailableCompleted;
+        
+        public event System.EventHandler<MakeStationAvailableCompletedEventArgs> MakeStationAvailableCompleted;
+        
+        public event System.EventHandler<MessageReadCompletedEventArgs> MessageReadCompleted;
+        
+        public event System.EventHandler<GetCustomerByRFIDCompletedEventArgs> GetCustomerByRFIDCompleted;
+        
+        public event System.EventHandler<SendMessageToStationCompletedEventArgs> SendMessageToStationCompleted;
+        
+        public event System.EventHandler<SendMessageToGroupCompletedEventArgs> SendMessageToGroupCompleted;
+        
+        public event System.EventHandler<GetAllMyMessagesCompletedEventArgs> GetAllMyMessagesCompleted;
+        
+        public event System.EventHandler<GetAllCustomersCompletedEventArgs> GetAllCustomersCompleted;
+        
+        public event System.EventHandler<GetAllStationsCompletedEventArgs> GetAllStationsCompleted;
+        
+        public event System.EventHandler<GetOnlineStationsCompletedEventArgs> GetOnlineStationsCompleted;
+        
         public string GetHi() {
             return base.Channel.GetHi();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetHi(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetHi(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public string EndGetHi(System.IAsyncResult result) {
+            return base.Channel.EndGetHi(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetHi(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetHi(callback, asyncState);
+        }
+        
+        private object[] OnEndGetHi(System.IAsyncResult result) {
+            string retVal = this.EndGetHi(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetHiCompleted(object state) {
+            if ((this.GetHiCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetHiCompleted(this, new GetHiCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetHiAsync() {
+            this.GetHiAsync(null);
+        }
+        
+        public void GetHiAsync(object userState) {
+            if ((this.onBeginGetHiDelegate == null)) {
+                this.onBeginGetHiDelegate = new BeginOperationDelegate(this.OnBeginGetHi);
+            }
+            if ((this.onEndGetHiDelegate == null)) {
+                this.onEndGetHiDelegate = new EndOperationDelegate(this.OnEndGetHi);
+            }
+            if ((this.onGetHiCompletedDelegate == null)) {
+                this.onGetHiCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetHiCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetHiDelegate, null, this.onEndGetHiDelegate, this.onGetHiCompletedDelegate, userState);
         }
         
         public string SayHi(long clientID) {
             return base.Channel.SayHi(clientID);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginSayHi(long clientID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSayHi(clientID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public string EndSayHi(System.IAsyncResult result) {
+            return base.Channel.EndSayHi(result);
+        }
+        
+        private System.IAsyncResult OnBeginSayHi(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long clientID = ((long)(inValues[0]));
+            return this.BeginSayHi(clientID, callback, asyncState);
+        }
+        
+        private object[] OnEndSayHi(System.IAsyncResult result) {
+            string retVal = this.EndSayHi(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnSayHiCompleted(object state) {
+            if ((this.SayHiCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SayHiCompleted(this, new SayHiCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SayHiAsync(long clientID) {
+            this.SayHiAsync(clientID, null);
+        }
+        
+        public void SayHiAsync(long clientID, object userState) {
+            if ((this.onBeginSayHiDelegate == null)) {
+                this.onBeginSayHiDelegate = new BeginOperationDelegate(this.OnBeginSayHi);
+            }
+            if ((this.onEndSayHiDelegate == null)) {
+                this.onEndSayHiDelegate = new EndOperationDelegate(this.OnEndSayHi);
+            }
+            if ((this.onSayHiCompletedDelegate == null)) {
+                this.onSayHiCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSayHiCompleted);
+            }
+            base.InvokeAsync(this.onBeginSayHiDelegate, new object[] {
+                        clientID}, this.onEndSayHiDelegate, this.onSayHiCompletedDelegate, userState);
+        }
+        
+        public eAd.Website.eAdDataService.MediaListModel[] GetMyMedia(long stationID) {
+            return base.Channel.GetMyMedia(stationID);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetMyMedia(long stationID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetMyMedia(stationID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public eAd.Website.eAdDataService.MediaListModel[] EndGetMyMedia(System.IAsyncResult result) {
+            return base.Channel.EndGetMyMedia(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetMyMedia(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long stationID = ((long)(inValues[0]));
+            return this.BeginGetMyMedia(stationID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetMyMedia(System.IAsyncResult result) {
+            eAd.Website.eAdDataService.MediaListModel[] retVal = this.EndGetMyMedia(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetMyMediaCompleted(object state) {
+            if ((this.GetMyMediaCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetMyMediaCompleted(this, new GetMyMediaCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetMyMediaAsync(long stationID) {
+            this.GetMyMediaAsync(stationID, null);
+        }
+        
+        public void GetMyMediaAsync(long stationID, object userState) {
+            if ((this.onBeginGetMyMediaDelegate == null)) {
+                this.onBeginGetMyMediaDelegate = new BeginOperationDelegate(this.OnBeginGetMyMedia);
+            }
+            if ((this.onEndGetMyMediaDelegate == null)) {
+                this.onEndGetMyMediaDelegate = new EndOperationDelegate(this.OnEndGetMyMedia);
+            }
+            if ((this.onGetMyMediaCompletedDelegate == null)) {
+                this.onGetMyMediaCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetMyMediaCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetMyMediaDelegate, new object[] {
+                        stationID}, this.onEndGetMyMediaDelegate, this.onGetMyMediaCompletedDelegate, userState);
+        }
+        
         public bool DoIHaveUpdates(long clientID) {
             return base.Channel.DoIHaveUpdates(clientID);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginDoIHaveUpdates(long clientID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginDoIHaveUpdates(clientID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndDoIHaveUpdates(System.IAsyncResult result) {
+            return base.Channel.EndDoIHaveUpdates(result);
+        }
+        
+        private System.IAsyncResult OnBeginDoIHaveUpdates(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long clientID = ((long)(inValues[0]));
+            return this.BeginDoIHaveUpdates(clientID, callback, asyncState);
+        }
+        
+        private object[] OnEndDoIHaveUpdates(System.IAsyncResult result) {
+            bool retVal = this.EndDoIHaveUpdates(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnDoIHaveUpdatesCompleted(object state) {
+            if ((this.DoIHaveUpdatesCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.DoIHaveUpdatesCompleted(this, new DoIHaveUpdatesCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void DoIHaveUpdatesAsync(long clientID) {
+            this.DoIHaveUpdatesAsync(clientID, null);
+        }
+        
+        public void DoIHaveUpdatesAsync(long clientID, object userState) {
+            if ((this.onBeginDoIHaveUpdatesDelegate == null)) {
+                this.onBeginDoIHaveUpdatesDelegate = new BeginOperationDelegate(this.OnBeginDoIHaveUpdates);
+            }
+            if ((this.onEndDoIHaveUpdatesDelegate == null)) {
+                this.onEndDoIHaveUpdatesDelegate = new EndOperationDelegate(this.OnEndDoIHaveUpdates);
+            }
+            if ((this.onDoIHaveUpdatesCompletedDelegate == null)) {
+                this.onDoIHaveUpdatesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDoIHaveUpdatesCompleted);
+            }
+            base.InvokeAsync(this.onBeginDoIHaveUpdatesDelegate, new object[] {
+                        clientID}, this.onEndDoIHaveUpdatesDelegate, this.onDoIHaveUpdatesCompletedDelegate, userState);
         }
         
         public bool MakeStationUnAvailable(long stationID, string rfidCode) {
             return base.Channel.MakeStationUnAvailable(stationID, rfidCode);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginMakeStationUnAvailable(long stationID, string rfidCode, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginMakeStationUnAvailable(stationID, rfidCode, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndMakeStationUnAvailable(System.IAsyncResult result) {
+            return base.Channel.EndMakeStationUnAvailable(result);
+        }
+        
+        private System.IAsyncResult OnBeginMakeStationUnAvailable(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long stationID = ((long)(inValues[0]));
+            string rfidCode = ((string)(inValues[1]));
+            return this.BeginMakeStationUnAvailable(stationID, rfidCode, callback, asyncState);
+        }
+        
+        private object[] OnEndMakeStationUnAvailable(System.IAsyncResult result) {
+            bool retVal = this.EndMakeStationUnAvailable(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnMakeStationUnAvailableCompleted(object state) {
+            if ((this.MakeStationUnAvailableCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.MakeStationUnAvailableCompleted(this, new MakeStationUnAvailableCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void MakeStationUnAvailableAsync(long stationID, string rfidCode) {
+            this.MakeStationUnAvailableAsync(stationID, rfidCode, null);
+        }
+        
+        public void MakeStationUnAvailableAsync(long stationID, string rfidCode, object userState) {
+            if ((this.onBeginMakeStationUnAvailableDelegate == null)) {
+                this.onBeginMakeStationUnAvailableDelegate = new BeginOperationDelegate(this.OnBeginMakeStationUnAvailable);
+            }
+            if ((this.onEndMakeStationUnAvailableDelegate == null)) {
+                this.onEndMakeStationUnAvailableDelegate = new EndOperationDelegate(this.OnEndMakeStationUnAvailable);
+            }
+            if ((this.onMakeStationUnAvailableCompletedDelegate == null)) {
+                this.onMakeStationUnAvailableCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnMakeStationUnAvailableCompleted);
+            }
+            base.InvokeAsync(this.onBeginMakeStationUnAvailableDelegate, new object[] {
+                        stationID,
+                        rfidCode}, this.onEndMakeStationUnAvailableDelegate, this.onMakeStationUnAvailableCompletedDelegate, userState);
+        }
+        
         public bool MakeStationAvailable(long stationID) {
             return base.Channel.MakeStationAvailable(stationID);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginMakeStationAvailable(long stationID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginMakeStationAvailable(stationID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndMakeStationAvailable(System.IAsyncResult result) {
+            return base.Channel.EndMakeStationAvailable(result);
+        }
+        
+        private System.IAsyncResult OnBeginMakeStationAvailable(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long stationID = ((long)(inValues[0]));
+            return this.BeginMakeStationAvailable(stationID, callback, asyncState);
+        }
+        
+        private object[] OnEndMakeStationAvailable(System.IAsyncResult result) {
+            bool retVal = this.EndMakeStationAvailable(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnMakeStationAvailableCompleted(object state) {
+            if ((this.MakeStationAvailableCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.MakeStationAvailableCompleted(this, new MakeStationAvailableCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void MakeStationAvailableAsync(long stationID) {
+            this.MakeStationAvailableAsync(stationID, null);
+        }
+        
+        public void MakeStationAvailableAsync(long stationID, object userState) {
+            if ((this.onBeginMakeStationAvailableDelegate == null)) {
+                this.onBeginMakeStationAvailableDelegate = new BeginOperationDelegate(this.OnBeginMakeStationAvailable);
+            }
+            if ((this.onEndMakeStationAvailableDelegate == null)) {
+                this.onEndMakeStationAvailableDelegate = new EndOperationDelegate(this.OnEndMakeStationAvailable);
+            }
+            if ((this.onMakeStationAvailableCompletedDelegate == null)) {
+                this.onMakeStationAvailableCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnMakeStationAvailableCompleted);
+            }
+            base.InvokeAsync(this.onBeginMakeStationAvailableDelegate, new object[] {
+                        stationID}, this.onEndMakeStationAvailableDelegate, this.onMakeStationAvailableCompletedDelegate, userState);
         }
         
         public bool MessageRead(long messageID) {
             return base.Channel.MessageRead(messageID);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginMessageRead(long messageID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginMessageRead(messageID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndMessageRead(System.IAsyncResult result) {
+            return base.Channel.EndMessageRead(result);
+        }
+        
+        private System.IAsyncResult OnBeginMessageRead(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long messageID = ((long)(inValues[0]));
+            return this.BeginMessageRead(messageID, callback, asyncState);
+        }
+        
+        private object[] OnEndMessageRead(System.IAsyncResult result) {
+            bool retVal = this.EndMessageRead(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnMessageReadCompleted(object state) {
+            if ((this.MessageReadCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.MessageReadCompleted(this, new MessageReadCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void MessageReadAsync(long messageID) {
+            this.MessageReadAsync(messageID, null);
+        }
+        
+        public void MessageReadAsync(long messageID, object userState) {
+            if ((this.onBeginMessageReadDelegate == null)) {
+                this.onBeginMessageReadDelegate = new BeginOperationDelegate(this.OnBeginMessageRead);
+            }
+            if ((this.onEndMessageReadDelegate == null)) {
+                this.onEndMessageReadDelegate = new EndOperationDelegate(this.OnEndMessageRead);
+            }
+            if ((this.onMessageReadCompletedDelegate == null)) {
+                this.onMessageReadCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnMessageReadCompleted);
+            }
+            base.InvokeAsync(this.onBeginMessageReadDelegate, new object[] {
+                        messageID}, this.onEndMessageReadDelegate, this.onMessageReadCompletedDelegate, userState);
+        }
+        
         public eAd.Website.eAdDataService.CustomerViewModel GetCustomerByRFID(string tag) {
             return base.Channel.GetCustomerByRFID(tag);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetCustomerByRFID(string tag, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetCustomerByRFID(tag, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public eAd.Website.eAdDataService.CustomerViewModel EndGetCustomerByRFID(System.IAsyncResult result) {
+            return base.Channel.EndGetCustomerByRFID(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetCustomerByRFID(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string tag = ((string)(inValues[0]));
+            return this.BeginGetCustomerByRFID(tag, callback, asyncState);
+        }
+        
+        private object[] OnEndGetCustomerByRFID(System.IAsyncResult result) {
+            eAd.Website.eAdDataService.CustomerViewModel retVal = this.EndGetCustomerByRFID(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetCustomerByRFIDCompleted(object state) {
+            if ((this.GetCustomerByRFIDCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetCustomerByRFIDCompleted(this, new GetCustomerByRFIDCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetCustomerByRFIDAsync(string tag) {
+            this.GetCustomerByRFIDAsync(tag, null);
+        }
+        
+        public void GetCustomerByRFIDAsync(string tag, object userState) {
+            if ((this.onBeginGetCustomerByRFIDDelegate == null)) {
+                this.onBeginGetCustomerByRFIDDelegate = new BeginOperationDelegate(this.OnBeginGetCustomerByRFID);
+            }
+            if ((this.onEndGetCustomerByRFIDDelegate == null)) {
+                this.onEndGetCustomerByRFIDDelegate = new EndOperationDelegate(this.OnEndGetCustomerByRFID);
+            }
+            if ((this.onGetCustomerByRFIDCompletedDelegate == null)) {
+                this.onGetCustomerByRFIDCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetCustomerByRFIDCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetCustomerByRFIDDelegate, new object[] {
+                        tag}, this.onEndGetCustomerByRFIDDelegate, this.onGetCustomerByRFIDCompletedDelegate, userState);
         }
         
         public bool SendMessageToStation(long stationID, eAd.Website.eAdDataService.MessageViewModel message) {
             return base.Channel.SendMessageToStation(stationID, message);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginSendMessageToStation(long stationID, eAd.Website.eAdDataService.MessageViewModel message, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSendMessageToStation(stationID, message, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndSendMessageToStation(System.IAsyncResult result) {
+            return base.Channel.EndSendMessageToStation(result);
+        }
+        
+        private System.IAsyncResult OnBeginSendMessageToStation(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long stationID = ((long)(inValues[0]));
+            eAd.Website.eAdDataService.MessageViewModel message = ((eAd.Website.eAdDataService.MessageViewModel)(inValues[1]));
+            return this.BeginSendMessageToStation(stationID, message, callback, asyncState);
+        }
+        
+        private object[] OnEndSendMessageToStation(System.IAsyncResult result) {
+            bool retVal = this.EndSendMessageToStation(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnSendMessageToStationCompleted(object state) {
+            if ((this.SendMessageToStationCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SendMessageToStationCompleted(this, new SendMessageToStationCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SendMessageToStationAsync(long stationID, eAd.Website.eAdDataService.MessageViewModel message) {
+            this.SendMessageToStationAsync(stationID, message, null);
+        }
+        
+        public void SendMessageToStationAsync(long stationID, eAd.Website.eAdDataService.MessageViewModel message, object userState) {
+            if ((this.onBeginSendMessageToStationDelegate == null)) {
+                this.onBeginSendMessageToStationDelegate = new BeginOperationDelegate(this.OnBeginSendMessageToStation);
+            }
+            if ((this.onEndSendMessageToStationDelegate == null)) {
+                this.onEndSendMessageToStationDelegate = new EndOperationDelegate(this.OnEndSendMessageToStation);
+            }
+            if ((this.onSendMessageToStationCompletedDelegate == null)) {
+                this.onSendMessageToStationCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSendMessageToStationCompleted);
+            }
+            base.InvokeAsync(this.onBeginSendMessageToStationDelegate, new object[] {
+                        stationID,
+                        message}, this.onEndSendMessageToStationDelegate, this.onSendMessageToStationCompletedDelegate, userState);
+        }
+        
         public bool SendMessageToGroup(long groupID, eAd.Website.eAdDataService.MessageViewModel message) {
             return base.Channel.SendMessageToGroup(groupID, message);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginSendMessageToGroup(long groupID, eAd.Website.eAdDataService.MessageViewModel message, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSendMessageToGroup(groupID, message, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndSendMessageToGroup(System.IAsyncResult result) {
+            return base.Channel.EndSendMessageToGroup(result);
+        }
+        
+        private System.IAsyncResult OnBeginSendMessageToGroup(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long groupID = ((long)(inValues[0]));
+            eAd.Website.eAdDataService.MessageViewModel message = ((eAd.Website.eAdDataService.MessageViewModel)(inValues[1]));
+            return this.BeginSendMessageToGroup(groupID, message, callback, asyncState);
+        }
+        
+        private object[] OnEndSendMessageToGroup(System.IAsyncResult result) {
+            bool retVal = this.EndSendMessageToGroup(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnSendMessageToGroupCompleted(object state) {
+            if ((this.SendMessageToGroupCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SendMessageToGroupCompleted(this, new SendMessageToGroupCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SendMessageToGroupAsync(long groupID, eAd.Website.eAdDataService.MessageViewModel message) {
+            this.SendMessageToGroupAsync(groupID, message, null);
+        }
+        
+        public void SendMessageToGroupAsync(long groupID, eAd.Website.eAdDataService.MessageViewModel message, object userState) {
+            if ((this.onBeginSendMessageToGroupDelegate == null)) {
+                this.onBeginSendMessageToGroupDelegate = new BeginOperationDelegate(this.OnBeginSendMessageToGroup);
+            }
+            if ((this.onEndSendMessageToGroupDelegate == null)) {
+                this.onEndSendMessageToGroupDelegate = new EndOperationDelegate(this.OnEndSendMessageToGroup);
+            }
+            if ((this.onSendMessageToGroupCompletedDelegate == null)) {
+                this.onSendMessageToGroupCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSendMessageToGroupCompleted);
+            }
+            base.InvokeAsync(this.onBeginSendMessageToGroupDelegate, new object[] {
+                        groupID,
+                        message}, this.onEndSendMessageToGroupDelegate, this.onSendMessageToGroupCompletedDelegate, userState);
         }
         
         public eAd.Website.eAdDataService.MessageViewModel[] GetAllMyMessages(long clientID) {
             return base.Channel.GetAllMyMessages(clientID);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetAllMyMessages(long clientID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetAllMyMessages(clientID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public eAd.Website.eAdDataService.MessageViewModel[] EndGetAllMyMessages(System.IAsyncResult result) {
+            return base.Channel.EndGetAllMyMessages(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetAllMyMessages(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long clientID = ((long)(inValues[0]));
+            return this.BeginGetAllMyMessages(clientID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetAllMyMessages(System.IAsyncResult result) {
+            eAd.Website.eAdDataService.MessageViewModel[] retVal = this.EndGetAllMyMessages(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetAllMyMessagesCompleted(object state) {
+            if ((this.GetAllMyMessagesCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetAllMyMessagesCompleted(this, new GetAllMyMessagesCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetAllMyMessagesAsync(long clientID) {
+            this.GetAllMyMessagesAsync(clientID, null);
+        }
+        
+        public void GetAllMyMessagesAsync(long clientID, object userState) {
+            if ((this.onBeginGetAllMyMessagesDelegate == null)) {
+                this.onBeginGetAllMyMessagesDelegate = new BeginOperationDelegate(this.OnBeginGetAllMyMessages);
+            }
+            if ((this.onEndGetAllMyMessagesDelegate == null)) {
+                this.onEndGetAllMyMessagesDelegate = new EndOperationDelegate(this.OnEndGetAllMyMessages);
+            }
+            if ((this.onGetAllMyMessagesCompletedDelegate == null)) {
+                this.onGetAllMyMessagesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAllMyMessagesCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetAllMyMessagesDelegate, new object[] {
+                        clientID}, this.onEndGetAllMyMessagesDelegate, this.onGetAllMyMessagesCompletedDelegate, userState);
+        }
+        
         public eAd.Website.eAdDataService.CustomerViewModel[] GetAllCustomers() {
             return base.Channel.GetAllCustomers();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetAllCustomers(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetAllCustomers(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public eAd.Website.eAdDataService.CustomerViewModel[] EndGetAllCustomers(System.IAsyncResult result) {
+            return base.Channel.EndGetAllCustomers(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetAllCustomers(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetAllCustomers(callback, asyncState);
+        }
+        
+        private object[] OnEndGetAllCustomers(System.IAsyncResult result) {
+            eAd.Website.eAdDataService.CustomerViewModel[] retVal = this.EndGetAllCustomers(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetAllCustomersCompleted(object state) {
+            if ((this.GetAllCustomersCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetAllCustomersCompleted(this, new GetAllCustomersCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetAllCustomersAsync() {
+            this.GetAllCustomersAsync(null);
+        }
+        
+        public void GetAllCustomersAsync(object userState) {
+            if ((this.onBeginGetAllCustomersDelegate == null)) {
+                this.onBeginGetAllCustomersDelegate = new BeginOperationDelegate(this.OnBeginGetAllCustomers);
+            }
+            if ((this.onEndGetAllCustomersDelegate == null)) {
+                this.onEndGetAllCustomersDelegate = new EndOperationDelegate(this.OnEndGetAllCustomers);
+            }
+            if ((this.onGetAllCustomersCompletedDelegate == null)) {
+                this.onGetAllCustomersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAllCustomersCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetAllCustomersDelegate, null, this.onEndGetAllCustomersDelegate, this.onGetAllCustomersCompletedDelegate, userState);
         }
         
         public eAd.Website.eAdDataService.StationViewModel[] GetAllStations() {
             return base.Channel.GetAllStations();
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetAllStations(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetAllStations(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public eAd.Website.eAdDataService.StationViewModel[] EndGetAllStations(System.IAsyncResult result) {
+            return base.Channel.EndGetAllStations(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetAllStations(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetAllStations(callback, asyncState);
+        }
+        
+        private object[] OnEndGetAllStations(System.IAsyncResult result) {
+            eAd.Website.eAdDataService.StationViewModel[] retVal = this.EndGetAllStations(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetAllStationsCompleted(object state) {
+            if ((this.GetAllStationsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetAllStationsCompleted(this, new GetAllStationsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetAllStationsAsync() {
+            this.GetAllStationsAsync(null);
+        }
+        
+        public void GetAllStationsAsync(object userState) {
+            if ((this.onBeginGetAllStationsDelegate == null)) {
+                this.onBeginGetAllStationsDelegate = new BeginOperationDelegate(this.OnBeginGetAllStations);
+            }
+            if ((this.onEndGetAllStationsDelegate == null)) {
+                this.onEndGetAllStationsDelegate = new EndOperationDelegate(this.OnEndGetAllStations);
+            }
+            if ((this.onGetAllStationsCompletedDelegate == null)) {
+                this.onGetAllStationsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAllStationsCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetAllStationsDelegate, null, this.onEndGetAllStationsDelegate, this.onGetAllStationsCompletedDelegate, userState);
+        }
+        
         public eAd.Website.eAdDataService.StationViewModel[] GetOnlineStations() {
             return base.Channel.GetOnlineStations();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetOnlineStations(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetOnlineStations(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public eAd.Website.eAdDataService.StationViewModel[] EndGetOnlineStations(System.IAsyncResult result) {
+            return base.Channel.EndGetOnlineStations(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetOnlineStations(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetOnlineStations(callback, asyncState);
+        }
+        
+        private object[] OnEndGetOnlineStations(System.IAsyncResult result) {
+            eAd.Website.eAdDataService.StationViewModel[] retVal = this.EndGetOnlineStations(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetOnlineStationsCompleted(object state) {
+            if ((this.GetOnlineStationsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetOnlineStationsCompleted(this, new GetOnlineStationsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetOnlineStationsAsync() {
+            this.GetOnlineStationsAsync(null);
+        }
+        
+        public void GetOnlineStationsAsync(object userState) {
+            if ((this.onBeginGetOnlineStationsDelegate == null)) {
+                this.onBeginGetOnlineStationsDelegate = new BeginOperationDelegate(this.OnBeginGetOnlineStations);
+            }
+            if ((this.onEndGetOnlineStationsDelegate == null)) {
+                this.onEndGetOnlineStationsDelegate = new EndOperationDelegate(this.OnEndGetOnlineStations);
+            }
+            if ((this.onGetOnlineStationsCompletedDelegate == null)) {
+                this.onGetOnlineStationsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetOnlineStationsCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetOnlineStationsDelegate, null, this.onEndGetOnlineStationsDelegate, this.onGetOnlineStationsCompletedDelegate, userState);
         }
     }
 }

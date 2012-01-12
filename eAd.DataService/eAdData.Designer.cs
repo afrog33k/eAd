@@ -625,7 +625,7 @@ namespace eAd.DataAccess
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> BatteryCycle
+        public Nullable<global::System.Double> BatteryCycle
         {
             get
             {
@@ -640,8 +640,8 @@ namespace eAd.DataAccess
                 OnBatteryCycleChanged();
             }
         }
-        private Nullable<global::System.Int32> _BatteryCycle;
-        partial void OnBatteryCycleChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Double> _BatteryCycle;
+        partial void OnBatteryCycleChanging(Nullable<global::System.Double> value);
         partial void OnBatteryCycleChanged();
 
         #endregion

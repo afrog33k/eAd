@@ -13,7 +13,7 @@
 <table>
     <tr>
       <th>
-            ID
+            ID (GreenLots ID)
         </th>
         <th>
             Location
@@ -37,7 +37,7 @@
     <tr>
       <td>
             @Html.DisplayFor(modelItem => item.StationID) 
-       
+       ( @Html.DisplayFor(modelItem => item.UniqueID))
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Location) 

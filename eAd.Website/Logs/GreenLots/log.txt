@@ -28,3 +28,13 @@ Date: 4:26 PM
 Date: 4:26 PM 
 Date: 4:26 PM 
 --------------- Data Received End---------------
+Date: 12:50 PM 1/10/2012 12:50:11 PM Stop   ID: 100033 xmlUrl: http://www.greenlots.com/proton/proton_xml/100024-1326169466.xml
+Date: 12:50 PM 1/10/2012 12:50:49 PM Stop   ID: 100033 xmlUrl: http://www.greenlots.com/proton/proton_xml/100024-1326169466.xml
+Date: 12:51 PM 1/10/2012 12:51:58 PM Stop   ID: 100033 xmlUrl: http://www.greenlots.com/proton/proton_xml/100024-1326169466.xml
+Date: 1:10 PM 1/10/2012 1:10:29 PM Stop   ID: 100033 xmlUrl: http://www.greenlots.com/proton/proton_xml/100024-1326169466.xml
+Date: 1:10 PM 
+--------------- Data Received  ---------------
+Date: 1:10 PM 
+Date: 1:10 PM 
+--------------- Data Received End---------------
+Date: 1:11 PM 1/10/2012 1:11:02 PM Stop ID: 100033 xmlUrl: http://www.greenlots.com/proton/proton_xml/100024-1326169466.xmlUpdated Database

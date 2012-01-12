@@ -27,6 +27,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetMyMedia">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationID" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyMediaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" minOccurs="0" name="GetMyMediaResult" nillable="true" type="q1:ArrayOfMediaListModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="DoIHaveUpdates">
     <xs:complexType>
       <xs:sequence>
@@ -94,7 +108,7 @@
   <xs:element name="GetCustomerByRFIDResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" minOccurs="0" name="GetCustomerByRFIDResult" nillable="true" type="q1:CustomerViewModel" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" minOccurs="0" name="GetCustomerByRFIDResult" nillable="true" type="q2:CustomerViewModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -102,7 +116,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="stationID" type="xs:long" />
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" minOccurs="0" name="message" nillable="true" type="q2:MessageViewModel" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" minOccurs="0" name="message" nillable="true" type="q3:MessageViewModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -117,7 +131,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="groupID" type="xs:long" />
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" minOccurs="0" name="message" nillable="true" type="q3:MessageViewModel" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" minOccurs="0" name="message" nillable="true" type="q4:MessageViewModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -138,7 +152,7 @@
   <xs:element name="GetAllMyMessagesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" minOccurs="0" name="GetAllMyMessagesResult" nillable="true" type="q4:ArrayOfMessageViewModel" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" minOccurs="0" name="GetAllMyMessagesResult" nillable="true" type="q5:ArrayOfMessageViewModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -150,7 +164,7 @@
   <xs:element name="GetAllCustomersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" minOccurs="0" name="GetAllCustomersResult" nillable="true" type="q5:ArrayOfCustomerViewModel" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" minOccurs="0" name="GetAllCustomersResult" nillable="true" type="q6:ArrayOfCustomerViewModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -162,7 +176,7 @@
   <xs:element name="GetAllStationsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" minOccurs="0" name="GetAllStationsResult" nillable="true" type="q6:ArrayOfStationViewModel" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" minOccurs="0" name="GetAllStationsResult" nillable="true" type="q7:ArrayOfStationViewModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -174,7 +188,7 @@
   <xs:element name="GetOnlineStationsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" minOccurs="0" name="GetOnlineStationsResult" nillable="true" type="q7:ArrayOfStationViewModel" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" minOccurs="0" name="GetOnlineStationsResult" nillable="true" type="q8:ArrayOfStationViewModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

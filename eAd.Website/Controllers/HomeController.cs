@@ -21,25 +21,28 @@ namespace eAd.Website.Controllers
                 Station station;
                 Customer customer;
                 Car car;
+
+                StreamReader reader = new StreamReader(WebRequest.Create(xmlUrl).GetResponse().GetResponseStream());
+                XmlSerializer xSerializer = new XmlSerializer(typeof(proton));
+                proton greenlotsInfo = (proton)xSerializer.Deserialize(reader);
+
                     if(db.Stations.Where(s=>s.UniqueID==stationID).Count() <=0)
                     {
-                     station  = new Station();
-                        station.UniqueID = stationID;
+                        station = new Station {UniqueID = stationID};
                         db.Stations.AddObject(station);
                         db.SaveChanges();
                     }
                     else
                     {
-                        station = db.Stations.Where(s => s.UniqueID == stationID).FirstOrDefault();
+                        station = db.Stations.Where(s => s.UniqueID.Trim() == stationID.Trim()).FirstOrDefault();
+                        
                     }
 
                 
 
                 string path = httpContext.Server.MapPath("~/Logs/GreenLots/" + "log.txt");
             
-            StreamReader reader = new StreamReader(WebRequest.Create(xmlUrl).GetResponse().GetResponseStream());
-            XmlSerializer xSerializer = new XmlSerializer(typeof(proton));
-            proton greenlotsInfo = (proton)xSerializer.Deserialize(reader);
+        
 
                 if (station != null)
                 {
@@ -97,7 +100,7 @@ namespace eAd.Website.Controllers
                     car.Make = carInfo.make;
                     car.Model = carInfo.model;
                     car.TotalUsage =Convert.ToDouble(carInfo.total_usage);
-                    car.BatteryCycle =Convert.ToInt32(carInfo.battery_cycle);
+                    car.BatteryCycle = Convert.ToDouble(carInfo.battery_cycle);
                     //Fix up date
                     var datetxt = history.end;
                   datetxt=  datetxt.Replace("Today", DateTime.Now.Date.ToShortDateString());
@@ -108,20 +111,22 @@ namespace eAd.Website.Controllers
 
 
 
-                Logger.WriteLine(path, "\n--------------- Data Received ---------------");
+                Logger.WriteLine(path, "\n--------------- Data Received  ---------------");
                 Logger.WriteLine(path, (string) greenlotsInfo.User.information[0].address);
              //   Logger.WriteLine(path, greenlotsInfo.email);
                 Logger.WriteLine(path, "\n--------------- Data Received End---------------");
 
             db.SaveChanges();
 
-                if (station != null && car != null&&start)
-                        Service.MakeStationUnAvailable(station.StationID, car.RFID);
-                else
-                {
-                    if (station != null && car != null)
-                        Service.MakeStationAvailable(station.StationID);
-                }
+            if (station != null && car != null && start)
+            {
+                Service.MakeStationUnAvailable(station.StationID, car.RFID);
+            }
+            else
+            {
+                if (station != null && car != null)
+                    Service.MakeStationAvailable(station.StationID);
+            }
             }
             catch (Exception)
             {
@@ -133,7 +138,12 @@ namespace eAd.Website.Controllers
         public ActionResult GreenLotsLog()
         {
             string path =  this.HttpContext.Server.MapPath("~/Logs/GreenLots/" + "log.txt");
-            return Content(new StreamReader(path).ReadToEnd().Replace("\n","<br/>"));
+            using (
+              FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
+              )
+            {
+                return Content(new StreamReader(stream).ReadToEnd().Replace("\n", "<br/>"));
+            }
         }
         public ActionResult Index()
         {

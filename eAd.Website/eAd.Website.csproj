@@ -1237,6 +1237,7 @@
     <None Include="Content\Images\.svn\text-base\wondrous.tif.svn-base" />
     <None Include="Content\Images\Thumbs.db" />
     <None Include="Properties\DataSources\eAd.DataViewModels.CustomerViewModel.datasource" />
+    <None Include="Properties\DataSources\eAd.DataViewModels.MediaListModel.datasource" />
     <None Include="Properties\DataSources\eAd.DataViewModels.MessageViewModel.datasource" />
     <None Include="Properties\DataSources\eAd.DataViewModels.StationViewModel.datasource" />
     <None Include="Scripts\.svn\all-wcprops" />
@@ -1269,16 +1270,6 @@
     <None Include="Scripts\txtdropdown\.svn\text-base\txtdropdown-btn.png.svn-base" />
     <None Include="Scripts\txtdropdown\.svn\text-base\txtdropdown.css.svn-base" />
     <None Include="Scripts\txtdropdown\.svn\text-base\txtdropdown.js.svn-base" />
-    <None Include="Service References\eAdDataService\eAd.Website.eAdDataService.CustomerViewModel.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\eAdDataService\eAd.Website.eAdDataService.MessageViewModel.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\eAdDataService\eAd.Website.eAdDataService.StationViewModel.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\eAdDataService\Service.disco" />
     <None Include="Service References\eAdDataService\configuration91.svcinfo" />
     <None Include="Service References\eAdDataService\configuration.svcinfo" />
     <None Include="Service References\eAdDataService\Reference.svcmap">
@@ -1295,6 +1286,7 @@
     <Content Include="Scripts\txtdropdown\txtdropdown-btn.png" />
     <Content Include="Scripts\txtdropdown\txtdropdown.css" />
     <Content Include="Scripts\txtdropdown\txtdropdown.js" />
+    <None Include="Service References\eAdDataService\Service1.disco" />
     <Content Include="Tools\FFmpeg\avconv.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1369,16 +1361,6 @@
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <None Include="Service References\eAdDataService\Service.wsdl" />
-    <None Include="Service References\eAdDataService\Service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\eAdDataService\Service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\eAdDataService\Service2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\Cars\Index.cshtml" />
     <Content Include="Views\Cars\Details.cshtml" />
     <Content Include="Views\Cars\Create.cshtml" />
@@ -1420,6 +1402,16 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Map\Index.cshtml" />
+    <None Include="Service References\eAdDataService\Service1.wsdl" />
+    <None Include="Service References\eAdDataService\Service3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\eAdDataService\Service31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\eAdDataService\Service32.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Tools\FFmpeg\presets\libvpx-1080p.ffpreset" />
     <None Include="Tools\FFmpeg\presets\libvpx-1080p50_60.ffpreset" />
     <None Include="Tools\FFmpeg\presets\libvpx-360p.ffpreset" />
@@ -1517,7 +1509,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1085</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/website</IISUrl>
+          <IISUrl>http://localhost/eAd.Website</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

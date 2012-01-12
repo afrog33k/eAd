@@ -75,7 +75,7 @@
           <Property Name="DateAdded" Type="datetime" />
           <Property Name="RFID" Type="nvarchar" MaxLength="100" />
           <Property Name="TotalUsage" Type="float" />
-          <Property Name="BatteryCycle" Type="int" />
+          <Property Name="BatteryCycle" Type="float" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
@@ -395,7 +395,7 @@
           <NavigationProperty Name="Customer" Relationship="eAdData.FK_CarCustomer" FromRole="Car" ToRole="Customer" />
           <Property Type="String" Name="RFID" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="Double" Name="TotalUsage" />
-          <Property Type="Int32" Name="BatteryCycle" />
+          <Property Type="Double" Name="BatteryCycle" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>

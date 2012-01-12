@@ -5,7 +5,7 @@ namespace eAd.Website.Controllers
 {
     public static class Logger
     {
-        public static void WriteLine(string path,string text)
+        public static void WriteLine(string path, string text)
         {
             //   string path = httpContext.Server.MapPath("~/Logs/GreenLots/" + "log.txt");
 
@@ -16,17 +16,23 @@ namespace eAd.Website.Controllers
                 // Create a file to write to.
                 using (StreamWriter log = File.CreateText(path))
                 {
-                    log.WriteLine("Date: " + DateTime.Now.ToShortTimeString()+ " " + text);
+                    log.WriteLine("Date: " + DateTime.Now.ToShortTimeString() + " " + text);
                 }
             }
 
-            // This text is always added, making the file longer over time
-            // if it is not deleted.
-            using (StreamWriter log = System.IO.File.AppendText(path))
+
+            using (
+                FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Write, FileShare.ReadWrite)
+                )
             {
-                log.WriteLine("Date: " + DateTime.Now.ToShortTimeString() + " " + text);
-           
-           
+                // This text is always added, making the file longer over time
+                // if it is not deleted.
+                using (StreamWriter log = new StreamWriter(stream))
+                {
+                    log.WriteLine("Date: " + DateTime.Now.ToShortTimeString() + " " + text);
+
+
+                }
             }
         }
     }
