@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,7 +23,18 @@ namespace eAd.Website.Controllers
     
             return View();
         }
-        
+
+        public ActionResult Preview(int id)
+        {
+            ViewBag.Media = db.Media.ToList();
+           
+            var mosaic = db.Mosaics.Where(m => m.MosaicID == id).FirstOrDefault();
+
+           ViewBag.Positions= mosaic.Positions.Select(d => d.CreateModel()).ToList();
+
+            return View(mosaic);
+        }
+
         [HttpPost]
         public ActionResult Create(string name)
         {
@@ -48,7 +60,7 @@ namespace eAd.Website.Controllers
             return null;
         }
 
-        public ActionResult SavePosition(long id, string name, float x = 0, float y = 0, float width = 0, float height = 0)
+        public ActionResult SavePosition(long id, string name, float x = 0, float y = 0, float width = 0, float height = 0, List<string> items=null)
         {
             if(db.Mosaics.Where(m=>m.MosaicID==id).Count()>0)
            {
@@ -74,6 +86,25 @@ namespace eAd.Website.Controllers
                    position.Width = width;
                    position.Height = height;
                }
+               var list = position.Media.ToList();
+
+               foreach (var medium in list)
+               {
+                   position.Media.Remove(medium);
+               }
+               db.SaveChanges();
+
+               foreach (var item in items)
+               {
+                    if(!String.IsNullOrEmpty(item))
+                   if(position.Media.Where(i=>i.Name==item).Count()<=0)
+                   {
+                       var nname = Path.GetFileNameWithoutExtension(item).Replace("Thumb","");
+                          //item.Remove("Uploads/Temp/Media/Thumb".Length);
+                      // name = 
+                       position.Media.Add(db.Media.Where(m => m.Location.Contains(nname)).FirstOrDefault());
+                   }
+               }
 
                db.SaveChanges();
                return Json("Sucessfully Saved Position", JsonRequestBehavior.AllowGet);
@@ -84,7 +115,6 @@ namespace eAd.Website.Controllers
            {
                return Json("Invalid Mosiac, Please Choose One Before Saving",JsonRequestBehavior.AllowGet);
            }
-            return null;
         }
     }
 }

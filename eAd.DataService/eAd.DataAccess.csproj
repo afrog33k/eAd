@@ -93,7 +93,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>eAdData.edmx</DependentUpon>
     </Compile>
+    <Compile Include="FileDownloadMessage.cs" />
+    <Compile Include="FileDownloadReturnMessage.cs" />
+    <Compile Include="FileMetaData.cs" />
+    <Compile Include="FileTransferService.cs" />
+    <Compile Include="FileUploadMessage.cs" />
     <Compile Include="IDataAccessServiceCallback.cs" />
+    <Compile Include="IFileTransferService.cs" />
     <Compile Include="Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>

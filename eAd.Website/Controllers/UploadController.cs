@@ -92,7 +92,8 @@ namespace eAd.Website.Controllers
                     var postedFile = Request.Files[file];
                     string thumbPath;
                     TimeSpan aduration;
-                    UploadRepository.StoreMediaTemp(HttpContext, postedFile, _type, out thumbPath, out uploadPath, out aduration);
+                    string filetype;
+                    UploadRepository.StoreMediaTemp(HttpContext, postedFile, _type, out thumbPath, out uploadPath, out aduration, out filetype);
                     // Return JSON
                     if (postedFile != null)
                     {
@@ -104,9 +105,9 @@ namespace eAd.Website.Controllers
                                                    new
                                                        {
                                                            message =
-                                                   string.Format("{0} uploaded successfully.", postedFile.FileName),
+                                                   string.Format("Uploaded {0} successfully.", postedFile.FileName),
                                                            thumbnail = _path +"/"+ thumbPath.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty),
-                                                           type = MimeExtensionHelper.FindMime(uploadPath, true),
+                                                           type = !String.IsNullOrEmpty(filetype)?filetype : MimeExtensionHelper.FindMime(uploadPath, true),
                                                            text = MimeExtensionHelper.FindMime(uploadPath, true).Contains("text") ? thumbPath : "",
                                                            path = uploadPath.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty),
                                                            duration = aduration.ToString()

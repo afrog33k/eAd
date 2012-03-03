@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace eAd.DataViewModels
 {
@@ -167,6 +168,9 @@ namespace eAd.DataViewModels
                     _height = (value);
                 }
             }
+
+            public List<long> Media { get; set; }
+
             private Nullable<Double> _height;
          
 

@@ -4,7 +4,10 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost/DataAccess/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost/DataAccess/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost/DataAccess/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" />
+      <xsd:import schemaLocation="http://localhost/DataAccess/Service.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/Message" />
+      <xsd:import schemaLocation="http://localhost/DataAccess/Service.svc?xsd=xsd3" namespace="http://schemas.acme.it/2009/04" />
+      <xsd:import schemaLocation="http://localhost/DataAccess/Service.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/eAd.DataAccess" />
+      <xsd:import schemaLocation="http://localhost/DataAccess/Service.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService_GetHi_InputMessage">
@@ -12,6 +15,24 @@
   </wsdl:message>
   <wsdl:message name="IService_GetHi_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetHiResponse" />
+  </wsdl:message>
+  <wsdl:message name="FileUploadMessage">
+    <wsdl:part name="parameters" element="tns:FileUploadMessage" />
+  </wsdl:message>
+  <wsdl:message name="FileUploadMessage_Headers">
+    <wsdl:part name="MetaData" element="tns:MetaData" />
+  </wsdl:message>
+  <wsdl:message name="FileDownloadMessage">
+    <wsdl:part name="parameters" element="tns:FileDownloadMessage" />
+  </wsdl:message>
+  <wsdl:message name="FileDownloadMessage_Headers">
+    <wsdl:part name="MetaData" element="tns:MetaData" />
+  </wsdl:message>
+  <wsdl:message name="FileDownloadReturnMessage">
+    <wsdl:part name="parameters" element="tns:FileDownloadReturnMessage" />
+  </wsdl:message>
+  <wsdl:message name="FileDownloadReturnMessage_Headers">
+    <wsdl:part name="DownloadedFileMetadata" element="tns:DownloadedFileMetadata" />
   </wsdl:message>
   <wsdl:message name="IService_SayHi_InputMessage">
     <wsdl:part name="parameters" element="tns:SayHi" />
@@ -48,6 +69,12 @@
   </wsdl:message>
   <wsdl:message name="IService_MessageRead_OutputMessage">
     <wsdl:part name="parameters" element="tns:MessageReadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CaptureScreenShot_InputMessage">
+    <wsdl:part name="parameters" element="tns:CaptureScreenShot" />
+  </wsdl:message>
+  <wsdl:message name="IService_CaptureScreenShot_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CaptureScreenShotResponse" />
   </wsdl:message>
   <wsdl:message name="IService_GetCustomerByRFID_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCustomerByRFID" />
@@ -96,6 +123,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService/GetHi" message="tns:IService_GetHi_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/GetHiResponse" message="tns:IService_GetHi_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/UploadFile" name="FileUploadMessage" message="tns:FileUploadMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DownloadFile" name="FileDownloadMessage" message="tns:FileDownloadMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DownloadFileResponse" name="FileDownloadReturnMessage" message="tns:FileDownloadReturnMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SayHi">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/SayHi" message="tns:IService_SayHi_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/SayHiResponse" message="tns:IService_SayHi_OutputMessage" />
@@ -119,6 +153,10 @@
     <wsdl:operation name="MessageRead">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/MessageRead" message="tns:IService_MessageRead_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/MessageReadResponse" message="tns:IService_MessageRead_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CaptureScreenShot">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CaptureScreenShot" message="tns:IService_CaptureScreenShot_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CaptureScreenShotResponse" message="tns:IService_CaptureScreenShot_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetCustomerByRFID">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/GetCustomerByRFID" message="tns:IService_GetCustomerByRFID_InputMessage" />
@@ -157,6 +195,24 @@
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <soap:operation soapAction="http://tempuri.org/IService/UploadFile" style="document" />
+      <wsdl:input name="FileUploadMessage">
+        <soap:header message="tns:FileUploadMessage_Headers" part="MetaData" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFile">
+      <soap:operation soapAction="http://tempuri.org/IService/DownloadFile" style="document" />
+      <wsdl:input name="FileDownloadMessage">
+        <soap:header message="tns:FileDownloadMessage_Headers" part="MetaData" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="FileDownloadReturnMessage">
+        <soap:header message="tns:FileDownloadReturnMessage_Headers" part="DownloadedFileMetadata" use="literal" />
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -207,6 +263,15 @@
     </wsdl:operation>
     <wsdl:operation name="MessageRead">
       <soap:operation soapAction="http://tempuri.org/IService/MessageRead" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CaptureScreenShot">
+      <soap:operation soapAction="http://tempuri.org/IService/CaptureScreenShot" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

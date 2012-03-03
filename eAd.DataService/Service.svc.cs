@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
+using System.ServiceModel;
 using eAd.DataViewModels;
 
 namespace eAd.DataAccess
@@ -23,6 +26,58 @@ namespace eAd.DataAccess
             return "Hi";
 
         }
+
+        public void UploadFile(FileMetaData MetaData, FileStream stream)
+        {
+            // PARAMETERS VALIDATION OMITTED FOR CLARITY
+            try
+            {
+                string basePath = ConfigurationManager.AppSettings["FileTransferPath"];
+                string serverFileName = Path.Combine(basePath, MetaData.RemoteFileName);
+
+                using (FileStream outfile = new FileStream(serverFileName, FileMode.Create))
+                {
+                    const int bufferSize = 65536; // 64K
+
+                    Byte[] buffer = new Byte[bufferSize];
+                    int bytesRead = stream.Read(buffer, 0, bufferSize);
+
+                    while (bytesRead > 0)
+                    {
+                        outfile.Write(buffer, 0, bytesRead);
+                        bytesRead = stream.Read(buffer, 0, bufferSize);
+                    }
+                }
+            }
+            catch (IOException e)
+            {
+                throw new FaultException<IOException>(e);
+            }
+        }
+
+       
+            public FileDownloadReturnMessage DownloadFile(FileDownloadMessage request)
+{
+    // PARAMETERS VALIDATION OMITTED FOR CLARITY
+    string localFileName = request.MetaData.LocalFileName;
+ 
+    try
+    {
+        string basePath = ConfigurationManager.AppSettings["FileTransferPath"];
+        string serverFileName = Path.Combine(basePath, request.MetaData.RemoteFileName);
+ 
+        Stream fs = new FileStream(serverFileName, FileMode.Open);
+ 
+        return new FileDownloadReturnMessage(new FileMetaData(localFileName, serverFileName,"1"), fs);
+    }
+    catch (IOException e)
+    {
+        throw new FaultException<IOException>(e);
+    }
+}
+
+        
+
         public CompositeType GetDataUsingDataContract(CompositeType composite)
         {
             if (composite == null)
@@ -311,6 +366,54 @@ namespace eAd.DataAccess
 
             return true;
 
+        }
+
+        public bool CaptureScreenShot(long stationID)
+        {
+            try
+            {
+
+
+
+                eAdDataContainer entities = new eAdDataContainer();
+
+                var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
+
+                if (station != null)
+                {
+
+                    station.Available = true;
+
+                    Message statusChange = new Message();
+
+                    statusChange.StationID = stationID;
+
+                    statusChange.Text = "";
+
+                    statusChange.Command = "Screenshot";
+
+                    statusChange.Type = "Status";
+
+                    statusChange.UserID = 1;
+                    statusChange.DateAdded = DateTime.Now;
+                    entities.Messages.AddObject(statusChange);
+
+                    entities.SaveChanges();
+
+                }
+
+            }
+
+            catch (Exception)
+            {
+
+
+
+                return false;
+
+            }
+
+            return true;
         }
 
         public List<MessageViewModel> GetAllMyMessages(long clientID)

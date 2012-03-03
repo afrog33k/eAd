@@ -46,10 +46,13 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="irio.mvc.fileupload">
-      <HintPath>..\..\qponkini.com\irio.mvc.fileupload\bin\Debug\irio.mvc.fileupload.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.PowerPoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Office, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -1109,6 +1112,7 @@
     <Content Include="Content\Window\Descriptions\PopupForm.html" />
     <Content Include="Content\Window\Descriptions\RtlSupport.html" />
     <Content Include="Content\Window\window.png" />
+    <Content Include="Scripts\coin-slider.js" />
     <Content Include="Global.asax" />
     <Content Include="Logs\GreenLots\donotdelete.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1192,9 +1196,7 @@
     <Content Include="Scripts\LocationsMap.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
-    <Content Include="Client\Client1.2b.zip">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Client\Client1.2b.zip" />
     <None Include="Content\Images\.svn\all-wcprops" />
     <None Include="Content\Images\.svn\entries" />
     <None Include="Content\Images\.svn\prop-base\buydeal.png.svn-base" />
@@ -1236,6 +1238,7 @@
     <None Include="Content\Images\.svn\text-base\wondrous.jpg.svn-base" />
     <None Include="Content\Images\.svn\text-base\wondrous.tif.svn-base" />
     <None Include="Content\Images\Thumbs.db" />
+    <None Include="Properties\DataSources\eAd.DataAccess.FileMetaData.datasource" />
     <None Include="Properties\DataSources\eAd.DataViewModels.CustomerViewModel.datasource" />
     <None Include="Properties\DataSources\eAd.DataViewModels.MediaListModel.datasource" />
     <None Include="Properties\DataSources\eAd.DataViewModels.MessageViewModel.datasource" />
@@ -1286,10 +1289,13 @@
     <Content Include="Scripts\txtdropdown\txtdropdown-btn.png" />
     <Content Include="Scripts\txtdropdown\txtdropdown.css" />
     <Content Include="Scripts\txtdropdown\txtdropdown.js" />
+    <None Include="Service References\eAdDataService\Service.wsdl" />
+    <None Include="Service References\eAdDataService\Service.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\eAdDataService\Service1.disco" />
-    <Content Include="Tools\FFmpeg\avconv.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Include="Service References\eAdDataService\Service.disco" />
+    <Content Include="Tools\FFmpeg\avconv.exe" />
     <Content Include="Tools\FFmpeg\doc\avconv.html" />
     <Content Include="Tools\FFmpeg\doc\developer.html" />
     <Content Include="Tools\FFmpeg\doc\faq.html" />
@@ -1301,15 +1307,9 @@
     <Content Include="Tools\FFmpeg\doc\git-howto.html" />
     <Content Include="Tools\FFmpeg\doc\libavfilter.html" />
     <Content Include="Tools\FFmpeg\doc\platform.html" />
-    <Content Include="Tools\FFmpeg\ffmpeg.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\FFmpeg\ffplay.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Tools\FFmpeg\ffprobe.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Tools\FFmpeg\ffmpeg.exe" />
+    <Content Include="Tools\FFmpeg\ffplay.exe" />
+    <Content Include="Tools\FFmpeg\ffprobe.exe" />
     <Content Include="Tools\FFmpeg\licenses\bzip2.txt" />
     <Content Include="Tools\FFmpeg\licenses\ffmpeg.txt" />
     <Content Include="Tools\FFmpeg\licenses\freetype.txt" />
@@ -1403,6 +1403,12 @@
     </Content>
     <Content Include="Views\Map\Index.cshtml" />
     <None Include="Service References\eAdDataService\Service1.wsdl" />
+    <None Include="Service References\eAdDataService\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\eAdDataService\Service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\eAdDataService\Service3.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -1410,6 +1416,15 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\eAdDataService\Service32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\eAdDataService\Service33.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\eAdDataService\Service34.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\eAdDataService\Service35.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Tools\FFmpeg\presets\libvpx-1080p.ffpreset" />
@@ -1427,6 +1442,8 @@
     <Content Include="Views\MosaicMock\Create.cshtml" />
     <Content Include="Views\MosaicMock\Edit.cshtml" />
     <Content Include="Views\MosaicMock\Delete.cshtml" />
+    <Content Include="Views\Mosaic\preview.cshtml" />
+    <Content Include="Views\Station\ShowScreenShot.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\.svn\props\" />
@@ -1484,6 +1501,10 @@
     <ProjectReference Include="..\eAd.Utilities\eAd.Utilities.csproj">
       <Project>{ECD7174B-B905-46AF-B371-72D8A81103F1}</Project>
       <Name>eAd.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\irio.mvc.fileupload\irio.mvc.fileupload.csproj">
+      <Project>{3952B2A5-2E41-4921-9BD1-1331099D690C}</Project>
+      <Name>irio.mvc.fileupload</Name>
     </ProjectReference>
     <ProjectReference Include="..\irio.utilities\irio.utilities.csproj">
       <Project>{7DF57062-342C-40A6-84CC-E504534B0189}</Project>

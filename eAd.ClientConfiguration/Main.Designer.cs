@@ -48,6 +48,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -62,7 +63,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(609, 600);
+            this.SaveButton.Location = new System.Drawing.Point(281, 600);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(159, 75);
             this.SaveButton.TabIndex = 1;
@@ -76,7 +77,7 @@
             this.LoadButton.Name = "LoadButton";
             this.LoadButton.Size = new System.Drawing.Size(158, 75);
             this.LoadButton.TabIndex = 2;
-            this.LoadButton.Text = "Load";
+            this.LoadButton.Text = "Reload";
             this.LoadButton.UseVisualStyleBackColor = true;
             this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
@@ -181,9 +182,9 @@
             // StationID
             // 
             this.StationID.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F);
-            this.StationID.Location = new System.Drawing.Point(281, 391);
+            this.StationID.Location = new System.Drawing.Point(578, 391);
             this.StationID.Name = "StationID";
-            this.StationID.Size = new System.Drawing.Size(487, 47);
+            this.StationID.Size = new System.Drawing.Size(190, 47);
             this.StationID.TabIndex = 15;
             // 
             // label7
@@ -192,9 +193,9 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(12, 394);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(158, 39);
+            this.label7.Size = new System.Drawing.Size(569, 39);
             this.label7.TabIndex = 14;
-            this.label7.Text = "Staion ID";
+            this.label7.Text = "Station ID (http://1.9.13.61/Stations)";
             this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label8
@@ -237,11 +238,22 @@
             this.textBox9.TabIndex = 20;
             this.textBox9.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(609, 600);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(159, 75);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Save && Launch";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 687);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.label9);
@@ -291,6 +303,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Button button1;
     }
 }
 

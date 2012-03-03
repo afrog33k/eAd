@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using eAd.DataViewModels;
@@ -14,7 +15,12 @@ namespace eAd.DataAccess
 
         string GetHi();
 
+        [OperationContract]
+        void UploadFile(FileMetaData MetaData, FileStream stream);
+       // void UploadFile(FileUploadMessage request);
 
+        [OperationContract]
+        FileDownloadReturnMessage DownloadFile(FileDownloadMessage request);
 
         [OperationContract]
 
@@ -40,10 +46,16 @@ namespace eAd.DataAccess
         bool MakeStationAvailable(long stationID);
 
 
+     
 
         [OperationContract]
 
         bool MessageRead(long messageID);
+
+
+        [OperationContract]
+
+        bool CaptureScreenShot(long stationID);
 
 
 

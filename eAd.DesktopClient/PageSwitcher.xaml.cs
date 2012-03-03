@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -303,7 +304,11 @@ namespace DesktopClient
                                  Instance);
                     }
                     break;
-
+                case "Screenshot":
+                    var fileName = "Screenshot#" + Constants.MyStationID + "#" + string.Format("{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now) + ".jpg";
+                    new ScreenCapture().CaptureScreenToFile(fileName,ImageFormat.Jpeg);
+                    Snapshot.UploadFile(fileName,FileTypeEnum.Generic);
+                    break;
                 default
                     :
                     MessageBoxResult

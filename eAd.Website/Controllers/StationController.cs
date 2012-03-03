@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using System.Web.Services.Description;
 using eAd.DataViewModels;
 using eAd.Website.eAdDataService;
-using MessageViewModel = eAd.Website.eAdDataService.MessageViewModel;
+//using MessageViewModel = eAd.Website.eAdDataService;
 
 
 namespace eAd.Website.Controllers
@@ -153,6 +153,17 @@ namespace eAd.Website.Controllers
         {
             Service.MakeStationAvailable(stationID);
             return RedirectToAction("List");
+        }
+
+        public ActionResult Screenshot(long stationID)
+        {
+            Service.CaptureScreenShot(stationID);
+            return RedirectToAction("ShowScreenShot");
+        }
+
+        public ActionResult ShowScreenShot(long stationID)
+        {
+            return View();
         }
     }
 }

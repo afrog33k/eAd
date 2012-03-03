@@ -24,6 +24,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("eAdData", "FK_Positions_Mosaics", "Mosaic", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eAd.DataAccess.Mosaic), "Position", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Position), true)]
 [assembly: EdmRelationshipAttribute("eAdData", "GroupingStation", "Grouping", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Grouping), "Station", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Station))]
 [assembly: EdmRelationshipAttribute("eAdData", "GroupingTheme", "Grouping", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Grouping), "Theme", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Theme))]
+[assembly: EdmRelationshipAttribute("eAdData", "PositionMedium", "Medium", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Medium), "Position", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Position))]
 [assembly: EdmRelationshipAttribute("eAdData", "ThemeMedium", "Medium", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Medium), "Theme", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Theme))]
 
 #endregion
@@ -253,6 +254,7 @@ namespace eAd.DataAccess
         private ObjectSet<Theme> _Themes;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -344,11 +346,11 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -375,6 +377,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -645,6 +648,7 @@ namespace eAd.DataAccess
         partial void OnBatteryCycleChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -687,6 +691,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -711,6 +716,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1029,6 +1035,7 @@ namespace eAd.DataAccess
         partial void OnEmailAlertChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1055,6 +1062,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1081,6 +1089,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1183,6 +1192,7 @@ namespace eAd.DataAccess
         partial void OnMosaicIDChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1269,6 +1279,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1293,6 +1304,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1371,6 +1383,7 @@ namespace eAd.DataAccess
         partial void OnDateAddedChanged();
 
         #endregion
+
     
     }
     
@@ -1398,6 +1411,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1572,8 +1586,31 @@ namespace eAd.DataAccess
         partial void OnDurationChanged();
 
         #endregion
+
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("eAdData", "PositionMedium", "Position")]
+        public EntityCollection<Position> Positions
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Position>("eAdData.PositionMedium", "Position");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Position>("eAdData.PositionMedium", "Position", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1598,6 +1635,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1632,6 +1670,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1854,6 +1893,7 @@ namespace eAd.DataAccess
         partial void OnDateReceivedChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1896,6 +1936,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1920,6 +1961,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1974,6 +2016,7 @@ namespace eAd.DataAccess
         partial void OnNameChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2022,6 +2065,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2046,6 +2090,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2244,6 +2289,7 @@ namespace eAd.DataAccess
         partial void OnHeightChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2284,8 +2330,31 @@ namespace eAd.DataAccess
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("eAdData", "PositionMedium", "Medium")]
+        public EntityCollection<Medium> Media
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Medium>("eAdData.PositionMedium", "Medium");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Medium>("eAdData.PositionMedium", "Medium", value);
+                }
+            }
+        }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2310,6 +2379,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2556,6 +2626,7 @@ namespace eAd.DataAccess
         partial void OnRateChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2604,6 +2675,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2632,6 +2704,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2758,6 +2831,7 @@ namespace eAd.DataAccess
         partial void OndefinitionChanged();
 
         #endregion
+
     
     }
     
@@ -2783,6 +2857,7 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2861,6 +2936,7 @@ namespace eAd.DataAccess
         partial void OnDateAddedChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2909,8 +2985,10 @@ namespace eAd.DataAccess
         }
 
         #endregion
+
     }
 
     #endregion
+
     
 }

@@ -48,17 +48,18 @@ namespace eAd.DataAccess
             model.IsOnline = station.LastCheckIn >= DateTime.Now.AddSeconds(-10);
             return model;
         }
-        public static PositionViewModel CreateModel(this Position message)
+        public static PositionViewModel CreateModel(this Position position)
         {
             PositionViewModel model = new PositionViewModel();
-            model.PositionID = (long)message.PositionID;
-            model.MosaicID = message.MosaicID;
-            model.Name = message.Name;
-            model.ContentURL =  message.ContentURL;
-            model.Height = message.Height;
-            model.Width = message.Width;
-            model.X = message.X;
-            model.Y = message.Y;  
+            model.PositionID = (long)position.PositionID;
+            model.MosaicID = position.MosaicID;
+            model.Name = position.Name;
+            model.ContentURL =  position.ContentURL;
+            model.Height = position.Height;
+            model.Width = position.Width;
+            model.X = position.X;
+            model.Y = position.Y;
+            model.Media = position.Media.Select(m => m.MediaID).ToList();
             return model;
         }
 

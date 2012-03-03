@@ -1,6 +1,6 @@
 ﻿using eAd.DataViewModels;
 using eAd.Website.eAdDataService;
-using StationViewModel = eAd.Website.eAdDataService.StationViewModel;
+//using StationViewModel = eAd.Website.eAdDataService.StationViewModel;
 
 namespace eAd.Website
 {

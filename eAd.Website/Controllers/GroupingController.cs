@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using eAd.DataAccess;
 using eAd.DataViewModels;
 using eAd.Website.eAdDataService;
-using MessageViewModel = eAd.Website.eAdDataService.MessageViewModel;
+//using MessageViewModel = eAd.Website.eAdDataService.MessageViewModel;
 
 namespace eAd.Website.Controllers
 { 

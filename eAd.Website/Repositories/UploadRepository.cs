@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Drawing.Text;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Web;
+using Microsoft.Office.Core;
 using eAd.Utilities;
 using eAd.Website.Controllers;
 using irio.utilities;
@@ -256,9 +259,44 @@ namespace eAd.Website.Repositories
                                                           ".gif"
                                                       };
 
-        public static string StoreMediaTemp(HttpContextBase context, HttpPostedFileBase file, UploadType type, out string thumbPath, out string physicalPath, out TimeSpan duration)
+        // This is the CreateImage() function body.
+        private static Bitmap CreateImage(string sImageText)
+        {
+            Bitmap bmpImage = new Bitmap(1, 1);
+
+            int iWidth = 0;
+            int iHeight = 0;
+
+            // Create the Font object for the image text drawing.
+            Font MyFont = new Font("Verdana", 24,
+                               System.Drawing.FontStyle.Bold,
+                               System.Drawing.GraphicsUnit.Point);
+
+            // Create a graphics object to measure the text's width and height.
+            Graphics MyGraphics = Graphics.FromImage(bmpImage);
+
+            // This is where the bitmap size is determined.
+            iWidth = (int)MyGraphics.MeasureString(sImageText, MyFont).Width;
+            iHeight = (int)MyGraphics.MeasureString(sImageText, MyFont).Height;
+
+            // Create the bmpImage again with the correct size for the text and font.
+            bmpImage = new Bitmap(bmpImage, new Size(iWidth, iHeight));
+
+            // Add the colors to the new bitmap.
+            MyGraphics = Graphics.FromImage(bmpImage);
+            MyGraphics.Clear(Color.White);
+            MyGraphics.TextRenderingHint = TextRenderingHint.AntiAlias;
+            MyGraphics.DrawString(sImageText, MyFont,
+                                new SolidBrush(Color.Red), 0, 0);
+            MyGraphics.Flush();
+
+            return (bmpImage);
+        }
+
+        public static string StoreMediaTemp(HttpContextBase context, HttpPostedFileBase file, UploadType type, out string thumbPath, out string physicalPath, out TimeSpan duration, out string fileType)
         {
             duration = TimeSpan.Zero;
+            fileType = "";
             if (context.Session != null)
             {
                 UrlFriendlyGuid GUID = (UrlFriendlyGuid) context.Session["UploadGUID"];
@@ -289,11 +327,63 @@ namespace eAd.Website.Repositories
 
                     duration = new TimeSpan(0,0,10);
 
+                    fileType = "Image";
                 }
                 else if (Path.GetExtension(file.FileName).ToLower()==(".txt"))
                 {
                     FileUtilities.SaveStream(file.InputStream,physicalPath,false);
                     duration = new TimeSpan(0, 0, 20);
+                    var text = new StreamReader(physicalPath).ReadToEnd();
+                    var ssHot = CreateImage(text.Substring(0, text.Length>15?15:text.Length));
+                 thumbPath = thumbPath.Replace(Path.GetExtension(thumbPath), ".jpg");
+                    ssHot.Save(thumbPath);
+
+                    fileType = "Marquee";
+                }
+                else if (Path.GetExtension(file.FileName).ToLower() == (".ppt") || Path.GetExtension(file.FileName).ToLower() == (".pptx") || Path.GetExtension(file.FileName).ToLower() == (".odt")) // Powerpoint presentation
+                {
+
+                    FileUtilities.SaveStream(file.InputStream, physicalPath, false);
+
+
+                    var finalPath = Path.ChangeExtension(physicalPath, "wmv");
+                    Microsoft.Office.Interop.PowerPoint._Presentation objPres;
+                    var objApp = new Microsoft.Office.Interop.PowerPoint.Application();
+                    //objApp.Visible = Microsoft.Office.Core.MsoTriState.msoTrue;
+                    try
+                    {
+                        objPres = objApp.Presentations.Open(physicalPath, MsoTriState.msoTrue, MsoTriState.msoTrue, MsoTriState.msoTrue);
+                        objPres.SaveAs(Path.GetFullPath(finalPath), Microsoft.Office.Interop.PowerPoint.PpSaveAsFileType.ppSaveAsWMV, MsoTriState.msoTriStateMixed);
+                        long len = 0;
+                        do
+                        {
+                            System.Threading.Thread.Sleep(500);
+                            try
+                            {
+                                FileInfo f = new FileInfo(finalPath);
+                                len = f.Length;
+                            }
+                            catch
+                            {
+                                continue;
+                            }
+                        } while (len == 0);
+                        objApp.Quit();
+
+                        thumbPath = thumbPath.Replace(Path.GetExtension(thumbPath), ".jpg");
+                        duration = VideoUtilities.GetVideoDuration(finalPath);
+
+                        VideoUtilities.GetVideoThumbnail(finalPath, thumbPath);
+
+                        physicalPath = finalPath;
+                        fileType = "Powerpoint Presentation";
+                    }
+                    catch (COMException exception)
+                    {
+
+                        throw exception;
+                    }
+
                 }
                 else // Must Be Video
                 {
@@ -304,6 +394,7 @@ namespace eAd.Website.Repositories
 
                     VideoUtilities.GetVideoThumbnail(physicalPath,thumbPath);
 
+                    fileType = "Video";
                 }
 
                 UploadedContent uploadedContent = new UploadedContent();
