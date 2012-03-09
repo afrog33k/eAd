@@ -112,6 +112,1325 @@ namespace DesktopClient.eAdDataAccess {
         Generic = 0,
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="StructuralObject", Namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses", IsReference=true)]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.EntityObject))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Grouping))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Station))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Message))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Theme))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Medium))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Position))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Mosaic))]
+    public partial class StructuralObject : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EntityObject", Namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses", IsReference=true)]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Grouping))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Station))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Message))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Theme))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Medium))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Position))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Mosaic))]
+    public partial class EntityObject : DesktopClient.eAdDataAccess.StructuralObject {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.EntityKey EntityKeyField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.EntityKey EntityKey {
+            get {
+                return this.EntityKeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EntityKeyField, value) != true)) {
+                    this.EntityKeyField = value;
+                    this.RaisePropertyChanged("EntityKey");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Grouping", Namespace="http://schemas.datacontract.org/2004/07/eAd.DataAccess", IsReference=true)]
+    [System.SerializableAttribute()]
+    public partial class Grouping : DesktopClient.eAdDataAccess.EntityObject {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateAddedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long GroupingIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.Mosaic MosaicField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long MosaicIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.EntityReferenceOfMosaic0cHE_SurI MosaicReferenceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.Station[] StationsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.Theme[] ThemesField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateAdded {
+            get {
+                return this.DateAddedField;
+            }
+            set {
+                if ((this.DateAddedField.Equals(value) != true)) {
+                    this.DateAddedField = value;
+                    this.RaisePropertyChanged("DateAdded");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long GroupingID {
+            get {
+                return this.GroupingIDField;
+            }
+            set {
+                if ((this.GroupingIDField.Equals(value) != true)) {
+                    this.GroupingIDField = value;
+                    this.RaisePropertyChanged("GroupingID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.Mosaic Mosaic {
+            get {
+                return this.MosaicField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MosaicField, value) != true)) {
+                    this.MosaicField = value;
+                    this.RaisePropertyChanged("Mosaic");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long MosaicID {
+            get {
+                return this.MosaicIDField;
+            }
+            set {
+                if ((this.MosaicIDField.Equals(value) != true)) {
+                    this.MosaicIDField = value;
+                    this.RaisePropertyChanged("MosaicID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.EntityReferenceOfMosaic0cHE_SurI MosaicReference {
+            get {
+                return this.MosaicReferenceField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MosaicReferenceField, value) != true)) {
+                    this.MosaicReferenceField = value;
+                    this.RaisePropertyChanged("MosaicReference");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.Station[] Stations {
+            get {
+                return this.StationsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StationsField, value) != true)) {
+                    this.StationsField = value;
+                    this.RaisePropertyChanged("Stations");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.Theme[] Themes {
+            get {
+                return this.ThemesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ThemesField, value) != true)) {
+                    this.ThemesField = value;
+                    this.RaisePropertyChanged("Themes");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Station", Namespace="http://schemas.datacontract.org/2004/07/eAd.DataAccess", IsReference=true)]
+    [System.SerializableAttribute()]
+    public partial class Station : DesktopClient.eAdDataAccess.EntityObject {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> AvailableField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateAddedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.Grouping[] GroupingsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> LastCheckInField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LocationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.Message[] MessagesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PostalCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<double> RateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long StationIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UniqueIDField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> Available {
+            get {
+                return this.AvailableField;
+            }
+            set {
+                if ((this.AvailableField.Equals(value) != true)) {
+                    this.AvailableField = value;
+                    this.RaisePropertyChanged("Available");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateAdded {
+            get {
+                return this.DateAddedField;
+            }
+            set {
+                if ((this.DateAddedField.Equals(value) != true)) {
+                    this.DateAddedField = value;
+                    this.RaisePropertyChanged("DateAdded");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.Grouping[] Groupings {
+            get {
+                return this.GroupingsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GroupingsField, value) != true)) {
+                    this.GroupingsField = value;
+                    this.RaisePropertyChanged("Groupings");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> LastCheckIn {
+            get {
+                return this.LastCheckInField;
+            }
+            set {
+                if ((this.LastCheckInField.Equals(value) != true)) {
+                    this.LastCheckInField = value;
+                    this.RaisePropertyChanged("LastCheckIn");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Location {
+            get {
+                return this.LocationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LocationField, value) != true)) {
+                    this.LocationField = value;
+                    this.RaisePropertyChanged("Location");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.Message[] Messages {
+            get {
+                return this.MessagesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessagesField, value) != true)) {
+                    this.MessagesField = value;
+                    this.RaisePropertyChanged("Messages");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PostalCode {
+            get {
+                return this.PostalCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PostalCodeField, value) != true)) {
+                    this.PostalCodeField = value;
+                    this.RaisePropertyChanged("PostalCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<double> Rate {
+            get {
+                return this.RateField;
+            }
+            set {
+                if ((this.RateField.Equals(value) != true)) {
+                    this.RateField = value;
+                    this.RaisePropertyChanged("Rate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long StationID {
+            get {
+                return this.StationIDField;
+            }
+            set {
+                if ((this.StationIDField.Equals(value) != true)) {
+                    this.StationIDField = value;
+                    this.RaisePropertyChanged("StationID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UniqueID {
+            get {
+                return this.UniqueIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UniqueIDField, value) != true)) {
+                    this.UniqueIDField = value;
+                    this.RaisePropertyChanged("UniqueID");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Message", Namespace="http://schemas.datacontract.org/2004/07/eAd.DataAccess", IsReference=true)]
+    [System.SerializableAttribute()]
+    public partial class Message : DesktopClient.eAdDataAccess.EntityObject {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CommandField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateAddedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateReceivedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long MessageIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool SentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.Station StationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long StationIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.EntityReferenceOfStation0cHE_SurI StationReferenceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TextField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long UserIDField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Command {
+            get {
+                return this.CommandField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CommandField, value) != true)) {
+                    this.CommandField = value;
+                    this.RaisePropertyChanged("Command");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateAdded {
+            get {
+                return this.DateAddedField;
+            }
+            set {
+                if ((this.DateAddedField.Equals(value) != true)) {
+                    this.DateAddedField = value;
+                    this.RaisePropertyChanged("DateAdded");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateReceived {
+            get {
+                return this.DateReceivedField;
+            }
+            set {
+                if ((this.DateReceivedField.Equals(value) != true)) {
+                    this.DateReceivedField = value;
+                    this.RaisePropertyChanged("DateReceived");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long MessageID {
+            get {
+                return this.MessageIDField;
+            }
+            set {
+                if ((this.MessageIDField.Equals(value) != true)) {
+                    this.MessageIDField = value;
+                    this.RaisePropertyChanged("MessageID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Sent {
+            get {
+                return this.SentField;
+            }
+            set {
+                if ((this.SentField.Equals(value) != true)) {
+                    this.SentField = value;
+                    this.RaisePropertyChanged("Sent");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.Station Station {
+            get {
+                return this.StationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StationField, value) != true)) {
+                    this.StationField = value;
+                    this.RaisePropertyChanged("Station");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long StationID {
+            get {
+                return this.StationIDField;
+            }
+            set {
+                if ((this.StationIDField.Equals(value) != true)) {
+                    this.StationIDField = value;
+                    this.RaisePropertyChanged("StationID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.EntityReferenceOfStation0cHE_SurI StationReference {
+            get {
+                return this.StationReferenceField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StationReferenceField, value) != true)) {
+                    this.StationReferenceField = value;
+                    this.RaisePropertyChanged("StationReference");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Text {
+            get {
+                return this.TextField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TextField, value) != true)) {
+                    this.TextField = value;
+                    this.RaisePropertyChanged("Text");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long UserID {
+            get {
+                return this.UserIDField;
+            }
+            set {
+                if ((this.UserIDField.Equals(value) != true)) {
+                    this.UserIDField = value;
+                    this.RaisePropertyChanged("UserID");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Theme", Namespace="http://schemas.datacontract.org/2004/07/eAd.DataAccess", IsReference=true)]
+    [System.SerializableAttribute()]
+    public partial class Theme : DesktopClient.eAdDataAccess.EntityObject {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateAddedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.Grouping[] GroupingsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.Medium[] MediaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long ThemeIDField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateAdded {
+            get {
+                return this.DateAddedField;
+            }
+            set {
+                if ((this.DateAddedField.Equals(value) != true)) {
+                    this.DateAddedField = value;
+                    this.RaisePropertyChanged("DateAdded");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.Grouping[] Groupings {
+            get {
+                return this.GroupingsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GroupingsField, value) != true)) {
+                    this.GroupingsField = value;
+                    this.RaisePropertyChanged("Groupings");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.Medium[] Media {
+            get {
+                return this.MediaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MediaField, value) != true)) {
+                    this.MediaField = value;
+                    this.RaisePropertyChanged("Media");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long ThemeID {
+            get {
+                return this.ThemeIDField;
+            }
+            set {
+                if ((this.ThemeIDField.Equals(value) != true)) {
+                    this.ThemeIDField = value;
+                    this.RaisePropertyChanged("ThemeID");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Medium", Namespace="http://schemas.datacontract.org/2004/07/eAd.DataAccess", IsReference=true)]
+    [System.SerializableAttribute()]
+    public partial class Medium : DesktopClient.eAdDataAccess.EntityObject {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateAddedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.TimeSpan> DurationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LocationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long MediaIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.Position[] PositionsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TagsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.Theme[] ThemesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TypeField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateAdded {
+            get {
+                return this.DateAddedField;
+            }
+            set {
+                if ((this.DateAddedField.Equals(value) != true)) {
+                    this.DateAddedField = value;
+                    this.RaisePropertyChanged("DateAdded");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.TimeSpan> Duration {
+            get {
+                return this.DurationField;
+            }
+            set {
+                if ((this.DurationField.Equals(value) != true)) {
+                    this.DurationField = value;
+                    this.RaisePropertyChanged("Duration");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Location {
+            get {
+                return this.LocationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LocationField, value) != true)) {
+                    this.LocationField = value;
+                    this.RaisePropertyChanged("Location");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long MediaID {
+            get {
+                return this.MediaIDField;
+            }
+            set {
+                if ((this.MediaIDField.Equals(value) != true)) {
+                    this.MediaIDField = value;
+                    this.RaisePropertyChanged("MediaID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.Position[] Positions {
+            get {
+                return this.PositionsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PositionsField, value) != true)) {
+                    this.PositionsField = value;
+                    this.RaisePropertyChanged("Positions");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Tags {
+            get {
+                return this.TagsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TagsField, value) != true)) {
+                    this.TagsField = value;
+                    this.RaisePropertyChanged("Tags");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.Theme[] Themes {
+            get {
+                return this.ThemesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ThemesField, value) != true)) {
+                    this.ThemesField = value;
+                    this.RaisePropertyChanged("Themes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Position", Namespace="http://schemas.datacontract.org/2004/07/eAd.DataAccess", IsReference=true)]
+    [System.SerializableAttribute()]
+    public partial class Position : DesktopClient.eAdDataAccess.EntityObject {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContentURLField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<double> HeightField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.Medium[] MediaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.Mosaic MosaicField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<long> MosaicIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.EntityReferenceOfMosaic0cHE_SurI MosaicReferenceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long PositionIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<double> WidthField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<double> XField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<double> YField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ContentURL {
+            get {
+                return this.ContentURLField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContentURLField, value) != true)) {
+                    this.ContentURLField = value;
+                    this.RaisePropertyChanged("ContentURL");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<double> Height {
+            get {
+                return this.HeightField;
+            }
+            set {
+                if ((this.HeightField.Equals(value) != true)) {
+                    this.HeightField = value;
+                    this.RaisePropertyChanged("Height");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.Medium[] Media {
+            get {
+                return this.MediaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MediaField, value) != true)) {
+                    this.MediaField = value;
+                    this.RaisePropertyChanged("Media");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.Mosaic Mosaic {
+            get {
+                return this.MosaicField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MosaicField, value) != true)) {
+                    this.MosaicField = value;
+                    this.RaisePropertyChanged("Mosaic");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<long> MosaicID {
+            get {
+                return this.MosaicIDField;
+            }
+            set {
+                if ((this.MosaicIDField.Equals(value) != true)) {
+                    this.MosaicIDField = value;
+                    this.RaisePropertyChanged("MosaicID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.EntityReferenceOfMosaic0cHE_SurI MosaicReference {
+            get {
+                return this.MosaicReferenceField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MosaicReferenceField, value) != true)) {
+                    this.MosaicReferenceField = value;
+                    this.RaisePropertyChanged("MosaicReference");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long PositionID {
+            get {
+                return this.PositionIDField;
+            }
+            set {
+                if ((this.PositionIDField.Equals(value) != true)) {
+                    this.PositionIDField = value;
+                    this.RaisePropertyChanged("PositionID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<double> Width {
+            get {
+                return this.WidthField;
+            }
+            set {
+                if ((this.WidthField.Equals(value) != true)) {
+                    this.WidthField = value;
+                    this.RaisePropertyChanged("Width");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<double> X {
+            get {
+                return this.XField;
+            }
+            set {
+                if ((this.XField.Equals(value) != true)) {
+                    this.XField = value;
+                    this.RaisePropertyChanged("X");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<double> Y {
+            get {
+                return this.YField;
+            }
+            set {
+                if ((this.YField.Equals(value) != true)) {
+                    this.YField = value;
+                    this.RaisePropertyChanged("Y");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Mosaic", Namespace="http://schemas.datacontract.org/2004/07/eAd.DataAccess", IsReference=true)]
+    [System.SerializableAttribute()]
+    public partial class Mosaic : DesktopClient.eAdDataAccess.EntityObject {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.Grouping[] GroupingsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long MosaicIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.Position[] PositionsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.Grouping[] Groupings {
+            get {
+                return this.GroupingsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GroupingsField, value) != true)) {
+                    this.GroupingsField = value;
+                    this.RaisePropertyChanged("Groupings");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long MosaicID {
+            get {
+                return this.MosaicIDField;
+            }
+            set {
+                if ((this.MosaicIDField.Equals(value) != true)) {
+                    this.MosaicIDField = value;
+                    this.RaisePropertyChanged("MosaicID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.Position[] Positions {
+            get {
+                return this.PositionsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PositionsField, value) != true)) {
+                    this.PositionsField = value;
+                    this.RaisePropertyChanged("Positions");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EntityKey", Namespace="http://schemas.datacontract.org/2004/07/System.Data", IsReference=true)]
+    [System.SerializableAttribute()]
+    public partial class EntityKey : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EntityContainerNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.EntityKeyMember[] EntityKeyValuesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EntitySetNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EntityContainerName {
+            get {
+                return this.EntityContainerNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EntityContainerNameField, value) != true)) {
+                    this.EntityContainerNameField = value;
+                    this.RaisePropertyChanged("EntityContainerName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.EntityKeyMember[] EntityKeyValues {
+            get {
+                return this.EntityKeyValuesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EntityKeyValuesField, value) != true)) {
+                    this.EntityKeyValuesField = value;
+                    this.RaisePropertyChanged("EntityKeyValues");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EntitySetName {
+            get {
+                return this.EntitySetNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EntitySetNameField, value) != true)) {
+                    this.EntitySetNameField = value;
+                    this.RaisePropertyChanged("EntitySetName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EntityKeyMember", Namespace="http://schemas.datacontract.org/2004/07/System.Data")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.FileTypeEnum))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Mosaic))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Grouping[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Grouping))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Station[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Station))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Message[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Message))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Theme[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Theme))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Medium[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Medium))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Position[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Position))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.FileMetaData))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.MediaListModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.MediaListModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.CustomerViewModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.MessageViewModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.MessageViewModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.CustomerViewModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.StationViewModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.StationViewModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.MarshalByRefObject))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.EntityKey))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.EntityKeyMember[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.IO.FileStream))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.IO.Stream))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.EntityObject))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.StructuralObject))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.EntityReferenceOfMosaic0cHE_SurI))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.EntityReference))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.RelatedEnd))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.EntityReferenceOfStation0cHE_SurI))]
+    public partial class EntityKeyMember : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string KeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object ValueField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Key {
+            get {
+                return this.KeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.KeyField, value) != true)) {
+                    this.KeyField = value;
+                    this.RaisePropertyChanged("Key");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValueField, value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EntityReferenceOfMosaic0cHE_SurI", Namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses")]
+    [System.SerializableAttribute()]
+    public partial class EntityReferenceOfMosaic0cHE_SurI : DesktopClient.eAdDataAccess.EntityReference {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EntityReference", Namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.EntityReferenceOfStation0cHE_SurI))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.EntityReferenceOfMosaic0cHE_SurI))]
+    public partial class EntityReference : DesktopClient.eAdDataAccess.RelatedEnd {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopClient.eAdDataAccess.EntityKey EntityKeyField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopClient.eAdDataAccess.EntityKey EntityKey {
+            get {
+                return this.EntityKeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EntityKeyField, value) != true)) {
+                    this.EntityKeyField = value;
+                    this.RaisePropertyChanged("EntityKey");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RelatedEnd", Namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.EntityReference))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.EntityReferenceOfStation0cHE_SurI))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.EntityReferenceOfMosaic0cHE_SurI))]
+    public partial class RelatedEnd : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EntityReferenceOfStation0cHE_SurI", Namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses")]
+    [System.SerializableAttribute()]
+    public partial class EntityReferenceOfStation0cHE_SurI : DesktopClient.eAdDataAccess.EntityReference {
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="eAdDataAccess.IService")]
     public interface IService {
@@ -124,14 +1443,13 @@ namespace DesktopClient.eAdDataAccess {
         
         string EndGetHi(System.IAsyncResult result);
         
-        // CODEGEN: Generating message contract since the operation UploadFile is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UploadFile", ReplyAction="http://tempuri.org/IService/UploadFileResponse")]
-        DesktopClient.eAdDataAccess.UploadFileResponse UploadFile(DesktopClient.eAdDataAccess.FileUploadMessage request);
+        void UploadFile(DesktopClient.eAdDataAccess.FileMetaData MetaData, System.IO.FileStream stream);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/UploadFile", ReplyAction="http://tempuri.org/IService/UploadFileResponse")]
-        System.IAsyncResult BeginUploadFile(DesktopClient.eAdDataAccess.FileUploadMessage request, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginUploadFile(DesktopClient.eAdDataAccess.FileMetaData MetaData, System.IO.FileStream stream, System.AsyncCallback callback, object asyncState);
         
-        DesktopClient.eAdDataAccess.UploadFileResponse EndUploadFile(System.IAsyncResult result);
+        void EndUploadFile(System.IAsyncResult result);
         
         // CODEGEN: Generating message contract since the wrapper name (FileDownloadMessage) of message FileDownloadMessage does not match the default value (DownloadFile)
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DownloadFile", ReplyAction="http://tempuri.org/IService/DownloadFileResponse")]
@@ -165,6 +1483,14 @@ namespace DesktopClient.eAdDataAccess {
         System.IAsyncResult BeginDoIHaveUpdates(long clientID, System.AsyncCallback callback, object asyncState);
         
         bool EndDoIHaveUpdates(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetMosaicForStation", ReplyAction="http://tempuri.org/IService/GetMosaicForStationResponse")]
+        DesktopClient.eAdDataAccess.Mosaic GetMosaicForStation(long clientID);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetMosaicForStation", ReplyAction="http://tempuri.org/IService/GetMosaicForStationResponse")]
+        System.IAsyncResult BeginGetMosaicForStation(long clientID, System.AsyncCallback callback, object asyncState);
+        
+        DesktopClient.eAdDataAccess.Mosaic EndGetMosaicForStation(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/MakeStationUnAvailable", ReplyAction="http://tempuri.org/IService/MakeStationUnAvailableResponse")]
         bool MakeStationUnAvailable(long stationID, string rfidCode);
@@ -253,37 +1579,6 @@ namespace DesktopClient.eAdDataAccess {
         System.IAsyncResult BeginGetOnlineStations(System.AsyncCallback callback, object asyncState);
         
         eAd.DataViewModels.StationViewModel[] EndGetOnlineStations(System.IAsyncResult result);
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="FileUploadMessage", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class FileUploadMessage {
-        
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        public DesktopClient.eAdDataAccess.FileMetaData MetaData;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public System.IO.Stream FileByteStream;
-        
-        public FileUploadMessage() {
-        }
-        
-        public FileUploadMessage(DesktopClient.eAdDataAccess.FileMetaData MetaData, System.IO.Stream FileByteStream) {
-            this.MetaData = MetaData;
-            this.FileByteStream = FileByteStream;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class UploadFileResponse {
-        
-        public UploadFileResponse() {
-        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -426,6 +1721,25 @@ namespace DesktopClient.eAdDataAccess {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetMosaicForStationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetMosaicForStationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public DesktopClient.eAdDataAccess.Mosaic Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((DesktopClient.eAdDataAccess.Mosaic)(this.results[0]));
             }
         }
     }
@@ -679,6 +1993,12 @@ namespace DesktopClient.eAdDataAccess {
         
         private System.Threading.SendOrPostCallback onDoIHaveUpdatesCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetMosaicForStationDelegate;
+        
+        private EndOperationDelegate onEndGetMosaicForStationDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetMosaicForStationCompletedDelegate;
+        
         private BeginOperationDelegate onBeginMakeStationUnAvailableDelegate;
         
         private EndOperationDelegate onEndMakeStationUnAvailableDelegate;
@@ -776,6 +2096,8 @@ namespace DesktopClient.eAdDataAccess {
         
         public event System.EventHandler<DoIHaveUpdatesCompletedEventArgs> DoIHaveUpdatesCompleted;
         
+        public event System.EventHandler<GetMosaicForStationCompletedEventArgs> GetMosaicForStationCompleted;
+        
         public event System.EventHandler<MakeStationUnAvailableCompletedEventArgs> MakeStationUnAvailableCompleted;
         
         public event System.EventHandler<MakeStationAvailableCompletedEventArgs> MakeStationAvailableCompleted;
@@ -846,45 +2168,24 @@ namespace DesktopClient.eAdDataAccess {
             base.InvokeAsync(this.onBeginGetHiDelegate, null, this.onEndGetHiDelegate, this.onGetHiCompletedDelegate, userState);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        DesktopClient.eAdDataAccess.UploadFileResponse DesktopClient.eAdDataAccess.IService.UploadFile(DesktopClient.eAdDataAccess.FileUploadMessage request) {
-            return base.Channel.UploadFile(request);
-        }
-        
-        public void UploadFile(DesktopClient.eAdDataAccess.FileMetaData MetaData, System.IO.Stream FileByteStream) {
-            DesktopClient.eAdDataAccess.FileUploadMessage inValue = new DesktopClient.eAdDataAccess.FileUploadMessage();
-            inValue.MetaData = MetaData;
-            inValue.FileByteStream = FileByteStream;
-            DesktopClient.eAdDataAccess.UploadFileResponse retVal = ((DesktopClient.eAdDataAccess.IService)(this)).UploadFile(inValue);
+        public void UploadFile(DesktopClient.eAdDataAccess.FileMetaData MetaData, System.IO.FileStream stream) {
+            base.Channel.UploadFile(MetaData, stream);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult DesktopClient.eAdDataAccess.IService.BeginUploadFile(DesktopClient.eAdDataAccess.FileUploadMessage request, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginUploadFile(request, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginUploadFile(DesktopClient.eAdDataAccess.FileMetaData MetaData, System.IO.Stream FileByteStream, System.AsyncCallback callback, object asyncState) {
-            DesktopClient.eAdDataAccess.FileUploadMessage inValue = new DesktopClient.eAdDataAccess.FileUploadMessage();
-            inValue.MetaData = MetaData;
-            inValue.FileByteStream = FileByteStream;
-            return ((DesktopClient.eAdDataAccess.IService)(this)).BeginUploadFile(inValue, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        DesktopClient.eAdDataAccess.UploadFileResponse DesktopClient.eAdDataAccess.IService.EndUploadFile(System.IAsyncResult result) {
-            return base.Channel.EndUploadFile(result);
+        public System.IAsyncResult BeginUploadFile(DesktopClient.eAdDataAccess.FileMetaData MetaData, System.IO.FileStream stream, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUploadFile(MetaData, stream, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public void EndUploadFile(System.IAsyncResult result) {
-            DesktopClient.eAdDataAccess.UploadFileResponse retVal = ((DesktopClient.eAdDataAccess.IService)(this)).EndUploadFile(result);
+            base.Channel.EndUploadFile(result);
         }
         
         private System.IAsyncResult OnBeginUploadFile(object[] inValues, System.AsyncCallback callback, object asyncState) {
             DesktopClient.eAdDataAccess.FileMetaData MetaData = ((DesktopClient.eAdDataAccess.FileMetaData)(inValues[0]));
-            System.IO.Stream FileByteStream = ((System.IO.Stream)(inValues[1]));
-            return this.BeginUploadFile(MetaData, FileByteStream, callback, asyncState);
+            System.IO.FileStream stream = ((System.IO.FileStream)(inValues[1]));
+            return this.BeginUploadFile(MetaData, stream, callback, asyncState);
         }
         
         private object[] OnEndUploadFile(System.IAsyncResult result) {
@@ -899,11 +2200,11 @@ namespace DesktopClient.eAdDataAccess {
             }
         }
         
-        public void UploadFileAsync(DesktopClient.eAdDataAccess.FileMetaData MetaData, System.IO.Stream FileByteStream) {
-            this.UploadFileAsync(MetaData, FileByteStream, null);
+        public void UploadFileAsync(DesktopClient.eAdDataAccess.FileMetaData MetaData, System.IO.FileStream stream) {
+            this.UploadFileAsync(MetaData, stream, null);
         }
         
-        public void UploadFileAsync(DesktopClient.eAdDataAccess.FileMetaData MetaData, System.IO.Stream FileByteStream, object userState) {
+        public void UploadFileAsync(DesktopClient.eAdDataAccess.FileMetaData MetaData, System.IO.FileStream stream, object userState) {
             if ((this.onBeginUploadFileDelegate == null)) {
                 this.onBeginUploadFileDelegate = new BeginOperationDelegate(this.OnBeginUploadFile);
             }
@@ -915,7 +2216,7 @@ namespace DesktopClient.eAdDataAccess {
             }
             base.InvokeAsync(this.onBeginUploadFileDelegate, new object[] {
                         MetaData,
-                        FileByteStream}, this.onEndUploadFileDelegate, this.onUploadFileCompletedDelegate, userState);
+                        stream}, this.onEndUploadFileDelegate, this.onUploadFileCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1141,6 +2442,56 @@ namespace DesktopClient.eAdDataAccess {
             }
             base.InvokeAsync(this.onBeginDoIHaveUpdatesDelegate, new object[] {
                         clientID}, this.onEndDoIHaveUpdatesDelegate, this.onDoIHaveUpdatesCompletedDelegate, userState);
+        }
+        
+        public DesktopClient.eAdDataAccess.Mosaic GetMosaicForStation(long clientID) {
+            return base.Channel.GetMosaicForStation(clientID);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetMosaicForStation(long clientID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetMosaicForStation(clientID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public DesktopClient.eAdDataAccess.Mosaic EndGetMosaicForStation(System.IAsyncResult result) {
+            return base.Channel.EndGetMosaicForStation(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetMosaicForStation(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long clientID = ((long)(inValues[0]));
+            return this.BeginGetMosaicForStation(clientID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetMosaicForStation(System.IAsyncResult result) {
+            DesktopClient.eAdDataAccess.Mosaic retVal = this.EndGetMosaicForStation(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetMosaicForStationCompleted(object state) {
+            if ((this.GetMosaicForStationCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetMosaicForStationCompleted(this, new GetMosaicForStationCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetMosaicForStationAsync(long clientID) {
+            this.GetMosaicForStationAsync(clientID, null);
+        }
+        
+        public void GetMosaicForStationAsync(long clientID, object userState) {
+            if ((this.onBeginGetMosaicForStationDelegate == null)) {
+                this.onBeginGetMosaicForStationDelegate = new BeginOperationDelegate(this.OnBeginGetMosaicForStation);
+            }
+            if ((this.onEndGetMosaicForStationDelegate == null)) {
+                this.onEndGetMosaicForStationDelegate = new EndOperationDelegate(this.OnEndGetMosaicForStation);
+            }
+            if ((this.onGetMosaicForStationCompletedDelegate == null)) {
+                this.onGetMosaicForStationCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetMosaicForStationCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetMosaicForStationDelegate, new object[] {
+                        clientID}, this.onEndGetMosaicForStationDelegate, this.onGetMosaicForStationCompletedDelegate, userState);
         }
         
         public bool MakeStationUnAvailable(long stationID, string rfidCode) {

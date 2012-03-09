@@ -18,17 +18,21 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost/DataAccess/Service.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://1.9.13.61/DataAccess/Service.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Service4.xsd" MetadataType="Schema" ID="dfc33f04-d04f-4701-981d-858c36278beb" SourceId="1" SourceUrl="http://localhost/DataAccess/Service.svc?xsd=xsd4" />
-    <MetadataFile FileName="Service1.disco" MetadataType="Disco" ID="bdfce6b9-c0ca-496d-9ef2-d56525d1a260" SourceId="1" SourceUrl="http://localhost/DataAccess/Service.svc?disco" />
-    <MetadataFile FileName="Service41.xsd" MetadataType="Schema" ID="18cd4893-ed36-497c-bb92-4aac44acd12e" SourceId="1" SourceUrl="http://localhost/DataAccess/Service.svc?xsd=xsd0" />
-    <MetadataFile FileName="Service42.xsd" MetadataType="Schema" ID="a72b6cbf-9f2b-4c41-8cf4-135b88d92327" SourceId="1" SourceUrl="http://localhost/DataAccess/Service.svc?xsd=xsd1" />
-    <MetadataFile FileName="Service43.xsd" MetadataType="Schema" ID="861e7efa-9d37-4c9a-b273-6de2d179208b" SourceId="1" SourceUrl="http://localhost/DataAccess/Service.svc?xsd=xsd3" />
-    <MetadataFile FileName="Service44.xsd" MetadataType="Schema" ID="21b5bb5b-da5d-434f-87ea-4d0214bcd1cf" SourceId="1" SourceUrl="http://localhost/DataAccess/Service.svc?xsd=xsd5" />
-    <MetadataFile FileName="Service45.xsd" MetadataType="Schema" ID="6ce64755-5b02-4d14-8519-c80ac398dbc6" SourceId="1" SourceUrl="http://localhost/DataAccess/Service.svc?xsd=xsd2" />
-    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="a6035153-0f02-4499-aaae-5fa4992b083a" SourceId="1" SourceUrl="http://localhost/DataAccess/Service.svc?wsdl" />
+    <MetadataFile FileName="Service5.xsd" MetadataType="Schema" ID="1b2f295c-8eec-452e-907d-dfe019d9e16a" SourceId="1" SourceUrl="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd3" />
+    <MetadataFile FileName="Service51.xsd" MetadataType="Schema" ID="c2734d87-8448-4e81-9fe4-e6ce62f5d0c0" SourceId="1" SourceUrl="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd2" />
+    <MetadataFile FileName="Service52.xsd" MetadataType="Schema" ID="622edeb0-1ce6-4815-979a-e41bb9a09c26" SourceId="1" SourceUrl="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd1" />
+    <MetadataFile FileName="Service53.xsd" MetadataType="Schema" ID="a2178b66-563b-42ef-b5f4-4265c661db1b" SourceId="1" SourceUrl="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd7" />
+    <MetadataFile FileName="Service54.xsd" MetadataType="Schema" ID="877b2d95-e7ad-4de4-84ca-0741f1f2c386" SourceId="1" SourceUrl="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd5" />
+    <MetadataFile FileName="Service55.xsd" MetadataType="Schema" ID="4f0a52fb-533d-4d13-a596-c255b682bd3c" SourceId="1" SourceUrl="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd9" />
+    <MetadataFile FileName="Service.wsdl" MetadataType="Wsdl" ID="b24038e8-a918-4659-b5a9-920389a13531" SourceId="1" SourceUrl="http://1.9.13.61/DataAccess/Service.svc?wsdl" />
+    <MetadataFile FileName="Service.disco" MetadataType="Disco" ID="354f21ed-eec6-41d7-af3b-a8d9992e342e" SourceId="1" SourceUrl="http://1.9.13.61/DataAccess/Service.svc?disco" />
+    <MetadataFile FileName="Service56.xsd" MetadataType="Schema" ID="3b6389b2-1c15-469f-8c03-f9cc4166f9ec" SourceId="1" SourceUrl="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd0" />
+    <MetadataFile FileName="Service57.xsd" MetadataType="Schema" ID="b96e6168-f7e3-483d-99e9-e3ba2da634b1" SourceId="1" SourceUrl="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd6" />
+    <MetadataFile FileName="Service58.xsd" MetadataType="Schema" ID="741f5eca-f6dd-4689-927a-27eae4a42d86" SourceId="1" SourceUrl="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd4" />
+    <MetadataFile FileName="Service59.xsd" MetadataType="Schema" ID="77b1b8e7-73a9-48ee-89be-165e9808a242" SourceId="1" SourceUrl="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd8" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

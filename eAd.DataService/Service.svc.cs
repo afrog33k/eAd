@@ -207,6 +207,23 @@ namespace eAd.DataAccess
         }
 
 
+        public Mosaic GetMosaicForStation(long stationID)
+        {
+            eAdDataContainer entities = new eAdDataContainer();
+
+            //var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
+
+            //if(station!=null)
+            //{
+            //    var myGroupings = station.Groupings;
+
+            //    entities.Mosaics.Where(m=> m.Groupings.Any(myGroupings))
+            //}
+
+            return entities.Mosaics.Where(m=>m.Name.Contains("as")).FirstOrDefault();
+            return null;
+        }
+
         public bool MakeStationUnAvailable(long stationID, string rfidCode = "")
         {
 

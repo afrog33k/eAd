@@ -84,6 +84,7 @@
     <Compile Include="Entities\Direction.cs" />
     <Compile Include="GoogleMaps.cs" />
     <Compile Include="ISwitchable.cs" />
+    <Compile Include="Menu\Player.xaml.cs" />
     <Compile Include="Menu\RFIDDetected.xaml.cs">
       <DependentUpon>RFIDDetected.xaml</DependentUpon>
     </Compile>
@@ -210,7 +211,22 @@
     <None Include="Service References\eAdDataAccess\DesktopClient.eAdDataAccess.FileMetaData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\eAdDataAccess\DesktopClient.eAdDataAccess.Mosaic.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\eAdDataAccess\Service.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\eAdDataAccess\Service1.wsdl" />
+    <None Include="Service References\eAdDataAccess\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\eAdDataAccess\Service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\eAdDataAccess\Service3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\eAdDataAccess\Service4.xsd">
       <SubType>Designer</SubType>
     </None>

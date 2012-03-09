@@ -27,7 +27,7 @@ namespace DesktopClient
         /// <summary>
         public static List<MediaListModel> Playlist = new List<MediaListModel>();
 
-        private object DownLoadsLock = new object();
+        private static object DownLoadsLock = new object();
         bool CheckedForNewMessages = false;
         public PageSwitcher()
         {
@@ -306,8 +306,8 @@ namespace DesktopClient
                     break;
                 case "Screenshot":
                     var fileName = "Screenshot#" + Constants.MyStationID + "#" + string.Format("{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now) + ".jpg";
-                    new ScreenCapture().CaptureScreenToFile(fileName,ImageFormat.Jpeg);
-                    Snapshot.UploadFile(fileName,FileTypeEnum.Generic);
+                    new ScreenCapture().CaptureScreenToFile(fileName, ImageFormat.Jpeg);
+                    Snapshot.UploadFile(fileName, FileTypeEnum.Generic);
                     break;
                 default
                     :
@@ -360,12 +360,28 @@ namespace DesktopClient
             }
         }
 
+        public static Mosaic MainMosaic;
+
         private void StartKeepAliveThread()
         {
             // Keep Alive Thread
             ThreadPool.QueueUserWorkItem(
                 (state) =>
                 {
+
+                    try
+                    {
+                        ServiceClient myService1 = new ServiceClient();
+
+                        MainMosaic = myService1.GetMosaicForStation(Constants.MyStationID);
+
+                        MainWindow.Instance.LoadPositions();
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
                     while (true)
                     {
                         ServiceClient myService = new ServiceClient();
@@ -453,196 +469,9 @@ namespace DesktopClient
                                  {
 
 
-                                     var
-                                         path
-                                             =
-                                             Constants
-                                                 .
-                                                 AppPath +
-                                             item
-                                                 .
-                                                 Location;
-                                     var urlPath = item
-                                         .
-                                         Location;
-
-                                     var
-                                         fileExists
-                                             =
-                                             false;
-                                     if
-                                         (
-                                         File
-                                             .
-                                             Exists
-                                             (path) && new FileInfo(path).Length > 0)
-                                     // Todo: Check if currently playing and also compare properties to prevent unneeded redownloads
-                                     {
-                                         //File.Delete(path);
-                                         fileExists
-                                             =
-                                             true;
-                                     }
-                                     if
-                                         (
-                                         Playlist
-                                             .
-                                             Where
-                                             (
-                                                 i
-                                                 =>
-                                                 i
-                                                     .
-                                                     Location ==
-                                                 path)
-                                             .
-                                             Count
-                                             () <=
-                                         0)
-                                     {
-                                         var
-                                             model
-                                                 =
-                                                 item;
-                                         model
-                                             .
-                                             Location
-                                             =
-                                             path;
-                                         if
-                                             (
-                                             fileExists)
-                                         {
-                                             model
-                                                 .
-                                                 Downloaded
-                                                 =
-                                                 true;
-                                         }
-
-                                         Playlist
-                                             .
-                                             Add
-                                             (model);
-                                         if
-                                             (
-                                             fileExists)
-                                             return;
-
-                                     }
-                                     irio
-                                         .
-                                         utilities
-                                         .
-                                         FileUtilities
-                                         .
-                                         FolderCreate
-                                         (
-                                             Path
-                                                 .
-                                                 GetDirectoryName
-                                                 (path));
-
-                                     using
-                                         (
-                                         WebClient
-                                             client
-                                                 =
-                                                 new WebClient
-                                                     ()
-                                         )
-                                     {
-                                         try
-                                         {
-                                             client
-                                                 .
-                                                 DownloadProgressChanged
-                                                 +=
-                                                 client_DownloadProgressChanged;
-
-                                             client
-                                                 .
-                                                 DownloadFileCompleted
-                                                 += delegate(object sender, AsyncCompletedEventArgs args)
-                                                        {
-                                                            lock (DownLoadsLock)
-                                                            {
-                                                                runningDownloads--;
-                                                            }
-                                                            HideProgressBar();
-                                                            var pitem =
-                                                                Playlist.Where(i => i.Location == path).FirstOrDefault();
-
-                                                            if (pitem != null)
-                                                            {
-                                                                pitem.Downloaded =
-                                                                    true;
-
-                                                                if (!File.Exists(path) || new FileInfo(path).Length <= 0)
-                                                                {
-                                                                    Playlist.Remove(pitem);
-                                                                    Console.WriteLine("Downloaded Corrupted File");
-                                                                }
-                                                            }
-
-
-                                                            if (args.Error == null)
-                                                            {
-                                                                lock (DownLoadsLock)
-                                                                    Thread.Sleep(200);
-                                                                if (runningDownloads == 0)
-                                                                {
-                                                                    MainWindow.Instance
-                                                                        .UpdatePlayList
-                                                                        ();
-                                                                }
-                                                            }
-
-
-
-
-                                                        };
-                                             //ClientDownloadFileCompleted;
-
-
-
-                                             if
-                                                 (
-                                                 !fileExists)
-                                             {
-                                                 // Starts the download
-                                                 lock
-                                                     (
-                                                     DownLoadsLock
-                                                     )
-                                                     runningDownloads
-                                                         ++;
-
-                                                 var
-                                                     uri
-                                                         = new Uri(Constants.ServerUrl + urlPath.Replace("\\", @"/"));
-                                                 client.DownloadFileAsync(uri, path);
-                                             }
-
-                                         }
-                                         catch (TimeoutException exception)
-                                         {
-                                             Console.WriteLine("Got {0}", exception.GetType());
-
-                                         }
-                                         catch (CommunicationException exception)
-                                         {
-                                             Console.WriteLine("Got {0}", exception.GetType());
-
-                                         }
-                                         //btnStartDownload.Text = "Download In Process";
-                                         //btnStartDownload.Enabled = false;
-
-                                     }
-                                     //ServiceClient myService3 = new ServiceClient();
-                                     ////BootStrap WCF (otherwise slow)
-                                     //myService3.ClientCredentials.Windows.ClientCredential.UserName = "admin";
-                                     //myService3.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
+                                     //  if (
+                               //      DownloadMedium(item, Playlist, MainWindow.Instance);//) 
+                                     //return;
                                  }
 
 
@@ -659,6 +488,222 @@ namespace DesktopClient
                     myService5.Abort();
                 }
             }
+        }
+
+        public static bool DownloadMedium(MediaListModel item, List<MediaListModel> playlist, IPlayer player)
+        {
+            var
+                path
+                    =
+                    Constants
+                        .
+                        AppPath +
+                    item
+                        .
+                        Location;
+            var urlPath = item
+                .
+                Location;
+
+            var
+                fileExists
+                    =
+                    false;
+            if
+                (
+                File
+                    .
+                    Exists
+                    (path) && new FileInfo(path).Length > 0)
+            // Todo: Check if currently playing and also compare properties to prevent unneeded redownloads
+            {
+                //File.Delete(path);
+                fileExists
+                    =
+                    true;
+            }
+            if
+                (
+                playlist
+                    .
+                    Where
+                    (
+                        i
+                        =>
+                        i
+                            .
+                            Location ==
+                        path)
+                    .
+                    Count
+                    () <=
+                0)
+            {
+                var
+                    model
+                        =
+                        item;
+                model
+                    .
+                    Location
+                    =
+                    path;
+                if
+                    (
+                    fileExists)
+                {
+                    model
+                        .
+                        Downloaded
+                        =
+                        true;
+                }
+
+                if (playlist.Contains(item))
+                    playlist.Remove(item);
+
+                playlist
+                    .
+                    Add
+                    (model);
+                if
+                    (
+                    fileExists)
+                    return true;
+            }
+            irio
+                .
+                utilities
+                .
+                FileUtilities
+                .
+                FolderCreate
+                (
+                    Path
+                        .
+                        GetDirectoryName
+                        (path));
+
+            using
+                (
+                WebClient
+                    client
+                        =
+                        new WebClient
+                            ()
+                )
+            {
+                try
+                {
+                    client
+                        .
+                        DownloadProgressChanged
+                        += delegate(object sender, DownloadProgressChangedEventArgs e)
+                               {
+                                   Switcher.PageSwitcher.Dispatcher.BeginInvoke(
+
+              DispatcherPriority.Normal
+
+              , new DispatcherOperationCallback(delegate
+              {
+                  if (MainWindow.Instance.Update_Progress.Visibility == Visibility.Hidden)
+                      MainWindow.Instance.Update_Progress.Visibility = Visibility.Visible;
+
+                  double bytesIn = double.Parse(e.BytesReceived.ToString());
+
+                  double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+
+                  if (!downloads.Contains(e))
+                  {
+                      downloads.Add(e);
+                      TotalBytes += totalBytes;
+                  }
+
+
+                  TotalBytesIn += bytesIn;
+
+                  double percentage = TotalBytesIn / TotalBytes * 100;
+
+                  MainWindow.Instance.Update_Progress.Value = ((percentage + MainWindow.Instance.Update_Progress.Value) / 2);
+                  return null;
+              }), null);
+                               };
+                     //   client_DownloadProgressChanged;
+                    
+                    client
+                        .
+                        DownloadFileCompleted
+                        += delegate(object sender, AsyncCompletedEventArgs args)
+                               {
+                                   lock (DownLoadsLock)
+                                   {
+                                       runningDownloads--;
+                                   }
+                                   HideProgressBar();
+                                   var pitem =
+                                       playlist.Where(i => i.Location == path).FirstOrDefault();
+
+                                   if (pitem != null)
+                                   {
+                                       pitem.Downloaded =
+                                           true;
+
+                                       if (!File.Exists(path) || new FileInfo(path).Length <= 0)
+                                       {
+                                           playlist.Remove(pitem);
+                                           Console.WriteLine("Downloaded Corrupted File");
+                                       }
+                                   }
+
+
+                                   if (args.Error == null)
+                                   {
+                                       lock (DownLoadsLock)
+                                           Thread.Sleep(200);
+                                       if (runningDownloads == 0)
+                                       {
+                                           player.UpdatePlayList
+                                               ();
+                                       }
+                                   }
+                               };
+                    //ClientDownloadFileCompleted;
+
+
+                    if
+                        (
+                        !fileExists)
+                    {
+                        // Starts the download
+                        lock
+                            (
+                            DownLoadsLock
+                            )
+                            runningDownloads
+                                ++;
+
+                        var
+                            uri
+                                = new Uri(Constants.ServerUrl + urlPath.Replace("\\", @"/"));
+                        client.DownloadFileAsync(uri, path);
+                    }
+                }
+                catch (TimeoutException exception)
+                {
+                    Console.WriteLine("Got {0}", exception.GetType());
+                }
+                catch (CommunicationException exception)
+                {
+                    Console.WriteLine("Got {0}", exception.GetType());
+                }
+                //btnStartDownload.Text = "Download In Process";
+                //btnStartDownload.Enabled = false;
+            }
+            //ServiceClient myService3 = new ServiceClient();
+            ////BootStrap WCF (otherwise slow)
+            //myService3.ClientCredentials.Windows.ClientCredential.UserName = "admin";
+            //myService3.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
+            return false;
         }
 
         private void ClientDownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
@@ -700,23 +745,38 @@ namespace DesktopClient
                                                       }), null);
         }
 
-        private void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+
+        public static double  TotalBytes = 0;
+        public static double TotalBytesIn = 0;
+        public static List<DownloadProgressChangedEventArgs> downloads = new List<DownloadProgressChangedEventArgs>();
+
+        private static void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
 
 
             Switcher.PageSwitcher.Dispatcher.BeginInvoke(
 
-               System.Windows.Threading.DispatcherPriority.Normal
+               DispatcherPriority.Normal
 
                , new DispatcherOperationCallback(delegate
                {
                    if (MainWindow.Instance.Update_Progress.Visibility == Visibility.Hidden)
                        MainWindow.Instance.Update_Progress.Visibility = Visibility.Visible;
 
-
                    double bytesIn = double.Parse(e.BytesReceived.ToString());
+
                    double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
-                   double percentage = bytesIn / totalBytes * 100;
+
+                   if (!downloads.Contains(e))
+                   {
+                       downloads.Add(e);
+                       TotalBytes += totalBytes;
+                   }
+
+
+                 TotalBytesIn += bytesIn;
+
+                 double percentage = TotalBytesIn / TotalBytes * 100;
 
                    MainWindow.Instance.Update_Progress.Value = ((percentage + MainWindow.Instance.Update_Progress.Value) / 2);
                    return null;
@@ -746,5 +806,10 @@ namespace DesktopClient
                 throw new ArgumentException("NextPage is not ISwitchable! "
                   + nextPage.Name.ToString());
         }
+    }
+
+    public interface IPlayer
+    {
+        void UpdatePlayList();
     }
 }

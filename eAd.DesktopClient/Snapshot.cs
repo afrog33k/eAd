@@ -150,7 +150,7 @@ namespace DesktopClient
             {
                 using (Stream fileStream = new FileStream(localFileName, FileMode.Open, FileAccess.Read))
                 {
-                    var request = new FileUploadMessage();
+                //    var request = new FileUploadMessage();
                     string remoteFileName = null;
                     if (fileType == FileTypeEnum.Generic)
                     {
@@ -160,10 +160,10 @@ namespace DesktopClient
                     }
 
                     var fileMetadata = new FileMetaData { LocalFilename = localFileName, RemoteFilename = remoteFileName,FileType = fileType};
-                    request.MetaData = fileMetadata;
-                    request.FileByteStream = fileStream;
+               //     request.MetaData = fileMetadata;
+               //     request.FileByteStream = fileStream;
 
-               service.UploadFile(fileMetadata,fileStream);
+               //service.UploadFile(fileMetadata,fileStream);
                service.Close();
                   
                 }

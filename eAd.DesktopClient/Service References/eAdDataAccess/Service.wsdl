@@ -2,12 +2,16 @@
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost/DataAccess/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost/DataAccess/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost/DataAccess/Service.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/Message" />
-      <xsd:import schemaLocation="http://localhost/DataAccess/Service.svc?xsd=xsd3" namespace="http://schemas.acme.it/2009/04" />
-      <xsd:import schemaLocation="http://localhost/DataAccess/Service.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/eAd.DataAccess" />
-      <xsd:import schemaLocation="http://localhost/DataAccess/Service.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd2" namespace="http://schemas.acme.it/2009/04" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/eAd.DataAccess" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.IO" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd6" namespace="http://schemas.microsoft.com/Message" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService_GetHi_InputMessage">
@@ -16,13 +20,12 @@
   <wsdl:message name="IService_GetHi_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetHiResponse" />
   </wsdl:message>
-  <wsdl:message name="FileUploadMessage">
-    <wsdl:part name="parameters" element="tns:FileUploadMessage" />
+  <wsdl:message name="IService_UploadFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadFile" />
   </wsdl:message>
-  <wsdl:message name="FileUploadMessage_Headers">
-    <wsdl:part name="MetaData" element="tns:MetaData" />
+  <wsdl:message name="IService_UploadFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadFileResponse" />
   </wsdl:message>
-  <wsdl:message name="IService_UploadFile_OutputMessage" />
   <wsdl:message name="FileDownloadMessage">
     <wsdl:part name="parameters" element="tns:FileDownloadMessage" />
   </wsdl:message>
@@ -52,6 +55,12 @@
   </wsdl:message>
   <wsdl:message name="IService_DoIHaveUpdates_OutputMessage">
     <wsdl:part name="parameters" element="tns:DoIHaveUpdatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMosaicForStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMosaicForStation" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMosaicForStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMosaicForStationResponse" />
   </wsdl:message>
   <wsdl:message name="IService_MakeStationUnAvailable_InputMessage">
     <wsdl:part name="parameters" element="tns:MakeStationUnAvailable" />
@@ -125,7 +134,7 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IService/GetHiResponse" message="tns:IService_GetHi_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UploadFile">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/UploadFile" name="FileUploadMessage" message="tns:FileUploadMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/UploadFile" message="tns:IService_UploadFile_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/UploadFileResponse" message="tns:IService_UploadFile_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DownloadFile">
@@ -143,6 +152,10 @@
     <wsdl:operation name="DoIHaveUpdates">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/DoIHaveUpdates" message="tns:IService_DoIHaveUpdates_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/DoIHaveUpdatesResponse" message="tns:IService_DoIHaveUpdates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMosaicForStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetMosaicForStation" message="tns:IService_GetMosaicForStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetMosaicForStationResponse" message="tns:IService_GetMosaicForStation_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="MakeStationUnAvailable">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/MakeStationUnAvailable" message="tns:IService_MakeStationUnAvailable_InputMessage" />
@@ -202,8 +215,7 @@
     </wsdl:operation>
     <wsdl:operation name="UploadFile">
       <soap:operation soapAction="http://tempuri.org/IService/UploadFile" style="document" />
-      <wsdl:input name="FileUploadMessage">
-        <soap:header message="tns:FileUploadMessage_Headers" part="MetaData" use="literal" />
+      <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
@@ -241,6 +253,15 @@
     </wsdl:operation>
     <wsdl:operation name="DoIHaveUpdates">
       <soap:operation soapAction="http://tempuri.org/IService/DoIHaveUpdates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMosaicForStation">
+      <soap:operation soapAction="http://tempuri.org/IService/GetMosaicForStation" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -350,7 +371,7 @@
   </wsdl:binding>
   <wsdl:service name="Service">
     <wsdl:port name="BasicHttpBinding_IService" binding="tns:BasicHttpBinding_IService">
-      <soap:address location="http://localhost/DataAccess/Service.svc" />
+      <soap:address location="http://1.9.13.61/DataAccess/Service.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

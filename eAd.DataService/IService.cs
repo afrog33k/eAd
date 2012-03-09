@@ -33,7 +33,9 @@ namespace eAd.DataAccess
 
         bool DoIHaveUpdates(long clientID);
 
+        [OperationContract]
 
+        Mosaic GetMosaicForStation(long clientID);
 
         [OperationContract]
 
