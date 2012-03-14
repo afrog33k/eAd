@@ -49,8 +49,14 @@ namespace eAd.Website.Controllers
                     station.Name = greenlotsInfo.Location.information[0].name;
                     station.Address = greenlotsInfo.Location.information[0].address + "\n" + greenlotsInfo.Location.information[0].address1 + "\n" + greenlotsInfo.Location.information[0].address2;
                     station.PostalCode = greenlotsInfo.Location.information[0].postal;
+                    try
+                    {
                     station.Rate = Convert.ToDouble( greenlotsInfo.Location.information[0].rate);
-                }
+                        }catch(Exception ex)
+                        {
+                            
+                        }
+                    }
 
                 var customerInfo = greenlotsInfo.User.information[0];
                 if (db.Customers.Where(s => s.Email == customerInfo.email).Count() <= 0)
@@ -99,8 +105,14 @@ namespace eAd.Website.Controllers
                     car.License = carInfo.license_plate;
                     car.Make = carInfo.make;
                     car.Model = carInfo.model;
-                    car.TotalUsage =Convert.ToDouble(carInfo.total_usage);
-                    car.BatteryCycle = Convert.ToDouble(carInfo.battery_cycle);
+                    try
+                    {
+                        car.TotalUsage = Convert.ToDouble(carInfo.total_usage);
+                        car.BatteryCycle = Convert.ToDouble(carInfo.battery_cycle);
+                    }catch(Exception ex)
+                    {
+
+                    }
                     //Fix up date
                     var datetxt = history.end;
                     try

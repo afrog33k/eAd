@@ -356,19 +356,24 @@ namespace DesktopClient
                     try
                     {
 
-                  
-                    var fileName = "Screenshot#" + Constants.MyStationID + "#" + string.Format("{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now) + ".jpg";
-                    new ScreenCapture().CaptureScreenToFile(fileName, ImageFormat.Jpeg);
-                       NameValueCollection nvc = new NameValueCollection();
-                       nvc.Add("StationID", Constants.MyStationID.ToString());
-    nvc.Add("btn-submit-photo", "Upload");
-    //HttpUploadFile("http://your.server.com/upload", 
-    //     @"C:\test\test.jpg", "file", "image/jpeg", nvc);
+                  ThreadPool.QueueUserWorkItem((hjhj)=>
+                        {
+                            var fileName = "Screenshot#" + Constants.MyStationID + "#" +
+                                           string.Format("{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now) + ".jpg";
+                            new ScreenCapture().CaptureScreenToFile(fileName, ImageFormat.Jpeg);
+                            NameValueCollection nvc = new NameValueCollection();
+                            nvc.Add("StationID", Constants.MyStationID.ToString());
+                            nvc.Add("btn-submit-photo", "Upload");
+                            //HttpUploadFile("http://your.server.com/upload", 
+                            //     @"C:\test\test.jpg", "file", "image/jpeg", nvc);
 
 
 
-    WebUpload.HttpUploadFile(Constants.ServerUrl + "/" + "Stations/UploadScreenshot", fileName, "file", "image/jpeg", nvc);
-                //    Snapshot.UploadFile(fileName, FileTypeEnum.Generic);
+                            WebUpload.HttpUploadFile(Constants.ServerUrl + "/" + "Stations/UploadScreenshot", fileName,
+                                                     "file", "image/jpeg", nvc);
+                            //    Snapshot.UploadFile(fileName, FileTypeEnum.Generic);
+                        })
+                        ;
                     }
                     catch (Exception)
                     {
@@ -529,7 +534,8 @@ namespace DesktopClient
                                                                                service.Abort();
                                                                            }
                                                                        
-                    });
+                    }
+                        );
         }
 
         public static PositionViewModel[] Positions

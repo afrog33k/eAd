@@ -552,7 +552,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:eAd Desktop Client"
         "ProductCode" = "8:{96CA926E-C3E0-49E2-8B90-EBD8A07B6E49}"
-        "PackageCode" = "8:{F3EB96E3-7556-413F-AC70-60A2B5A2C415}"
+        "PackageCode" = "8:{45B239D2-E171-42D2-A65D-E8F575E79B82}"
         "UpgradeCode" = "8:{B336DD54-7B72-4769-ACFD-91BD904CA948}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

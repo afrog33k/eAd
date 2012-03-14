@@ -85,9 +85,9 @@ namespace DesktopClient.Menu
         {
            
           
-            eAdWindow.Dispatcher.BeginInvoke(
+            Dispatcher.BeginInvoke(
 
-    DispatcherPriority.Send
+    DispatcherPriority.Normal
 
     , new DispatcherOperationCallback(delegate
                                           {

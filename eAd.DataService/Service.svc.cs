@@ -240,7 +240,7 @@ namespace eAd.DataAccess
             if (station != null)
             {
 
-                var groupWithMosaic = entities.Groupings.Where(m => m.Mosaic != null).FirstOrDefault();
+                var groupWithMosaic = station.Groupings.Where(m => m.Mosaic != null).FirstOrDefault();
                 if (groupWithMosaic != null)
                     return groupWithMosaic.MosaicID;
             }
@@ -262,8 +262,8 @@ namespace eAd.DataAccess
 
             if(station!=null)
             {
-          
-                var groupWithMosaic = entities.Groupings.Where(m => m.Mosaic != null).FirstOrDefault();
+
+                var groupWithMosaic = station.Groupings.Where(m => m.Mosaic != null).FirstOrDefault();
                 if(groupWithMosaic!=null)
                     return groupWithMosaic.Mosaic;
             }
