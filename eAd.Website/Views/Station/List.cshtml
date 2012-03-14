@@ -13,6 +13,7 @@ Number Of Stations Online:  <b>@ViewBag.StationsOnlineCount</b><br/>
 <tr>
 <td>Name &nbsp;&nbsp;</td>
 <td>Last CheckIn &nbsp;&nbsp;</td>
+<td>Last Status</td>
 <td>Online &nbsp;&nbsp;</td>
 <td>Available &nbsp;&nbsp;</td>
 <td>Map &nbsp;&nbsp;</td>
@@ -25,6 +26,7 @@ Number Of Stations Online:  <b>@ViewBag.StationsOnlineCount</b><br/>
 
     <td>@station.Name &nbsp;&nbsp;</td>
 <td>@(station.LastCheckIn!=null?station.LastCheckIn.ToString():"Never") &nbsp;&nbsp;</td>
+<td>@(station.Status)</td>
 <td>@(station.IsOnline?"Yes":"No") &nbsp;&nbsp;</td>
 <td>@(station.Available?"Yes":"No") &nbsp;&nbsp;</td>
 <td>   @Html.ActionLink("Map", "Index", "Map", new { stationID = station.StationID }, new { @class = "mapLink" })</td>
@@ -46,7 +48,9 @@ Number Of Stations Online:  <b>@ViewBag.StationsOnlineCount</b><br/>
    </script>
      </td>
      <td>@Html.ActionLink("DisEngage", "DisEngage", "Station", new { stationID = station.StationID }, null)</td>
-      <td>@Html.ActionLink("Screenshot", "Screenshot", "Station", new { stationID = station.StationID }, null)</td>
+      <td>@Html.ActionLink("Screenshot", "Screenshot", "Station", new { stationID = station.StationID }, null)
+    
+      </td>
     </tr>
 }
 </table>

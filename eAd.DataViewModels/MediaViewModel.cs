@@ -1,8 +1,9 @@
 using System;
+using System.Collections.Generic;
 
 namespace eAd.DataViewModels
 {
-
+   
     public class MediaListModel
     {
         public Int64 MediaID

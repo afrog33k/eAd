@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using eAd.DataAccess;
+using eAd.Website.Repositories;
+using irio.utilities;
 
 namespace eAd.Website.Controllers
 { 
@@ -62,7 +65,55 @@ namespace eAd.Website.Controllers
 
             return View(station);
         }
-        
+
+        // 
+        //
+        // GET: /Stations/UploadScreenshot/5
+         public ActionResult UploadScreenshot(long id)
+         {
+             ViewBag.StationID = id;
+             return View();
+         }
+        // 
+        //
+        // GET: /Stations/UploadScreenshot/5
+        [HttpPost]
+         public ActionResult UploadScreenshot(long stationID,HttpPostedFileBase file)
+        {
+            if (file.ContentLength > 0)
+            {
+           //     var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/ScreenShots/"+stationID+"/"), "shot.jpg");
+                if (FileUtilities.FileExists(path))
+                    new FileInfo(path).Delete();
+                FileUtilities.SaveStream(file.InputStream, path, false);
+            
+            }
+
+         //   UploadedContent upload;
+
+            
+            //var location = UploadRepository.GetFileUrl(this.HttpContext, medium.MediaID.ToString(),
+            //                                           medium.MediaID.ToString(), UploadType.Media, out upload);
+
+            //if (upload != null)
+            //{
+            //    if (medium.Duration == TimeSpan.Zero)
+            //    {
+            //        medium.Duration = new TimeSpan(upload.Duration.Ticks);
+            //    }
+            //    else
+            //    {
+
+            //    }
+            //}
+
+            //if (location != null)
+            //    medium.Location = location;
+            return RedirectToAction("Index");
+        }
+
+        // 
         //
         // GET: /Stations/Edit/5
  

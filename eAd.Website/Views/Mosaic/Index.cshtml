@@ -386,6 +386,24 @@
          
          
        });
+	           $.ajax({
+                    url: "@(Url.Action("MosaicUpdated", "Mosaic", null, "http"))",
+                    type: 'POST',
+                    context: document.body,
+                    data: 
+                    { 
+                        id: id
+                    },
+                    success: function (data) 
+                    {
+               
+                    },
+            error:  function (data) {
+                //   location.reload();
+                 alert(data);
+
+            }}); 
+	        
       }
    
     function  LoadMosaic(id) {

@@ -9,6 +9,8 @@ using System;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Drawing.Imaging;
+using eAd.Utilities;
+
 namespace DesktopClient
 {
  
@@ -145,7 +147,7 @@ namespace DesktopClient
 
         public static void UploadFile(string localFileName,FileTypeEnum fileType)
         {
-            eAdDataAccess.ServiceClient service = new ServiceClient();
+            eAdDataAccess.ServiceClient service = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress);
          try
             {
                 using (Stream fileStream = new FileStream(localFileName, FileMode.Open, FileAccess.Read))

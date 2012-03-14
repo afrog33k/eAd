@@ -27,6 +27,7 @@ namespace eAd.DataViewModels
 
         public DateTime? LastCheckIn { get; set; }
 
+        public string Status { get; set; }
         public bool IsOnline
         {
             get {

@@ -29,6 +29,7 @@
         <th>
             LastRechargeDate
         </th>
+        <th> RFID </th>
         <th></th>
     </tr>
 
@@ -51,6 +52,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.LastRechargeDate)
+        </td>
+           <td>
+            @Html.DisplayFor(modelItem => item.RFID)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CarID }) |

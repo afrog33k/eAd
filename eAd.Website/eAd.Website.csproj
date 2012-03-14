@@ -1296,42 +1296,7 @@
     <None Include="Service References\eAdDataService\Service1.disco" />
     <None Include="Service References\eAdDataService\Service.disco" />
     <Content Include="Tools\FFmpeg\avconv.exe" />
-    <Content Include="Tools\FFmpeg\doc\avconv.html" />
-    <Content Include="Tools\FFmpeg\doc\developer.html" />
-    <Content Include="Tools\FFmpeg\doc\faq.html" />
-    <Content Include="Tools\FFmpeg\doc\fate.html" />
-    <Content Include="Tools\FFmpeg\doc\ffmpeg.html" />
-    <Content Include="Tools\FFmpeg\doc\ffplay.html" />
-    <Content Include="Tools\FFmpeg\doc\ffprobe.html" />
-    <Content Include="Tools\FFmpeg\doc\general.html" />
-    <Content Include="Tools\FFmpeg\doc\git-howto.html" />
-    <Content Include="Tools\FFmpeg\doc\libavfilter.html" />
-    <Content Include="Tools\FFmpeg\doc\platform.html" />
     <Content Include="Tools\FFmpeg\ffmpeg.exe" />
-    <Content Include="Tools\FFmpeg\ffplay.exe" />
-    <Content Include="Tools\FFmpeg\ffprobe.exe" />
-    <Content Include="Tools\FFmpeg\licenses\bzip2.txt" />
-    <Content Include="Tools\FFmpeg\licenses\ffmpeg.txt" />
-    <Content Include="Tools\FFmpeg\licenses\freetype.txt" />
-    <Content Include="Tools\FFmpeg\licenses\frei0r.txt" />
-    <Content Include="Tools\FFmpeg\licenses\gsm.txt" />
-    <Content Include="Tools\FFmpeg\licenses\lame.txt" />
-    <Content Include="Tools\FFmpeg\licenses\libvpx.txt" />
-    <Content Include="Tools\FFmpeg\licenses\opencore-amr.txt" />
-    <Content Include="Tools\FFmpeg\licenses\openjpeg.txt" />
-    <Content Include="Tools\FFmpeg\licenses\rtmp.txt" />
-    <Content Include="Tools\FFmpeg\licenses\schroedinger.txt" />
-    <Content Include="Tools\FFmpeg\licenses\sdl.txt" />
-    <Content Include="Tools\FFmpeg\licenses\speex.txt" />
-    <Content Include="Tools\FFmpeg\licenses\theora.txt" />
-    <Content Include="Tools\FFmpeg\licenses\vo-aacenc.txt" />
-    <Content Include="Tools\FFmpeg\licenses\vo-amrwbenc.txt" />
-    <Content Include="Tools\FFmpeg\licenses\vorbis.txt" />
-    <Content Include="Tools\FFmpeg\licenses\x264.txt" />
-    <Content Include="Tools\FFmpeg\licenses\xavs.txt" />
-    <Content Include="Tools\FFmpeg\licenses\xvid.txt" />
-    <Content Include="Tools\FFmpeg\licenses\zlib.txt" />
-    <Content Include="Tools\FFmpeg\README.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1427,13 +1392,6 @@
     <None Include="Service References\eAdDataService\Service35.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Tools\FFmpeg\presets\libvpx-1080p.ffpreset" />
-    <None Include="Tools\FFmpeg\presets\libvpx-1080p50_60.ffpreset" />
-    <None Include="Tools\FFmpeg\presets\libvpx-360p.ffpreset" />
-    <None Include="Tools\FFmpeg\presets\libvpx-720p.ffpreset" />
-    <None Include="Tools\FFmpeg\presets\libvpx-720p50_60.ffpreset" />
-    <None Include="Tools\FFmpeg\presets\libx264-ipod320.ffpreset" />
-    <None Include="Tools\FFmpeg\presets\libx264-ipod640.ffpreset" />
     <Content Include="Views\Shared\EditorTemplates\TimeSpan.cshtml" />
     <Content Include="Views\Mosaic\Index.cshtml" />
     <Content Include="Views\Mosaic\Index, can be used as gallery or choosing themes etc.cshtml" />
@@ -1444,6 +1402,7 @@
     <Content Include="Views\MosaicMock\Delete.cshtml" />
     <Content Include="Views\Mosaic\preview.cshtml" />
     <Content Include="Views\Station\ShowScreenShot.cshtml" />
+    <Content Include="Views\Stations\UploadScreenshot.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\.svn\props\" />

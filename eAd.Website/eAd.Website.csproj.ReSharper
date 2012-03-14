@@ -1,6 +1,0 @@
-<Configuration>
-  <NamespaceFolders>
-    <SkipFolder>4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Logs/d:GreenLots</SkipFolder>
-    <SkipFolder>4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Logs</SkipFolder>
-  </NamespaceFolders>
-</Configuration>

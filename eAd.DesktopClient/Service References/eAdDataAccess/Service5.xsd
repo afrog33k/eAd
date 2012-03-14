@@ -65,6 +65,7 @@
           <xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Rate" nillable="true" type="xs:double" />
           <xs:element minOccurs="0" name="StationID" type="xs:long" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="UniqueID" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>

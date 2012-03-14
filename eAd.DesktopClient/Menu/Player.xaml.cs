@@ -217,6 +217,13 @@ namespace DesktopClient.Menu
         }
 
         protected object FileLock = new object();
-       
+
+        public void Stop()
+        {
+           if(Control!=null)
+               Control.Stop();
+
+           
+        }
     }
 }

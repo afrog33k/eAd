@@ -103,9 +103,26 @@ namespace eAd.Website.Controllers
                     car.BatteryCycle = Convert.ToDouble(carInfo.battery_cycle);
                     //Fix up date
                     var datetxt = history.end;
-                  datetxt=  datetxt.Replace("Today", DateTime.Now.Date.ToShortDateString());
-                  datetxt = datetxt.Replace("Yesterday", DateTime.Now.Date.ToShortDateString());
-                    car.LastRechargeDate =DateTime.Parse(datetxt);
+                    try
+                    {
+                        datetxt = datetxt.Replace("Today", DateTime.Now.Date.ToShortDateString());
+                        datetxt = datetxt.Replace("Yesterday", DateTime.Now.Date.ToShortDateString());
+                        car.LastRechargeDate = DateTime.Parse(datetxt);
+                    }
+                    catch (Exception ex)
+                    {
+                        try
+                        {
+                            DateTime.ParseExact(datetxt, "dd/MM/yyyy HH:mm", null);
+                        }
+                        catch(Exception ex1)
+                        {
+
+                            Logger.WriteLine(path, "\nInvalid Date Format Detected");
+                        }
+
+                    }
+               
 
                 }
 
@@ -118,13 +135,14 @@ namespace eAd.Website.Controllers
 
             db.SaveChanges();
 
-            if (station != null && car != null && start)
+            if (start)
             {
+                if (station != null && car!=null)
                 Service.MakeStationUnAvailable(station.StationID, car.RFID);
             }
             else
             {
-                if (station != null && car != null)
+                if (station != null)
                     Service.MakeStationAvailable(station.StationID);
             }
             }
@@ -138,6 +156,17 @@ namespace eAd.Website.Controllers
         public ActionResult GreenLotsLog()
         {
             string path =  this.HttpContext.Server.MapPath("~/Logs/GreenLots/" + "log.txt");
+            using (
+              FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
+              )
+            {
+                return Content(new StreamReader(stream).ReadToEnd().Replace("\n", "<br/>"));
+            }
+        }
+
+        public ActionResult ServerLog()
+        {
+            string path = this.HttpContext.Server.MapPath("~/Logs/" + "serverlog.txt");
             using (
               FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
               )

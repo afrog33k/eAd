@@ -354,6 +354,9 @@ namespace DesktopClient.eAdDataAccess {
         private long StationIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UniqueIDField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
@@ -495,6 +498,19 @@ namespace DesktopClient.eAdDataAccess {
                 if ((this.StationIDField.Equals(value) != true)) {
                     this.StationIDField = value;
                     this.RaisePropertyChanged("StationID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StatusField, value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
                 }
             }
         }
@@ -1269,6 +1285,7 @@ namespace DesktopClient.eAdDataAccess {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="EntityKeyMember", Namespace="http://schemas.datacontract.org/2004/07/System.Data")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(long[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.FileTypeEnum))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Mosaic))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.Grouping[]))]
@@ -1286,6 +1303,8 @@ namespace DesktopClient.eAdDataAccess {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopClient.eAdDataAccess.FileMetaData))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.MediaListModel[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.MediaListModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.PositionViewModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.PositionViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.CustomerViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.MessageViewModel))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.MessageViewModel[]))]
@@ -1476,6 +1495,22 @@ namespace DesktopClient.eAdDataAccess {
         
         eAd.DataViewModels.MediaListModel[] EndGetMyMedia(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetMediaDuration", ReplyAction="http://tempuri.org/IService/GetMediaDurationResponse")]
+        System.TimeSpan GetMediaDuration(long mediaID);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetMediaDuration", ReplyAction="http://tempuri.org/IService/GetMediaDurationResponse")]
+        System.IAsyncResult BeginGetMediaDuration(long mediaID, System.AsyncCallback callback, object asyncState);
+        
+        System.TimeSpan EndGetMediaDuration(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SetStationStatus", ReplyAction="http://tempuri.org/IService/SetStationStatusResponse")]
+        void SetStationStatus(long stationID, string status);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/SetStationStatus", ReplyAction="http://tempuri.org/IService/SetStationStatusResponse")]
+        System.IAsyncResult BeginSetStationStatus(long stationID, string status, System.AsyncCallback callback, object asyncState);
+        
+        void EndSetStationStatus(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DoIHaveUpdates", ReplyAction="http://tempuri.org/IService/DoIHaveUpdatesResponse")]
         bool DoIHaveUpdates(long clientID);
         
@@ -1499,6 +1534,30 @@ namespace DesktopClient.eAdDataAccess {
         System.IAsyncResult BeginMakeStationUnAvailable(long stationID, string rfidCode, System.AsyncCallback callback, object asyncState);
         
         bool EndMakeStationUnAvailable(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetMediaLocation", ReplyAction="http://tempuri.org/IService/GetMediaLocationResponse")]
+        string GetMediaLocation(long mediaID);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetMediaLocation", ReplyAction="http://tempuri.org/IService/GetMediaLocationResponse")]
+        System.IAsyncResult BeginGetMediaLocation(long mediaID, System.AsyncCallback callback, object asyncState);
+        
+        string EndGetMediaLocation(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetMosaicIDForStation", ReplyAction="http://tempuri.org/IService/GetMosaicIDForStationResponse")]
+        long GetMosaicIDForStation(long stationID);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetMosaicIDForStation", ReplyAction="http://tempuri.org/IService/GetMosaicIDForStationResponse")]
+        System.IAsyncResult BeginGetMosaicIDForStation(long stationID, System.AsyncCallback callback, object asyncState);
+        
+        long EndGetMosaicIDForStation(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetPositionsForMosaic", ReplyAction="http://tempuri.org/IService/GetPositionsForMosaicResponse")]
+        eAd.DataViewModels.PositionViewModel[] GetPositionsForMosaic(long mosaicID);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetPositionsForMosaic", ReplyAction="http://tempuri.org/IService/GetPositionsForMosaicResponse")]
+        System.IAsyncResult BeginGetPositionsForMosaic(long mosaicID, System.AsyncCallback callback, object asyncState);
+        
+        eAd.DataViewModels.PositionViewModel[] EndGetPositionsForMosaic(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/MakeStationAvailable", ReplyAction="http://tempuri.org/IService/MakeStationAvailableResponse")]
         bool MakeStationAvailable(long stationID);
@@ -1708,6 +1767,25 @@ namespace DesktopClient.eAdDataAccess {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetMediaDurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetMediaDurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.TimeSpan Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.TimeSpan)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class DoIHaveUpdatesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -1759,6 +1837,63 @@ namespace DesktopClient.eAdDataAccess {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetMediaLocationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetMediaLocationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetMosaicIDForStationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetMosaicIDForStationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public long Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((long)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetPositionsForMosaicCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetPositionsForMosaicCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public eAd.DataViewModels.PositionViewModel[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((eAd.DataViewModels.PositionViewModel[])(this.results[0]));
             }
         }
     }
@@ -1987,6 +2122,18 @@ namespace DesktopClient.eAdDataAccess {
         
         private System.Threading.SendOrPostCallback onGetMyMediaCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetMediaDurationDelegate;
+        
+        private EndOperationDelegate onEndGetMediaDurationDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetMediaDurationCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSetStationStatusDelegate;
+        
+        private EndOperationDelegate onEndSetStationStatusDelegate;
+        
+        private System.Threading.SendOrPostCallback onSetStationStatusCompletedDelegate;
+        
         private BeginOperationDelegate onBeginDoIHaveUpdatesDelegate;
         
         private EndOperationDelegate onEndDoIHaveUpdatesDelegate;
@@ -2004,6 +2151,24 @@ namespace DesktopClient.eAdDataAccess {
         private EndOperationDelegate onEndMakeStationUnAvailableDelegate;
         
         private System.Threading.SendOrPostCallback onMakeStationUnAvailableCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetMediaLocationDelegate;
+        
+        private EndOperationDelegate onEndGetMediaLocationDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetMediaLocationCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetMosaicIDForStationDelegate;
+        
+        private EndOperationDelegate onEndGetMosaicIDForStationDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetMosaicIDForStationCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetPositionsForMosaicDelegate;
+        
+        private EndOperationDelegate onEndGetPositionsForMosaicDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetPositionsForMosaicCompletedDelegate;
         
         private BeginOperationDelegate onBeginMakeStationAvailableDelegate;
         
@@ -2094,11 +2259,21 @@ namespace DesktopClient.eAdDataAccess {
         
         public event System.EventHandler<GetMyMediaCompletedEventArgs> GetMyMediaCompleted;
         
+        public event System.EventHandler<GetMediaDurationCompletedEventArgs> GetMediaDurationCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SetStationStatusCompleted;
+        
         public event System.EventHandler<DoIHaveUpdatesCompletedEventArgs> DoIHaveUpdatesCompleted;
         
         public event System.EventHandler<GetMosaicForStationCompletedEventArgs> GetMosaicForStationCompleted;
         
         public event System.EventHandler<MakeStationUnAvailableCompletedEventArgs> MakeStationUnAvailableCompleted;
+        
+        public event System.EventHandler<GetMediaLocationCompletedEventArgs> GetMediaLocationCompleted;
+        
+        public event System.EventHandler<GetMosaicIDForStationCompletedEventArgs> GetMosaicIDForStationCompleted;
+        
+        public event System.EventHandler<GetPositionsForMosaicCompletedEventArgs> GetPositionsForMosaicCompleted;
         
         public event System.EventHandler<MakeStationAvailableCompletedEventArgs> MakeStationAvailableCompleted;
         
@@ -2394,6 +2569,107 @@ namespace DesktopClient.eAdDataAccess {
                         stationID}, this.onEndGetMyMediaDelegate, this.onGetMyMediaCompletedDelegate, userState);
         }
         
+        public System.TimeSpan GetMediaDuration(long mediaID) {
+            return base.Channel.GetMediaDuration(mediaID);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetMediaDuration(long mediaID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetMediaDuration(mediaID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.TimeSpan EndGetMediaDuration(System.IAsyncResult result) {
+            return base.Channel.EndGetMediaDuration(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetMediaDuration(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long mediaID = ((long)(inValues[0]));
+            return this.BeginGetMediaDuration(mediaID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetMediaDuration(System.IAsyncResult result) {
+            System.TimeSpan retVal = this.EndGetMediaDuration(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetMediaDurationCompleted(object state) {
+            if ((this.GetMediaDurationCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetMediaDurationCompleted(this, new GetMediaDurationCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetMediaDurationAsync(long mediaID) {
+            this.GetMediaDurationAsync(mediaID, null);
+        }
+        
+        public void GetMediaDurationAsync(long mediaID, object userState) {
+            if ((this.onBeginGetMediaDurationDelegate == null)) {
+                this.onBeginGetMediaDurationDelegate = new BeginOperationDelegate(this.OnBeginGetMediaDuration);
+            }
+            if ((this.onEndGetMediaDurationDelegate == null)) {
+                this.onEndGetMediaDurationDelegate = new EndOperationDelegate(this.OnEndGetMediaDuration);
+            }
+            if ((this.onGetMediaDurationCompletedDelegate == null)) {
+                this.onGetMediaDurationCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetMediaDurationCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetMediaDurationDelegate, new object[] {
+                        mediaID}, this.onEndGetMediaDurationDelegate, this.onGetMediaDurationCompletedDelegate, userState);
+        }
+        
+        public void SetStationStatus(long stationID, string status) {
+            base.Channel.SetStationStatus(stationID, status);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginSetStationStatus(long stationID, string status, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSetStationStatus(stationID, status, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndSetStationStatus(System.IAsyncResult result) {
+            base.Channel.EndSetStationStatus(result);
+        }
+        
+        private System.IAsyncResult OnBeginSetStationStatus(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long stationID = ((long)(inValues[0]));
+            string status = ((string)(inValues[1]));
+            return this.BeginSetStationStatus(stationID, status, callback, asyncState);
+        }
+        
+        private object[] OnEndSetStationStatus(System.IAsyncResult result) {
+            this.EndSetStationStatus(result);
+            return null;
+        }
+        
+        private void OnSetStationStatusCompleted(object state) {
+            if ((this.SetStationStatusCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SetStationStatusCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SetStationStatusAsync(long stationID, string status) {
+            this.SetStationStatusAsync(stationID, status, null);
+        }
+        
+        public void SetStationStatusAsync(long stationID, string status, object userState) {
+            if ((this.onBeginSetStationStatusDelegate == null)) {
+                this.onBeginSetStationStatusDelegate = new BeginOperationDelegate(this.OnBeginSetStationStatus);
+            }
+            if ((this.onEndSetStationStatusDelegate == null)) {
+                this.onEndSetStationStatusDelegate = new EndOperationDelegate(this.OnEndSetStationStatus);
+            }
+            if ((this.onSetStationStatusCompletedDelegate == null)) {
+                this.onSetStationStatusCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSetStationStatusCompleted);
+            }
+            base.InvokeAsync(this.onBeginSetStationStatusDelegate, new object[] {
+                        stationID,
+                        status}, this.onEndSetStationStatusDelegate, this.onSetStationStatusCompletedDelegate, userState);
+        }
+        
         public bool DoIHaveUpdates(long clientID) {
             return base.Channel.DoIHaveUpdates(clientID);
         }
@@ -2544,6 +2820,156 @@ namespace DesktopClient.eAdDataAccess {
             base.InvokeAsync(this.onBeginMakeStationUnAvailableDelegate, new object[] {
                         stationID,
                         rfidCode}, this.onEndMakeStationUnAvailableDelegate, this.onMakeStationUnAvailableCompletedDelegate, userState);
+        }
+        
+        public string GetMediaLocation(long mediaID) {
+            return base.Channel.GetMediaLocation(mediaID);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetMediaLocation(long mediaID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetMediaLocation(mediaID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public string EndGetMediaLocation(System.IAsyncResult result) {
+            return base.Channel.EndGetMediaLocation(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetMediaLocation(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long mediaID = ((long)(inValues[0]));
+            return this.BeginGetMediaLocation(mediaID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetMediaLocation(System.IAsyncResult result) {
+            string retVal = this.EndGetMediaLocation(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetMediaLocationCompleted(object state) {
+            if ((this.GetMediaLocationCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetMediaLocationCompleted(this, new GetMediaLocationCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetMediaLocationAsync(long mediaID) {
+            this.GetMediaLocationAsync(mediaID, null);
+        }
+        
+        public void GetMediaLocationAsync(long mediaID, object userState) {
+            if ((this.onBeginGetMediaLocationDelegate == null)) {
+                this.onBeginGetMediaLocationDelegate = new BeginOperationDelegate(this.OnBeginGetMediaLocation);
+            }
+            if ((this.onEndGetMediaLocationDelegate == null)) {
+                this.onEndGetMediaLocationDelegate = new EndOperationDelegate(this.OnEndGetMediaLocation);
+            }
+            if ((this.onGetMediaLocationCompletedDelegate == null)) {
+                this.onGetMediaLocationCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetMediaLocationCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetMediaLocationDelegate, new object[] {
+                        mediaID}, this.onEndGetMediaLocationDelegate, this.onGetMediaLocationCompletedDelegate, userState);
+        }
+        
+        public long GetMosaicIDForStation(long stationID) {
+            return base.Channel.GetMosaicIDForStation(stationID);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetMosaicIDForStation(long stationID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetMosaicIDForStation(stationID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public long EndGetMosaicIDForStation(System.IAsyncResult result) {
+            return base.Channel.EndGetMosaicIDForStation(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetMosaicIDForStation(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long stationID = ((long)(inValues[0]));
+            return this.BeginGetMosaicIDForStation(stationID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetMosaicIDForStation(System.IAsyncResult result) {
+            long retVal = this.EndGetMosaicIDForStation(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetMosaicIDForStationCompleted(object state) {
+            if ((this.GetMosaicIDForStationCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetMosaicIDForStationCompleted(this, new GetMosaicIDForStationCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetMosaicIDForStationAsync(long stationID) {
+            this.GetMosaicIDForStationAsync(stationID, null);
+        }
+        
+        public void GetMosaicIDForStationAsync(long stationID, object userState) {
+            if ((this.onBeginGetMosaicIDForStationDelegate == null)) {
+                this.onBeginGetMosaicIDForStationDelegate = new BeginOperationDelegate(this.OnBeginGetMosaicIDForStation);
+            }
+            if ((this.onEndGetMosaicIDForStationDelegate == null)) {
+                this.onEndGetMosaicIDForStationDelegate = new EndOperationDelegate(this.OnEndGetMosaicIDForStation);
+            }
+            if ((this.onGetMosaicIDForStationCompletedDelegate == null)) {
+                this.onGetMosaicIDForStationCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetMosaicIDForStationCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetMosaicIDForStationDelegate, new object[] {
+                        stationID}, this.onEndGetMosaicIDForStationDelegate, this.onGetMosaicIDForStationCompletedDelegate, userState);
+        }
+        
+        public eAd.DataViewModels.PositionViewModel[] GetPositionsForMosaic(long mosaicID) {
+            return base.Channel.GetPositionsForMosaic(mosaicID);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetPositionsForMosaic(long mosaicID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetPositionsForMosaic(mosaicID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public eAd.DataViewModels.PositionViewModel[] EndGetPositionsForMosaic(System.IAsyncResult result) {
+            return base.Channel.EndGetPositionsForMosaic(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetPositionsForMosaic(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            long mosaicID = ((long)(inValues[0]));
+            return this.BeginGetPositionsForMosaic(mosaicID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetPositionsForMosaic(System.IAsyncResult result) {
+            eAd.DataViewModels.PositionViewModel[] retVal = this.EndGetPositionsForMosaic(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetPositionsForMosaicCompleted(object state) {
+            if ((this.GetPositionsForMosaicCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetPositionsForMosaicCompleted(this, new GetPositionsForMosaicCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetPositionsForMosaicAsync(long mosaicID) {
+            this.GetPositionsForMosaicAsync(mosaicID, null);
+        }
+        
+        public void GetPositionsForMosaicAsync(long mosaicID, object userState) {
+            if ((this.onBeginGetPositionsForMosaicDelegate == null)) {
+                this.onBeginGetPositionsForMosaicDelegate = new BeginOperationDelegate(this.OnBeginGetPositionsForMosaic);
+            }
+            if ((this.onEndGetPositionsForMosaicDelegate == null)) {
+                this.onEndGetPositionsForMosaicDelegate = new EndOperationDelegate(this.OnEndGetPositionsForMosaic);
+            }
+            if ((this.onGetPositionsForMosaicCompletedDelegate == null)) {
+                this.onGetPositionsForMosaicCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetPositionsForMosaicCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetPositionsForMosaicDelegate, new object[] {
+                        mosaicID}, this.onEndGetPositionsForMosaicDelegate, this.onGetPositionsForMosaicCompletedDelegate, userState);
         }
         
         public bool MakeStationAvailable(long stationID) {

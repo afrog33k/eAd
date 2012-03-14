@@ -14,7 +14,7 @@ namespace eAd.Utilities
         public static string ConfigurationFile = "appconfig.xml";
         public ClientConfiguration()
         {
-            MyStationID = 3;
+            MyStationID = 17;
 
             MessageWaitTime = 1000;
             ServerUrl = "http://1.9.13.61";

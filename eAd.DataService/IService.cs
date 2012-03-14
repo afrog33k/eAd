@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -29,6 +30,10 @@ namespace eAd.DataAccess
            [OperationContract]
          List<MediaListModel> GetMyMedia(long stationID);
 
+         [OperationContract]
+         TimeSpan GetMediaDuration(long mediaID);
+         [OperationContract]
+        void SetStationStatus(long stationID, string status);
         [OperationContract]
 
         bool DoIHaveUpdates(long clientID);
@@ -41,7 +46,15 @@ namespace eAd.DataAccess
 
         bool MakeStationUnAvailable(long stationID, string rfidCode = "");
 
+        [OperationContract]
+        string GetMediaLocation(long mediaID);
 
+        [OperationContract]
+         long GetMosaicIDForStation(long stationID);
+   
+
+        [OperationContract]
+         List<PositionViewModel> GetPositionsForMosaic(long mosaicID);
 
         [OperationContract]
 

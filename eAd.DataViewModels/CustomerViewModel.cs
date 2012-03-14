@@ -170,7 +170,7 @@ namespace eAd.DataViewModels
             }
 
             public List<long> Media { get; set; }
-
+           
             private Nullable<Double> _height;
          
 

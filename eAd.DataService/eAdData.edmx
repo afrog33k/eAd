@@ -172,11 +172,11 @@
         </EntityType>
         <EntityType Name="PositionMedium">
           <Key>
-            <PropertyRef Name="Positions_PositionID" />
             <PropertyRef Name="Media_MediaID" />
+            <PropertyRef Name="Positions_PositionID" />
           </Key>
-          <Property Name="Positions_PositionID" Type="bigint" Nullable="false" />
           <Property Name="Media_MediaID" Type="bigint" Nullable="false" />
+          <Property Name="Positions_PositionID" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Positions">
           <Key>
@@ -205,6 +205,7 @@
           <Property Name="Address" Type="nvarchar" MaxLength="1000" />
           <Property Name="PostalCode" Type="nvarchar" MaxLength="15" />
           <Property Name="Rate" Type="float" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -434,9 +435,9 @@
           <Property Type="String" Name="Model" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="License" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="BatteryCharge" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="LastRechargeDate" />
+          <Property Type="DateTime" Name="LastRechargeDate" Precision="3" />
           <Property Type="Int64" Name="CarID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="DateAdded" />
+          <Property Type="DateTime" Name="DateAdded" Precision="3" />
           <Property Type="String" Name="RFID" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="Double" Name="TotalUsage" />
           <Property Type="Double" Name="BatteryCycle" />
@@ -455,7 +456,7 @@
           <Property Type="String" Name="Phone" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Address" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="CustomerID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="DateAdded" />
+          <Property Type="DateTime" Name="DateAdded" Precision="3" />
           <Property Type="String" Name="Language" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="SMSAlert" />
           <Property Type="Boolean" Name="EmailAlert" />
@@ -467,7 +468,7 @@
           </Key>
           <Property Type="Int64" Name="GroupingID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DateAdded" />
+          <Property Type="DateTime" Name="DateAdded" Precision="3" />
           <Property Type="Int64" Name="MosaicID" Nullable="false" />
           <NavigationProperty Name="Mosaic" Relationship="eAdData.FK_MosaicGrouping" FromRole="Grouping" ToRole="Mosaic" />
           <NavigationProperty Name="Stations" Relationship="eAdData.GroupingStation" FromRole="Grouping" ToRole="Station" />
@@ -482,8 +483,8 @@
           <Property Type="String" Name="Location" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Tags" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DateAdded" />
-          <Property Type="Time" Name="Duration" />
+          <Property Type="DateTime" Name="DateAdded" Precision="3" />
+          <Property Type="Time" Name="Duration" Precision="7" />
           <NavigationProperty Name="Positions" Relationship="eAdData.PositionMedium" FromRole="Medium" ToRole="Position" />
           <NavigationProperty Name="Themes" Relationship="eAdData.ThemeMedium" FromRole="Medium" ToRole="Theme" />
         </EntityType>
@@ -493,7 +494,7 @@
           </Key>
           <Property Type="Int64" Name="MediaTypeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DateAdded" />
+          <Property Type="DateTime" Name="DateAdded" Precision="3" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -506,8 +507,8 @@
           <Property Type="Int64" Name="StationID" Nullable="false" />
           <Property Type="Int64" Name="UserID" Nullable="false" />
           <Property Type="String" Name="Command" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DateAdded" />
-          <Property Type="DateTime" Name="DateReceived" />
+          <Property Type="DateTime" Name="DateAdded" Precision="3" />
+          <Property Type="DateTime" Name="DateReceived" Precision="3" />
           <NavigationProperty Name="Station" Relationship="eAdData.FK_MessageStation" FromRole="Message" ToRole="Station" />
         </EntityType>
         <EntityType Name="Mosaic">
@@ -542,12 +543,13 @@
           <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="Available" />
           <Property Type="Int64" Name="StationID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="LastCheckIn" />
-          <Property Type="DateTime" Name="DateAdded" />
+          <Property Type="DateTime" Name="LastCheckIn" Precision="3" />
+          <Property Type="DateTime" Name="DateAdded" Precision="3" />
           <Property Type="String" Name="UniqueID" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Address" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="PostalCode" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Type="Double" Name="Rate" />
+          <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Messages" Relationship="eAdData.FK_MessageStation" FromRole="Station" ToRole="Message" />
           <NavigationProperty Name="Groupings" Relationship="eAdData.GroupingStation" FromRole="Station" ToRole="Grouping" />
         </EntityType>
@@ -567,7 +569,7 @@
           </Key>
           <Property Type="Int64" Name="ThemeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DateAdded" />
+          <Property Type="DateTime" Name="DateAdded" Precision="3" />
           <NavigationProperty Name="Groupings" Relationship="eAdData.GroupingTheme" FromRole="Theme" ToRole="Grouping" />
           <NavigationProperty Name="Media" Relationship="eAdData.ThemeMedium" FromRole="Theme" ToRole="Medium" />
         </EntityType>
@@ -751,6 +753,7 @@
           <EntitySetMapping Name="Stations">
             <EntityTypeMapping TypeName="eAdData.Station">
               <MappingFragment StoreEntitySet="Stations">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Rate" ColumnName="Rate" />
                 <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -837,64 +840,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="eAdData" >
-        <EntityTypeShape EntityType="eAdData.Car" Width="1.5" PointX="3" PointY="9.25" Height="3.3263964843750031" />
-        <EntityTypeShape EntityType="eAdData.Customer" Width="1.5" PointX="0.75" PointY="9" Height="3.7109993489583388" />
-        <EntityTypeShape EntityType="eAdData.Grouping" Width="1.5" PointX="3" PointY="5" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="eAdData.Medium" Width="1.5" PointX="0.75" PointY="0.875" Height="2.749492187499996" />
-        <EntityTypeShape EntityType="eAdData.MediaType" Width="1.5" PointX="7.75" PointY="0.75" Height="1.5956835937500031" />
-        <EntityTypeShape EntityType="eAdData.Message" Width="1.5" PointX="7.5" PointY="4.75" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="eAdData.Mosaic" Width="1.5" PointX="0.75" PointY="5.375" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="eAdData.Position" Width="1.5" PointX="3" PointY="0.75" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="eAdData.Station" Width="1.5" PointX="5.25" PointY="4.5" Height="3.3263964843750031" />
-        <EntityTypeShape EntityType="eAdData.sysdiagram" Width="1.5" PointX="5.75" PointY="8.75" Height="1.9802864583333282" />
-        <EntityTypeShape EntityType="eAdData.Theme" Width="1.5" PointX="5.25" PointY="1.25" Height="1.9802864583333388" />
-        <AssociationConnector Association="eAdData.FK_CarCustomer" >
-          <ConnectorPoint PointX="2.25" PointY="10.913198242187502" />
-          <ConnectorPoint PointX="3" PointY="10.913198242187502" />
-        </AssociationConnector>
-        <AssociationConnector Association="eAdData.FK_MosaicGrouping" >
-          <ConnectorPoint PointX="2.25" PointY="6.2689925130208337" />
-          <ConnectorPoint PointX="3" PointY="6.2689925130208337" />
-        </AssociationConnector>
-        <AssociationConnector Association="eAdData.FK_MessageStation" >
-          <ConnectorPoint PointX="6.75" PointY="6.2208968098958337" />
-          <ConnectorPoint PointX="7.5" PointY="6.2208968098958337" />
-        </AssociationConnector>
-        <AssociationConnector Association="eAdData.FK_Positions_Mosaics" >
-          <ConnectorPoint PointX="2.25" PointY="5.375" />
-          <ConnectorPoint PointX="2.625" PointY="5" />
-          <ConnectorPoint PointX="2.625" PointY="2.2208968098958337" />
-          <ConnectorPoint PointX="3" PointY="2.2208968098958337" />
-        </AssociationConnector>
-        <AssociationConnector Association="eAdData.GroupingStation" >
-          <ConnectorPoint PointX="4.5" PointY="6.1824446614583337" />
-          <ConnectorPoint PointX="5.25" PointY="6.1824446614583337" />
-        </AssociationConnector>
-        <AssociationConnector Association="eAdData.GroupingTheme" >
-          <ConnectorPoint PointX="4.5" PointY="5" />
-          <ConnectorPoint PointX="4.875" PointY="4.625" />
-          <ConnectorPoint PointX="4.875" PointY="2.2401432291666694" />
-          <ConnectorPoint PointX="4.916666666666667" PointY="2.240143229166669" />
-          <ConnectorPoint PointX="5.083333333333333" PointY="2.2401432291666694" />
-          <ConnectorPoint PointX="5.25" PointY="2.2401432291666694" />
-        </AssociationConnector>
-        <AssociationConnector Association="eAdData.PositionMedium" >
-          <ConnectorPoint PointX="2.25" PointY="2.9851944986979149" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="2.9851944986979144" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="2.9851944986979149" />
-          <ConnectorPoint PointX="3" PointY="2.9851944986979149" />
-        </AssociationConnector>
-        <AssociationConnector Association="eAdData.ThemeMedium" >
-          <ConnectorPoint PointX="1.5" PointY="3.624492187499996" />
-          <ConnectorPoint PointX="1.5" PointY="3.9417936197916674" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="3.941793619791667" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="3.9417936197916674" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="3.941793619791667" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="3.9417936197916674" />
-          <ConnectorPoint PointX="5" PointY="3.9417936197916674" />
-          <ConnectorPoint PointX="5" PointY="1.7138196145833411" />
-          <ConnectorPoint PointX="5.25" PointY="1.7138196145833411" />
-        </AssociationConnector>
+        <EntityTypeShape EntityType="eAdData.Car" Width="1.5" PointX="2.6421692849333254" PointY="20.38220819289899" />
+        <EntityTypeShape EntityType="eAdData.Customer" Width="1.5" PointX="11.209958653529156" PointY="20.643425012306974" />
+        <EntityTypeShape EntityType="eAdData.Grouping" Width="1.5" PointX="5.4882755044327469" PointY="5.9076085565181486" />
+        <EntityTypeShape EntityType="eAdData.Medium" Width="1.5" PointX="7.7300055063003708" PointY="22.529791082502246" />
+        <EntityTypeShape EntityType="eAdData.MediaType" Width="1.5" PointX="9.1828475674534431" PointY="3.0012132390407906" />
+        <EntityTypeShape EntityType="eAdData.Message" Width="1.5" PointX="10.971905881060243" PointY="24.264267083380496" />
+        <EntityTypeShape EntityType="eAdData.Mosaic" Width="1.5" PointX="10.978957978533096" PointY="25.190737095284618" />
+        <EntityTypeShape EntityType="eAdData.Position" Width="1.5" PointX="8.6383418816320319" PointY="3.7859072255836366" />
+        <EntityTypeShape EntityType="eAdData.Station" Width="1.5" PointX="11.511756531666851" PointY="31.773587480081986" />
+        <EntityTypeShape EntityType="eAdData.sysdiagram" Width="1.5" PointX="9.9344012038476777" PointY="13.632010868579155" />
+        <EntityTypeShape EntityType="eAdData.Theme" Width="1.5" PointX="2.3038031301944528" PointY="5.5360738958865747" />
+        <AssociationConnector Association="eAdData.FK_CarCustomer" />
+        <AssociationConnector Association="eAdData.FK_MosaicGrouping" />
+        <AssociationConnector Association="eAdData.FK_MessageStation" />
+        <AssociationConnector Association="eAdData.FK_Positions_Mosaics" />
+        <AssociationConnector Association="eAdData.GroupingStation" />
+        <AssociationConnector Association="eAdData.GroupingTheme" />
+        <AssociationConnector Association="eAdData.PositionMedium" />
+        <AssociationConnector Association="eAdData.ThemeMedium" />
       </Diagram>
     </Diagrams>
   </Designer>

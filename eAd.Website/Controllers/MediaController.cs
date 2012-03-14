@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -142,6 +143,48 @@ namespace eAd.Website.Controllers
         public ActionResult DeleteConfirmed(long id)
         {            
             Medium medium = db.Media.Single(m => m.MediaID == id);
+
+            //Remove Media From Mosaic Positions
+            var positions = medium.Positions.ToList();
+
+            foreach (var position in positions)
+            {
+              var mediaPositions =  position.Media.Where(m => m.MediaID == medium.MediaID).ToList();
+
+                foreach (var mediaPosition in mediaPositions)
+                {
+                    position.Media.Remove(mediaPosition);
+                }
+              
+            }
+
+            //Remove Media From Themes
+            var themes = medium.Themes.ToList();
+
+            foreach (var theme in themes)
+            {
+                var mediaPositions = theme.Media.Where(m => m.MediaID == medium.MediaID).ToList();
+
+                foreach (var mediaPosition in mediaPositions)
+                {
+                    theme.Media.Remove(mediaPosition);
+                }
+
+            }
+            //Delete Physical Medium
+            try
+            {
+                new FileInfo(HttpContext.Server.MapPath("~" + medium.Location)).Delete();
+            }
+            catch (Exception ex)
+            {
+                
+                Console.WriteLine(ex.StackTrace+"\n"+ex.Message);
+            }
+         
+
+            //Should Update all related stations that media is gone
+
             db.Media.DeleteObject(medium);
             db.SaveChanges();
             return RedirectToAction("Index");

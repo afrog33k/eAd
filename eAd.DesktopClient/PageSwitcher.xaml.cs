@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Drawing.Imaging;
 using System.IO;
@@ -79,12 +80,12 @@ namespace DesktopClient
                                                  }
                                              });
         }
-
+        
         private void CheckForNewMessages()
         {
             try
             {
-                using (ServiceClient myService2 = new ServiceClient())
+                using (ServiceClient myService2 = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress))
                 {
                     //BootStrap WCF (otherwise slow)
                     myService2.ClientCredentials.Windows.ClientCredential.UserName
@@ -154,8 +155,9 @@ namespace DesktopClient
                                                                                Type ==
                                                                            "Media")
                                                                        {
-                                                                           GetMedia
-                                                                               (message);
+                                                                           LoadMosaic(message);
+                                                                           //GetMedia
+                                                                           //    (message);
                                                                        }
 
                                                                        if (
@@ -283,7 +285,8 @@ namespace DesktopClient
                             Instance
                             .
                             Update
-                            ();
+                            (60000);
+
                         Switcher
                             .
                             Switch
@@ -296,18 +299,82 @@ namespace DesktopClient
                     "Make Available"
                     :
                     {
+                        //CustomerPage
+                        //   .
+                        //   CurrentRFID
+                        //   =
+                        //   message
+                        //       .
+                        //       Text;
+                        CustomerPage
+                            .
+                            Instance
+                            .
+                            Update
+                            (20000);
+
                         Switcher
                             .
                             Switch
-                            (MainWindow
+                            (CustomerPage
                                  .
                                  Instance);
+
+                        //Switcher
+                        //    .
+                        //    Switch
+                        //    (MainWindow
+                        //         .
+                        //         Instance);
                     }
                     break;
+
+                case "Added Theme":
+                      ServiceClient myService1 = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress);
+
+                   //     MainMosaic = myService1.GetMosaicForStation(Constants.MyStationID);
+
+                        var mosaicID = myService1.GetMosaicIDForStation(Constants.MyStationID);
+
+                        Positions = myService1.GetPositionsForMosaic(mosaicID);
+
+                        MainWindow.Instance.LoadPositions();
+                    break;
+
+                case "Removed Theme":
+                    ServiceClient myService2 = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress);
+
+                    //     MainMosaic = myService1.GetMosaicForStation(Constants.MyStationID);
+
+                    var mosaicID2 = myService2.GetMosaicIDForStation(Constants.MyStationID);
+
+                    Positions = myService2.GetPositionsForMosaic(mosaicID2);
+
+                    MainWindow.Instance.LoadPositions();
+                    break;
                 case "Screenshot":
+                    try
+                    {
+
+                  
                     var fileName = "Screenshot#" + Constants.MyStationID + "#" + string.Format("{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now) + ".jpg";
                     new ScreenCapture().CaptureScreenToFile(fileName, ImageFormat.Jpeg);
-                    Snapshot.UploadFile(fileName, FileTypeEnum.Generic);
+                       NameValueCollection nvc = new NameValueCollection();
+                       nvc.Add("StationID", Constants.MyStationID.ToString());
+    nvc.Add("btn-submit-photo", "Upload");
+    //HttpUploadFile("http://your.server.com/upload", 
+    //     @"C:\test\test.jpg", "file", "image/jpeg", nvc);
+
+
+
+    WebUpload.HttpUploadFile(Constants.ServerUrl + "/" + "Stations/UploadScreenshot", fileName, "file", "image/jpeg", nvc);
+                //    Snapshot.UploadFile(fileName, FileTypeEnum.Generic);
+                    }
+                    catch (Exception)
+                    {
+
+                        
+                    }
                     break;
                 default
                     :
@@ -367,24 +434,11 @@ namespace DesktopClient
             // Keep Alive Thread
             ThreadPool.QueueUserWorkItem(
                 (state) =>
-                {
-
-                    try
                     {
-                        ServiceClient myService1 = new ServiceClient();
-
-                        MainMosaic = myService1.GetMosaicForStation(Constants.MyStationID);
-
-                        MainWindow.Instance.LoadPositions();
-
-                    }
-                    catch (Exception ex)
+                        LoadMosaic(null);
+                        while (true)
                     {
-
-                    }
-                    while (true)
-                    {
-                        ServiceClient myService = new ServiceClient();
+                        ServiceClient myService = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress);
                         try
                         {
                             //BootStrap WCF (otherwise slow)
@@ -420,12 +474,77 @@ namespace DesktopClient
                         }
                         Thread.Sleep(1000 * 10);
                     }
-                });
+                    });
+        }
+
+        private static void LoadMosaic(MessageViewModel message)
+        {
+            ThreadPool.QueueUserWorkItem(
+                (state) =>
+                    {
+                        try
+                        {
+                            ServiceClient myService1 = new ServiceClient("BasicHttpBinding_IService",
+                                                                         Constants.ServerAddress);
+
+                            //     MainMosaic = myService1.GetMosaicForStation(Constants.MyStationID);
+                            myService1.SetStationStatus(Constants.MyStationID, "Started Playback");
+                            var mosaicID = myService1.GetMosaicIDForStation(Constants.MyStationID);
+                            myService1.SetStationStatus(Constants.MyStationID, "Getting Mosaic");
+                            Positions = myService1.GetPositionsForMosaic(mosaicID);
+                            myService1.SetStationStatus(Constants.MyStationID, "Getting Positions");
+                            MainWindow.Instance.LoadPositions();
+                            myService1.SetStationStatus(Constants.MyStationID, "Positions Loaded, Now Playing");
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+
+                          var
+                service
+                    =
+                    new ServiceClient
+                        ();
+
+
+                                                                           try
+                                                                           {
+                                                                               if (message!=null)
+                                                                               {
+                                                                                   
+                                                                             
+                                                                               service.MessageRead
+                                                                                       (message
+                                                                                            .
+                                                                                            ID);  }
+                                                                           }
+                                                                           catch (TimeoutException exception)
+                                                                           {
+                                                                               Console.WriteLine("Got {0}", exception.GetType());
+                                                                               service.Abort();
+                                                                           }
+                                                                           catch (CommunicationException exception)
+                                                                           {
+                                                                               Console.WriteLine("Got {0}", exception.GetType());
+                                                                               service.Abort();
+                                                                           }
+                                                                       
+                    });
+        }
+
+        public static PositionViewModel[] Positions
+        {
+            get {
+                return _positions;
+            }
+            set {
+                _positions = value;
+            }
         }
 
         private void GetMedia(MessageViewModel message = null)
         {
-            using (ServiceClient myService5 = new ServiceClient())
+            using (ServiceClient myService5 = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress))
             {
                 try
                 {
@@ -699,7 +818,7 @@ namespace DesktopClient
                 //btnStartDownload.Text = "Download In Process";
                 //btnStartDownload.Enabled = false;
             }
-            //ServiceClient myService3 = new ServiceClient();
+            //ServiceClient myService3 = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress);
             ////BootStrap WCF (otherwise slow)
             //myService3.ClientCredentials.Windows.ClientCredential.UserName = "admin";
             //myService3.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
@@ -749,6 +868,7 @@ namespace DesktopClient
         public static double  TotalBytes = 0;
         public static double TotalBytesIn = 0;
         public static List<DownloadProgressChangedEventArgs> downloads = new List<DownloadProgressChangedEventArgs>();
+        private static PositionViewModel[] _positions;
 
         private static void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {

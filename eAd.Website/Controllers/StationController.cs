@@ -158,11 +158,13 @@ namespace eAd.Website.Controllers
         public ActionResult Screenshot(long stationID)
         {
             Service.CaptureScreenShot(stationID);
-            return RedirectToAction("ShowScreenShot");
+            return RedirectToAction("ShowScreenShot", new  {stationID=stationID});
         }
 
         public ActionResult ShowScreenShot(long stationID)
         {
+            Response.AddHeader("Refresh", "5");
+            ViewBag.StationID = stationID;
             return View();
         }
     }

@@ -21,6 +21,7 @@
     <MetadataSource Address="http://1.9.13.61/DataAccess/Service.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="Service.xsd" MetadataType="Schema" ID="4b4672eb-c0da-4e23-a9d5-023caaa4f0c8" SourceId="1" SourceUrl="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd10" />
     <MetadataFile FileName="Service5.xsd" MetadataType="Schema" ID="1b2f295c-8eec-452e-907d-dfe019d9e16a" SourceId="1" SourceUrl="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd3" />
     <MetadataFile FileName="Service51.xsd" MetadataType="Schema" ID="c2734d87-8448-4e81-9fe4-e6ce62f5d0c0" SourceId="1" SourceUrl="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd2" />
     <MetadataFile FileName="Service52.xsd" MetadataType="Schema" ID="622edeb0-1ce6-4815-979a-e41bb9a09c26" SourceId="1" SourceUrl="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd1" />

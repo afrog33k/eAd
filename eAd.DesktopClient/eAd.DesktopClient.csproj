@@ -59,6 +59,7 @@
     <StartupObject>DesktopClient.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
@@ -80,7 +81,20 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Controls\BatteryRecharging.xaml.cs" />
+    <Compile Include="Controls\DigitalClockControl.xaml.cs">
+      <DependentUpon>DigitalClockControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DigitalClockDots.xaml.cs">
+      <DependentUpon>DigitalClockDots.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DigitalClockElement.xaml.cs">
+      <DependentUpon>DigitalClockElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DigitalControlWindow.xaml.cs">
+      <DependentUpon>DigitalControlWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DispatcherHelper.cs" />
+    <Compile Include="EdgeDetection.cs" />
     <Compile Include="Entities\Direction.cs" />
     <Compile Include="GoogleMaps.cs" />
     <Compile Include="ISwitchable.cs" />
@@ -122,7 +136,24 @@
       <DependentUpon>SplashScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Switcher.cs" />
+    <Compile Include="WebUpload.cs" />
     <Page Include="Controls\BatteryRecharging.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\DigitalClockControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\DigitalClockDots.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\DigitalClockElement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\DigitalControlWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -201,6 +232,7 @@
     <None Include="Properties\DataSources\eAd.DataViewModels.MediaListModel1.datasource" />
     <None Include="Properties\DataSources\eAd.DataViewModels.MessageViewModel.datasource" />
     <None Include="Properties\DataSources\eAd.DataViewModels.MessageViewModel1.datasource" />
+    <None Include="Properties\DataSources\eAd.DataViewModels.PositionViewModel.datasource" />
     <None Include="Properties\DataSources\eAd.DataViewModels.StationViewModel.datasource" />
     <None Include="Properties\DataSources\eAd.DataViewModels.StationViewModel1.datasource" />
     <None Include="Properties\Settings.settings">
@@ -214,35 +246,38 @@
     <None Include="Service References\eAdDataAccess\DesktopClient.eAdDataAccess.Mosaic.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\eAdDataAccess\Service.wsdl" />
     <None Include="Service References\eAdDataAccess\Service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\eAdDataAccess\Service1.wsdl" />
-    <None Include="Service References\eAdDataAccess\Service1.xsd">
+    <None Include="Service References\eAdDataAccess\Service5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\eAdDataAccess\Service2.xsd">
+    <None Include="Service References\eAdDataAccess\Service51.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\eAdDataAccess\Service3.xsd">
+    <None Include="Service References\eAdDataAccess\Service52.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\eAdDataAccess\Service4.xsd">
+    <None Include="Service References\eAdDataAccess\Service53.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\eAdDataAccess\Service41.xsd">
+    <None Include="Service References\eAdDataAccess\Service54.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\eAdDataAccess\Service42.xsd">
+    <None Include="Service References\eAdDataAccess\Service55.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\eAdDataAccess\Service43.xsd">
+    <None Include="Service References\eAdDataAccess\Service56.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\eAdDataAccess\Service44.xsd">
+    <None Include="Service References\eAdDataAccess\Service57.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\eAdDataAccess\Service45.xsd">
+    <None Include="Service References\eAdDataAccess\Service58.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\eAdDataAccess\Service59.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -259,7 +294,7 @@
     </BlendEmbeddedFont>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\eAdDataAccess\Service1.disco" />
+    <None Include="Service References\eAdDataAccess\Service.disco" />
     <Resource Include="DataCache\ad1.png" />
     <Resource Include="DataCache\ad2.png" />
     <Content Include="DataCache\blankii.jpg">

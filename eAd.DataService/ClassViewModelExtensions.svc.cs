@@ -45,6 +45,7 @@ namespace eAd.DataAccess
             }
             model.Location = station.Location;
             model.LastCheckIn = station.LastCheckIn;
+            model.Status = station.Status;
             model.IsOnline = station.LastCheckIn >= DateTime.Now.AddSeconds(-10);
             return model;
         }

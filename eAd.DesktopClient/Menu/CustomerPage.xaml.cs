@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,6 +10,7 @@ using System.Windows.Navigation;
 using System.Windows.Threading;
 using DesktopClient.eAdDataAccess;
 using System.Reflection;
+using eAd.Utilities;
 
 namespace DesktopClient.Menu
 {
@@ -18,7 +21,7 @@ namespace DesktopClient.Menu
 	/// </summary>
 	public partial class CustomerPage : UserControl, ISwitchable
 	{
-
+	   
             public static  string Path
 {
     get { return System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName); }
@@ -26,7 +29,8 @@ namespace DesktopClient.Menu
 		public CustomerPage()
 		{
 			this.InitializeComponent();
-            Update();
+		    GoogleMap.NavigateToString("maps.google.com");
+            Update(10);
 		}
 
         static CustomerPage _instance;
@@ -43,9 +47,12 @@ namespace DesktopClient.Menu
             }
         }
 
-	    public void Update()
+	    public void Update(int milliseconds)
         {
-           
+
+
+          
+
             ThreadPool.QueueUserWorkItem(
                (state) =>
                {
@@ -54,11 +61,7 @@ namespace DesktopClient.Menu
                    {
 
                   
-                   ServiceClient myService = new ServiceClient();
-                   myService.ClientCredentials.Windows.ClientCredential.UserName = "admin";
-                   myService.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
-                   var customer = myService.GetCustomerByRFID(CurrentRFID);
-                   var stations = myService.GetAllStations();
+               
                 //   var items = myService.GetRecords().Select(p => p.Name);
                   Instance.Dispatcher.BeginInvoke(
 
@@ -66,81 +69,144 @@ namespace DesktopClient.Menu
 
                        , new DispatcherOperationCallback(delegate
                        {
-                   try
-                   {
+                           try
+                           {
+
+                               using (
+                                   ServiceClient myService2 = new ServiceClient("BasicHttpBinding_IService",
+                                                                                Constants.ServerAddress))
+                               {
+                                   myService2.ClientCredentials.Windows.ClientCredential.UserName = "admin";
+                                   myService2.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
+                                   var customer = myService2.GetCustomerByRFID(CurrentRFID);
+                                   var stations = myService2.GetAllStations();
 
 
 
 
-                       // LocationOverview.ItemsSource = items;
-                       try
-                       {
-                           CustomerProfilePicture.Source =
-                new BitmapImage(new Uri(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + (customer.Picture)));
+                                   // LocationOverview.ItemsSource = items;
+                                   try
+                                   {
+                                     
+                                           var image = new BitmapImage();
+        int BytesToRead=100;
 
-                       }
-                       catch (Exception)
-                       {
+        WebRequest request = WebRequest.Create(new Uri(  customer.Picture, UriKind.Absolute));
+        request.Timeout = -1;
+        WebResponse response = request.GetResponse();
+        Stream responseStream = response.GetResponseStream();
+        BinaryReader reader = new BinaryReader(responseStream);
+        MemoryStream memoryStream = new MemoryStream();
 
-                           //Default no pic pic
-                       }
-                       CarMake.Content = customer.CarMake;
-                       CarModel.Content = customer.CarModel;
-                       CarPlate.Content = customer.CarLicense;
-                       CustomerName.Content = (customer).Name;
-                       CustomerEmail.Content = customer.Email;
-                       CustomerPhone.Content = customer.Phone;
-                       CustomerAddress.Content = customer.Address;
-                       CurrentCharge.Content = customer.ChargeRemaining;
-                       BatteryAnimation.PercentCharged = Convert.ToInt32(customer.ChargeRemaining);
-                       LastCharged.Content = customer.LastRechargeDate;
-                       AccountBalance.Content = customer.AccountBalance;
-                       StationOverview.ItemsSource = stations;
-                       GoogleMaps.Locations = stations.ToArray();
-                       // .Content = (customer).Name;
-                       NavigatePage();
+        byte[] bytebuffer = new byte[BytesToRead];
+        int bytesRead = reader.Read(bytebuffer, 0, BytesToRead);
+
+        while (bytesRead > 0)
+        {
+            memoryStream.Write(bytebuffer, 0, bytesRead);
+            bytesRead = reader.Read(bytebuffer, 0, BytesToRead);
+        }
+
+        image.BeginInit();
+        memoryStream.Seek(0, SeekOrigin.Begin);
+
+        image.StreamSource = memoryStream;
+        image.EndInit();
+
+          CustomerProfilePicture.Source  = image;
+
+                                   }
+                                   catch (Exception)
+                                   {
+
+                                       //Default no pic pic
+                                   }
+                                   CarMake.Content = customer.CarMake;
+                                   CarModel.Content = customer.CarModel;
+                                   CarPlate.Content = customer.CarLicense;
+                                   CustomerName.Content = (customer).Name;
+                                   CustomerEmail.Content = customer.Email;
+                                   CustomerPhone.Content = customer.Phone;
+                                   CustomerAddress.Content = customer.Address;
+
+                                   try
+                                   {
+                                       
+                                  
+                                   var charge = customer.ChargeRemaining;
+                                   if (charge == null)
+                                       charge = "0";
+                                   CurrentCharge.Content = charge;
+                                   BatteryAnimation.PercentCharged = Convert.ToInt32(charge);
+                                   LastCharged.Content = customer.LastRechargeDate;
+                                   AccountBalance.Content = customer.AccountBalance;
+                                        }catch(Exception ex)
+                                   {}
+                                   StationOverview.ItemsSource = stations;
+                                   GoogleMaps.Locations = stations.ToArray();
+                                   // .Content = (customer).Name;
+                                   NavigatePage();
 
 
-                       ThreadPool.QueueUserWorkItem((e) =>
-                                                        {
-                                                            Thread.Sleep(40000);
-                                                              Instance.Dispatcher.BeginInvoke(
+                                   ThreadPool.QueueUserWorkItem((e) =>
+                                   {
+                                       Thread.Sleep(milliseconds);
+                                       Instance.Dispatcher.BeginInvoke(
 
-                       System.Windows.Threading.DispatcherPriority.Normal
+                                           System.Windows.Threading.DispatcherPriority.
+                                               Normal
 
-                       , new DispatcherOperationCallback(delegate
-                       {
-                                                          
-                                                            Switcher.Switch(MainWindow.Instance);
-                                                     
-                        return null;
-                       }), null);
-                                                        });
+                                           , new DispatcherOperationCallback(delegate
+                                           {
 
-                   }
-                   catch (Exception ex)
-                   {
+                                               Switcher
+                                                   .
+                                                   Switch
+                                                   (MainWindow
+                                                        .
+                                                        Instance);
 
-                       Console.WriteLine(ex.StackTrace + "\n" + ex.Message);
-                   }
+                                               return
+                                                   null;
+                                           }),
+                                           null);
+                                   });
+
+                               }
+                           }
+                           catch (Exception ex)
+                           {
+
+                               Console.WriteLine(ex.StackTrace + "\n" + ex.Message);
+                           }
                    return null;
                        }), null);
                    }
                    catch (Exception ex)
                    {
-                       CustomerName.Content = "Invalid Customer";
-                       Console.WriteLine(ex.StackTrace + "\n" + ex.Message);
-                   }
+                       Instance.Dispatcher.BeginInvoke(
+
+                           System.Windows.Threading.DispatcherPriority.Normal
+
+                           , new DispatcherOperationCallback(delegate
+                                                                 {
+                                                                     CustomerName.Content = "Invalid Customer";
+                                                                     Console.WriteLine(ex.StackTrace + "\n" + ex.Message);
+                                                                     return null;
+                                                                 }));
+                
+                   ;
+               }
                });
         }
 
 	    public static string CurrentRFID { get; set; }
 
-	    private void NavigatePage()
+	    private  void NavigatePage()
         {
             Uri uri = new Uri(@"pack://application:,,,/Navigator.htm");
             //Stream source = n// Application.GetContentStream(uri).Stream;
-        GoogleMap.NavigateToString(GoogleMaps.Webpage);
+       GoogleMap.NavigateToString(GoogleMaps.Webpage);
             GoogleMap.Navigated+=GoogleMapNavigated;
         }
 

@@ -380,8 +380,13 @@ namespace eAd.Website.Repositories
                     }
                     catch (COMException exception)
                     {
-
-                        throw exception;
+                           string path = context.Server.MapPath("~/Logs/" + "serverlog.txt");
+                       
+                        Logger.WriteLine(path, "UploadRepository: " + exception.StackTrace +"\n"+ exception.Message);
+                    
+                        //   Logger.WriteLine(path, greenlotsInfo.email);
+                    
+                    //    throw exception;
                     }
 
                 }

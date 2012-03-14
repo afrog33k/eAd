@@ -9,6 +9,7 @@ using System.Threading;
 using System.Windows.Media;
 using System.Windows.Threading;
 using System.Xml.Serialization;
+using DesktopClient.eAdDataAccess;
 using eAd.DataViewModels;
 using eAd.Utilities;
 using Timer = System.Timers.Timer;
@@ -50,24 +51,24 @@ namespace DesktopClient.Menu
          MediaCanvas.Height = MediaGrid.Height;
          eAdWindow.Width = MediaGrid.Width;
          eAdWindow.Height = MediaGrid.Height;
-            try
-            {
+            //try
+            //{
 
 
-                XmlSerializer serializer = new XmlSerializer(typeof(List<MediaListModel>));
-                StreamReader reader = File.OpenText(Constants.PlayListFile);
+            //    XmlSerializer serializer = new XmlSerializer(typeof(List<MediaListModel>));
+            //    StreamReader reader = File.OpenText(Constants.PlayListFile);
 
 
-                Playlist = (serializer.Deserialize(reader) as List<MediaListModel>);
+            //    Playlist = (serializer.Deserialize(reader) as List<MediaListModel>);
 
-                reader.Close();
+            //    reader.Close();
 
-            }
-            catch (Exception)
-            {
+            //}
+            //catch (Exception)
+            //{
 
-                Playlist = new List<MediaListModel>();
-            }
+            //    Playlist = new List<MediaListModel>();
+            //}
 
 
 
@@ -82,25 +83,42 @@ namespace DesktopClient.Menu
 
         public void LoadPositions()
         {
-
+           
+          
             eAdWindow.Dispatcher.BeginInvoke(
 
-    DispatcherPriority.Normal
+    DispatcherPriority.Send
 
     , new DispatcherOperationCallback(delegate
                                           {
-                                              foreach (var position in PageSwitcher.MainMosaic.Positions)
+                                              try
+                                              {
+                                                  foreach (var player in Players)
+                                                  {
+                                                      player.Stop();
+                                                      MediaCanvas.Children.Remove(player.Control);
+                                                  }
+                                              }
+                                              catch (Exception)
+                                              {
+
+
+                                              }
+                                              Players.Clear();
+                                              foreach (var position in PageSwitcher.Positions)
          {
              var posn = position;
              var newBtn = new MediaElement();
              newBtn.LoadedBehavior = MediaState.Manual;
              
-             newBtn.Stretch = Stretch.UniformToFill;
+             newBtn.Stretch = Stretch.Fill;
 
-             newBtn.Width = ((double)posn.Width / 768) * SystemParameters.PrimaryScreenWidth;
+             if (posn.Width != null) newBtn.Width = ((double)(posn.Width + 15) / 768) * SystemParameters.PrimaryScreenWidth;
 
-             newBtn.Height = ((double)posn.Height / 1366) * SystemParameters.PrimaryScreenHeight; 
-             newBtn.Margin = new Thickness(((double) posn.X/ 768) * SystemParameters.PrimaryScreenWidth,( (double) posn.Y / 1366) * SystemParameters.PrimaryScreenHeight, 0, 0);
+             if (posn.Height != null) newBtn.Height = ((double)(posn.Height + 15) / 1366) * SystemParameters.PrimaryScreenHeight;
+             if (posn.X != null)
+                 if (posn.Y != null)
+                     newBtn.Margin = new Thickness(((double) posn.X/ 768) * SystemParameters.PrimaryScreenWidth,( (double) posn.Y / 1366) * SystemParameters.PrimaryScreenHeight, 0, 0);
 
              //newBtn.Source =
              //    new Uri(System.IO.Path.GetDirectoryName(
@@ -109,10 +127,19 @@ namespace DesktopClient.Menu
              //newBtn.Play();
 
                                                   Playlist = new List<MediaListModel>();
+
+                                                  ServiceClient myService1 = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress);
+
+             try
+             {
+
+           
+
            var pList=  position.Media.Select(
-                 media =>
-                 new MediaListModel()
-                     {MediaID = media.MediaID, Location = media.Location, Duration = (TimeSpan) media.Duration}).ToList();
+                 media => 
+                 new MediaListModel() { MediaID = 0, Location = myService1.GetMediaLocation(media), Duration =   myService1.GetMediaDuration(media) }).ToList();
+/*TimeSpan.FromMilliseconds(Constants.DefaultDuration) */
+                                                  myService1.Close();
 
            var player = new Player(Playlist, newBtn);
 
@@ -120,12 +147,17 @@ namespace DesktopClient.Menu
              {
                  PageSwitcher.DownloadMedium(mediaListModel,Playlist,player);
              }
-          
+           Players.Add(player);
+           MediaCanvas.Children.Add(newBtn);
+           player.Start();
+             }
+             catch (Exception ex)
+             {
 
+               Console.WriteLine(ex.StackTrace + "\n\n" + ex.Message);
+             }
           
-             Players.Add(player);
-             MediaCanvas.Children.Add(newBtn);
-                                                  player.Start();
+           
             
          }
                                               return null;
@@ -394,6 +426,11 @@ namespace DesktopClient.Menu
                                                      }
                                                  });
             }
+        }
+
+        private void StatusBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

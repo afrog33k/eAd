@@ -69,9 +69,9 @@
            
                 
                 @Html.AjaxUpload("MediaPictureUpload", (string)Url.Action("AjaxUpload", "Upload", new { type = UploadType.Media }), (string)"Choose File", (string)"File To Upload")
-                <marquee  behavior="scroll" scrollamount="1" direction="left" width="350" id="marquee">
+                @*<marquee  behavior="scroll" scrollamount="1" direction="left" width="350" id="marquee">
                 Sample Text
-               </marquee>
+               </marquee>*@
             </div> 
 <div>
     @Html.ActionLink("Back to List", "Index")

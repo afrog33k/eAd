@@ -12,6 +12,7 @@
       <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" />
       <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
       <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd10" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService_GetHi_InputMessage">
@@ -50,6 +51,18 @@
   <wsdl:message name="IService_GetMyMedia_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetMyMediaResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_GetMediaDuration_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMediaDuration" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMediaDuration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMediaDurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SetStationStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetStationStatus" />
+  </wsdl:message>
+  <wsdl:message name="IService_SetStationStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetStationStatusResponse" />
+  </wsdl:message>
   <wsdl:message name="IService_DoIHaveUpdates_InputMessage">
     <wsdl:part name="parameters" element="tns:DoIHaveUpdates" />
   </wsdl:message>
@@ -67,6 +80,24 @@
   </wsdl:message>
   <wsdl:message name="IService_MakeStationUnAvailable_OutputMessage">
     <wsdl:part name="parameters" element="tns:MakeStationUnAvailableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMediaLocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMediaLocation" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMediaLocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMediaLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMosaicIDForStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMosaicIDForStation" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMosaicIDForStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMosaicIDForStationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetPositionsForMosaic_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPositionsForMosaic" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetPositionsForMosaic_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPositionsForMosaicResponse" />
   </wsdl:message>
   <wsdl:message name="IService_MakeStationAvailable_InputMessage">
     <wsdl:part name="parameters" element="tns:MakeStationAvailable" />
@@ -149,6 +180,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService/GetMyMedia" message="tns:IService_GetMyMedia_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/GetMyMediaResponse" message="tns:IService_GetMyMedia_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetMediaDuration">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetMediaDuration" message="tns:IService_GetMediaDuration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetMediaDurationResponse" message="tns:IService_GetMediaDuration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetStationStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SetStationStatus" message="tns:IService_SetStationStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SetStationStatusResponse" message="tns:IService_SetStationStatus_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DoIHaveUpdates">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/DoIHaveUpdates" message="tns:IService_DoIHaveUpdates_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/DoIHaveUpdatesResponse" message="tns:IService_DoIHaveUpdates_OutputMessage" />
@@ -160,6 +199,18 @@
     <wsdl:operation name="MakeStationUnAvailable">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/MakeStationUnAvailable" message="tns:IService_MakeStationUnAvailable_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/MakeStationUnAvailableResponse" message="tns:IService_MakeStationUnAvailable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMediaLocation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetMediaLocation" message="tns:IService_GetMediaLocation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetMediaLocationResponse" message="tns:IService_GetMediaLocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMosaicIDForStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetMosaicIDForStation" message="tns:IService_GetMosaicIDForStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetMosaicIDForStationResponse" message="tns:IService_GetMosaicIDForStation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPositionsForMosaic">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetPositionsForMosaic" message="tns:IService_GetPositionsForMosaic_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetPositionsForMosaicResponse" message="tns:IService_GetPositionsForMosaic_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="MakeStationAvailable">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/MakeStationAvailable" message="tns:IService_MakeStationAvailable_InputMessage" />
@@ -251,6 +302,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetMediaDuration">
+      <soap:operation soapAction="http://tempuri.org/IService/GetMediaDuration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetStationStatus">
+      <soap:operation soapAction="http://tempuri.org/IService/SetStationStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DoIHaveUpdates">
       <soap:operation soapAction="http://tempuri.org/IService/DoIHaveUpdates" style="document" />
       <wsdl:input>
@@ -271,6 +340,33 @@
     </wsdl:operation>
     <wsdl:operation name="MakeStationUnAvailable">
       <soap:operation soapAction="http://tempuri.org/IService/MakeStationUnAvailable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMediaLocation">
+      <soap:operation soapAction="http://tempuri.org/IService/GetMediaLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMosaicIDForStation">
+      <soap:operation soapAction="http://tempuri.org/IService/GetMosaicIDForStation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPositionsForMosaic">
+      <soap:operation soapAction="http://tempuri.org/IService/GetPositionsForMosaic" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

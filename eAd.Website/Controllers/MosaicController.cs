@@ -1,18 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using eAd.DataAccess;
-using eAd.Website.Repositories;
+using eAd.DataViewModels;
+using eAd.Website.eAdDataService;
+
 namespace eAd.Website.Controllers
 {
     public class MosaicController : Controller
     {
         private eAdDataContainer db = new eAdDataContainer();
+        private ServiceClient _service;
+        private ServiceClient Service
+        {
+            get
+            {
+
+                if (_service == null)
+                {
+                    _service = new ServiceClient();
+                    //   if (HttpContext.Request.UserHostAddress != "1.9.13.61")
+                    //{
+                    //    _service.ClientCredentials.Windows.ClientCredential.UserName = "admin";
+                    //    _service.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
+                    //}
+                }
+                return _service;
+            }
+        }
+
+
         //
         // GET: /Mosaic/
 
@@ -60,6 +79,31 @@ namespace eAd.Website.Controllers
             return null;
         }
 
+        public ActionResult MosaicUpdated(long id)
+        {
+            var mosaic = db.Mosaics.Single(g => g.MosaicID == id);
+            var groupings = mosaic.Groupings;
+            if (groupings != null)
+            {
+
+                var message = new MessageViewModel();
+                message.Command = "Updated Mosaic";
+                message.Type = "Media";
+                //   message.UserID = 
+                message.Text = mosaic.Name;
+
+                foreach (var grouping in groupings)
+                {
+                    Service.SendMessageToGroup(grouping.GroupingID, message);
+                }
+
+
+
+                return Json(new { message = "Mosaic Updated" }, JsonRequestBehavior.AllowGet);
+            }
+            return null;
+        }
+
         public ActionResult SavePosition(long id, string name, float x = 0, float y = 0, float width = 0, float height = 0, List<string> items=null)
         {
             if(db.Mosaics.Where(m=>m.MosaicID==id).Count()>0)
@@ -91,6 +135,7 @@ namespace eAd.Website.Controllers
                foreach (var medium in list)
                {
                    position.Media.Remove(medium);
+
                }
                db.SaveChanges();
 

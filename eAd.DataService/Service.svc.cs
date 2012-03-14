@@ -93,7 +93,32 @@ namespace eAd.DataAccess
 
      
 
+        public string GetMediaLocation(long mediaID)
+        {
+            eAdDataContainer entities = new eAdDataContainer();
 
+            return entities.Media.Where(s => s.MediaID == mediaID).FirstOrDefault().Location;
+        }
+
+        public void SetStationStatus(long stationID,string status)
+        {
+            eAdDataContainer entities = new eAdDataContainer();
+
+            
+            foreach(var station in  entities.Stations.Where(s => s.StationID == stationID))
+            {
+                station.Status = status;
+            }
+            entities.SaveChanges();
+           
+        }
+
+        public TimeSpan GetMediaDuration(long mediaID)
+        {
+            eAdDataContainer entities = new eAdDataContainer();
+
+            return (TimeSpan) entities.Media.Where(s => s.MediaID == mediaID).FirstOrDefault().Duration;
+        }
 
 
 
@@ -206,22 +231,45 @@ namespace eAd.DataAccess
             return true;
         }
 
+        public long GetMosaicIDForStation(long stationID)
+        {
+            eAdDataContainer entities = new eAdDataContainer();
+
+            var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
+
+            if (station != null)
+            {
+
+                var groupWithMosaic = entities.Groupings.Where(m => m.Mosaic != null).FirstOrDefault();
+                if (groupWithMosaic != null)
+                    return groupWithMosaic.MosaicID;
+            }
+            return entities.Mosaics.Where(m => m.Name.Contains("as")).FirstOrDefault().MosaicID;
+        }
+
+
+ public List<PositionViewModel> GetPositionsForMosaic(long mosaicID)
+        {
+            eAdDataContainer entities = new eAdDataContainer();
+     return entities.Mosaics.Where(m => m.MosaicID==mosaicID).FirstOrDefault().Positions.Select(p=>p.CreateModel()).ToList();
+ }
 
         public Mosaic GetMosaicForStation(long stationID)
         {
             eAdDataContainer entities = new eAdDataContainer();
 
-            //var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
+            var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
 
-            //if(station!=null)
-            //{
-            //    var myGroupings = station.Groupings;
-
-            //    entities.Mosaics.Where(m=> m.Groupings.Any(myGroupings))
-            //}
-
+            if(station!=null)
+            {
+          
+                var groupWithMosaic = entities.Groupings.Where(m => m.Mosaic != null).FirstOrDefault();
+                if(groupWithMosaic!=null)
+                    return groupWithMosaic.Mosaic;
+            }
+          
             return entities.Mosaics.Where(m=>m.Name.Contains("as")).FirstOrDefault();
-            return null;
+           // return null;
         }
 
         public bool MakeStationUnAvailable(long stationID, string rfidCode = "")

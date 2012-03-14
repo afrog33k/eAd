@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd10" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:complexType name="ArrayOfMediaListModel">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="MediaListModel" nillable="true" type="tns:MediaListModel" />
@@ -16,6 +17,26 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MediaListModel" nillable="true" type="tns:MediaListModel" />
+  <xs:complexType name="ArrayOfPositionViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PositionViewModel" nillable="true" type="tns:PositionViewModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPositionViewModel" nillable="true" type="tns:ArrayOfPositionViewModel" />
+  <xs:complexType name="PositionViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ContentURL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Height" nillable="true" type="xs:double" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Media" nillable="true" type="q1:ArrayOflong" />
+      <xs:element minOccurs="0" name="MosaicID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PositionID" type="xs:long" />
+      <xs:element minOccurs="0" name="Width" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="X" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="Y" nillable="true" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PositionViewModel" nillable="true" type="tns:PositionViewModel" />
   <xs:complexType name="CustomerViewModel">
     <xs:sequence>
       <xs:element minOccurs="0" name="AccountBalance" nillable="true" type="xs:string" />
@@ -73,6 +94,7 @@
       <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StationID" type="xs:long" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="StationViewModel" nillable="true" type="tns:StationViewModel" />

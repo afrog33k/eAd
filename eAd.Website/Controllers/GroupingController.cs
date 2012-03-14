@@ -93,7 +93,10 @@ namespace eAd.Website.Controllers
 
             ViewBag.NonAddedThemes = new SelectList(otherThemes, "ThemeID", "Name");
             ViewBag.AddedThemes = new SelectList(mythemes, "ThemeID", "Name");
-        
+
+
+            ViewBag.MosaicID = new SelectList(db.Mosaics, "MosaicID", "Name", grouping.MosaicID);
+
             return View(grouping);
         }
 
@@ -156,8 +159,18 @@ namespace eAd.Website.Controllers
                 db.Groupings.Attach(grouping);
                 db.ObjectStateManager.ChangeObjectState(grouping, EntityState.Modified);
                 db.SaveChanges();
+
+        
+                var message = new MessageViewModel();
+                message.Command = "Updated Mosaic";
+                message.Type = "Media";
+        
+                message.Text = grouping.Name;
+                Service.SendMessageToGroup(grouping.GroupingID, message);
+             
                 return RedirectToAction("Index");
             }
+            ViewBag.MosaicID = new SelectList(db.Mosaics, "MosaicID", "Name", grouping.MosaicID);
             return View(grouping);
         }
 

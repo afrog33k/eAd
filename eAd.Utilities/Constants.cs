@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.ServiceModel;
 using System.Xml.Serialization;
 
 namespace eAd.Utilities
@@ -18,6 +19,12 @@ namespace eAd.Utilities
         {
             get { return CurrentClientConfiguration.DefaultDuration; }
         
+        }
+
+
+        public static EndpointAddress ServerAddress
+        {
+            get { return new EndpointAddress(ServerUrl + "/DataAccess/Service.svc"); }
         }
 
         public static int MessageWaitTime
@@ -85,8 +92,6 @@ namespace eAd.Utilities
                 writer.Close();
             }
         }
-
-      
     }
 
    

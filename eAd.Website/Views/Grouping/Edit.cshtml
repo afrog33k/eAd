@@ -17,6 +17,15 @@
     <fieldset>
         <legend>Group:  @(Model.Name) </legend>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MosaicID, "Mosaic")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("MosaicID", String.Empty)
+            @Html.ValidationMessageFor(model => model.MosaicID)
+        </div>
+
+
         @Html.HiddenFor(model => model.GroupingID)
 
         <div class="editor-label">
@@ -67,7 +76,7 @@
         </table>
              
         
-         <div class="editor-label">
+       @*  <div class="editor-label">
              <h3>Themes: (@Model.Themes.Count())</h3>
         </div>
         <table>
@@ -103,7 +112,7 @@
         
         </div>
         </td></tr>
-        </table>
+        </table>*@
 
     
       
