@@ -80,7 +80,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="Controls\BatteryRecharging.xaml.cs" />
+    <Compile Include="ArgumentsReceivedEventArgs.cs" />
+    <Compile Include="Controls\BatteryRecharging.cs" />
     <Compile Include="Controls\DigitalClockControl.xaml.cs">
       <DependentUpon>DigitalClockControl.xaml</DependentUpon>
     </Compile>
@@ -95,10 +96,24 @@
     </Compile>
     <Compile Include="DispatcherHelper.cs" />
     <Compile Include="EdgeDetection.cs" />
-    <Compile Include="Entities\Direction.cs" />
+    <Compile Include="Edges.cs" />
+    <Compile Include="Entities\start_location.cs" />
+    <Compile Include="Entities\DirectionsResponse.cs" />
+    <Compile Include="Entities\DirectionsResponseRoute.cs" />
+    <Compile Include="Entities\DirectionsResponseRouteLeg.cs" />
+    <Compile Include="Entities\DirectionsResponseRouteLegStep.cs" />
+    <Compile Include="Entities\DirectionsResponseRouteLegStepPolyline.cs" />
+    <Compile Include="Entities\DirectionsResponseRouteOverview_polyline.cs" />
+    <Compile Include="Entities\DirectionsResponseRouteWaypoint_index.cs" />
+    <Compile Include="Entities\distance.cs" />
+    <Compile Include="Entities\duration.cs" />
+    <Compile Include="Entities\end_location.cs" />
+    <Compile Include="Entities\NewDataSet.cs" />
+    <Compile Include="FileTransferProxyException.cs" />
     <Compile Include="GoogleMaps.cs" />
+    <Compile Include="IPlayer.cs" />
     <Compile Include="ISwitchable.cs" />
-    <Compile Include="Menu\Player.xaml.cs" />
+    <Compile Include="Menu\Player.cs" />
     <Compile Include="Menu\RFIDDetected.xaml.cs">
       <DependentUpon>RFIDDetected.xaml</DependentUpon>
     </Compile>
@@ -125,11 +140,13 @@
     <Compile Include="Player\Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ScreenCapture.cs" />
     <Compile Include="Service References\eAdDataAccess\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="SingleInstance.cs" />
     <Compile Include="Snapshot.cs" />
     <Compile Include="Splasher.cs" />
     <Compile Include="SplashScreen.xaml.cs">

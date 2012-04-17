@@ -1,0 +1,8 @@
+<Configuration>
+  <NamespaceFolders>
+    <SkipFolder>870155F1-F5FF-426A-9BBF-9779DBCBC9B8/d:CacheManager</SkipFolder>
+    <SkipFolder>870155F1-F5FF-426A-9BBF-9779DBCBC9B8/d:MainUI</SkipFolder>
+    <SkipFolder>870155F1-F5FF-426A-9BBF-9779DBCBC9B8/d:Players</SkipFolder>
+    <SkipFolder>870155F1-F5FF-426A-9BBF-9779DBCBC9B8/d:Schedule</SkipFolder>
+  </NamespaceFolders>
+</Configuration>

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using eAd.DataAccess;
 using eAd.DataViewModels;
+using eAd.Utilities;
+using eAd.Website.Repositories;
 using eAd.Website.eAdDataService;
 
 namespace eAd.Website.Controllers
@@ -43,15 +46,42 @@ namespace eAd.Website.Controllers
             return View();
         }
 
+        public ActionResult Edit(int id)
+        {
+            var mosaic = db.Mosaics.Where(m => m.MosaicID == id).FirstOrDefault();
+
+            return View(mosaic);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Mosaic mosaic)
+        {
+            if (ModelState.IsValid)
+            {    
+           
+                mosaic.Updated = DateTime.Now;
+                db.Mosaics.Attach(mosaic);
+                db.ObjectStateManager.ChangeObjectState(mosaic, EntityState.Modified);
+                db.SaveChanges();
+                return Json("Successfully Saved Mosaic");
+            }
+            return Json("Please Check your inputs and save again");
+        }
+
         public ActionResult Preview(int id)
         {
+          
             ViewBag.Media = db.Media.ToList();
            
             var mosaic = db.Mosaics.Where(m => m.MosaicID == id).FirstOrDefault();
 
-           ViewBag.Positions= mosaic.Positions.Select(d => d.CreateModel()).ToList();
+            if (mosaic != null)
+            {
+                ViewBag.Positions= mosaic.Positions.Select(d => d.CreateModel()).ToList();
 
-            return View(mosaic);
+                return View(mosaic);
+            }
+            return Content("Invalid Mosaic Chosen - Hit Back And Choose Again");
         }
 
         [HttpPost]
@@ -60,7 +90,7 @@ namespace eAd.Website.Controllers
 
             Mosaic mosaic = new Mosaic();
             mosaic.Name = name;
-            
+            mosaic.Created = DateTime.Now;
                 db.Mosaics.AddObject(mosaic);
                 db.SaveChanges();
               
@@ -109,6 +139,7 @@ namespace eAd.Website.Controllers
             if(db.Mosaics.Where(m=>m.MosaicID==id).Count()>0)
            {
                var mosaic = db.Mosaics.Where(m => m.MosaicID == id).FirstOrDefault();
+               mosaic.Updated = DateTime.Now;
                Position position = null;
                if(mosaic.Positions.Where(p=>p.Name==name).Count()>0)
                {
@@ -160,6 +191,68 @@ namespace eAd.Website.Controllers
            {
                return Json("Invalid Mosiac, Please Choose One Before Saving",JsonRequestBehavior.AllowGet);
            }
+        }
+
+        public ActionResult SaveMosaic(PositionViewModel[] positionList )
+        {
+            if(positionList!=null)
+            foreach (var positionItem in positionList)
+            {
+                var mosaic = db.Mosaics.Where(m => m.MosaicID == positionItem.MosaicID).FirstOrDefault();
+                if (mosaic!=null)
+                {
+                    mosaic.Updated = DateTime.Now;
+                    Position position = mosaic.Positions.Where(p => p.Name == positionItem.Name).FirstOrDefault();
+                    if (position==null)
+                    {
+                   
+                        position = new Position();
+                        position.MosaicID = positionItem.MosaicID;
+                        db.Positions.AddObject(position);
+                        db.SaveChanges();
+                    }
+
+                    position.Name = positionItem.Name;
+                    position.X = (double) positionItem.X;
+                    position.Y = (double) positionItem.Y;
+                    position.Width = (double) positionItem.Width;
+                    position.Height = (double) positionItem.Height;
+                    var list = position.Media.ToList();
+
+                    foreach (var medium in list)
+                    {
+                        position.Media.Remove(medium);
+
+                    }
+                    db.SaveChanges();
+
+                    foreach (var path in positionItem.MediaUri)
+                    {
+                        if (!String.IsNullOrEmpty(path))
+                            if (position.Media.Where(i => i.Name == path).Count() <= 0)
+                            {
+                                var nname = Path.GetFileNameWithoutExtension(path).Replace("Thumb", "");
+                                //item.Remove("Uploads/Temp/Media/Thumb".Length);
+                                // name = 
+                                position.Media.Add(db.Media.Where(m => m.Location.Contains(nname)).FirstOrDefault());
+                            }
+                    }
+                    
+                    }
+                else
+                {
+                    return Json("Invalid Mosiac, Please Choose One Before Saving", JsonRequestBehavior.AllowGet);
+                }
+            }
+            if (positionList.Count()>0)
+            {
+                  db.SaveChanges();
+            return Json("Sucessfully Saved Mosaic", JsonRequestBehavior.AllowGet);
+            }
+
+            return Json("Invalid Mosiac, Please Choose One Before Saving", JsonRequestBehavior.AllowGet);
+         
+                     
         }
     }
 }

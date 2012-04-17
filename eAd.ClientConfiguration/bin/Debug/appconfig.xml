@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ClientConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MyStationID>9</MyStationID>
+  <MessageWaitTime>1000</MessageWaitTime>
+  <ServerUrl>http://1.9.13.61</ServerUrl>
+  <AppPath>F:\eAd.Website\eAd.ClientConfiguration\bin\Debug\</AppPath>
+  <DefaultDuration>10000</DefaultDuration>
+  <PlayListFile>playlist.xml</PlayListFile>
+</ClientConfiguration>

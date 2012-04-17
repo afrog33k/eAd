@@ -46,6 +46,22 @@
             @Html.ValidationMessageFor(model => model.Tags)
         </div>
 
+          <div class="editor-label">
+            @Html.LabelFor(model => model.Hash)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Hash)
+            @Html.ValidationMessageFor(model => model.Hash)
+        </div>
+
+              <div class="editor-label">
+            @Html.LabelFor(model => model.Size)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Size)
+            @Html.ValidationMessageFor(model => model.Size)
+        </div>
+
         <div class="editor-label">
             @Html.LabelFor(model => model.Type)
         </div>

@@ -6,15 +6,13 @@ namespace eAd.DataAccess
     [MessageContract]
     public class FileDownloadReturnMessage
     {
+        [MessageHeader(MustUnderstand = true)] public FileMetaData DownloadedFileMetadata;
+        [MessageBodyMember(Order = 1)] public Stream FileByteStream;
+
         public FileDownloadReturnMessage(FileMetaData metaData, Stream stream)
         {
-            this.DownloadedFileMetadata = metaData;
-            this.FileByteStream = stream;
+            DownloadedFileMetadata = metaData;
+            FileByteStream = stream;
         }
- 
-        [MessageHeader(MustUnderstand = true)]
-        public FileMetaData DownloadedFileMetadata;
-        [MessageBodyMember(Order = 1)]
-        public Stream FileByteStream;
     }
 }

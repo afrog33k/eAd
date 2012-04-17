@@ -6,6 +6,5 @@ namespace eAd.DataAccess
     {
         [OperationContract(IsOneWay = true)]
         void SendMessage(string message);
-
     }
 }

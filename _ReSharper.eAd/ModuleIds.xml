@@ -1,0 +1,15 @@
+<Modules>
+  <Module PersistentId="A9B1A6B8-D69A-4430-BE67-6FA4BB6E5B4B" ModuleId="eAd" />
+  <Module PersistentId="0FCFE42B-027D-43DB-9149-068ED514303C" ModuleId="eAd.DataAccess" />
+  <Module PersistentId="47A32603-2D64-4BD5-A503-F1142A5C2733" ModuleId="eAd.DataViewModels" />
+  <Module PersistentId="4C3B8286-7F61-49E4-8D88-0293F18C2C37" ModuleId="eAd.Website" />
+  <Module PersistentId="1B762266-9A36-4131-913E-80716070360E" ModuleId="eAd.DesktopClient" />
+  <Module PersistentId="ECD7174B-B905-46AF-B371-72D8A81103F1" ModuleId="eAd.Utilities" />
+  <Module PersistentId="870155F1-F5FF-426A-9BBF-9779DBCBC9B8" ModuleId="Client" />
+  <Module PersistentId="3952B2A5-2E41-4921-9BD1-1331099D690C" ModuleId="irio.mvc.fileupload" />
+  <Module PersistentId="7DF57062-342C-40A6-84CC-E504534B0189" ModuleId="irio.utilities" />
+  <Module PersistentId="D27EA795-2586-4E57-823C-C3078534F942" ModuleId="eAd.Monitor" />
+  <Module PersistentId="66F6656A-6A03-4F5B-8428-FDDDA5830C63" ModuleId="eAd.ClientConfiguration" />
+  <Module PersistentId="37201E0B-014E-4EA6-9F84-9551DD2DDFE8" ModuleId="irio.mvc.htmlhelpers" />
+  <Module PersistentId="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="mscorlib" />
+</Modules>

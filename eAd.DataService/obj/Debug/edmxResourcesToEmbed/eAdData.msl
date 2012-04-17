@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs" Space="C-S">
+  <Alias Key="Model" Value="eAdData" />
+  <Alias Key="Target" Value="eAdData.Store" />
+  <EntityContainerMapping CdmEntityContainer="eAdDataContainer" StorageEntityContainer="eAdDataStoreContainer">
+    <EntitySetMapping Name="Cars">
+      <EntityTypeMapping TypeName="eAdData.Car">
+        <MappingFragment StoreEntitySet="Cars">
+          <ScalarProperty Name="BatteryCycle" ColumnName="BatteryCycle" />
+          <ScalarProperty Name="TotalUsage" ColumnName="TotalUsage" />
+          <ScalarProperty Name="RFID" ColumnName="RFID" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="CarID" ColumnName="CarID" />
+          <ScalarProperty Name="LastRechargeDate" ColumnName="LastRechargeDate" />
+          <ScalarProperty Name="BatteryCharge" ColumnName="BatteryCharge" />
+          <ScalarProperty Name="License" ColumnName="License" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Make" ColumnName="Make" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="eAdData.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="EmailAlert" ColumnName="EmailAlert" />
+          <ScalarProperty Name="SMSAlert" ColumnName="SMSAlert" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="LastBillAmount" ColumnName="LastBillAmount" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="RFID" ColumnName="RFID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groupings">
+      <EntityTypeMapping TypeName="eAdData.Grouping">
+        <MappingFragment StoreEntitySet="Groupings">
+          <ScalarProperty Name="MosaicID" ColumnName="MosaicID" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GroupingID" ColumnName="GroupingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Media">
+      <EntityTypeMapping TypeName="eAdData.Medium">
+        <MappingFragment StoreEntitySet="Media">
+          <ScalarProperty Name="Updated" ColumnName="Updated" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Hash" ColumnName="Hash" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Tags" ColumnName="Tags" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MediaID" ColumnName="MediaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MediaTypes">
+      <EntityTypeMapping TypeName="eAdData.MediaType">
+        <MappingFragment StoreEntitySet="MediaTypes">
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MediaTypeID" ColumnName="MediaTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Messages">
+      <EntityTypeMapping TypeName="eAdData.Message">
+        <MappingFragment StoreEntitySet="Messages">
+          <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="Command" ColumnName="Command" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="StationID" ColumnName="StationID" />
+          <ScalarProperty Name="Sent" ColumnName="Sent" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mosaics">
+      <EntityTypeMapping TypeName="eAdData.Mosaic">
+        <MappingFragment StoreEntitySet="Mosaics">
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Hash" ColumnName="Hash" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="BackgroundColor" ColumnName="BackgroundColor" />
+          <ScalarProperty Name="Background" ColumnName="Background" />
+          <ScalarProperty Name="Updated" ColumnName="Updated" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MosaicID" ColumnName="MosaicID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Positions">
+      <EntityTypeMapping TypeName="eAdData.Position">
+        <MappingFragment StoreEntitySet="Positions">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="Y" ColumnName="Y" />
+          <ScalarProperty Name="X" ColumnName="X" />
+          <ScalarProperty Name="MosaicID" ColumnName="MosaicID" />
+          <ScalarProperty Name="ContentURL" ColumnName="ContentURL" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stations">
+      <EntityTypeMapping TypeName="eAdData.Station">
+        <MappingFragment StoreEntitySet="Stations">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="LastCheckIn" ColumnName="LastCheckIn" />
+          <ScalarProperty Name="StationID" ColumnName="StationID" />
+          <ScalarProperty Name="Available" ColumnName="Available" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="eAdData.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Themes">
+      <EntityTypeMapping TypeName="eAdData.Theme">
+        <MappingFragment StoreEntitySet="Themes">
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ThemeID" ColumnName="ThemeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="GroupingStation" TypeName="eAdData.GroupingStation" StoreEntitySet="GroupingStation">
+      <EndProperty Name="Station">
+        <ScalarProperty Name="StationID" ColumnName="Stations_StationID" />
+      </EndProperty>
+      <EndProperty Name="Grouping">
+        <ScalarProperty Name="GroupingID" ColumnName="Groupings_GroupingID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GroupingTheme" TypeName="eAdData.GroupingTheme" StoreEntitySet="GroupingTheme">
+      <EndProperty Name="Theme">
+        <ScalarProperty Name="ThemeID" ColumnName="Themes_ThemeID" />
+      </EndProperty>
+      <EndProperty Name="Grouping">
+        <ScalarProperty Name="GroupingID" ColumnName="Groupings_GroupingID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PositionMedium" TypeName="eAdData.PositionMedium" StoreEntitySet="PositionMedium">
+      <EndProperty Name="Position">
+        <ScalarProperty Name="PositionID" ColumnName="Positions_PositionID" />
+      </EndProperty>
+      <EndProperty Name="Medium">
+        <ScalarProperty Name="MediaID" ColumnName="Media_MediaID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ThemeMedium" TypeName="eAdData.ThemeMedium" StoreEntitySet="ThemeMedium">
+      <EndProperty Name="Theme">
+        <ScalarProperty Name="ThemeID" ColumnName="Themes_ThemeID" />
+      </EndProperty>
+      <EndProperty Name="Medium">
+        <ScalarProperty Name="MediaID" ColumnName="Media_MediaID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

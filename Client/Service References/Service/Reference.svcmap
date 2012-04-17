@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5795a0fa-68d4-4bc8-9e26-4eec44c2fda1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/eAd.Website/DataAccess/Service.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Service11.xsd" MetadataType="Schema" ID="b591c754-a802-4008-87bd-06be917acb29" SourceId="1" SourceUrl="http://localhost/eAd.Website/DataAccess/Service.svc?xsd=xsd4" />
+    <MetadataFile FileName="Service111.xsd" MetadataType="Schema" ID="a7b0bb0b-ce7e-4f62-b18f-db59c71d6704" SourceId="1" SourceUrl="http://localhost/eAd.Website/DataAccess/Service.svc?xsd=xsd9" />
+    <MetadataFile FileName="Service112.xsd" MetadataType="Schema" ID="8f894a66-6374-4a2e-bcb9-07f3a6caf9c5" SourceId="1" SourceUrl="http://localhost/eAd.Website/DataAccess/Service.svc?xsd=xsd1" />
+    <MetadataFile FileName="Service113.xsd" MetadataType="Schema" ID="9fcdbf3c-db2e-4585-a9b7-451e4a6044bc" SourceId="1" SourceUrl="http://localhost/eAd.Website/DataAccess/Service.svc?xsd=xsd10" />
+    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="77c1c273-0125-49ba-954f-5104284cb14d" SourceId="1" SourceUrl="http://localhost/eAd.Website/DataAccess/Service.svc?wsdl" />
+    <MetadataFile FileName="Service114.xsd" MetadataType="Schema" ID="200468e2-ebca-4fda-970a-ceeb85a4a44d" SourceId="1" SourceUrl="http://localhost/eAd.Website/DataAccess/Service.svc?xsd=xsd3" />
+    <MetadataFile FileName="Service115.xsd" MetadataType="Schema" ID="c32868ff-7eda-4ae8-b2e5-e09d10ad4ede" SourceId="1" SourceUrl="http://localhost/eAd.Website/DataAccess/Service.svc?xsd=xsd5" />
+    <MetadataFile FileName="Service116.xsd" MetadataType="Schema" ID="5b390bdb-a3c9-4685-a180-5aa89d00c02c" SourceId="1" SourceUrl="http://localhost/eAd.Website/DataAccess/Service.svc?xsd=xsd6" />
+    <MetadataFile FileName="Service117.xsd" MetadataType="Schema" ID="85ca4f47-2e51-48ba-83fc-08e74a9e9ed8" SourceId="1" SourceUrl="http://localhost/eAd.Website/DataAccess/Service.svc?xsd=xsd7" />
+    <MetadataFile FileName="Service118.xsd" MetadataType="Schema" ID="fbba3b8b-8b69-40d9-9387-7c86ed42e86d" SourceId="1" SourceUrl="http://localhost/eAd.Website/DataAccess/Service.svc?xsd=xsd8" />
+    <MetadataFile FileName="Service119.xsd" MetadataType="Schema" ID="c09aca71-80e5-4b80-ad83-6dcad009c451" SourceId="1" SourceUrl="http://localhost/eAd.Website/DataAccess/Service.svc?xsd=xsd0" />
+    <MetadataFile FileName="Service1110.xsd" MetadataType="Schema" ID="117d5dd9-6b26-4b33-bd00-cf5bc16ac760" SourceId="1" SourceUrl="http://localhost/eAd.Website/DataAccess/Service.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

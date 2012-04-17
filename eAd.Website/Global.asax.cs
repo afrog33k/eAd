@@ -1,20 +1,9 @@
-﻿using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 using eAd.Website.Controllers;
 
 namespace eAd.Website
 {
-
-    public class RootRouteConstraint<T> : IRouteConstraint
-    {
-        public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
-        {
-            var rootMethodNames = typeof(T).GetMethods().Select(x => x.Name.ToLower());
-            return rootMethodNames.Contains(values["action"].ToString().ToLower());
-        }
-    }
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 

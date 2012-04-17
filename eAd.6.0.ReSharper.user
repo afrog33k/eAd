@@ -1,0 +1,438 @@
+<Configuration>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="870155F1-F5FF-426A-9BBF-9779DBCBC9B8/d:Players/f:Flash.cs" caret="0" fromTop="0" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/f:Web.config" caret="0" fromTop="0" />
+      <File id="47A32603-2D64-4BD5-A503-F1142A5C2733/d:Layout/f:layoutTags.cs" caret="0" fromTop="0" />
+      <File id="47A32603-2D64-4BD5-A503-F1142A5C2733/f:StationViewModel.cs" caret="0" fromTop="0" />
+      <File id="870155F1-F5FF-426A-9BBF-9779DBCBC9B8/d:MainUI/f:OptionForm.designer.cs" caret="0" fromTop="0" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/f:Global.asax.cs" caret="0" fromTop="0" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/f:GoogleMaps.cs" caret="0" fromTop="0" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/f:Globals.cs" caret="0" fromTop="0" />
+      <File id="ECD7174B-B905-46AF-B371-72D8A81103F1/f:ClientConfiguration.cs" caret="0" fromTop="0" />
+      <File id="1B762266-9A36-4131-913E-80716070360E/f:PageSwitcher.xaml.cs" caret="0" fromTop="0" />
+      <File id="ECD7174B-B905-46AF-B371-72D8A81103F1/f:Constants.cs" caret="0" fromTop="0" />
+      <File id="ECD7174B-B905-46AF-B371-72D8A81103F1/f:MimeExtensionHelper.cs" caret="0" fromTop="0" />
+      <File id="1B762266-9A36-4131-913E-80716070360E/f:App.cs" caret="0" fromTop="0" />
+      <File id="1B762266-9A36-4131-913E-80716070360E/d:Menu/f:Player.cs" caret="0" fromTop="0" />
+      <File id="1B762266-9A36-4131-913E-80716070360E/d:Menu/f:MainWindow.xaml.cs" caret="0" fromTop="0" />
+      <File id="1B762266-9A36-4131-913E-80716070360E/f:SingleInstance.cs" caret="0" fromTop="0" />
+      <File id="1B762266-9A36-4131-913E-80716070360E/f:ScreenCapture.cs" caret="0" fromTop="0" />
+      <File id="0FCFE42B-027D-43DB-9149-068ED514303C/f:ClassViewModelExtensions.svc.cs" caret="2165" fromTop="9" />
+      <File id="47A32603-2D64-4BD5-A503-F1142A5C2733/f:PositionViewModel.cs" caret="1432" fromTop="20" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Scripts/f:jquery.contextMenu.js" caret="1218" fromTop="10" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MediaController.cs" caret="4817" fromTop="13" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MosaicController.cs" caret="2036" fromTop="13" />
+      <File id="870155F1-F5FF-426A-9BBF-9779DBCBC9B8/d:Schedule/f:Schedule.cs" caret="10137" fromTop="4" />
+      <File id="870155F1-F5FF-426A-9BBF-9779DBCBC9B8/d:CacheManager/f:CacheManager.cs" caret="7602" fromTop="9" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Scripts/f:mosaic.js" caret="437" fromTop="8" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Edit.cshtml" caret="2425" fromTop="3" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Repositories/f:UploadRepository.cs" caret="0" fromTop="0" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Media/f:Create.cshtml" caret="0" fromTop="0" />
+      <File id="1B762266-9A36-4131-913E-80716070360E/d:Menu/f:MainWindow.xaml" caret="0" fromTop="0" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Index.cshtml" caret="626" fromTop="14" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Scripts/f:mosaic.js" caret="1389" fromTop="9" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MosaicController.cs" caret="1377" fromTop="3" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Edit.cshtml" caret="17" fromTop="1" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Edit.cshtml" caret="2045" fromTop="9" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Edit.cshtml" caret="900" fromTop="2" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Scripts/f:mosaic.js" caret="1000" fromTop="10" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Scripts/f:mosaic.js" caret="316" fromTop="7" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Scripts/f:mosaic.js" caret="926" fromTop="15" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MosaicController.cs" caret="2047" fromTop="9" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MosaicController.cs" caret="2047" fromTop="17" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MosaicController.cs" caret="1911" fromTop="0" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MosaicController.cs" caret="1788" fromTop="7" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MosaicController.cs" caret="1678" fromTop="5" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Edit.cshtml" caret="623" fromTop="10" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Scripts/f:mosaic.js" caret="926" fromTop="10" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Scripts/f:mosaic.js" caret="924" fromTop="13" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Edit.cshtml" caret="2749" fromTop="9" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Edit.cshtml" caret="2173" fromTop="8" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Edit.cshtml" caret="2735" fromTop="12" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MosaicController.cs" caret="1949" fromTop="11" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Index.cshtml" caret="4616" fromTop="6" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Index.cshtml" caret="5432" fromTop="15" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Index.cshtml" caret="5423" fromTop="15" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Index.cshtml" caret="4812" fromTop="16" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Index.cshtml" caret="5238" fromTop="9" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Index.cshtml" caret="5137" fromTop="8" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Index.cshtml" caret="5127" fromTop="10" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Edit.cshtml" caret="2612" fromTop="14" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Scripts/f:mosaic.js" caret="437" fromTop="8" />
+      <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:Index.cshtml" caret="5062" fromTop="8" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir>C:\Program Files (x86)\NUnit 2.5.10\bin\net-2.0\lib</NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="livetemplates.csharp.usevar">True</setting>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="CSharpCodeCompletionContext">
+      <Item value="serializer" priority="163" />
+      <Item value="XmlSerializer" priority="115" />
+      <Item value="typeof" priority="127" />
+      <Item value="using" priority="127" />
+      <Item value="var" priority="509" />
+      <Item value="new" priority="1256" />
+      <Item value="SqlFileStream" priority="29" />
+      <Item value="FileMode`0" priority="126" />
+      <Item value="foreach" priority="159" />
+      <Item value="layout" priority="384" />
+      <Item value="slayout" priority="255" />
+      <Item value="LayoutRegion`0" priority="62" />
+      <Item value="LayoutRegion" priority="86" />
+      <Item value="Id" priority="194" />
+      <Item value="UserId" priority="131" />
+      <Item value="Width" priority="98" />
+      <Item value="Height" priority="97" />
+      <Item value="Top" priority="98" />
+      <Item value="Left" priority="98" />
+      <Item value="int" priority="63" />
+      <Item value="Media" priority="98" />
+      <Item value="LayoutRegionMedia`0" priority="62" />
+      <Item value="Add`0" priority="31" />
+      <Item value="layoutRegion" priority="63" />
+      <Item value="LayoutRegionMedia" priority="115" />
+      <Item value="ID" priority="31" />
+      <Item value="Type" priority="98" />
+      <Item value="Duration" priority="129" />
+      <Item value="SchemaVersion" priority="65" />
+      <Item value="Options" priority="65" />
+      <Item value="LayoutRegionMediaOptions" priority="57" />
+      <Item value="Direction" priority="63" />
+      <Item value="Uri" priority="63" />
+      <Item value="Lkid" priority="65" />
+      <Item value="ScrollSpeed" priority="32" />
+      <Item value="Raw" priority="98" />
+      <Item value="LayoutRegionMediaRaw" priority="115" />
+      <Item value="Text" priority="63" />
+      <Item value="TextWriter`0" priority="29" />
+      <Item value="StringWriter" priority="29" />
+      <Item value="byte" priority="32" />
+      <Item value="StreamWriter`0" priority="31" />
+      <Item value="MemoryStream`0" priority="63" />
+      <Item value="XmlSerializer`0" priority="63" />
+      <Item value="LayoutModel`0" priority="95" />
+      <Item value="layoutPath" priority="31" />
+      <Item value="region" priority="65" />
+      <Item value="options" priority="159" />
+      <Item value="medium" priority="292" />
+      <Item value="if" priority="287" />
+      <Item value="null" priority="127" />
+      <Item value="numAttempts" priority="31" />
+      <Item value="ScheduleModel" priority="57" />
+      <Item value="Items" priority="63" />
+      <Item value="object" priority="28" />
+      <Item value="ScheduleLayout`0" priority="62" />
+      <Item value="ScheduleLayout" priority="57" />
+      <Item value="List&lt;ScheduleLayout&gt;" priority="28" />
+      <Item value="File" priority="31" />
+      <Item value="FromDate" priority="32" />
+      <Item value="ToDate" priority="32" />
+      <Item value="ScheduleId" priority="32" />
+      <Item value="Priority" priority="32" />
+      <Item value="schedule" priority="127" />
+      <Item value="Stream`0" priority="31" />
+      <Item value="e" priority="31" />
+      <Item value="scheduleStream" priority="159" />
+      <Item value="stream" priority="96" />
+      <Item value="Schedule`0" priority="31" />
+      <Item value="XmlSecureResolver`0" priority="31" />
+      <Item value="File`0" priority="190" />
+      <Item value="_location" priority="30" />
+      <Item value="FileAccess`0" priority="62" />
+      <Item value="scheduleId" priority="31" />
+      <Item value="Path`0" priority="95" />
+      <Item value="string" priority="63" />
+      <Item value="path" priority="31" />
+      <Item value="Array`0" priority="63" />
+      <Item value="sw" priority="31" />
+      <Item value="fs" priority="31" />
+      <Item value="Utilities" priority="63" />
+      <Item value="location" priority="31" />
+      <Item value="FileShare`0" priority="31" />
+      <Item value="uploadedContents" priority="31" />
+      <Item value="DBNull`0" priority="63" />
+      <Item value="container" priority="63" />
+      <Item value="m" priority="31" />
+      <Item value="p" priority="196" />
+      <Item value="RequiredFileModel" priority="28" />
+      <Item value="FileType" priority="31" />
+      <Item value="Path" priority="32" />
+      <Item value="sizeof" priority="31" />
+      <Item value="Size" priority="32" />
+      <Item value="MD5" priority="32" />
+      <Item value="mosaic" priority="548" />
+      <Item value="public" priority="95" />
+      <Item value="static" priority="31" />
+      <Item value="else" priority="63" />
+      <Item value="FileStream" priority="28" />
+      <Item value="mosaicCache" priority="256" />
+      <Item value="filestream" priority="63" />
+      <Item value="LayoutModel" priority="28" />
+      <Item value="model" priority="223" />
+      <Item value="List&lt;LayoutTags&gt;" priority="28" />
+      <Item value="List&lt;LayoutRegion&gt;" priority="28" />
+      <Item value="position" priority="229" />
+      <Item value="List&lt;LayoutRegionMedia&gt;" priority="28" />
+      <Item value="IdnElement`0" priority="32" />
+      <Item value="UpdateMosaicCache`0" priority="31" />
+      <Item value="DateTime`0" priority="95" />
+      <Item value="in" priority="31" />
+      <Item value="filePath" priority="63" />
+      <Item value="return" priority="95" />
+      <Item value="AppPath" priority="31" />
+      <Item value="bytes" priority="31" />
+      <Item value="partial" priority="30" />
+      <Item value="layoutFile" priority="63" />
+      <Item value="String`0" priority="31" />
+      <Item value="List" priority="31" />
+      <Item value="PositionViewModel`0" priority="31" />
+      <Item value="positionItem" priority="287" />
+      <Item value="positionList" priority="31" />
+      <Item value="Count`1" priority="26" />
+      <Item value="SaveMosaic" priority="32" />
+      <Item value="id" priority="31" />
+      <Item value="Content`0" priority="31" />
+      <Item value="ActionResult`0" priority="31" />
+      <Item value="View`0" priority="31" />
+      <Item value="Mosaic`0" priority="31" />
+      <Item value="Json`0" priority="31" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.Serialization.XmlSerializer">
+      <Item value="Deserialize`0" priority="80" />
+      <Item value="Serialize`0" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.FileMode">
+      <Item value="Open" priority="107" />
+      <Item value="CreateNew" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:eAd.DataViewModels.LayoutModel">
+      <Item value="Regions" priority="188" />
+      <Item value="SchemaVersion" priority="53" />
+      <Item value="Width" priority="80" />
+      <Item value="Height" priority="80" />
+      <Item value="Bgcolor" priority="134" />
+      <Item value="Background" priority="80" />
+      <Item value="Tags" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:eAd.DataViewModels.LayoutRegion">
+      <Item value="Media" priority="162" />
+      <Item value="Id" priority="26" />
+      <Item value="Width" priority="26" />
+      <Item value="Height" priority="26" />
+      <Item value="Left" priority="26" />
+      <Item value="ToString`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:eAd.DataViewModels.LayoutRegionMedia">
+      <Item value="Type" priority="54" />
+      <Item value="ID" priority="27" />
+      <Item value="Id" priority="26" />
+      <Item value="Duration" priority="26" />
+      <Item value="Options" priority="215" />
+      <Item value="Raw" priority="81" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
+      <Item value="Add`0" priority="108" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.String">
+      <Item value="ToArray`1" priority="53" />
+      <Item value="Select`2" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.MemoryStream">
+      <Item value="ToArray`0" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
+      <Item value="ToList`1" priority="54" />
+      <Item value="FirstOrDefault`1" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Client.RegionOptions">
+      <Item value="direction" priority="26" />
+      <Item value="Uri" priority="26" />
+      <Item value="copyrightNotice" priority="26" />
+      <Item value="scrollSpeed" priority="26" />
+      <Item value="ToString`0" priority="26" />
+      <Item value="text" priority="55" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:eAd.DataViewModels.LayoutRegionMediaOptions">
+      <Item value="Direction" priority="26" />
+      <Item value="Uri" priority="26" />
+      <Item value="ScrollSpeed" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.String">
+      <Item value="IsNullOrEmpty`0" priority="80" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Client.Service.ScheduleCompletedEventArgs">
+      <Item value="Result" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.File">
+      <Item value="Open`0" priority="26" />
+      <Item value="Exists`0" priority="53" />
+      <Item value="Delete`0" priority="26" />
+      <Item value="ReadAllText`0" priority="26" />
+      <Item value="ReadAllBytes`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.FileAccess">
+      <Item value="Read" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:eAd.DataViewModels.ScheduleModel">
+      <Item value="Items" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:eAd.DataViewModels.ScheduleLayout">
+      <Item value="File" priority="26" />
+      <Item value="Priority" priority="26" />
+      <Item value="FromDate" priority="26" />
+      <Item value="ToDate" priority="26" />
+      <Item value="ScheduleId" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Boolean">
+      <Item value="Parse`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:eAd.DataViewModels.RequiredFileModel">
+      <Item value="Path" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.Stream">
+      <Item value="Close`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.StreamWriter">
+      <Item value="Write`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Array">
+      <Item value="Copy`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:eAd.DataAccess.Medium">
+      <Item value="Hash" priority="81" />
+      <Item value="MediaID" priority="84" />
+      <Item value="Size" priority="54" />
+      <Item value="Duration" priority="27" />
+      <Item value="Type" priority="27" />
+      <Item value="DateAdded" priority="26" />
+      <Item value="Created" priority="26" />
+      <Item value="Updated" priority="26" />
+      <Item value="Location" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@eAd.Utilities.Hashes">
+      <Item value="MD5`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.FileShare">
+      <Item value="ReadWrite" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:eAd.DataAccess.eAdDataContainer">
+      <Item value="Mosaics" priority="55" />
+      <Item value="SaveChanges`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.Objects.ObjectSet`1">
+      <Item value="Select`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Linq.IQueryable`1">
+      <Item value="FirstOrDefault`1" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:eAd.DataAccess.Mosaic">
+      <Item value="MosaicID" priority="110" />
+      <Item value="Background" priority="53" />
+      <Item value="Positions" priority="26" />
+      <Item value="Created" priority="107" />
+      <Item value="Hash" priority="55" />
+      <Item value="Size" priority="27" />
+      <Item value="Updated" priority="53" />
+      <Item value="EntityState" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Int64">
+      <Item value="ToString`0" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.FileInfo">
+      <Item value="Length" priority="26" />
+      <Item value="CreationTime" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:eAd.DataAccess.Position">
+      <Item value="Height" priority="27" />
+      <Item value="MosaicID" priority="27" />
+      <Item value="PositionID" priority="27" />
+      <Item value="X" priority="27" />
+      <Item value="Y" priority="27" />
+      <Item value="Media" priority="27" />
+      <Item value="Width" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.Objects.DataClasses.EntityCollection`1">
+      <Item value="Select`2" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Nullable`1">
+      <Item value="Value" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.TimeSpan">
+      <Item value="Seconds" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@irio.utilities.FileUtilities">
+      <Item value="FolderCreate`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.DateTime">
+      <Item value="Now" priority="107" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.Path">
+      <Item value="GetDirectoryName`0" priority="26" />
+      <Item value="GetFileName`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Configuration.AppSettingsSection">
+      <Item value="CurrentConfiguration" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Configuration.ConfigurationSettings">
+      <Item value="AppSettings" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Specialized.NameValueCollection">
+      <Item value="Get`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.FileStream">
+      <Item value="Position" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Client.LayoutSchedule">
+      <Item value="ID" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Controls.Canvas">
+      <Item value="Background" priority="27" />
+    </ItemStatistics>
+    <ItemStatistics item="JavaScriptSpecificContext">
+      <Item value="imglist" priority="10" />
+      <Item value="ResetDefaults" priority="10" />
+      <Item value="var" priority="10" />
+      <Item value="editor" priority="10" />
+      <Item value="if" priority="10" />
+      <Item value="mosaic" priority="10" />
+      <Item value="undefined" priority="10" />
+      <Item value="alert" priority="21" />
+      <Item value="recycleImage" priority="10" />
+      <Item value="result" priority="10" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:eAd.DataViewModels.PositionViewModel">
+      <Item value="MosaicID" priority="53" />
+      <Item value="Name" priority="53" />
+      <Item value="Y" priority="26" />
+      <Item value="Width" priority="26" />
+      <Item value="Height" priority="26" />
+      <Item value="Media" priority="26" />
+      <Item value="MediaUri" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="HtmlCodeCompletionContext">
+      <Item value="script" priority="17" />
+      <Item value="type" priority="17" />
+      <Item value="text/javascript" priority="17" />
+      <Item value="delete" priority="6" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+</Configuration>

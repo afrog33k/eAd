@@ -1,0 +1,77 @@
+﻿@using eAd.DataAccess
+@model IEnumerable<eAd.DataAccess.Station>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+      <th>
+            ID (GreenLots ID)
+        </th>
+        <th>
+            Location
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Available
+        </th>
+        <th>
+            LastCheckIn
+        </th>
+         <th>
+            Groups
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+      <td>
+            @Html.DisplayFor(modelItem => item.StationID) 
+       ( @Html.DisplayFor(modelItem => item.UniqueID))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location) 
+            @Html.ActionLink("Map", "Index", "Map", new { stationID = item.StationID }, new { @class = "mapLink" })
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Available)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastCheckIn)
+        </td>
+        <td>
+        @if (item.Groupings.Count() > 0)
+        {
+          <p>  @Html.DisplayFor(modelItem => item.Groupings.Aggregate((i, j) => new Grouping {Name = (i.Name + "," + j.Name)}).Name)
+        </p>
+        }
+        else
+        {
+            <p>No Goups</p>
+        }
+            </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StationID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StationID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StationID })
+        </td>
+    </tr>
+}
+Status:<br/>
+@ViewBag.Status
+
+</table>

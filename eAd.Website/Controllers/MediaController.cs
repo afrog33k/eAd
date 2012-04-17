@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using eAd.DataAccess;
+using eAd.Utilities;
 using eAd.Website.Repositories;
 
 namespace eAd.Website.Controllers
@@ -40,6 +41,7 @@ namespace eAd.Website.Controllers
             UploadRepository.CreateUploadGUID(HttpContext);
             Medium medium = new Medium();
             medium.Duration = TimeSpan.Zero;
+           
             return View(medium);
         } 
 
@@ -51,6 +53,7 @@ namespace eAd.Website.Controllers
         {
             if (ModelState.IsValid)
             {
+                medium.Created = DateTime.Now;
                 db.Media.AddObject(medium);
                 db.SaveChanges();
 
@@ -75,7 +78,15 @@ namespace eAd.Website.Controllers
                 }
 
                 if (location != null)
-                    medium.Location = location;
+                {
+                     medium.Location = location;
+                    using(var fs = new FileStream(Server.MapPath("~/"+location),FileMode.Open,FileAccess.Read,FileShare.ReadWrite))
+                    {
+                        medium.Hash = Hashes.MD5(fs);
+                    }
+               
+                }
+                   
 
                 db.SaveChanges();
                 return RedirectToAction("Index");  
@@ -93,6 +104,15 @@ namespace eAd.Website.Controllers
             Medium medium = db.Media.Single(m => m.MediaID == id);
             if(medium.Duration==null)
                 medium.Duration = TimeSpan.Zero;
+            medium.Updated = DateTime.Now;
+            //to be removed
+
+            //using (var fs = new FileStream(Server.MapPath("~/" + medium.Location), FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            //{
+            //    medium.Hash = Hashes.MD5(fs);
+            //    medium.Size = new FileInfo(Server.MapPath("~/" + medium.Location)).Length;
+            //}
+
             return View(medium);
         }
 
@@ -116,11 +136,17 @@ namespace eAd.Website.Controllers
                     medium.Duration = new TimeSpan(upload.Duration.Ticks);
                 }
            
-                if (location != null) 
+                if (location != null)
+                {
+                    
                     medium.Location = location;
-          
-
-
+                using (var fs = new FileStream(Server.MapPath("~/" + medium.Location), FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                {
+                    medium.Hash = Hashes.MD5(fs);
+                    medium.Size = new FileInfo(Server.MapPath("~/" + medium.Location)).Length;
+                }
+ }
+                medium.Updated = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

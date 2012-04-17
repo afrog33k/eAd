@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -7,19 +6,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DesktopClient
 {
-    [Flags]
-    public enum Edges
-    {
-        None = 0,
-        Top = 1,
-        Bottom = 2,
-        Left = 4,
-        Right = 8,
-        Identical = Top + Bottom + Left + Right,
-        Inside = 16,
-        Covers = 32
-    }
-
     class EdgeDetection
     {
         public static Edges DetectEdgesCollision(Rectangle a, Rectangle b)

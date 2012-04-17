@@ -1,41 +1,35 @@
-using System;
-
-namespace eAd.DataViewModels
+﻿namespace eAd.DataViewModels
 {
+    using System;
+    using System.Runtime.CompilerServices;
+
     public class StationViewModel
     {
         private bool _isOnline;
 
-        public long StationID
-        {
-            get;
-            set;
-        }
-        public string Name
-        {
-            get;
-            set;
-        }
+        public bool Available { get; set; }
 
-        public bool Available
+        public bool IsOnline
         {
-            get;
-            set;
+            get
+            {
+                return this._isOnline;
+            }
+            set
+            {
+                this._isOnline = value;
+            }
         }
-
-        public string Location { get; set; }
 
         public DateTime? LastCheckIn { get; set; }
 
+        public string Location { get; set; }
+
+        public string Name { get; set; }
+
+        public long StationID { get; set; }
+
         public string Status { get; set; }
-        public bool IsOnline
-        {
-            get {
-                return _isOnline;
-            }
-            set {
-                _isOnline = value;
-            }
-        }
     }
 }
+

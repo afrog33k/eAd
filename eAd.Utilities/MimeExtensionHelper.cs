@@ -1,237 +1,238 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Xml.Serialization;
-using Microsoft.Win32;
-
-namespace eAd.Utilities
+﻿  using Microsoft.Win32;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Runtime.CompilerServices;
+    using System.Runtime.InteropServices;
+    using System.Xml.Serialization;
+  namespace eAd.Utilities
 {
-    public sealed class MimeExtensionHelper
+  
+
+  public sealed class MimeExtensionHelper
+{
+    // Fields
+    private static MimeTypeCollection _extensionTypes = null;
+
+    // Methods
+    private MimeExtensionHelper()
     {
+    }
 
-        public static string GetSimpleType(string path)
+    public static string FindExtension(string mimeType)
+    {
+        return ExtensionTypes.GetExtension(mimeType);
+    }
+
+    public static string FindMime(string file, bool verifyFromContent)
+    {
+        string extension = Path.GetExtension(file);
+        string mimeType = string.Empty;
+        try
         {
-            var ext = Path.GetExtension(path).ToLower();
-            switch (ext)
+            if (!string.IsNullOrEmpty(extension))
             {
-                case ".flv":
-                case ".m4v":
-                case ".mp4":
-                case ".avi":
-                    return "Video";
-                case ".jpg":
-                case ".gif":
-                case ".bmp":
-                case ".png":
-                    return "Image";
-                case ".txt":
-                    return "Marquee";
-                case ".ppt":
-                case ".pptx":
-                    return "Presentation";
-                default:
-                    return "Unknown";
+                mimeType = ExtensionTypes.GetMimeType(extension);
             }
-
+            if (verifyFromContent || (string.IsNullOrEmpty(mimeType) && File.Exists(file)))
+            {
+                mimeType = FindMimeByContent(file, mimeType);
+            }
         }
-
-        private MimeExtensionHelper() { }
-
-        /// <summary>Finds extension associated with specified mime type</summary>
-        /// <param name="mimeType">mime type you search extension for, e.g.: "application/octet-stream"</param>
-        /// <returns>most used extension, associated with provided type, e.g.: ".bin"</returns>
-        public static string FindExtension(string mimeType)
+        catch
         {
-            return ExtensionTypes.GetExtension(mimeType);
         }
+        return (mimeType ?? string.Empty).Trim();
+    }
 
-        /// <summary>Finds mime type using provided extension and/or file's binary content.</summary>
-        /// <param name="file">Full file path</param>
-        /// <param name="verifyFromContent">Should the file's content be examined to verify founded value.</param>
-        /// <returns>mime type of file, e.g.: "application/octet-stream"</returns>
-        public static string FindMime(string file, bool verifyFromContent)
+    public static string FindMimeByContent(string file, string proposedType)
+    {
+        FileInfo info = new FileInfo(file);
+        if (!info.Exists)
         {
-            string extension = Path.GetExtension(file);
-            string mimeType = string.Empty;
+            throw new FileNotFoundException(file);
+        }
+        byte[] buffer = new byte[Math.Min(0x1000L, info.Length)];
+        using (FileStream stream = File.OpenRead(file))
+        {
+            stream.Read(buffer, 0, buffer.Length);
+        }
+        return FindMimeByData(buffer, proposedType);
+    }
+
+    public static string FindMimeByData(byte[] dataBytes, string mimeProposed)
+    {
+        if ((dataBytes == null) || (dataBytes.Length == 0))
+        {
+            throw new ArgumentNullException("dataBytes");
+        }
+        string str = string.Empty;
+        IntPtr zero = IntPtr.Zero;
+        if (!string.IsNullOrEmpty(mimeProposed))
+        {
+            str = mimeProposed;
+        }
+        int errorCode = FindMimeFromData(IntPtr.Zero, null, dataBytes, dataBytes.Length, string.IsNullOrEmpty(mimeProposed) ? null : mimeProposed, 0, out zero, 0);
+        if (errorCode != 0)
+        {
+            throw Marshal.GetExceptionForHR(errorCode);
+        }
+        if (zero != IntPtr.Zero)
+        {
+            str = Marshal.PtrToStringUni(zero);
+            Marshal.FreeCoTaskMem(zero);
+        }
+        return str;
+    }
+
+    [DllImport("urlmon.dll", CharSet=CharSet.Unicode, SetLastError=true, ExactSpelling=true)]
+    private static extern int FindMimeFromData(IntPtr pBC, [MarshalAs(UnmanagedType.LPWStr)] string pwzUrl, [MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.I1, SizeParamIndex=3)] byte[] pBuffer, int cbSize, [MarshalAs(UnmanagedType.LPWStr)] string pwzMimeProposed, int dwMimeFlags, out IntPtr ppwzMimeOut, int dwReserved);
+    public static string GetSimpleType(string path)
+    {
+        switch (Path.GetExtension(path).ToLower())
+        {
+            case ".flv":
+            case ".m4v":
+            case ".mp4":
+            case ".avi":
+                return "Video";
+
+            case ".jpg":
+            case ".gif":
+            case ".bmp":
+            case ".png":
+                return "Image";
+
+            case ".txt":
+                return "Marquee";
+
+            case ".ppt":
+            case ".pptx":
+                return "Presentation";
+        }
+        return "Unknown";
+    }
+
+    // Properties
+    private static MimeTypeCollection ExtensionTypes
+    {
+        get
+        {
+            if (_extensionTypes == null)
+            {
+                _extensionTypes = new MimeTypeCollection();
+            }
+            return _extensionTypes;
+        }
+    }
+
+    // Nested Types
+    [Serializable, XmlRoot(ElementName="mimeTypes")]
+    private class MimeTypeCollection : List<MimeTypeInfo>
+    {
+        // Fields
+        private SortedList<string, string> _extensions;
+        private SortedList<string, List<string>> _mimes;
+
+        // Methods
+        public MimeTypeCollection()
+        {
+            base.Add(new MimeTypeInfo("application/applixware", new List<string>(new string[] { ".aw" })));
+            base.Add(new MimeTypeInfo("application/atom+xml", new List<string>(new string[] { ".atom" })));
+            base.Add(new MimeTypeInfo("x-x509-ca-cert", new List<string>(new string[] { ".cer" })));
             try
             {
-                if (!String.IsNullOrEmpty(extension))
-                    mimeType = ExtensionTypes.GetMimeType(extension);
-                if (verifyFromContent
-                        || (String.IsNullOrEmpty(mimeType) && File.Exists(file)))
-                    mimeType = FindMimeByContent(file, mimeType);
-            }
-            catch { }
-            return (mimeType ?? string.Empty).Trim();//"application/octet-stream"
-        }
-
-        /// <summary>Finds mime type for file using it's binary data.</summary>
-        /// <param name="file">Full path to file.</param>
-        /// <param name="proposedType">Optional. Expected file's type.</param>
-        /// <returns>mime type, e.g.: "application/octet-stream"</returns>
-        public static string FindMimeByContent(string file
-                , string proposedType)
-        {
-            FileInfo fi = new FileInfo(file);
-            if (!fi.Exists)
-                throw new FileNotFoundException(file);
-            byte[] buf = new byte[Math.Min(4096L, fi.Length)];
-            using (FileStream fs = File.OpenRead(file))
-                fs.Read(buf, 0, buf.Length);
-            return FindMimeByData(buf, proposedType);
-        }
-
-        /// <summary>Finds mime type for binary data.</summary>
-        /// <param name="dataBytes">Binary data to examine.</param>
-        /// <param name="mimeProposed">Optional. Expected mime type.</param>
-        /// <returns>mime type, e.g.: "application/octet-stream"</returns>
-        public static string FindMimeByData(byte[] dataBytes, string mimeProposed)
-        {
-            if (dataBytes == null || dataBytes.Length == 0)
-                throw new ArgumentNullException("dataBytes");
-            string mimeRet = String.Empty;
-            IntPtr outPtr = IntPtr.Zero;
-            if (!String.IsNullOrEmpty(mimeProposed))
-                mimeRet = mimeProposed;
-            int result = FindMimeFromData(IntPtr.Zero
-                    , null
-                    , dataBytes
-                    , dataBytes.Length
-                    , String.IsNullOrEmpty(mimeProposed) ? null : mimeProposed
-                    , 0
-                    , out outPtr
-                    , 0);
-            if (result != 0)
-                throw Marshal.GetExceptionForHR(result);
-            if (outPtr != null && outPtr != IntPtr.Zero)
-            {
-                mimeRet = Marshal.PtrToStringUni(outPtr);
-                Marshal.FreeCoTaskMem(outPtr);
-            }
-            return mimeRet;
-        }
-
-        [DllImport("urlmon.dll"
-                , CharSet = CharSet.Unicode
-                , ExactSpelling = true
-                , SetLastError = true)]
-        static extern Int32 FindMimeFromData(IntPtr pBC
-                , [MarshalAs(UnmanagedType.LPWStr)] String pwzUrl
-                 , [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I1, SizeParamIndex = 3)] Byte[] pBuffer
-                  , Int32 cbSize
-                  , [MarshalAs(UnmanagedType.LPWStr)] String pwzMimeProposed
-                   , Int32 dwMimeFlags
-                   , out IntPtr ppwzMimeOut
-                   , Int32 dwReserved);
-
-        private static MimeTypeCollection _extensionTypes = null;
-        private static MimeTypeCollection ExtensionTypes
-        {
-            get
-            {
-                if (_extensionTypes == null)
-                    _extensionTypes = new MimeTypeCollection();
-                return _extensionTypes;
-            }
-        }
-
-        [Serializable]
-        [XmlRoot(ElementName = "mimeTypes")]
-        private class MimeTypeCollection : List<MimeTypeCollection.MimeTypeInfo>
-        {
-            private SortedList<string, string> _extensions;
-            private SortedList<string, List<string>> _mimes;
-
-            private void Init()
-            {
-                if (_extensions == null || _mimes == null
-                        || _extensions.Count == 0 || _mimes.Count == 0)
+                using (RegistryKey key = Registry.ClassesRoot)
                 {
-                    _extensions = new SortedList<string, string>(StringComparer.OrdinalIgnoreCase);
-                    _mimes = new SortedList<string, List<string>>(StringComparer.OrdinalIgnoreCase);
-                    foreach (var mime in this)
+                    using (RegistryKey key2 = key.OpenSubKey(@"MIME\Database\Content Type"))
                     {
-                        _mimes.Add(mime.MimeType, new List<string>(mime.Extensions));
-                        foreach (string ext in mime.Extensions)
-                            if (!_extensions.ContainsKey(ext))
-                                _extensions.Add(ext, mime.MimeType);
-                    }
-                }
-            }
-
-            public String GetExtension(string type)
-            {
-                Init();
-                return _mimes.ContainsKey(type) ? _mimes[type][0] : string.Empty;
-            }
-
-            public String GetMimeType(string extension)
-            {
-                Init();
-                return _extensions.ContainsKey(extension) ? _extensions[extension] : string.Empty;
-            }
-
-            public MimeTypeCollection()
-            {
-                this.Add(new MimeTypeInfo("application/applixware", new List<string>(new[] { ".aw" })));
-                this.Add(new MimeTypeInfo("application/atom+xml", new List<string>(new[] { ".atom" })));
-                // ... Whole list from apache's site
-                this.Add(new MimeTypeInfo("x-x509-ca-cert", new List<string>(new[] { ".cer" })));
-                try
-                {
-                    using (RegistryKey classesRoot = Registry.ClassesRoot)
-                    using (RegistryKey typeKey = classesRoot.OpenSubKey(@"MIME\Database\Content Type"))
-                    {
-                        string[] subKeyNames = typeKey.GetSubKeyNames();
-                        string extension = string.Empty;
-                        foreach (string keyname in subKeyNames)
+                        string[] subKeyNames = key2.GetSubKeyNames();
+                        string str = string.Empty;
+                        foreach (string str2 in subKeyNames)
                         {
-                            string trimmed = (keyname ?? string.Empty).Trim();
-                            if (string.IsNullOrEmpty(trimmed))
-                                continue;
-                            if (!String.IsNullOrEmpty(GetExtension(trimmed)))
-                                continue;
-                            string subKey = "MIME\\Database\\Content Type\\" + trimmed;
-                            using (RegistryKey curKey = classesRoot.OpenSubKey(subKey))
+                            string str3 = (str2 ?? string.Empty).Trim();
+                            if (!string.IsNullOrEmpty(str3) && string.IsNullOrEmpty(this.GetExtension(str3)))
                             {
-                                extension = (curKey.GetValue("Extension") as string ?? string.Empty).Trim();
-                                if (extension.Length > 0)
-                                    this.Add(new MimeTypeInfo(trimmed
-                                            , new List<string>(new[] { extension })));
+                                string name = @"MIME\Database\Content Type\" + str3;
+                                using (RegistryKey key3 = key.OpenSubKey(name))
+                                {
+                                    str = ((key3.GetValue("Extension") as string) ?? string.Empty).Trim();
+                                    if (str.Length > 0)
+                                    {
+                                        base.Add(new MimeTypeInfo(str3, new List<string>(new string[] { str })));
+                                    }
+                                }
                             }
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    string s = ex.ToString();
-                }
             }
-
-            [Serializable]
-            public class MimeTypeInfo
+            catch (Exception exception)
             {
-                [XmlAttribute(AttributeName = "mimeType")]
-                public String MimeType { get; set; }
-
-                [XmlElement("extension")]
-                public List<String> Extensions { get; set; }
-
-                public MimeTypeInfo(string mimeType, List<string> extensions)
-                {
-                    MimeType = mimeType;
-                    Extensions = extensions;
-                }
-
-                public MimeTypeInfo() { }
+                string str5 = exception.ToString();
             }
         }
-    }
 
+        public string GetExtension(string type)
+        {
+            this.Init();
+            return (this._mimes.ContainsKey(type) ? this._mimes[type][0] : string.Empty);
+        }
+
+        public string GetMimeType(string extension)
+        {
+            this.Init();
+            return (this._extensions.ContainsKey(extension) ? this._extensions[extension] : string.Empty);
+        }
+
+        private void Init()
+        {
+            if ((((this._extensions == null) || (this._mimes == null)) || (this._extensions.Count == 0)) || (this._mimes.Count == 0))
+            {
+                this._extensions = new SortedList<string, string>(StringComparer.OrdinalIgnoreCase);
+                this._mimes = new SortedList<string, List<string>>(StringComparer.OrdinalIgnoreCase);
+                foreach (MimeTypeInfo info in this)
+                {
+                    this._mimes.Add(info.MimeType, new List<string>(info.Extensions));
+                    foreach (string str in info.Extensions)
+                    {
+                        if (!this._extensions.ContainsKey(str))
+                        {
+                            this._extensions.Add(str, info.MimeType);
+                        }
+                    }
+                }
+            }
+        }
+
+    }
 }
 
 
+
+
+  // Nested Types
+  [Serializable]
+  public class MimeTypeInfo
+  {
+      // Methods
+      public MimeTypeInfo()
+      {
+      }
+
+      public MimeTypeInfo(string mimeType, List<string> extensions)
+      {
+          this.MimeType = mimeType;
+          this.Extensions = extensions;
+      }
+
+      // Properties
+      [XmlElement("extension")]
+      public List<string> Extensions { get; set; }
+
+      [XmlAttribute(AttributeName = "mimeType")]
+      public string MimeType { get; set; }
+  }
+
+}
 

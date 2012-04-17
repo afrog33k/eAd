@@ -92,66 +92,68 @@ namespace eAd.Website.Repositories
             try
             {
 
-           
-            if (context.Session != null)
-            {
-                var uploadedContents =
-                    ((List<UploadedContent>) context.Session["SavedFileList"]);
-                var guid = (UrlFriendlyGuid)context.Session["UploadGUID"];
 
-                UploadedContent thisContent = uploadedContents.Find(
-                    content =>
-                    content.MediaGuid == guid && content.Type == type);
-
-                upload = thisContent;
-
-                List<string> pictures = thisContent.
-                    Pictures;
-
-              
-                            string newPath = PathForUpload(context,
-
-                                                               pictures[0],
-                                                               ownerID,
-                                                               mediaID,
-                                                               guid
-                                                               , type,
-                                                               false);
-
-                            string thumbPath = PathForUpload(context,
-
-                                                                               pictures[0],
-                                                                              ownerID,
-                                                                              mediaID,
-                                                                              guid
-                                                                              , type,
-                                                                              true);
-              
-
-                FileUtilities.FolderCreate(Path.GetDirectoryName(newPath));
-                System.IO.File.Move(
-                     TempPathForUpload(context, pictures[0], type, guid)
-                   ,
-                                    newPath);
-                try //Maybe No Thumbnail
+                if (context.Session != null)
                 {
+                    var uploadedContents =
+                        ((List<UploadedContent>) context.Session["SavedFileList"]);
+                    var guid = (UrlFriendlyGuid) context.Session["UploadGUID"];
+                    if (uploadedContents != null)
+                    {
+                        UploadedContent thisContent = uploadedContents.Find(
+                            content =>
+                            content.MediaGuid == guid && content.Type == type);
 
-             
-                File.Move(
-                      TempPathForUpload(context, pictures[1], type, guid),
-                                    thumbPath);
+                        upload = thisContent;
+
+                        List<string> pictures = thisContent.
+                            Pictures;
+
+
+                        string newPath = PathForUpload(context,
+
+                                                       pictures[0],
+                                                       ownerID,
+                                                       mediaID,
+                                                       guid
+                                                       , type,
+                                                       false);
+
+                        string thumbPath = PathForUpload(context,
+
+                                                         pictures[0],
+                                                         ownerID,
+                                                         mediaID,
+                                                         guid
+                                                         , type,
+                                                         true);
+
+
+                        FileUtilities.FolderCreate(Path.GetDirectoryName(newPath));
+                        System.IO.File.Move(
+                            TempPathForUpload(context, pictures[0], type, guid)
+                            ,
+                            newPath);
+                        try //Maybe No Thumbnail
+                        {
+
+
+                            File.Move(
+                                TempPathForUpload(context, pictures[1], type, guid),
+                                thumbPath);
+                        }
+                        catch (Exception ex)
+                        {
+
+                            Console.WriteLine("No Thumbnail" + ex.Message);
+                        }
+                        uploadedContents.Remove(thisContent);
+
+                        context.Session["SavedFileList"] = uploadedContents;
+
+                        return ResolvePath(context, newPath);
+                    }
                 }
-                catch (Exception ex)
-                {
-
-                  Console.WriteLine("No Thumbnail" + ex.Message);
-                }
-                uploadedContents.Remove(thisContent);
-
-                context.Session["SavedFileList"] =uploadedContents;
-
-                return ResolvePath(context, newPath);
-            }
             }
             catch (Exception ex)
             {

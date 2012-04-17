@@ -1,82 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Objects.DataClasses;
 using System.IO;
 using System.Linq;
 using System.ServiceModel;
+using System.Web;
+using System.Xml.Serialization;
 using eAd.DataViewModels;
+using eAd.Utilities;
+using irio.utilities;
 
 namespace eAd.DataAccess
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    public class Service : IService//(SessionMode = SessionMode.Required,CallbackContract = typeof(IServiceCallback))]
+    public partial class Service : IService
     {
+
+        public static string ServerPath = ConfigurationSettings.AppSettings.Get("ServerPath");
+		#region Methods (11) 
+
+		// Public Methods (11) 
+
+        public static string AppPath = System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath ;
+
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
         }
-       //public string GetHi()
-       //{
-       //    return "Hello There From Server: " + DateTime.Now;
-       //}
-
-        public string GetHi()
-        {
-
-            return "Hi";
-
-        }
-
-        public void UploadFile(FileMetaData MetaData, FileStream stream)
-        {
-            // PARAMETERS VALIDATION OMITTED FOR CLARITY
-            try
-            {
-                string basePath = ConfigurationManager.AppSettings["FileTransferPath"];
-                string serverFileName = Path.Combine(basePath, MetaData.RemoteFileName);
-
-                using (FileStream outfile = new FileStream(serverFileName, FileMode.Create))
-                {
-                    const int bufferSize = 65536; // 64K
-
-                    Byte[] buffer = new Byte[bufferSize];
-                    int bytesRead = stream.Read(buffer, 0, bufferSize);
-
-                    while (bytesRead > 0)
-                    {
-                        outfile.Write(buffer, 0, bytesRead);
-                        bytesRead = stream.Read(buffer, 0, bufferSize);
-                    }
-                }
-            }
-            catch (IOException e)
-            {
-                throw new FaultException<IOException>(e);
-            }
-        }
-
-       
-            public FileDownloadReturnMessage DownloadFile(FileDownloadMessage request)
-{
-    // PARAMETERS VALIDATION OMITTED FOR CLARITY
-    string localFileName = request.MetaData.LocalFileName;
- 
-    try
-    {
-        string basePath = ConfigurationManager.AppSettings["FileTransferPath"];
-        string serverFileName = Path.Combine(basePath, request.MetaData.RemoteFileName);
- 
-        Stream fs = new FileStream(serverFileName, FileMode.Open);
- 
-        return new FileDownloadReturnMessage(new FileMetaData(localFileName, serverFileName,"1"), fs);
-    }
-    catch (IOException e)
-    {
-        throw new FaultException<IOException>(e);
-    }
-}
-
-        
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)
         {
@@ -84,98 +34,458 @@ namespace eAd.DataAccess
             {
                 throw new ArgumentNullException("composite");
             }
+
             if (composite.BoolValue)
             {
-                composite.StringValue += "Suffix";
+                composite.StringValue = composite.StringValue + "Suffix";
             }
+
             return composite;
         }
 
-     
+        #endregion Methods 
 
-        public string GetMediaLocation(long mediaID)
+
+
+        #region IService Members
+
+        public bool CaptureScreenShot(long stationID)
         {
-            eAdDataContainer entities = new eAdDataContainer();
-
-            return entities.Media.Where(s => s.MediaID == mediaID).FirstOrDefault().Location;
-        }
-
-        public void SetStationStatus(long stationID,string status)
-        {
-            eAdDataContainer entities = new eAdDataContainer();
-
-            
-            foreach(var station in  entities.Stations.Where(s => s.StationID == stationID))
+            try
             {
-                station.Status = status;
+                var container = new eAdDataContainer();
+
+                var station = (from s in container.Stations
+                               where s.StationID == stationID
+                               select s).FirstOrDefault<Station>();
+
+                if (station != null)
+                {
+                    station.Available = true;
+
+                    var entity = new Message
+                                     {
+                                         StationID = stationID,
+                                         Text = "",
+                                         Command = "Screenshot",
+                                         Type = "Status",
+                                         UserID = 1L,
+                                         DateAdded = DateTime.Now
+                                     };
+
+                    container.Messages.AddObject(entity);
+
+                    container.SaveChanges();
+                }
             }
-            entities.SaveChanges();
-           
+
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
         }
-
-        public TimeSpan GetMediaDuration(long mediaID)
-        {
-            eAdDataContainer entities = new eAdDataContainer();
-
-            return (TimeSpan) entities.Media.Where(s => s.MediaID == mediaID).FirstOrDefault().Duration;
-        }
-
 
 
         public bool DoIHaveUpdates(long stationID)
         {
+            var container = new eAdDataContainer();
 
-            eAdDataContainer entities = new eAdDataContainer();
-
-            return entities.Messages.Where(s => s.StationID == stationID && s.Sent == false).Count() > 0;
-
+            return ((from s in container.Messages
+                     where (s.StationID == stationID) && !s.Sent
+                     select s).Count<Message>() > 0);
         }
+
+
+        public FileDownloadReturnMessage DownloadFile(FileDownloadMessage request)
+        {
+            FileDownloadReturnMessage message;
+
+            string localFileName = request.MetaData.LocalFileName;
+
+            try
+            {
+                string str2 = ConfigurationManager.AppSettings["FileTransferPath"];
+
+                string path = Path.Combine(str2, request.MetaData.RemoteFileName);
+
+                Stream stream = new FileStream(path, FileMode.Open);
+
+                message = new FileDownloadReturnMessage(new FileMetaData(localFileName, path, "1"), stream);
+            }
+
+            catch (IOException exception)
+            {
+                throw new FaultException<IOException>(exception);
+            }
+
+            return message;
+        }
+
+
+        public List<CustomerViewModel> GetAllCustomers()
+        {
+            var container = new eAdDataContainer();
+
+            return (from c in container.Customers.ToList() select c.CreateModel()).ToList<CustomerViewModel>();
+        }
+
+
+        public List<MessageViewModel> GetAllMyMessages(long clientID)
+        {
+            var container = new eAdDataContainer();
+
+            return (from c in
+                        (from s in container.Messages
+                         where (s.StationID == clientID) && !s.Sent
+                         select s).ToList<Message>()
+                    select c.CreateModel()).ToList<MessageViewModel>();
+        }
+
+
+        public List<StationViewModel> GetAllStations()
+        {
+            var container = new eAdDataContainer();
+
+            return (from c in container.Stations.ToList() select c.CreateModel()).ToList<StationViewModel>();
+        }
+
+
+        public CustomerViewModel GetCustomerByRFID(string tag)
+        {
+            var container = new eAdDataContainer();
+
+            var car = (from e in container.Cars
+                       where e.RFID == tag
+                       select e).FirstOrDefault<Car>();
+
+            if (car != null)
+            {
+                Customer customer = car.Customer;
+
+                if (customer != null)
+                {
+                    return customer.CreateModel();
+                }
+            }
+
+            return CustomerViewModel.Empty;
+        }
+
+
+        public string GetHi()
+        {
+            return "Hi";
+        }
+
+
+        public TimeSpan GetMediaDuration(long mediaID)
+        {
+            var container = new eAdDataContainer();
+
+            return (from s in container.Media
+                    where s.MediaID == mediaID
+                    select s).FirstOrDefault<Medium>().Duration.Value;
+        }
+
+
+        public string GetMediaLocation(long mediaID)
+        {
+            var container = new eAdDataContainer();
+
+            return (from s in container.Media
+                    where s.MediaID == mediaID
+                    select s).FirstOrDefault<Medium>().Location;
+        }
+
+
+        public Mosaic GetMosaicForStation(long stationID)
+        {
+            var container = new eAdDataContainer();
+
+            if ((from s in container.Stations
+                 where s.StationID == stationID
+                 select s).FirstOrDefault<Station>() != null)
+            {
+                var grouping = (from m in container.Groupings
+                                where m.Mosaic != null
+                                select m).FirstOrDefault<Grouping>();
+
+                if (grouping != null)
+                {
+                    return grouping.Mosaic;
+                }
+            }
+
+            return (from m in container.Mosaics
+                    where m.Name.Contains("as")
+                    select m).FirstOrDefault<Mosaic>();
+        }
+
+
+        public long GetMosaicIDForStation(long stationID)
+        {
+            var container = new eAdDataContainer();
+
+            if ((from s in container.Stations
+                 where s.StationID == stationID
+                 select s).FirstOrDefault<Station>() != null)
+            {
+                var grouping = (from m in container.Groupings
+                                where m.Mosaic != null
+                                select m).FirstOrDefault<Grouping>();
+
+                if (grouping != null)
+                {
+                    return grouping.MosaicID;
+                }
+            }
+
+            return (from m in container.Mosaics
+                    where m.Name.Contains("as")
+                    select m).FirstOrDefault<Mosaic>().MosaicID;
+        }
+
+
+        public List<MediaListModel> GetMyMedia(long stationID)
+        {
+            var container = new eAdDataContainer();
+
+            var source = new List<MediaListModel>();
+
+            var station = (from s in container.Stations
+                           where s.StationID == stationID
+                           select s).FirstOrDefault<Station>();
+
+            if (station != null)
+            {
+                EntityCollection<Grouping> groupings = station.Groupings;
+
+                foreach (Grouping grouping in groupings)
+                {
+                    foreach (Theme theme in grouping.Themes)
+                    {
+                        using (IEnumerator<Medium> enumerator3 = theme.Media.GetEnumerator())
+                        {
+                            Func<MediaListModel, bool> predicate = null;
+
+                            Medium media;
+
+                            while (enumerator3.MoveNext())
+                            {
+                                media = enumerator3.Current;
+
+                                if (predicate == null)
+                                {
+                                    predicate = l => l.MediaID == media.MediaID;
+                                }
+
+                                if (source.Where(predicate).Count<MediaListModel>() <= 0)
+                                {
+                                    var item = new MediaListModel
+                                                   {
+                                                       MediaID = media.MediaID,
+                                                       Location = media.Location,
+                                                       Duration = media.Duration.Value
+                                                   };
+
+                                    source.Add(item);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return source;
+        }
+
+
+        public List<StationViewModel> GetOnlineStations()
+        {
+            return GetAllStations().Where(delegate(StationViewModel s)
+                                              {
+                                                  DateTime? lastCheckIn = s.LastCheckIn;
+
+                                                  DateTime time = DateTime.Now.AddSeconds(-10.0);
+
+                                                  return (lastCheckIn.HasValue && (lastCheckIn.GetValueOrDefault() >= time));
+                                              }).ToList<StationViewModel>();
+        }
+
+
+        public List<PositionViewModel> GetPositionsForMosaic(long mosaicID)
+        {
+            var container = new eAdDataContainer();
+
+            List<PositionViewModel> list = new List<PositionViewModel>();
+            var firstOrDefault = (container.Mosaics.Where(m => m.MosaicID == mosaicID)).FirstOrDefault();
+            if (firstOrDefault != null)
+                foreach (Position p in firstOrDefault.Positions)
+                    list.Add(p.CreateModel());
+            return list;
+        }
+
+
+        public bool MakeStationAvailable(long stationID)
+        {
+            try
+            {
+                var container = new eAdDataContainer();
+
+                var station = (from s in container.Stations
+                               where s.StationID == stationID
+                               select s).FirstOrDefault<Station>();
+
+                if (station != null)
+                {
+                    station.Available = true;
+
+                    var entity = new Message
+                                     {
+                                         StationID = stationID,
+                                         Text = "",
+                                         Command = "Make Available",
+                                         Type = "Status",
+                                         UserID = 1L,
+                                         DateAdded = DateTime.Now
+                                     };
+
+                    container.Messages.AddObject(entity);
+
+                    container.SaveChanges();
+                }
+            }
+
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
+        public bool MakeStationUnAvailable(long stationID, string rfidCode = "")
+        {
+            try
+            {
+                var container = new eAdDataContainer();
+
+                var station = (from s in container.Stations
+                               where s.StationID == stationID
+                               select s).FirstOrDefault<Station>();
+
+                if (station != null)
+                {
+                    station.Available = false;
+
+                    var entity = new Message
+                                     {
+                                         StationID = stationID,
+                                         Text = rfidCode,
+                                         Command = "Make UnAvailable",
+                                         Type = "Status",
+                                         UserID = 1L,
+                                         DateAdded = DateTime.Now
+                                     };
+
+                    container.Messages.AddObject(entity);
+
+                    container.SaveChanges();
+                }
+            }
+
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
+        public bool MessageRead(long messageID)
+        {
+            var container = new eAdDataContainer();
+
+            IQueryable<Message> queryable = from s in container.Messages
+                                            where (s.MessageID == messageID) && !s.Sent
+                                            select s;
+
+            foreach (Message message in queryable)
+            {
+                message.Sent = true;
+
+                message.DateReceived = DateTime.Now;
+            }
+
+            container.SaveChanges();
+
+            return true;
+        }
+
+
+        public string SayHi(long clientID)
+        {
+            var container = new eAdDataContainer();
+
+            var station = (from s in container.Stations
+                           where s.StationID == clientID
+                           select s).FirstOrDefault<Station>();
+
+            if (station != null)
+            {
+                station.Available = false;
+
+                station.LastCheckIn = DateTime.Now;
+
+                container.SaveChanges();
+
+                return "Hi there";
+            }
+
+            return "Invalid";
+        }
+
 
         public bool SendMessageToGroup(long groupID, MessageViewModel message)
         {
             try
             {
+                var container = new eAdDataContainer();
 
-                eAdDataContainer entities = new eAdDataContainer();
-
-                var grouping = entities.Groupings.Where(s => s.GroupingID == groupID).FirstOrDefault();
+                var grouping = (from s in container.Groupings
+                                where s.GroupingID == groupID
+                                select s).FirstOrDefault<Grouping>();
 
                 if (grouping != null)
                 {
-                    foreach (var station in grouping.Stations)
+                    foreach (Station station in grouping.Stations)
                     {
-
-
                         station.Available = false;
-                       
-                        Message statusChange = new Message();
-                        statusChange.DateAdded = DateTime.Now;
-                        statusChange.StationID = station.StationID;
 
-                        statusChange.Text = message.Text;
+                        var entity = new Message
+                                         {
+                                             DateAdded = DateTime.Now,
+                                             StationID = station.StationID,
+                                             Text = message.Text,
+                                             Command = message.Command,
+                                             Type = message.Type,
+                                             UserID = message.UserID
+                                         };
 
-                        statusChange.Command = message.Command;
-
-                        statusChange.Type = message.Type;
-
-                        statusChange.UserID = message.UserID;
-
-                        entities.Messages.AddObject(statusChange);
-
-                       
-
+                        container.Messages.AddObject(entity);
                     }
                 }
-                entities.SaveChanges();
+
+                container.SaveChanges();
             }
-               
+
             catch (Exception)
             {
-
-
-
                 return false;
-
             }
 
             return true;
@@ -186,392 +496,79 @@ namespace eAd.DataAccess
         {
             try
             {
+                var container = new eAdDataContainer();
 
-                eAdDataContainer entities = new eAdDataContainer();
-
-                var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
-
-                if (station != null)
-                {
-                   
-
-
-                        station.Available = false;
-
-                        Message statusChange = new Message();
-
-                        statusChange.StationID = station.StationID;
-                        statusChange.DateAdded = DateTime.Now;
-                        statusChange.Text = message.Text;
-
-                        statusChange.Command = message.Command;
-
-                        statusChange.Type = message.Type;
-
-                        statusChange.UserID = message.UserID;
-
-                        entities.Messages.AddObject(statusChange);
-
-
-
-                    
-                }
-                entities.SaveChanges();
-            }
-
-            catch (Exception)
-            {
-
-
-
-                return false;
-
-            }
-
-            return true;
-        }
-
-        public long GetMosaicIDForStation(long stationID)
-        {
-            eAdDataContainer entities = new eAdDataContainer();
-
-            var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
-
-            if (station != null)
-            {
-
-                var groupWithMosaic = station.Groupings.Where(m => m.Mosaic != null).FirstOrDefault();
-                if (groupWithMosaic != null)
-                    return groupWithMosaic.MosaicID;
-            }
-            return entities.Mosaics.Where(m => m.Name.Contains("as")).FirstOrDefault().MosaicID;
-        }
-
-
- public List<PositionViewModel> GetPositionsForMosaic(long mosaicID)
-        {
-            eAdDataContainer entities = new eAdDataContainer();
-     return entities.Mosaics.Where(m => m.MosaicID==mosaicID).FirstOrDefault().Positions.Select(p=>p.CreateModel()).ToList();
- }
-
-        public Mosaic GetMosaicForStation(long stationID)
-        {
-            eAdDataContainer entities = new eAdDataContainer();
-
-            var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
-
-            if(station!=null)
-            {
-
-                var groupWithMosaic = station.Groupings.Where(m => m.Mosaic != null).FirstOrDefault();
-                if(groupWithMosaic!=null)
-                    return groupWithMosaic.Mosaic;
-            }
-          
-            return entities.Mosaics.Where(m=>m.Name.Contains("as")).FirstOrDefault();
-           // return null;
-        }
-
-        public bool MakeStationUnAvailable(long stationID, string rfidCode = "")
-        {
-
-            try
-            {
-
-
-
-                eAdDataContainer entities = new eAdDataContainer();
-
-                var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
+                var station = (from s in container.Stations
+                               where s.StationID == stationID
+                               select s).FirstOrDefault<Station>();
 
                 if (station != null)
                 {
-
                     station.Available = false;
 
-                    Message statusChange = new Message();
+                    var entity = new Message
+                                     {
+                                         StationID = station.StationID,
+                                         DateAdded = DateTime.Now,
+                                         Text = message.Text,
+                                         Command = message.Command,
+                                         Type = message.Type,
+                                         UserID = message.UserID
+                                     };
 
-                    statusChange.StationID = stationID;
-
-                    statusChange.Text = rfidCode;
-
-                    statusChange.Command = "Make UnAvailable";
-
-                    statusChange.Type = "Status";
-
-                    statusChange.UserID = 1;
-                    statusChange.DateAdded = DateTime.Now;
-                    entities.Messages.AddObject(statusChange);
-
-                    entities.SaveChanges();
-
+                    container.Messages.AddObject(entity);
                 }
 
+                container.SaveChanges();
             }
 
             catch (Exception)
             {
-
-
-
                 return false;
-
             }
 
             return true;
-
         }
 
 
-
-        public bool MakeStationAvailable(long stationID)
+        public void SetStationStatus(long stationID, string status)
         {
+            var container = new eAdDataContainer();
 
+            foreach (Station station in from s in container.Stations
+                                        where s.StationID == stationID
+                                        select s)
+            {
+                station.Status = status;
+            }
+
+            container.SaveChanges();
+        }
+
+
+        public void UploadFile(FileMetaData MetaData, FileStream stream)
+        {
             try
             {
+                string str = ConfigurationManager.AppSettings["FileTransferPath"];
 
-
-
-                eAdDataContainer entities = new eAdDataContainer();
-
-                var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
-
-                if (station != null)
+                using (var stream2 = new FileStream(Path.Combine(str, MetaData.RemoteFileName), FileMode.Create))
                 {
+                    var buffer = new byte[0x10000];
 
-                    station.Available = true;
-
-                    Message statusChange = new Message();
-
-                    statusChange.StationID = stationID;
-
-                    statusChange.Text = "";
-
-                    statusChange.Command = "Make Available";
-
-                    statusChange.Type = "Status";
-
-                    statusChange.UserID = 1;
-                    statusChange.DateAdded = DateTime.Now;
-                    entities.Messages.AddObject(statusChange);
-
-                    entities.SaveChanges();
-
-                }
-
-            }
-
-            catch (Exception)
-            {
-
-
-
-                return false;
-
-            }
-
-            return true;
-
-        }
-
-        public List<MediaListModel> GetMyMedia(long stationID)
-        {
-          
-            var entities = new eAdDataContainer();
-
-            var list = new List<MediaListModel>();
-            var me = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
-
-            if (me != null)
-            {
-                var myGroups = me.Groupings;
-
-                foreach (var grouping in myGroups)
-                {
-                    foreach (var theme in grouping.Themes)
+                    for (int i = stream.Read(buffer, 0, 0x10000); i > 0; i = stream.Read(buffer, 0, 0x10000))
                     {
-
-                        foreach (var media in theme.Media)
-                        {
-                         
-                            if(list.Where(l=>l.MediaID==media.MediaID).Count()<=0)
-                                list.Add(new MediaListModel(){MediaID = media.MediaID,Location = media.Location,Duration =  (TimeSpan) media.Duration});
-                        }
+                        stream2.Write(buffer, 0, i);
                     }
                 }
-                
             }
-            return list;
-        }
 
-
-
-        public bool MessageRead(long messageID)
-        {
-
-            var entities = new eAdDataContainer();
-
-            var messages = entities.Messages.Where(s => s.MessageID == messageID && s.Sent == false);
-
+            catch (IOException exception)
             {
-
-                foreach (var message in messages)
-                {
-
-                    message.Sent = true;
-                    message.DateReceived = DateTime.Now;
-
-                }
-
-                entities.SaveChanges();
-
-
-
+                throw new FaultException<IOException>(exception);
             }
-
-            return true;
-
         }
 
-        public bool CaptureScreenShot(long stationID)
-        {
-            try
-            {
-
-
-
-                eAdDataContainer entities = new eAdDataContainer();
-
-                var station = entities.Stations.Where(s => s.StationID == stationID).FirstOrDefault();
-
-                if (station != null)
-                {
-
-                    station.Available = true;
-
-                    Message statusChange = new Message();
-
-                    statusChange.StationID = stationID;
-
-                    statusChange.Text = "";
-
-                    statusChange.Command = "Screenshot";
-
-                    statusChange.Type = "Status";
-
-                    statusChange.UserID = 1;
-                    statusChange.DateAdded = DateTime.Now;
-                    entities.Messages.AddObject(statusChange);
-
-                    entities.SaveChanges();
-
-                }
-
-            }
-
-            catch (Exception)
-            {
-
-
-
-                return false;
-
-            }
-
-            return true;
-        }
-
-        public List<MessageViewModel> GetAllMyMessages(long clientID)
-        {
-
-            eAdDataContainer entities = new eAdDataContainer();
-
-            var messages = entities.Messages.Where(s => s.StationID == clientID && s.Sent == false);
-
-        return messages.ToList().Select(c => c.CreateModel()).ToList();
-
-        }
-
-
-
-        public CustomerViewModel GetCustomerByRFID(string tag)
-        {
-
-            eAdDataContainer entities = new eAdDataContainer();
-            var firstOrDefault = entities.Cars.Where(e => e.RFID == tag).FirstOrDefault();
-            if (firstOrDefault != null)
-            {
-                var customer =  firstOrDefault.Customer;
-                if (customer!=null)
-                {
-                    return customer.CreateModel();
-                }
-            }
-
-            return CustomerViewModel.Empty;
-
-
-        }
-
-
-
-
-
-        public List<CustomerViewModel> GetAllCustomers()
-        {
-
-            eAdDataContainer entities = new eAdDataContainer();
-
-            return entities.Customers.ToList().Select(c => c.CreateModel()).ToList();
-
-        }
-
-
-
-        public List<StationViewModel> GetOnlineStations()
-        {
-
-
-
-            return GetAllStations().Where(s => s.LastCheckIn >= DateTime.Now.AddSeconds(-10)).ToList();
-
-        }
-
-        public List<StationViewModel> GetAllStations()
-        {
-
-            eAdDataContainer entities = new eAdDataContainer();
-
-            return entities.Stations.ToList().Select(c => c.CreateModel()).ToList();
-
-        }
-
-
-
-
-
-        public string SayHi(long clientID)
-        {
-
-            eAdDataContainer entities = new eAdDataContainer();
-
-            var thisstation = entities.Stations.Where(s => s.StationID == clientID).FirstOrDefault();
-
-            if (thisstation != null)
-            {
-
-                thisstation.Available = false;
-
-                thisstation.LastCheckIn = DateTime.Now;
-
-                entities.SaveChanges();
-
-                return "Hi there";
-
-            }
-
-            return "Invalid";
-
-        }
+        #endregion
     }
 }

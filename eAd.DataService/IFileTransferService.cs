@@ -7,6 +7,7 @@ namespace eAd.DataAccess
     {
         [OperationContract(IsOneWay = true)]
         void UploadFile(FileUploadMessage request);
+
         [OperationContract(IsOneWay = false)]
         FileDownloadReturnMessage DownloadFile(FileDownloadMessage request);
     }

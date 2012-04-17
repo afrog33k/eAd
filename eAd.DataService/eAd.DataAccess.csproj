@@ -77,6 +77,39 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\eAdData.sdf" />
+    <Content Include="files.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\12.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\14.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\15.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\16.avi">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\2304x1440_15.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\4-layout.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\9.avi">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\files.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\schedule.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Service.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -100,16 +133,25 @@
     <Compile Include="FileUploadMessage.cs" />
     <Compile Include="IDataAccessServiceCallback.cs" />
     <Compile Include="IFileTransferService.cs" />
+    <Compile Include="Service.svc.Client.cs" />
     <Compile Include="Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>
     <Compile Include="IService.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\eAd.DataViewModels\eAd.DataViewModels.csproj">
       <Project>{47A32603-2D64-4BD5-A503-F1142A5C2733}</Project>
       <Name>eAd.DataViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eAd.Utilities\eAd.Utilities.csproj">
+      <Project>{ECD7174B-B905-46AF-B371-72D8A81103F1}</Project>
+      <Name>eAd.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\irio.utilities\irio.utilities.csproj">
+      <Project>{7DF57062-342C-40A6-84CC-E504534B0189}</Project>
+      <Name>irio.utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +163,19 @@
       <LastGenOutput>eAdData.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Media\web.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Media\4.xlf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
@@ -131,7 +186,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1177</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/DataAccess</IISUrl>
+          <IISUrl>http://localhost/eAd.Website/DataAccess</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
           <IISAppRootUrl>http://localhost/DataAccess/Service.svc</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

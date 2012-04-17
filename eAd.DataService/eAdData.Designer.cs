@@ -1402,11 +1402,15 @@ namespace eAd.DataAccess
         /// </summary>
         /// <param name="mediaID">Initial value of the MediaID property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Medium CreateMedium(global::System.Int64 mediaID, global::System.String name)
+        /// <param name="size">Initial value of the Size property.</param>
+        /// <param name="userID">Initial value of the UserID property.</param>
+        public static Medium CreateMedium(global::System.Int64 mediaID, global::System.String name, global::System.Int64 size, global::System.Int64 userID)
         {
             Medium medium = new Medium();
             medium.MediaID = mediaID;
             medium.Name = name;
+            medium.Size = size;
+            medium.UserID = userID;
             return medium;
         }
 
@@ -1542,24 +1546,24 @@ namespace eAd.DataAccess
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> DateAdded
+        public Nullable<global::System.DateTime> Created
         {
             get
             {
-                return _DateAdded;
+                return _Created;
             }
             set
             {
-                OnDateAddedChanging(value);
-                ReportPropertyChanging("DateAdded");
-                _DateAdded = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("DateAdded");
-                OnDateAddedChanged();
+                OnCreatedChanging(value);
+                ReportPropertyChanging("Created");
+                _Created = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Created");
+                OnCreatedChanged();
             }
         }
-        private Nullable<global::System.DateTime> _DateAdded;
-        partial void OnDateAddedChanging(Nullable<global::System.DateTime> value);
-        partial void OnDateAddedChanged();
+        private Nullable<global::System.DateTime> _Created;
+        partial void OnCreatedChanging(Nullable<global::System.DateTime> value);
+        partial void OnCreatedChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1584,6 +1588,102 @@ namespace eAd.DataAccess
         private Nullable<global::System.TimeSpan> _Duration;
         partial void OnDurationChanging(Nullable<global::System.TimeSpan> value);
         partial void OnDurationChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Hash
+        {
+            get
+            {
+                return _Hash;
+            }
+            set
+            {
+                OnHashChanging(value);
+                ReportPropertyChanging("Hash");
+                _Hash = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Hash");
+                OnHashChanged();
+            }
+        }
+        private global::System.String _Hash;
+        partial void OnHashChanging(global::System.String value);
+        partial void OnHashChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Size
+        {
+            get
+            {
+                return _Size;
+            }
+            set
+            {
+                OnSizeChanging(value);
+                ReportPropertyChanging("Size");
+                _Size = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Size");
+                OnSizeChanged();
+            }
+        }
+        private global::System.Int64 _Size;
+        partial void OnSizeChanging(global::System.Int64 value);
+        partial void OnSizeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 UserID
+        {
+            get
+            {
+                return _UserID;
+            }
+            set
+            {
+                OnUserIDChanging(value);
+                ReportPropertyChanging("UserID");
+                _UserID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserID");
+                OnUserIDChanged();
+            }
+        }
+        private global::System.Int64 _UserID;
+        partial void OnUserIDChanging(global::System.Int64 value);
+        partial void OnUserIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> Updated
+        {
+            get
+            {
+                return _Updated;
+            }
+            set
+            {
+                OnUpdatedChanging(value);
+                ReportPropertyChanging("Updated");
+                _Updated = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Updated");
+                OnUpdatedChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _Updated;
+        partial void OnUpdatedChanging(Nullable<global::System.DateTime> value);
+        partial void OnUpdatedChanged();
 
         #endregion
 
@@ -1953,10 +2053,20 @@ namespace eAd.DataAccess
         /// Create a new Mosaic object.
         /// </summary>
         /// <param name="mosaicID">Initial value of the MosaicID property.</param>
-        public static Mosaic CreateMosaic(global::System.Int64 mosaicID)
+        /// <param name="created">Initial value of the Created property.</param>
+        /// <param name="updated">Initial value of the Updated property.</param>
+        /// <param name="width">Initial value of the Width property.</param>
+        /// <param name="height">Initial value of the Height property.</param>
+        /// <param name="size">Initial value of the Size property.</param>
+        public static Mosaic CreateMosaic(global::System.Int64 mosaicID, global::System.DateTime created, global::System.DateTime updated, global::System.Int32 width, global::System.Int32 height, global::System.Int64 size)
         {
             Mosaic mosaic = new Mosaic();
             mosaic.MosaicID = mosaicID;
+            mosaic.Created = created;
+            mosaic.Updated = updated;
+            mosaic.Width = width;
+            mosaic.Height = height;
+            mosaic.Size = size;
             return mosaic;
         }
 
@@ -2014,6 +2124,198 @@ namespace eAd.DataAccess
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Created
+        {
+            get
+            {
+                return _Created;
+            }
+            set
+            {
+                OnCreatedChanging(value);
+                ReportPropertyChanging("Created");
+                _Created = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Created");
+                OnCreatedChanged();
+            }
+        }
+        private global::System.DateTime _Created;
+        partial void OnCreatedChanging(global::System.DateTime value);
+        partial void OnCreatedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Updated
+        {
+            get
+            {
+                return _Updated;
+            }
+            set
+            {
+                OnUpdatedChanging(value);
+                ReportPropertyChanging("Updated");
+                _Updated = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Updated");
+                OnUpdatedChanged();
+            }
+        }
+        private global::System.DateTime _Updated;
+        partial void OnUpdatedChanging(global::System.DateTime value);
+        partial void OnUpdatedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Background
+        {
+            get
+            {
+                return _Background;
+            }
+            set
+            {
+                OnBackgroundChanging(value);
+                ReportPropertyChanging("Background");
+                _Background = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Background");
+                OnBackgroundChanged();
+            }
+        }
+        private global::System.String _Background;
+        partial void OnBackgroundChanging(global::System.String value);
+        partial void OnBackgroundChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String BackgroundColor
+        {
+            get
+            {
+                return _BackgroundColor;
+            }
+            set
+            {
+                OnBackgroundColorChanging(value);
+                ReportPropertyChanging("BackgroundColor");
+                _BackgroundColor = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("BackgroundColor");
+                OnBackgroundColorChanged();
+            }
+        }
+        private global::System.String _BackgroundColor;
+        partial void OnBackgroundColorChanging(global::System.String value);
+        partial void OnBackgroundColorChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Width
+        {
+            get
+            {
+                return _Width;
+            }
+            set
+            {
+                OnWidthChanging(value);
+                ReportPropertyChanging("Width");
+                _Width = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Width");
+                OnWidthChanged();
+            }
+        }
+        private global::System.Int32 _Width;
+        partial void OnWidthChanging(global::System.Int32 value);
+        partial void OnWidthChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Height
+        {
+            get
+            {
+                return _Height;
+            }
+            set
+            {
+                OnHeightChanging(value);
+                ReportPropertyChanging("Height");
+                _Height = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Height");
+                OnHeightChanged();
+            }
+        }
+        private global::System.Int32 _Height;
+        partial void OnHeightChanging(global::System.Int32 value);
+        partial void OnHeightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Hash
+        {
+            get
+            {
+                return _Hash;
+            }
+            set
+            {
+                OnHashChanging(value);
+                ReportPropertyChanging("Hash");
+                _Hash = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Hash");
+                OnHashChanged();
+            }
+        }
+        private global::System.String _Hash;
+        partial void OnHashChanging(global::System.String value);
+        partial void OnHashChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Size
+        {
+            get
+            {
+                return _Size;
+            }
+            set
+            {
+                OnSizeChanging(value);
+                ReportPropertyChanging("Size");
+                _Size = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Size");
+                OnSizeChanged();
+            }
+        }
+        private global::System.Int64 _Size;
+        partial void OnSizeChanging(global::System.Int64 value);
+        partial void OnSizeChanged();
 
         #endregion
 
@@ -2082,10 +2384,20 @@ namespace eAd.DataAccess
         /// Create a new Position object.
         /// </summary>
         /// <param name="positionID">Initial value of the PositionID property.</param>
-        public static Position CreatePosition(global::System.Int64 positionID)
+        /// <param name="x">Initial value of the X property.</param>
+        /// <param name="y">Initial value of the Y property.</param>
+        /// <param name="width">Initial value of the Width property.</param>
+        /// <param name="height">Initial value of the Height property.</param>
+        /// <param name="userID">Initial value of the UserID property.</param>
+        public static Position CreatePosition(global::System.Int64 positionID, global::System.Double x, global::System.Double y, global::System.Double width, global::System.Double height, global::System.Int64 userID)
         {
             Position position = new Position();
             position.PositionID = positionID;
+            position.X = x;
+            position.Y = y;
+            position.Width = width;
+            position.Height = height;
+            position.UserID = userID;
             return position;
         }
 
@@ -2195,9 +2507,9 @@ namespace eAd.DataAccess
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Double> X
+        public global::System.Double X
         {
             get
             {
@@ -2212,16 +2524,16 @@ namespace eAd.DataAccess
                 OnXChanged();
             }
         }
-        private Nullable<global::System.Double> _X;
-        partial void OnXChanging(Nullable<global::System.Double> value);
+        private global::System.Double _X;
+        partial void OnXChanging(global::System.Double value);
         partial void OnXChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Double> Y
+        public global::System.Double Y
         {
             get
             {
@@ -2236,16 +2548,16 @@ namespace eAd.DataAccess
                 OnYChanged();
             }
         }
-        private Nullable<global::System.Double> _Y;
-        partial void OnYChanging(Nullable<global::System.Double> value);
+        private global::System.Double _Y;
+        partial void OnYChanging(global::System.Double value);
         partial void OnYChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Double> Width
+        public global::System.Double Width
         {
             get
             {
@@ -2260,16 +2572,16 @@ namespace eAd.DataAccess
                 OnWidthChanged();
             }
         }
-        private Nullable<global::System.Double> _Width;
-        partial void OnWidthChanging(Nullable<global::System.Double> value);
+        private global::System.Double _Width;
+        partial void OnWidthChanging(global::System.Double value);
         partial void OnWidthChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Double> Height
+        public global::System.Double Height
         {
             get
             {
@@ -2284,9 +2596,33 @@ namespace eAd.DataAccess
                 OnHeightChanged();
             }
         }
-        private Nullable<global::System.Double> _Height;
-        partial void OnHeightChanging(Nullable<global::System.Double> value);
+        private global::System.Double _Height;
+        partial void OnHeightChanging(global::System.Double value);
         partial void OnHeightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 UserID
+        {
+            get
+            {
+                return _UserID;
+            }
+            set
+            {
+                OnUserIDChanging(value);
+                ReportPropertyChanging("UserID");
+                _UserID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserID");
+                OnUserIDChanged();
+            }
+        }
+        private global::System.Int64 _UserID;
+        partial void OnUserIDChanging(global::System.Int64 value);
+        partial void OnUserIDChanged();
 
         #endregion
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPositionViewModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PositionViewModel>
+    <Height>533.16668701171875</Height>
+    <Media />
+    <MosaicID>11</MosaicID>
+    <Name>TopLeft</Name>
+    <PositionID>26</PositionID>
+    <Width>344.16665649414062</Width>
+    <X>7.01666259765625</X>
+    <Y>20.899993896484375</Y>
+  </PositionViewModel>
+  <PositionViewModel>
+    <Height>527.16668701171875</Height>
+    <Media />
+    <MosaicID>11</MosaicID>
+    <Name>TopRight</Name>
+    <PositionID>27</PositionID>
+    <Width>385.16665649414062</Width>
+    <X>367.01666259765625</X>
+    <Y>23.899993896484375</Y>
+  </PositionViewModel>
+  <PositionViewModel>
+    <Height>764.16668701171875</Height>
+    <Media />
+    <MosaicID>11</MosaicID>
+    <Name>Bottom</Name>
+    <PositionID>28</PositionID>
+    <Width>749.16668701171875</Width>
+    <X>1.01666259765625</X>
+    <Y>567.9000244140625</Y>
+  </PositionViewModel>
+</ArrayOfPositionViewModel>

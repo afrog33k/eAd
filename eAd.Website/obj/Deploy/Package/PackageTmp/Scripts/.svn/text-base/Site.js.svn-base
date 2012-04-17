@@ -1,0 +1,26 @@
+﻿$(document).ready(function () {
+    $(".datepicker").datepicker({
+        showAnim: '',
+        dateFormat: 'm/d/yy',
+        showOn: 'button',
+        buttonImageOnly: true,
+        buttonImage: '../../Scripts/txtdropdown/txtdropdown-btn.png',
+        buttonText: 'Select a date'
+    });
+    $('#calendar').fullCalendar({
+        theme: true,
+        header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,basicWeek,basicDay'
+			},
+defaultView: 'month',
+        editable: true,
+        events: "/Calendar/GetEvents/"
+    });
+   
+   
+
+
+   
+});

@@ -60,7 +60,7 @@ namespace eAd.Website.Extensions
                            "error: function(xhr, textStatus, errorThrown) {{" + Environment.NewLine +
                                 "$(\"#{0}\").unblock();" + Environment.NewLine +
                                 "$(\"#{0}\").resetForm();" + Environment.NewLine +
-                                "$.growlUI(null, 'Error uploading file');" + Environment.NewLine +
+                                "$.growlUI(null, 'Error uploading file'  );" + Environment.NewLine +
                             "}}" + Environment.NewLine +
                         "}});" + Environment.NewLine +
                     "}});" + Environment.NewLine +

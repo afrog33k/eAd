@@ -4,23 +4,23 @@ using eAd.DataViewModels;
 
 namespace eAd.DataAccess
 {
-    public static  class ClassViewModelExtensions
+    public static class ClassViewModelExtensions
     {
         public static CustomerViewModel CreateModel(this Customer customer)
         {
-            CustomerViewModel model = new CustomerViewModel();
-            model .RFID = customer.RFID;
-            if (customer.Cars.Count()>0)
+            var model = new CustomerViewModel();
+            model.RFID = customer.RFID;
+            if (customer.Cars.Count() > 0)
             {
-                var car = customer.Cars.FirstOrDefault();
+                Car car = customer.Cars.FirstOrDefault();
                 model.CarLicense = car.License;
                 model.CarMake = car.Make;
                 model.CarModel = car.Model;
                 model.ChargeRemaining = car.BatteryCharge;
                 model.LastRechargeDate = car.LastRechargeDate;
             }
-         
-            
+
+
             model.AccountBalance = customer.Balance;
             model.LastBillAmount = customer.LastBillAmount;
             model.Name = customer.Name;
@@ -32,12 +32,13 @@ namespace eAd.DataAccess
             model.Address = customer.Address;
             return model;
         }
+
         public static StationViewModel CreateModel(this Station station)
         {
-            StationViewModel model = new StationViewModel();
+            var model = new StationViewModel();
             model.StationID = station.StationID;
             model.Name = station.Name;
-            if (station.Available != null) 
+            if (station.Available != null)
                 model.Available = (bool) station.Available;
             else
             {
@@ -49,34 +50,35 @@ namespace eAd.DataAccess
             model.IsOnline = station.LastCheckIn >= DateTime.Now.AddSeconds(-10);
             return model;
         }
+
         public static PositionViewModel CreateModel(this Position position)
         {
-            PositionViewModel model = new PositionViewModel();
-            model.PositionID = (long)position.PositionID;
-            model.MosaicID = position.MosaicID;
-            model.Name = position.Name;
-            model.ContentURL =  position.ContentURL;
-            model.Height = position.Height;
-            model.Width = position.Width;
-            model.X = position.X;
-            model.Y = position.Y;
-            model.Media = position.Media.Select(m => m.MediaID).ToList();
-            return model;
+            return new PositionViewModel
+                       {
+                           PositionID = position.PositionID,
+                           MosaicID = (long) position.MosaicID,
+                           Name = position.Name,
+                           ContentURL = position.ContentURL,
+                           Height = position.Height,
+                           Width = position.Width,
+                           X = position.X,
+                           Y = position.Y,
+                           Media = (from m in position.Media select m.MediaID).ToList<long>()
+                       };
         }
 
         public static MessageViewModel CreateModel(this Message message)
         {
-            MessageViewModel model = new MessageViewModel();
-            model.Command = message.Command;
-            model.ID = message.MessageID;
-            model.Sent = message.Sent;
-            model.StationID = message.StationID;
-            model.Text = message.Text;
-            model.Type = message.Type;
-            model.UserID = message.UserID;
-            return model;
+            return new MessageViewModel
+                       {
+                           Command = message.Command,
+                           ID = message.MessageID,
+                           Sent = message.Sent,
+                           StationID = message.StationID,
+                           Text = message.Text,
+                           Type = message.Type,
+                           UserID = message.UserID
+                       };
         }
-      
-
     }
 }

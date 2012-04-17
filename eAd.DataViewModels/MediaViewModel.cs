@@ -1,158 +1,82 @@
-using System;
-using System.Collections.Generic;
-
-namespace eAd.DataViewModels
+﻿namespace eAd.DataViewModels
 {
-   
-    public class MediaListModel
-    {
-        public Int64 MediaID
-        {
-            get
-            {
-                return _MediaID;
-            }
-            set
-            {
-                _MediaID = value;
-
-            }
-        }
-        private global::System.Int64 _MediaID;
-
-
-        public TimeSpan Duration
-        {
-            get
-            {
-                return _duration;
-            }
-            set
-            {
-                _duration = value;
-
-            }
-        }
-        private TimeSpan _duration;
-
-
-        public global::System.String Location
-        {
-            get
-            {
-                return _Location;
-            }
-            set
-            {
-
-                _Location = value;
-
-            }
-        }
-
-        public bool Downloaded { get; set; }
-
-        private global::System.String _Location;
-    }
+    using System;
 
     public class MediaViewModel
     {
+        private string _Location;
+        private long _MediaID;
+        private string _Name;
+        private string _Tags;
+        private string _Type;
+
         public static MediaViewModel Empty
         {
             get
             {
-                return new MediaViewModel
-                           {
-                               Name = "Invalid Media"
-                           };
+                return new MediaViewModel { Name = "Invalid Media" };
             }
         }
-      
 
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-      
-        public Int64 MediaID
+        public string Location
         {
             get
             {
-                return _MediaID;
+                return this._Location;
             }
             set
             {
-                _MediaID = value;
-             
+                this._Location = value;
             }
         }
-        private global::System.Int64 _MediaID;
-    
-      
-        public global::System.String Name
-        {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-              
-                _Name =value;
-          
-            }
-        }
-        private global::System.String _Name;
-     
-    
-        public global::System.String Location
-        {
-            get
-            {
-                return _Location;
-            }
-            set
-            {
-              
-                _Location =value;
-             
-            }
-        }
-        private global::System.String _Location;
-   
 
-   
-        public global::System.String Tags
+        public long MediaID
         {
             get
             {
-                return _Tags;
+                return this._MediaID;
             }
             set
             {
-              
-                _Tags = value;
-             
+                this._MediaID = value;
             }
         }
-        private global::System.String _Tags;
-      
-        
-        public global::System.String Type
-        {
-            get
-            {
-                return _Type;
-            }
-            set
-            {
-           
-                _Type = value;
-          
-            }
-        }
-        private global::System.String _Type;
-       
 
-    
+        public string Name
+        {
+            get
+            {
+                return this._Name;
+            }
+            set
+            {
+                this._Name = value;
+            }
+        }
+
+        public string Tags
+        {
+            get
+            {
+                return this._Tags;
+            }
+            set
+            {
+                this._Tags = value;
+            }
+        }
+
+        public string Type
+        {
+            get
+            {
+                return this._Type;
+            }
+            set
+            {
+                this._Type = value;
+            }
+        }
     }
 }
+

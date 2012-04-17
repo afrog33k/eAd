@@ -115,6 +115,7 @@
     <Compile Include="Repositories\MapRepository.cs" />
     <Compile Include="Repositories\UploadedContent.cs" />
     <Compile Include="Repositories\UploadRepository.cs" />
+    <Compile Include="RootRouteConstraint.asax.cs" />
     <Compile Include="Service References\eAdDataService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -346,6 +347,9 @@
     <Content Include="Content\Calendar\Descriptions\RtlSupport.html" />
     <Content Include="Content\Calendar\Descriptions\SelectAction.html" />
     <Content Include="Content\check48.png" />
+    <Content Include="Content\coin-slider-styles.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\ComboBox\Descriptions\Accessibility.html" />
     <Content Include="Content\ComboBox\Descriptions\AjaxLoading.html" />
     <Content Include="Content\ComboBox\Descriptions\AnimationEffects.html" />
@@ -629,102 +633,312 @@
     <Content Include="Content\Hay\treeview-line.png" />
     <Content Include="Content\Hay\treeview-nodes-rtl.png" />
     <Content Include="Content\Hay\treeview-nodes.png" />
-    <Content Include="Content\Images\1orange.jpg" />
-    <Content Include="Content\Images\2orange.jpg" />
-    <Content Include="Content\Images\3orange.jpg" />
-    <Content Include="Content\Images\50.jpg" />
-    <Content Include="Content\Images\aboutus.png" />
-    <Content Include="Content\Images\ajax-loader.gif" />
-    <Content Include="Content\Images\background-repeat.png" />
-    <Content Include="Content\Images\background.jpg" />
-    <Content Include="Content\Images\background.png" />
-    <Content Include="Content\Images\banner-signup.jpg" />
-    <Content Include="Content\Images\bg.jpg" />
-    <Content Include="Content\Images\bkg-coupon.jpg" />
-    <Content Include="Content\Images\bkg-main.jpg" />
-    <Content Include="Content\Images\bkg-payment.jpg" />
-    <Content Include="Content\Images\bkg-repeat.jpg" />
-    <Content Include="Content\Images\bkg-white-bottom.jpg" />
-    <Content Include="Content\Images\bkg-white-mid.jpg" />
-    <Content Include="Content\Images\bkg-white-top.jpg" />
-    <Content Include="Content\Images\bottom-dotted.gif" />
-    <Content Include="Content\Images\btn-about1.jpg" />
-    <Content Include="Content\Images\btn-about2.jpg" />
-    <Content Include="Content\Images\btn-how1.jpg" />
-    <Content Include="Content\Images\btn-how2.jpg" />
-    <Content Include="Content\Images\btn-signup-1.jpg" />
-    <Content Include="Content\Images\btn-signup-2.jpg" />
-    <Content Include="Content\Images\buyall.jpg" />
-    <Content Include="Content\Images\buydeal.png" />
-    <Content Include="Content\Images\buyfav.jpg" />
-    <Content Include="Content\Images\buyone.jpg" />
-    <Content Include="Content\Images\calendar.jpg" />
-    <Content Include="Content\Images\carvenong.jpg" />
-    <Content Include="Content\Images\caution.png" />
-    <Content Include="Content\Images\choosevocher.jpg" />
-    <Content Include="Content\Images\complete.jpg" />
-    <Content Include="Content\Images\cooltext492813250.png" />
-    <Content Include="Content\Images\customers.jpg" />
-    <Content Include="Content\Images\democoupon.jpg" />
-    <Content Include="Content\Images\democoupon.png" />
-    <Content Include="Content\Images\electricpumpicon.png" />
-    <Content Include="Content\Images\faqs.png" />
-    <Content Include="Content\Images\feedback_button.jpg" />
-    <Content Include="Content\Images\feedback_button.png" />
-    <Content Include="Content\Images\footer-line.jpg" />
-    <Content Include="Content\Images\getVouchers.png" />
-    <Content Include="Content\Images\go.jpg" />
-    <Content Include="Content\Images\header.jpg" />
-    <Content Include="Content\Images\home.png" />
-    <Content Include="Content\Images\hotstoresLogo.jpg" />
-    <Content Include="Content\Images\hotstoresLogo.png" />
-    <Content Include="Content\Images\icon-fb-inverted.jpg" />
-    <Content Include="Content\Images\icon-fb.jpg" />
-    <Content Include="Content\Images\icon-livechat-green.jpg" />
-    <Content Include="Content\Images\icon-livechat-status.jpg" />
-    <Content Include="Content\Images\icon-livechat.jpg" />
-    <Content Include="Content\Images\icon-payment2.jpg" />
-    <Content Include="Content\Images\icon-sales.jpg" />
-    <Content Include="Content\Images\icon-shop.jpg" />
-    <Content Include="Content\Images\icon-shop2.jpg" />
-    <Content Include="Content\Images\icon-warn.jpg" />
-    <Content Include="Content\Images\img-coupon-deal.jpg" />
-    <Content Include="Content\Images\img-deal-terms.jpg" />
-    <Content Include="Content\Images\img-step-1a.jpg" />
-    <Content Include="Content\Images\img-step-1b.jpg" />
-    <Content Include="Content\Images\img-step-2a.jpg" />
-    <Content Include="Content\Images\img-step-2b.jpg" />
-    <Content Include="Content\Images\img-step-3a.jpg" />
-    <Content Include="Content\Images\img-step-3b.jpg" />
-    <Content Include="Content\Images\jojo.jpg" />
-    <Content Include="Content\Images\leftbar.jpg" />
-    <Content Include="Content\Images\login-bar.jpg" />
-    <Content Include="Content\Images\login.jpg" />
-    <Content Include="Content\Images\logo-qponkini.jpg" />
-    <Content Include="Content\Images\logos.png" />
-    <Content Include="Content\Images\makepayment.jpg" />
-    <Content Include="Content\Images\malaysiakini.png" />
-    <Content Include="Content\Images\menubg.gif" />
-    <Content Include="Content\Images\mkinibanner.png" />
-    <Content Include="Content\Images\MoreInformation.png" />
-    <Content Include="Content\Images\no_image.gif" />
-    <Content Include="Content\Images\payment.jpg" />
-    <Content Include="Content\Images\pic.jpg" />
-    <Content Include="Content\Images\Picture1.jpg" />
-    <Content Include="Content\Images\Picture2.png" />
-    <Content Include="Content\Images\Picture3.jpg" />
-    <Content Include="Content\Images\Picture4.png" />
-    <Content Include="Content\Images\Picture5.jpg" />
-    <Content Include="Content\Images\Picture5.png" />
-    <Content Include="Content\Images\product-first-glance.jpg" />
-    <Content Include="Content\Images\qponlogo.png" />
-    <Content Include="Content\Images\register.jpg" />
-    <Content Include="Content\Images\retailers.gif" />
-    <Content Include="Content\Images\reversewhite.jpg" />
-    <Content Include="Content\Images\shirodhara.jpg" />
-    <Content Include="Content\Images\sprite.png" />
-    <Content Include="Content\Images\suitesSprite.png" />
-    <Content Include="Content\Images\TermsConditions.png" />
+    <Content Include="Content\Images\1orange.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\2orange.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\3orange.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\50.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\aboutus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\ajax-loader.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\background-repeat.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\background.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\banner-signup.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\bkg-coupon.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\bkg-main.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\bkg-payment.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\bkg-repeat.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\bkg-white-bottom.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\bkg-white-mid.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\bkg-white-top.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\bottom-dotted.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\btn-about1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\btn-about2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\btn-how1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\btn-how2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\btn-signup-1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\btn-signup-2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\buyall.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\buydeal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\buyfav.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\buyone.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\calendar.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\carvenong.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\caution.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\choosevocher.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\complete.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\cooltext492813250.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\customers.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\cut.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\democoupon.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\democoupon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\door.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\electricpumpicon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\faqs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\feedback_button.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\feedback_button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\footer-line.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\getVouchers.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\go.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\header.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\home.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\hotstoresLogo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\hotstoresLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\icon-fb-inverted.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\icon-fb.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\icon-livechat-green.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\icon-livechat-status.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\icon-livechat.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\icon-payment2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\icon-sales.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\icon-shop.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\icon-shop2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\icon-warn.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\img-coupon-deal.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\img-deal-terms.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\img-step-1a.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\img-step-1b.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\img-step-2a.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\img-step-2b.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\img-step-3a.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\img-step-3b.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\jojo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\leftbar.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\login-bar.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\login.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\logo-qponkini.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\logos.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\makepayment.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\malaysiakini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\menubg.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\mkinibanner.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\MoreInformation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\no_image.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\page_white_copy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\page_white_delete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\page_white_edit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\page_white_paste.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\payment.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\pic.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Picture1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Picture2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Picture3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Picture4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Picture5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Picture5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\product-first-glance.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\qponlogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\register.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\retailers.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\reversewhite.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\shirodhara.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\sprite.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\suitesSprite.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\TermsConditions.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Themes\Calendar\Black.png" />
     <Content Include="Content\Images\Themes\Calendar\Default.png" />
     <Content Include="Content\Images\Themes\Calendar\Forest.png" />
@@ -879,14 +1093,31 @@
     <Content Include="Content\Images\Themes\Window\Web20.png" />
     <Content Include="Content\Images\Themes\Window\WebBlue.png" />
     <Content Include="Content\Images\Themes\Window\Windows7.png" />
-    <Content Include="Content\Images\title-back-coupon.jpg" />
-    <Content Include="Content\Images\title-help.jpg" />
-    <Content Include="Content\Images\title-month-deals.jpg" />
-    <Content Include="Content\Images\top-dotted.gif" />
-    <Content Include="Content\Images\ultimate-package.jpg" />
-    <Content Include="Content\Images\usermenuback.png" />
-    <Content Include="Content\Images\wondrous.jpg" />
-    <Content Include="Content\Images\wondrous.tif" />
+    <Content Include="Content\Images\title-back-coupon.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\title-help.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\title-month-deals.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\top-dotted.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\ultimate-package.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\usermenuback.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\wondrous.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\wondrous.tif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\jquery.contextMenu.css" />
     <Content Include="Content\mapicon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1147,6 +1378,9 @@
     <Content Include="Scripts\2011.1.224\telerik.upload.min.js" />
     <Content Include="Scripts\2011.1.224\telerik.window.min.js" />
     <Content Include="Scripts\additional-methods.js" />
+    <Content Include="Scripts\jquery.contextMenu.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\jquery.slideshow.js" />
     <Content Include="Scripts\webfxlayout.js" />
     <Content Include="Scripts\curvycorners.js" />
@@ -1237,7 +1471,9 @@
     <None Include="Content\Images\.svn\text-base\TermsConditions.png.svn-base" />
     <None Include="Content\Images\.svn\text-base\wondrous.jpg.svn-base" />
     <None Include="Content\Images\.svn\text-base\wondrous.tif.svn-base" />
-    <None Include="Content\Images\Thumbs.db" />
+    <None Include="Content\Images\Thumbs.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\DataSources\eAd.DataAccess.FileMetaData.datasource" />
     <None Include="Properties\DataSources\eAd.DataViewModels.CustomerViewModel.datasource" />
     <None Include="Properties\DataSources\eAd.DataViewModels.MediaListModel.datasource" />
@@ -1297,6 +1533,7 @@
     <None Include="Service References\eAdDataService\Service.disco" />
     <Content Include="Tools\FFmpeg\avconv.exe" />
     <Content Include="Tools\FFmpeg\ffmpeg.exe" />
+    <Content Include="Scripts\mosaic.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1403,6 +1640,7 @@
     <Content Include="Views\Mosaic\preview.cshtml" />
     <Content Include="Views\Station\ShowScreenShot.cshtml" />
     <Content Include="Views\Stations\UploadScreenshot.cshtml" />
+    <Content Include="Views\Mosaic\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\.svn\props\" />

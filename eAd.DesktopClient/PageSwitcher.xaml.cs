@@ -1,941 +1,1571 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.ServiceModel;
-using System.Threading;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Threading;
-using DesktopClient.Menu;
-using DesktopClient.eAdDataAccess;
-using eAd.DataViewModels;
-using eAd.Utilities;
-
-namespace DesktopClient
+﻿namespace DesktopClient
 {
 
+    using DesktopClient.eAdDataAccess;
 
-    /// Interaction logic for Window1.xaml
-    /// </summary>
-    public partial class PageSwitcher : Window
+    using DesktopClient.Menu;
+
+    using eAd.DataViewModels;
+
+    using eAd.Utilities;
+
+    using irio.utilities;
+
+    using System;
+
+    using System.CodeDom.Compiler;
+
+    using System.Collections.Generic;
+
+    using System.Collections.Specialized;
+
+    using System.ComponentModel;
+
+    using System.Diagnostics;
+
+    using System.Drawing.Imaging;
+
+    using System.IO;
+
+    using System.Linq;
+
+    using System.Net;
+
+    using System.Runtime.CompilerServices;
+
+    using System.Runtime.InteropServices;
+
+    using System.ServiceModel;
+
+    using System.Threading;
+
+    using System.Windows;
+
+    using System.Windows.Controls;
+
+    using System.Windows.Input;
+
+    using System.Windows.Markup;
+
+    using System.Windows.Threading;
+
+    using System.Xml.Serialization;
+
+
+
+ 
+     public partial class PageSwitcher : Window, IComponentConnector
     {
-        static volatile int runningDownloads = 0;
-        /// <summary>
-        public static List<MediaListModel> Playlist = new List<MediaListModel>();
+
+       
+
+        private static PositionViewModel[] _positions;
+
+        private bool CheckedForNewMessages;
+
+        public static List<DownloadProgressChangedEventArgs> downloads = new List<DownloadProgressChangedEventArgs>();
 
         private static object DownLoadsLock = new object();
-        bool CheckedForNewMessages = false;
-        public PageSwitcher()
-        {
-            InitializeComponent();
-            Switcher.PageSwitcher = this;
-            Switcher.Switch(MainWindow.Instance);
-
-            StartKeepAliveThread();
-
-            StartMessageReceiveThread();
-
-
-            //          ThreadPool.QueueUserWorkItem(
-            //              (state) =>
-            //              {
-            //                  Thread.Sleep(5000);
-            //                  Switcher.PageSwitcher.Dispatcher.BeginInvoke(
-
-            //System.Windows.Threading.DispatcherPriority.Normal
-
-            //, new DispatcherOperationCallback(delegate
-            //{
-
-
-
-
-            //   // Switcher.Switch(new RFIDDetected());
-
-            //    Switcher.Switch(CustomerPage.Instance);
-
-            //    return null;
-
-            //}), null);
-
-
-            //              });
-
-        }
-
-        private void StartMessageReceiveThread()
-        {
-            //Messages Thread
-            ThreadPool.QueueUserWorkItem((e) =>
-                                             {
-                                                 while (true)
-                                                 {
-                                                     Thread.Sleep(Constants.MessageWaitTime);
-                                                     CheckForNewMessages();
-                                                 }
-                                             });
-        }
-        
-        private void CheckForNewMessages()
-        {
-            try
-            {
-                using (ServiceClient myService2 = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress))
-                {
-                    //BootStrap WCF (otherwise slow)
-                    myService2.ClientCredentials.Windows.ClientCredential.UserName
-                        = "admin";
-                    myService2.ClientCredentials.Windows.ClientCredential.Password
-                        = "Green2o11";
-
-                    var hi2 = myService2.DoIHaveUpdates(Constants.MyStationID);
-                    if (hi2)
-                    {
-                        RetrieveMessages();
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine("Server Down" + exception.Message +
-                                  exception.StackTrace);
-            }
-        }
-
-        private void RetrieveMessages()
-        {
-            this.Dispatcher.BeginInvoke(
-                 DispatcherPriority.Normal
-                 , new DispatcherOperationCallback(delegate
-                                                       {
-                                                           try
-                                                           {
-                                                               using (
-                                                                   ServiceClient
-                                                                       myService3
-                                                                           =
-                                                                           new ServiceClient
-                                                                               ()
-                                                                   )
-                                                               {
-                                                                   var
-                                                                       messages
-                                                                           =
-                                                                           myService3
-                                                                               .
-                                                                               GetAllMyMessages
-                                                                               (Constants
-                                                                                    .
-                                                                                    MyStationID);
-
-                                                                   foreach (
-                                                                       var
-                                                                           message
-                                                                           in
-                                                                           messages
-                                                                       )
-                                                                   {
-                                                                       if (
-                                                                           message
-                                                                               .
-                                                                               Type ==
-                                                                           "Info")
-                                                                       {
-                                                                           ProcessInformationMessage(message);
-                                                                       }
-
-                                                                       if (
-                                                                           message
-                                                                               .
-                                                                               Type ==
-                                                                           "Media")
-                                                                       {
-                                                                           LoadMosaic(message);
-                                                                           //GetMedia
-                                                                           //    (message);
-                                                                       }
-
-                                                                       if (
-                                                                           message
-                                                                               .
-                                                                               Type ==
-                                                                           "Status")
-                                                                       {
-                                                                           ProcessStatusMessage(message);
-                                                                       }
-                                                                   }
-
-
-                                                                   //if (result == MessageBoxResult.OK)
-                                                                   //{
-                                                                   //    // Yes code here
-                                                                   //}
-                                                                   //else
-                                                                   //{
-                                                                   //    // No code here
-                                                                   //}
-                                                               }
-                                                           }
-
-                                                           catch (
-                                                               Exception
-                                                                   exception
-                                                               )
-                                                           {
-                                                               Console.
-                                                                   WriteLine
-                                                                   ("Something Bad Happened ... :( Look Here: " +
-                                                                    exception
-                                                                        .
-                                                                        Message +
-                                                                    "\n" +
-                                                                    exception
-                                                                        .
-                                                                        StackTrace);
-                                                           }
-                                                           return null;
-                                                       }),
-                 null)
-                 ;
-        }
-
-        private void ProcessInformationMessage(MessageViewModel message)
-        {
-            MessageBoxResult
-                result
-                    =
-                    MessageBox
-                        .
-                        Show
-                        (this,
-                         message
-                             .
-                             Text,
-                         message
-                             .
-                             Type,
-                         MessageBoxButton
-                             .
-                             OKCancel,
-                         MessageBoxImage
-                             .
-                             Warning);
-
-            using
-                (
-                ServiceClient
-                    myService4
-                        =
-                        new ServiceClient
-                            ()
-                )
-            {
-                try
-                {
-                    var
-                        status
-                            =
-                            myService4
-                                .
-                                MessageRead
-                                (message
-                                     .
-                                     ID);
-                }
-                catch (TimeoutException exception)
-                {
-                    Console.WriteLine("Got {0}", exception.GetType());
-                    myService4.Abort();
-                }
-                catch (CommunicationException exception)
-                {
-                    Console.WriteLine("Got {0}", exception.GetType());
-                    myService4.Abort();
-                }
-            }
-        }
-
-        private void ProcessStatusMessage(MessageViewModel message)
-        {
-            switch
-                (
-                message
-                    .
-                    Command
-                )
-            {
-                case
-                    "Make UnAvailable"
-                    :
-                    {
-                        CustomerPage
-                            .
-                            CurrentRFID
-                            =
-                            message
-                                .
-                                Text;
-                        CustomerPage
-                            .
-                            Instance
-                            .
-                            Update
-                            (60000);
-
-                        Switcher
-                            .
-                            Switch
-                            (CustomerPage
-                                 .
-                                 Instance);
-                    }
-                    break;
-                case
-                    "Make Available"
-                    :
-                    {
-                        //CustomerPage
-                        //   .
-                        //   CurrentRFID
-                        //   =
-                        //   message
-                        //       .
-                        //       Text;
-                        CustomerPage
-                            .
-                            Instance
-                            .
-                            Update
-                            (20000);
-
-                        Switcher
-                            .
-                            Switch
-                            (CustomerPage
-                                 .
-                                 Instance);
-
-                        //Switcher
-                        //    .
-                        //    Switch
-                        //    (MainWindow
-                        //         .
-                        //         Instance);
-                    }
-                    break;
-
-                case "Added Theme":
-                      ServiceClient myService1 = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress);
-
-                   //     MainMosaic = myService1.GetMosaicForStation(Constants.MyStationID);
-
-                        var mosaicID = myService1.GetMosaicIDForStation(Constants.MyStationID);
-
-                        Positions = myService1.GetPositionsForMosaic(mosaicID);
-
-                        MainWindow.Instance.LoadPositions();
-                    break;
-
-                case "Removed Theme":
-                    ServiceClient myService2 = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress);
-
-                    //     MainMosaic = myService1.GetMosaicForStation(Constants.MyStationID);
-
-                    var mosaicID2 = myService2.GetMosaicIDForStation(Constants.MyStationID);
-
-                    Positions = myService2.GetPositionsForMosaic(mosaicID2);
-
-                    MainWindow.Instance.LoadPositions();
-                    break;
-                case "Screenshot":
-                    try
-                    {
-
-                  ThreadPool.QueueUserWorkItem((hjhj)=>
-                        {
-                            var fileName = "Screenshot#" + Constants.MyStationID + "#" +
-                                           string.Format("{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now) + ".jpg";
-                            new ScreenCapture().CaptureScreenToFile(fileName, ImageFormat.Jpeg);
-                            NameValueCollection nvc = new NameValueCollection();
-                            nvc.Add("StationID", Constants.MyStationID.ToString());
-                            nvc.Add("btn-submit-photo", "Upload");
-                            //HttpUploadFile("http://your.server.com/upload", 
-                            //     @"C:\test\test.jpg", "file", "image/jpeg", nvc);
-
-
-
-                            WebUpload.HttpUploadFile(Constants.ServerUrl + "/" + "Stations/UploadScreenshot", fileName,
-                                                     "file", "image/jpeg", nvc);
-                            //    Snapshot.UploadFile(fileName, FileTypeEnum.Generic);
-                        })
-                        ;
-                    }
-                    catch (Exception)
-                    {
-
-                        
-                    }
-                    break;
-                default
-                    :
-                    MessageBoxResult
-                        result
-                            =
-                            MessageBox
-                                .
-                                Show
-                                (this,
-                                 message
-                                     .
-                                     Text,
-                                 message
-                                     .
-                                     Type,
-                                 MessageBoxButton
-                                     .
-                                     OKCancel,
-                                 MessageBoxImage
-                                     .
-                                     Warning);
-                    break;
-            }
-
-
-            var
-                service
-                    =
-                    new ServiceClient
-                        ();
-
-
-            try
-            {
-                service.MessageRead
-                        (message
-                             .
-                             ID);
-            }
-            catch (TimeoutException exception)
-            {
-                Console.WriteLine("Got {0}", exception.GetType());
-                service.Abort();
-            }
-            catch (CommunicationException exception)
-            {
-                Console.WriteLine("Got {0}", exception.GetType());
-                service.Abort();
-            }
-        }
+         
+        private static MessageViewModel lastMessage = null;
 
         public static Mosaic MainMosaic;
 
-        private void StartKeepAliveThread()
+        public static RoutedCommand MyCommand = new RoutedCommand();
+
+        public static List<MediaListModel> Playlist = new List<MediaListModel>();
+
+        public static object PositionSaveLock = new object();
+
+        private static volatile int runningDownloads = 0;
+
+        public static double TotalBytes = 0.0;
+
+        public static double TotalBytesIn = 0.0;
+
+        private static List<MessageViewModel> UnProcessedMessages = new List<MessageViewModel>();
+         private static PageSwitcher _instance;
+
+
+         public PageSwitcher()
         {
-            // Keep Alive Thread
-            ThreadPool.QueueUserWorkItem(
-                (state) =>
-                    {
-                        LoadMosaic(null);
-                        while (true)
-                    {
-                        ServiceClient myService = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress);
-                        try
-                        {
-                            //BootStrap WCF (otherwise slow)
-                            myService.ClientCredentials.Windows.ClientCredential.UserName = "admin";
-                            myService.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
-                            var hi = myService.SayHi(Constants.MyStationID);
-                            if (hi != "Hi there")
-                            {
-                                Console.WriteLine("Server Down");
-                            }
-                            else
-                            {
-                                if (!CheckedForNewMessages)
-                                {
-                                    GetMedia();
-                                    CheckedForNewMessages = true;
-                                }
-                            }
-                        }
-                        catch (TimeoutException exception)
-                        {
-                            Console.WriteLine("Got {0}", exception.GetType());
-                            myService.Abort();
-                        }
-                        catch (CommunicationException exception)
-                        {
-                            Console.WriteLine("Got {0}", exception.GetType());
-                            myService.Abort();
-                        }
-                        catch (Exception exception)
-                        {
-                            Console.WriteLine("Server Down" + exception.Message + exception.StackTrace);
-                        }
-                        Thread.Sleep(1000 * 10);
-                    }
-                    });
-        }
+            InitializeComponent();
 
-        private static void LoadMosaic(MessageViewModel message)
-        {
-            ThreadPool.QueueUserWorkItem(
-                (state) =>
-                    {
-                        try
-                        {
-                            ServiceClient myService1 = new ServiceClient("BasicHttpBinding_IService",
-                                                                         Constants.ServerAddress);
+            Instance = this;
 
-                            //     MainMosaic = myService1.GetMosaicForStation(Constants.MyStationID);
-                            myService1.SetStationStatus(Constants.MyStationID, "Started Playback");
-                            var mosaicID = myService1.GetMosaicIDForStation(Constants.MyStationID);
-                            myService1.SetStationStatus(Constants.MyStationID, "Getting Mosaic");
-                            Positions = myService1.GetPositionsForMosaic(mosaicID);
-                            myService1.SetStationStatus(Constants.MyStationID, "Getting Positions");
-                            MainWindow.Instance.LoadPositions();
-                            myService1.SetStationStatus(Constants.MyStationID, "Positions Loaded, Now Playing");
-                        }
-                        catch (Exception ex)
-                        {
-                        }
-
-                          var
-                service
-                    =
-                    new ServiceClient
-                        ();
-
-
-                                                                           try
-                                                                           {
-                                                                               if (message!=null)
-                                                                               {
-                                                                                   
-                                                                             
-                                                                               service.MessageRead
-                                                                                       (message
-                                                                                            .
-                                                                                            ID);  }
-                                                                           }
-                                                                           catch (TimeoutException exception)
-                                                                           {
-                                                                               Console.WriteLine("Got {0}", exception.GetType());
-                                                                               service.Abort();
-                                                                           }
-                                                                           catch (CommunicationException exception)
-                                                                           {
-                                                                               Console.WriteLine("Got {0}", exception.GetType());
-                                                                               service.Abort();
-                                                                           }
-                                                                       
-                    }
-                        );
-        }
-
-        public static PositionViewModel[] Positions
-        {
-            get {
-                return _positions;
-            }
-            set {
-                _positions = value;
-            }
-        }
-
-        private void GetMedia(MessageViewModel message = null)
-        {
-            using (ServiceClient myService5 = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress))
+            base.Closed += delegate(object sender, EventArgs e)
             {
-                try
-                {
-                    var
-                        mediaList
-                            =
-                            myService5
-                                .
-                                GetMyMedia
-                                (Constants
-                                     .
-                                     MyStationID);
 
-                    //Playlist= new List<MediaListModel>();
-                    if (message != null)
-                    {
-                        var
-                            status
-                                =
-                                myService5
-                                    .
-                                    MessageRead
-                                    (message
-                                         .
-                                         ID);
-                    }
-                    ThreadPool
-                        .
-                        QueueUserWorkItem
-                        ((
-                            e4)
-                         =>
-                             {
-                                 foreach
-                                     (
-                                     var
-                                         item
-                                         in
-                                         mediaList
-                                     )
-                                 {
+                Environment.Exit(0);
 
+            };
 
-                                     //  if (
-                               //      DownloadMedium(item, Playlist, MainWindow.Instance);//) 
-                                     //return;
-                                 }
+            MyCommand.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
 
+            base.CommandBindings.Add(new CommandBinding(MyCommand, new ExecutedRoutedEventHandler(this.MyCommandExecuted)));
 
-                             });
-                }
-                catch (TimeoutException exception)
-                {
-                    Console.WriteLine("Got {0}", exception.GetType());
-                    myService5.Abort();
-                }
-                catch (CommunicationException exception)
-                {
-                    Console.WriteLine("Got {0}", exception.GetType());
-                    myService5.Abort();
-                }
-            }
+            this.InitializeComponent();
+
+            Switcher.PageSwitcher = this;
+
+            Switcher.Switch(MainWindow.Instance);
+
+            this.StartKeepAliveThread();
+
+            this.StartMessageReceiveThread();
+
         }
 
-        public static bool DownloadMedium(MediaListModel item, List<MediaListModel> playlist, IPlayer player)
+
+
+        private void CheckForNewMessages()
         {
-            var
-                path
-                    =
-                    Constants
-                        .
-                        AppPath +
-                    item
-                        .
-                        Location;
-            var urlPath = item
-                .
-                Location;
 
-            var
-                fileExists
-                    =
-                    false;
-            if
-                (
-                File
-                    .
-                    Exists
-                    (path) && new FileInfo(path).Length > 0)
-            // Todo: Check if currently playing and also compare properties to prevent unneeded redownloads
+            try
             {
-                //File.Delete(path);
-                fileExists
-                    =
-                    true;
-            }
-            if
-                (
-                playlist
-                    .
-                    Where
-                    (
-                        i
-                        =>
-                        i
-                            .
-                            Location ==
-                        path)
-                    .
-                    Count
-                    () <=
-                0)
-            {
-                var
-                    model
-                        =
-                        item;
-                model
-                    .
-                    Location
-                    =
-                    path;
-                if
-                    (
-                    fileExists)
+
+                using (ServiceClient client = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress))
                 {
-                    model
-                        .
-                        Downloaded
-                        =
-                        true;
-                }
 
-                if (playlist.Contains(item))
-                    playlist.Remove(item);
+                    client.ClientCredentials.Windows.ClientCredential.UserName = "admin";
 
-                playlist
-                    .
-                    Add
-                    (model);
-                if
-                    (
-                    fileExists)
-                    return true;
-            }
-            irio
-                .
-                utilities
-                .
-                FileUtilities
-                .
-                FolderCreate
-                (
-                    Path
-                        .
-                        GetDirectoryName
-                        (path));
+                    client.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
 
-            using
-                (
-                WebClient
-                    client
-                        =
-                        new WebClient
-                            ()
-                )
-            {
-                try
-                {
-                    client
-                        .
-                        DownloadProgressChanged
-                        += delegate(object sender, DownloadProgressChangedEventArgs e)
-                               {
-                                   Switcher.PageSwitcher.Dispatcher.BeginInvoke(
-
-              DispatcherPriority.Normal
-
-              , new DispatcherOperationCallback(delegate
-              {
-                  if (MainWindow.Instance.Update_Progress.Visibility == Visibility.Hidden)
-                      MainWindow.Instance.Update_Progress.Visibility = Visibility.Visible;
-
-                  double bytesIn = double.Parse(e.BytesReceived.ToString());
-
-                  double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
-
-                  if (!downloads.Contains(e))
-                  {
-                      downloads.Add(e);
-                      TotalBytes += totalBytes;
-                  }
-
-
-                  TotalBytesIn += bytesIn;
-
-                  double percentage = TotalBytesIn / TotalBytes * 100;
-
-                  MainWindow.Instance.Update_Progress.Value = ((percentage + MainWindow.Instance.Update_Progress.Value) / 2);
-                  return null;
-              }), null);
-                               };
-                     //   client_DownloadProgressChanged;
-                    
-                    client
-                        .
-                        DownloadFileCompleted
-                        += delegate(object sender, AsyncCompletedEventArgs args)
-                               {
-                                   lock (DownLoadsLock)
-                                   {
-                                       runningDownloads--;
-                                   }
-                                   HideProgressBar();
-                                   var pitem =
-                                       playlist.Where(i => i.Location == path).FirstOrDefault();
-
-                                   if (pitem != null)
-                                   {
-                                       pitem.Downloaded =
-                                           true;
-
-                                       if (!File.Exists(path) || new FileInfo(path).Length <= 0)
-                                       {
-                                           playlist.Remove(pitem);
-                                           Console.WriteLine("Downloaded Corrupted File");
-                                       }
-                                   }
-
-
-                                   if (args.Error == null)
-                                   {
-                                       lock (DownLoadsLock)
-                                           Thread.Sleep(200);
-                                       if (runningDownloads == 0)
-                                       {
-                                           player.UpdatePlayList
-                                               ();
-                                       }
-                                   }
-                               };
-                    //ClientDownloadFileCompleted;
-
-
-                    if
-                        (
-                        !fileExists)
+                    if (client.DoIHaveUpdates(Constants.MyStationID))
                     {
-                        // Starts the download
-                        lock
-                            (
-                            DownLoadsLock
-                            )
-                            runningDownloads
-                                ++;
 
-                        var
-                            uri
-                                = new Uri(Constants.ServerUrl + urlPath.Replace("\\", @"/"));
-                        client.DownloadFileAsync(uri, path);
+                        this.RetrieveMessages();
+
                     }
+
                 }
-                catch (TimeoutException exception)
-                {
-                    Console.WriteLine("Got {0}", exception.GetType());
-                }
-                catch (CommunicationException exception)
-                {
-                    Console.WriteLine("Got {0}", exception.GetType());
-                }
-                //btnStartDownload.Text = "Download In Process";
-                //btnStartDownload.Enabled = false;
+
             }
-            //ServiceClient myService3 = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress);
-            ////BootStrap WCF (otherwise slow)
-            //myService3.ClientCredentials.Windows.ClientCredential.UserName = "admin";
-            //myService3.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
-            return false;
+
+            catch (Exception exception)
+            {
+
+                Console.WriteLine("Server Down" + exception.Message + exception.StackTrace);
+
+            }
+
         }
+
+
+
+        private static bool CheckMessage(MessageViewModel message)
+        {
+
+            bool flag = false;
+
+            if ((from m in UnProcessedMessages
+
+                 where (m.Command == message.Command) && (m.Text == message.Text)
+
+                 select m).Count<MessageViewModel>() > 0)
+            {
+
+                SendMessageReceipt(message, false);
+
+                return false;
+
+            }
+
+            flag = true;
+
+            UnProcessedMessages.Add(message);
+
+            return flag;
+
+        }
+
+
+
+        private static void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+
+            Switcher.PageSwitcher.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new ThreadStart(() =>
+                                                                                                        {
+
+                                                                                                            if (
+                                                                                                                MainWindow
+                                                                                                                    .
+                                                                                                                    Instance
+                                                                                                                    .
+                                                                                                                    Update_Progress
+                                                                                                                    .
+                                                                                                                    Visibility ==
+                                                                                                                Visibility
+                                                                                                                    .
+                                                                                                                    Hidden)
+                                                                                                            {
+
+                                                                                                                MainWindow
+                                                                                                                    .
+                                                                                                                    Instance
+                                                                                                                    .
+                                                                                                                    Update_Progress
+                                                                                                                    .
+                                                                                                                    Visibility
+                                                                                                                    =
+                                                                                                                    Visibility
+                                                                                                                        .
+                                                                                                                        Visible;
+
+                                                                                                            }
+
+                                                                                                            double num =
+                                                                                                                double.
+                                                                                                                    Parse
+                                                                                                                    (e.
+                                                                                                                         BytesReceived
+                                                                                                                         .
+                                                                                                                         ToString
+                                                                                                                         ());
+
+                                                                                                            double num2
+                                                                                                                =
+                                                                                                                double.
+                                                                                                                    Parse
+                                                                                                                    (e.
+                                                                                                                         TotalBytesToReceive
+                                                                                                                         .
+                                                                                                                         ToString
+                                                                                                                         ());
+
+                                                                                                            if (
+                                                                                                                !downloads
+                                                                                                                     .
+                                                                                                                     Contains
+                                                                                                                     (e))
+                                                                                                            {
+
+                                                                                                                downloads
+                                                                                                                    .Add
+                                                                                                                    (e);
+
+                                                                                                                TotalBytes
+                                                                                                                    +=
+                                                                                                                    num2;
+
+                                                                                                            }
+
+                                                                                                            TotalBytesIn
+                                                                                                                += num;
+
+                                                                                                            double num3
+                                                                                                                =
+                                                                                                                (TotalBytesIn/
+                                                                                                                 TotalBytes)*
+                                                                                                                100.0;
+
+                                                                                                            MainWindow.
+                                                                                                                Instance
+                                                                                                                .
+                                                                                                                Update_Progress
+                                                                                                                .Value =
+                                                                                                                (num3 +
+                                                                                                                 MainWindow
+                                                                                                                     .
+                                                                                                                     Instance
+                                                                                                                     .
+                                                                                                                     Update_Progress
+                                                                                                                     .
+                                                                                                                     Value)/
+                                                                                                                2.0;
+
+                                                                                                            if (
+                                                                                                                MainWindow
+                                                                                                                    .
+                                                                                                                    Instance
+                                                                                                                    .
+                                                                                                                    Update_Progress
+                                                                                                                    .
+                                                                                                                    Visibility ==
+                                                                                                                Visibility
+                                                                                                                    .
+                                                                                                                    Hidden)
+                                                                                                            {
+
+                                                                                                                MainWindow
+                                                                                                                    .
+                                                                                                                    Instance
+                                                                                                                    .
+                                                                                                                    Update_Progress
+                                                                                                                    .
+                                                                                                                    Visibility
+                                                                                                                    =
+                                                                                                                    Visibility
+                                                                                                                        .
+                                                                                                                        Visible;
+
+                                                                                                            }
+
+
+
+                                                                                                        }));
+     
+
+        }
+
+
 
         private void ClientDownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
 
             lock (DownLoadsLock)
             {
+
                 runningDownloads--;
+
             }
+
             HideProgressBar();
-            //Playlist.Where(i => i.Location == path).First().Downloaded =
-            //    true;
+
             if (e.Error == null)
             {
+
                 lock (DownLoadsLock)
+                {
+
                     if (runningDownloads == 0)
                     {
-                        MainWindow.Instance
-                            .UpdatePlayList
-                            ();
+
+                        MainWindow.Instance.UpdatePlayList();
+
                     }
+
+                }
+
             }
 
-            //   MessageBox.Show("Download Completed");
+        }
+
+
+
+        public static bool DownloadMedium(MediaListModel item, List<MediaListModel> playlist, IPlayer player)
+        {
+
+            AsyncCompletedEventHandler handler = null;
+
+            string path = Constants.AppPath + item.Location;
+
+            string location = item.Location;
+
+            bool flag = false;
+
+            if (System.IO.File.Exists(path) && (new FileInfo(path).Length > 0L))
+            {
+
+                flag = true;
+
+            }
+
+            if ((from i in playlist
+
+                 where i.Location == path
+
+                 select i).Count<MediaListModel>() <= 0)
+            {
+
+                MediaListModel model = item;
+
+                model.Location = path;
+
+                if (flag)
+                {
+
+                    model.Downloaded = true;
+
+                }
+
+                if (playlist.Contains(item))
+                {
+
+                    playlist.Remove(item);
+
+                }
+
+                playlist.Add(model);
+
+                if (flag)
+                {
+
+                    return true;
+
+                }
+
+            }
+
+            FileUtilities.FolderCreate(Path.GetDirectoryName(path));
+
+            WebClient client = new WebClient();
+
+            try
+            {
+
+                client.DownloadProgressChanged += delegate(object sender, DownloadProgressChangedEventArgs e)
+                                                      {
+
+                                                          Switcher.PageSwitcher.Dispatcher.BeginInvoke(
+                                                              DispatcherPriority.Normal, new ThreadStart(() =>
+                                                                                                             {
+
+                                                                                                                 if (
+                                                                                                                     MainWindow
+                                                                                                                         .
+                                                                                                                         Instance
+                                                                                                                         .
+                                                                                                                         Update_Progress
+                                                                                                                         .
+                                                                                                                         Visibility ==
+                                                                                                                     Visibility
+                                                                                                                         .
+                                                                                                                         Hidden)
+                                                                                                                 {
+
+                                                                                                                     MainWindow
+                                                                                                                         .
+                                                                                                                         Instance
+                                                                                                                         .
+                                                                                                                         Update_Progress
+                                                                                                                         .
+                                                                                                                         Visibility
+                                                                                                                         =
+                                                                                                                         Visibility
+                                                                                                                             .
+                                                                                                                             Visible;
+
+                                                                                                                 }
+
+                                                                                                                 double
+                                                                                                                     num
+                                                                                                                         =
+                                                                                                                         double
+                                                                                                                             .
+                                                                                                                             Parse
+                                                                                                                             (e
+                                                                                                                                  .
+                                                                                                                                  BytesReceived
+                                                                                                                                  .
+                                                                                                                                  ToString
+                                                                                                                                  ());
+
+                                                                                                                 double
+                                                                                                                     num2
+                                                                                                                         =
+                                                                                                                         double
+                                                                                                                             .
+                                                                                                                             Parse
+                                                                                                                             (e
+                                                                                                                                  .
+                                                                                                                                  TotalBytesToReceive
+                                                                                                                                  .
+                                                                                                                                  ToString
+                                                                                                                                  ());
+
+                                                                                                                 if (
+                                                                                                                     !downloads
+                                                                                                                          .
+                                                                                                                          Contains
+                                                                                                                          (e))
+                                                                                                                 {
+
+                                                                                                                     downloads
+                                                                                                                         .
+                                                                                                                         Add
+                                                                                                                         (e);
+
+                                                                                                                     TotalBytes
+                                                                                                                         +=
+                                                                                                                         num2;
+
+                                                                                                                 }
+
+                                                                                                                 TotalBytesIn
+                                                                                                                     +=
+                                                                                                                     num;
+
+                                                                                                                 double
+                                                                                                                     num3
+                                                                                                                         =
+                                                                                                                         (TotalBytesIn/
+                                                                                                                          TotalBytes)*
+                                                                                                                         100.0;
+
+                                                                                                                 MainWindow
+                                                                                                                     .
+                                                                                                                     Instance
+                                                                                                                     .
+                                                                                                                     Update_Progress
+                                                                                                                     .
+                                                                                                                     Value
+                                                                                                                     =
+                                                                                                                     (num3 +
+                                                                                                                      MainWindow
+                                                                                                                          .
+                                                                                                                          Instance
+                                                                                                                          .
+                                                                                                                          Update_Progress
+                                                                                                                          .
+                                                                                                                          Value)/
+                                                                                                                     2.0;
+
+
+
+                                                                                                             }));
+
+                };
+
+                if (handler == null)
+                {
+
+                    handler = delegate(object sender, AsyncCompletedEventArgs args)
+                    {
+
+                        lock (DownLoadsLock)
+                        {
+
+                            runningDownloads--;
+
+                        }
+
+                        HideProgressBar();
+
+                        item = (from i in playlist
+
+                                where i.Location == path
+
+                                select i).FirstOrDefault<MediaListModel>();
+
+                        if (item != null)
+                        {
+
+                            item.Downloaded = true;
+
+                            if (!System.IO.File.Exists(path) || (new FileInfo(path).Length <= 0L))
+                            {
+
+                                playlist.Remove(item);
+
+                                Console.WriteLine("Downloaded Corrupted File");
+
+                            }
+
+                        }
+
+                        if (args.Error == null)
+                        {
+
+                            lock (DownLoadsLock)
+                            {
+
+                                Thread.Sleep(200);
+
+                            }
+
+                            if (runningDownloads == 0)
+                            {
+
+                                player.UpdatePlayList();
+
+                            }
+
+                        }
+
+                    };
+
+                }
+
+                client.DownloadFileCompleted += handler;
+
+                if (!flag)
+                {
+
+                    lock (DownLoadsLock)
+                    {
+
+                        runningDownloads++;
+
+                    }
+
+                    Uri address = new Uri(Constants.ServerUrl + location.Replace(@"\", "/"));
+
+                    client.DownloadFileAsync(address, path);
+
+                }
+
+            }
+
+            catch (TimeoutException exception)
+            {
+
+                Console.WriteLine("Got {0}", exception.GetType());
+
+            }
+
+            catch (CommunicationException exception2)
+            {
+
+                Console.WriteLine("Got {0}", exception2.GetType());
+
+            }
+
+            finally
+            {
+
+                if (client != null)
+                {
+
+                    client.Dispose();
+
+                }
+
+            }
+
+            return false;
 
         }
+
+
+
+        private void GetMedia(MessageViewModel message = null)
+        {
+
+            ServiceClient client = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress);
+
+            try
+            {
+
+                MediaListModel[] mediaList = client.GetMyMedia(Constants.MyStationID);
+
+                if (message != null)
+                {
+
+                    client.MessageRead(message.ID);
+
+                }
+
+                ThreadPool.QueueUserWorkItem(delegate(object e4)
+                {
+
+                    MediaListModel[] modelArray1 = mediaList;
+
+                    for (int j = 0; j < modelArray1.Length; j++)
+                    {
+
+                        MediaListModel model1 = modelArray1[j];
+
+                    }
+
+                });
+
+            }
+
+            catch (TimeoutException exception)
+            {
+
+                Console.WriteLine("Got {0}", exception.GetType());
+
+                client.Abort();
+
+            }
+
+            catch (CommunicationException exception2)
+            {
+
+                Console.WriteLine("Got {0}", exception2.GetType());
+
+                client.Abort();
+
+            }
+
+            finally
+            {
+
+                if (client != null)
+                {
+
+                 //   client.Dispose();
+
+                }
+
+            }
+
+        }
+
+
 
         private static void HideProgressBar()
         {
-            Switcher.PageSwitcher.Dispatcher.BeginInvoke(
-                System.Windows.Threading.DispatcherPriority.Normal
-                , new DispatcherOperationCallback(delegate
-                                                      {
-                                                          if (MainWindow.Instance.Update_Progress.Visibility ==
-                                                              Visibility.Visible)
-                                                              MainWindow.Instance.Update_Progress.Visibility =
-                                                                  Visibility.Hidden;
-                                                          return null;
-                                                      }), null);
+
+            Switcher.PageSwitcher.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new ThreadStart(() =>
+                                                                                                        {
+
+                                                                                                            if (
+                                                                                                                MainWindow
+                                                                                                                    .
+                                                                                                                    Instance
+                                                                                                                    .
+                                                                                                                    Update_Progress
+                                                                                                                    .
+                                                                                                                    Visibility ==
+                                                                                                                Visibility
+                                                                                                                    .
+                                                                                                                    Visible)
+                                                                                                            {
+
+                                                                                                                MainWindow
+                                                                                                                    .
+                                                                                                                    Instance
+                                                                                                                    .
+                                                                                                                    Update_Progress
+                                                                                                                    .
+                                                                                                                    Visibility
+                                                                                                                    =
+                                                                                                                    Visibility
+                                                                                                                        .
+                                                                                                                        Hidden;
+
+                                                                                                            }
+                                                                                                        }));
+
         }
 
 
-        public static double  TotalBytes = 0;
-        public static double TotalBytesIn = 0;
-        public static List<DownloadProgressChangedEventArgs> downloads = new List<DownloadProgressChangedEventArgs>();
-        private static PositionViewModel[] _positions;
 
-        private static void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+      
+
+
+
+        private static void LoadMosaic(MessageViewModel message)
         {
 
+            ThreadPool.QueueUserWorkItem(delegate(object state)
+            {
 
-            Switcher.PageSwitcher.Dispatcher.BeginInvoke(
+                try
+                {
 
-               DispatcherPriority.Normal
+                    ServiceClient client = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress);
 
-               , new DispatcherOperationCallback(delegate
-               {
-                   if (MainWindow.Instance.Update_Progress.Visibility == Visibility.Hidden)
-                       MainWindow.Instance.Update_Progress.Visibility = Visibility.Visible;
+                    long mosaicID = client.GetMosaicIDForStation(Constants.MyStationID);
 
-                   double bytesIn = double.Parse(e.BytesReceived.ToString());
+                    Constants.CurrentClientConfiguration.CurrentMosaic=mosaicID;
 
-                   double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+                    Constants.SaveDefaults();
 
-                   if (!downloads.Contains(e))
-                   {
-                       downloads.Add(e);
-                       TotalBytes += totalBytes;
-                   }
+                    Positions = client.GetPositionsForMosaic(mosaicID);
 
+                    SavePositions(new List<PositionViewModel>(Positions));
 
-                 TotalBytesIn += bytesIn;
+                    MainWindow.Instance.LoadPositions(null);
 
-                 double percentage = TotalBytesIn / TotalBytes * 100;
+                    client.SetStationStatus(Constants.MyStationID, "Positions Loaded, Now Playing");
 
-                   MainWindow.Instance.Update_Progress.Value = ((percentage + MainWindow.Instance.Update_Progress.Value) / 2);
-                   return null;
-               }), null);
+                }
 
+                catch (Exception)
+                {
+
+                }
+
+                ServiceClient client2 = new ServiceClient();
+
+                try
+                {
+
+                    if (message != null)
+                    {
+
+                        client2.MessageRead(message.ID);
+
+                    }
+
+                }
+
+                catch (TimeoutException exception)
+                {
+
+                    Console.WriteLine("Got {0}", exception.GetType());
+
+                    client2.Abort();
+
+                }
+
+                catch (CommunicationException exception2)
+                {
+
+                    Console.WriteLine("Got {0}", exception2.GetType());
+
+                    client2.Abort();
+
+                }
+
+            });
 
         }
 
-        protected override void OnActivated(EventArgs e)
+
+
+        private List<PositionViewModel> LoadPositions()
         {
-            base.OnActivated(e);
-            Splasher.CloseSplash();
+
+            List<PositionViewModel> list = new List<PositionViewModel>();
+
+            try
+            {
+
+                string path = "positions.xml";
+
+                XmlSerializer serializer = new XmlSerializer(typeof(List<PositionViewModel>));
+
+                StreamReader textReader = System.IO.File.OpenText(path);
+
+                list = serializer.Deserialize(textReader) as List<PositionViewModel>;
+
+                textReader.Close();
+
+            }
+
+            catch (Exception)
+            {
+
+                list = new List<PositionViewModel>();
+
+            }
+
+            return list;
+
         }
+
+
+
+        private void MyCommandExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+
+            Environment.Exit(0);
+
+        }
+
+
+
         public void Navigate(UserControl nextPage)
         {
-            this.Content = nextPage;
+
+            base.Content = nextPage;
+
         }
+
+
 
         public void Navigate(UserControl nextPage, object state)
         {
-            this.Content = nextPage;
-            ISwitchable s = nextPage as ISwitchable;
 
-            if (s != null)
-                s.UtilizeState(state);
-            else
-                throw new ArgumentException("NextPage is not ISwitchable! "
-                  + nextPage.Name.ToString());
+            base.Content = nextPage;
+
+            ISwitchable switchable = nextPage as ISwitchable;
+
+            if (switchable == null)
+            {
+
+                throw new ArgumentException("NextPage is not ISwitchable! " + nextPage.Name.ToString());
+
+            }
+
+            switchable.UtilizeState(state);
+
         }
+
+
+
+        protected override void OnActivated(EventArgs e)
+        {
+
+            base.OnActivated(e);
+
+            Splasher.CloseSplash();
+
+        }
+
+
+
+        private void PlayCurrentMosaic()
+        {
+
+            if (Constants.CurrentMosaic != -1L)
+            {
+
+                PositionViewModel[] positions = this.LoadPositions().ToArray();
+
+                MainWindow.Instance.LoadPositions(positions);
+
+            }
+
+        }
+
+
+
+        private void ProcessInformationMessage(MessageViewModel message)
+        {
+
+            MessageBox.Show(this, message.Text, message.Type, MessageBoxButton.OKCancel, MessageBoxImage.Exclamation);
+
+            ServiceClient client = new ServiceClient();
+
+            try
+            {
+
+                client.MessageRead(message.ID);
+
+            }
+
+            catch (TimeoutException exception)
+            {
+
+                Console.WriteLine("Got {0}", exception.GetType());
+
+                client.Abort();
+
+            }
+
+            catch (CommunicationException exception2)
+            {
+
+                Console.WriteLine("Got {0}", exception2.GetType());
+
+                client.Abort();
+
+            }
+
+            finally
+            {
+
+                if (client != null)
+                {
+
+                  //  client.Dispose();
+
+                }
+
+            }
+
+        }
+
+
+
+        private void ProcessStatusMessage(MessageViewModel message)
+        {
+
+            string command = message.Command;
+
+            if (command != null)
+            {
+
+                if (!(command == "Make UnAvailable"))
+                {
+
+                    if (command == "Make Available")
+                    {
+
+                        CustomerPage.Instance.Update(0x4e20);
+
+                        Switcher.Switch(CustomerPage.Instance);
+
+                        goto Label_014E;
+
+                    }
+
+                    if (command == "Added Theme")
+                    {
+
+                        ServiceClient client = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress);
+
+                        long mosaicIDForStation = client.GetMosaicIDForStation(Constants.MyStationID);
+
+                        Positions = client.GetPositionsForMosaic(mosaicIDForStation);
+
+                        MainWindow.Instance.LoadPositions(null);
+
+                        goto Label_014E;
+
+                    }
+
+                    if (command == "Removed Theme")
+                    {
+
+                        ServiceClient client2 = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress);
+
+                        long mosaicID = client2.GetMosaicIDForStation(Constants.MyStationID);
+
+                        Positions = client2.GetPositionsForMosaic(mosaicID);
+
+                        MainWindow.Instance.LoadPositions(null);
+
+                        goto Label_014E;
+
+                    }
+
+                    if (command == "Screenshot")
+                    {
+
+                        try
+                        {
+
+                            ThreadPool.QueueUserWorkItem(delegate(object hjhj)
+                            {
+
+                                string filename = string.Concat(new object[] { "Screenshot#", Constants.MyStationID, "#", string.Format("{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now), ".jpg" });
+
+                                new ScreenCapture().CaptureScreenToFile(filename, ImageFormat.Jpeg);
+
+                                NameValueCollection nvc = new NameValueCollection();
+
+                                nvc.Add("StationID", Constants.MyStationID.ToString());
+
+                                nvc.Add("btn-submit-photo", "Upload");
+
+                                WebUpload.HttpUploadFile(Constants.ServerUrl + "/Stations/UploadScreenshot", filename, "file", "image/jpeg", nvc);
+
+                            });
+
+                        }
+
+                        catch (Exception)
+                        {
+
+                        }
+
+                        goto Label_014E;
+
+                    }
+
+                }
+
+                else
+                {
+
+                    CustomerPage.CurrentRFID = message.Text;
+
+                    CustomerPage.Instance.Update(0xea60);
+
+                    Switcher.Switch(CustomerPage.Instance);
+
+                    goto Label_014E;
+
+                }
+
+            }
+
+            MessageBox.Show(this, message.Text, message.Type, MessageBoxButton.OKCancel, MessageBoxImage.Exclamation);
+
+        Label_014E:
+
+            SendMessageReceipt(message, true);
+
+        }
+
+
+
+        private void RetrieveMessages()
+        {
+
+            base.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new ThreadStart(() =>
+                                                                                       {
+
+                                                                                           try
+                                                                                           {
+
+                                                                                               using (
+                                                                                                   ServiceClient client
+                                                                                                       =
+                                                                                                       new ServiceClient
+                                                                                                           ())
+                                                                                               {
+
+                                                                                                   foreach (
+                                                                                                       MessageViewModel
+                                                                                                           model in
+                                                                                                           client.
+                                                                                                               GetAllMyMessages
+                                                                                                               (Constants
+                                                                                                                    .
+                                                                                                                    MyStationID)
+                                                                                                       )
+                                                                                                   {
+
+                                                                                                       if (model.Type ==
+                                                                                                           "Info")
+                                                                                                       {
+
+                                                                                                           if (
+                                                                                                               !CheckMessage
+                                                                                                                    (model))
+                                                                                                           {
+
+                                                                                                               return;
+
+                                                                                                           }
+
+                                                                                                           this.
+                                                                                                               ProcessInformationMessage
+                                                                                                               (model);
+
+                                                                                                       }
+
+                                                                                                       if (model.Type ==
+                                                                                                           "Media")
+                                                                                                       {
+
+                                                                                                           if (
+                                                                                                               !CheckMessage
+                                                                                                                    (model))
+                                                                                                           {
+
+                                                                                                               return;
+
+                                                                                                           }
+
+                                                                                                           LoadMosaic(
+                                                                                                               model);
+
+                                                                                                       }
+
+                                                                                                       if (model.Type ==
+                                                                                                           "Status")
+                                                                                                       {
+
+                                                                                                           if (
+                                                                                                               !CheckMessage
+                                                                                                                    (model))
+                                                                                                           {
+
+                                                                                                               return;
+
+                                                                                                           }
+
+                                                                                                           this.
+                                                                                                               ProcessStatusMessage
+                                                                                                               (model);
+
+                                                                                                       }
+
+                                                                                                       if (model.Type ==
+                                                                                                           "Group")
+                                                                                                       {
+
+                                                                                                           if (
+                                                                                                               !CheckMessage
+                                                                                                                    (model))
+                                                                                                           {
+
+                                                                                                               return;
+
+                                                                                                           }
+
+                                                                                                           SendMessageReceipt
+                                                                                                               (model,
+                                                                                                                true);
+
+                                                                                                       }
+
+                                                                                                   }
+
+                                                                                               }
+
+                                                                                           }
+
+                                                                                           catch (Exception exception)
+                                                                                           {
+
+                                                                                               Console.WriteLine(
+                                                                                                   "Something Bad Happened ... :( Look Here: " +
+                                                                                                   exception.Message +
+                                                                                                   "\n" +
+                                                                                                   exception.StackTrace);
+
+                                                                                           }
+
+                                                                                       }));
+
+        }
+
+
+
+        public void RunCommands(string[] arguments)
+        {
+
+            DispatcherOperationCallback method = null;
+
+            DispatcherOperationCallback callback2 = null;
+
+            DispatcherOperationCallback callback3 = null;
+
+            foreach (string str in arguments)
+            {
+
+                switch (str)
+                {
+
+                    case "Minimize":
+
+                        if (!Dispatcher.CheckAccess())
+                        {
+
+                            if (method == null)
+                            {
+
+                                method = delegate
+                                {
+
+                                    base.WindowState = WindowState.Minimized;
+
+                                    return null;
+
+                                };
+
+                            }
+
+                            Dispatcher.BeginInvoke(DispatcherPriority.Send, method, null);
+
+                        }
+
+                        else
+                        {
+
+                            WindowState = WindowState.Minimized;
+
+                        }
+
+                        break;
+
+
+
+                    case "Maximize":
+
+                        if (!Dispatcher.CheckAccess())
+                        {
+
+                            if (callback2 == null)
+                            {
+
+                                callback2 = delegate
+                                {
+
+                                    base.WindowState = WindowState.Maximized;
+
+                                    return null;
+
+                                };
+
+                            }
+
+                            Dispatcher.BeginInvoke(DispatcherPriority.Send, callback2, null);
+
+                        }
+
+                        else
+                        {
+
+                            WindowState = WindowState.Maximized;
+
+                        }
+
+                        break;
+
+
+
+                    case "Normal":
+
+                        if (!base.Dispatcher.CheckAccess())
+                        {
+
+                            if (callback3 == null)
+                            {
+
+                                callback3 = delegate
+                                {
+
+                                    base.WindowState = WindowState.Normal;
+
+                                    return null;
+
+                                };
+
+                            }
+
+                            Dispatcher.BeginInvoke(DispatcherPriority.Send, callback3, null);
+
+                        }
+
+                        else
+                        {
+
+                            WindowState = WindowState.Normal;
+
+                        }
+
+                        break;
+
+
+
+                    case "Close":
+
+                        Environment.Exit(0);
+
+                        break;
+
+                }
+
+            }
+
+        }
+
+
+
+        private static void SavePositions(List<PositionViewModel> positions)
+        {
+
+            ThreadPool.QueueUserWorkItem(delegate(object r)
+            {
+
+                lock (PositionSaveLock)
+                {
+
+                    string fileName = "positions.xml";
+
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<PositionViewModel>));
+
+                    FileInfo info = new FileInfo(fileName);
+
+                    if (!File.Exists(fileName))
+                    {
+
+                        StreamWriter writer = info.CreateText();
+
+                        serializer.Serialize(writer, positions);
+
+                        writer.Close();
+
+                    }
+
+                    else
+                    {
+
+                        info.Delete();
+
+                        StreamWriter writer2 = info.CreateText();
+
+                        serializer.Serialize(writer2, positions);
+
+                        writer2.Close();
+
+                    }
+
+                }
+
+            });
+
+        }
+
+
+
+        private static void SendMessageReceipt(MessageViewModel message, bool updateList = true)
+        {
+
+            ServiceClient client = new ServiceClient();
+
+            try
+            {
+
+                client.MessageRead(message.ID);
+
+            }
+
+            catch (TimeoutException exception)
+            {
+
+                Console.WriteLine("Got {0}", exception.GetType());
+
+                client.Abort();
+
+            }
+
+            catch (CommunicationException exception2)
+            {
+
+                Console.WriteLine("Got {0}", exception2.GetType());
+
+                client.Abort();
+
+            }
+
+            if (updateList)
+            {
+
+                UnProcessedMessages.Remove(message);
+
+            }
+
+        }
+
+
+
+        private void StartKeepAliveThread()
+        {
+
+            ThreadPool.QueueUserWorkItem(delegate(object state)
+            {
+
+                this.PlayCurrentMosaic();
+
+                ThreadPool.QueueUserWorkItem(delegate(object e)
+                {
+
+                    LoadMosaic(null);
+
+                });
+
+                while (true)
+                {
+
+                    ServiceClient client = new ServiceClient("BasicHttpBinding_IService", Constants.ServerAddress);
+
+                    try
+                    {
+
+                        client.ClientCredentials.Windows.ClientCredential.UserName = "admin";
+
+                        client.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
+
+                        if (client.SayHi(Constants.MyStationID) != "Hi there")
+                        {
+
+                            Console.WriteLine("Server Down");
+
+                        }
+
+                        else if (!this.CheckedForNewMessages)
+                        {
+
+                            this.GetMedia(null);
+
+                            this.CheckedForNewMessages = true;
+
+                        }
+
+                    }
+
+                    catch (TimeoutException exception)
+                    {
+
+                        Console.WriteLine("Got {0}", exception.GetType());
+
+                        client.Abort();
+
+                    }
+
+                    catch (CommunicationException exception2)
+                    {
+
+                        Console.WriteLine("Got {0}", exception2.GetType());
+
+                        client.Abort();
+
+                    }
+
+                    catch (Exception exception3)
+                    {
+
+                        Console.WriteLine("Server Down" + exception3.Message + exception3.StackTrace);
+
+                    }
+
+                    Thread.Sleep(0x2710);
+
+                }
+
+            });
+
+        }
+
+
+
+        private void StartMessageReceiveThread()
+        {
+
+            ThreadPool.QueueUserWorkItem(delegate(object e)
+            {
+
+                while (true)
+                {
+
+                    Thread.Sleep(Constants.MessageWaitTime);
+
+                    this.CheckForNewMessages();
+
+                }
+
+            });
+
+        }
+
+
+
+        [DebuggerNonUserCode, EditorBrowsable(EditorBrowsableState.Never)]
+
+      
+
+
+        public static PageSwitcher Instance
+        {
+
+      
+
+            get
+
+            {
+
+                return _instance;
+
+            }
+
+          
+
+            set
+
+            {
+
+                _instance = value;
+
+            }
+
+        }
+
+
+
+        public static PositionViewModel[] Positions
+        {
+
+            get
+            {
+
+                return _positions;
+
+            }
+
+            set
+            {
+
+                _positions = value;
+
+            }
+
+        }
+
     }
 
-    public interface IPlayer
-    {
-        void UpdatePlayList();
-    }
 }
+
+
+

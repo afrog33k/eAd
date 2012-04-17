@@ -138,8 +138,12 @@
           <Property Name="Location" Type="nvarchar" MaxLength="1000" />
           <Property Name="Tags" Type="nvarchar" MaxLength="250" />
           <Property Name="Type" Type="nvarchar" MaxLength="50" />
-          <Property Name="DateAdded" Type="datetime" />
+          <Property Name="Created" Type="datetime" />
           <Property Name="Duration" Type="time" />
+          <Property Name="Hash" Type="nchar" MaxLength="32" />
+          <Property Name="Size" Type="bigint" Nullable="false" />
+          <Property Name="UserID" Type="bigint" Nullable="false" />
+          <Property Name="Updated" Type="datetime" />
         </EntityType>
         <EntityType Name="MediaTypes">
           <Key>
@@ -169,6 +173,14 @@
           </Key>
           <Property Name="MosaicID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="80" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Updated" Type="datetime" Nullable="false" />
+          <Property Name="Background" Type="nvarchar" MaxLength="500" />
+          <Property Name="BackgroundColor" Type="nvarchar" MaxLength="30" />
+          <Property Name="Width" Type="int" Nullable="false" />
+          <Property Name="Height" Type="int" Nullable="false" />
+          <Property Name="Hash" Type="nchar" MaxLength="32" />
+          <Property Name="Size" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="PositionMedium">
           <Key>
@@ -186,10 +198,11 @@
           <Property Name="Name" Type="nvarchar" MaxLength="80" />
           <Property Name="ContentURL" Type="nvarchar" MaxLength="1000" />
           <Property Name="MosaicID" Type="bigint" />
-          <Property Name="X" Type="float" />
-          <Property Name="Y" Type="float" />
-          <Property Name="Width" Type="float" />
-          <Property Name="Height" Type="float" />
+          <Property Name="X" Type="float" Nullable="false" />
+          <Property Name="Y" Type="float" Nullable="false" />
+          <Property Name="Width" Type="float" Nullable="false" />
+          <Property Name="Height" Type="float" Nullable="false" />
+          <Property Name="UserID" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Stations">
           <Key>
@@ -483,8 +496,12 @@
           <Property Type="String" Name="Location" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Tags" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DateAdded" Precision="3" />
+          <Property Type="DateTime" Name="Created" Precision="3" />
           <Property Type="Time" Name="Duration" Precision="7" />
+          <Property Type="String" Name="Hash" MaxLength="32" FixedLength="true" Unicode="true" />
+          <Property Type="Int64" Name="Size" Nullable="false" />
+          <Property Type="Int64" Name="UserID" Nullable="false" />
+          <Property Type="DateTime" Name="Updated" Precision="3" />
           <NavigationProperty Name="Positions" Relationship="eAdData.PositionMedium" FromRole="Medium" ToRole="Position" />
           <NavigationProperty Name="Themes" Relationship="eAdData.ThemeMedium" FromRole="Medium" ToRole="Theme" />
         </EntityType>
@@ -517,6 +534,14 @@
           </Key>
           <Property Type="Int64" Name="MosaicID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Created" Precision="3" Nullable="false" />
+          <Property Type="DateTime" Name="Updated" Precision="3" Nullable="false" />
+          <Property Type="String" Name="Background" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BackgroundColor" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Width" Nullable="false" />
+          <Property Type="Int32" Name="Height" Nullable="false" />
+          <Property Type="String" Name="Hash" MaxLength="32" FixedLength="true" Unicode="true" />
+          <Property Type="Int64" Name="Size" Nullable="false" />
           <NavigationProperty Name="Groupings" Relationship="eAdData.FK_MosaicGrouping" FromRole="Mosaic" ToRole="Grouping" />
           <NavigationProperty Name="Positions" Relationship="eAdData.FK_Positions_Mosaics" FromRole="Mosaic" ToRole="Position" />
         </EntityType>
@@ -528,10 +553,11 @@
           <Property Type="String" Name="Name" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ContentURL" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="MosaicID" />
-          <Property Type="Double" Name="X" />
-          <Property Type="Double" Name="Y" />
-          <Property Type="Double" Name="Width" />
-          <Property Type="Double" Name="Height" />
+          <Property Type="Double" Name="X" Nullable="false" />
+          <Property Type="Double" Name="Y" Nullable="false" />
+          <Property Type="Double" Name="Width" Nullable="false" />
+          <Property Type="Double" Name="Height" Nullable="false" />
+          <Property Type="Int64" Name="UserID" Nullable="false" />
           <NavigationProperty Name="Mosaic" Relationship="eAdData.FK_Positions_Mosaics" FromRole="Position" ToRole="Mosaic" />
           <NavigationProperty Name="Media" Relationship="eAdData.PositionMedium" FromRole="Position" ToRole="Medium" />
         </EntityType>
@@ -694,8 +720,12 @@
           <EntitySetMapping Name="Media">
             <EntityTypeMapping TypeName="eAdData.Medium">
               <MappingFragment StoreEntitySet="Media">
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Hash" ColumnName="Hash" />
                 <ScalarProperty Name="Duration" ColumnName="Duration" />
-                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Tags" ColumnName="Tags" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
@@ -731,6 +761,14 @@
           <EntitySetMapping Name="Mosaics">
             <EntityTypeMapping TypeName="eAdData.Mosaic">
               <MappingFragment StoreEntitySet="Mosaics">
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Hash" ColumnName="Hash" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="BackgroundColor" ColumnName="BackgroundColor" />
+                <ScalarProperty Name="Background" ColumnName="Background" />
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="MosaicID" ColumnName="MosaicID" />
               </MappingFragment>
@@ -739,6 +777,7 @@
           <EntitySetMapping Name="Positions">
             <EntityTypeMapping TypeName="eAdData.Position">
               <MappingFragment StoreEntitySet="Positions">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Height" ColumnName="Height" />
                 <ScalarProperty Name="Width" ColumnName="Width" />
                 <ScalarProperty Name="Y" ColumnName="Y" />
@@ -840,17 +879,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="eAdData" >
-        <EntityTypeShape EntityType="eAdData.Car" Width="1.5" PointX="2.6421692849333254" PointY="20.38220819289899" />
-        <EntityTypeShape EntityType="eAdData.Customer" Width="1.5" PointX="11.209958653529156" PointY="20.643425012306974" />
-        <EntityTypeShape EntityType="eAdData.Grouping" Width="1.5" PointX="5.4882755044327469" PointY="5.9076085565181486" />
-        <EntityTypeShape EntityType="eAdData.Medium" Width="1.5" PointX="7.7300055063003708" PointY="22.529791082502246" />
-        <EntityTypeShape EntityType="eAdData.MediaType" Width="1.5" PointX="9.1828475674534431" PointY="3.0012132390407906" />
-        <EntityTypeShape EntityType="eAdData.Message" Width="1.5" PointX="10.971905881060243" PointY="24.264267083380496" />
-        <EntityTypeShape EntityType="eAdData.Mosaic" Width="1.5" PointX="10.978957978533096" PointY="25.190737095284618" />
-        <EntityTypeShape EntityType="eAdData.Position" Width="1.5" PointX="8.6383418816320319" PointY="3.7859072255836366" />
-        <EntityTypeShape EntityType="eAdData.Station" Width="1.5" PointX="11.511756531666851" PointY="31.773587480081986" />
-        <EntityTypeShape EntityType="eAdData.sysdiagram" Width="1.5" PointX="9.9344012038476777" PointY="13.632010868579155" />
-        <EntityTypeShape EntityType="eAdData.Theme" Width="1.5" PointX="2.3038031301944528" PointY="5.5360738958865747" />
+        <EntityTypeShape EntityType="eAdData.Car" Width="1.5" PointX="4.7196635271979792" PointY="18.568783545200148" />
+        <EntityTypeShape EntityType="eAdData.Customer" Width="1.5" PointX="2.1786356951010579" PointY="28.557048840707658" />
+        <EntityTypeShape EntityType="eAdData.Grouping" Width="1.5" PointX="8.10496532363117" PointY="25.97311441319674" />
+        <EntityTypeShape EntityType="eAdData.Medium" Width="1.5" PointX="5.6502982460196591" PointY="18.762806275283364" />
+        <EntityTypeShape EntityType="eAdData.MediaType" Width="1.5" PointX="6.88430276833675" PointY="27.052736607870429" />
+        <EntityTypeShape EntityType="eAdData.Message" Width="1.5" PointX="1.6680587854553286" PointY="28.421750081899461" />
+        <EntityTypeShape EntityType="eAdData.Mosaic" Width="1.5" PointX="2.6287243881396596" PointY="2.0695230970482914" />
+        <EntityTypeShape EntityType="eAdData.Position" Width="1.5" PointX="8.8076370809262787" PointY="9.419454876994461" />
+        <EntityTypeShape EntityType="eAdData.Station" Width="1.5" PointX="5.1685938579815414" PointY="6.4903803199950518" />
+        <EntityTypeShape EntityType="eAdData.sysdiagram" Width="1.5" PointX="8.8367535047404253" PointY="22.195702980363603" />
+        <EntityTypeShape EntityType="eAdData.Theme" Width="1.5" PointX="4.683228830193741" PointY="4.2242212464214406" />
         <AssociationConnector Association="eAdData.FK_CarCustomer" />
         <AssociationConnector Association="eAdData.FK_MosaicGrouping" />
         <AssociationConnector Association="eAdData.FK_MessageStation" />

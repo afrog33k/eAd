@@ -1,0 +1,15 @@
+G:\eAd.Website\irio.mvc.fileupload\bin\Release\irio.mvc.fileupload.dll
+G:\eAd.Website\irio.mvc.fileupload\bin\Release\irio.mvc.fileupload.pdb
+G:\eAd.Website\irio.mvc.fileupload\obj\Release\ResolveAssemblyReference.cache
+G:\eAd.Website\irio.mvc.fileupload\obj\Release\irio.mvc.fileupload.dll
+G:\eAd.Website\irio.mvc.fileupload\obj\Release\irio.mvc.fileupload.pdb
+X:\eAd.New\eAd\irio.mvc.fileupload\bin\Release\irio.mvc.fileupload.dll
+X:\eAd.New\eAd\irio.mvc.fileupload\bin\Release\irio.mvc.fileupload.pdb
+X:\eAd.New\eAd\irio.mvc.fileupload\obj\Release\ResolveAssemblyReference.cache
+X:\eAd.New\eAd\irio.mvc.fileupload\obj\Release\irio.mvc.fileupload.dll
+X:\eAd.New\eAd\irio.mvc.fileupload\obj\Release\irio.mvc.fileupload.pdb
+C:\ProjectHub\eAd\irio.mvc.fileupload\bin\Release\irio.mvc.fileupload.dll
+C:\ProjectHub\eAd\irio.mvc.fileupload\bin\Release\irio.mvc.fileupload.pdb
+C:\ProjectHub\eAd\irio.mvc.fileupload\obj\Release\ResolveAssemblyReference.cache
+C:\ProjectHub\eAd\irio.mvc.fileupload\obj\Release\irio.mvc.fileupload.dll
+C:\ProjectHub\eAd\irio.mvc.fileupload\obj\Release\irio.mvc.fileupload.pdb

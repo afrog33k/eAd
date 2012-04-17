@@ -11,71 +11,61 @@ namespace eAd.DataAccess
     [ServiceContract]
     public interface IService
     {
-
         [OperationContract]
-
         string GetHi();
 
         [OperationContract]
         void UploadFile(FileMetaData MetaData, FileStream stream);
-       // void UploadFile(FileUploadMessage request);
+
+        // void UploadFile(FileUploadMessage request);
 
         [OperationContract]
         FileDownloadReturnMessage DownloadFile(FileDownloadMessage request);
 
         [OperationContract]
-
         string SayHi(long clientID);
 
-           [OperationContract]
-         List<MediaListModel> GetMyMedia(long stationID);
-
-         [OperationContract]
-         TimeSpan GetMediaDuration(long mediaID);
-         [OperationContract]
-        void SetStationStatus(long stationID, string status);
         [OperationContract]
+        List<MediaListModel> GetMyMedia(long stationID);
 
+        [OperationContract]
+        TimeSpan GetMediaDuration(long mediaID);
+
+        [OperationContract]
+        void SetStationStatus(long stationID, string status);
+
+        [OperationContract]
         bool DoIHaveUpdates(long clientID);
 
         [OperationContract]
-
         Mosaic GetMosaicForStation(long clientID);
 
         [OperationContract]
-
         bool MakeStationUnAvailable(long stationID, string rfidCode = "");
 
         [OperationContract]
         string GetMediaLocation(long mediaID);
 
         [OperationContract]
-         long GetMosaicIDForStation(long stationID);
-   
+        long GetMosaicIDForStation(long stationID);
+
 
         [OperationContract]
-         List<PositionViewModel> GetPositionsForMosaic(long mosaicID);
+        List<PositionViewModel> GetPositionsForMosaic(long mosaicID);
 
         [OperationContract]
-
         bool MakeStationAvailable(long stationID);
 
 
-     
-
         [OperationContract]
-
         bool MessageRead(long messageID);
 
 
         [OperationContract]
-
         bool CaptureScreenShot(long stationID);
 
 
-
         [OperationContract]
-
         CustomerViewModel GetCustomerByRFID(string tag);
 
 
@@ -86,28 +76,49 @@ namespace eAd.DataAccess
         bool SendMessageToGroup(long groupID, MessageViewModel message);
 
         [OperationContract]
-
         List<MessageViewModel> GetAllMyMessages(long clientID);
 
 
-
         [OperationContract]
-
         List<CustomerViewModel> GetAllCustomers();
 
 
-
         [OperationContract]
-
         List<StationViewModel> GetAllStations();
-
 
 
         // TODO: Add your service operations here
 
         [OperationContract]
-
         List<StationViewModel> GetOnlineStations();
+
+        [OperationContract]
+        string RegisterDisplay(string serverKey, string hardwareKey, string displayName, string version);
+
+        [OperationContract]
+        FilesModel RequiredFiles(string serverKey, string hardwareKey, string version);
+
+        [OperationContract]
+        byte[] GetFile(string serverKey, string hardwareKey, string filePath, string fileType, long chunkOffset,
+                       long chuckSize, string version);
+        [OperationContract]
+        ScheduleModel Schedule(string serverKey, string hardwareKey, string version);
+         [OperationContract]
+        bool RecieveXmlLog(string serverKey, string hardwareKey, string xml, string version);
+         [OperationContract]
+         void BlackList(string serverKey, string hardwareKey, int mediaId, string type, string reason, string version);
+         [OperationContract]
+         bool SubmitLog(string version, string serverKey, string hardwareKey, string logXml);
+         [OperationContract]
+         bool SubmitStats(string version, string serverKey, string hardwareKey, string statXml);
+
+         [OperationContract]
+         bool MediaInventory(string version, string serverKey, string hardwareKey,
+                            [System.Xml.Serialization.SoapElementAttribute("mediaInventory")] string mediaInventory1);
+
+         [OperationContract]
+         string GetResource(string serverKey, string hardwareKey, int layoutId, string regionId, string mediaId,
+                           string version);
     }
 
 
@@ -115,8 +126,8 @@ namespace eAd.DataAccess
     [DataContract]
     public class CompositeType
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        private bool boolValue = true;
+        private string stringValue = "Hello ";
 
         [DataMember]
         public bool BoolValue
