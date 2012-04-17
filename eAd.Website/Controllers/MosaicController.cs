@@ -195,6 +195,10 @@ namespace eAd.Website.Controllers
 
         public ActionResult SaveMosaic(PositionViewModel[] positionList )
         {
+            try
+            {
+
+          
             if(positionList!=null)
             foreach (var positionItem in positionList)
             {
@@ -219,26 +223,31 @@ namespace eAd.Website.Controllers
                     position.Height = (double) positionItem.Height;
                     var list = position.Media.ToList();
 
-                    foreach (var medium in list)
+                    for (int i = 0; i < list.Count;i++ )
                     {
-                        position.Media.Remove(medium);
-
+                        var medium =list[i];
+                       position.Media.Remove(medium);
+                        list[i] = null;
                     }
                     db.SaveChanges();
 
-                    foreach (var path in positionItem.MediaUri)
-                    {
-                        if (!String.IsNullOrEmpty(path))
-                            if (position.Media.Where(i => i.Name == path).Count() <= 0)
-                            {
-                                var nname = Path.GetFileNameWithoutExtension(path).Replace("Thumb", "");
-                                //item.Remove("Uploads/Temp/Media/Thumb".Length);
-                                // name = 
-                                position.Media.Add(db.Media.Where(m => m.Location.Contains(nname)).FirstOrDefault());
-                            }
-                    }
-                    
-                    }
+                    if (positionItem.MediaUri != null)
+                        foreach (var path in positionItem.MediaUri)
+                        {
+                            if (!String.IsNullOrEmpty(path))
+                                if (position.Media.Where(i => i.Name == path).Count() <= 0)
+                                {
+                                    var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(path);
+                                    if (fileNameWithoutExtension != null)
+                                    {
+                                        var nname = fileNameWithoutExtension.Replace("Thumb", "");
+                                        //item.Remove("Uploads/Temp/Media/Thumb".Length);
+                                        // name = 
+                                        position.Media.Add(db.Media.Where(m => m.Location.Contains(nname)).FirstOrDefault());
+                                    }
+                                }
+                        }
+                }
                 else
                 {
                     return Json("Invalid Mosiac, Please Choose One Before Saving", JsonRequestBehavior.AllowGet);
@@ -249,7 +258,12 @@ namespace eAd.Website.Controllers
                   db.SaveChanges();
             return Json("Sucessfully Saved Mosaic", JsonRequestBehavior.AllowGet);
             }
+            }
+            catch (Exception)
+            {
 
+                
+            }
             return Json("Invalid Mosiac, Please Choose One Before Saving", JsonRequestBehavior.AllowGet);
          
                      

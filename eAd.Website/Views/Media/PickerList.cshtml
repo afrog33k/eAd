@@ -1,0 +1,44 @@
+﻿@using eAd.Website.Extensions
+@model IEnumerable<eAd.DataViewModels.MediaListModel>
+
+@{
+        Layout = "";
+}
+
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Duration
+        </th>
+        <th>
+            Select
+        </th>
+       
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @item.Duration.ToReadableString()
+      
+        </td>
+      
+         <td>
+            @Html.EditorFor(modelItem => item.Selected)
+        </td>
+        
+    </tr>
+}
+</table>

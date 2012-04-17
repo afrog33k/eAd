@@ -5,47 +5,19 @@
 
     public class MediaListModel
     {
-        private TimeSpan _duration;
-        private string _Location;
-        private long _MediaID;
-
         public bool Downloaded { get; set; }
 
-        public TimeSpan Duration
-        {
-            get
-            {
-                return this._duration;
-            }
-            set
-            {
-                this._duration = value;
-            }
-        }
+        public TimeSpan Duration { get; set; }
 
-        public string Location
-        {
-            get
-            {
-                return this._Location;
-            }
-            set
-            {
-                this._Location = value;
-            }
-        }
+        public string Location { get; set; }
 
-        public long MediaID
-        {
-            get
-            {
-                return this._MediaID;
-            }
-            set
-            {
-                this._MediaID = value;
-            }
-        }
+        public long MediaID { get; set; }
+
+        public bool Selected { get; set; }
+
+        public string Type { get; set; }
+
+        public string Name { get; set; }
     }
 }
 

@@ -7,21 +7,23 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using eAd.DataAccess;
+using eAd.DataViewModels;
 using eAd.Utilities;
+using eAd.Website.Extensions;
 using eAd.Website.Repositories;
 
 namespace eAd.Website.Controllers
 { 
     public class MediaController : Controller
     {
-        private eAdDataContainer db = new eAdDataContainer();
+        private readonly eAdDataContainer _db = new eAdDataContainer();
 
         //
         // GET: /Default1/
 
         public ViewResult Index()
         {
-            return View(db.Media.ToList());
+            return View(_db.Media.ToList());
         }
 
         //
@@ -29,7 +31,7 @@ namespace eAd.Website.Controllers
 
         public ViewResult Details(long id)
         {
-            Medium medium = db.Media.Single(m => m.MediaID == id);
+            Medium medium = _db.Media.Single(m => m.MediaID == id);
             return View(medium);
         }
 
@@ -45,6 +47,58 @@ namespace eAd.Website.Controllers
             return View(medium);
         } 
 
+
+        //public ActionResult Picker(string name, string type)
+        //{
+        //   var media =  _db.Media
+        //    return View();
+        //}
+
+          public ActionResult Picker()
+          {
+           
+              ViewBag.Types = new SelectList(_db.Media.Select(m=>m.Type).Distinct().ToList(), "", "");
+    
+              
+              var media = _db.Media;
+
+
+            return View(media.Select(m=>new MediaListModel()
+                                            {
+                                                Duration =  (TimeSpan) m.Duration,
+                                                MediaID = m.MediaID,
+                                                Type = m.Type,
+                                                Selected = false,
+                                                Name = m.Name
+                                            }));
+        }
+
+          public ActionResult PickerList(string name, string type)
+          {
+              var types = _db.Media.Distinct().ToList();
+              ViewBag.Types = new SelectList(types.Select(t=>t.Type), "", "");
+              var media = _db.Media.ToList();
+
+              if (!String.IsNullOrEmpty(name))
+              {
+                  media = new List<Medium>(media.Where(n => n.Name.ToLower().Contains(name.ToLower())));
+              }
+
+              if (!String.IsNullOrEmpty(type))
+              {
+                  media = new List<Medium>(media.Where(n => n.Type.ToLower().Contains(type.ToLower())));
+              }
+
+              return View(media.Select(m => new MediaListModel()
+              {
+                  Duration = ((TimeSpan)m.Duration),
+                  MediaID = m.MediaID,
+                  Type = m.Type,
+                  Selected = false,
+                  Name = m.Name
+              }));
+          }
+
         //
         // POST: /Default1/Create
 
@@ -54,8 +108,8 @@ namespace eAd.Website.Controllers
             if (ModelState.IsValid)
             {
                 medium.Created = DateTime.Now;
-                db.Media.AddObject(medium);
-                db.SaveChanges();
+                _db.Media.AddObject(medium);
+                _db.SaveChanges();
 
                 UploadedContent upload;
 
@@ -88,7 +142,7 @@ namespace eAd.Website.Controllers
                 }
                    
 
-                db.SaveChanges();
+                _db.SaveChanges();
                 return RedirectToAction("Index");  
             }
 
@@ -101,7 +155,7 @@ namespace eAd.Website.Controllers
         public ActionResult Edit(long id)
         {
             UploadRepository.CreateUploadGUID(HttpContext);
-            Medium medium = db.Media.Single(m => m.MediaID == id);
+            Medium medium = _db.Media.Single(m => m.MediaID == id);
             if(medium.Duration==null)
                 medium.Duration = TimeSpan.Zero;
             medium.Updated = DateTime.Now;
@@ -124,9 +178,9 @@ namespace eAd.Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Media.Attach(medium);
-                db.ObjectStateManager.ChangeObjectState(medium, EntityState.Modified);
-                db.SaveChanges();
+                _db.Media.Attach(medium);
+                _db.ObjectStateManager.ChangeObjectState(medium, EntityState.Modified);
+                _db.SaveChanges();
 
                 UploadedContent upload;
                var location = UploadRepository.GetFileUrl(this.HttpContext, medium.MediaID.ToString(),
@@ -147,7 +201,7 @@ namespace eAd.Website.Controllers
                 }
  }
                 medium.Updated = DateTime.Now;
-                db.SaveChanges();
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(medium);
@@ -158,7 +212,7 @@ namespace eAd.Website.Controllers
  
         public ActionResult Delete(long id)
         {
-            Medium medium = db.Media.Single(m => m.MediaID == id);
+            Medium medium = _db.Media.Single(m => m.MediaID == id);
             return View(medium);
         }
 
@@ -168,7 +222,7 @@ namespace eAd.Website.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(long id)
         {            
-            Medium medium = db.Media.Single(m => m.MediaID == id);
+            Medium medium = _db.Media.Single(m => m.MediaID == id);
 
             //Remove Media From Mosaic Positions
             var positions = medium.Positions.ToList();
@@ -211,14 +265,14 @@ namespace eAd.Website.Controllers
 
             //Should Update all related stations that media is gone
 
-            db.Media.DeleteObject(medium);
-            db.SaveChanges();
+            _db.Media.DeleteObject(medium);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

@@ -24,15 +24,16 @@
 
 					        // Display dialog
 					        $(win).dialog({
-					            'modal': true,
-					            'buttons': {
+					            modal: true,
+					                title:'Edit Mosaic',
+					            buttons: {
 					                'Ok': function () {
 
 					                //    $(this).dialog('**destroy**');
-					                    $('#editMosaic').close();
+					                    $(this).close();
 					                },
 					                'Cancel': function () {
-					                    $('#editMosaic').close();
+					                    $(this).close();
 					                }
 					            }
 					        });
@@ -54,64 +55,6 @@
 						);
 					    }
 					});
-
-				
-//				// Disable menus
-
-//				$("#disableMenus").click( function() {
-
-//					$('#myDiv, #myList UL LI').disableContextMenu();
-
-//					$(this).attr('disabled', true);
-
-//					$("#enableMenus").attr('disabled', false);
-
-//				});
-
-//				
-
-//				// Enable menus
-
-//				$("#enableMenus").click( function() {
-
-//					$('#myDiv, #myList UL LI').enableContextMenu();
-
-//					$(this).attr('disabled', true);
-
-//					$("#disableMenus").attr('disabled', false);
-
-//				});
-
-				
-
-//				// Disable cut/copy
-
-//				$("#disableItems").click( function() {
-
-//					$('#myMenu').disableContextMenuItems('#cut,#copy');
-
-//					$(this).attr('disabled', true);
-
-//					$("#enableItems").attr('disabled', false);
-
-//				});
-
-				
-
-//				// Enable cut/copy
-
-//				$("#enableItems").click( function() {
-
-//					$('#myMenu').enableContextMenuItems('#cut,#copy');
-
-//					$(this).attr('disabled', true);
-
-//					$("#disableItems").attr('disabled', false);
-
-//				});				
-
-				
-
 
         // there's the gallery and the trash
         var $gallery = $("#gallery"),
@@ -156,7 +99,9 @@
                 }
             }
         });
+        
         $("#AddNewPosition").button();
+        $('#AddNewPosition').unbind('click');
         $("#AddNewPosition").click(function () { return false; });
 
         // When the toolbar button is clicked...
@@ -169,7 +114,7 @@
 
       
         // When the toolbar button is clicked...
-     //   $('#SaveMosaic').unbind('click');
+       $('#SaveMosaic').unbind('click');
         $('#SaveMosaic').click(function () {
 
             SaveMosaic();
@@ -336,28 +281,18 @@
                
            positions=jQuery.unique(positions);
           var mosaic = $("#MosaicID");
-             var plist = [];
-       
-     positions.each(function() 
-           {
-                var position = $(this).position();
-              var imglist = new Array();
-           
-           //$($($(this).find('div.ui-accordion-content')[0]).find('li')).find("img")
+          var plist = [];
+       positions.each(function() 
+        {
+           var position = $(this).position();
+           var imglist = new Array();
            var list =   $($($(this).find('div.ui-accordion-content')[0]).find('li')).find("img");
-               
            list=jQuery.unique(list);
-             list.each(function()
-  {
+           list.each(function ()
+           {
                imglist.push($(this).attr("src"));
            });
-           
-//                SavePosition($(this).attr('id'),
-//                    position.left-playerScreenPos.left,
-//                    position.top-playerScreenPos.top,
-//                    $(this).width(),
-//                $(this).height(),imglist);
-        
+   
     plist.push({ MosaicID:  mosaic.val(), Name: $(this).attr('id'),
             X: (''+(position.left-playerScreenPos.left)), Y:   (''+(position.top-playerScreenPos.top))
             , Width:  (''+$(this).width()), Height:  (''+$(this).height()), MediaUri: imglist, Media: null });
@@ -375,17 +310,14 @@
                 traditional: true,
                     contentType: 'application/json; charset=utf-8'
             });
-
-	          
-	          
-	          
-	           $.ajax({
+	          mosaic = $("#MosaicID");
+	          $.ajax({
                     url: "Mosaic/MosaicUpdated",
-                    type: 'POST',
+                    type: 'AJAX',
                     context: document.body,
                     data: 
-                    { 
-                        id: id
+                    {
+                        id: mosaic.val()
                     },
                     success: function (data) 
                     {
@@ -581,6 +513,35 @@ function checkString(strng) {
 
 					function (action, el, pos) {
 
+					    if (action == "add") {
+					        var mosaic = $("#MosaicID");
+
+					        if (mosaic.val() != "") {
+
+
+					            // Build dialog markup
+					            var win = $('<div id="AddMedia"></div>');
+
+					            win.load('Media/Picker/' + mosaic.val());
+
+					            // Display dialog
+					            $(win).dialog({
+					                modal: true,
+					                title: 'Edit Mosaic',
+					                buttons: {
+					                    'Ok': function () {
+
+					                        //    $(this).dialog('**destroy**');
+					                        $('#AddMedia').close();
+					                    },
+					                    'Cancel': function () {
+					                        $('#AddMedia').close();
+					                    }
+					                }
+					            });
+					        }
+					    }
+					    else
 					    alert(
 
 						'pAction: ' + action + '\n\n' +

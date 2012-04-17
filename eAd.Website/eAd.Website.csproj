@@ -1641,6 +1641,8 @@
     <Content Include="Views\Station\ShowScreenShot.cshtml" />
     <Content Include="Views\Stations\UploadScreenshot.cshtml" />
     <Content Include="Views\Mosaic\Edit.cshtml" />
+    <Content Include="Views\Media\Picker.cshtml" />
+    <Content Include="Views\Media\PickerList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\.svn\props\" />
