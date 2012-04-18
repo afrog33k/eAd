@@ -46,7 +46,12 @@ namespace eAd.Website.Controllers
             return View();
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult GetMosaicList()
+        {
+          return   Json(new SelectList(db.Mosaics, "MosaicID", "Name"),JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult EditPartial(int id)
         {
             var mosaic = db.Mosaics.Where(m => m.MosaicID == id).FirstOrDefault();
 
@@ -54,7 +59,7 @@ namespace eAd.Website.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Mosaic mosaic)
+        public ActionResult EditPartial(Mosaic mosaic)
         {
             if (ModelState.IsValid)
             {    
@@ -103,8 +108,9 @@ namespace eAd.Website.Controllers
             if (db.Mosaics.Where(m => m.MosaicID == id).Count() > 0)
             {
                 var mosaic = db.Mosaics.Where(m => m.MosaicID == id).FirstOrDefault();
-            
-                return Json(mosaic.Positions.Select(d=>d.CreateModel()).ToArray(), JsonRequestBehavior.AllowGet);
+
+                if (mosaic != null)
+                    return Json(mosaic.Positions.Select(d=>d.CreateModel()).ToArray(), JsonRequestBehavior.AllowGet);
             }
             return null;
         }
@@ -253,7 +259,7 @@ namespace eAd.Website.Controllers
                     return Json("Invalid Mosiac, Please Choose One Before Saving", JsonRequestBehavior.AllowGet);
                 }
             }
-            if (positionList.Count()>0)
+            if (positionList != null && positionList.Count()>0)
             {
                   db.SaveChanges();
             return Json("Sucessfully Saved Mosaic", JsonRequestBehavior.AllowGet);

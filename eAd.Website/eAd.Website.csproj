@@ -864,6 +864,21 @@
     <Content Include="Content\Images\malaysiakini.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Media\image.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Media\library.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Media\powerpoint.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Media\text.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Media\video.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\menubg.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1132,6 +1147,7 @@
     <Content Include="Content\Menu\Descriptions\SiteMapBinding.html" />
     <Content Include="Content\Menu\Descriptions\Sprites.html" />
     <Content Include="Content\Menu\Descriptions\Templates.html" />
+    <Content Include="Content\mosaic.css" />
     <Content Include="Content\NumericTextBox\Descriptions\Accessibility.html" />
     <Content Include="Content\NumericTextBox\Descriptions\ClientSideApi.html" />
     <Content Include="Content\NumericTextBox\Descriptions\ClientSideEvents.html" />
@@ -1640,7 +1656,7 @@
     <Content Include="Views\Mosaic\preview.cshtml" />
     <Content Include="Views\Station\ShowScreenShot.cshtml" />
     <Content Include="Views\Stations\UploadScreenshot.cshtml" />
-    <Content Include="Views\Mosaic\Edit.cshtml" />
+    <Content Include="Views\Mosaic\EditPartial.cshtml" />
     <Content Include="Views\Media\Picker.cshtml" />
     <Content Include="Views\Media\PickerList.cshtml" />
   </ItemGroup>
