@@ -12,4 +12,5 @@
   <Module PersistentId="66F6656A-6A03-4F5B-8428-FDDDA5830C63" ModuleId="eAd.ClientConfiguration" />
   <Module PersistentId="37201E0B-014E-4EA6-9F84-9551DD2DDFE8" ModuleId="irio.mvc.htmlhelpers" />
   <Module PersistentId="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="mscorlib" />
+  <Module PersistentId="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" ModuleId="System.Web.Mvc" />
 </Modules>

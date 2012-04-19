@@ -1,0 +1,60 @@
+﻿@model eAd.DataAccess.Mosaic
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Mosaic</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">Created</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Created)
+    </div>
+
+    <div class="display-label">Updated</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Updated)
+    </div>
+
+    <div class="display-label">Background</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Background)
+    </div>
+
+    <div class="display-label">BackgroundColor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BackgroundColor)
+    </div>
+
+    <div class="display-label">Width</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Width)
+    </div>
+
+    <div class="display-label">Height</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Height)
+    </div>
+
+    <div class="display-label">Hash</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Hash)
+    </div>
+
+    <div class="display-label">Size</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Size)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.MosaicID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

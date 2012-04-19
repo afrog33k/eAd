@@ -54,11 +54,11 @@ namespace eAd.Website.Controllers
         //    return View();
         //}
 
-          public ActionResult Picker()
+          public ActionResult Picker(string componentId    )
           {
            
               ViewBag.Types = new SelectList(_db.Media.Select(m=>m.Type).Distinct().ToList(), "", "");
-    
+              ViewBag.ComponentId = componentId;
               
               var media = _db.Media;
 
@@ -69,7 +69,8 @@ namespace eAd.Website.Controllers
                                                 MediaID = m.MediaID,
                                                 Type = m.Type,
                                                 Selected = false,
-                                                Name = m.Name
+                                                Name = m.Name,
+                                                Location = m.Location
                                             }));
         }
 
@@ -95,7 +96,8 @@ namespace eAd.Website.Controllers
                   MediaID = m.MediaID,
                   Type = m.Type,
                   Selected = false,
-                  Name = m.Name
+                  Name = m.Name,
+                  Location = m.Location
               }));
           }
 

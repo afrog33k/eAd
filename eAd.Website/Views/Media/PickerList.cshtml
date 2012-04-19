@@ -1,10 +1,9 @@
-﻿@using eAd.Website.Extensions
+﻿@using eAd.Utilities
+@using eAd.Website.Extensions
 @model IEnumerable<eAd.DataViewModels.MediaListModel>
-
 @{
-        Layout = "";
+    Layout = "";
 }
-
 <table>
     <tr>
         <th>
@@ -19,26 +18,36 @@
         <th>
             Select
         </th>
-       
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            @item.Duration.ToReadableString()
-      
-        </td>
-      
-         <td>
-            @Html.EditorFor(modelItem => item.Selected)
-        </td>
-        
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <img src="@( !(String.IsNullOrEmpty(item.Location)) ? /*Path.GetDirectoryName(item.Location) QuickHacktm*/ Url.Content("~/Uploads/Temp/Media" + "/" + "Thumb" + Path.GetFileNameWithoutExtension(item.Location) + ".jpg") : "/Content/Images/no_image.gif")"  alt="[@(MimeExtensionHelper.GetSimpleType(item.Location))]" width="96" height="72"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @item.Duration.ToReadableString()
+            </td>
+            <td>
+                 <input type="hidden" id="@("hidden-" + item.MediaID)" name="@("hidden-" + item.MediaID)" 
+                  value="@item.Name"/>
+            <input id="@("select-" + item.MediaID)" class="check-box" type="checkbox" value="@(item.Selected.ToString())" name="@("select-" + item.MediaID)"/>
+                @*@Html.EditorFor(modelItem => item.Selected,"select-"+item.MediaID)*@
+            </td>
+        </tr>
+    }
 </table>

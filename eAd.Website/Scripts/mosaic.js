@@ -1,5 +1,15 @@
-﻿function ResetDefaults() {
+﻿//Page Initialization
+$(function () {
+    //Main Mosaic File
+    ResetDefaults();
 
+    ReloadMosaicList();
+    
+});
+function ResetDefaults() {
+
+  
+    
     var container = $("#container");
 
     container.contextMenu({
@@ -8,50 +18,38 @@
                 function (action, el, pos) {
                     if (action == "edit") {
                         var mosaic = $("#MosaicID");
-
                         if (mosaic.val() != "") {
                             ShowModalPage("EditMosaic",'Edit Mosaic', 'Mosaic/EditPartial/' + mosaic.val(), null, null);
-                            //					       // Build dialog markup
-                            //					        var win = $('<div id="editMosaic"></div>');
-
-                            //    win.load('Mosaic/Edit/' + mosaic.val());
-
-
-                            //					       //  Display dialog
-                            //					        $(win).dialog({
-                            //					            modal: true,
-                            //					                title:'Edit Mosaic',
-                            //					            buttons: {
-                            //					                'Ok': function () {
-
-                            //					                    $(this).dialog('**destroy**');
-                            //					                    $(this).close();
-                            //					                },
-                            //					                'Cancel': function () {
-                            //					                    $(this).close();
-                            //					                }
-                            //					            }
-                            //					        });
                         }
                         else {
                             alert("Please Select A Mosaic to Work on");
                         }
                     }
-                    else {
-
-
-                        alert(
-
-					                    'Action: ' + action + '\n\n' +
-
-    					                    'Element ID: ' + $(el).attr('id') + '\n\n' +
-
-        					                    'X: ' + pos.x + '  Y: ' + pos.y + ' (relative to element)\n\n' +
-
-            					                    'X: ' + pos.docX + '  Y: ' + pos.docY + ' (relative to document)'
-
-						        );
+                    else if (action == "delete") {
+                        var mosaic = $("#MosaicID");
+                        if (mosaic.val() != "") {
+                            ShowModalPage("DeleteMosaic", 'Delete Mosaic', 'Mosaic/Delete/' + mosaic.val(), null, null);
+                        }
+                        else {
+                            alert("Please Select A Mosaic to Work on");
+                        }
                     }
+                    //Debug Version
+//                    else {
+
+
+//                        alert(
+
+//					                    'Action: ' + action + '\n\n' +
+
+//    					                    'Element ID: ' + $(el).attr('id') + '\n\n' +
+
+//        					                    'X: ' + pos.x + '  Y: ' + pos.y + ' (relative to element)\n\n' +
+
+//            					                    'X: ' + pos.docX + '  Y: ' + pos.docY + ' (relative to document)'
+
+//						        );
+//                    }
                 });
 
     // there's the gallery and the trash
@@ -126,7 +124,8 @@
 
     $("#CreateNewMosaic").button();
 
-
+   // $("#MosaicID").dropp();
+    
 
     // When the toolbar button is clicked...
     $('#CreateNewMosaic').click(function () {
@@ -175,13 +174,15 @@ function ShowModalPage(name,title, page, sucess, failure) {
   // Display dialog
   win.load(page).dialog({
             modal: true,
-                   title:title
+            title: title,
+            resizable: false,
+          width:'auto'
 //            buttons: {
 //                "Close": function () { $(this).dialog("close"); }
 //            }
              });
 
-        $("#editMosaic").dialog('open'); 
+   //     $("#editMosaic").dialog('open'); 
    // });
     // Display dialog
     //        win.load(page, function () {
@@ -206,9 +207,10 @@ function ShowModalPage(name,title, page, sucess, failure) {
 
 function addImage($item, $object) {
 
-    $item.fadeOut(function () {
+    $item.fadeOut(function () 
+        {
         // image deletion function
-        var recycleIcon = "<a href='link/to/recycle/script/when/we/have/js/off' title='Recycle this image' class='ui-icon ui-icon-refresh'>Recycle image</a>";
+        var recycleIcon = "<a href='' title='Recycle this image' class='ui-icon ui-icon-refresh'>Recycle image</a>";
 
         var $list = $("ul", $object.find('.collapsible').find('div')).length ?
 					        $("ul", $object.find('.collapsible').find('div')) :
@@ -286,20 +288,7 @@ function addPosition($item, $object) {
     });
 }
 
-$(function () {
-    ResetDefaults();
-    //	        $("#player1").draggable({ containment: "#container", scroll: false, snap: ".resizable", snapMode: "outer" });
-    //	        $("#player1").resizable({
-    //	            //    containment: "#container",
-    //	            animate: true,
-    //	            helper: "ui-resizable-helper",
-    //	            grid: 20,
-    //	            ghost: true,
-    //	            stop: function () {
-    //	                //  $(this).find("img")("background", $(this).css("background"));
-    //	            }
-    //	        });
-});
+
 
 function Preview() {
     window.location.href = "Mosaic/Preview/" + $("#MosaicID").val();
@@ -550,23 +539,18 @@ function AddPosition(name, x, y, nwidth, nheight, id, media) {
 
 					                if (mosaic.val() != "") {
 
-					                    ShowModalPage("MediaPicker", "Pick media to insert", 'Media/Picker/' + mosaic.val(), null, null);
-					                   
+					                    ShowModalPage("MediaPicker", "Pick media to insert", 'Media/Picker?componentId=' + jsName, null, null);
+
 					                }
 					            }
-					            else
-					                alert(
+					            else if (action == "delete") {
+					                var mosaic = $("#MosaicID");
+					                if (mosaic.val() != "") {
+					                    ShowModalPage("DeletePosition", 'Delete Position', 'Mosaic/DeletePosition/?mosaic=' + mosaic.val() + "&position=" + jsName, null, null);
+					                }
 
-						        'pAction: ' + action + '\n\n' +
 
-						        'Element ID: ' + $(el).attr('id') + '\n\n' +
-
-						        'X: ' + pos.x + '  Y: ' + pos.y + ' (relative to element)\n\n' +
-
-						        'X: ' + pos.docX + '  Y: ' + pos.docY + ' (relative to document)'
-
-						        );
-
+					            }
 					        });
 
     $('#' + jsName).append(recycleIcon);
@@ -608,28 +592,82 @@ function AddPosition(name, x, y, nwidth, nheight, id, media) {
         //                                );
 
     }
-
-
-
-
+    
 }
-    function CloseMosaicMenu() {
-      
-        ReloadMosaicList();
+    function CloseMosaicMenu(id) {
+
+        ReloadMosaicList(id);
         $('#EditMosaic').dialog('destroy');
+        $('#EditMosaic').remove();
     }
 
-    function CloseMediaPicker() {
+    function CloseDeleteMosaic() {
+        ReloadMosaicList();
+        $('#DeleteMosaic').dialog('destroy');
+        $('#DeleteMosaic').remove();
+    }
+    function CloseMediaPicker(plist,positionName) {
 
-      //  ReloadMosaicList();
+        //  ReloadMosaicList();
+        //     alert("You have selected " + plist.length + " Items : " + plist);
         $('#MediaPicker').dialog('destroy');
-    }
-    
-    
+        $('#MediaPicker').remove();
+        var position = $('#' + positionName);
+      
+        if (plist != null && plist.length > 0) {
 
-    function ReloadMosaicList()
+     
+
+                for (var i = 0; i < plist.length; i++) {
+                    var item = $('<li class="ui-widget-content ui-corner-tr" id=' + plist[i].id + '>' +
+                '<h5 class="ui-widget-header">'+plist[i].name+'</h5>'+
+                '<img src="' + plist[i].img + '"  height="72" width="96" />' +
+                '</li>');
+                       
+                       
+                   
+                
+                // image deletion function
+                var recycleIcon = "<a href='' title='Recycle this image' class='ui-icon ui-icon-refresh'>Recycle image</a>";
+
+                var $list = $("ul", position.find('.collapsible').find('div')).length ?
+					        $("ul", position.find('.collapsible').find('div')) :
+					        $("<ul class='gallery ui-helper-reset'/>").appendTo(position.find('.collapsible').find('div'));
+
+
+               
+                item.find("a.ui-icon-trash").remove();
+                item.append(recycleIcon).appendTo($list).fadeIn(function () {
+                    item
+						        .animate({ width: "48px" })
+						        .find("img")
+							        .animate({ height: "36px" });
+                });
+
+                position.css("background", "url(" + plist[plist.length-1].img + ") top left no-repeat");
+                position.css("background-size", "100% 100%");
+            };
+            
+          
+        }
+   
+    }
+
+
+
+    function ReloadMosaicList(id)
     {
-            LoadDropDownList("Mosaic/GetMosaicList", "MosaicID");
+        LoadDropDownList("Mosaic/GetMosaicList", "MosaicID");
+        if(id>0) {
+            $('#MosaicID').val(id);
+        }
+        else {
+          
+            var myDDL = $('#MosaicID');
+            myDDL[0].selectedIndex = 0;
+       
+        }
+ 
     };
 
 

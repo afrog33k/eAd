@@ -96,6 +96,7 @@ namespace eAd.Website.Controllers
             Mosaic mosaic = new Mosaic();
             mosaic.Name = name;
             mosaic.Created = DateTime.Now;
+            mosaic.Updated = DateTime.Now;
                 db.Mosaics.AddObject(mosaic);
                 db.SaveChanges();
               
@@ -113,6 +114,59 @@ namespace eAd.Website.Controllers
                     return Json(mosaic.Positions.Select(d=>d.CreateModel()).ToArray(), JsonRequestBehavior.AllowGet);
             }
             return null;
+        }
+
+        //
+        // GET: /Default1/Delete/5
+
+        public ActionResult Delete(long id)
+        {
+            try
+            {
+                Mosaic mosaic = db.Mosaics.Single(m => m.MosaicID == id);
+                return View(mosaic);
+            }
+            catch (Exception ex) //Doesnt Exist
+            {
+                return Json("Mosaic Doesn't Exist",JsonRequestBehavior.AllowGet);
+               
+            }
+           
+        }
+
+        //
+        // POST: /Default1/Delete/5
+
+   //     [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(long id)
+        {
+            try
+            {
+                
+            Mosaic mosaic = db.Mosaics.Single(m => m.MosaicID == id);
+
+                var positions = new List<Position>();
+                foreach (var position in db.Positions.Where(p=>p.MosaicID==id))
+                {
+                   positions.Add(position);
+                }
+
+                foreach (var position in positions)
+                {
+                   mosaic.Positions.Remove(position);
+                }
+
+               
+
+            db.Mosaics.DeleteObject(mosaic);
+            db.SaveChanges();
+            return Json("Sucessfully Deleted Mosaic", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                return Json("Failed To Delete Mosaic", JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult MosaicUpdated(long id)
