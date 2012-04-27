@@ -98,7 +98,7 @@ namespace eAd.Website.Repositories
                     var uploadedContents =
                         ((List<UploadedContent>) context.Session["SavedFileList"]);
                     var guid = (UrlFriendlyGuid) context.Session["UploadGUID"];
-                    if (uploadedContents != null)
+                    if (uploadedContents != null && uploadedContents.Count>0)
                     {
                         UploadedContent thisContent = uploadedContents.Find(
                             content =>

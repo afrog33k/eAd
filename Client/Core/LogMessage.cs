@@ -50,6 +50,4 @@ namespace Client.Core
             return theMessage;
         }
     }
-
-    public enum LogType { Info, Audit, Error }
 }

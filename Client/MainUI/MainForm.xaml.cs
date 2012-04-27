@@ -70,7 +70,7 @@ namespace Client
                 _clientSize = new System.Drawing.Size((int)Settings.Default.sizeX, (int)Settings.Default.sizeY);
            //     Size = _clientSize;
             //    WindowState = FormWindowState.Normal;
-            //    Location = new System.Drawing.Point((int)Settings.Default.offsetX, (int)Settings.Default.offsetY);
+            //    DisplayLocation = new System.Drawing.Point((int)Settings.Default.offsetX, (int)Settings.Default.offsetY);
             //    StartPosition = FormStartPosition.Manual;
             }
             else
@@ -127,6 +127,8 @@ namespace Client
 
                 // Create a cachemanager
                 SetCacheManager();
+                
+                ShowSplashScreen();
 
                 try
                 {
@@ -236,14 +238,14 @@ namespace Client
                 // In 10 seconds fire the next layout?
                 Timer timer = new Timer();
                 timer.Interval = 10000;
-                timer.Elapsed += new ElapsedEventHandler(splashScreenTimer_Tick);
+                timer.Elapsed += new ElapsedEventHandler(SplashScreenTimerTick);
 
                 // Start the timer
                 timer.Start();
             }
         }
 
-        void splashScreenTimer_Tick(object sender, EventArgs e)
+        void SplashScreenTimerTick(object sender, EventArgs e)
         {
             Debug.WriteLine(new LogMessage("timer_Tick", "Loading next layout after splashscreen"));
 
@@ -485,8 +487,8 @@ namespace Client
                 options.scheduleId = _scheduleId;
                 options.layoutId = _layoutId;
                 options.regionId = region.Id;
-                options.Width = (int)(region.Width * _scaleFactor);
-                options.Height = (int)(region.Height * _scaleFactor);
+                options.Width = (int)((region.Width + 15.0) * _scaleFactor);
+                options.Height = (int)((region.Height + 15.0) * _scaleFactor);
                 options.Left = (int)(region.Left * _scaleFactor);
                 options.Top = (int)(region.Top * _scaleFactor);
                 options.ScaleFactor = _scaleFactor;
@@ -550,7 +552,7 @@ namespace Client
         {
             // We are running with the Default.xml - meaning the schedule doesnt exist
         //    System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-         //   Stream resourceStream = assembly.GetManifestResourceStream("XiboClient.Resources.splash.jpg");
+         //   Stream resourceStream = assembly.GetManifestResourceStream("Client.Resources.splash.jpg");
 
             Debug.WriteLine("Showing Splash Screen");
 
@@ -573,7 +575,7 @@ namespace Client
                 BitmapImage splash = new BitmapImage();
 splash.BeginInit();
                 splash.UriSource = //new Uri("Resources/w0000114.jpg", UriKind.Relative);
-     new Uri("pack://application:,,,/Client;component/Resources/w0000114.jpg");
+     new Uri("Resources/splash.png",UriKind.Relative);
 splash.EndInit();
 
 

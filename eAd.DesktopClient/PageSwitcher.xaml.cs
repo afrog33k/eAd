@@ -348,9 +348,9 @@
 
             AsyncCompletedEventHandler handler = null;
 
-            string path = Constants.AppPath + item.Location;
+            string path = Constants.AppPath + item.DisplayLocation;
 
-            string location = item.Location;
+            string location = item.DisplayLocation;
 
             bool flag = false;
 
@@ -363,14 +363,14 @@
 
             if ((from i in playlist
 
-                 where i.Location == path
+                 where i.DisplayLocation == path
 
                  select i).Count<MediaListModel>() <= 0)
             {
 
                 MediaListModel model = item;
 
-                model.Location = path;
+                model.DisplayLocation = path;
 
                 if (flag)
                 {
@@ -534,7 +534,7 @@
 
                         item = (from i in playlist
 
-                                where i.Location == path
+                                where i.DisplayLocation == path
 
                                 select i).FirstOrDefault<MediaListModel>();
 

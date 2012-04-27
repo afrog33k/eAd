@@ -44,7 +44,7 @@
             }
         }
 
-        public List<long> Media { get; set; }
+        public List<MediaListModel> Media { get; set; }
 
         public List<string> MediaUri { get; set; }
 

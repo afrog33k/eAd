@@ -64,9 +64,12 @@ namespace Client
 
 
         }
+        object timerLock = new object();
 
         protected void StartTimer()
         {
+            lock (timerLock)
+            {
             //start the timer
             if (!timerStarted && duration != 0)
             {
@@ -77,6 +80,7 @@ namespace Client
                 timer.Elapsed += new ElapsedEventHandler(timer_Tick);
 
                 timerStarted = true;
+            }
             }
         }
 

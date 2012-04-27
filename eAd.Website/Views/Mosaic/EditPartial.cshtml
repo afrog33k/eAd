@@ -32,16 +32,17 @@
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Background)
+             <input id="SelectBackground" type="button" value="Choose" />
             @Html.ValidationMessageFor(model => model.Background)
         </div>
 
-        <div class="editor-label">
+       @* <div class="editor-label">
             @Html.LabelFor(model => model.BackgroundColor)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.BackgroundColor)
             @Html.ValidationMessageFor(model => model.BackgroundColor)
-        </div>
+        </div>*@
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Width)
@@ -62,18 +63,29 @@
      
         <p>
             <input id="SaveEditedMosaic" type="submit" value="Save" />
+             <input id="CancelEdit" type="button" value="Cancel" />
         </p>
+        
+       
     </fieldset>
 }
 <script type="text/javascript">
     $(function () {
         $("#SaveEditedMosaic").button();
+         $("#SelectBackground").button();
+         $("#CancelEdit").button();
+        
+
+        $("#SelectBackground").click(function() {
+           ShowModalPage("BackgroundPicker","Select Background Image",'Media/Picker?componentId=MosaicBackground', null, null);
+        });
     
     });
     $(function () {
-
-       
-        $('form').submit(function () {
+        $("#CancelEdit").click(function() {
+                window.parent.CloseMosaicMenu(@Model.MosaicID);
+        });
+    $('form').submit(function () {
             if ($(this).valid()) {
                 $.ajax({
                     url: this.action,

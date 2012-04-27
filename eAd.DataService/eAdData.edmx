@@ -219,6 +219,8 @@
           <Property Name="PostalCode" Type="nvarchar" MaxLength="15" />
           <Property Name="Rate" Type="float" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="HardwareKey" Type="nchar" MaxLength="32" />
+          <Property Name="Approved" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -534,8 +536,8 @@
           </Key>
           <Property Type="Int64" Name="MosaicID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" MaxLength="80" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="Created" Precision="3" Nullable="false" />
-          <Property Type="DateTime" Name="Updated" Precision="3" Nullable="false" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Updated" Nullable="false" Precision="3" />
           <Property Type="String" Name="Background" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="BackgroundColor" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="Width" Nullable="false" />
@@ -576,6 +578,8 @@
           <Property Type="String" Name="PostalCode" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Type="Double" Name="Rate" />
           <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="HardwareKey" MaxLength="32" FixedLength="true" Unicode="true" />
+          <Property Type="Boolean" Name="Approved" Nullable="false" />
           <NavigationProperty Name="Messages" Relationship="eAdData.FK_MessageStation" FromRole="Station" ToRole="Message" />
           <NavigationProperty Name="Groupings" Relationship="eAdData.GroupingStation" FromRole="Station" ToRole="Grouping" />
         </EntityType>
@@ -792,6 +796,8 @@
           <EntitySetMapping Name="Stations">
             <EntityTypeMapping TypeName="eAdData.Station">
               <MappingFragment StoreEntitySet="Stations">
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="HardwareKey" ColumnName="HardwareKey" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Rate" ColumnName="Rate" />
                 <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
@@ -879,17 +885,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="eAdData" >
-        <EntityTypeShape EntityType="eAdData.Car" Width="1.5" PointX="4.7196635271979792" PointY="18.568783545200148" />
-        <EntityTypeShape EntityType="eAdData.Customer" Width="1.5" PointX="2.1786356951010579" PointY="28.557048840707658" />
-        <EntityTypeShape EntityType="eAdData.Grouping" Width="1.5" PointX="8.10496532363117" PointY="25.97311441319674" />
-        <EntityTypeShape EntityType="eAdData.Medium" Width="1.5" PointX="5.6502982460196591" PointY="18.762806275283364" />
-        <EntityTypeShape EntityType="eAdData.MediaType" Width="1.5" PointX="6.88430276833675" PointY="27.052736607870429" />
-        <EntityTypeShape EntityType="eAdData.Message" Width="1.5" PointX="1.6680587854553286" PointY="28.421750081899461" />
-        <EntityTypeShape EntityType="eAdData.Mosaic" Width="1.5" PointX="2.6287243881396596" PointY="2.0695230970482914" />
-        <EntityTypeShape EntityType="eAdData.Position" Width="1.5" PointX="8.8076370809262787" PointY="9.419454876994461" />
-        <EntityTypeShape EntityType="eAdData.Station" Width="1.5" PointX="5.1685938579815414" PointY="6.4903803199950518" />
-        <EntityTypeShape EntityType="eAdData.sysdiagram" Width="1.5" PointX="8.8367535047404253" PointY="22.195702980363603" />
-        <EntityTypeShape EntityType="eAdData.Theme" Width="1.5" PointX="4.683228830193741" PointY="4.2242212464214406" />
+        <EntityTypeShape EntityType="eAdData.Car" Width="1.5" PointX="5" PointY="9.25" />
+        <EntityTypeShape EntityType="eAdData.Customer" Width="1.5" PointX="2.75" PointY="9.125" />
+        <EntityTypeShape EntityType="eAdData.Grouping" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="eAdData.Medium" Width="1.5" PointX="0.75" PointY="9" />
+        <EntityTypeShape EntityType="eAdData.MediaType" Width="1.5" PointX="7.75" PointY="8.875" />
+        <EntityTypeShape EntityType="eAdData.Message" Width="1.5" PointX="7.5" PointY="4.875" />
+        <EntityTypeShape EntityType="eAdData.Mosaic" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="eAdData.Position" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="eAdData.Station" Width="1.5" PointX="5.25" PointY="4.375" />
+        <EntityTypeShape EntityType="eAdData.Theme" Width="1.5" PointX="8.25" PointY="2.25" />
         <AssociationConnector Association="eAdData.FK_CarCustomer" />
         <AssociationConnector Association="eAdData.FK_MosaicGrouping" />
         <AssociationConnector Association="eAdData.FK_MessageStation" />

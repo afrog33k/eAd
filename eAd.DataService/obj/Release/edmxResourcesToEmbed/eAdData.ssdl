@@ -133,8 +133,12 @@
     <Property Name="Location" Type="nvarchar" MaxLength="1000" />
     <Property Name="Tags" Type="nvarchar" MaxLength="250" />
     <Property Name="Type" Type="nvarchar" MaxLength="50" />
-    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="Created" Type="datetime" />
     <Property Name="Duration" Type="time" />
+    <Property Name="Hash" Type="nchar" MaxLength="32" />
+    <Property Name="Size" Type="bigint" Nullable="false" />
+    <Property Name="UserID" Type="bigint" Nullable="false" />
+    <Property Name="Updated" Type="datetime" />
   </EntityType>
   <EntityType Name="MediaTypes">
     <Key>
@@ -164,6 +168,14 @@
     </Key>
     <Property Name="MosaicID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="nvarchar" MaxLength="80" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+    <Property Name="Background" Type="nvarchar" MaxLength="500" />
+    <Property Name="BackgroundColor" Type="nvarchar" MaxLength="30" />
+    <Property Name="Width" Type="int" Nullable="false" />
+    <Property Name="Height" Type="int" Nullable="false" />
+    <Property Name="Hash" Type="nchar" MaxLength="32" />
+    <Property Name="Size" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="PositionMedium">
     <Key>
@@ -181,10 +193,11 @@
     <Property Name="Name" Type="nvarchar" MaxLength="80" />
     <Property Name="ContentURL" Type="nvarchar" MaxLength="1000" />
     <Property Name="MosaicID" Type="bigint" />
-    <Property Name="X" Type="float" />
-    <Property Name="Y" Type="float" />
-    <Property Name="Width" Type="float" />
-    <Property Name="Height" Type="float" />
+    <Property Name="X" Type="float" Nullable="false" />
+    <Property Name="Y" Type="float" Nullable="false" />
+    <Property Name="Width" Type="float" Nullable="false" />
+    <Property Name="Height" Type="float" Nullable="false" />
+    <Property Name="UserID" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Stations">
     <Key>
@@ -201,6 +214,8 @@
     <Property Name="PostalCode" Type="nvarchar" MaxLength="15" />
     <Property Name="Rate" Type="float" />
     <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="HardwareKey" Type="nchar" MaxLength="32" />
+    <Property Name="Approved" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

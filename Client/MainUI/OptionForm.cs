@@ -1,23 +1,3 @@
-/*
- * Xibo - Digitial Signage - http://www.xibo.org.uk
- * Copyright (C) 2006-11 Daniel Garner and James Packer
- *
- * This file is part of Xibo.
- *
- * Xibo is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * any later version. 
- *
- * Xibo is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with Xibo.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Net;
@@ -50,7 +30,7 @@ namespace Client
             if (Settings.Default.LibraryPath == "DEFAULT")
             {
                 Debug.WriteLine("Getting the Library Path", "OptionForm");
-                Settings.Default.LibraryPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Xibo Library";
+                Settings.Default.LibraryPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\ Library";
                 Settings.Default.Save();
             }
 
@@ -132,7 +112,7 @@ namespace Client
 
             textBoxResults.Text = "Sending Request";
 
-            Settings.Default.Xmds = textBoxXmdsUri.Text.TrimEnd('/') + @"/xibo.asmx";
+            Settings.Default.Xmds = textBoxXmdsUri.Text.TrimEnd('/') + @"/data.asmx";
          //   xmds.Url = Settings.Default.Xmds;
 
             Settings.Default.displayName = textBoxDisplayName.Text;
@@ -157,7 +137,7 @@ namespace Client
                 Settings.Default.collectInterval = numericUpDownCollect.Value;
                 Settings.Default.powerpointEnabled = checkBoxPowerPoint.Checked;
                 Settings.Default.statsEnabled = checkBoxStats.Checked;
-                Settings.Default.Xmds = textBoxXmdsUri.Text.TrimEnd('/') + @"/xibo.asmx";
+                Settings.Default.Xmds = textBoxXmdsUri.Text.TrimEnd('/') + @"/data.asmx";
                 Settings.Default.hardwareKey = tbHardwareKey.Text;
                 Settings.Default.scrollStepAmount = nupScrollStepAmount.Value;
                 Settings.Default.EnableMouse = enableMouseCb.Checked;
@@ -212,12 +192,12 @@ namespace Client
             }
         }
 
-        private void onlineHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OnlineHelpToolStripMenuItemClick(object sender, EventArgs e)
         {
             // open URL in separate instance of default browser
             try
             {
-                System.Diagnostics.Process.Start("http://wiki.xibo.org.uk/wiki/Manual:TOC");
+                System.Diagnostics.Process.Start("http://1.9.13.61/Manual");
             }
             catch
             {

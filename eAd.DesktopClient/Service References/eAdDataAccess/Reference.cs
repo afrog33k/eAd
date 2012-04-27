@@ -432,7 +432,7 @@ namespace DesktopClient.eAdDataAccess {
             set {
                 if ((object.ReferenceEquals(this.LocationField, value) != true)) {
                     this.LocationField = value;
-                    this.RaisePropertyChanged("Location");
+                    this.RaisePropertyChanged("DisplayLocation");
                 }
             }
         }
@@ -866,7 +866,7 @@ namespace DesktopClient.eAdDataAccess {
             set {
                 if ((object.ReferenceEquals(this.LocationField, value) != true)) {
                     this.LocationField = value;
-                    this.RaisePropertyChanged("Location");
+                    this.RaisePropertyChanged("DisplayLocation");
                 }
             }
         }

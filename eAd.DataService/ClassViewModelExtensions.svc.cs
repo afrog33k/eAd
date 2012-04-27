@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using eAd.DataViewModels;
 
@@ -51,6 +52,32 @@ namespace eAd.DataAccess
             return model;
         }
 
+        public static MediaListModel  CreateModel(this Medium medium)
+        {
+            var model = new MediaListModel();
+            model.MediaID = medium.MediaID;
+            model.Name = medium.Name;
+  model.Location = medium.Location;
+
+            var location = medium.Location;
+            var displayableurls = new string[] {"jpg","png","gif"};
+            if (displayableurls.Contains(Path.GetExtension(location)))
+            {
+                model.DisplayLocation = !(String.IsNullOrEmpty(location))
+                                            ? "Uploads/Temp/Media" + "/" + "Thumb" +
+                                              Path.GetFileNameWithoutExtension(location) + ".jpg"
+                                            : "/Content/Images/no_image.gif";
+            }
+            else
+            {
+                model.DisplayLocation = "Uploads/Temp/Media" + "/" + "Thumb" +
+                                        Path.GetFileNameWithoutExtension(location) + ".jpg";
+            }
+
+            return model;
+        }
+
+
         public static PositionViewModel CreateModel(this Position position)
         {
             return new PositionViewModel
@@ -63,7 +90,8 @@ namespace eAd.DataAccess
                            Width = position.Width,
                            X = position.X,
                            Y = position.Y,
-                           Media = (from m in position.Media select m.MediaID).ToList<long>()
+                           Media = position.Media.Select(m=>m.CreateModel()).ToList()
+                           // (from m in position.Media select m.MediaID).ToList<long>()
                        };
         }
 

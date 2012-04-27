@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/eAd.DataAccess" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/eAd.DataAccess" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
-  <xs:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaDisplayLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+  <xs:import schemaDisplayLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:simpleType name="FileTypeEnum">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Generic" />
@@ -59,7 +59,7 @@
           <xs:element minOccurs="0" name="DateAdded" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Groupings" nillable="true" type="tns:ArrayOfGrouping" />
           <xs:element minOccurs="0" name="LastCheckIn" nillable="true" type="xs:dateTime" />
-          <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DisplayLocation" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Messages" nillable="true" type="tns:ArrayOfMessage" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" />
@@ -130,7 +130,7 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="DateAdded" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Duration" nillable="true" type="ser:duration" />
-          <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DisplayLocation" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="MediaID" type="xs:long" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Positions" nillable="true" type="tns:ArrayOfPosition" />

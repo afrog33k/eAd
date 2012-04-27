@@ -64,14 +64,14 @@ namespace eAd.Website.Controllers
 
 
             return View(media.Select(m=>new MediaListModel()
-                                            {
-                                                Duration =  (TimeSpan) m.Duration,
-                                                MediaID = m.MediaID,
-                                                Type = m.Type,
-                                                Selected = false,
-                                                Name = m.Name,
-                                                Location = m.Location
-                                            }));
+                                                          {
+                                                              Duration =  (TimeSpan) m.Duration,
+                                                              MediaID = m.MediaID,
+                                                              Type = m.Type,
+                                                              Selected = false,
+                                                              Name = m.Name,
+                                                              DisplayLocation = m.Location
+                                                          }));
         }
 
           public ActionResult PickerList(string name, string type)
@@ -97,7 +97,7 @@ namespace eAd.Website.Controllers
                   Type = m.Type,
                   Selected = false,
                   Name = m.Name,
-                  Location = m.Location
+                  DisplayLocation = m.Location
               }));
           }
 
@@ -161,13 +161,22 @@ namespace eAd.Website.Controllers
             if(medium.Duration==null)
                 medium.Duration = TimeSpan.Zero;
             medium.Updated = DateTime.Now;
-            //to be removed
+            bool shouldCalculatenewHash =false;
+            if (medium.Hash == null || medium.Size == 0)
+            {
+                shouldCalculatenewHash = true;
+            }
 
-            //using (var fs = new FileStream(Server.MapPath("~/" + medium.Location), FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            //{
-            //    medium.Hash = Hashes.MD5(fs);
-            //    medium.Size = new FileInfo(Server.MapPath("~/" + medium.Location)).Length;
-            //}
+            // Calculate new hash/size
+            if (shouldCalculatenewHash)
+            {
+
+                using (var fs = new FileStream(Server.MapPath("~/" + medium.Location), FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                {
+                    medium.Hash = Hashes.MD5(fs);
+                    medium.Size = new FileInfo(Server.MapPath("~/" + medium.Location)).Length;
+                }
+            }
 
             return View(medium);
         }
@@ -191,17 +200,38 @@ namespace eAd.Website.Controllers
                 {
                     medium.Duration = new TimeSpan(upload.Duration.Ticks);
                 }
-           
-                if (location != null)
+
+                var shouldCalculatenewHash = false;
+                if (location != null )
                 {
+                    if(location!=medium.Location)
+                    {
+                        medium.Location = location;
+                        shouldCalculatenewHash = true;
+                    }
                     
-                    medium.Location = location;
+                }
+                if(medium.Hash==null||medium.Size==0)
+                {
+                    shouldCalculatenewHash = true;
+                }
+
+                // Calculate new hash/size
+               if(shouldCalculatenewHash) 
+               {
+              
                 using (var fs = new FileStream(Server.MapPath("~/" + medium.Location), FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     medium.Hash = Hashes.MD5(fs);
                     medium.Size = new FileInfo(Server.MapPath("~/" + medium.Location)).Length;
                 }
  }
+
+                foreach (var mosaic in medium.Positions.Select(p=>p.Mosaic))
+                {
+                    mosaic.Updated = DateTime.Now;
+                }
+
                 medium.Updated = DateTime.Now;
                 _db.SaveChanges();
                 return RedirectToAction("Index");

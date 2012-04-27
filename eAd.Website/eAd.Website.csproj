@@ -125,6 +125,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\App_Data\eAdData.sdf" />
+    <Content Include="Client\Update\DoNotDelete.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\Update\UpdateInfo.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\2011.1.224\Black\editor.png" />
     <Content Include="Content\2011.1.224\Black\imagebrowser.png" />
     <Content Include="Content\2011.1.224\Black\loading.gif" />
@@ -350,6 +356,7 @@
     <Content Include="Content\check48.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\classic-loader.gif" />
     <Content Include="Content\coin-slider-styles.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -488,6 +495,36 @@
     <Content Include="Content\Forest\treeview-line.png" />
     <Content Include="Content\Forest\treeview-nodes-rtl.png" />
     <Content Include="Content\Forest\treeview-nodes.png" />
+    <Content Include="Content\galleria\plugins\flickr\flickr-demo.html" />
+    <Content Include="Content\galleria\plugins\flickr\flickr-loader.gif" />
+    <Content Include="Content\galleria\plugins\flickr\galleria.flickr.js" />
+    <Content Include="Content\galleria\plugins\flickr\galleria.flickr.min.js" />
+    <Content Include="Content\galleria\plugins\flickr\loader.gif" />
+    <Content Include="Content\galleria\plugins\history\galleria.history.js" />
+    <Content Include="Content\galleria\plugins\history\galleria.history.min.js" />
+    <Content Include="Content\galleria\plugins\history\history-demo.html" />
+    <Content Include="Content\galleria\plugins\picasa\galleria.picasa.js" />
+    <Content Include="Content\galleria\plugins\picasa\galleria.picasa.min.js" />
+    <Content Include="Content\galleria\plugins\picasa\loader.gif" />
+    <Content Include="Content\galleria\plugins\picasa\picasa-demo.html" />
+    <Content Include="Content\galleria\themes\classic\classic-demo.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\galleria\themes\classic\classic-loader.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\galleria\themes\classic\classic-map.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\galleria\themes\classic\galleria.classic.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\galleria\themes\classic\galleria.classic.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\galleria\themes\classic\galleria.classic.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Grid\Customers\ALFKI.jpg" />
     <Content Include="Content\Grid\Customers\ANATR.jpg" />
     <Content Include="Content\Grid\Customers\ANTON.jpg" />
@@ -1408,6 +1445,9 @@
     <Content Include="Content\Window\Descriptions\PopupForm.html" />
     <Content Include="Content\Window\Descriptions\RtlSupport.html" />
     <Content Include="Content\Window\window.png" />
+    <Content Include="Content\ajax-loader.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\coin-slider.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1447,7 +1487,33 @@
     <Content Include="Scripts\additional-methods.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\common.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\deletemosaic.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\galleria\galleria-1.2.7.js" />
+    <Content Include="Scripts\galleria-1.2.7.min.js" />
+    <Content Include="Scripts\galleria\plugins\flickr\flickr-demo.html" />
+    <Content Include="Scripts\galleria\plugins\flickr\flickr-loader.gif" />
+    <Content Include="Scripts\galleria\plugins\flickr\galleria.flickr.js" />
+    <Content Include="Scripts\galleria\plugins\flickr\galleria.flickr.min.js" />
+    <Content Include="Scripts\galleria\plugins\flickr\loader.gif" />
+    <Content Include="Scripts\galleria\plugins\history\galleria.history.js" />
+    <Content Include="Scripts\galleria\plugins\history\galleria.history.min.js" />
+    <Content Include="Scripts\galleria\plugins\history\history-demo.html" />
+    <Content Include="Scripts\galleria\plugins\picasa\galleria.picasa.js" />
+    <Content Include="Scripts\galleria\plugins\picasa\galleria.picasa.min.js" />
+    <Content Include="Scripts\galleria\plugins\picasa\loader.gif" />
+    <Content Include="Scripts\galleria\plugins\picasa\picasa-demo.html" />
+    <Content Include="Scripts\galleria\themes\classic\classic-demo.html" />
+    <Content Include="Scripts\galleria\themes\classic\classic-loader.gif" />
+    <Content Include="Scripts\galleria\themes\classic\classic-map.png" />
+    <Content Include="Scripts\galleria\themes\classic\galleria.classic.css" />
+    <Content Include="Scripts\galleria\themes\classic\galleria.classic.js" />
+    <Content Include="Scripts\galleria\themes\classic\galleria.classic.min.js" />
+    <Content Include="Scripts\jail.0.9.5.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\jquery.contextMenu.js">
@@ -1607,6 +1673,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Client\Client1.2b.zip" />
+    <Content Include="Client\Update\Client.zip" />
+    <None Include="Content\galleria\plugins\.DS_Store" />
+    <None Include="Content\galleria\themes\.DS_Store" />
     <None Include="Content\Images\.svn\all-wcprops" />
     <None Include="Content\Images\.svn\entries" />
     <None Include="Content\Images\.svn\prop-base\buydeal.png.svn-base" />
@@ -1673,6 +1742,10 @@
     <None Include="Scripts\.svn\text-base\MicrosoftMvcValidation.debug.js.svn-base" />
     <None Include="Scripts\.svn\text-base\MicrosoftMvcValidation.js.svn-base" />
     <None Include="Scripts\.svn\text-base\Site.js.svn-base" />
+    <None Include="Scripts\galleria\.DS_Store" />
+    <None Include="Scripts\galleria\LICENSE" />
+    <None Include="Scripts\galleria\plugins\.DS_Store" />
+    <None Include="Scripts\galleria\themes\.DS_Store" />
     <None Include="Scripts\timedropdown\.svn\all-wcprops" />
     <None Include="Scripts\timedropdown\.svn\entries" />
     <None Include="Scripts\timedropdown\.svn\text-base\timedropdown.js.svn-base" />
@@ -1847,10 +1920,6 @@
     <Content Include="Views\Mosaic\EditPartial.cshtml" />
     <Content Include="Views\Media\Picker.cshtml" />
     <Content Include="Views\Media\PickerList.cshtml" />
-    <Content Include="Views\Default1\Index.cshtml" />
-    <Content Include="Views\Default1\Details.cshtml" />
-    <Content Include="Views\Default1\Create.cshtml" />
-    <Content Include="Views\Default1\Edit.cshtml" />
     <Content Include="Views\Mosaic\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>

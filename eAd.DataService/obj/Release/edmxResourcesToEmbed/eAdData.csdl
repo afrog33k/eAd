@@ -102,8 +102,12 @@
     <Property Type="String" Name="Location" MaxLength="1000" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="Tags" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="DateTime" Name="DateAdded" Precision="3" />
+    <Property Type="DateTime" Name="Created" Precision="3" />
     <Property Type="Time" Name="Duration" Precision="7" />
+    <Property Type="String" Name="Hash" MaxLength="32" FixedLength="true" Unicode="true" />
+    <Property Type="Int64" Name="Size" Nullable="false" />
+    <Property Type="Int64" Name="UserID" Nullable="false" />
+    <Property Type="DateTime" Name="Updated" Precision="3" />
     <NavigationProperty Name="Positions" Relationship="eAdData.PositionMedium" FromRole="Medium" ToRole="Position" />
     <NavigationProperty Name="Themes" Relationship="eAdData.ThemeMedium" FromRole="Medium" ToRole="Theme" />
   </EntityType>
@@ -136,6 +140,14 @@
     </Key>
     <Property Type="Int64" Name="MosaicID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="Name" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Created" Precision="3" Nullable="false" />
+    <Property Type="DateTime" Name="Updated" Precision="3" Nullable="false" />
+    <Property Type="String" Name="Background" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BackgroundColor" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Width" Nullable="false" />
+    <Property Type="Int32" Name="Height" Nullable="false" />
+    <Property Type="String" Name="Hash" MaxLength="32" FixedLength="true" Unicode="true" />
+    <Property Type="Int64" Name="Size" Nullable="false" />
     <NavigationProperty Name="Groupings" Relationship="eAdData.FK_MosaicGrouping" FromRole="Mosaic" ToRole="Grouping" />
     <NavigationProperty Name="Positions" Relationship="eAdData.FK_Positions_Mosaics" FromRole="Mosaic" ToRole="Position" />
   </EntityType>
@@ -147,10 +159,11 @@
     <Property Type="String" Name="Name" MaxLength="80" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="ContentURL" MaxLength="1000" FixedLength="false" Unicode="true" />
     <Property Type="Int64" Name="MosaicID" />
-    <Property Type="Double" Name="X" />
-    <Property Type="Double" Name="Y" />
-    <Property Type="Double" Name="Width" />
-    <Property Type="Double" Name="Height" />
+    <Property Type="Double" Name="X" Nullable="false" />
+    <Property Type="Double" Name="Y" Nullable="false" />
+    <Property Type="Double" Name="Width" Nullable="false" />
+    <Property Type="Double" Name="Height" Nullable="false" />
+    <Property Type="Int64" Name="UserID" Nullable="false" />
     <NavigationProperty Name="Mosaic" Relationship="eAdData.FK_Positions_Mosaics" FromRole="Position" ToRole="Mosaic" />
     <NavigationProperty Name="Media" Relationship="eAdData.PositionMedium" FromRole="Position" ToRole="Medium" />
   </EntityType>
@@ -171,6 +184,8 @@
     <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Messages" Relationship="eAdData.FK_MessageStation" FromRole="Station" ToRole="Message" />
     <NavigationProperty Name="Groupings" Relationship="eAdData.GroupingStation" FromRole="Station" ToRole="Grouping" />
+    <Property Type="String" Name="HardwareKey" MaxLength="32" FixedLength="true" Unicode="true" />
+    <Property Type="Boolean" Name="Approved" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>

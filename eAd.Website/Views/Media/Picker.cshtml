@@ -64,13 +64,22 @@ Pick item(s) from the Library
                 </tr>
             </table>
         </p>
-
+        <p>
+        <input id="Accept1" type="submit" value="Accept Selection" />
+            <input type="hidden" id="componentId" name="componentId" 
+                   value="@ViewBag.ComponentId"/>
+                   
+                   
+            <input id="CancelChoose1" type="button" value="Cancel" />
+        
+        </p>
         @Html.Partial("PickerList")
        </div>
     <p>
-        <input id="Accept" type="submit" value="Accept Selection" />
-              <input type="hidden" id="componentId" name="componentId" 
-                  value="@ViewBag.ComponentId"/>
+        <input id="Accept2" type="submit" value="Accept Selection" />
+        <input type="hidden" id="componentId" name="componentId" 
+               value="@ViewBag.ComponentId"/>
+                    <input id="CancelChoose2" type="button" value="Cancel" />
     </p>
 @*   }*@
 

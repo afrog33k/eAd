@@ -193,7 +193,7 @@ namespace Client
 function init() 
 {
     var totalDuration = " + _duration.ToString() + @" * 1000;
-    var itemCount = $('.XiboRssItem').Size();
+    var itemCount = $('.RssItem').Size();
     var durationIsPerItem = " + _durationIsPerItem.ToString() + @"
     
     if (durationIsPerItem == 0)
@@ -326,7 +326,7 @@ function init()
                         }
                         else
                         {
-                            _documentText += string.Format("<div class='XiboRssItem' style='display:block;padding:4px;Width:{1}'>{0}</div>", temp, this.Width - 10);
+                            _documentText += string.Format("<div class='RssItem' style='display:block;padding:4px;Width:{1}'>{0}</div>", temp, this.Width - 10);
                         }
                     }
 

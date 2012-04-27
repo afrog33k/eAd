@@ -2707,10 +2707,12 @@ namespace eAd.DataAccess
         /// Create a new Station object.
         /// </summary>
         /// <param name="stationID">Initial value of the StationID property.</param>
-        public static Station CreateStation(global::System.Int64 stationID)
+        /// <param name="approved">Initial value of the Approved property.</param>
+        public static Station CreateStation(global::System.Int64 stationID, global::System.Boolean approved)
         {
             Station station = new Station();
             station.StationID = stationID;
+            station.Approved = approved;
             return station;
         }
 
@@ -2984,6 +2986,54 @@ namespace eAd.DataAccess
         private global::System.String _Status;
         partial void OnStatusChanging(global::System.String value);
         partial void OnStatusChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String HardwareKey
+        {
+            get
+            {
+                return _HardwareKey;
+            }
+            set
+            {
+                OnHardwareKeyChanging(value);
+                ReportPropertyChanging("HardwareKey");
+                _HardwareKey = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("HardwareKey");
+                OnHardwareKeyChanged();
+            }
+        }
+        private global::System.String _HardwareKey;
+        partial void OnHardwareKeyChanging(global::System.String value);
+        partial void OnHardwareKeyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Approved
+        {
+            get
+            {
+                return _Approved;
+            }
+            set
+            {
+                OnApprovedChanging(value);
+                ReportPropertyChanging("Approved");
+                _Approved = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Approved");
+                OnApprovedChanged();
+            }
+        }
+        private global::System.Boolean _Approved;
+        partial void OnApprovedChanging(global::System.Boolean value);
+        partial void OnApprovedChanged();
 
         #endregion
 

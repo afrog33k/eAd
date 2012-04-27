@@ -1,52 +1,91 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Client.Core
 {
     internal class Startup
     {
-          /// <summary>
+        /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] arg)
+        static void Main(string[] args)
         {
-            Process[] runningProcesses = Process.GetProcessesByName("XiboClient");
-         
-            if(runningProcesses.Length <= 1)
-            {
-              
 
-                System.Diagnostics.Trace.Listeners.Add(new XiboTraceListener());
+            Guid identifier = new Guid("{6EAE2E61-E7EE-42bf-8EBE-BAB890C5410F}");
+
+            using (SingleInstance instance = new SingleInstance(identifier))
+            {
+
+                if (instance.IsFirstInstance)
+                {
+
+                    instance.ArgumentsReceived += new EventHandler<ArgumentsReceivedEventArgs>(App.SingleInstanceArgumentsReceived);
+
+                    instance.ListenForArgumentsFromSuccessiveInstances();
+
+                    RunApp(args);
+
+                }
+
+                else
+                {
+
+                    instance.PassArgumentsToFirstInstance(args);
+
+                }
+
+            }
+           
+        }
+
+        private static void RunApp(string[] arg)
+        {
+
+
+            Process[] runningProcesses = Process.GetProcessesByName("eAd Client");
+
+            if (runningProcesses.Length <= 1)
+            {
+                System.Diagnostics.Trace.Listeners.Add(new ClientTraceListener());
                 System.Diagnostics.Trace.AutoFlush = false;
 
-            
 
                 try
                 {
                     if (arg.GetLength(0) > 0)
                     {
-                              Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Form formMain;
+                        Application.EnableVisualStyles();
+                        Application.SetCompatibleTextRenderingDefault(false);
                         System.Diagnostics.Trace.WriteLine(new LogMessage("Main", "Options Started"), LogType.Info.ToString());
-                        formMain = new OptionForm();
-                           Application.Run(formMain);
+                        Form formMain = new OptionForm();
+                        Application.Run(formMain);
                     }
                     else
                     {
-                          System.Diagnostics.Trace.WriteLine(new LogMessage("Main", "Client Started"), LogType.Info.ToString());
-                         App app = new App();
-            app.MainWindow = new MainForm();
-            app.MainWindow.Show();
-            app.Run();
+                        bool createdNew = true;
+
+                        new Mutex(true, "UniqueApplicationName", out createdNew);
+
+                        if (createdNew)
+                        {
+
+                            Splasher.Splash = new SplashScreen();
+
+                            Splasher.ShowSplash();
+
+                            Trace.WriteLine(new LogMessage("Main", "Client Started"), LogType.Info.ToString());
+                            App app = new App();
+
+                            app.Run();
+
+                        }
+
                       
-                     
                     }
-                    
-                 
                 }
                 catch (Exception ex)
                 {
@@ -54,7 +93,8 @@ namespace Client.Core
                 }
 
                 // Catch unhandled exceptions
-                AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+                AppDomain.CurrentDomain.UnhandledException +=
+                    new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
                 Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
 
                 // Always flush at the end
@@ -94,25 +134,7 @@ namespace Client.Core
         }
 
         [DllImport("User32.dll")]
-        public static extern int ShowWindowAsync(IntPtr hWnd , int swCommand);
+        public static extern int ShowWindowAsync(IntPtr hWnd, int swCommand);
     }
-
-    static class Options
-    {
-        /// <summary>
-        /// The main entry point for the options.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            OptionForm formOptions = new OptionForm();
-            Application.Run(formOptions);
-        }
-    }
-
-
-
-    }
+}
 

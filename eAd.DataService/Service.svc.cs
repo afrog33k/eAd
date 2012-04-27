@@ -286,7 +286,7 @@ namespace eAd.DataAccess
                                     var item = new MediaListModel
                                                    {
                                                        MediaID = media.MediaID,
-                                                       Location = media.Location,
+                                                       DisplayLocation = media.Location,
                                                        Duration = media.Duration.Value
                                                    };
 

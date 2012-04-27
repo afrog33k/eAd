@@ -15,92 +15,86 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_0053B51FC1500B417AC03035B5B652C4"
-        "OwnerKey" = "8:_A4E1ED0034A14ADEBC84DAF402D26BE4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_095FC6E48D9F4116446E7F94B72C384F"
-        "OwnerKey" = "8:_82786ABC15544B35A6ECF7EA72664E0E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_095FC6E48D9F4116446E7F94B72C384F"
-        "OwnerKey" = "8:_A1FE26867E9E481E9A175D4E04046FCE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_095FC6E48D9F4116446E7F94B72C384F"
-        "OwnerKey" = "8:_9621E3B8D61FAFDE7827DC51C82EE998"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4A93EBB4137CC0FD8B9B3F3C20696960"
-        "OwnerKey" = "8:_A4E1ED0034A14ADEBC84DAF402D26BE4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7DB7A587934FD1C178395E2E80BCD75A"
-        "OwnerKey" = "8:_A4E1ED0034A14ADEBC84DAF402D26BE4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_82786ABC15544B35A6ECF7EA72664E0E"
+        "MsmKey" = "8:_61B919C799004A00AE79E5E7203C90A1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9621E3B8D61FAFDE7827DC51C82EE998"
-        "OwnerKey" = "8:_82786ABC15544B35A6ECF7EA72664E0E"
+        "MsmKey" = "8:_6A138DE8D4D91C7D051F06B0C50CBAC6"
+        "OwnerKey" = "8:_61B919C799004A00AE79E5E7203C90A1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7B0EC69414C1C9958ADE97EB3B4740D9"
+        "OwnerKey" = "8:_61B919C799004A00AE79E5E7203C90A1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8D13B731C1F54A22BD0DEE26DEE12FD4"
+        "OwnerKey" = "8:_CCAB2D15394848F0A707C5CB9246E3E9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_9621E3B8D61FAFDE7827DC51C82EE998"
-        "OwnerKey" = "8:_A4E1ED0034A14ADEBC84DAF402D26BE4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9621E3B8D61FAFDE7827DC51C82EE998"
-        "OwnerKey" = "8:_A1FE26867E9E481E9A175D4E04046FCE"
+        "OwnerKey" = "8:_61B919C799004A00AE79E5E7203C90A1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_9E7F37F3944A240BACFACB31FECAF17F"
-        "OwnerKey" = "8:_A4E1ED0034A14ADEBC84DAF402D26BE4"
+        "OwnerKey" = "8:_61B919C799004A00AE79E5E7203C90A1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A1FE26867E9E481E9A175D4E04046FCE"
+        "MsmKey" = "8:_9E7F37F3944A240BACFACB31FECAF17F"
+        "OwnerKey" = "8:_9621E3B8D61FAFDE7827DC51C82EE998"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B12831BC6ADAFCEA408051F556DC99D7"
+        "OwnerKey" = "8:_CCEAF5C49DB6E69193C72A0D4A325D34"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CCAB2D15394848F0A707C5CB9246E3E9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A4E1ED0034A14ADEBC84DAF402D26BE4"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_CCEAF5C49DB6E69193C72A0D4A325D34"
+        "OwnerKey" = "8:_61B919C799004A00AE79E5E7203C90A1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DFFE6342D4E3E72FF0B5EE6EB10CF973"
+        "OwnerKey" = "8:_B12831BC6ADAFCEA408051F556DC99D7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A4E1ED0034A14ADEBC84DAF402D26BE4"
+        "OwnerKey" = "8:_61B919C799004A00AE79E5E7203C90A1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0053B51FC1500B417AC03035B5B652C4"
+        "OwnerKey" = "8:_CCAB2D15394848F0A707C5CB9246E3E9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9621E3B8D61FAFDE7827DC51C82EE998"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -112,37 +106,25 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7DB7A587934FD1C178395E2E80BCD75A"
+        "OwnerKey" = "8:_7B0EC69414C1C9958ADE97EB3B4740D9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4A93EBB4137CC0FD8B9B3F3C20696960"
+        "OwnerKey" = "8:_CCEAF5C49DB6E69193C72A0D4A325D34"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A1FE26867E9E481E9A175D4E04046FCE"
+        "OwnerKey" = "8:_B12831BC6ADAFCEA408051F556DC99D7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_82786ABC15544B35A6ECF7EA72664E0E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9621E3B8D61FAFDE7827DC51C82EE998"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_095FC6E48D9F4116446E7F94B72C384F"
+        "OwnerKey" = "8:_6A138DE8D4D91C7D051F06B0C50CBAC6"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -232,31 +214,31 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_B4C574F381F74E73B272EBC37935682E"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_65C336AEC65A4DF392B61DB9E023ED96"
             {
-            "Name" = "8:Primary output from eAd.ClientConfiguration (Active)"
+            "Name" = "8:Primary output from Client (Active)"
             "Condition" = "8:"
-            "Object" = "8:_82786ABC15544B35A6ECF7EA72664E0E"
+            "Object" = "8:_61B919C799004A00AE79E5E7203C90A1"
             "FileType" = "3:2"
             "InstallAction" = "3:2"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_5B12C368_0478_486E_BDA7_11A2C060D4FC"
+            "Identifier" = "8:_E18FE693_8B3C_49E5_9E2E_5544D2F72EC6"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_BE48E7C0076349AF9B4ACBF09E5BE9FA"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_994CCA26D6D44AB5877DB7A023C53BC2"
             {
-            "Name" = "8:Primary output from eAd.ClientConfiguration (Active)"
+            "Name" = "8:Primary output from Client (Active)"
             "Condition" = "8:"
-            "Object" = "8:_82786ABC15544B35A6ECF7EA72664E0E"
+            "Object" = "8:_61B919C799004A00AE79E5E7203C90A1"
             "FileType" = "3:2"
             "InstallAction" = "3:1"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_3204349A_D423_4C89_A56B_A1B544EA247A"
+            "Identifier" = "8:_7AF795EF_A3A8_4949_AC93_8F9F145DACA6"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -283,20 +265,20 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0053B51FC1500B417AC03035B5B652C4"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6A138DE8D4D91C7D051F06B0C50CBAC6"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:irio.utilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Ionic.Zip, Version=1.9.1.5, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_0053B51FC1500B417AC03035B5B652C4"
+                    "_6A138DE8D4D91C7D051F06B0C50CBAC6"
                     {
-                    "Name" = "8:irio.utilities.dll"
+                    "Name" = "8:Ionic.Zip.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:irio.utilities.dll"
+            "SourcePath" = "8:Ionic.Zip.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F8DADD8D95E54A58AEEE11EF19D4F2F3"
@@ -314,20 +296,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_095FC6E48D9F4116446E7F94B72C384F"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7B0EC69414C1C9958ADE97EB3B4740D9"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:eAd.DataViewModels, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:AxInterop.WMPLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_095FC6E48D9F4116446E7F94B72C384F"
+                    "_7B0EC69414C1C9958ADE97EB3B4740D9"
                     {
-                    "Name" = "8:eAd.DataViewModels.dll"
+                    "Name" = "8:AxInterop.WMPLib.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:eAd.DataViewModels.dll"
+            "SourcePath" = "8:AxInterop.WMPLib.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F8DADD8D95E54A58AEEE11EF19D4F2F3"
@@ -345,52 +327,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4A93EBB4137CC0FD8B9B3F3C20696960"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8D13B731C1F54A22BD0DEE26DEE12FD4"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_4A93EBB4137CC0FD8B9B3F3C20696960"
-                    {
-                    "Name" = "8:System.Data.SqlServerCe.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Data.SqlServerCe.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_F8DADD8D95E54A58AEEE11EF19D4F2F3"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7DB7A587934FD1C178395E2E80BCD75A"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_7DB7A587934FD1C178395E2E80BCD75A"
-                    {
-                    "Name" = "8:Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:wmp.dll"
+            "TargetName" = "8:wmp.dll"
             "Tag" = "8:"
             "Folder" = "8:_F8DADD8D95E54A58AEEE11EF19D4F2F3"
             "Condition" = "8:"
@@ -469,6 +409,119 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B12831BC6ADAFCEA408051F556DC99D7"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Interop.ShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_B12831BC6ADAFCEA408051F556DC99D7"
+                    {
+                    "Name" = "8:Interop.ShockwaveFlashObjects.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Interop.ShockwaveFlashObjects.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_F8DADD8D95E54A58AEEE11EF19D4F2F3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CCAB2D15394848F0A707C5CB9246E3E9"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Interop.WMPLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_CCAB2D15394848F0A707C5CB9246E3E9"
+                    {
+                    "Name" = "8:Interop.WMPLib.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\Client\\Interop.WMPLib.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_F8DADD8D95E54A58AEEE11EF19D4F2F3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CCEAF5C49DB6E69193C72A0D4A325D34"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:AxInterop.ShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_CCEAF5C49DB6E69193C72A0D4A325D34"
+                    {
+                    "Name" = "8:AxInterop.ShockwaveFlashObjects.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:AxInterop.ShockwaveFlashObjects.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_F8DADD8D95E54A58AEEE11EF19D4F2F3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DFFE6342D4E3E72FF0B5EE6EB10CF973"
+            {
+            "SourcePath" = "8:Flash10h.ocx"
+            "TargetName" = "8:Flash10h.ocx"
+            "Tag" = "8:"
+            "Folder" = "8:_F8DADD8D95E54A58AEEE11EF19D4F2F3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -525,15 +578,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:eAd Desktop Client"
-        "ProductCode" = "8:{96CA926E-C3E0-49E2-8B90-EBD8A07B6E49}"
-        "PackageCode" = "8:{15EAD0E2-C5C1-482C-AEB7-657B3CDB0424}"
+        "ProductCode" = "8:{C1102DFF-E5F5-413C-904A-E6636238135F}"
+        "PackageCode" = "8:{33F038AB-07D7-4954-AC4D-F922F138110C}"
         "UpgradeCode" = "8:{B336DD54-7B72-4769-ACFD-91BD904CA948}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.1"
+        "ProductVersion" = "8:1.2.1"
         "Manufacturer" = "8:GreenCore Solutions"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1045,7 +1098,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_19CD58E837EC41A4B2C94129B1A258F4"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_38922550DD154029A1A9171D9E569647"
             {
             "SourcePath" = "8:"
             "TargetName" = "8:"
@@ -1067,125 +1120,13 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Documentation"
-            "OutputProjectGuid" = "8:{1B762266-9A36-4131-913E-80716070360E}"
+            "OutputProjectGuid" = "8:{870155F1-F5FF-426A-9BBF-9779DBCBC9B8}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_2175AFEDA38B4657AEEE19BDF1B94C0C"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_F8DADD8D95E54A58AEEE11EF19D4F2F3"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:ContentFiles"
-            "OutputProjectGuid" = "8:{1B762266-9A36-4131-913E-80716070360E}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_3DE2F0DF22C341E3B957996CAFC4DFFE"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_F8DADD8D95E54A58AEEE11EF19D4F2F3"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:XmlSerializer"
-            "OutputProjectGuid" = "8:{66F6656A-6A03-4F5B-8428-FDDDA5830C63}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_82786ABC15544B35A6ECF7EA72664E0E"
-            {
-            "SourcePath" = "8:..\\eAd.ClientConfiguration\\obj\\x86\\Debug\\eAd.ClientConfiguration.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_F8DADD8D95E54A58AEEE11EF19D4F2F3"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{66F6656A-6A03-4F5B-8428-FDDDA5830C63}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_A1FE26867E9E481E9A175D4E04046FCE"
-            {
-            "SourcePath" = "8:..\\eAd.Monitor\\obj\\x86\\Debug\\eAd.Monitor.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_F8DADD8D95E54A58AEEE11EF19D4F2F3"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{D27EA795-2586-4E57-823C-C3078534F942}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_A3F7EBB839B24542AC915BB14F6912FB"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4C168A067F9A485B9139412930337F03"
             {
             "SourcePath" = "8:"
             "TargetName" = "8:"
@@ -1207,15 +1148,15 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:LocalizedResourceDlls"
-            "OutputProjectGuid" = "8:{1B762266-9A36-4131-913E-80716070360E}"
+            "OutputProjectGuid" = "8:{870155F1-F5FF-426A-9BBF-9779DBCBC9B8}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_A4E1ED0034A14ADEBC84DAF402D26BE4"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_61B919C799004A00AE79E5E7203C90A1"
             {
-            "SourcePath" = "8:..\\eAd.DesktopClient\\obj\\x86\\Debug\\DesktopClient.exe"
+            "SourcePath" = "8:..\\Client\\obj\\x86\\Debug\\eAd Client.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F8DADD8D95E54A58AEEE11EF19D4F2F3"
@@ -1235,13 +1176,13 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{1B762266-9A36-4131-913E-80716070360E}"
+            "OutputProjectGuid" = "8:{870155F1-F5FF-426A-9BBF-9779DBCBC9B8}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_A8B7FD64E30F4B8D931228C19C7EEF7B"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_C8ECE2D93F3146CA8CE8257610EE6CD2"
             {
             "SourcePath" = "8:"
             "TargetName" = "8:"
@@ -1263,41 +1204,13 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:XmlSerializer"
-            "OutputProjectGuid" = "8:{1B762266-9A36-4131-913E-80716070360E}"
+            "OutputProjectGuid" = "8:{870155F1-F5FF-426A-9BBF-9779DBCBC9B8}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_CB8E29E16DA74E72B31D04B4A6821DA3"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_F8DADD8D95E54A58AEEE11EF19D4F2F3"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:LocalizedResourceDlls"
-            "OutputProjectGuid" = "8:{66F6656A-6A03-4F5B-8428-FDDDA5830C63}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_F5F2EECD596143A7ADA940333EFF67DF"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_F25D1F0AC5DB4139AD8EA19864D857BB"
             {
             "SourcePath" = "8:"
             "TargetName" = "8:"
@@ -1319,35 +1232,7 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:ContentFiles"
-            "OutputProjectGuid" = "8:{66F6656A-6A03-4F5B-8428-FDDDA5830C63}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_FAD76BC70631482F94B232D47B2C59B6"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_F8DADD8D95E54A58AEEE11EF19D4F2F3"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Documentation"
-            "OutputProjectGuid" = "8:{66F6656A-6A03-4F5B-8428-FDDDA5830C63}"
+            "OutputProjectGuid" = "8:{870155F1-F5FF-426A-9BBF-9779DBCBC9B8}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

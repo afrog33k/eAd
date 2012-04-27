@@ -124,6 +124,8 @@
     <EntitySetMapping Name="Stations">
       <EntityTypeMapping TypeName="eAdData.Station">
         <MappingFragment StoreEntitySet="Stations">
+          <ScalarProperty Name="Approved" ColumnName="Approved" />
+          <ScalarProperty Name="HardwareKey" ColumnName="HardwareKey" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Rate" ColumnName="Rate" />
           <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />

@@ -127,8 +127,8 @@
      <div class="coin-slider" id="slider@(posn.PositionID)" @*style="position: absolute; left: @(posn.X); top:@(posn.Y); height: @(posn.Height);width:@(posn.Width)"*@>
     @foreach (var item in posn.Media) 
     {
-        <a href="@( !(String.IsNullOrEmpty(item.Location)) ? /*Path.GetDirectoryName(item.Location) QuickHacktm*/ Url.Content("~/Uploads/Temp/Media" + "/" + "Thumb" + Path.GetFileNameWithoutExtension(item.Location) + ".jpg") : "/Content/Images/no_image.gif")" target="_blank">
-        <img src="@( !(String.IsNullOrEmpty(item.Location)) ? /*Path.GetDirectoryName(item.Location) QuickHacktm*/ Url.Content("~/Uploads/Temp/Media" + "/" + "Thumb" + Path.GetFileNameWithoutExtension(item.Location) + ".jpg") : "/Content/Images/no_image.gif")"  alt="[@(MimeExtensionHelper.GetSimpleType(item.Location))]" />
+        <a href="@( !(String.IsNullOrEmpty(item.Location)) ? /*Path.GetDirectoryName(item.DisplayLocation) QuickHacktm*/ Url.Content("~/Uploads/Temp/Media" + "/" + "Thumb" + Path.GetFileNameWithoutExtension(item.Location) + ".jpg") : "/Content/Images/no_image.gif")" target="_blank">
+        <img src="@( !(String.IsNullOrEmpty(item.Location)) ? /*Path.GetDirectoryName(item.DisplayLocation) QuickHacktm*/ Url.Content("~/Uploads/Temp/Media" + "/" + "Thumb" + Path.GetFileNameWithoutExtension(item.Location) + ".jpg") : "/Content/Images/no_image.gif")"  alt="[@(MimeExtensionHelper.GetSimpleType(item.Location))]" />
 	     <span>
                @(MimeExtensionHelper.GetSimpleType(item.Location)) / @item.Duration
             </span>

@@ -23,6 +23,8 @@
         public App()
         {
 
+            //app.MainWindow = new MainForm();
+            //app.MainWindow.Show();
             base.StartupUri = new Uri("PageSwitcher.xaml", UriKind.Relative);
 
             base.ShutdownMode = ShutdownMode.OnMainWindowClose;

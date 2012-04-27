@@ -3,6 +3,9 @@
 
     .position
     {
+        filter: alpha(opacity=80);
+        opacity: 0.8;
+       
     }
     .fluid-img
     {

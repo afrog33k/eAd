@@ -184,6 +184,8 @@
     <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Messages" Relationship="eAdData.FK_MessageStation" FromRole="Station" ToRole="Message" />
     <NavigationProperty Name="Groupings" Relationship="eAdData.GroupingStation" FromRole="Station" ToRole="Grouping" />
+    <Property Type="String" Name="HardwareKey" MaxLength="32" FixedLength="true" Unicode="true" />
+    <Property Type="Boolean" Name="Approved" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>

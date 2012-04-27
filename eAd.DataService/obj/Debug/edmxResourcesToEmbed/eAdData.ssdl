@@ -214,6 +214,8 @@
     <Property Name="PostalCode" Type="nvarchar" MaxLength="15" />
     <Property Name="Rate" Type="float" />
     <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="HardwareKey" Type="nchar" MaxLength="32" />
+    <Property Name="Approved" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

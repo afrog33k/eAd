@@ -209,15 +209,15 @@
 
                 {
 
-                    selector = media => new MediaListModel { MediaID = media, Location = myService1.GetMediaLocation(media), Duration = myService1.GetMediaDuration(media) };
+                    selector = media => new MediaListModel { MediaID = media, DisplayLocation = myService1.GetMediaLocation(media), Duration = myService1.GetMediaDuration(media) };
 
                 }
 
-                List<MediaListModel> list = position.Media.Select<long, MediaListModel>(selector).ToList<MediaListModel>();
+                List<MediaListModel> list = position.Media; // position.Media.Select<long, MediaListModel>(selector).ToList<MediaListModel>();
 
                 myService1.Close();
 
-                List<MediaListModel> playlist = (from m in list select new MediaListModel { MediaID = m.MediaID, Location = m.Location, Duration = m.Duration }).ToList<MediaListModel>();
+                List<MediaListModel> playlist = (from m in list select new MediaListModel { MediaID = m.MediaID, DisplayLocation = m.DisplayLocation, Duration = m.Duration }).ToList<MediaListModel>();
 
                 this.SavePositionMedia(position, playlist);
 

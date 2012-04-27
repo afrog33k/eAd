@@ -233,8 +233,8 @@
 {
     <li class="ui-widget-content ui-corner-tr">
 		<h5 class="ui-widget-header">@item.Name</h5>
-		<img src="@( !(String.IsNullOrEmpty(item.Location)) ? /*Path.GetDirectoryName(item.Location) QuickHacktm*/ "Uploads/Temp/Media" + "/" + "Thumb" + Path.GetFileNameWithoutExtension(item.Location) + ".jpg": "/Content/Images/no_image.gif")"  alt="The peaks of High Tatras" width="96" height="72" //>
-		<a href="@( !(String.IsNullOrEmpty(item.Location)) ? /*Path.GetDirectoryName(item.Location) QuickHacktm*/ "Uploads/Temp/Media" + "/" + "Thumb" + Path.GetFileNameWithoutExtension(item.Location) + ".jpg" : "/Content/Images/no_image.gif")" title="View larger image" class="ui-icon ui-icon-zoomin">View larger</a>
+		<img src="@( !(String.IsNullOrEmpty(item.Location)) ? /*Path.GetDirectoryName(item.DisplayLocation) QuickHacktm*/ "Uploads/Temp/Media" + "/" + "Thumb" + Path.GetFileNameWithoutExtension(item.Location) + ".jpg": "/Content/Images/no_image.gif")"  alt="The peaks of High Tatras" width="96" height="72" //>
+		<a href="@( !(String.IsNullOrEmpty(item.Location)) ? /*Path.GetDirectoryName(item.DisplayLocation) QuickHacktm*/ "Uploads/Temp/Media" + "/" + "Thumb" + Path.GetFileNameWithoutExtension(item.Location) + ".jpg" : "/Content/Images/no_image.gif")" title="View larger image" class="ui-icon ui-icon-zoomin">View larger</a>
 		@*<a href="link/to/trash/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-trash">Delete image</a>*@
 	</li>
 }

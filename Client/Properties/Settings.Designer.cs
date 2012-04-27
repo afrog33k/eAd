@@ -115,7 +115,7 @@ namespace Client.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/xibo")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/")]
         public string serverURI {
             get {
                 return ((string)(this["serverURI"]));

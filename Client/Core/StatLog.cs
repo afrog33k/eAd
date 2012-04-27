@@ -285,6 +285,4 @@ namespace Client.Core
             System.Diagnostics.Debug.WriteLine(new LogMessage("_xmds_SubmitStatsCompleted", String.Format("OUT")), LogType.Audit.ToString());
         }
     }
-
-    public enum StatType { Layout, Media, Event };
 }

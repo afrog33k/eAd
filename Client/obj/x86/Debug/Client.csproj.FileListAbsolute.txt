@@ -1,36 +1,41 @@
+C:\ProjectHub\eAd\Client\bin\Debug\Ionic.Zip.dll
+C:\ProjectHub\eAd\Client\bin\Debug\Updater.exe
+C:\ProjectHub\eAd\Client\bin\Debug\Interop.WMPLib.dll
+C:\ProjectHub\eAd\Client\bin\Debug\Resources\splash.png
+C:\ProjectHub\eAd\Client\bin\Debug\Libraries\AxInterop.ShockwaveFlashObjects.dll
+C:\ProjectHub\eAd\Client\bin\Debug\Libraries\AxInterop.WMPLib.dll
+C:\ProjectHub\eAd\Client\bin\Debug\Libraries\Interop.ShockwaveFlashObjects.dll
+C:\ProjectHub\eAd\Client\bin\Debug\Resources\HtmlTemplate.htm
+C:\ProjectHub\eAd\Client\bin\Debug\eAd Client.exe.config
+C:\ProjectHub\eAd\Client\bin\Debug\eAd Client.exe
+C:\ProjectHub\eAd\Client\bin\Debug\eAd Client.pdb
 C:\ProjectHub\eAd\Client\bin\Debug\AxInterop.ShockwaveFlashObjects.dll
 C:\ProjectHub\eAd\Client\bin\Debug\AxInterop.WMPLib.dll
-C:\ProjectHub\eAd\Client\bin\Debug\Resources\HtmlTemplate.htm
-C:\ProjectHub\eAd\Client\bin\Debug\Client.exe.config
-C:\ProjectHub\eAd\Client\bin\Debug\Client.exe
-C:\ProjectHub\eAd\Client\bin\Debug\Client.pdb
 C:\ProjectHub\eAd\Client\bin\Debug\eAd.DataViewModels.dll
-C:\ProjectHub\eAd\Client\bin\Debug\eAd.DataViewModels.pdb
-C:\ProjectHub\eAd\Client\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\ProjectHub\eAd\Client\obj\x86\Debug\Themes\Generic.g.cs
-C:\ProjectHub\eAd\Client\obj\x86\Debug\Client_Content.g.cs
-C:\ProjectHub\eAd\Client\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
-C:\ProjectHub\eAd\Client\obj\x86\Debug\Client_MarkupCompile.cache
-C:\ProjectHub\eAd\Client\obj\x86\Debug\Client_MarkupCompile.lref
-C:\ProjectHub\eAd\Client\obj\x86\Debug\Themes\Generic.baml
-C:\ProjectHub\eAd\Client\obj\x86\Debug\Client.g.resources
-C:\ProjectHub\eAd\Client\obj\x86\Debug\Client.OptionForm.resources
-C:\ProjectHub\eAd\Client\obj\x86\Debug\Client.Properties.Resources.resources
-C:\ProjectHub\eAd\Client\obj\x86\Debug\Client.VideoPlayer.resources
-C:\ProjectHub\eAd\Client\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\ProjectHub\eAd\Client\obj\x86\Debug\GenerateResource.write.1.tlog
-C:\ProjectHub\eAd\Client\obj\x86\Debug\Client.exe
-C:\ProjectHub\eAd\Client\obj\x86\Debug\Client.pdb
 C:\ProjectHub\eAd\Client\bin\Debug\eAd.Utilities.dll
+C:\ProjectHub\eAd\Client\bin\Debug\eAd.DataViewModels.pdb
 C:\ProjectHub\eAd\Client\bin\Debug\eAd.Utilities.pdb
+C:\ProjectHub\eAd\Client\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\ProjectHub\eAd\Client\obj\x86\Debug\MainUI\About.baml
 C:\ProjectHub\eAd\Client\obj\x86\Debug\MainUI\MainForm.baml
 C:\ProjectHub\eAd\Client\obj\x86\Debug\Players\Media.baml
 C:\ProjectHub\eAd\Client\obj\x86\Debug\MainUI\About.g.cs
 C:\ProjectHub\eAd\Client\obj\x86\Debug\MainUI\MainForm.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Debug\MainUI\SplashScreen.g.cs
 C:\ProjectHub\eAd\Client\obj\x86\Debug\Players\Media.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Debug\Themes\Generic.g.cs
 C:\ProjectHub\eAd\Client\obj\x86\Debug\MainUI\App.g.cs
-C:\ProjectHub\eAd\Client\bin\Debug\Libraries\AxInterop.ShockwaveFlashObjects.dll
-C:\ProjectHub\eAd\Client\bin\Debug\Libraries\AxInterop.WMPLib.dll
-C:\ProjectHub\eAd\Client\bin\Debug\Libraries\Interop.ShockwaveFlashObjects.dll
-C:\ProjectHub\eAd\Client\bin\Debug\Interop.WMPLib.dll
+C:\ProjectHub\eAd\Client\obj\x86\Debug\eAd Client_Content.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Debug\eAd Client_MarkupCompile.cache
+C:\ProjectHub\eAd\Client\obj\x86\Debug\eAd Client_MarkupCompile.lref
+C:\ProjectHub\eAd\Client\obj\x86\Debug\MainUI\SplashScreen.baml
+C:\ProjectHub\eAd\Client\obj\x86\Debug\Themes\Generic.baml
+C:\ProjectHub\eAd\Client\obj\x86\Debug\eAd Client.g.resources
+C:\ProjectHub\eAd\Client\obj\x86\Debug\Client.OptionForm.resources
+C:\ProjectHub\eAd\Client\obj\x86\Debug\Client.Properties.Resources.resources
+C:\ProjectHub\eAd\Client\obj\x86\Debug\Client.VideoPlayer.resources
+C:\ProjectHub\eAd\Client\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\ProjectHub\eAd\Client\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\ProjectHub\eAd\Client\obj\x86\Debug\eAd Client.exe
+C:\ProjectHub\eAd\Client\obj\x86\Debug\eAd Client.pdb

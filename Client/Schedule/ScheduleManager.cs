@@ -94,6 +94,10 @@ namespace Client
         /// <returns></returns>
         private bool IsNewScheduleAvailable()
         {
+            lock (_layoutSchedule)
+            {
+                
+           
             Debug.WriteLine("Checking if a new schedule is available", LogType.Info.ToString());
 
             // If we dont currently have a cached schedule load one from the scheduleLocation
@@ -144,6 +148,7 @@ namespace Client
             // We can update the current schedule and still return false - this will not trigger a schedule change event.
             // We do this if ALL the current layouts are still in the schedule
             return forceChange;
+            }
         }
 
         /// <summary>

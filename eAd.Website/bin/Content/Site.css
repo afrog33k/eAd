@@ -11,6 +11,16 @@ body {
     padding: 0;
     color: #696969;
 }
+
+.ajaxLoader {
+    outline-style: none;
+    outline-color: invert;
+    outline-width: 0px;
+    width: 24px;
+    height: 24px;
+    background-image: url("ajax-loader.gif")
+}
+
 a.MapLink
 {
     background: url(/Content/mapicon.png) no-repeat top left;

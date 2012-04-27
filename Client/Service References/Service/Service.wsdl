@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd2" namespace="http://schemas.acme.it/2009/04" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/eAd.DataAccess" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.IO" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd6" namespace="http://schemas.microsoft.com/Message" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+      <xsd:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd10" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService_GetHi_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHi" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetHi_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHiResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_UploadFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadFile" />
+  </wsdl:message>
+  <wsdl:message name="IService_UploadFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="FileDownloadMessage">
+    <wsdl:part name="parameters" element="tns:FileDownloadMessage" />
+  </wsdl:message>
+  <wsdl:message name="FileDownloadMessage_Headers">
+    <wsdl:part name="MetaData" element="tns:MetaData" />
+  </wsdl:message>
+  <wsdl:message name="FileDownloadReturnMessage">
+    <wsdl:part name="parameters" element="tns:FileDownloadReturnMessage" />
+  </wsdl:message>
+  <wsdl:message name="FileDownloadReturnMessage_Headers">
+    <wsdl:part name="DownloadedFileMetadata" element="tns:DownloadedFileMetadata" />
+  </wsdl:message>
+  <wsdl:message name="IService_SayHi_InputMessage">
+    <wsdl:part name="parameters" element="tns:SayHi" />
+  </wsdl:message>
+  <wsdl:message name="IService_SayHi_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SayHiResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMyMedia_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyMedia" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMyMedia_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyMediaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMediaDuration_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMediaDuration" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMediaDuration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMediaDurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SetStationStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetStationStatus" />
+  </wsdl:message>
+  <wsdl:message name="IService_SetStationStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetStationStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DoIHaveUpdates_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoIHaveUpdates" />
+  </wsdl:message>
+  <wsdl:message name="IService_DoIHaveUpdates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoIHaveUpdatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMosaicForStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMosaicForStation" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMosaicForStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMosaicForStationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_MakeStationUnAvailable_InputMessage">
+    <wsdl:part name="parameters" element="tns:MakeStationUnAvailable" />
+  </wsdl:message>
+  <wsdl:message name="IService_MakeStationUnAvailable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MakeStationUnAvailableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMediaLocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMediaLocation" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMediaLocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMediaLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMosaicIDForStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMosaicIDForStation" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetMosaicIDForStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMosaicIDForStationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetPositionsForMosaic_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPositionsForMosaic" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetPositionsForMosaic_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPositionsForMosaicResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_MakeStationAvailable_InputMessage">
+    <wsdl:part name="parameters" element="tns:MakeStationAvailable" />
+  </wsdl:message>
+  <wsdl:message name="IService_MakeStationAvailable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MakeStationAvailableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_MessageRead_InputMessage">
+    <wsdl:part name="parameters" element="tns:MessageRead" />
+  </wsdl:message>
+  <wsdl:message name="IService_MessageRead_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MessageReadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CaptureScreenShot_InputMessage">
+    <wsdl:part name="parameters" element="tns:CaptureScreenShot" />
+  </wsdl:message>
+  <wsdl:message name="IService_CaptureScreenShot_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CaptureScreenShotResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetCustomerByRFID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerByRFID" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetCustomerByRFID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerByRFIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendMessageToStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageToStation" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendMessageToStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageToStationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendMessageToGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageToGroup" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendMessageToGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageToGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAllMyMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMyMessages" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAllMyMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMyMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAllCustomers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCustomers" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAllCustomers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCustomersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAllStations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllStations" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAllStations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllStationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetOnlineStations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOnlineStations" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetOnlineStations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOnlineStationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_RegisterDisplay_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterDisplay" />
+  </wsdl:message>
+  <wsdl:message name="IService_RegisterDisplay_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterDisplayResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_RequiredFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:RequiredFiles" />
+  </wsdl:message>
+  <wsdl:message name="IService_RequiredFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RequiredFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFile" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_Schedule_InputMessage">
+    <wsdl:part name="parameters" element="tns:Schedule" />
+  </wsdl:message>
+  <wsdl:message name="IService_Schedule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_RecieveXmlLog_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecieveXmlLog" />
+  </wsdl:message>
+  <wsdl:message name="IService_RecieveXmlLog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecieveXmlLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_BlackList_InputMessage">
+    <wsdl:part name="parameters" element="tns:BlackList" />
+  </wsdl:message>
+  <wsdl:message name="IService_BlackList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BlackListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SubmitLog_InputMessage">
+    <wsdl:part name="parameters" element="tns:SubmitLog" />
+  </wsdl:message>
+  <wsdl:message name="IService_SubmitLog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SubmitLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SubmitStats_InputMessage">
+    <wsdl:part name="parameters" element="tns:SubmitStats" />
+  </wsdl:message>
+  <wsdl:message name="IService_SubmitStats_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SubmitStatsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_MediaInventory_InputMessage">
+    <wsdl:part name="parameters" element="tns:MediaInventory" />
+  </wsdl:message>
+  <wsdl:message name="IService_MediaInventory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MediaInventoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetResource_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetResource" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetResource_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResourceResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService">
+    <wsdl:operation name="GetHi">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetHi" message="tns:IService_GetHi_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetHiResponse" message="tns:IService_GetHi_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/UploadFile" message="tns:IService_UploadFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/UploadFileResponse" message="tns:IService_UploadFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DownloadFile" name="FileDownloadMessage" message="tns:FileDownloadMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DownloadFileResponse" name="FileDownloadReturnMessage" message="tns:FileDownloadReturnMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SayHi">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SayHi" message="tns:IService_SayHi_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SayHiResponse" message="tns:IService_SayHi_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyMedia">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetMyMedia" message="tns:IService_GetMyMedia_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetMyMediaResponse" message="tns:IService_GetMyMedia_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMediaDuration">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetMediaDuration" message="tns:IService_GetMediaDuration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetMediaDurationResponse" message="tns:IService_GetMediaDuration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetStationStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SetStationStatus" message="tns:IService_SetStationStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SetStationStatusResponse" message="tns:IService_SetStationStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DoIHaveUpdates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DoIHaveUpdates" message="tns:IService_DoIHaveUpdates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DoIHaveUpdatesResponse" message="tns:IService_DoIHaveUpdates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMosaicForStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetMosaicForStation" message="tns:IService_GetMosaicForStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetMosaicForStationResponse" message="tns:IService_GetMosaicForStation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeStationUnAvailable">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/MakeStationUnAvailable" message="tns:IService_MakeStationUnAvailable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/MakeStationUnAvailableResponse" message="tns:IService_MakeStationUnAvailable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMediaLocation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetMediaLocation" message="tns:IService_GetMediaLocation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetMediaLocationResponse" message="tns:IService_GetMediaLocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMosaicIDForStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetMosaicIDForStation" message="tns:IService_GetMosaicIDForStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetMosaicIDForStationResponse" message="tns:IService_GetMosaicIDForStation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPositionsForMosaic">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetPositionsForMosaic" message="tns:IService_GetPositionsForMosaic_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetPositionsForMosaicResponse" message="tns:IService_GetPositionsForMosaic_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeStationAvailable">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/MakeStationAvailable" message="tns:IService_MakeStationAvailable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/MakeStationAvailableResponse" message="tns:IService_MakeStationAvailable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MessageRead">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/MessageRead" message="tns:IService_MessageRead_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/MessageReadResponse" message="tns:IService_MessageRead_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CaptureScreenShot">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CaptureScreenShot" message="tns:IService_CaptureScreenShot_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CaptureScreenShotResponse" message="tns:IService_CaptureScreenShot_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerByRFID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetCustomerByRFID" message="tns:IService_GetCustomerByRFID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetCustomerByRFIDResponse" message="tns:IService_GetCustomerByRFID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageToStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SendMessageToStation" message="tns:IService_SendMessageToStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SendMessageToStationResponse" message="tns:IService_SendMessageToStation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageToGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SendMessageToGroup" message="tns:IService_SendMessageToGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SendMessageToGroupResponse" message="tns:IService_SendMessageToGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMyMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetAllMyMessages" message="tns:IService_GetAllMyMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetAllMyMessagesResponse" message="tns:IService_GetAllMyMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCustomers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetAllCustomers" message="tns:IService_GetAllCustomers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetAllCustomersResponse" message="tns:IService_GetAllCustomers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetAllStations" message="tns:IService_GetAllStations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetAllStationsResponse" message="tns:IService_GetAllStations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOnlineStations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetOnlineStations" message="tns:IService_GetOnlineStations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetOnlineStationsResponse" message="tns:IService_GetOnlineStations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterDisplay">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/RegisterDisplay" message="tns:IService_RegisterDisplay_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RegisterDisplayResponse" message="tns:IService_RegisterDisplay_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RequiredFiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/RequiredFiles" message="tns:IService_RequiredFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RequiredFilesResponse" message="tns:IService_RequiredFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetFile" message="tns:IService_GetFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetFileResponse" message="tns:IService_GetFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Schedule">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Schedule" message="tns:IService_Schedule_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ScheduleResponse" message="tns:IService_Schedule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecieveXmlLog">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/RecieveXmlLog" message="tns:IService_RecieveXmlLog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RecieveXmlLogResponse" message="tns:IService_RecieveXmlLog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BlackList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/BlackList" message="tns:IService_BlackList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/BlackListResponse" message="tns:IService_BlackList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitLog">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SubmitLog" message="tns:IService_SubmitLog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SubmitLogResponse" message="tns:IService_SubmitLog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitStats">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SubmitStats" message="tns:IService_SubmitStats_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SubmitStatsResponse" message="tns:IService_SubmitStats_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MediaInventory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/MediaInventory" message="tns:IService_MediaInventory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/MediaInventoryResponse" message="tns:IService_MediaInventory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResource">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetResource" message="tns:IService_GetResource_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetResourceResponse" message="tns:IService_GetResource_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetHi">
+      <soap:operation soapAction="http://tempuri.org/IService/GetHi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <soap:operation soapAction="http://tempuri.org/IService/UploadFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFile">
+      <soap:operation soapAction="http://tempuri.org/IService/DownloadFile" style="document" />
+      <wsdl:input name="FileDownloadMessage">
+        <soap:header message="tns:FileDownloadMessage_Headers" part="MetaData" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="FileDownloadReturnMessage">
+        <soap:header message="tns:FileDownloadReturnMessage_Headers" part="DownloadedFileMetadata" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SayHi">
+      <soap:operation soapAction="http://tempuri.org/IService/SayHi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyMedia">
+      <soap:operation soapAction="http://tempuri.org/IService/GetMyMedia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMediaDuration">
+      <soap:operation soapAction="http://tempuri.org/IService/GetMediaDuration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetStationStatus">
+      <soap:operation soapAction="http://tempuri.org/IService/SetStationStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoIHaveUpdates">
+      <soap:operation soapAction="http://tempuri.org/IService/DoIHaveUpdates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMosaicForStation">
+      <soap:operation soapAction="http://tempuri.org/IService/GetMosaicForStation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakeStationUnAvailable">
+      <soap:operation soapAction="http://tempuri.org/IService/MakeStationUnAvailable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMediaLocation">
+      <soap:operation soapAction="http://tempuri.org/IService/GetMediaLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMosaicIDForStation">
+      <soap:operation soapAction="http://tempuri.org/IService/GetMosaicIDForStation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPositionsForMosaic">
+      <soap:operation soapAction="http://tempuri.org/IService/GetPositionsForMosaic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakeStationAvailable">
+      <soap:operation soapAction="http://tempuri.org/IService/MakeStationAvailable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MessageRead">
+      <soap:operation soapAction="http://tempuri.org/IService/MessageRead" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CaptureScreenShot">
+      <soap:operation soapAction="http://tempuri.org/IService/CaptureScreenShot" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerByRFID">
+      <soap:operation soapAction="http://tempuri.org/IService/GetCustomerByRFID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageToStation">
+      <soap:operation soapAction="http://tempuri.org/IService/SendMessageToStation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageToGroup">
+      <soap:operation soapAction="http://tempuri.org/IService/SendMessageToGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMyMessages">
+      <soap:operation soapAction="http://tempuri.org/IService/GetAllMyMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCustomers">
+      <soap:operation soapAction="http://tempuri.org/IService/GetAllCustomers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStations">
+      <soap:operation soapAction="http://tempuri.org/IService/GetAllStations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOnlineStations">
+      <soap:operation soapAction="http://tempuri.org/IService/GetOnlineStations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterDisplay">
+      <soap:operation soapAction="http://tempuri.org/IService/RegisterDisplay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequiredFiles">
+      <soap:operation soapAction="http://tempuri.org/IService/RequiredFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <soap:operation soapAction="http://tempuri.org/IService/GetFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Schedule">
+      <soap:operation soapAction="http://tempuri.org/IService/Schedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecieveXmlLog">
+      <soap:operation soapAction="http://tempuri.org/IService/RecieveXmlLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BlackList">
+      <soap:operation soapAction="http://tempuri.org/IService/BlackList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitLog">
+      <soap:operation soapAction="http://tempuri.org/IService/SubmitLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitStats">
+      <soap:operation soapAction="http://tempuri.org/IService/SubmitStats" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MediaInventory">
+      <soap:operation soapAction="http://tempuri.org/IService/MediaInventory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResource">
+      <soap:operation soapAction="http://tempuri.org/IService/GetResource" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="BasicHttpBinding_IService" binding="tns:BasicHttpBinding_IService">
+      <soap:address location="http://1.9.13.61/DataAccess/Service.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -49,7 +49,7 @@ namespace Client.Core
 
             // Start up the Xmds Service Object
             //xmdsFile.Credentials = null;
-            //xmdsFile.Url = Properties.Settings.Default.XiboClient_xmds_xmds;
+            //xmdsFile.Url = Properties.Settings.Default.Client_xmds_xmds;
             //xmdsFile.UseDefaultCredentials = false;
 
             // Hook onto the xmds file complete event

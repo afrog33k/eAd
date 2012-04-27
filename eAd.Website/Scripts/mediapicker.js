@@ -19,9 +19,13 @@
 });
 
 $(function () {
-    $("#Accept").button();
-
-    $('#Accept').click(function () {
+    $("[id^=Accept]").button();
+    $("[id^=CancelChoose]").button();
+    $('[id^=CancelChoose]').click(function () {
+        var componentId = $('#componentId');
+        window.parent.CloseMediaPicker(null, componentId.val());
+    });
+    $('[id^=Accept]').click(function () {
         var no = 0;
 
         var selections = $("[id^=select-]");
@@ -31,9 +35,9 @@ $(function () {
         selections.each(function () {
             if ($(this).attr('checked')) {
                 no++;
-              var img=  $(this).parent().parent().find("img");
-              var name = $(this).parent().find("[id^=hidden]");
-              plist.push({ id: $(this).attr('id').split('-')[1], img: img.attr('src'), name: name.val() });
+                var img = $(this).parent().parent().find("img");
+                var name = $(this).parent().find("[id^=hidden]");
+                plist.push({ id: $(this).attr('id').split('-')[1], img: img.attr('src'), name: name.val() });
             }
 
         });

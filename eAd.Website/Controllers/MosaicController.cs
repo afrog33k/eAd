@@ -63,7 +63,13 @@ namespace eAd.Website.Controllers
         {
             if (ModelState.IsValid)
             {    
-           
+           if(!String.IsNullOrEmpty(mosaic.Background))
+           {
+               var name = Path.GetFileName(mosaic.Background).Replace("/eAd.Website", "").Replace("Thumb", "");
+               var media = db.Media.Where(m=>m.Location.Contains(name)).Single();
+               mosaic.Background = media.Location;
+
+           }
                 mosaic.Updated = DateTime.Now;
                 db.Mosaics.Attach(mosaic);
                 db.ObjectStateManager.ChangeObjectState(mosaic, EntityState.Modified);
@@ -97,6 +103,10 @@ namespace eAd.Website.Controllers
             mosaic.Name = name;
             mosaic.Created = DateTime.Now;
             mosaic.Updated = DateTime.Now;
+
+            mosaic.Width = 768;
+            mosaic.Height = 1366;
+
                 db.Mosaics.AddObject(mosaic);
                 db.SaveChanges();
               
@@ -111,7 +121,12 @@ namespace eAd.Website.Controllers
                 var mosaic = db.Mosaics.Where(m => m.MosaicID == id).FirstOrDefault();
 
                 if (mosaic != null)
-                    return Json(mosaic.Positions.Select(d=>d.CreateModel()).ToArray(), JsonRequestBehavior.AllowGet);
+                    return Json(new
+                                    {
+                                        background =
+                                        !String.IsNullOrEmpty(mosaic.Background)?mosaic.Background.Replace("\\","/"):"",
+                                        positions=mosaic.Positions.Select(d=>d.CreateModel()).ToArray()
+                                    }, JsonRequestBehavior.AllowGet);
             }
             return null;
         }

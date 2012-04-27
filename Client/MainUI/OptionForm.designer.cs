@@ -115,7 +115,7 @@ namespace Client
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(136, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "The URI of the Xibo Server";
+            this.label1.Text = "The URI of the  Server";
             // 
             // label2
             // 
@@ -124,7 +124,7 @@ namespace Client
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(172, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "The Server Key for the Xibo Server";
+            this.label2.Text = "The Server Key for the  Server";
             // 
             // label3
             // 
@@ -133,7 +133,7 @@ namespace Client
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(111, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Local Library Location";
+            this.label3.Text = "Local Library DisplayLocation";
             // 
             // buttonSaveSettings
             // 
@@ -180,7 +180,7 @@ namespace Client
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(436, 261);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Xibo Settings";
+            this.tabPage1.Text = " Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // nupScrollStepAmount
@@ -295,7 +295,7 @@ namespace Client
             this.textBoxXmdsUri.Name = "textBoxXmdsUri";
             this.textBoxXmdsUri.Size = new System.Drawing.Size(237, 20);
             this.textBoxXmdsUri.TabIndex = 0;
-            this.textBoxXmdsUri.Text = "http://localhost/xibo";
+            this.textBoxXmdsUri.Text = "http://localhost/";
             // 
             // textBoxServerKey
             // 
@@ -365,7 +365,7 @@ namespace Client
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(92, 13);
             this.label6.TabIndex = 4;
-            this.label6.Text = "Xibo Service URL";
+            this.label6.Text = " Service URL";
             // 
             // buttonRegister
             // 
@@ -393,7 +393,7 @@ namespace Client
             this.labelXmdsUrl.Name = "labelXmdsUrl";
             this.labelXmdsUrl.Size = new System.Drawing.Size(300, 13);
             this.labelXmdsUrl.TabIndex = 3;
-            this.labelXmdsUrl.Text = "http://localhost/Series%201.3/131-datasets/server/xibo.asmx";
+            this.labelXmdsUrl.Text = "http://localhost/Series%201.3/131-datasets/server/.asmx";
             // 
             // textBoxDisplayName
             // 
@@ -707,12 +707,12 @@ namespace Client
             this.onlineHelpToolStripMenuItem.Name = "onlineHelpToolStripMenuItem";
             this.onlineHelpToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.onlineHelpToolStripMenuItem.Text = "Online Help";
-            this.onlineHelpToolStripMenuItem.Click += new System.EventHandler(this.onlineHelpToolStripMenuItem_Click);
+            this.onlineHelpToolStripMenuItem.Click += new System.EventHandler(this.OnlineHelpToolStripMenuItemClick);
             // 
             // xmds
             // 
             //this.xmds.Credentials = null;
-            //this.xmds.Url = "http://localhost/Series 1.3/131-datasets/server/xibo.asmx";
+            //this.xmds.Url = "http://localhost/Series 1.3/131-datasets/server/.asmx";
             //this.xmds.UseDefaultCredentials = false;
             // 
             // OptionForm
@@ -726,7 +726,7 @@ namespace Client
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "OptionForm";
-            this.Text = "Xibo Client Options";
+            this.Text = " Client Options";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

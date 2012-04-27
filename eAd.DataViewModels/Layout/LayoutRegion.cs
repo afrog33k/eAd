@@ -35,5 +35,10 @@ namespace eAd.DataViewModels
         /// <remarks/>
     //    [System.Xml.Serialization.XmlAttributeAttribute()]
         public int Left { get; set; }
+
+        public override string ToString()
+        {
+            return Id;
+        }
     }
 }

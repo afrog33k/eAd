@@ -114,138 +114,20 @@ namespace Client.Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EntityKey", Namespace="http://schemas.datacontract.org/2004/07/System.Data", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="StructuralObject", Namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses", IsReference=true)]
     [System.SerializableAttribute()]
-    public partial class EntityKey : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EntityContainerNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Client.Service.EntityKeyMember[] EntityKeyValuesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EntitySetNameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string EntityContainerName {
-            get {
-                return this.EntityContainerNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EntityContainerNameField, value) != true)) {
-                    this.EntityContainerNameField = value;
-                    this.RaisePropertyChanged("EntityContainerName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Client.Service.EntityKeyMember[] EntityKeyValues {
-            get {
-                return this.EntityKeyValuesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EntityKeyValuesField, value) != true)) {
-                    this.EntityKeyValuesField = value;
-                    this.RaisePropertyChanged("EntityKeyValues");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string EntitySetName {
-            get {
-                return this.EntitySetNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EntitySetNameField, value) != true)) {
-                    this.EntitySetNameField = value;
-                    this.RaisePropertyChanged("EntitySetName");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EntityKeyMember", Namespace="http://schemas.datacontract.org/2004/07/System.Data")]
-    [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.IO.FileStream))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.IO.Stream))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.EntityKey))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.EntityKeyMember[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(long[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.FileTypeEnum))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Mosaic))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Grouping[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Grouping))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Station[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Station))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Message[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Message))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Theme[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Theme))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Medium[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Medium))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Position[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Position))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.MarshalByRefObject))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.MediaListModel[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.MediaListModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.PositionViewModel[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.PositionViewModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.CustomerViewModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.MessageViewModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.MessageViewModel[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.CustomerViewModel[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.StationViewModel[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.StationViewModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.FilesModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.RequiredFileModel[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.RequiredFileModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.ScheduleModel))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.ScheduleLayout[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.ScheduleLayout))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.EntityObject))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.StructuralObject))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.EntityReferenceOfMosaic0cHE_SurI))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.EntityReference))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.RelatedEnd))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.EntityReferenceOfStation0cHE_SurI))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.FileMetaData))]
-    public partial class EntityKeyMember : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Grouping))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Station))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Message))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Theme))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Medium))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Position))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Mosaic))]
+    public partial class StructuralObject : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string KeyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private object ValueField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -254,32 +136,6 @@ namespace Client.Service {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Key {
-            get {
-                return this.KeyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.KeyField, value) != true)) {
-                    this.KeyField = value;
-                    this.RaisePropertyChanged("Key");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public object Value {
-            get {
-                return this.ValueField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ValueField, value) != true)) {
-                    this.ValueField = value;
-                    this.RaisePropertyChanged("Value");
-                }
             }
         }
         
@@ -295,198 +151,29 @@ namespace Client.Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Mosaic", Namespace="http://schemas.datacontract.org/2004/07/eAd.DataAccess", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EntityObject", Namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses", IsReference=true)]
     [System.SerializableAttribute()]
-    public partial class Mosaic : Client.Service.EntityObject {
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Grouping))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Station))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Message))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Theme))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Medium))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Position))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Mosaic))]
+    public partial class EntityObject : Client.Service.StructuralObject {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BackgroundField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BackgroundColorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime CreatedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Client.Service.Grouping[] GroupingsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string HashField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int HeightField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long MosaicIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Client.Service.Position[] PositionsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long SizeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime UpdatedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int WidthField;
+        private Client.Service.EntityKey EntityKeyField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Background {
+        public Client.Service.EntityKey EntityKey {
             get {
-                return this.BackgroundField;
+                return this.EntityKeyField;
             }
             set {
-                if ((object.ReferenceEquals(this.BackgroundField, value) != true)) {
-                    this.BackgroundField = value;
-                    this.RaisePropertyChanged("Background");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BackgroundColor {
-            get {
-                return this.BackgroundColorField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BackgroundColorField, value) != true)) {
-                    this.BackgroundColorField = value;
-                    this.RaisePropertyChanged("BackgroundColor");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Created {
-            get {
-                return this.CreatedField;
-            }
-            set {
-                if ((this.CreatedField.Equals(value) != true)) {
-                    this.CreatedField = value;
-                    this.RaisePropertyChanged("Created");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Client.Service.Grouping[] Groupings {
-            get {
-                return this.GroupingsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.GroupingsField, value) != true)) {
-                    this.GroupingsField = value;
-                    this.RaisePropertyChanged("Groupings");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Hash {
-            get {
-                return this.HashField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HashField, value) != true)) {
-                    this.HashField = value;
-                    this.RaisePropertyChanged("Hash");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Height {
-            get {
-                return this.HeightField;
-            }
-            set {
-                if ((this.HeightField.Equals(value) != true)) {
-                    this.HeightField = value;
-                    this.RaisePropertyChanged("Height");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public long MosaicID {
-            get {
-                return this.MosaicIDField;
-            }
-            set {
-                if ((this.MosaicIDField.Equals(value) != true)) {
-                    this.MosaicIDField = value;
-                    this.RaisePropertyChanged("MosaicID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Client.Service.Position[] Positions {
-            get {
-                return this.PositionsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PositionsField, value) != true)) {
-                    this.PositionsField = value;
-                    this.RaisePropertyChanged("Positions");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Size {
-            get {
-                return this.SizeField;
-            }
-            set {
-                if ((this.SizeField.Equals(value) != true)) {
-                    this.SizeField = value;
-                    this.RaisePropertyChanged("Size");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Updated {
-            get {
-                return this.UpdatedField;
-            }
-            set {
-                if ((this.UpdatedField.Equals(value) != true)) {
-                    this.UpdatedField = value;
-                    this.RaisePropertyChanged("Updated");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Width {
-            get {
-                return this.WidthField;
-            }
-            set {
-                if ((this.WidthField.Equals(value) != true)) {
-                    this.WidthField = value;
-                    this.RaisePropertyChanged("Width");
+                if ((object.ReferenceEquals(this.EntityKeyField, value) != true)) {
+                    this.EntityKeyField = value;
+                    this.RaisePropertyChanged("EntityKey");
                 }
             }
         }
@@ -637,6 +324,9 @@ namespace Client.Service {
         private string AddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ApprovedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<bool> AvailableField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -644,6 +334,9 @@ namespace Client.Service {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private Client.Service.Grouping[] GroupingsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HardwareKeyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> LastCheckInField;
@@ -681,6 +374,19 @@ namespace Client.Service {
                 if ((object.ReferenceEquals(this.AddressField, value) != true)) {
                     this.AddressField = value;
                     this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Approved {
+            get {
+                return this.ApprovedField;
+            }
+            set {
+                if ((this.ApprovedField.Equals(value) != true)) {
+                    this.ApprovedField = value;
+                    this.RaisePropertyChanged("Approved");
                 }
             }
         }
@@ -725,6 +431,19 @@ namespace Client.Service {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string HardwareKey {
+            get {
+                return this.HardwareKeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HardwareKeyField, value) != true)) {
+                    this.HardwareKeyField = value;
+                    this.RaisePropertyChanged("HardwareKey");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<System.DateTime> LastCheckIn {
             get {
                 return this.LastCheckInField;
@@ -745,7 +464,7 @@ namespace Client.Service {
             set {
                 if ((object.ReferenceEquals(this.LocationField, value) != true)) {
                     this.LocationField = value;
-                    this.RaisePropertyChanged("Location");
+                    this.RaisePropertyChanged("DisplayLocation");
                 }
             }
         }
@@ -1204,7 +923,7 @@ namespace Client.Service {
             set {
                 if ((object.ReferenceEquals(this.LocationField, value) != true)) {
                     this.LocationField = value;
-                    this.RaisePropertyChanged("Location");
+                    this.RaisePropertyChanged("DisplayLocation");
                 }
             }
         }
@@ -1528,29 +1247,198 @@ namespace Client.Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EntityObject", Namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Mosaic", Namespace="http://schemas.datacontract.org/2004/07/eAd.DataAccess", IsReference=true)]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Grouping))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Station))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Message))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Theme))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Medium))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Position))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Mosaic))]
-    public partial class EntityObject : Client.Service.StructuralObject {
+    public partial class Mosaic : Client.Service.EntityObject {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Client.Service.EntityKey EntityKeyField;
+        private string BackgroundField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BackgroundColorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime CreatedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Client.Service.Grouping[] GroupingsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HashField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int HeightField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long MosaicIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Client.Service.Position[] PositionsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long SizeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime UpdatedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int WidthField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Client.Service.EntityKey EntityKey {
+        public string Background {
             get {
-                return this.EntityKeyField;
+                return this.BackgroundField;
             }
             set {
-                if ((object.ReferenceEquals(this.EntityKeyField, value) != true)) {
-                    this.EntityKeyField = value;
-                    this.RaisePropertyChanged("EntityKey");
+                if ((object.ReferenceEquals(this.BackgroundField, value) != true)) {
+                    this.BackgroundField = value;
+                    this.RaisePropertyChanged("Background");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BackgroundColor {
+            get {
+                return this.BackgroundColorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BackgroundColorField, value) != true)) {
+                    this.BackgroundColorField = value;
+                    this.RaisePropertyChanged("BackgroundColor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Created {
+            get {
+                return this.CreatedField;
+            }
+            set {
+                if ((this.CreatedField.Equals(value) != true)) {
+                    this.CreatedField = value;
+                    this.RaisePropertyChanged("Created");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Client.Service.Grouping[] Groupings {
+            get {
+                return this.GroupingsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GroupingsField, value) != true)) {
+                    this.GroupingsField = value;
+                    this.RaisePropertyChanged("Groupings");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Hash {
+            get {
+                return this.HashField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HashField, value) != true)) {
+                    this.HashField = value;
+                    this.RaisePropertyChanged("Hash");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Height {
+            get {
+                return this.HeightField;
+            }
+            set {
+                if ((this.HeightField.Equals(value) != true)) {
+                    this.HeightField = value;
+                    this.RaisePropertyChanged("Height");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long MosaicID {
+            get {
+                return this.MosaicIDField;
+            }
+            set {
+                if ((this.MosaicIDField.Equals(value) != true)) {
+                    this.MosaicIDField = value;
+                    this.RaisePropertyChanged("MosaicID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Client.Service.Position[] Positions {
+            get {
+                return this.PositionsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PositionsField, value) != true)) {
+                    this.PositionsField = value;
+                    this.RaisePropertyChanged("Positions");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long Size {
+            get {
+                return this.SizeField;
+            }
+            set {
+                if ((this.SizeField.Equals(value) != true)) {
+                    this.SizeField = value;
+                    this.RaisePropertyChanged("Size");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Updated {
+            get {
+                return this.UpdatedField;
+            }
+            set {
+                if ((this.UpdatedField.Equals(value) != true)) {
+                    this.UpdatedField = value;
+                    this.RaisePropertyChanged("Updated");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Width {
+            get {
+                return this.WidthField;
+            }
+            set {
+                if ((this.WidthField.Equals(value) != true)) {
+                    this.WidthField = value;
+                    this.RaisePropertyChanged("Width");
                 }
             }
         }
@@ -1558,20 +1446,21 @@ namespace Client.Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="StructuralObject", Namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses", IsReference=true)]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EntityKey", Namespace="http://schemas.datacontract.org/2004/07/System.Data", IsReference=true)]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.EntityObject))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Grouping))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Station))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Message))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Theme))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Medium))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Position))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Mosaic))]
-    public partial class StructuralObject : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class EntityKey : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EntityContainerNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Client.Service.EntityKeyMember[] EntityKeyValuesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EntitySetNameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1580,6 +1469,150 @@ namespace Client.Service {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EntityContainerName {
+            get {
+                return this.EntityContainerNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EntityContainerNameField, value) != true)) {
+                    this.EntityContainerNameField = value;
+                    this.RaisePropertyChanged("EntityContainerName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Client.Service.EntityKeyMember[] EntityKeyValues {
+            get {
+                return this.EntityKeyValuesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EntityKeyValuesField, value) != true)) {
+                    this.EntityKeyValuesField = value;
+                    this.RaisePropertyChanged("EntityKeyValues");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EntitySetName {
+            get {
+                return this.EntitySetNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EntitySetNameField, value) != true)) {
+                    this.EntitySetNameField = value;
+                    this.RaisePropertyChanged("EntitySetName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EntityKeyMember", Namespace="http://schemas.datacontract.org/2004/07/System.Data")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(long[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(string[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.FileTypeEnum))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Mosaic))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Grouping[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Grouping))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Station[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Station))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Message[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Message))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Theme[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Theme))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Medium[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Medium))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Position[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.Position))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.FileMetaData))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.MediaListModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.MediaListModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.PositionViewModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.PositionViewModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.CustomerViewModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.MessageViewModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.MessageViewModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.CustomerViewModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.StationViewModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.StationViewModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.FilesModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.RequiredFileModel[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.RequiredFileModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.ScheduleModel))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.ScheduleLayout[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(eAd.DataViewModels.ScheduleLayout))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.MarshalByRefObject))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.EntityKey))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.EntityKeyMember[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.IO.FileStream))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.IO.Stream))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.EntityObject))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.StructuralObject))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.EntityReferenceOfMosaic0cHE_SurI))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.EntityReference))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.RelatedEnd))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.Service.EntityReferenceOfStation0cHE_SurI))]
+    public partial class EntityKeyMember : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string KeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object ValueField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Key {
+            get {
+                return this.KeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.KeyField, value) != true)) {
+                    this.KeyField = value;
+                    this.RaisePropertyChanged("Key");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValueField, value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
+                }
             }
         }
         
@@ -1667,46 +1700,6 @@ namespace Client.Service {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.IService")]
     public interface IService {
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/BlackList", ReplyAction="http://tempuri.org/IService/BlackListResponse")]
-        void BlackList(string serverKey, string hardwareKey, int mediaId, string type, string reason, string version);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/BlackList", ReplyAction="http://tempuri.org/IService/BlackListResponse")]
-        System.IAsyncResult BeginBlackList(string serverKey, string hardwareKey, int mediaId, string type, string reason, string version, System.AsyncCallback callback, object asyncState);
-        
-        void EndBlackList(System.IAsyncResult result);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SubmitLog", ReplyAction="http://tempuri.org/IService/SubmitLogResponse")]
-        bool SubmitLog(string version, string serverKey, string hardwareKey, string logXml);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/SubmitLog", ReplyAction="http://tempuri.org/IService/SubmitLogResponse")]
-        System.IAsyncResult BeginSubmitLog(string version, string serverKey, string hardwareKey, string logXml, System.AsyncCallback callback, object asyncState);
-        
-        bool EndSubmitLog(System.IAsyncResult result);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SubmitStats", ReplyAction="http://tempuri.org/IService/SubmitStatsResponse")]
-        bool SubmitStats(string version, string serverKey, string hardwareKey, string statXml);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/SubmitStats", ReplyAction="http://tempuri.org/IService/SubmitStatsResponse")]
-        System.IAsyncResult BeginSubmitStats(string version, string serverKey, string hardwareKey, string statXml, System.AsyncCallback callback, object asyncState);
-        
-        bool EndSubmitStats(System.IAsyncResult result);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/MediaInventory", ReplyAction="http://tempuri.org/IService/MediaInventoryResponse")]
-        bool MediaInventory(string version, string serverKey, string hardwareKey, string mediaInventory1);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/MediaInventory", ReplyAction="http://tempuri.org/IService/MediaInventoryResponse")]
-        System.IAsyncResult BeginMediaInventory(string version, string serverKey, string hardwareKey, string mediaInventory1, System.AsyncCallback callback, object asyncState);
-        
-        bool EndMediaInventory(System.IAsyncResult result);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetResource", ReplyAction="http://tempuri.org/IService/GetResourceResponse")]
-        string GetResource(string serverKey, string hardwareKey, int layoutId, string regionId, string mediaId, string version);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetResource", ReplyAction="http://tempuri.org/IService/GetResourceResponse")]
-        System.IAsyncResult BeginGetResource(string serverKey, string hardwareKey, int layoutId, string regionId, string mediaId, string version, System.AsyncCallback callback, object asyncState);
-        
-        string EndGetResource(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetHi", ReplyAction="http://tempuri.org/IService/GetHiResponse")]
         string GetHi();
@@ -1910,10 +1903,10 @@ namespace Client.Service {
         eAd.DataViewModels.FilesModel EndRequiredFiles(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetFile", ReplyAction="http://tempuri.org/IService/GetFileResponse")]
-        byte[] GetFile(string serverKey, string hardwareKey, string filePath, string fileType, int chunkOffset, int chuckSize, string version);
+        byte[] GetFile(string serverKey, string hardwareKey, string filePath, string fileType, long chunkOffset, long chuckSize, string version);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetFile", ReplyAction="http://tempuri.org/IService/GetFileResponse")]
-        System.IAsyncResult BeginGetFile(string serverKey, string hardwareKey, string filePath, string fileType, int chunkOffset, int chuckSize, string version, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetFile(string serverKey, string hardwareKey, string filePath, string fileType, long chunkOffset, long chuckSize, string version, System.AsyncCallback callback, object asyncState);
         
         byte[] EndGetFile(System.IAsyncResult result);
         
@@ -1932,6 +1925,46 @@ namespace Client.Service {
         System.IAsyncResult BeginRecieveXmlLog(string serverKey, string hardwareKey, string xml, string version, System.AsyncCallback callback, object asyncState);
         
         bool EndRecieveXmlLog(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/BlackList", ReplyAction="http://tempuri.org/IService/BlackListResponse")]
+        void BlackList(string serverKey, string hardwareKey, int mediaId, string type, string reason, string version);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/BlackList", ReplyAction="http://tempuri.org/IService/BlackListResponse")]
+        System.IAsyncResult BeginBlackList(string serverKey, string hardwareKey, int mediaId, string type, string reason, string version, System.AsyncCallback callback, object asyncState);
+        
+        void EndBlackList(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SubmitLog", ReplyAction="http://tempuri.org/IService/SubmitLogResponse")]
+        bool SubmitLog(string version, string serverKey, string hardwareKey, string logXml);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/SubmitLog", ReplyAction="http://tempuri.org/IService/SubmitLogResponse")]
+        System.IAsyncResult BeginSubmitLog(string version, string serverKey, string hardwareKey, string logXml, System.AsyncCallback callback, object asyncState);
+        
+        bool EndSubmitLog(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SubmitStats", ReplyAction="http://tempuri.org/IService/SubmitStatsResponse")]
+        bool SubmitStats(string version, string serverKey, string hardwareKey, string statXml);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/SubmitStats", ReplyAction="http://tempuri.org/IService/SubmitStatsResponse")]
+        System.IAsyncResult BeginSubmitStats(string version, string serverKey, string hardwareKey, string statXml, System.AsyncCallback callback, object asyncState);
+        
+        bool EndSubmitStats(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/MediaInventory", ReplyAction="http://tempuri.org/IService/MediaInventoryResponse")]
+        bool MediaInventory(string version, string serverKey, string hardwareKey, string mediaInventory1);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/MediaInventory", ReplyAction="http://tempuri.org/IService/MediaInventoryResponse")]
+        System.IAsyncResult BeginMediaInventory(string version, string serverKey, string hardwareKey, string mediaInventory1, System.AsyncCallback callback, object asyncState);
+        
+        bool EndMediaInventory(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetResource", ReplyAction="http://tempuri.org/IService/GetResourceResponse")]
+        string GetResource(string serverKey, string hardwareKey, int layoutId, string regionId, string mediaId, string version);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService/GetResource", ReplyAction="http://tempuri.org/IService/GetResourceResponse")]
+        System.IAsyncResult BeginGetResource(string serverKey, string hardwareKey, int layoutId, string regionId, string mediaId, string version, System.AsyncCallback callback, object asyncState);
+        
+        string EndGetResource(System.IAsyncResult result);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1974,82 +2007,6 @@ namespace Client.Service {
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IServiceChannel : Client.Service.IService, System.ServiceModel.IClientChannel {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class SubmitLogCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public SubmitLogCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public bool Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class SubmitStatsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public SubmitStatsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public bool Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class MediaInventoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public MediaInventoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public bool Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetResourceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public GetResourceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public string Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2555,37 +2512,83 @@ namespace Client.Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class SubmitLogCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SubmitLogCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class SubmitStatsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SubmitStatsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class MediaInventoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public MediaInventoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetResourceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetResourceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ServiceClient : System.ServiceModel.ClientBase<Client.Service.IService>, Client.Service.IService {
-        
-        private BeginOperationDelegate onBeginBlackListDelegate;
-        
-        private EndOperationDelegate onEndBlackListDelegate;
-        
-        private System.Threading.SendOrPostCallback onBlackListCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginSubmitLogDelegate;
-        
-        private EndOperationDelegate onEndSubmitLogDelegate;
-        
-        private System.Threading.SendOrPostCallback onSubmitLogCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginSubmitStatsDelegate;
-        
-        private EndOperationDelegate onEndSubmitStatsDelegate;
-        
-        private System.Threading.SendOrPostCallback onSubmitStatsCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginMediaInventoryDelegate;
-        
-        private EndOperationDelegate onEndMediaInventoryDelegate;
-        
-        private System.Threading.SendOrPostCallback onMediaInventoryCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginGetResourceDelegate;
-        
-        private EndOperationDelegate onEndGetResourceDelegate;
-        
-        private System.Threading.SendOrPostCallback onGetResourceCompletedDelegate;
         
         private BeginOperationDelegate onBeginGetHiDelegate;
         
@@ -2755,6 +2758,36 @@ namespace Client.Service {
         
         private System.Threading.SendOrPostCallback onRecieveXmlLogCompletedDelegate;
         
+        private BeginOperationDelegate onBeginBlackListDelegate;
+        
+        private EndOperationDelegate onEndBlackListDelegate;
+        
+        private System.Threading.SendOrPostCallback onBlackListCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSubmitLogDelegate;
+        
+        private EndOperationDelegate onEndSubmitLogDelegate;
+        
+        private System.Threading.SendOrPostCallback onSubmitLogCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSubmitStatsDelegate;
+        
+        private EndOperationDelegate onEndSubmitStatsDelegate;
+        
+        private System.Threading.SendOrPostCallback onSubmitStatsCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginMediaInventoryDelegate;
+        
+        private EndOperationDelegate onEndMediaInventoryDelegate;
+        
+        private System.Threading.SendOrPostCallback onMediaInventoryCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetResourceDelegate;
+        
+        private EndOperationDelegate onEndGetResourceDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetResourceCompletedDelegate;
+        
         public ServiceClient() {
         }
         
@@ -2773,16 +2806,6 @@ namespace Client.Service {
         public ServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
-        
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> BlackListCompleted;
-        
-        public event System.EventHandler<SubmitLogCompletedEventArgs> SubmitLogCompleted;
-        
-        public event System.EventHandler<SubmitStatsCompletedEventArgs> SubmitStatsCompleted;
-        
-        public event System.EventHandler<MediaInventoryCompletedEventArgs> MediaInventoryCompleted;
-        
-        public event System.EventHandler<GetResourceCompletedEventArgs> GetResourceCompleted;
         
         public event System.EventHandler<GetHiCompletedEventArgs> GetHiCompleted;
         
@@ -2840,292 +2863,15 @@ namespace Client.Service {
         
         public event System.EventHandler<RecieveXmlLogCompletedEventArgs> RecieveXmlLogCompleted;
         
-        public void BlackList(string serverKey, string hardwareKey, int mediaId, string type, string reason, string version) {
-            base.Channel.BlackList(serverKey, hardwareKey, mediaId, type, reason, version);
-        }
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> BlackListCompleted;
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginBlackList(string serverKey, string hardwareKey, int mediaId, string type, string reason, string version, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginBlackList(serverKey, hardwareKey, mediaId, type, reason, version, callback, asyncState);
-        }
+        public event System.EventHandler<SubmitLogCompletedEventArgs> SubmitLogCompleted;
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public void EndBlackList(System.IAsyncResult result) {
-            base.Channel.EndBlackList(result);
-        }
+        public event System.EventHandler<SubmitStatsCompletedEventArgs> SubmitStatsCompleted;
         
-        private System.IAsyncResult OnBeginBlackList(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string serverKey = ((string)(inValues[0]));
-            string hardwareKey = ((string)(inValues[1]));
-            int mediaId = ((int)(inValues[2]));
-            string type = ((string)(inValues[3]));
-            string reason = ((string)(inValues[4]));
-            string version = ((string)(inValues[5]));
-            return this.BeginBlackList(serverKey, hardwareKey, mediaId, type, reason, version, callback, asyncState);
-        }
+        public event System.EventHandler<MediaInventoryCompletedEventArgs> MediaInventoryCompleted;
         
-        private object[] OnEndBlackList(System.IAsyncResult result) {
-            this.EndBlackList(result);
-            return null;
-        }
-        
-        private void OnBlackListCompleted(object state) {
-            if ((this.BlackListCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.BlackListCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void BlackListAsync(string serverKey, string hardwareKey, int mediaId, string type, string reason, string version) {
-            this.BlackListAsync(serverKey, hardwareKey, mediaId, type, reason, version, null);
-        }
-        
-        public void BlackListAsync(string serverKey, string hardwareKey, int mediaId, string type, string reason, string version, object userState) {
-            if ((this.onBeginBlackListDelegate == null)) {
-                this.onBeginBlackListDelegate = new BeginOperationDelegate(this.OnBeginBlackList);
-            }
-            if ((this.onEndBlackListDelegate == null)) {
-                this.onEndBlackListDelegate = new EndOperationDelegate(this.OnEndBlackList);
-            }
-            if ((this.onBlackListCompletedDelegate == null)) {
-                this.onBlackListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnBlackListCompleted);
-            }
-            base.InvokeAsync(this.onBeginBlackListDelegate, new object[] {
-                        serverKey,
-                        hardwareKey,
-                        mediaId,
-                        type,
-                        reason,
-                        version}, this.onEndBlackListDelegate, this.onBlackListCompletedDelegate, userState);
-        }
-        
-        public bool SubmitLog(string version, string serverKey, string hardwareKey, string logXml) {
-            return base.Channel.SubmitLog(version, serverKey, hardwareKey, logXml);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginSubmitLog(string version, string serverKey, string hardwareKey, string logXml, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginSubmitLog(version, serverKey, hardwareKey, logXml, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public bool EndSubmitLog(System.IAsyncResult result) {
-            return base.Channel.EndSubmitLog(result);
-        }
-        
-        private System.IAsyncResult OnBeginSubmitLog(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string version = ((string)(inValues[0]));
-            string serverKey = ((string)(inValues[1]));
-            string hardwareKey = ((string)(inValues[2]));
-            string logXml = ((string)(inValues[3]));
-            return this.BeginSubmitLog(version, serverKey, hardwareKey, logXml, callback, asyncState);
-        }
-        
-        private object[] OnEndSubmitLog(System.IAsyncResult result) {
-            bool retVal = this.EndSubmitLog(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnSubmitLogCompleted(object state) {
-            if ((this.SubmitLogCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.SubmitLogCompleted(this, new SubmitLogCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void SubmitLogAsync(string version, string serverKey, string hardwareKey, string logXml) {
-            this.SubmitLogAsync(version, serverKey, hardwareKey, logXml, null);
-        }
-        
-        public void SubmitLogAsync(string version, string serverKey, string hardwareKey, string logXml, object userState) {
-            if ((this.onBeginSubmitLogDelegate == null)) {
-                this.onBeginSubmitLogDelegate = new BeginOperationDelegate(this.OnBeginSubmitLog);
-            }
-            if ((this.onEndSubmitLogDelegate == null)) {
-                this.onEndSubmitLogDelegate = new EndOperationDelegate(this.OnEndSubmitLog);
-            }
-            if ((this.onSubmitLogCompletedDelegate == null)) {
-                this.onSubmitLogCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSubmitLogCompleted);
-            }
-            base.InvokeAsync(this.onBeginSubmitLogDelegate, new object[] {
-                        version,
-                        serverKey,
-                        hardwareKey,
-                        logXml}, this.onEndSubmitLogDelegate, this.onSubmitLogCompletedDelegate, userState);
-        }
-        
-        public bool SubmitStats(string version, string serverKey, string hardwareKey, string statXml) {
-            return base.Channel.SubmitStats(version, serverKey, hardwareKey, statXml);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginSubmitStats(string version, string serverKey, string hardwareKey, string statXml, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginSubmitStats(version, serverKey, hardwareKey, statXml, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public bool EndSubmitStats(System.IAsyncResult result) {
-            return base.Channel.EndSubmitStats(result);
-        }
-        
-        private System.IAsyncResult OnBeginSubmitStats(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string version = ((string)(inValues[0]));
-            string serverKey = ((string)(inValues[1]));
-            string hardwareKey = ((string)(inValues[2]));
-            string statXml = ((string)(inValues[3]));
-            return this.BeginSubmitStats(version, serverKey, hardwareKey, statXml, callback, asyncState);
-        }
-        
-        private object[] OnEndSubmitStats(System.IAsyncResult result) {
-            bool retVal = this.EndSubmitStats(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnSubmitStatsCompleted(object state) {
-            if ((this.SubmitStatsCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.SubmitStatsCompleted(this, new SubmitStatsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void SubmitStatsAsync(string version, string serverKey, string hardwareKey, string statXml) {
-            this.SubmitStatsAsync(version, serverKey, hardwareKey, statXml, null);
-        }
-        
-        public void SubmitStatsAsync(string version, string serverKey, string hardwareKey, string statXml, object userState) {
-            if ((this.onBeginSubmitStatsDelegate == null)) {
-                this.onBeginSubmitStatsDelegate = new BeginOperationDelegate(this.OnBeginSubmitStats);
-            }
-            if ((this.onEndSubmitStatsDelegate == null)) {
-                this.onEndSubmitStatsDelegate = new EndOperationDelegate(this.OnEndSubmitStats);
-            }
-            if ((this.onSubmitStatsCompletedDelegate == null)) {
-                this.onSubmitStatsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSubmitStatsCompleted);
-            }
-            base.InvokeAsync(this.onBeginSubmitStatsDelegate, new object[] {
-                        version,
-                        serverKey,
-                        hardwareKey,
-                        statXml}, this.onEndSubmitStatsDelegate, this.onSubmitStatsCompletedDelegate, userState);
-        }
-        
-        public bool MediaInventory(string version, string serverKey, string hardwareKey, string mediaInventory1) {
-            return base.Channel.MediaInventory(version, serverKey, hardwareKey, mediaInventory1);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginMediaInventory(string version, string serverKey, string hardwareKey, string mediaInventory1, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginMediaInventory(version, serverKey, hardwareKey, mediaInventory1, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public bool EndMediaInventory(System.IAsyncResult result) {
-            return base.Channel.EndMediaInventory(result);
-        }
-        
-        private System.IAsyncResult OnBeginMediaInventory(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string version = ((string)(inValues[0]));
-            string serverKey = ((string)(inValues[1]));
-            string hardwareKey = ((string)(inValues[2]));
-            string mediaInventory1 = ((string)(inValues[3]));
-            return this.BeginMediaInventory(version, serverKey, hardwareKey, mediaInventory1, callback, asyncState);
-        }
-        
-        private object[] OnEndMediaInventory(System.IAsyncResult result) {
-            bool retVal = this.EndMediaInventory(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnMediaInventoryCompleted(object state) {
-            if ((this.MediaInventoryCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.MediaInventoryCompleted(this, new MediaInventoryCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void MediaInventoryAsync(string version, string serverKey, string hardwareKey, string mediaInventory1) {
-            this.MediaInventoryAsync(version, serverKey, hardwareKey, mediaInventory1, null);
-        }
-        
-        public void MediaInventoryAsync(string version, string serverKey, string hardwareKey, string mediaInventory1, object userState) {
-            if ((this.onBeginMediaInventoryDelegate == null)) {
-                this.onBeginMediaInventoryDelegate = new BeginOperationDelegate(this.OnBeginMediaInventory);
-            }
-            if ((this.onEndMediaInventoryDelegate == null)) {
-                this.onEndMediaInventoryDelegate = new EndOperationDelegate(this.OnEndMediaInventory);
-            }
-            if ((this.onMediaInventoryCompletedDelegate == null)) {
-                this.onMediaInventoryCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnMediaInventoryCompleted);
-            }
-            base.InvokeAsync(this.onBeginMediaInventoryDelegate, new object[] {
-                        version,
-                        serverKey,
-                        hardwareKey,
-                        mediaInventory1}, this.onEndMediaInventoryDelegate, this.onMediaInventoryCompletedDelegate, userState);
-        }
-        
-        public string GetResource(string serverKey, string hardwareKey, int layoutId, string regionId, string mediaId, string version) {
-            return base.Channel.GetResource(serverKey, hardwareKey, layoutId, regionId, mediaId, version);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginGetResource(string serverKey, string hardwareKey, int layoutId, string regionId, string mediaId, string version, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetResource(serverKey, hardwareKey, layoutId, regionId, mediaId, version, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public string EndGetResource(System.IAsyncResult result) {
-            return base.Channel.EndGetResource(result);
-        }
-        
-        private System.IAsyncResult OnBeginGetResource(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string serverKey = ((string)(inValues[0]));
-            string hardwareKey = ((string)(inValues[1]));
-            int layoutId = ((int)(inValues[2]));
-            string regionId = ((string)(inValues[3]));
-            string mediaId = ((string)(inValues[4]));
-            string version = ((string)(inValues[5]));
-            return this.BeginGetResource(serverKey, hardwareKey, layoutId, regionId, mediaId, version, callback, asyncState);
-        }
-        
-        private object[] OnEndGetResource(System.IAsyncResult result) {
-            string retVal = this.EndGetResource(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnGetResourceCompleted(object state) {
-            if ((this.GetResourceCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetResourceCompleted(this, new GetResourceCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void GetResourceAsync(string serverKey, string hardwareKey, int layoutId, string regionId, string mediaId, string version) {
-            this.GetResourceAsync(serverKey, hardwareKey, layoutId, regionId, mediaId, version, null);
-        }
-        
-        public void GetResourceAsync(string serverKey, string hardwareKey, int layoutId, string regionId, string mediaId, string version, object userState) {
-            if ((this.onBeginGetResourceDelegate == null)) {
-                this.onBeginGetResourceDelegate = new BeginOperationDelegate(this.OnBeginGetResource);
-            }
-            if ((this.onEndGetResourceDelegate == null)) {
-                this.onEndGetResourceDelegate = new EndOperationDelegate(this.OnEndGetResource);
-            }
-            if ((this.onGetResourceCompletedDelegate == null)) {
-                this.onGetResourceCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetResourceCompleted);
-            }
-            base.InvokeAsync(this.onBeginGetResourceDelegate, new object[] {
-                        serverKey,
-                        hardwareKey,
-                        layoutId,
-                        regionId,
-                        mediaId,
-                        version}, this.onEndGetResourceDelegate, this.onGetResourceCompletedDelegate, userState);
-        }
+        public event System.EventHandler<GetResourceCompletedEventArgs> GetResourceCompleted;
         
         public string GetHi() {
             return base.Channel.GetHi();
@@ -4412,12 +4158,12 @@ namespace Client.Service {
                         version}, this.onEndRequiredFilesDelegate, this.onRequiredFilesCompletedDelegate, userState);
         }
         
-        public byte[] GetFile(string serverKey, string hardwareKey, string filePath, string fileType, int chunkOffset, int chuckSize, string version) {
+        public byte[] GetFile(string serverKey, string hardwareKey, string filePath, string fileType, long chunkOffset, long chuckSize, string version) {
             return base.Channel.GetFile(serverKey, hardwareKey, filePath, fileType, chunkOffset, chuckSize, version);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginGetFile(string serverKey, string hardwareKey, string filePath, string fileType, int chunkOffset, int chuckSize, string version, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BeginGetFile(string serverKey, string hardwareKey, string filePath, string fileType, long chunkOffset, long chuckSize, string version, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginGetFile(serverKey, hardwareKey, filePath, fileType, chunkOffset, chuckSize, version, callback, asyncState);
         }
         
@@ -4431,8 +4177,8 @@ namespace Client.Service {
             string hardwareKey = ((string)(inValues[1]));
             string filePath = ((string)(inValues[2]));
             string fileType = ((string)(inValues[3]));
-            int chunkOffset = ((int)(inValues[4]));
-            int chuckSize = ((int)(inValues[5]));
+            long chunkOffset = ((long)(inValues[4]));
+            long chuckSize = ((long)(inValues[5]));
             string version = ((string)(inValues[6]));
             return this.BeginGetFile(serverKey, hardwareKey, filePath, fileType, chunkOffset, chuckSize, version, callback, asyncState);
         }
@@ -4450,11 +4196,11 @@ namespace Client.Service {
             }
         }
         
-        public void GetFileAsync(string serverKey, string hardwareKey, string filePath, string fileType, int chunkOffset, int chuckSize, string version) {
+        public void GetFileAsync(string serverKey, string hardwareKey, string filePath, string fileType, long chunkOffset, long chuckSize, string version) {
             this.GetFileAsync(serverKey, hardwareKey, filePath, fileType, chunkOffset, chuckSize, version, null);
         }
         
-        public void GetFileAsync(string serverKey, string hardwareKey, string filePath, string fileType, int chunkOffset, int chuckSize, string version, object userState) {
+        public void GetFileAsync(string serverKey, string hardwareKey, string filePath, string fileType, long chunkOffset, long chuckSize, string version, object userState) {
             if ((this.onBeginGetFileDelegate == null)) {
                 this.onBeginGetFileDelegate = new BeginOperationDelegate(this.OnBeginGetFile);
             }
@@ -4582,6 +4328,293 @@ namespace Client.Service {
                         hardwareKey,
                         xml,
                         version}, this.onEndRecieveXmlLogDelegate, this.onRecieveXmlLogCompletedDelegate, userState);
+        }
+        
+        public void BlackList(string serverKey, string hardwareKey, int mediaId, string type, string reason, string version) {
+            base.Channel.BlackList(serverKey, hardwareKey, mediaId, type, reason, version);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginBlackList(string serverKey, string hardwareKey, int mediaId, string type, string reason, string version, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginBlackList(serverKey, hardwareKey, mediaId, type, reason, version, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public void EndBlackList(System.IAsyncResult result) {
+            base.Channel.EndBlackList(result);
+        }
+        
+        private System.IAsyncResult OnBeginBlackList(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string serverKey = ((string)(inValues[0]));
+            string hardwareKey = ((string)(inValues[1]));
+            int mediaId = ((int)(inValues[2]));
+            string type = ((string)(inValues[3]));
+            string reason = ((string)(inValues[4]));
+            string version = ((string)(inValues[5]));
+            return this.BeginBlackList(serverKey, hardwareKey, mediaId, type, reason, version, callback, asyncState);
+        }
+        
+        private object[] OnEndBlackList(System.IAsyncResult result) {
+            this.EndBlackList(result);
+            return null;
+        }
+        
+        private void OnBlackListCompleted(object state) {
+            if ((this.BlackListCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.BlackListCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void BlackListAsync(string serverKey, string hardwareKey, int mediaId, string type, string reason, string version) {
+            this.BlackListAsync(serverKey, hardwareKey, mediaId, type, reason, version, null);
+        }
+        
+        public void BlackListAsync(string serverKey, string hardwareKey, int mediaId, string type, string reason, string version, object userState) {
+            if ((this.onBeginBlackListDelegate == null)) {
+                this.onBeginBlackListDelegate = new BeginOperationDelegate(this.OnBeginBlackList);
+            }
+            if ((this.onEndBlackListDelegate == null)) {
+                this.onEndBlackListDelegate = new EndOperationDelegate(this.OnEndBlackList);
+            }
+            if ((this.onBlackListCompletedDelegate == null)) {
+                this.onBlackListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnBlackListCompleted);
+            }
+            base.InvokeAsync(this.onBeginBlackListDelegate, new object[] {
+                        serverKey,
+                        hardwareKey,
+                        mediaId,
+                        type,
+                        reason,
+                        version}, this.onEndBlackListDelegate, this.onBlackListCompletedDelegate, userState);
+        }
+        
+        public bool SubmitLog(string version, string serverKey, string hardwareKey, string logXml) {
+            return base.Channel.SubmitLog(version, serverKey, hardwareKey, logXml);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginSubmitLog(string version, string serverKey, string hardwareKey, string logXml, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSubmitLog(version, serverKey, hardwareKey, logXml, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndSubmitLog(System.IAsyncResult result) {
+            return base.Channel.EndSubmitLog(result);
+        }
+        
+        private System.IAsyncResult OnBeginSubmitLog(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string version = ((string)(inValues[0]));
+            string serverKey = ((string)(inValues[1]));
+            string hardwareKey = ((string)(inValues[2]));
+            string logXml = ((string)(inValues[3]));
+            return this.BeginSubmitLog(version, serverKey, hardwareKey, logXml, callback, asyncState);
+        }
+        
+        private object[] OnEndSubmitLog(System.IAsyncResult result) {
+            bool retVal = this.EndSubmitLog(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnSubmitLogCompleted(object state) {
+            if ((this.SubmitLogCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SubmitLogCompleted(this, new SubmitLogCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SubmitLogAsync(string version, string serverKey, string hardwareKey, string logXml) {
+            this.SubmitLogAsync(version, serverKey, hardwareKey, logXml, null);
+        }
+        
+        public void SubmitLogAsync(string version, string serverKey, string hardwareKey, string logXml, object userState) {
+            if ((this.onBeginSubmitLogDelegate == null)) {
+                this.onBeginSubmitLogDelegate = new BeginOperationDelegate(this.OnBeginSubmitLog);
+            }
+            if ((this.onEndSubmitLogDelegate == null)) {
+                this.onEndSubmitLogDelegate = new EndOperationDelegate(this.OnEndSubmitLog);
+            }
+            if ((this.onSubmitLogCompletedDelegate == null)) {
+                this.onSubmitLogCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSubmitLogCompleted);
+            }
+            base.InvokeAsync(this.onBeginSubmitLogDelegate, new object[] {
+                        version,
+                        serverKey,
+                        hardwareKey,
+                        logXml}, this.onEndSubmitLogDelegate, this.onSubmitLogCompletedDelegate, userState);
+        }
+        
+        public bool SubmitStats(string version, string serverKey, string hardwareKey, string statXml) {
+            return base.Channel.SubmitStats(version, serverKey, hardwareKey, statXml);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginSubmitStats(string version, string serverKey, string hardwareKey, string statXml, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSubmitStats(version, serverKey, hardwareKey, statXml, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndSubmitStats(System.IAsyncResult result) {
+            return base.Channel.EndSubmitStats(result);
+        }
+        
+        private System.IAsyncResult OnBeginSubmitStats(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string version = ((string)(inValues[0]));
+            string serverKey = ((string)(inValues[1]));
+            string hardwareKey = ((string)(inValues[2]));
+            string statXml = ((string)(inValues[3]));
+            return this.BeginSubmitStats(version, serverKey, hardwareKey, statXml, callback, asyncState);
+        }
+        
+        private object[] OnEndSubmitStats(System.IAsyncResult result) {
+            bool retVal = this.EndSubmitStats(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnSubmitStatsCompleted(object state) {
+            if ((this.SubmitStatsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SubmitStatsCompleted(this, new SubmitStatsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SubmitStatsAsync(string version, string serverKey, string hardwareKey, string statXml) {
+            this.SubmitStatsAsync(version, serverKey, hardwareKey, statXml, null);
+        }
+        
+        public void SubmitStatsAsync(string version, string serverKey, string hardwareKey, string statXml, object userState) {
+            if ((this.onBeginSubmitStatsDelegate == null)) {
+                this.onBeginSubmitStatsDelegate = new BeginOperationDelegate(this.OnBeginSubmitStats);
+            }
+            if ((this.onEndSubmitStatsDelegate == null)) {
+                this.onEndSubmitStatsDelegate = new EndOperationDelegate(this.OnEndSubmitStats);
+            }
+            if ((this.onSubmitStatsCompletedDelegate == null)) {
+                this.onSubmitStatsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSubmitStatsCompleted);
+            }
+            base.InvokeAsync(this.onBeginSubmitStatsDelegate, new object[] {
+                        version,
+                        serverKey,
+                        hardwareKey,
+                        statXml}, this.onEndSubmitStatsDelegate, this.onSubmitStatsCompletedDelegate, userState);
+        }
+        
+        public bool MediaInventory(string version, string serverKey, string hardwareKey, string mediaInventory1) {
+            return base.Channel.MediaInventory(version, serverKey, hardwareKey, mediaInventory1);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginMediaInventory(string version, string serverKey, string hardwareKey, string mediaInventory1, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginMediaInventory(version, serverKey, hardwareKey, mediaInventory1, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndMediaInventory(System.IAsyncResult result) {
+            return base.Channel.EndMediaInventory(result);
+        }
+        
+        private System.IAsyncResult OnBeginMediaInventory(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string version = ((string)(inValues[0]));
+            string serverKey = ((string)(inValues[1]));
+            string hardwareKey = ((string)(inValues[2]));
+            string mediaInventory1 = ((string)(inValues[3]));
+            return this.BeginMediaInventory(version, serverKey, hardwareKey, mediaInventory1, callback, asyncState);
+        }
+        
+        private object[] OnEndMediaInventory(System.IAsyncResult result) {
+            bool retVal = this.EndMediaInventory(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnMediaInventoryCompleted(object state) {
+            if ((this.MediaInventoryCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.MediaInventoryCompleted(this, new MediaInventoryCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void MediaInventoryAsync(string version, string serverKey, string hardwareKey, string mediaInventory1) {
+            this.MediaInventoryAsync(version, serverKey, hardwareKey, mediaInventory1, null);
+        }
+        
+        public void MediaInventoryAsync(string version, string serverKey, string hardwareKey, string mediaInventory1, object userState) {
+            if ((this.onBeginMediaInventoryDelegate == null)) {
+                this.onBeginMediaInventoryDelegate = new BeginOperationDelegate(this.OnBeginMediaInventory);
+            }
+            if ((this.onEndMediaInventoryDelegate == null)) {
+                this.onEndMediaInventoryDelegate = new EndOperationDelegate(this.OnEndMediaInventory);
+            }
+            if ((this.onMediaInventoryCompletedDelegate == null)) {
+                this.onMediaInventoryCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnMediaInventoryCompleted);
+            }
+            base.InvokeAsync(this.onBeginMediaInventoryDelegate, new object[] {
+                        version,
+                        serverKey,
+                        hardwareKey,
+                        mediaInventory1}, this.onEndMediaInventoryDelegate, this.onMediaInventoryCompletedDelegate, userState);
+        }
+        
+        public string GetResource(string serverKey, string hardwareKey, int layoutId, string regionId, string mediaId, string version) {
+            return base.Channel.GetResource(serverKey, hardwareKey, layoutId, regionId, mediaId, version);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetResource(string serverKey, string hardwareKey, int layoutId, string regionId, string mediaId, string version, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetResource(serverKey, hardwareKey, layoutId, regionId, mediaId, version, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public string EndGetResource(System.IAsyncResult result) {
+            return base.Channel.EndGetResource(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetResource(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string serverKey = ((string)(inValues[0]));
+            string hardwareKey = ((string)(inValues[1]));
+            int layoutId = ((int)(inValues[2]));
+            string regionId = ((string)(inValues[3]));
+            string mediaId = ((string)(inValues[4]));
+            string version = ((string)(inValues[5]));
+            return this.BeginGetResource(serverKey, hardwareKey, layoutId, regionId, mediaId, version, callback, asyncState);
+        }
+        
+        private object[] OnEndGetResource(System.IAsyncResult result) {
+            string retVal = this.EndGetResource(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetResourceCompleted(object state) {
+            if ((this.GetResourceCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetResourceCompleted(this, new GetResourceCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetResourceAsync(string serverKey, string hardwareKey, int layoutId, string regionId, string mediaId, string version) {
+            this.GetResourceAsync(serverKey, hardwareKey, layoutId, regionId, mediaId, version, null);
+        }
+        
+        public void GetResourceAsync(string serverKey, string hardwareKey, int layoutId, string regionId, string mediaId, string version, object userState) {
+            if ((this.onBeginGetResourceDelegate == null)) {
+                this.onBeginGetResourceDelegate = new BeginOperationDelegate(this.OnBeginGetResource);
+            }
+            if ((this.onEndGetResourceDelegate == null)) {
+                this.onEndGetResourceDelegate = new EndOperationDelegate(this.OnEndGetResource);
+            }
+            if ((this.onGetResourceCompletedDelegate == null)) {
+                this.onGetResourceCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetResourceCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetResourceDelegate, new object[] {
+                        serverKey,
+                        hardwareKey,
+                        layoutId,
+                        regionId,
+                        mediaId,
+                        version}, this.onEndGetResourceDelegate, this.onGetResourceCompletedDelegate, userState);
         }
     }
 }

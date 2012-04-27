@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 using System.Diagnostics;
+using System.Threading;
 using System.Timers;
 using System.Xml.Serialization;
 using Client.Core;
@@ -10,6 +11,7 @@ using Client.Properties;
 using Client.Service;
 using eAd.DataViewModels;
 using eAd.Utilities;
+using Timer = System.Timers.Timer;
 
 namespace Client
 {
@@ -45,14 +47,14 @@ namespace Client
         /// <param name="scheduleLocation"></param>
         public Schedule(string scheduleLocation, ref CacheManager cacheManager)
         {
-            Debug.WriteLine(string.Format("XMDS Location: {0}", Settings.Default.Xmds));
+            Debug.WriteLine(string.Format("XMDS DisplayLocation: {0}", Settings.Default.Xmds));
 
             // Save the schedule location
             _scheduleLocation = scheduleLocation;
 
             // Create a new collection for the layouts in the schedule
             _layoutSchedule = new Collection<LayoutSchedule>();
-            
+
             // Set cachemanager
             _cacheManager = cacheManager;
 
@@ -66,14 +68,14 @@ namespace Client
         /// <summary>
         /// Initialize the Schedule components
         /// </summary>
-        public void InitializeComponents() 
+        public void InitializeComponents()
         {
             // Get the key for this display
             _hardwareKey = new HardwareKey();
 
             // Start up the Xmds Service Object
             //_xmds2.Credentials = null;
-            //_xmds2.Url = Properties.Settings.Default.XiboClient_xmds_xmds;
+            //_xmds2.Url = Properties.Settings.Default.Client_xmds_xmds;
             //_xmds2.UseDefaultCredentials = false;
 
             _xmdsProcessing = false;
@@ -84,8 +86,8 @@ namespace Client
 
             // The Timer for the Service call
             Timer xmdsTimer = new Timer();
-            xmdsTimer.Interval = (int) Settings.Default.collectInterval * 1000;
-            xmdsTimer.Elapsed += new ElapsedEventHandler(xmdsTimer_Tick);
+            xmdsTimer.Interval = 1000;// (int) Settings.Default.collectInterval * 1000;
+            xmdsTimer.Elapsed += new ElapsedEventHandler(XmdsTimerTick);
             xmdsTimer.Start();
 
             // The Timer for the Schedule Polling
@@ -137,13 +139,13 @@ namespace Client
                 ScheduleChangeEvent(_layoutSchedule[0].LayoutFile, _layoutSchedule[0].Scheduleid, _layoutSchedule[0].ID);
             }
         }
-        
+
         /// <summary>
         /// XMDS timer
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void xmdsTimer_Tick(object sender, EventArgs e)
+        void XmdsTimerTick(object sender, EventArgs e)
         {
             // The Date/time of last XMDS is recorded - this cannot be longer that the xmdsProcessingTimeout flag
             DateTime lastXmdsSuccess = Settings.Default.XmdsLastConnection;
@@ -174,9 +176,27 @@ namespace Client
                 _xmds2.RequiredFilesAsync(Settings.Default.ServerKey, _hardwareKey.Key, Settings.Default.Version);
             }
 
+
+            ThreadPool.QueueUserWorkItem((t) =>
+                                             {
+                                                 try
+                                                 {
+                                                     updater.CheckForUpdate();
+                                                 }
+                                                 catch (Exception)
+                                                 {
+
+
+                                                 }
+                                             });
+
+
+
             // Flush the log
             System.Diagnostics.Trace.Flush();
         }
+
+        UpdateMe updater = new UpdateMe();
 
         /// <summary>
         /// Moves the layout on
@@ -206,7 +226,7 @@ namespace Client
             // Raise the event
             ScheduleChangeEvent(_layoutSchedule[_currentLayout].LayoutFile, _layoutSchedule[_currentLayout].Scheduleid, _layoutSchedule[_currentLayout].ID);
         }
-        
+
         /// <summary>
         /// The number of active layouts in the current schedule
         /// </summary>
@@ -233,7 +253,7 @@ namespace Client
         /// <summary>
         /// Event Handler for when the FileCollector has finished file collection cycle
         /// </summary>
-        void fileCollector_CollectionComplete()
+        void FileCollectorCollectionComplete()
         {
             System.Diagnostics.Debug.WriteLine("File Collector Complete - getting Schedule.");
 
@@ -246,7 +266,7 @@ namespace Client
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void xmds2_ScheduleCompleted(object sender,ScheduleCompletedEventArgs e)
+        void xmds2_ScheduleCompleted(object sender, ScheduleCompletedEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("Schedule Retrival Complete.");
 
@@ -269,7 +289,7 @@ namespace Client
 
                 XmlSerializer serializer = new XmlSerializer(typeof(ScheduleModel));
                 MemoryStream scheduleStream = new MemoryStream();
-                serializer.Serialize(scheduleStream,e.Result);
+                serializer.Serialize(scheduleStream, e.Result);
                 // Hash of the result
                 String md5NewSchedule = Hashes.MD5(Encoding.UTF8.GetString(scheduleStream.ToArray()));
 
@@ -305,13 +325,13 @@ namespace Client
                 /* could replace with GetBuffer() if you don't mind the padding, or you
                 could set Capacity of ms to Position to crop the padding out of the
                 buffer.*/
-             
+
 
                 fs.Write(data, 0, data.Length);
 
                 fs.Close();
 
-               
+
                 scheduleStream.Close();
                 Debug.WriteLine("New Schedule Recieved", "xmds_ScheduleCompleted");
 
@@ -391,7 +411,7 @@ namespace Client
 
                     // Bind some events that the fileCollector will raise
                     fileCollector.LayoutFileChanged += new FileCollector.LayoutFileChangedDelegate(FileCollectorLayoutFileChanged);
-                    fileCollector.CollectionComplete += new FileCollector.CollectionCompleteDelegate(fileCollector_CollectionComplete);
+                    fileCollector.CollectionComplete += new FileCollector.CollectionCompleteDelegate(FileCollectorCollectionComplete);
                     fileCollector.MediaFileChanged += new FileCollector.MediaFileChangedDelegate(fileCollector_MediaFileChanged);
 
                     fileCollector.CompareAndCollect();

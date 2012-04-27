@@ -1,4 +1,6 @@
-﻿namespace eAd.Utilities
+﻿using eAd.DataViewModels;
+
+namespace eAd.Utilities
 {
     using eAd.DataViewModels;
     using System;

@@ -33,7 +33,7 @@ namespace Client.Core
 
             // Start up the Xmds Service Object
             //_report.Credentials = null;
-            //_report.Url = Properties.Settings.Default.XiboClient_xmds_xmds;
+            //_report.Url = Properties.Settings.Default.Client_xmds_xmds;
             //_report.UseDefaultCredentials = false;
         }
 

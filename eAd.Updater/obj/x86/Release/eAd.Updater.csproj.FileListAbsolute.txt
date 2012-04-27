@@ -1,0 +1,16 @@
+C:\ProjectHub\eAd\eAd.Updater\bin\Release\Updater.exe
+C:\ProjectHub\eAd\eAd.Updater\bin\Release\Updater.pdb
+C:\ProjectHub\eAd\eAd.Updater\bin\Release\Ionic.Zip.dll
+C:\ProjectHub\eAd\eAd.Updater\bin\Release\Ionic.Zip.pdb
+C:\ProjectHub\eAd\eAd.Updater\bin\Release\Ionic.Zip.xml
+C:\ProjectHub\eAd\eAd.Updater\obj\x86\Release\ResolveAssemblyReference.cache
+C:\ProjectHub\eAd\eAd.Updater\obj\x86\Release\eAd.Updater.Update.resources
+C:\ProjectHub\eAd\eAd.Updater\obj\x86\Release\eAd.Updater.Info.resources
+C:\ProjectHub\eAd\eAd.Updater\obj\x86\Release\GenerateResource.read.1.tlog
+C:\ProjectHub\eAd\eAd.Updater\obj\x86\Release\GenerateResource.write.1.tlog
+C:\ProjectHub\eAd\eAd.Updater\obj\x86\Release\Updater.exe
+C:\ProjectHub\eAd\eAd.Updater\obj\x86\Release\Updater.pdb
+C:\ProjectHub\eAd\eAd.Updater\bin\Release\eAd.Utilities.dll
+C:\ProjectHub\eAd\eAd.Updater\bin\Release\eAd.DataViewModels.dll
+C:\ProjectHub\eAd\eAd.Updater\bin\Release\eAd.Utilities.pdb
+C:\ProjectHub\eAd\eAd.Updater\bin\Release\eAd.DataViewModels.pdb

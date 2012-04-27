@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Client</RootNamespace>
-    <AssemblyName>Client</AssemblyName>
+    <AssemblyName>eAd Client</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -34,9 +34,13 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Client.Core.Startup</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AxInterop.ShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -57,7 +61,11 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>Libraries\Interop.WMPLib.dll</HintPath>
     </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\eAd.Updater\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
@@ -82,6 +90,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\ArgumentsReceivedEventArgs.cs" />
+    <Compile Include="Core\ClientApp.cs" />
+    <Compile Include="Core\DispatcherHelper.cs" />
+    <Compile Include="Core\LogType.cs" />
+    <Compile Include="Core\MediaDictionary.cs" />
+    <Compile Include="Core\MessageListener.cs" />
+    <Compile Include="Core\Options.cs" />
+    <Compile Include="Core\RegionOptions.cs" />
+    <Compile Include="Core\SingleInstance.cs" />
+    <Compile Include="Core\Splasher.cs" />
+    <Compile Include="Core\StatType.cs" />
+    <Compile Include="CustomInstall.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomInstall.Designer.cs">
+      <DependentUpon>CustomInstall.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainUI\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
@@ -89,11 +114,14 @@
     <Compile Include="Core\BlackListType.cs" />
     <Compile Include="CacheManager\CacheManager.cs" />
     <Compile Include="CacheManager\Md5Resource.cs" />
+    <Compile Include="MainUI\SplashScreen.xaml.cs">
+      <DependentUpon>SplashScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Players\DataSetView.cs" />
     <Compile Include="Core\FileCollector.cs" />
     <Compile Include="Players\Flash.cs" />
     <Compile Include="Core\HardwareKey.cs" />
-    <Compile Include="Players\Image.cs" />
+    <Compile Include="Players\ImagePosition.cs" />
     <Compile Include="Core\LogMessage.cs" />
     <Compile Include="MainUI\MainForm.xaml.cs">
       <DependentUpon>MainForm.xaml</DependentUpon>
@@ -115,11 +143,6 @@
     <Compile Include="Players\Rss.cs" />
     <Compile Include="Schedule\Schedule.cs" />
     <Compile Include="Schedule\ScheduleManager.cs" />
-    <Compile Include="Service References\Service\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Core\Stat.cs" />
     <Compile Include="Core\StatLog.cs" />
     <Compile Include="Players\TemporaryHtml.cs" />
@@ -133,7 +156,18 @@
     </Compile>
     <Compile Include="Players\WebContent.cs" />
     <Compile Include="Core\WindowAnimator.cs" />
-    <Compile Include="Core\XiboTraceListener.cs" />
+    <Compile Include="Core\ClientTraceListener.cs" />
+    <Compile Include="Service References\Service\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Update\ByteArgs.cs" />
+    <Compile Include="Update\BytesDownloadedEventHandler.cs" />
+    <Compile Include="Update\Update.cs" />
+    <Compile Include="Update\UpdateMe.cs" />
+    <Compile Include="Update\VersionInfo.cs" />
+    <Compile Include="Update\Webdata.cs" />
     <Page Include="MainUI\About.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -146,6 +180,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MainUI\SplashScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Players\Media.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -169,38 +207,38 @@
     <None Include="Service References\Service\Client.Service.Mosaic.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\Service\Service1.wsdl" />
-    <None Include="Service References\Service\Service11.xsd">
+    <None Include="Service References\Service\Service.wsdl" />
+    <None Include="Service References\Service\Service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service111.xsd">
+    <None Include="Service References\Service\Service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service1110.xsd">
+    <None Include="Service References\Service\Service10.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service112.xsd">
+    <None Include="Service References\Service\Service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service113.xsd">
+    <None Include="Service References\Service\Service3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service114.xsd">
+    <None Include="Service References\Service\Service4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service115.xsd">
+    <None Include="Service References\Service\Service5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service116.xsd">
+    <None Include="Service References\Service\Service6.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service117.xsd">
+    <None Include="Service References\Service\Service7.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service118.xsd">
+    <None Include="Service References\Service\Service8.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service119.xsd">
+    <None Include="Service References\Service\Service9.xsd">
       <SubType>Designer</SubType>
     </None>
     <Resource Include="Properties\AssemblyInfo.cs">
@@ -227,7 +265,9 @@
     <EmbeddedResource Include="Players\VideoPlayer.resx">
       <DependentUpon>VideoPlayer.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -243,6 +283,14 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="eAd.DataViewModels.dll" />
+    <Content Include="Updater.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Icon.ico" />
+    <Content Include="Ionic.Zip.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Libraries\AxInterop.ShockwaveFlashObjects.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -253,10 +301,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Interop.WMPLib.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\HtmlTemplate.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\splash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Service References\Service\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
@@ -270,9 +321,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\Service\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\eAd.DataViewModels\eAd.DataViewModels.csproj">
       <Project>{47A32603-2D64-4BD5-A503-F1142A5C2733}</Project>
       <Name>eAd.DataViewModels</Name>
@@ -282,7 +330,12 @@
       <Name>eAd.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="updates\20120420\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

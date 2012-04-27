@@ -1,4 +1,5 @@
-﻿@model eAd.DataAccess.Medium
+﻿@using eAd.Utilities
+@model eAd.DataAccess.Medium
 
 @{
     ViewBag.Title = "Edit";
@@ -12,7 +13,8 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>Medium</legend>
+        <legend>     <img src="@( !(String.IsNullOrEmpty(Model.Location)) ? /*Path.GetDirectoryName(item.DisplayLocation) QuickHacktm*/ Url.Content("~/Uploads/Temp/Media" + "/" + "Thumb" + Path.GetFileNameWithoutExtension(Model.Location) + ".jpg") : "/Content/Images/no_image.gif")"  alt="[@(MimeExtensionHelper.GetSimpleType(Model.Location))]" width="96" height="72"/>
+                      </legend>
 
         @Html.HiddenFor(model => model.MediaID)
 
@@ -28,8 +30,8 @@
             @Html.LabelFor(model => model.Location)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Location)
-            @Html.ValidationMessageFor(model => model.Location)
+            @Html.DisplayFor(model => model.Location)
+      
         </div>
         <div class="editor-label">
               @Html.LabelFor(model =>  model.Duration) 
@@ -50,24 +52,24 @@
             @Html.LabelFor(model => model.Hash)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Hash)
-            @Html.ValidationMessageFor(model => model.Hash)
+            @Html.DisplayFor(model => model.Hash)
+     
         </div>
 
               <div class="editor-label">
             @Html.LabelFor(model => model.Size)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Size)
-            @Html.ValidationMessageFor(model => model.Size)
+            @Html.DisplayFor(model => model.Size)
+         
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Type)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Type)
-            @Html.ValidationMessageFor(model => model.Type)
+            @Html.DisplayFor(model => model.Type)
+          
         </div>
 
         <p>

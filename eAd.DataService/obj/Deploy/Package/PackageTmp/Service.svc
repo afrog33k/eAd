@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="eAd.DataAccess.Service" CodeBehind="Service.svc.cs" %>

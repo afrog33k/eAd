@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csp
 		{0FCFE42B-027D-43DB-9149-068ED514303C} = {0FCFE42B-027D-43DB-9149-068ED514303C}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eAd.Updater", "eAd.Updater\eAd.Updater.csproj", "{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -241,6 +243,21 @@ Global
 		{870155F1-F5FF-426A-9BBF-9779DBCBC9B8}.Release|Mixed Platforms.Build.0 = Release|x86
 		{870155F1-F5FF-426A-9BBF-9779DBCBC9B8}.Release|x86.ActiveCfg = Release|x86
 		{870155F1-F5FF-426A-9BBF-9779DBCBC9B8}.Release|x86.Build.0 = Release|x86
+		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Debug|x86.ActiveCfg = Debug|x86
+		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Debug|x86.Build.0 = Debug|x86
+		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Deploy|Any CPU.ActiveCfg = Debug|x86
+		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Deploy|Mixed Platforms.ActiveCfg = Debug|x86
+		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Deploy|Mixed Platforms.Build.0 = Debug|x86
+		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Deploy|x86.ActiveCfg = Debug|x86
+		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Deploy|x86.Build.0 = Debug|x86
+		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Release|Any CPU.ActiveCfg = Release|x86
+		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Release|Mixed Platforms.Build.0 = Release|x86
+		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Release|x86.ActiveCfg = Release|x86
+		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

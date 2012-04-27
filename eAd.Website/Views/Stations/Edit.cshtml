@@ -38,6 +38,16 @@
             @Html.ValidationMessageFor(model => model.Available)
         </div>
 
+          <div class="editor-label">
+            @Html.LabelFor(model => model.HardwareKey)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HardwareKey)
+            @Html.ValidationMessageFor(model => model.HardwareKey)
+        </div>
+
+       
+
         @Html.HiddenFor(model => model.StationID)
 
         <div class="editor-label">

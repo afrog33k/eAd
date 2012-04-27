@@ -41,5 +41,7 @@ namespace eAd.DataViewModels
             public int Priority { get; set; }
 
             public bool Default { get; set; }
+
+        public string Hash { get; set; }
         }
     }

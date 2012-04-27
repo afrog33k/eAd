@@ -15,8 +15,14 @@
       <th>
             ID (GreenLots ID)
         </th>
+         <th>
+           Hardware Key
+        </th>
+         <th>
+           Approved
+        </th>
         <th>
-            Location
+            DisplayLocation
         </th>
         <th>
             Name
@@ -38,6 +44,12 @@
       <td>
             @Html.DisplayFor(modelItem => item.StationID) 
        ( @Html.DisplayFor(modelItem => item.UniqueID))
+        </td>
+         <td>
+          @item.HardwareKey
+        </td>
+         <td>
+           @item.Approved
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Location) 

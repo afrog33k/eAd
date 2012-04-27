@@ -109,7 +109,7 @@ namespace eAd.Website.Controllers
             //}
 
             //if (location != null)
-            //    medium.Location = location;
+            //    medium.DisplayLocation = location;
             return RedirectToAction("Index");
         }
 

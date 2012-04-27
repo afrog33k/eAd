@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ClientConfiguration.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="CopyUtility.cs" />
     <Compile Include="Hashes.cs" />
     <Compile Include="MimeExtensionHelper.cs" />
     <Compile Include="GoogleMaps.cs" />

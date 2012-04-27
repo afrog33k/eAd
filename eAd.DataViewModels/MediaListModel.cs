@@ -9,7 +9,7 @@
 
         public TimeSpan Duration { get; set; }
 
-        public string Location { get; set; }
+        public string DisplayLocation { get; set; }
 
         public long MediaID { get; set; }
 
@@ -18,6 +18,8 @@
         public string Type { get; set; }
 
         public string Name { get; set; }
+
+        public string Location { get; set; }
     }
 }
 

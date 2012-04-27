@@ -36,18 +36,9 @@ X:\eAd.New\eAd\eAd.Website\bin\eAd.DataViewModels.pdb
 X:\eAd.New\eAd\eAd.Website\bin\eAd.Utilities.pdb
 X:\eAd.New\eAd\eAd.Website\bin\irio.mvc.fileupload.pdb
 X:\eAd.New\eAd\eAd.Website\bin\irio.utilities.pdb
-C:\ProjectHub\eAd\eAd.Website\bin\Media\10.png
-C:\ProjectHub\eAd\eAd.Website\bin\Media\12.jpg
-C:\ProjectHub\eAd\eAd.Website\bin\Media\14.jpg
-C:\ProjectHub\eAd\eAd.Website\bin\Media\15.jpg
-C:\ProjectHub\eAd\eAd.Website\bin\Media\16.avi
-C:\ProjectHub\eAd\eAd.Website\bin\Media\2304x1440_15.jpg
-C:\ProjectHub\eAd\eAd.Website\bin\Media\4-layout.jpg
-C:\ProjectHub\eAd\eAd.Website\bin\Media\9.avi
 C:\ProjectHub\eAd\eAd.Website\bin\Media\files.xml
 C:\ProjectHub\eAd\eAd.Website\bin\Media\schedule.xml
 C:\ProjectHub\eAd\eAd.Website\bin\Media\web.config
-C:\ProjectHub\eAd\eAd.Website\bin\Media\4.xlf
 C:\ProjectHub\eAd\eAd.Website\bin\Content\busy.gif
 C:\ProjectHub\eAd\eAd.Website\bin\Content\mapicon.png
 C:\ProjectHub\eAd\eAd.Website\bin\Logs\GreenLots\donotdelete.txt
@@ -276,3 +267,5 @@ C:\ProjectHub\eAd\eAd.Website\bin\Scripts\MicrosoftMvcAjax.debug.js
 C:\ProjectHub\eAd\eAd.Website\bin\Scripts\MicrosoftMvcValidation.js
 C:\ProjectHub\eAd\eAd.Website\bin\Scripts\MicrosoftMvcValidation.debug.js
 C:\ProjectHub\eAd\eAd.Website\bin\Scripts\deletemosaic.js
+C:\ProjectHub\eAd\eAd.Website\bin\Scripts\common.js
+C:\ProjectHub\eAd\eAd.Website\bin\Client\Update\DoNotDelete.txt

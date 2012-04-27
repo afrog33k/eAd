@@ -64,19 +64,18 @@ namespace Client.Properties {
         ///   Looks up a localized string similar to &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot;&gt;
         ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
         ///	&lt;head&gt;
-        ///		&lt;title&gt;Xibo Open Source Digital Signage&lt;/title&gt;
+        ///		&lt;title&gt; Open Source Digital Signage&lt;/title&gt;
         ///		&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=UTF-8&apos; /&gt;
         ///		
         ///		&lt;script type=&quot;text/javascript&quot;&gt;
-        ////*
-        /// * jQuery 1.2.6 - New Wave Javascript
-        /// *
-        /// * Copyright (c) 2008 John Resig (jquery.com)
-        /// * Dual licensed under the MIT (MIT-LICENSE.txt)
-        /// * and GPL (GPL-LICENSE.txt) licenses.
-        /// *
-        /// * $Date: 2008-05-24 14:22:17 -0400 (Sat, 24 May 2008) $
-        /// [rest of string was truncated]&quot;;.
+        ///		    /*
+        ///		    * jQuery 1.2.6 - New Wave Javascript
+        ///		    *
+        ///		    * Copyright (c) 2008 John Resig (jquery.com)
+        ///		    * Dual licensed under the MIT (MIT-LICENSE.txt)
+        ///		    * and GPL (GPL-LICENSE.txt) licenses.
+        ///		    *
+        ///		    * [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string HtmlTemplate {
             get {
@@ -84,9 +83,9 @@ namespace Client.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap splash {
+        internal static System.Drawing.Bitmap splash1 {
             get {
-                object obj = ResourceManager.GetObject("splash", resourceCulture);
+                object obj = ResourceManager.GetObject("splash1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

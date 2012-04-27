@@ -40,5 +40,10 @@ namespace eAd.DataViewModels
         /// <remarks/>
      //   [System.Xml.Serialization.XmlAttributeAttribute()]
         public int SchemaVersion { get; set; }
+
+        public override string ToString()
+        {
+            return Type + Id;
+        }
     }
 }

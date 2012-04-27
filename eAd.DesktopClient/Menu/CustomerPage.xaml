@@ -77,7 +77,7 @@
         <Label FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="270,750,0,0" Name="CarModel" VerticalAlignment="Top" Width="444" />
         <Separator Height="18" HorizontalAlignment="Left" Margin="11,678,0,0" Name="separator1" VerticalAlignment="Top" Width="1003" />
         <Label FontSize="24" FontWeight="Bold" Height="42" HorizontalAlignment="Left" Margin="270,798,0,0" Name="CarMake" VerticalAlignment="Top" Width="444" />
-        <Label Content="Location" FontSize="56" FontWeight="Bold" Height="80" HorizontalAlignment="Right" Margin="0,455,311,0" Name="CustomerLocation" VerticalAlignment="Top" Width="594" />
+        <Label Content="DisplayLocation" FontSize="56" FontWeight="Bold" Height="80" HorizontalAlignment="Right" Margin="0,455,311,0" Name="CustomerLocation" VerticalAlignment="Top" Width="594" />
             <ListView Height="141" HorizontalAlignment="Right" Margin="0,0,22,248" Name="StationOverview" VerticalAlignment="Bottom" Width="884" BorderBrush="#FF00AF00" FontSize="24">
                 <ListView.View>
                     <GridView>

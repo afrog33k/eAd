@@ -258,9 +258,9 @@ namespace DesktopClient.Menu
 
                         }
 
-                        while (!(this.CurrentControl.Source.AbsolutePath != this.Playlist[this.currentItem].Location) || !File.Exists(this.Playlist[this.currentItem].Location));
+                        while (!(this.CurrentControl.Source.AbsolutePath != this.Playlist[this.currentItem].DisplayLocation) || !File.Exists(this.Playlist[this.currentItem].DisplayLocation));
 
-                        this.SwitchPlayers(new Uri(this.Playlist[this.currentItem].Location));
+                        this.SwitchPlayers(new Uri(this.Playlist[this.currentItem].DisplayLocation));
 
                     
 
