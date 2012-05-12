@@ -2,18 +2,36 @@ using System.Collections.Generic;
 
 namespace eAd.Website.Models
 {
-    public class Map
+public class Map
+{
+    public string Name
     {
-        public string Name { get; set; }
-        public LatLng LatLng { get; set; }
-        public int Zoom { get; set; }
+        get;
+        set;
+    }
+    public LatLng LatLng
+    {
+        get;
+        set;
+    }
+    public int Zoom
+    {
+        get;
+        set;
+    }
 
-        private List<Location>  _locations = new List<Location>();
+    private List<Location>  _locations = new List<Location>();
 
-        public List<Location> Locations
+    public List<Location> Locations
+    {
+        get
         {
-            get { return _locations; }
-            set { _locations = value; }
+            return _locations;
+        }
+        set
+        {
+            _locations = value;
         }
     }
+}
 }

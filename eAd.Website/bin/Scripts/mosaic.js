@@ -13,7 +13,7 @@ $(function () {
 function ResetDefaults() {
 
 
-    $('img').jail();
+//    $('img').jail();
     var container = $("#container");
 
     container.contextMenu({
@@ -68,22 +68,22 @@ function ResetDefaults() {
 
     });
 
-    // let the gallery items be draggable
-    $("li", $gallery).draggable({
-        cancel: "a.ui-icon", // clicking an icon won't initiate dragging
-        revert: "invalid", // when not dropped, the item will revert back to its initial position
-        containment: $("#container").length ? "#container" : "document", // stick to demo-frame if present
-        helper: "clone",
-        cursor: "move"
-    });
-    // let the gallery be droppable as well, accepting items from the trash
-    $gallery.droppable({
-        accept: ".resizable",
-        activeClass: "custom-state-active",
-        drop: function (event, ui) {
-            recycleImage(ui.draggable);
-        }
-    });
+//    // let the gallery items be draggable
+//    $("li", $gallery).draggable({
+//        cancel: "a.ui-icon", // clicking an icon won't initiate dragging
+//        revert: "invalid", // when not dropped, the item will revert back to its initial position
+//        containment: $("#container").length ? "#container" : "document", // stick to demo-frame if present
+//        helper: "clone",
+//        cursor: "move"
+//    });
+//    // let the gallery be droppable as well, accepting items from the trash
+//    $gallery.droppable({
+//        accept: ".resizable",
+//        activeClass: "custom-state-active",
+//        drop: function (event, ui) {
+//            recycleImage(ui.draggable);
+//        }
+//    });
     $("#dialog:ui-dialog").dialog("destroy");
 
     $("#dialog-addposition").dialog({
@@ -137,36 +137,36 @@ function ResetDefaults() {
     });
 
 
-    // resolve the icons behavior with event delegation
-    $("ul.gallery > li").click(function (event) {
-        var $item = $(this),
-				        $target = $(event.target);
+//    // resolve the icons behavior with event delegation
+//    $("ul.gallery > li").click(function (event) {
+//        var $item = $(this),
+//				        $target = $(event.target);
 
-        if ($target.is("a.ui-icon-trash")) {
-            window.deleteImage($item);
-        } else if ($target.is("a.ui-icon-zoomin")) {
-            viewLargerImage($target);
-        } else if ($target.is("a.ui-icon-refresh")) {
-            recycleImage($item);
-        }
+//        if ($target.is("a.ui-icon-trash")) {
+//            window.deleteImage($item);
+//        } else if ($target.is("a.ui-icon-zoomin")) {
+//            viewLargerImage($target);
+//        } else if ($target.is("a.ui-icon-refresh")) {
+//            recycleImage($item);
+//        }
 
-        return false;
-    });
+//        return false;
+//    });
 
-    // let the trash be droppable, accepting the gallery items
-    $trash.droppable({
-        accept: "#gallery > li",
-        activeClass: "ui-state-highlight",
-        drop: function (event, ui) {
-            addImage(ui.draggable, $(this));
-        }
-    });
+//    // let the trash be droppable, accepting the gallery items
+//    $trash.droppable({
+//        accept: "#gallery > li",
+//        activeClass: "ui-state-highlight",
+//        drop: function (event, ui) {
+//            addImage(ui.draggable, $(this));
+//        }
+//    });
 
-    $(".collapsible").accordion({
-        collapsible: true,
-        autoHeight: false,
-        navigation: true
-    });
+//    $(".collapsible").accordion({
+//        collapsible: true,
+//        autoHeight: false,
+//        navigation: true
+//    });
 
 }
 
@@ -273,7 +273,7 @@ function SaveMosaic() {
     positions.each(function () {
         var position = $(this).position();
         var imglist = new Array();
-        var list = $($($(this).find('div.ui-accordion-content')[0]).find('li')).find("img");
+        var list = $($(this).find('div.content')[0]).find("img");
         list = jQuery.unique(list);
         list.each(function () {
             imglist.push($(this).attr("src"));
@@ -352,7 +352,7 @@ function LoadMosaic(id) {
         },
         error: function (data) {
             //   location.reload();
-            alert(data);
+            alert("failed to load mosaic");
             $("#MosaicID").attr("disabled", "");
         }
     });
@@ -469,18 +469,19 @@ function checkString(strng) {
 function AddPosition(name, x, y, nwidth, nheight, id, media) {
 
 
-    var recycleIcon = "<a href='' title='Recycle this image' class='ui-icon ui-icon-refresh'>Recycle image</a>";
+    var recycleIcon = "<a href='' title='Recycle this image'  class='ui-icon ui-icon-refresh' style=\"z-index:50;top:-10px\">Recycle image</a>";
 
     var jsName = removeSpaces(name);
     if ($('#container').find('#' + jsName).length != 0) {
         $('#container').empty();
     }
     else {
-    $('#container').append('<div id="' + jsName + '" class="resizable ui-state-active position">' +
-                                  '<h3 class="ui-widget-header">' + name + '</h3>' + '<div class="collapsible"><a href="#">Media</a></h3>' +
-                                  '<div >' +
-                                  '</div>' +
-                                  '</div> </div>');
+        $('#container').append('<div id="' + jsName + '" class="resizable ui-state-active position" style="overflow:hidden;">' +
+                                 // '<h3 class="ui-widget-header" style="z-index:50;"> ' + name + '</h3>' + // '<div class="collapsible"><a href="#">Media</a></h3>' +
+                                  '<div  class="content" style="overflow:hidden;">' +
+                                  '</div></div>' //+ '</div> </div>'
+                                 
+    );
        }
 
 
@@ -491,19 +492,19 @@ function AddPosition(name, x, y, nwidth, nheight, id, media) {
     $('#' + jsName).css("position", "absolute");
     $('#' + jsName).css("left", (playerScreenPos.left + (x)) + "px");
     $('#' + jsName).css("top", (playerScreenPos.top + (y)) + "px");
-   
+
+
     
     $('#' + jsName).height(nheight);
     $('#' + jsName).width(nwidth);
+    //    $('#' + jsName + "> .content").css("position", "relative");
+    //    $('#' + jsName + "> .content").css("left", "0px");
+    //    $('#' + jsName + "> .content").css("top", "0px");
+    $('#' + jsName + "> .content").height(nheight);
+    $('#' + jsName + "> .content").width(nwidth);
+    $('#' + jsName + "> .content").css("overflow", "hidden");
 
-    $('#' + jsName).draggable({ containment: "#container", scroll: false, snap: ".resizable", snapMode: "outer" });
-    $('#' + jsName).resizable({
-        // containment: "#container",
-        animate: true,
-        helper: "ui-resizable-helper",
-        grid: 20,
-        ghost: true
-    });
+  
 
     $('#' + jsName).contextMenu({
 
@@ -561,9 +562,57 @@ function AddPosition(name, x, y, nwidth, nheight, id, media) {
         plist.push({ id: foo.MediaID, img: foo.DisplayLocation, name: foo.Name });
 
     });
-  
+
 
     CloseMediaPicker(plist, jsName);
+    var TO = false;
+   
+    
+  
+    $('#' + jsName).draggable({ containment: "#container", scroll: false, snap: ".resizable", snapMode: "outer" });
+    $('#' + jsName).resizable({
+        // containment: "#container",
+        animate: true,
+        delay: 20,
+        helper: "ui-resizable-helper",
+        grid: 5,
+        ghost: true,
+        resize: function (event, ui) {
+
+            var height = ui.size.height;
+            var width = ui.size.width;
+            //  height:600px;width:100%;
+            //            $(this).find(".content").height(height);
+            //            $(this).find(".content").width(width);
+            //   $(this).find(".content").css("height", height+"px");
+            //      $(this).find(".content").css("width", "100%");
+            $(this).find(".content").galleria.resize({width:width, height: height });
+          
+       
+            //            var gallery = $(this).find("gallery");
+            //            gallery.height(height);
+            //            gallery.width(width);
+
+            //            if (TO !== false)
+            //                clearTimeout(TO);
+            //            TO = setTimeout(ResizeGallery("#" + jsName + "  div"), 200); //200 is time in miliseconds
+            //         
+
+            //             var gcount = Galleria.get().length;
+
+            //             if (gcount > 1) {
+            //                 Galleria.get().splice(0, gcount - 1);
+            //             }
+
+
+            //             $('#' + jsName).css("background", "rgba(0,0,0,0.5)");
+            //             $('#' + jsName).css("background-size", "100% 100%");
+            //             $('#' + jsName).css("filter", "alpha(opacity=80)");
+            //             $('#' + jsName).css("opacity", "0.8");
+        }
+    });
+
+    //$('#' + jsName).append('<h3 class="ui-widget-header">' + name + '</h3>');
 
     // Old Method
 //    for (var i in media) {
@@ -583,8 +632,28 @@ function AddPosition(name, x, y, nwidth, nheight, id, media) {
 //        //                                );
 
 //    }
-    
+
 }
+
+
+function ResizeGallery(name) {
+
+//    gWidth = $(window).width();
+//    gHeight = $(window).height();
+//    gWidth = gWidth - ((gWidth > 200) ? 100 : 0);
+//    gHeight = gHeight - ((gHeight > 100) ? 50 : 0);
+//    $("#gallerycontainer").width(gWidth);
+//    $("#gallery").width(gWidth);
+//    $("#gallery").height(gHeight);
+    //    Galleria.loadTheme('js/galleria/themes/classic/galleria.classic.js', { show: curIdx });
+
+
+
+    Galleria.run(name, {
+        transition: 'fade', imageCrop: "landscape"
+    });
+}
+
     function CloseMosaicMenu(id) {
 
         ReloadMosaicList(id);
@@ -614,33 +683,40 @@ function AddPosition(name, x, y, nwidth, nheight, id, media) {
             if (plist != null && plist.length > 0) {
 
                 for (var i = 0; i < plist.length; i++) {
-                    var item = $('<li class="ui-widget-content ui-corner-tr" id=' + plist[i].id + '>' +
-                        '<h5 class="ui-widget-header">' + plist[i].name + '</h5>' +
-                        '<img src="' + plist[i].img + '"  height="72" width="96" />' +
-                        '</li>');
+                    var item = $('<a href=' + plist[i].img + ' > <img data-title=' + (positionName+'  '+  plist[i].name) + ' data-description="" ' +
+                     'src="' + plist[i].img+'"></a>');
 
                     // deletion function
                     var recycleIcon = "<a href='' title='Recycle this image' class='ui-icon ui-icon-refresh'>Recycle image</a>";
 
-                    var $list = $("ul", position.find('.collapsible').find('div')).length ?
-                        $("ul", position.find('.collapsible').find('div')) :
-                        $("<ul class='gallery ui-helper-reset'/>").appendTo(position.find('.collapsible').find('div'));
+//                    var $list = $("ul", position.find('.collapsible').find('div')).length ?
+//                        $("ul", position.find('.collapsible').find('div')) :$("<ul class='gallery ui-helper-reset'/>").appendTo(position.find('.collapsible').find('div'));
+                    //                        
 
-
+                    var $list = position.find('.content');
 
                     item.find("a.ui-icon-trash").remove();
-                    item.append(recycleIcon).appendTo($list).fadeIn(function() {
-                        item
-                            .animate({ width: "48px" })
-                            .find("img")
-                            .animate({ height: "36px" });
-                    });
+                    item.append(recycleIcon);
+                    $list.append(item);
+                    //.fadeIn(function() {
+//                        item
+//                            .animate({ width: "48px" })
+//                            .find("img")
+//                            .animate({ height: "36px" });
+//                    });
 
-                    position.css("background", "url(" + plist[plist.length - 1].img + ") top left no-repeat");
-                    position.css("background-size", "100% 100%");
-                };
+                       };
 
-                Galleria.run('#' + positionName);
+                $("#" + positionName + "  div").galleria({
+                    responsive: true, transition: 'fade',
+                    imageCrop: 'landscape'
+                });
+             
+
+    position.css("background", "rgba(0,0,0,0.5)");
+    position.css("background-size", "100% 100%");
+    position.css("filter", "alpha(opacity=80)");
+    position.css("opacity", "0.8");
             }
         }
         else {

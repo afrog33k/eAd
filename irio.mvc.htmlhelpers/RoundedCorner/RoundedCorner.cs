@@ -3,33 +3,33 @@ using System.Web.Mvc;
 
 namespace irio.mvc.htmlhelpers.RoundedCorner
 {
-    public class RoundedCorner : IDisposable
+public class RoundedCorner : IDisposable
+{
+    private readonly ViewContext _viewContext;
+    private bool _disposed;
+
+    public RoundedCorner(ViewContext viewContext)
     {
-        private readonly ViewContext _viewContext;
-        private bool _disposed;
+        _viewContext = viewContext;
+    }
 
-        public RoundedCorner(ViewContext viewContext)
+    #region IDisposable Members
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    #endregion
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!_disposed)
         {
-            _viewContext = viewContext;
-        }
-
-        #region IDisposable Members
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        #endregion
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                _disposed = true;
-                _viewContext.Writer.Write(
-                    @"<div class=""Clear"">
+            _disposed = true;
+            _viewContext.Writer.Write(
+                @"<div class=""Clear"">
                   </div>
                   </div>
                   </div>
@@ -39,17 +39,17 @@ namespace irio.mvc.htmlhelpers.RoundedCorner
                   </div>
                   </div>
                   </div>"
-                    );
-            }
+            );
         }
     }
+}
 
-    public static partial class HtmlExtensions
+public static partial class HtmlExtensions
+{
+    public static RoundedCorner RoundedCorner(this HtmlHelper htmlHelper)
     {
-        public static RoundedCorner RoundedCorner(this HtmlHelper htmlHelper)
-        {
-            htmlHelper.ViewContext.Writer.Write(
-                @"<div class=""rounded"">
+        htmlHelper.ViewContext.Writer.Write(
+            @"<div class=""rounded"">
             <div class=""top"">
             <div class=""right"">
             </div>
@@ -57,8 +57,8 @@ namespace irio.mvc.htmlhelpers.RoundedCorner
             <div class=""middle"">
             <div class=""right"">
             <div class=""content"">"
-                );
-            return new RoundedCorner(htmlHelper.ViewContext);
-        }
+        );
+        return new RoundedCorner(htmlHelper.ViewContext);
     }
+}
 }

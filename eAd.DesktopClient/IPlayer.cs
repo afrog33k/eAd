@@ -1,10 +1,10 @@
 ﻿namespace DesktopClient
 {
-    using System;
+using System;
 
-    public interface IPlayer
-    {
-        void UpdatePlayList();
-    }
+public interface IPlayer
+{
+    void UpdatePlayList();
+}
 }
 

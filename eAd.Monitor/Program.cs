@@ -6,19 +6,19 @@ using System.Text;
 
 namespace eAd.Monitor
 {
-    static class Program
+static class Program
+{
+    /// <summary>
+    /// The main entry point for the application.
+    /// </summary>
+    static void Main()
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        static void Main()
+        ServiceBase[] ServicesToRun;
+        ServicesToRun = new ServiceBase[]
         {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[] 
-			{ 
-				new Service1() 
-			};
-            ServiceBase.Run(ServicesToRun);
-        }
+            new Service1()
+        };
+        ServiceBase.Run(ServicesToRun);
     }
+}
 }

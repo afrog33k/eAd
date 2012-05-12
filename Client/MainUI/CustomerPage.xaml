@@ -1,0 +1,55 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Controls1="clr-namespace:Client.Controls"
+	xmlns:Widgets="clr-namespace:Client.MainUI.Widgets" xmlns:Widgets1="clr-namespace:Client.Widgets" mc:Ignorable="d" 
+	x:Class="Client.CustomerPage"
+	x:Name="eADWindow"
+	d:DesignWidth="768" d:DesignHeight="1360" >
+
+    <UserControl.Resources>
+        <Storyboard x:Key="eAd"/>
+    </UserControl.Resources>
+
+   
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource eAd}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UserControl.Loaded">
+            <BeginStoryboard>
+                <Storyboard Name="FormFade">
+                    <DoubleAnimation  Name="FormFadeAnimation"
+                                            Storyboard.TargetName="eADWindow"
+                                            Storyboard.TargetProperty="(UserControl.Opacity)"
+                                            From="0.0" To="1.0" Duration="0:0:2"
+                                            AutoReverse="False" RepeatBehavior="1x"
+                                         />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UserControl.Unloaded">
+            <BeginStoryboard>
+                <Storyboard Name="FormFadeOut" Completed="FormFadeOut_Completed">
+                    <DoubleAnimation  Name="FormFadeOutAnimation"
+                                            Storyboard.TargetName="eADWindow"
+                                            Storyboard.TargetProperty="(UserControl.Opacity)"
+                                            From="1.0" To="0.0" Duration="00:00:2"
+                                            AutoReverse="False" RepeatBehavior="1x"
+                                         />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    
+   
+    <Grid x:Name="LayoutRoot" Background="White" Height="Auto" Width="Auto">
+            <Widgets:Profile x:Name="CustomerProfile" Margin="12,12,269,1066"></Widgets:Profile>
+                <Widgets1:Location x:Name="LocationWidget" Margin="505,12,12,358"></Widgets1:Location>
+        <Widgets:CarInfo  x:Name="CarInfoWidget" Margin="12,296,269,-296"></Widgets:CarInfo>
+        <Widgets1:BatteryInfo x:Name="BatteryInfoWidget" Margin="12,652,269,358"></Widgets1:BatteryInfo>
+        </Grid>
+    
+</UserControl>

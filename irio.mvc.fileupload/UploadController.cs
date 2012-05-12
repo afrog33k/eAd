@@ -28,61 +28,67 @@ using System.Web.UI.WebControls;
 
 namespace irio.mvc.fileupload
 {
+/// <summary>
+/// Controller for uploads. Must be placed before all upload controls on the page.
+/// </summary>
+public class UploadController : WebControl
+{
+    internal static string UPLOAD_ID_TAG = "::DJ_UPLOAD_ID::";
+    private UploadStatus _status;
+    private string _uploadKey;
+
     /// <summary>
-    /// Controller for uploads. Must be placed before all upload controls on the page.
+    /// Gets or sets the upload status.
     /// </summary>
-    public class UploadController : WebControl
+    /// <value>The upload status.</value>
+    public UploadStatus Status
     {
-        internal static string UPLOAD_ID_TAG = "::DJ_UPLOAD_ID::";
-        private UploadStatus _status;
-        private string _uploadKey;
-
-        /// <summary>
-        /// Gets or sets the upload status.
-        /// </summary>
-        /// <value>The upload status.</value>
-        public UploadStatus Status
+        get
         {
-            get { return _status; }
-            set { _status = value; }
+            return _status;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string UploadKey
+        set
         {
-            get
-            {
-                if (string.IsNullOrEmpty(_uploadKey))
-                {
-                    _uploadKey = UPLOAD_ID_TAG + Guid.NewGuid();
-                }
-                return _uploadKey;
-            }
-        }
-
-        /// <summary>
-        /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
-        /// </summary>
-        /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
-        protected override void OnInit(EventArgs e)
-        {
-            base.OnInit(e);
-
-            _status = UploadManager.Instance.Status;
-            UploadManager.Instance.Status = null;
-        }
-
-        protected override void OnPreRender(EventArgs e)
-        {
-            base.OnPreRender(e);
-
-            //  add the hidden field
-            var uploadID = new HiddenField();
-            uploadID.Value = UploadKey;
-
-            Controls.Add(uploadID);
+            _status = value;
         }
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public string UploadKey
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(_uploadKey))
+            {
+                _uploadKey = UPLOAD_ID_TAG + Guid.NewGuid();
+            }
+            return _uploadKey;
+        }
+    }
+
+    /// <summary>
+    /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
+    /// </summary>
+    /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
+    protected override void OnInit(EventArgs e)
+    {
+        base.OnInit(e);
+
+        _status = UploadManager.Instance.Status;
+        UploadManager.Instance.Status = null;
+    }
+
+    protected override void OnPreRender(EventArgs e)
+    {
+        base.OnPreRender(e);
+
+        //  add the hidden field
+        var uploadID = new HiddenField();
+        uploadID.Value = UploadKey;
+
+        Controls.Add(uploadID);
+    }
+}
 }

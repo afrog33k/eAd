@@ -2,9 +2,13 @@
 
 namespace Client.Core
 {
-    public class ArgumentsReceivedEventArgs : EventArgs
+public class ArgumentsReceivedEventArgs : EventArgs
+{
+    public string[] Args
     {
-        public string[] Args { get; set; }
+        get;
+        set;
     }
+}
 }
 

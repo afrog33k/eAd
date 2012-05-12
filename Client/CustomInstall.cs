@@ -6,24 +6,24 @@ using System.Reflection;
 
 namespace Client
 {
-    [RunInstaller(true)]
-    public partial class CustomInstall : System.Configuration.Install.Installer
+[RunInstaller(true)]
+public partial class CustomInstall : System.Configuration.Install.Installer
+{
+    public CustomInstall()
     {
-        public CustomInstall()
-        {
-            InitializeComponent();
-        }
-
-        public override void Commit(IDictionary savedState)
-        {
-            base.Commit(savedState);
-
-            Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-            Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Client.exe");
-            // Very important! Removes all those nasty temp files.
-            base.Dispose();
-
-          
-        }
+        InitializeComponent();
     }
+
+    public override void Commit(IDictionary savedState)
+    {
+        base.Commit(savedState);
+
+        Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+        Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Client.exe");
+        // Very important! Removes all those nasty temp files.
+        base.Dispose();
+
+
+    }
+}
 }

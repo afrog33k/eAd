@@ -1,8 +1,8 @@
 ﻿namespace eAd.Website
 {
-    public class Globals
-    {
-    }
+public class Globals
+{
+}
 
 
 }

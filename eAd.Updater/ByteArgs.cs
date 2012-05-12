@@ -2,10 +2,18 @@ using System;
 
 namespace eAd.Updater
 {
-    public class ByteArgs : EventArgs
+public class ByteArgs : EventArgs
+{
+    public int Downloaded
     {
-        public int Downloaded { get; set; }
-
-        public int total { get; set; }
+        get;
+        set;
     }
+
+    public int total
+    {
+        get;
+        set;
+    }
+}
 }

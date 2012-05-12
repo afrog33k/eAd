@@ -27,36 +27,39 @@ using System.Web;
 
 namespace irio.mvc.fileupload
 {
+/// <summary>
+/// An HTTP handler used to get progress information on a file upload.
+/// </summary>
+public class UploadProgressHandler : IHttpHandler
+{
+    #region IHttpHandler Members
+
     /// <summary>
-    /// An HTTP handler used to get progress information on a file upload.
+    /// Return false to indicate that the handler is not reusable.
     /// </summary>
-    public class UploadProgressHandler : IHttpHandler
+    public bool IsReusable
     {
-        #region IHttpHandler Members
-
-        /// <summary>
-        /// Return false to indicate that the handler is not reusable.
-        /// </summary>
-        public bool IsReusable
+        get
         {
-            get { return false; }
+            return false;
         }
-
-        /// <summary>
-        /// Processes a request.
-        /// </summary>
-        /// <param name="context">HTTP context.</param>
-        public void ProcessRequest(HttpContext context)
-        {
-            UploadStatus status;
-
-            status = UploadManager.Instance.Status;
-
-            context.Response.ContentType = "text/xml";
-            context.Response.Write(status != null ? status.Serialize().OuterXml : UploadStatus.EmptyStatus);
-            context.Response.Flush();
-        }
-
-        #endregion
     }
+
+    /// <summary>
+    /// Processes a request.
+    /// </summary>
+    /// <param name="context">HTTP context.</param>
+    public void ProcessRequest(HttpContext context)
+    {
+        UploadStatus status;
+
+        status = UploadManager.Instance.Status;
+
+        context.Response.ContentType = "text/xml";
+        context.Response.Write(status != null ? status.Serialize().OuterXml : UploadStatus.EmptyStatus);
+        context.Response.Flush();
+    }
+
+    #endregion
+}
 }

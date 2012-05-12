@@ -3,18 +3,18 @@ using System.Windows.Forms;
 
 namespace Client.Core
 {
-    static class Options
+static class Options
+{
+    /// <summary>
+    /// The main entry point for the options.
+    /// </summary>
+    [STAThread]
+    static void Main()
     {
-        /// <summary>
-        /// The main entry point for the options.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            OptionForm formOptions = new OptionForm();
-            Application.Run(formOptions);
-        }
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+        OptionForm formOptions = new OptionForm();
+        Application.Run(formOptions);
     }
+}
 }

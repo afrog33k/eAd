@@ -7,31 +7,31 @@ using eAd.Website.Models;
 
 namespace eAd.Website.Repositories
 {
-    public class MapRepository 
+public class MapRepository
+{
+    eAd.DataAccess.eAdDataContainer _eAdDataContainer = new eAdDataContainer();
+
+    public Map GetById(int id)
     {
-        eAd.DataAccess.eAdDataContainer _eAdDataContainer = new eAdDataContainer();
+        var station = _eAdDataContainer.Stations.Where(s => s.StationID == id).FirstOrDefault();
+        var coords = station.Location.Split(',');
 
-        public Map GetById(int id)
+        return new Map
         {
-            var station = _eAdDataContainer.Stations.Where(s => s.StationID == id).FirstOrDefault();
-            var coords = station.Location.Split(',');
-
-            return new Map
+            Name = station.Name,
+            Zoom = 1,
+            LatLng = new LatLng { Latitude = Convert.ToDouble(coords[0]), Longitude = Convert.ToDouble(coords[1]), },
+            Locations =
             {
-                Name = station.Name,
-                Zoom = 1,
-                LatLng = new LatLng { Latitude = Convert.ToDouble(coords[0]), Longitude = Convert.ToDouble(coords[1]), },
-                Locations =
-                           {
-                               new Location
-                               {
-                                   Name = station.Name,
-                                   LatLng =new LatLng { Latitude = Convert.ToDouble(coords[0]), Longitude = Convert.ToDouble(coords[1]), },
-                                   Image = "electricpumpicon.png"
-                               },
-                             
-                           }
-            };
-        }
+                new Location
+                {
+                    Name = station.Name,
+                    LatLng =new LatLng { Latitude = Convert.ToDouble(coords[0]), Longitude = Convert.ToDouble(coords[1]), },
+                    Image = "electricpumpicon.png"
+                },
+
+            }
+        };
     }
+}
 }

@@ -28,11 +28,24 @@
         <Lkid>56</Lkid>
         <SchemaVersion>1</SchemaVersion>
       </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\58\58\hiw-33sqvegeltz0pqqukq.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>58</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>58</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
     </Media>
     <Id>26</Id>
     <UserId>-1</UserId>
-    <Width>339</Width>
-    <Height>323</Height>
+    <Width>338</Width>
+    <Height>322</Height>
     <Top>27</Top>
     <Left>414</Left>
   </region>
@@ -64,11 +77,37 @@
         <Lkid>56</Lkid>
         <SchemaVersion>1</SchemaVersion>
       </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\57\57\qpeicakkg0-h9hjbc67yhq.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>57</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>57</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\64\64\lzd1bwqezkggcsgqjlgxxa.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>64</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>64</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
     </Media>
     <Id>27</Id>
     <UserId>-1</UserId>
-    <Width>400</Width>
-    <Height>320</Height>
+    <Width>399</Width>
+    <Height>319</Height>
     <Top>30</Top>
     <Left>0</Left>
   </region>
@@ -103,8 +142,8 @@
     </Media>
     <Id>28</Id>
     <UserId>-1</UserId>
-    <Width>586</Width>
-    <Height>986</Height>
+    <Width>585</Width>
+    <Height>985</Height>
     <Top>366</Top>
     <Left>-1</Left>
   </region>
@@ -139,8 +178,8 @@
     </Media>
     <Id>31</Id>
     <UserId>0</UserId>
-    <Width>151</Width>
-    <Height>986</Height>
+    <Width>150</Width>
+    <Height>985</Height>
     <Top>367</Top>
     <Left>601</Left>
   </region>

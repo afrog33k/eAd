@@ -1,11 +1,19 @@
 using System;
 
-namespace Client
+namespace Client.Update
 {
-    public class ByteArgs : EventArgs
+public class ByteArgs : EventArgs
+{
+    public int Downloaded
     {
-        public int Downloaded { get; set; }
-
-        public int Total { get; set; }
+        get;
+        set;
     }
+
+    public int Total
+    {
+        get;
+        set;
+    }
+}
 }

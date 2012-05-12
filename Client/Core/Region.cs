@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using System.Diagnostics;
@@ -55,7 +56,7 @@ namespace Client.Core
 
 
 
-            //  this.Background = new SolidColorBrush(Colors.Red);
+              this.Background = new SolidColorBrush(Colors.Red);
 
             if (Settings.Default.DoubleBuffering)
             {
@@ -113,164 +114,130 @@ namespace Client.Core
             }
             var oldmedia = media;
             System.Diagnostics.Debug.WriteLine(String.Format("Creating new media: {0}, {1}", options.FileType, options.mediaid), "Region - EvaluateOptions");
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new ThreadStart(() =>
-                                                                                {
+            
+            try
+            {
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal, new ThreadStart(() =>
+                                                                                      {
+                                                                                          var regionOptions = RegionOptions;
+                                                                                          switch (regionOptions.FileType)
+                                                                                          {
 
+                                                                                              case "Image":
+                                                                                                  regionOptions.Uri =Settings.Default.LibraryPath +@"\" + regionOptions.Uri;
+                                                                                                  media =new ImagePosition(regionOptions);
+                                                                                                  break;
 
+                                                                                              case "Text":
+                                                                                                  media =
+                                                                                                      new Text(regionOptions);
+                                                                                                  break;
 
-                                                                                    try
-                                                                                    {
-                                                                                        switch (options.FileType)
-                                                                                        {
+                                                                                              case "Powerpoint":
+                                                                                                  regionOptions.Uri =Settings.Default.LibraryPath +@"\" + regionOptions.Uri;
+                                                                                                  media =new WebContent(regionOptions);
+                                                                                                  break;
 
-                                                                                            case "Image":
-                                                                                                options.Uri =
-                                                                                                    Settings.Default.
-                                                                                                        LibraryPath +
-                                                                                                    @"\" + options.Uri;
-                                                                                                media =
-                                                                                                    new ImagePosition(
-                                                                                                        options);
-                                                                                                break;
+                                                                                              case "Video":
+                                                                                                  regionOptions.Uri =Settings.Default.LibraryPath +@"\" + regionOptions.Uri;
+                                                                                                  media =new Video(regionOptions);
+                                                                                                  break;
 
-                                                                                            case "Text":
-                                                                                                media =
-                                                                                                    new Text(options);
-                                                                                                break;
+                                                                                              case "Webpage":
+                                                                                                  media =
+                                                                                                      new WebContent(regionOptions);
+                                                                                                  break;
 
-                                                                                            case "Powerpoint":
-                                                                                                options.Uri =
-                                                                                                    Settings.Default.
-                                                                                                        LibraryPath +
-                                                                                                    @"\" + options.Uri;
-                                                                                                media =
-                                                                                                    new WebContent(
-                                                                                                        options);
-                                                                                                break;
+                                                                                              case "Flash":
+                                                                                                  regionOptions.Uri =Settings.Default.LibraryPath +@"\" + regionOptions.Uri;
+                                                                                                  media =new Flash(regionOptions);
+                                                                                                  break;
 
-                                                                                            case "Video":
-                                                                                                options.Uri =
-                                                                                                    Settings.Default.
-                                                                                                        LibraryPath +
-                                                                                                    @"\" + options.Uri;
-                                                                                                media =
-                                                                                                    new Video(options);
-                                                                                                break;
+                                                                                              case "Ticker":
+                                                                                                  media =
+                                                                                                      new Rss(regionOptions);
+                                                                                                  break;
 
-                                                                                            case "Webpage":
-                                                                                                media =
-                                                                                                    new WebContent(
-                                                                                                        options);
-                                                                                                break;
+                                                                                              case "Embedded":
+                                                                                                  media =
+                                                                                                      new Text(regionOptions);
+                                                                                                  break;
 
-                                                                                            case "Flash":
-                                                                                                options.Uri =
-                                                                                                    Settings.Default.
-                                                                                                        LibraryPath +
-                                                                                                    @"\" + options.Uri;
-                                                                                                media =
-                                                                                                    new Flash(options);
-                                                                                                break;
+                                                                                              case "Datasetview":
+                                                                                                  media =
+                                                                                                      new DataSetView(regionOptions);
+                                                                                                  break;
 
-                                                                                            case "Ticker":
-                                                                                                media =
-                                                                                                    new Rss(options);
-                                                                                                break;
+                                                                                              default:
+                                                                                                  //do nothing
+                                                                                                  SetNextMediaNode();
+                                                                                                  return;
+                                                                                          }
+                                                                                          //Dispatcher.BeginInvoke(
+                                                                                          //    DispatcherPriority.Normal,
+                                                                                          //    new ThreadStart(() =>
+                                                                                          // {
+                                                                                          if (media != null)
+                                                                                          {
+                                                                                              //sets up the timer for this media
+                                                                                              media.Duration =regionOptions.Duration;
 
-                                                                                            case "Embedded":
-                                                                                                media =
-                                                                                                    new Text(options);
-                                                                                                break;
+                                                                                              //add event handler
+                                                                                              media.DurationElapsedEvent+=media_DurationElapsedEvent;
 
-                                                                                            case "Datasetview":
-                                                                                                media =
-                                                                                                    new DataSetView(
-                                                                                                        options);
-                                                                                                break;
+                                                                                         
 
-                                                                                            default:
-                                                                                                //do nothing
-                                                                                                SetNextMediaNode();
-                                                                                                return;
-                                                                                        }
+                                                                                              media.Height = this.Height;
+                                                                                              media.Width = this.Width;
+                                                                                              media.Margin =new Thickness(0, 0, 0,0);
 
-                                                                                        //sets up the timer for this media
-                                                                                        media.Duration =
-                                                                                            options.Duration;
+                                                                                              media.RenderMedia();
+                                                                                              //  media.Opacity = 0;
+                                                                                              //media.OldOne = oldmedia;
+                                                                                              //if (!media.HasOnLoaded)
+                                                                                              //    //not so useful
+                                                                                              //{
+                                                                                              //    media.AnimateIn(MediaCanvas,oldmedia);
+                                                                                              //}
+                                                                                              Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<Media>((med) =>
+                                                                                                                      {
+                                                                                                                          MediaCanvas.Children.Add(med);
+                                                                                                                      }),media);
+                                                                                          
+                                                                                      }
+                                                                                          else
+                                                                                          {
+                                                                                              Trace.WriteLine(new LogMessage("EvalOptions","Unable to start media. media == null" +LogType.Error.ToString()));
+                                                                                              SetNextMediaNode();
+                                                                                          }
 
-                                                                                        //add event handler
-                                                                                        media.DurationElapsedEvent +=
-                                                                                            new Media.
-                                                                                                DurationElapsedDelegate
-                                                                                                (media_DurationElapsedEvent);
+                                                                                          //  }));
 
-                                                                                        Dispatcher.Invoke(
-                                                                                            DispatcherPriority.Normal,
-                                                                                            new ThreadStart(() =>
-                                                                                                                {
-                                                                                                                    media.Opacity = 0;
-                                                                                                                    ;
-                                                                                                                    media
-                                                                                                                        .
-                                                                                                                        Height
-                                                                                                                        =
-                                                                                                                        this
-                                                                                                                            .
-                                                                                                                            Height;
-                                                                                                                    media
-                                                                                                                        .
-                                                                                                                        Width
-                                                                                                                        =
-                                                                                                                        this
-                                                                                                                            .
-                                                                                                                            Width;
-                                                                                                                    media.Margin = new Thickness(0, 0, 0, 0);
+                                                                                          //any additional media specific render options (and starts the timer)
 
-                                                                                                                    media.RenderMedia();
-                                                                                                                    media
-                                                                                                                        .
-                                                                                                                        OldOne
-                                                                                                                        =
-                                                                                                                        oldmedia;
-                                                                                                                    if (!media.HasOnLoaded) //not so useful
-                                                                                                                    {
-                                                                                                                        media
-                                                                                                                            .
-                                                                                                                            AnimateIn
-                                                                                                                            (MediaCanvas,
-                                                                                                                            oldmedia);
-                                                                                                                    }
+                                                                                      }));
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(new LogMessage("EvalOptions", "Unable to start media. " + ex.Message), LogType.Error.ToString());
+                SetNextMediaNode();
+            }
 
-                                                                                                                    //this
-                                                                                                                    //    .
-                                                                                                                    //    AddChild
-                                                                                                                    //    (media);
-                                                                                                                    MediaCanvas.Children.Add(media);
-                                                                                                                }
-                                                                                                ));
-                                                                                        //any additional media specific render options (and starts the timer)
+            // This media has started and is being replaced
+            _stat = new Stat
+            {
+                FileType =
+                StatType.Media,
+                FromDate =
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                ScheduleID = options.scheduleId,
+                LayoutID = options.layoutId,
+                MediaID = options.mediaid
+            };
 
-                                                                                    }
-                                                                                    catch (Exception ex)
-                                                                                    {
-                                                                                        Trace.WriteLine(
-                                                                                            new LogMessage(
-                                                                                                "EvalOptions",
-                                                                                                "Unable to start media. " +
-                                                                                                ex.Message),
-                                                                                            LogType.Error.ToString());
-                                                                                        SetNextMediaNode();
-                                                                                    }
+            Debug.WriteLine("Showing new media", "Region - Eval Options");
 
-                                                                                    // This media has started and is being replaced
-                                                                                    _stat = new Stat();
-                                                                                    _stat.FileType = StatType.Media;
-                                                                                    _stat.FromDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                                                                                    _stat.ScheduleID = options.scheduleId;
-                                                                                    _stat.LayoutID = options.layoutId;
-                                                                                    _stat.MediaID = options.mediaid;
-                                                                                }));
-            System.Diagnostics.Debug.WriteLine("Showing new media", "Region - Eval Options");
+           
         }
 
         protected Size Size
@@ -299,7 +266,7 @@ namespace Client.Core
         }
 
         /// <summary>
-        /// Sets the next media node. Should be used either from a mediaComplete event, or an options reset from 
+        /// Sets the next media node. Should be used either from a mediaComplete event, or an options reset from
         /// the parent.
         /// </summary>
         private bool SetNextMediaNode()
@@ -370,7 +337,7 @@ namespace Client.Core
                 // Check isnt blacklisted
                 if (blackList.BlackListed(options.mediaid))
                 {
-                    System.Diagnostics.Debug.WriteLine(String.Format("The File [{0}] has been blacklisted", options.mediaid), "Region - SetNextMediaNode");
+                    Debug.WriteLine(String.Format("The File [{0}] has been blacklisted", options.mediaid), "Region - SetNextMediaNode");
 
                     // Increment and Loop
                     currentSequence++;
@@ -381,7 +348,7 @@ namespace Client.Core
 
                         hasExpired = true; //we have expired (want to raise an expired event to the parent)
 
-                        System.Diagnostics.Debug.WriteLine("Media Expired:" + options.ToString() + " . Reached the end of the sequence. Starting from the beginning.", "Region - SetNextMediaNode");
+                        Debug.WriteLine("Media Expired:" + options.ToString() + " . Reached the end of the sequence. Starting from the beginning.", "Region - SetNextMediaNode");
 
                         DurationElapsedEvent();
 
@@ -393,7 +360,7 @@ namespace Client.Core
                 {
                     validNode = true;
 
-                    // New version has a different schema - the right way to do it would be to pass the <options> and <raw> nodes to 
+                    // New version has a different schema - the right way to do it would be to pass the <options> and <raw> nodes to
                     // the relevant media class - however I dont feel like engineering such a change so the alternative is to
                     // parse all the possible media type nodes here.
 
@@ -451,22 +418,22 @@ namespace Client.Core
                             options.text = medium.Raw.Text;
                         }
 
-                    if (!String.IsNullOrEmpty(medium.Raw.Text))
-                    {
-                        options.documentTemplate = medium.Raw.DocumentTemplate;
-                    }
-                    if (!String.IsNullOrEmpty(medium.Raw.EmbedHtml))
-                    {
-                        options.text = medium.Raw.EmbedHtml;
-                    }
+                        if (!String.IsNullOrEmpty(medium.Raw.Text))
+                        {
+                            options.documentTemplate = medium.Raw.DocumentTemplate;
+                        }
+                        if (!String.IsNullOrEmpty(medium.Raw.EmbedHtml))
+                        {
+                            options.text = medium.Raw.EmbedHtml;
+                        }
 
-                    if (!String.IsNullOrEmpty(medium.Raw.EmbedScript))
-                    {
-                        options.javaScript = medium.Raw.EmbedScript;
-                    }
+                        if (!String.IsNullOrEmpty(medium.Raw.EmbedScript))
+                        {
+                            options.javaScript = medium.Raw.EmbedScript;
+                        }
 
-                }
-                // Is this a file based media node?
+                    }
+                    // Is this a file based media node?
                     if (options.FileType == "Video" || options.FileType == "flash" || options.FileType == "Image" || options.FileType == "powerpoint")
                     {
                         // Use the cache manager to determine if the file is valid
@@ -495,21 +462,21 @@ namespace Client.Core
                 {
                     //       media.AnimateAway(MediaCanvas);
                     ThreadPool.QueueUserWorkItem((r) =>
-                                                        {
-                                                            Thread.Sleep(2500);
-                                                            if (media!=null &&media.Parent != null)
-                                                            {
-                                                                if (media.OldOne != null)
-                                                                    media.OldOne.AnimateAway(MediaCanvas);
-                                                            }
-                                                            else
-                                                            {
-                                                                if (media != null&&media.OldOne != null)
-                                                                    media.OldOne.AnimateAway(MediaCanvas);
-                                                                if (media != null) 
-                                                                    media.AnimateAway(MediaCanvas);
-                                                            }
-                                                        });
+                    {
+                        Thread.Sleep(2500);
+                        if (media != null && media.Parent != null)
+                        {
+                            if (media.OldOne != null)
+                                media.OldOne.AnimateAway(MediaCanvas);
+                        }
+                        else
+                        {
+                            if (media != null && media.OldOne != null)
+                                media.OldOne.AnimateAway(MediaCanvas);
+                            if (media != null)
+                                media.AnimateAway(MediaCanvas);
+                        }
+                    });
 
                 }
                 catch (Exception ex)
@@ -590,14 +557,14 @@ namespace Client.Core
         }
 
         /// <summary>
-        /// Clears the Region of anything that it shouldnt still have... 
+        /// Clears the Region of anything that it shouldnt still have...
         /// </summary>
         public void Clear()
         {
             try
             {
                 // What happens if we are disposing this region but we have not yet completed the stat event?
-                if (String.IsNullOrEmpty(_stat.ToDate))
+                if (_stat != null && String.IsNullOrEmpty(_stat.ToDate))
                 {
                     // Say that this media has ended
                     _stat.ToDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -623,10 +590,10 @@ namespace Client.Core
                 {
                     if (media != null)
                     {
-                           media.Dispose();
-                    media = null;
+                        media.Dispose();
+                        media = null;
                     }
-                     
+
 
                     System.Diagnostics.Debug.WriteLine("Media Disposed by Region", "Region - Dispose");
                 }
@@ -637,7 +604,7 @@ namespace Client.Core
                 }
                 finally
                 {
-                    if (media != null) 
+                    if (media != null)
                         media = null;
                 }
             }

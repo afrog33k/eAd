@@ -1,127 +1,135 @@
 ﻿namespace eAd.DataViewModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
-    public class PositionViewModel
+public class PositionViewModel
+{
+    private string _contentURL;
+    private double? _height;
+    private long _mosaicID;
+    private string _name;
+    private long _positionID;
+    private double? _width;
+    private double? _x;
+    private double? _y;
+
+    public static PositionViewModel CreatePosition(long positionID)
     {
-        private string _contentURL;
-        private double? _height;
-        private long _mosaicID;
-        private string _name;
-        private long _positionID;
-        private double? _width;
-        private double? _x;
-        private double? _y;
+        return new PositionViewModel { PositionID = positionID };
+    }
 
-        public static PositionViewModel CreatePosition(long positionID)
+    public string ContentURL
+    {
+        get
         {
-            return new PositionViewModel { PositionID = positionID };
+            return this._contentURL;
         }
-
-        public string ContentURL
+        set
         {
-            get
-            {
-                return this._contentURL;
-            }
-            set
-            {
-                this._contentURL = value;
-            }
+            this._contentURL = value;
         }
+    }
 
-        public double? Height
+    public double? Height
+    {
+        get
         {
-            get
-            {
-                return this._height;
-            }
-            set
-            {
-                this._height = value;
-            }
+            return this._height;
         }
-
-        public List<MediaListModel> Media { get; set; }
-
-        public List<string> MediaUri { get; set; }
-
-        public long MosaicID
+        set
         {
-            get
-            {
-                return this._mosaicID;
-            }
-            set
-            {
-                this._mosaicID = value;
-            }
+            this._height = value;
         }
+    }
 
-        public string Name
+    public List<MediaListModel> Media
+    {
+        get;
+        set;
+    }
+
+    public List<string> MediaUri
+    {
+        get;
+        set;
+    }
+
+    public long MosaicID
+    {
+        get
         {
-            get
-            {
-                return this._name;
-            }
-            set
-            {
-                this._name = value;
-            }
+            return this._mosaicID;
         }
-
-        public long PositionID
+        set
         {
-            get
-            {
-                return this._positionID;
-            }
-            set
-            {
-                if (this._positionID != value)
-                {
-                    this._positionID = value;
-                }
-            }
+            this._mosaicID = value;
         }
+    }
 
-        public double? Width
+    public string Name
+    {
+        get
         {
-            get
-            {
-                return this._width;
-            }
-            set
-            {
-                this._width = value;
-            }
+            return this._name;
         }
-
-        public double? X
+        set
         {
-            get
-            {
-                return this._x;
-            }
-            set
-            {
-                this._x = value;
-            }
+            this._name = value;
         }
+    }
 
-        public double? Y
+    public long PositionID
+    {
+        get
         {
-            get
+            return this._positionID;
+        }
+        set
+        {
+            if (this._positionID != value)
             {
-                return this._y;
-            }
-            set
-            {
-                this._y = value;
+                this._positionID = value;
             }
         }
     }
+
+    public double? Width
+    {
+        get
+        {
+            return this._width;
+        }
+        set
+        {
+            this._width = value;
+        }
+    }
+
+    public double? X
+    {
+        get
+        {
+            return this._x;
+        }
+        set
+        {
+            this._x = value;
+        }
+    }
+
+    public double? Y
+    {
+        get
+        {
+            return this._y;
+        }
+        set
+        {
+            this._y = value;
+        }
+    }
+}
 }
 

@@ -28,212 +28,221 @@ using System.Web;
 
 namespace irio.mvc.fileupload
 {
+/// <summary>
+/// Event arguments for the ProcessorInit event.
+/// </summary>
+public class FileProcessorInitEventArgs : EventArgs
+{
+    #region Declarations
+
+    private readonly IFileProcessor _processor;
+
+    #endregion
+
+    #region Properties
+
     /// <summary>
-    /// Event arguments for the ProcessorInit event.
+    /// Gets the file processor.
     /// </summary>
-    public class FileProcessorInitEventArgs : EventArgs
+    public IFileProcessor Processor
     {
-        #region Declarations
-
-        private readonly IFileProcessor _processor;
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Gets the file processor.
-        /// </summary>
-        public IFileProcessor Processor
+        get
         {
-            get { return _processor; }
+            return _processor;
         }
-
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="processor">File processor instance.</param>
-        public FileProcessorInitEventArgs(IFileProcessor processor)
-        {
-            _processor = processor;
-        }
-
-        #endregion
     }
 
-    /// <summary>
-    /// Delegate for the ProcessorInit event.
-    /// </summary>
-    /// <param name="sender">Sender.</param>
-    /// <param name="args">Event args.</param>
-    public delegate void FileProcessorInitEventHandler(object sender, FileProcessorInitEventArgs args);
+    #endregion
+
+    #region Constructor
 
     /// <summary>
-    /// Manages uploads and acts as a factory class for file processors.
+    /// Constructor.
     /// </summary>
-    public sealed class UploadManager
+    /// <param name="processor">File processor instance.</param>
+    public FileProcessorInitEventArgs(IFileProcessor processor)
     {
-        #region Declarations
+        _processor = processor;
+    }
 
-        private const int MIN_BUFFER_SIZE = 1024;
-        private const int DEF_BUFFER_SIZE = 1024*128;
+    #endregion
+}
 
-        public const string STATUS_KEY = "DJUploadStatus";
-        private static UploadManager _instance;
-        private static readonly object _padlock = new object();
-        private int _bufferSize;
-        private Type _processorType;
+/// <summary>
+/// Delegate for the ProcessorInit event.
+/// </summary>
+/// <param name="sender">Sender.</param>
+/// <param name="args">Event args.</param>
+public delegate void FileProcessorInitEventHandler(object sender, FileProcessorInitEventArgs args);
 
-        #endregion
+/// <summary>
+/// Manages uploads and acts as a factory class for file processors.
+/// </summary>
+public sealed class UploadManager
+{
+    #region Declarations
 
-        #region Constructor
+    private const int MIN_BUFFER_SIZE = 1024;
+    private const int DEF_BUFFER_SIZE = 1024*128;
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        private UploadManager()
+    public const string STATUS_KEY = "DJUploadStatus";
+    private static UploadManager _instance;
+    private static readonly object _padlock = new object();
+    private int _bufferSize;
+    private Type _processorType;
+
+    #endregion
+
+    #region Constructor
+
+    /// <summary>
+    /// Constructor.
+    /// </summary>
+    private UploadManager()
+    {
+        // Set up the default processor.
+        _processorType = typeof (FileSystemProcessor);
+        _bufferSize = DEF_BUFFER_SIZE;
+    }
+
+    #endregion
+
+    #region Events
+
+    /// <summary>
+    /// Fired when a processor is initialised but before it is used.
+    /// Set processor properties here.
+    /// </summary>
+    public event FileProcessorInitEventHandler ProcessorInit;
+
+    /// <summary>
+    /// Fires the ProcessorInit event.
+    /// </summary>
+    /// <param name="processor">File processor.</param>
+    public void OnProcessorInit(IFileProcessor processor)
+    {
+        if (ProcessorInit != null)
+            ProcessorInit(this, new FileProcessorInitEventArgs(processor));
+    }
+
+    #endregion
+
+    #region Properties
+
+    /// <summary>
+    /// Gets the current upload status.
+    /// </summary>
+    public UploadStatus Status
+    {
+        get
         {
-            // Set up the default processor.
-            _processorType = typeof (FileSystemProcessor);
-            _bufferSize = DEF_BUFFER_SIZE;
-        }
+            string key;
 
-        #endregion
-
-        #region Events
-
-        /// <summary>
-        /// Fired when a processor is initialised but before it is used.
-        /// Set processor properties here.
-        /// </summary>
-        public event FileProcessorInitEventHandler ProcessorInit;
-
-        /// <summary>
-        /// Fires the ProcessorInit event.
-        /// </summary>
-        /// <param name="processor">File processor.</param>
-        public void OnProcessorInit(IFileProcessor processor)
-        {
-            if (ProcessorInit != null)
-                ProcessorInit(this, new FileProcessorInitEventArgs(processor));
-        }
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Gets the current upload status.
-        /// </summary>
-        public UploadStatus Status
-        {
-            get
+            key = HttpContext.Current.Request.QueryString[STATUS_KEY];
+            if (key == null)
             {
-                string key;
-
-                key = HttpContext.Current.Request.QueryString[STATUS_KEY];
+                key = (string) HttpContext.Current.Items[STATUS_KEY];
                 if (key == null)
-                {
-                    key = (string) HttpContext.Current.Items[STATUS_KEY];
-                    if (key == null)
-                        return null;
-                }
-
-                return HttpContext.Current.Application[STATUS_KEY + key] as UploadStatus;
+                    return null;
             }
-            internal set
+
+            return HttpContext.Current.Application[STATUS_KEY + key] as UploadStatus;
+        }
+        internal set
+        {
+            string key;
+
+            key = HttpContext.Current.Request.QueryString[STATUS_KEY];
+            if (key != null)
             {
-                string key;
-
-                key = HttpContext.Current.Request.QueryString[STATUS_KEY];
-                if (key != null)
-                {
-                    SetStatus(value, key);
-                }
+                SetStatus(value, key);
             }
         }
-
-        public static UploadStatus GetStatus(string id)
-        {
-            return HttpContext.Current.Application[STATUS_KEY + id] as UploadStatus;
-        }
-        /// <summary>
-        /// Gets/sets the buffer size for reading from the request stream.
-        /// </summary>
-        public int BufferSize
-        {
-            get { return _bufferSize; }
-            set
-            {
-                if (_bufferSize <= MIN_BUFFER_SIZE)
-                    throw new ArgumentException("Minimum buffer size violation");
-                _bufferSize = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets the singleton instance in a thread safe manner.
-        /// </summary>
-        public static UploadManager Instance
-        {
-            get
-            {
-                lock (_padlock)
-                {
-                    if (_instance == null)
-                    {
-                        _instance = new UploadManager();
-                    }
-                    return _instance;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets/sets the processor type (must implement IFileProcessor).
-        /// </summary>
-        public Type ProcessorType
-        {
-            get { return _processorType; }
-            set
-            {
-                if (value == null || value.GetInterface("IFileProcessor", false) == null)
-                    throw new ArgumentException("File processor must implement IFileProcessor");
-                _processorType = value;
-            }
-        }
-
-        /// <summary>
-        /// Sets the upload status.
-        /// </summary>
-        /// <param name="status">Status to set.</param>
-        /// <param name="key">Upload key.</param>
-        internal void SetStatus(UploadStatus status, string key)
-        {
-            HttpContext.Current.Application[STATUS_KEY + key] = status;
-        }
-
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        /// Factory method creates a new instance of IFileProcessor.
-        /// </summary>
-        /// <returns>The created file processor.</returns>
-        public IFileProcessor GetProcessor()
-        {
-            IFileProcessor processor;
-
-            processor = (IFileProcessor) Activator.CreateInstance(_processorType);
-            OnProcessorInit(processor);
-            return processor;
-        }
-
-        #endregion
     }
+
+    public static UploadStatus GetStatus(string id)
+    {
+        return HttpContext.Current.Application[STATUS_KEY + id] as UploadStatus;
+    }
+    /// <summary>
+    /// Gets/sets the buffer size for reading from the request stream.
+    /// </summary>
+    public int BufferSize
+    {
+        get
+        {
+            return _bufferSize;
+        }
+        set
+        {
+            if (_bufferSize <= MIN_BUFFER_SIZE)
+                throw new ArgumentException("Minimum buffer size violation");
+            _bufferSize = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets the singleton instance in a thread safe manner.
+    /// </summary>
+    public static UploadManager Instance
+    {
+        get
+        {
+            lock (_padlock)
+            {
+                if (_instance == null)
+                {
+                    _instance = new UploadManager();
+                }
+                return _instance;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Gets/sets the processor type (must implement IFileProcessor).
+    /// </summary>
+    public Type ProcessorType
+    {
+        get
+        {
+            return _processorType;
+        }
+        set
+        {
+            if (value == null || value.GetInterface("IFileProcessor", false) == null)
+                throw new ArgumentException("File processor must implement IFileProcessor");
+            _processorType = value;
+        }
+    }
+
+    /// <summary>
+    /// Sets the upload status.
+    /// </summary>
+    /// <param name="status">Status to set.</param>
+    /// <param name="key">Upload key.</param>
+    internal void SetStatus(UploadStatus status, string key)
+    {
+        HttpContext.Current.Application[STATUS_KEY + key] = status;
+    }
+
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// Factory method creates a new instance of IFileProcessor.
+    /// </summary>
+    /// <returns>The created file processor.</returns>
+    public IFileProcessor GetProcessor()
+    {
+        IFileProcessor processor;
+
+        processor = (IFileProcessor) Activator.CreateInstance(_processorType);
+        OnProcessorInit(processor);
+        return processor;
+    }
+
+    #endregion
+}
 }

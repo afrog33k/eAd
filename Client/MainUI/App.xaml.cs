@@ -11,77 +11,80 @@ using Client.Core;
 
 namespace Client
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
+public partial class App : Application
+{
+    private static string _productName;
+
+    public static string UserAppDataPath
     {
-        private static string _productName;
-
-        public static string UserAppDataPath
+        get
         {
-            get { return System.AppDomain.CurrentDomain.BaseDirectory; }
+            return System.AppDomain.CurrentDomain.BaseDirectory;
         }
+    }
 
-        public static string ProductName
+    public static string ProductName
+    {
+        get
         {
-            get
+            return "eAd Desktop";
+        }
+        set
+        {
+            _productName = value;
+        }
+    }
+
+    public static bool ShutDownRequested { get; set; }
+
+
+    public static void DoEvents()
+    {
+
+    }
+
+    public static void Close()
+    {
+        ShutDownRequested = true;
+        Application.Current.Shutdown();
+    }
+
+    public App()
+    {
+
+        base.StartupUri = new Uri("PageSwitcher.xaml", UriKind.Relative);
+
+        base.ShutdownMode = ShutdownMode.OnMainWindowClose;
+
+        bool createdNew = true;
+
+        using (new Mutex(true, "eAd Advert Platform", out createdNew))
+        {
+
+            if (createdNew)
             {
-                return "eAd Desktop";
+
+                base.Run();
+
             }
-            set
-            {
-                _productName = value;
-            }
-        }
 
-
-
-        public static void DoEvents()
-        {
-
-        }
-
-        public static void Close()
-        {
-            Application.Current.Shutdown();
-        }
-
-        public App()
-        {
-
-            base.StartupUri = new Uri("MainUI/MainForm.xaml", UriKind.Relative);
-
-            base.ShutdownMode = ShutdownMode.OnMainWindowClose;
-
-            bool createdNew = true;
-
-            using (new Mutex(true, "eAd Advert Platform", out createdNew))
+            else
             {
 
-                if (createdNew)
+                Process currentProcess = Process.GetCurrentProcess();
+
+                foreach (Process process2 in Process.GetProcessesByName(currentProcess.ProcessName))
                 {
 
-                    base.Run();
-
-                }
-
-                else
-                {
-
-                    Process currentProcess = Process.GetCurrentProcess();
-
-                    foreach (Process process2 in Process.GetProcessesByName(currentProcess.ProcessName))
+                    if (process2.Id != currentProcess.Id)
                     {
 
-                        if (process2.Id != currentProcess.Id)
-                        {
+                        SetForegroundWindow(process2.MainWindowHandle);
 
-                            SetForegroundWindow(process2.MainWindowHandle);
-
-                            return;
-
-                        }
+                        return;
 
                     }
 
@@ -91,46 +94,48 @@ namespace Client
 
         }
 
-         private static void RunApp(string[] arguments)
-         {
+    }
 
-             bool createdNew = true;
+    private static void RunApp(string[] arguments)
+    {
 
-             new Mutex(true, "UniqueApplicationName", out createdNew);
+        bool createdNew = true;
 
-             if (createdNew)
-             {
+        new Mutex(true, "UniqueApplicationName", out createdNew);
 
-                 Splasher.Splash = new SplashScreen();
+        if (createdNew)
+        {
 
-                 Splasher.ShowSplash();
+            Splasher.Splash = new SplashScreen();
 
-                 new App();
+            Splasher.ShowSplash();
 
-             }
+            new App();
 
-         }
-        
-
-         [return: MarshalAs(UnmanagedType.Bool)]
-
-         [DllImport("user32.dll")]
-
-         private static extern bool SetForegroundWindow(IntPtr hWnd);
-
-        public static void SingleInstanceArgumentsReceived(object sender, ArgumentsReceivedEventArgs e)
-         {
-
-             //if (PageSwitcher.Instance != null)
-             //{
-
-             //    PageSwitcher.Instance.RunCommands(e.Args);
-
-             //}
-
-         }
-
-
+        }
 
     }
+
+
+    [return: MarshalAs(UnmanagedType.Bool)]
+
+    [DllImport("user32.dll")]
+
+    private static extern bool SetForegroundWindow(IntPtr hWnd);
+
+    public static void SingleInstanceArgumentsReceived(object sender, ArgumentsReceivedEventArgs e)
+    {
+
+        //if (PageSwitcher.Instance != null)
+        //{
+
+        //    PageSwitcher.Instance.RunCommands(e.Args);
+
+        //}
+
+    }
+
+
+
+}
 }

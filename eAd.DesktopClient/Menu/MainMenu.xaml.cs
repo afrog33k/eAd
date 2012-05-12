@@ -3,77 +3,77 @@ using System.Windows.Controls;
 
 namespace DesktopClient.Menu
 {
-	public partial class MainMenu : UserControl, ISwitchable
-	{
+public partial class MainMenu : UserControl, ISwitchable
+{
 
-        //LoginWindowForm loginForm;
-        //RegisterForm registerForm;
+    //LoginWindowForm loginForm;
+    //RegisterForm registerForm;
 
-		public MainMenu()
-		{
-            
-			InitializeComponent();
+    public MainMenu()
+    {
 
-            //loginForm = new LoginWindowForm();
-            //registerForm = new RegisterForm();
+        InitializeComponent();
 
-            //loginForm.SubmitClicked += new EventHandler(loginWindowForm_SubmitClicked);
-            //registerForm.SubmitClicked += new EventHandler(registerForm_SubmitClicked);
-		}
+        //loginForm = new LoginWindowForm();
+        //registerForm = new RegisterForm();
 
-		private void newGameButton_Click(object sender, System.Windows.RoutedEventArgs e)
-		{
-			Switcher.Switch(new RFIDDetected());
-		}
+        //loginForm.SubmitClicked += new EventHandler(loginWindowForm_SubmitClicked);
+        //registerForm.SubmitClicked += new EventHandler(registerForm_SubmitClicked);
+    }
 
-		private void loadGameButton_Click(object sender, System.Windows.RoutedEventArgs e)
-		{
-			Switcher.Switch(new LoadGame());
-		}
+    private void newGameButton_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+        Switcher.Switch(new RFIDDetected());
+    }
 
-		private void optionButton_Click(object sender, System.Windows.RoutedEventArgs e)
-		{
-			Switcher.Switch(new Option());
-		}
+    private void loadGameButton_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+        Switcher.Switch(new LoadGame());
+    }
 
-        //private void ShowMessageBox(string title, string message, MessageBoxIcon icon)
-        //{
-            //MessageBoxChildWindow messageWindow =
-            //    new MessageBoxChildWindow(title, message, MessageBoxButtons.Ok, icon);
+    private void optionButton_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+        Switcher.Switch(new Option());
+    }
 
-            //messageWindow.Show();
-        //}
+    //private void ShowMessageBox(string title, string message, MessageBoxIcon icon)
+    //{
+    //MessageBoxChildWindow messageWindow =
+    //    new MessageBoxChildWindow(title, message, MessageBoxButtons.Ok, icon);
 
-        #region Event For Child Window
-        private void loginWindowForm_SubmitClicked(object sender, EventArgs e)
-        {
-            //ShowMessageBox("Login Successful", "Welcome, " + loginForm.NameText, MessageBoxIcon.Information);
+    //messageWindow.Show();
+    //}
 
-        }
+    #region Event For Child Window
+    private void loginWindowForm_SubmitClicked(object sender, EventArgs e)
+    {
+        //ShowMessageBox("Login Successful", "Welcome, " + loginForm.NameText, MessageBoxIcon.Information);
 
-        private void registerForm_SubmitClicked(object sender, EventArgs e)
-        {
-        }
+    }
+
+    private void registerForm_SubmitClicked(object sender, EventArgs e)
+    {
+    }
 
 
-        #endregion
+    #endregion
 
-        #region ISwitchable Members
-        public void UtilizeState(object state)
-        {
-            throw new NotImplementedException();
-        }
+    #region ISwitchable Members
+    public void UtilizeState(object state)
+    {
+        throw new NotImplementedException();
+    }
 
-        private void loginTextBlock_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-        	Switcher.Switch(new CustomerPage());
-        }
+    private void loginTextBlock_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        Switcher.Switch(new CustomerPage());
+    }
 
-        private void registerTextBlock_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-        	Switcher.Switch(new Register());
-        }
-        #endregion
-		
-	}
+    private void registerTextBlock_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        Switcher.Switch(new Register());
+    }
+    #endregion
+
+}
 }

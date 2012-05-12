@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\ProjectHub\eAd\Client\MainUI\App.xaml
-5239870187
-9-161686246
-61-1274717241
-26-10875292
-MainUI\About.xaml;MainUI\MainForm.xaml;MainUI\SplashScreen.xaml;Players\Media.xaml;Themes\Generic.xaml;
+18-217624955
+19-1821618817
+77679402340
+271271577185
+Controls\BatteryRecharging.xaml;Controls\DigitalClockControl.xaml;Controls\DigitalClockDots.xaml;Controls\DigitalClockElement.xaml;Controls\DigitalControlWindow.xaml;Controls\ImageListBox.xaml;MainUI\About.xaml;MainUI\CustomerPage.xaml;MainUI\MainForm.xaml;MainUI\Option.xaml;MainUI\SplashScreen.xaml;MainUI\Widgets\BatteryInfo.xaml;MainUI\Widgets\CarInfo.xaml;MainUI\Widgets\Location.xaml;MainUI\Widgets\Profile.xaml;PageSwitcher.xaml;Players\Media.xaml;Themes\Generic.xaml;
 
 True
 

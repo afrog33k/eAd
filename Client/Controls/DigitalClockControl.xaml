@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Client.Controls.DigitalClockControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Client.Controls">
+    <Border BorderThickness="3" BorderBrush="Gray" CornerRadius="10" x:Name="masterBorder">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <local:DigitalClockElement x:Name="p0" Grid.Column="0"  RenderBrush="Red"/>
+            <local:DigitalClockElement x:Name="p1" Grid.Column="1"  RenderBrush="Red"/>
+
+            <local:DigitalClockDots x:Name="p2" Grid.Column="2"  RenderBrush="Red"/>
+
+            <local:DigitalClockElement x:Name="p3" Grid.Column="3"  RenderBrush="Red"/>
+            <local:DigitalClockElement x:Name="p4" Grid.Column="4"  RenderBrush="Red"/>
+
+            <local:DigitalClockDots x:Name="p5" Grid.Column="5"  RenderBrush="Red"/>
+
+            <local:DigitalClockElement x:Name="p6" Grid.Column="6"  RenderBrush="Red"/>
+            <local:DigitalClockElement x:Name="p7" Grid.Column="7" RenderBrush="Red"/>
+        </Grid>
+    </Border>
+</UserControl>

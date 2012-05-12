@@ -28,85 +28,97 @@ using System.Collections.Generic;
 
 namespace irio.mvc.fileupload
 {
+/// <summary>
+/// Contains identifying information about an uploaded file.
+/// </summary>
+public class UploadedFile
+{
+    #region Declarations
+
+    private readonly Exception _exception;
+    private readonly string _fileName;
+    private readonly Dictionary<string, string> _headerItems;
+    private readonly object _identifier;
+
+    #endregion
+
+    #region Properties
+
     /// <summary>
-    /// Contains identifying information about an uploaded file.
+    /// Gets the file name.
     /// </summary>
-    public class UploadedFile
+    public string FileName
     {
-        #region Declarations
-
-        private readonly Exception _exception;
-        private readonly string _fileName;
-        private readonly Dictionary<string, string> _headerItems;
-        private readonly object _identifier;
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Gets the file name.
-        /// </summary>
-        public string FileName
+        get
         {
-            get { return _fileName; }
+            return _fileName;
         }
-
-        /// <summary>
-        /// Gets the container identifier returned from the processor.
-        /// </summary>
-        public object Identifier
-        {
-            get { return _identifier; }
-        }
-
-        /// <summary>
-        /// Gets a dictionary of all items in the header.
-        /// </summary>
-        public Dictionary<string, string> HeaderItems
-        {
-            get { return _headerItems; }
-        }
-
-        /// <summary>
-        /// Gets or sets the exception.
-        /// </summary>
-        /// <value>The exception.</value>
-        public Exception Exception
-        {
-            get { return _exception; }
-        }
-
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UploadedFile"/> class.
-        /// </summary>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="identifier">The identifier.</param>
-        /// <param name="headerItems">The header items.</param>
-        public UploadedFile(string fileName, object identifier, Dictionary<string, string> headerItems)
-        {
-            _fileName = fileName;
-            _identifier = identifier;
-            _headerItems = headerItems;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UploadedFile"/> class.
-        /// </summary>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="identifier">The identifier.</param>
-        /// <param name="headerItems">The header items.</param>
-        /// <param name="ex">The exception that was raised.</param>
-        public UploadedFile(string fileName, object identifier, Dictionary<string, string> headerItems, Exception ex)
-            : this(fileName, identifier, headerItems)
-        {
-            _exception = ex;
-        }
-
-        #endregion
     }
+
+    /// <summary>
+    /// Gets the container identifier returned from the processor.
+    /// </summary>
+    public object Identifier
+    {
+        get
+        {
+            return _identifier;
+        }
+    }
+
+    /// <summary>
+    /// Gets a dictionary of all items in the header.
+    /// </summary>
+    public Dictionary<string, string> HeaderItems
+    {
+        get
+        {
+            return _headerItems;
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets the exception.
+    /// </summary>
+    /// <value>The exception.</value>
+    public Exception Exception
+    {
+        get
+        {
+            return _exception;
+        }
+    }
+
+    #endregion
+
+    #region Constructor
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UploadedFile"/> class.
+    /// </summary>
+    /// <param name="fileName">Name of the file.</param>
+    /// <param name="identifier">The identifier.</param>
+    /// <param name="headerItems">The header items.</param>
+    public UploadedFile(string fileName, object identifier, Dictionary<string, string> headerItems)
+    {
+        _fileName = fileName;
+        _identifier = identifier;
+        _headerItems = headerItems;
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UploadedFile"/> class.
+    /// </summary>
+    /// <param name="fileName">Name of the file.</param>
+    /// <param name="identifier">The identifier.</param>
+    /// <param name="headerItems">The header items.</param>
+    /// <param name="ex">The exception that was raised.</param>
+    public UploadedFile(string fileName, object identifier, Dictionary<string, string> headerItems, Exception ex)
+    : this(fileName, identifier, headerItems)
+    {
+        _exception = ex;
+    }
+
+    #endregion
+}
 }

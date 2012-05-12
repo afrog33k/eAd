@@ -20,7 +20,7 @@
 <table>
     <tr>
         <td>
-            <img src="@( !(String.IsNullOrEmpty(item.Location)) ? "Uploads/Temp/Media" + "/" + "Thumb" + Path.GetFileNameWithoutExtension(item.Location) + ".jpg" : "/Content/Images/no_image.gif")" @*alt="[@(MimeExtensionHelper.GetSimpleType(item.DisplayLocation))]"*@ width="96" height="72" alt=""/>
+            <img src="@item.DisplayLocation" @*alt="[@(MimeExtensionHelper.GetSimpleType(item.DisplayLocation))]"*@ width="96" height="72" alt=""/>
         </td>
     </tr>
     <tr>

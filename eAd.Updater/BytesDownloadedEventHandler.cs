@@ -1,4 +1,4 @@
 namespace eAd.Updater
 {
-    public delegate void BytesDownloadedEventHandler(ByteArgs e);
+public delegate void BytesDownloadedEventHandler(ByteArgs e);
 }

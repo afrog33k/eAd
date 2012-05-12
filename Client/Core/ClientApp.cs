@@ -6,8 +6,8 @@ using System.Windows;
 
 namespace Client.Core
 {
-    //internal class ClientApp : App
-    //{
-       
-    //}
+//internal class ClientApp : App
+//{
+
+//}
 }

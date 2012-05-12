@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="schedule" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="schedule" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="layout">
+          <xs:complexType>
+            <xs:attribute name="file" type="xs:string" />
+            <xs:attribute name="fromdt" type="xs:string" />
+            <xs:attribute name="todt" type="xs:string" />
+            <xs:attribute name="scheduleid" type="xs:string" />
+            <xs:attribute name="priority" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="default">
+          <xs:complexType>
+            <xs:attribute name="file" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

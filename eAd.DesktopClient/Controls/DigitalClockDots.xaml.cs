@@ -3,32 +3,32 @@ using System.Windows.Media;
 
 namespace DesktopClient.Controls
 {
-    /// <summary>
-    /// Interaction logic for DigitalClockDots.xaml
-    /// </summary>
-    public partial class DigitalClockDots : UserControl
+/// <summary>
+/// Interaction logic for DigitalClockDots.xaml
+/// </summary>
+public partial class DigitalClockDots : UserControl
+{
+    private Brush renderBrush = null;
+
+    public DigitalClockDots()
     {
-        private Brush renderBrush = null;
+        InitializeComponent();
 
-        public DigitalClockDots()
+        this.RenderBrush = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+    }
+
+    public Brush RenderBrush
+    {
+        get
         {
-            InitializeComponent();
-
-            this.RenderBrush = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            return renderBrush;
         }
-
-        public Brush RenderBrush
+        set
         {
-            get
-            {
-                return renderBrush;
-            }
-            set
-            {
-                renderBrush = value;
-                p0.Fill = renderBrush;
-                p1.Fill = renderBrush;
-            }
+            renderBrush = value;
+            p0.Fill = renderBrush;
+            p1.Fill = renderBrush;
         }
     }
+}
 }

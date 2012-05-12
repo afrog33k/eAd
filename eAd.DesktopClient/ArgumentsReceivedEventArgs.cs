@@ -1,11 +1,15 @@
 ﻿namespace DesktopClient
 {
-    using System;
-    using System.Runtime.CompilerServices;
+using System;
+using System.Runtime.CompilerServices;
 
-    public class ArgumentsReceivedEventArgs : EventArgs
+public class ArgumentsReceivedEventArgs : EventArgs
+{
+    public string[] Args
     {
-        public string[] Args { get; set; }
+        get;
+        set;
     }
+}
 }
 

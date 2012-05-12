@@ -1,4 +1,4 @@
-namespace Client
+namespace Client.Update
 {
-    public delegate void BytesDownloadedEventHandler(ByteArgs e);
+public delegate void BytesDownloadedEventHandler(ByteArgs e);
 }

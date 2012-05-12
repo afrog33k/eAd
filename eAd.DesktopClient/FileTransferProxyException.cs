@@ -2,11 +2,11 @@ using System;
 
 namespace DesktopClient
 {
-    internal class FileTransferProxyException : Exception
+internal class FileTransferProxyException : Exception
+{
+    public FileTransferProxyException(string unableToOpenTheFileToUpload)
     {
-        public FileTransferProxyException(string unableToOpenTheFileToUpload)
-        {
-            Console.WriteLine(unableToOpenTheFileToUpload);
-        }
+        Console.WriteLine(unableToOpenTheFileToUpload);
     }
+}
 }

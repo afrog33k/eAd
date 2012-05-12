@@ -5,103 +5,103 @@ using System.Security.Cryptography;
 
 namespace eAd.Utilities
 {
-    public class Hashes
+public class Hashes
+{
+    /// <summary>
+    /// Calculates a MD5 of this given FileStream
+    /// </summary>
+    /// <param name="file"></param>
+    /// <param name="fileStream"></param>
+    /// <returns></returns>
+    public static string MD5(FileStream fileStream)
     {
-        /// <summary>
-        /// Calculates a MD5 of this given FileStream
-        /// </summary>
-        /// <param name="file"></param>
-        /// <param name="fileStream"></param>
-        /// <returns></returns>
-        public static string MD5(FileStream fileStream)
+        try
         {
-            try
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] hash = md5.ComputeHash(fileStream);
+
+            fileStream.Close();
+
+            StringBuilder sb = new StringBuilder();
+            foreach (byte a in hash)
             {
-                MD5 md5 = new MD5CryptoServiceProvider();
-                byte[] hash = md5.ComputeHash(fileStream);
-
-                fileStream.Close();
-
-                StringBuilder sb = new StringBuilder();
-                foreach (byte a in hash)
-                {
-                    if (a < 16)
-                        sb.Append("0" + a.ToString("x"));
-                    else
-                        sb.Append(a.ToString("x"));
-                }
-
-                return sb.ToString();
+                if (a < 16)
+                    sb.Append("0" + a.ToString("x"));
+                else
+                    sb.Append(a.ToString("x"));
             }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message, "Hashes");
-                throw;
-            }
+
+            return sb.ToString();
         }
-
-        /// <summary>
-        /// Calculates a MD5 of this given FileStream
-        /// </summary>
-        /// <param name="file"></param>
-        /// <returns></returns>
-        public static string MD5(Byte[] fileStream)
+        catch (Exception ex)
         {
-            try
-            {
-                MD5 md5 = new MD5CryptoServiceProvider();
-                byte[] hash = md5.ComputeHash(fileStream);
-
-                StringBuilder sb = new StringBuilder();
-                foreach (byte a in hash)
-                {
-                    if (a < 16)
-                        sb.Append("0" + a.ToString("x"));
-                    else
-                        sb.Append(a.ToString("x"));
-                }
-
-                return sb.ToString();
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message, "Hashes");
-                throw;
-            }
+            System.Diagnostics.Debug.WriteLine(ex.Message, "Hashes");
+            throw;
         }
-
-        /// <summary>
-        /// Calculates a MD5 of this given FileStream
-        /// </summary>
-        /// <param name="file"></param>
-        /// <returns></returns>
-        public static string MD5(String fileString)
-        {
-            byte[] fileStream = Encoding.UTF8.GetBytes(fileString);
-
-            try
-            {
-                MD5 md5 = new MD5CryptoServiceProvider();
-                byte[] hash = md5.ComputeHash(fileStream);
-
-                StringBuilder sb = new StringBuilder();
-                foreach (byte a in hash)
-                {
-                    if (a < 16)
-                        sb.Append("0" + a.ToString("x"));
-                    else
-                        sb.Append(a.ToString("x"));
-                }
-
-                return sb.ToString();
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message, "Hashes");
-                throw;
-            }
-        }
-
-        
     }
+
+    /// <summary>
+    /// Calculates a MD5 of this given FileStream
+    /// </summary>
+    /// <param name="file"></param>
+    /// <returns></returns>
+    public static string MD5(Byte[] fileStream)
+    {
+        try
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] hash = md5.ComputeHash(fileStream);
+
+            StringBuilder sb = new StringBuilder();
+            foreach (byte a in hash)
+            {
+                if (a < 16)
+                    sb.Append("0" + a.ToString("x"));
+                else
+                    sb.Append(a.ToString("x"));
+            }
+
+            return sb.ToString();
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine(ex.Message, "Hashes");
+            throw;
+        }
+    }
+
+    /// <summary>
+    /// Calculates a MD5 of this given FileStream
+    /// </summary>
+    /// <param name="file"></param>
+    /// <returns></returns>
+    public static string MD5(String fileString)
+    {
+        byte[] fileStream = Encoding.UTF8.GetBytes(fileString);
+
+        try
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] hash = md5.ComputeHash(fileStream);
+
+            StringBuilder sb = new StringBuilder();
+            foreach (byte a in hash)
+            {
+                if (a < 16)
+                    sb.Append("0" + a.ToString("x"));
+                else
+                    sb.Append(a.ToString("x"));
+            }
+
+            return sb.ToString();
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine(ex.Message, "Hashes");
+            throw;
+        }
+    }
+
+
+}
 }

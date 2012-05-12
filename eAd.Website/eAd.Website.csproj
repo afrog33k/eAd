@@ -516,6 +516,9 @@
     <Content Include="Content\galleria\themes\classic\classic-map.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\galleria\themes\classic\down.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\galleria\themes\classic\galleria.classic.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -523,6 +526,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\galleria\themes\classic\galleria.classic.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\galleria\themes\classic\l.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\galleria\themes\classic\loader.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\galleria\themes\classic\n.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\galleria\themes\classic\p.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\galleria\themes\classic\r.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\galleria\themes\classic\up.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Grid\Customers\ALFKI.jpg" />
@@ -1493,8 +1514,7 @@
     <Content Include="Scripts\deletemosaic.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\galleria\galleria-1.2.7.js" />
-    <Content Include="Scripts\galleria-1.2.7.min.js" />
+    <Content Include="Scripts\galleria-1.2.7.js" />
     <Content Include="Scripts\galleria\plugins\flickr\flickr-demo.html" />
     <Content Include="Scripts\galleria\plugins\flickr\flickr-loader.gif" />
     <Content Include="Scripts\galleria\plugins\flickr\galleria.flickr.js" />
@@ -1921,6 +1941,7 @@
     <Content Include="Views\Media\Picker.cshtml" />
     <Content Include="Views\Media\PickerList.cshtml" />
     <Content Include="Views\Mosaic\Delete.cshtml" />
+    <Content Include="Views\Mosaic\DeletePosition.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\.svn\props\" />

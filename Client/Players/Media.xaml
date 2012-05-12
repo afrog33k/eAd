@@ -10,10 +10,11 @@
       HorizontalAlignment="Stretch"
       >
             <Canvas x:Name="MediaCanvas"  Height="Auto" Width="Auto" Opacity="100" HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    >
-                
-            </Canvas>
+                    VerticalAlignment="Stretch">
+            <!--<Canvas.Effect>
+                <DropShadowEffect Color="Blue" Opacity="1" BlurRadius="5" ShadowDepth="0"/>
+            </Canvas.Effect>-->
+        </Canvas>
 
      
 

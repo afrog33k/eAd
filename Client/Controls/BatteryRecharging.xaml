@@ -1,0 +1,495 @@
+<av:Canvas
+	xmlns="http://schemas.microsoft.com/client/2007"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="Client.Controls.BatteryRecharging"
+	xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	
+	x:Name="Battery" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="408" Width="400">
+  <av:Canvas x:Name="canBattery" Width="355.06" Height="176" av:Canvas.Left="21.39" av:Canvas.Top="32">
+    <av:Canvas x:Name="middleBattery" Width="314.61" Height="176" av:Canvas.Left="8">
+      <av:Path x:Name="middleBack" Width="314" Height="176" Stretch="Fill" Data="F1 M-1.5497208E-06,-1.7881393E-07 L1.9999983,-1.7881393E-07 310,-1.7881393E-07 312,-1.7881393E-07 312,0.31739992 C326.54135,3.4799478 338,41.534351 338,88 338,134.46565 326.54135,172.52005 312,175.6826 L312,176 310,176 1.9999983,176 -1.5497208E-06,176 -1.5497208E-06,175.6826 C-14.541375,172.52005 -26,134.46565 -26,88 C-26,41.534348 -14.541375,3.4799457 -1.5497208E-06,0.31740278 L-1.5497208E-06,-1.7881393E-07 z">
+        <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.484,-0.017" StartPoint="0.484,1.017">
+                        <av:GradientStop Color="#FF1E1E1E" Offset="0.327"/>
+                        <av:GradientStop Color="#FF000000" Offset="1"/>
+                        <av:GradientStop Color="#FF010101" Offset="0.447"/>
+                    </av:LinearGradientBrush>
+        </av:Path.Fill>
+      </av:Path>
+            <av:Path Width="232.4" Height="176" Stretch="Fill" Data="F1 M-1.5497208E-06,-1.7881393E-07 L1.9999983,-1.7881393E-07 310,-1.7881393E-07 312,-1.7881393E-07 312,0.31739992 C326.54135,3.4799478 338,41.534351 338,88 338,134.46565 326.54135,172.52005 312,175.6826 L312,176 310,176 1.9999983,176 -1.5497208E-06,176 -1.5497208E-06,175.6826 C-14.541375,172.52005 -26,134.46565 -26,88 C-26,41.534348 -14.541375,3.4799457 -1.5497208E-06,0.31740278 L-1.5497208E-06,-1.7881393E-07 z" x:Name="pthFiller" av:Canvas.Left="2.21">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.447,0.258" StartPoint="0.443,0.982">
+                        <av:GradientStop Color="#FFA10200" Offset="0.613"/>
+                        <av:GradientStop Color="#FFD30C0F" Offset="0.906"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Canvas x:Name="middleTop" Width="314" Height="176" av:Canvas.Left="0.61">
+                <av:Path Width="314" Height="176" Stretch="Fill" Data="F1 M-1.5497208E-06,-1.7881393E-07 L1.9999983,-1.7881393E-07 310,-1.7881393E-07 312,-1.7881393E-07 312,0.31739992 C326.54135,3.4799478 338,41.534351 338,88 338,134.46565 326.54135,172.52005 312,175.6826 L312,176 310,176 1.9999983,176 -1.5497208E-06,176 -1.5497208E-06,175.6826 C-14.541375,172.52005 -26,134.46565 -26,88 C-26,41.534348 -14.541375,3.4799457 -1.5497208E-06,0.31740278 L-1.5497208E-06,-1.7881393E-07 z">
+                    <av:Path.Fill>
+                        <av:LinearGradientBrush EndPoint="0.485,-0.005" StartPoint="0.486,1.028">
+              <av:GradientStop Color="#00000000" Offset="0.354"/>
+              <av:GradientStop Color="#FF000000" Offset="0.052"/>
+                            <av:GradientStop Color="#50C1C1C1" Offset="0.123"/>
+                            <av:GradientStop Color="#3F191919" Offset="0.236"/>
+                            <av:GradientStop Color="#FFFFFFFF" Offset="0"/>
+                        </av:LinearGradientBrush>
+                    </av:Path.Fill>
+                </av:Path>
+                <av:Path Width="314" Height="176" Stretch="Fill" Data="F1 M-1.5497208E-06,-1.7881393E-07 L1.9999983,-1.7881393E-07 310,-1.7881393E-07 312,-1.7881393E-07 312,0.31739992 C326.54135,3.4799478 338,41.534351 338,88 338,134.46565 326.54135,172.52005 312,175.6826 L312,176 310,176 1.9999983,176 -1.5497208E-06,176 -1.5497208E-06,175.6826 C-14.541375,172.52005 -26,134.46565 -26,88 C-26,41.534348 -14.541375,3.4799457 -1.5497208E-06,0.31740278 L-1.5497208E-06,-1.7881393E-07 z">
+                    <av:Path.Fill>
+                        <av:LinearGradientBrush EndPoint="0.484,0.062" StartPoint="0.484,0.535">
+                            <av:GradientStop Color="#3BB9B4B4" Offset="0.802"/>
+                            <av:GradientStop Color="#00FFFFFF" Offset="0.066"/>
+                            <av:GradientStop Color="#3ECFC7C7" Offset="0.325"/>
+                            <av:GradientStop Color="#3F191919" Offset="0.948"/>
+                        </av:LinearGradientBrush>
+                    </av:Path.Fill>
+                </av:Path>
+                <av:Path Width="314" Height="176" Stretch="Fill" Data="F1 M-1.5497208E-06,-1.7881393E-07 L1.9999983,-1.7881393E-07 310,-1.7881393E-07 312,-1.7881393E-07 312,0.31739992 C326.54135,3.4799478 338,41.534351 338,88 338,134.46565 326.54135,172.52005 312,175.6826 L312,176 310,176 1.9999983,176 -1.5497208E-06,176 -1.5497208E-06,175.6826 C-14.541375,172.52005 -26,134.46565 -26,88 C-26,41.534348 -14.541375,3.4799457 -1.5497208E-06,0.31740278 L-1.5497208E-06,-1.7881393E-07 z">
+                    <av:Path.Fill>
+                        <av:LinearGradientBrush EndPoint="0.466,-0.21" StartPoint="0.467,0.138">
+                            <av:GradientStop Color="#3BFFFFFF" Offset="0.335"/>
+                            <av:GradientStop Color="#00FFFFFF" Offset="0.156"/>
+                            <av:GradientStop Color="#00191919" Offset="1"/>
+                        </av:LinearGradientBrush>
+                    </av:Path.Fill>
+                </av:Path>
+      </av:Canvas>
+    </av:Canvas>
+        <av:Canvas x:Name="bottomBattery" Width="30.94" Height="176" RenderTransformOrigin="0.5,0.5">
+            <av:Canvas.RenderTransform>
+                <av:TransformGroup>
+                    <av:ScaleTransform ScaleX="-1" ScaleY="1"/>
+                    <av:SkewTransform AngleX="0" AngleY="0"/>
+                    <av:RotateTransform Angle="0"/>
+                    <av:TranslateTransform X="0" Y="0"/>
+                </av:TransformGroup>
+            </av:Canvas.RenderTransform>
+            <av:Path Width="40.429" Height="176" Stretch="Fill" av:Canvas.Left="0.631" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.321,0.919" StartPoint="0.333,1.001">
+                        <av:GradientStop Color="#FF000000" Offset="0.245"/>
+                        <av:GradientStop Color="#FF6B6969" Offset="0"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="40.429" Height="176" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z" av:Canvas.Top="0.61">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.506,0.709" StartPoint="0.508,0.979">
+                        <av:GradientStop Color="#FF6B6969" Offset="0.327"/>
+                        <av:GradientStop Color="#FF6B6969" Offset="0.154"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="1"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="40.429" Height="176" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.666,-0.015" StartPoint="0.724,0.516">
+                        <av:GradientStop Color="#FF6B6969" Offset="0.327"/>
+                        <av:GradientStop Color="#FF6B6969" Offset="0.154"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="0.802"/>
+                        <av:GradientStop Color="#9DFFFFFF" Offset="0.698"/>
+                        <av:GradientStop Color="#CFFFFFFF" Offset="0.608"/>
+                        <av:GradientStop Color="#E1FFFFFF" Offset="0.476"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="40.429" Height="176" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.469,-0.02" StartPoint="0.474,0.158">
+                        <av:GradientStop Color="#FF202020" Offset="0.344"/>
+                        <av:GradientStop Color="#FF383838" Offset="0.156"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="0.524"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="40.429" Height="176" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.241,-0.111" StartPoint="0.238,0.065">
+                        <av:GradientStop Color="#FF848484" Offset="0.392"/>
+                        <av:GradientStop Color="#FF383838" Offset="0.104"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="1"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+        </av:Canvas>
+        <av:Canvas x:Name="topKnob" Width="41.06" Height="64" RenderTransformOrigin="0.5,0.5" av:Canvas.Left="314" av:Canvas.Top="56">
+            <av:Canvas.RenderTransform>
+                <av:TransformGroup>
+                    <av:ScaleTransform ScaleX="1" ScaleY="1"/>
+                    <av:SkewTransform AngleX="0" AngleY="0"/>
+                    <av:RotateTransform Angle="0.705"/>
+                    <av:TranslateTransform X="0" Y="0"/>
+                </av:TransformGroup>
+            </av:Canvas.RenderTransform>
+            <av:Path Width="31.516" Height="80" Stretch="Fill" av:Canvas.Left="7.544" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z" av:Canvas.Top="-8">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.321,0.919" StartPoint="0.333,1.001">
+                        <av:GradientStop Color="#FF000000" Offset="0.245"/>
+                        <av:GradientStop Color="#FF6B6969" Offset="0"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="31.516" Height="80" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z" av:Canvas.Left="7.053" av:Canvas.Top="-8">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.486,0.741" StartPoint="0.508,0.979">
+                        <av:GradientStop Color="#FF6B6969" Offset="0.327"/>
+                        <av:GradientStop Color="#FF6B6969" Offset="0.154"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="1"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="31.516" Height="80" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z" av:Canvas.Left="7.053" av:Canvas.Top="-8">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.666,-0.015" StartPoint="0.724,0.516">
+                        <av:GradientStop Color="#FF6B6969" Offset="0.327"/>
+                        <av:GradientStop Color="#FF6B6969" Offset="0.154"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="0.802"/>
+                        <av:GradientStop Color="#9DFFFFFF" Offset="0.698"/>
+                        <av:GradientStop Color="#CFFFFFFF" Offset="0.608"/>
+                        <av:GradientStop Color="#E1FFFFFF" Offset="0.476"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="31.516" Height="80" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z" av:Canvas.Left="7.053" av:Canvas.Top="-8">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.469,-0.02" StartPoint="0.474,0.158">
+                        <av:GradientStop Color="#FF202020" Offset="0.344"/>
+                        <av:GradientStop Color="#FF383838" Offset="0.156"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="0.524"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="31.516" Height="80" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z" RenderTransformOrigin="0.34,0.502" av:Canvas.Left="7.051" av:Canvas.Top="-8">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.241,-0.111" StartPoint="0.238,0.065">
+                        <av:GradientStop Color="#FF848484" Offset="0.392"/>
+            <av:GradientStop Color="#FF383838" Offset="0.104"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+            <av:GradientStop Color="#00000000" Offset="1"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+                <av:Path.RenderTransform>
+                    <av:TransformGroup>
+                        <av:ScaleTransform ScaleX="0.99973313587476276" ScaleY="1.0002669353607088"/>
+                        <av:SkewTransform AngleX="-1.0976122192776074" AngleY="0"/>
+                        <av:RotateTransform Angle="1.5954866080759558"/>
+                        <av:TranslateTransform X="-0.003" Y="-0.14"/>
+                    </av:TransformGroup>
+                </av:Path.RenderTransform>
+            </av:Path>
+        </av:Canvas>
+        <av:Canvas x:Name="topBattery" Width="41.06" Height="176" av:Canvas.Left="297.94">
+            <av:Path Width="40.429" Height="176" Stretch="Fill" av:Canvas.Left="0.631" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.321,0.919" StartPoint="0.333,1.001">
+                        <av:GradientStop Color="#FF000000" Offset="0.245"/>
+                        <av:GradientStop Color="#FF6B6969" Offset="0"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="40.429" Height="176" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                <av:Path.Fill>
+                                    <av:LinearGradientBrush EndPoint="0.486,0.741" StartPoint="0.508,0.979">
+                                        <av:GradientStop Color="#FF6B6969" Offset="0.327"/>
+                                        <av:GradientStop Color="#FF6B6969" Offset="0.154"/>
+                                        <av:GradientStop Color="#00000000" Offset="0"/>
+                                        <av:GradientStop Color="#00000000" Offset="1"/>
+                    </av:LinearGradientBrush>
+                    </av:Path.Fill>
+            </av:Path>
+                <av:Path Width="40.429" Height="176" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.666,-0.015" StartPoint="0.724,0.516">
+                        <av:GradientStop Color="#FF6B6969" Offset="0.327"/>
+                        <av:GradientStop Color="#FF6B6969" Offset="0.154"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="0.802"/>
+                        <av:GradientStop Color="#9DFFFFFF" Offset="0.698"/>
+                        <av:GradientStop Color="#CFFFFFFF" Offset="0.608"/>
+                        <av:GradientStop Color="#E1FFFFFF" Offset="0.476"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="40.429" Height="176" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.469,-0.02" StartPoint="0.474,0.158">
+                        <av:GradientStop Color="#FF202020" Offset="0.344"/>
+                        <av:GradientStop Color="#FF383838" Offset="0.156"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="0.524"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="40.429" Height="176" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.241,-0.111" StartPoint="0.238,0.065">
+                        <av:GradientStop Color="#FF848484" Offset="0.392"/>
+                        <av:GradientStop Color="#FF383838" Offset="0.104"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="1"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+        </av:Canvas>
+  </av:Canvas>
+    <av:Canvas x:Name="canBatteryReflection" Width="355.06" Height="1" av:Canvas.Left="21.39" av:Canvas.Top="209" Opacity="0.995" RenderTransformOrigin="0.5,0.5">
+        <av:Canvas.OpacityMask>
+            <av:LinearGradientBrush EndPoint="0.497,36" StartPoint="0.496,-13.217" SpreadMethod="Reflect">
+                <av:GradientStop Color="#1E000000" Offset="0"/>
+                <av:GradientStop Color="#11FFFFFF" Offset="0.297"/>
+            </av:LinearGradientBrush>
+        </av:Canvas.OpacityMask>
+        <av:Canvas.RenderTransform>
+            <av:TransformGroup>
+                <av:ScaleTransform ScaleX="1" ScaleY="1"/>
+                <av:SkewTransform AngleX="0" AngleY="0"/>
+                <av:RotateTransform Angle="0"/>
+                <av:TranslateTransform X="0" Y="0"/>
+            </av:TransformGroup>
+        </av:Canvas.RenderTransform>
+        <av:Canvas x:Name="middleBattery1" Width="314.61" Height="176" av:Canvas.Left="8">
+                <av:Path x:Name="middleBack1" Width="314" Height="176" Stretch="Fill" Data="F1 M-1.5497208E-06,-1.7881393E-07 L1.9999983,-1.7881393E-07 310,-1.7881393E-07 312,-1.7881393E-07 312,0.31739992 C326.54135,3.4799478 338,41.534351 338,88 338,134.46565 326.54135,172.52005 312,175.6826 L312,176 310,176 1.9999983,176 -1.5497208E-06,176 -1.5497208E-06,175.6826 C-14.541375,172.52005 -26,134.46565 -26,88 C-26,41.534348 -14.541375,3.4799457 -1.5497208E-06,0.31740278 L-1.5497208E-06,-1.7881393E-07 z">
+                    <av:Path.Fill>
+                        <av:LinearGradientBrush EndPoint="0.484,-0.017" StartPoint="0.484,1.017">
+                            <av:GradientStop Color="#FF1E1E1E" Offset="0.327"/>
+                            <av:GradientStop Color="#FF000000" Offset="1"/>
+                            <av:GradientStop Color="#FF010101" Offset="0.447"/>
+                        </av:LinearGradientBrush>
+                    </av:Path.Fill>
+                    </av:Path>
+                    <av:Path Width="232.4" Height="176" Stretch="Fill" Data="F1 M-1.5497208E-06,-1.7881393E-07 L1.9999983,-1.7881393E-07 310,-1.7881393E-07 312,-1.7881393E-07 312,0.31739992 C326.54135,3.4799478 338,41.534351 338,88 338,134.46565 326.54135,172.52005 312,175.6826 L312,176 310,176 1.9999983,176 -1.5497208E-06,176 -1.5497208E-06,175.6826 C-14.541375,172.52005 -26,134.46565 -26,88 C-26,41.534348 -14.541375,3.4799457 -1.5497208E-06,0.31740278 L-1.5497208E-06,-1.7881393E-07 z" x:Name="pthFiller1" av:Canvas.Left="2.21">
+                        <av:Path.Fill>
+                            <av:LinearGradientBrush EndPoint="0.447,0.258" StartPoint="0.443,0.982">
+                                <av:GradientStop Color="#FFA10200" Offset="0.613"/>
+                                <av:GradientStop Color="#FFD30C0F" Offset="0.906"/>
+                            </av:LinearGradientBrush>
+                        </av:Path.Fill>
+                    </av:Path>
+                    <av:Canvas x:Name="middleTop1" Width="314" Height="176" av:Canvas.Left="0.61">
+                        <av:Path Width="314" Height="176" Stretch="Fill" Data="F1 M-1.5497208E-06,-1.7881393E-07 L1.9999983,-1.7881393E-07 310,-1.7881393E-07 312,-1.7881393E-07 312,0.31739992 C326.54135,3.4799478 338,41.534351 338,88 338,134.46565 326.54135,172.52005 312,175.6826 L312,176 310,176 1.9999983,176 -1.5497208E-06,176 -1.5497208E-06,175.6826 C-14.541375,172.52005 -26,134.46565 -26,88 C-26,41.534348 -14.541375,3.4799457 -1.5497208E-06,0.31740278 L-1.5497208E-06,-1.7881393E-07 z">
+                            <av:Path.Fill>
+                                <av:LinearGradientBrush EndPoint="0.485,-0.005" StartPoint="0.486,1.028">
+                                    <av:GradientStop Color="#00000000" Offset="0.354"/>
+                            <av:GradientStop Color="#FF000000" Offset="0.052"/>
+                            <av:GradientStop Color="#50C1C1C1" Offset="0.123"/>
+                            <av:GradientStop Color="#3F191919" Offset="0.236"/>
+                            <av:GradientStop Color="#FFFFFFFF" Offset="0"/>
+                        </av:LinearGradientBrush>
+                    </av:Path.Fill>
+                </av:Path>
+                <av:Path Width="314" Height="176" Stretch="Fill" Data="F1 M-1.5497208E-06,-1.7881393E-07 L1.9999983,-1.7881393E-07 310,-1.7881393E-07 312,-1.7881393E-07 312,0.31739992 C326.54135,3.4799478 338,41.534351 338,88 338,134.46565 326.54135,172.52005 312,175.6826 L312,176 310,176 1.9999983,176 -1.5497208E-06,176 -1.5497208E-06,175.6826 C-14.541375,172.52005 -26,134.46565 -26,88 C-26,41.534348 -14.541375,3.4799457 -1.5497208E-06,0.31740278 L-1.5497208E-06,-1.7881393E-07 z">
+                    <av:Path.Fill>
+                        <av:LinearGradientBrush EndPoint="0.484,0.062" StartPoint="0.484,0.535">
+                            <av:GradientStop Color="#3BB9B4B4" Offset="0.802"/>
+                            <av:GradientStop Color="#00FFFFFF" Offset="0.066"/>
+                            <av:GradientStop Color="#3ECFC7C7" Offset="0.325"/>
+                            <av:GradientStop Color="#3F191919" Offset="0.948"/>
+                        </av:LinearGradientBrush>
+                    </av:Path.Fill>
+                </av:Path>
+                <av:Path Width="314" Height="176" Stretch="Fill" Data="F1 M-1.5497208E-06,-1.7881393E-07 L1.9999983,-1.7881393E-07 310,-1.7881393E-07 312,-1.7881393E-07 312,0.31739992 C326.54135,3.4799478 338,41.534351 338,88 338,134.46565 326.54135,172.52005 312,175.6826 L312,176 310,176 1.9999983,176 -1.5497208E-06,176 -1.5497208E-06,175.6826 C-14.541375,172.52005 -26,134.46565 -26,88 C-26,41.534348 -14.541375,3.4799457 -1.5497208E-06,0.31740278 L-1.5497208E-06,-1.7881393E-07 z">
+                    <av:Path.Fill>
+                        <av:LinearGradientBrush EndPoint="0.466,-0.21" StartPoint="0.467,0.138">
+                            <av:GradientStop Color="#3BFFFFFF" Offset="0.335"/>
+                            <av:GradientStop Color="#00FFFFFF" Offset="0.156"/>
+                            <av:GradientStop Color="#00191919" Offset="1"/>
+                        </av:LinearGradientBrush>
+                    </av:Path.Fill>
+                </av:Path>
+            </av:Canvas>
+        </av:Canvas>
+        <av:Canvas x:Name="bottomBattery1" Width="30.94" Height="176" RenderTransformOrigin="0.5,0.5">
+            <av:Canvas.RenderTransform>
+                <av:TransformGroup>
+                    <av:ScaleTransform ScaleX="-1" ScaleY="1"/>
+                    <av:SkewTransform AngleX="0" AngleY="0"/>
+                    <av:RotateTransform Angle="0"/>
+                    <av:TranslateTransform X="0" Y="0"/>
+                </av:TransformGroup>
+            </av:Canvas.RenderTransform>
+            <av:Path Width="40.429" Height="176" Stretch="Fill" av:Canvas.Left="0.631" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.321,0.919" StartPoint="0.333,1.001">
+                        <av:GradientStop Color="#FF000000" Offset="0.245"/>
+                        <av:GradientStop Color="#FF6B6969" Offset="0"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="40.429" Height="176" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z" av:Canvas.Top="0.61">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.506,0.709" StartPoint="0.508,0.979">
+                        <av:GradientStop Color="#FF6B6969" Offset="0.327"/>
+                        <av:GradientStop Color="#FF6B6969" Offset="0.154"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="1"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="40.429" Height="176" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.666,-0.015" StartPoint="0.724,0.516">
+                        <av:GradientStop Color="#FF6B6969" Offset="0.327"/>
+                        <av:GradientStop Color="#FF6B6969" Offset="0.154"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="0.802"/>
+                        <av:GradientStop Color="#9DFFFFFF" Offset="0.698"/>
+                        <av:GradientStop Color="#CFFFFFFF" Offset="0.608"/>
+                        <av:GradientStop Color="#E1FFFFFF" Offset="0.476"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="40.429" Height="176" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.469,-0.02" StartPoint="0.474,0.158">
+                        <av:GradientStop Color="#FF202020" Offset="0.344"/>
+                        <av:GradientStop Color="#FF383838" Offset="0.156"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="0.524"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="40.429" Height="176" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.241,-0.111" StartPoint="0.238,0.065">
+                        <av:GradientStop Color="#FF848484" Offset="0.392"/>
+                        <av:GradientStop Color="#FF383838" Offset="0.104"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="1"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+        </av:Canvas>
+        <av:Canvas x:Name="topKnob1" Width="41.06" Height="64" RenderTransformOrigin="0.5,0.5" av:Canvas.Left="314" av:Canvas.Top="56">
+            <av:Canvas.RenderTransform>
+                <av:TransformGroup>
+                    <av:ScaleTransform ScaleX="1" ScaleY="1"/>
+                    <av:SkewTransform AngleX="0" AngleY="0"/>
+                    <av:RotateTransform Angle="0.705"/>
+                    <av:TranslateTransform X="0" Y="0"/>
+                </av:TransformGroup>
+            </av:Canvas.RenderTransform>
+            <av:Path Width="31.516" Height="80" Stretch="Fill" av:Canvas.Left="7.544" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z" av:Canvas.Top="-8">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.321,0.919" StartPoint="0.333,1.001">
+                        <av:GradientStop Color="#FF000000" Offset="0.245"/>
+                        <av:GradientStop Color="#FF6B6969" Offset="0"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="31.516" Height="80" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z" av:Canvas.Left="7.053" av:Canvas.Top="-8">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.486,0.741" StartPoint="0.508,0.979">
+                        <av:GradientStop Color="#FF6B6969" Offset="0.327"/>
+                        <av:GradientStop Color="#FF6B6969" Offset="0.154"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="1"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="31.516" Height="80" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z" av:Canvas.Left="7.053" av:Canvas.Top="-8">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.666,-0.015" StartPoint="0.724,0.516">
+                        <av:GradientStop Color="#FF6B6969" Offset="0.327"/>
+                        <av:GradientStop Color="#FF6B6969" Offset="0.154"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="0.802"/>
+                        <av:GradientStop Color="#9DFFFFFF" Offset="0.698"/>
+                        <av:GradientStop Color="#CFFFFFFF" Offset="0.608"/>
+                        <av:GradientStop Color="#E1FFFFFF" Offset="0.476"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="31.516" Height="80" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z" av:Canvas.Left="7.053" av:Canvas.Top="-8">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.469,-0.02" StartPoint="0.474,0.158">
+                        <av:GradientStop Color="#FF202020" Offset="0.344"/>
+                        <av:GradientStop Color="#FF383838" Offset="0.156"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="0.524"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="31.516" Height="80" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z" RenderTransformOrigin="0.34,0.502" av:Canvas.Left="7.051" av:Canvas.Top="-8">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.241,-0.111" StartPoint="0.238,0.065">
+                        <av:GradientStop Color="#FF848484" Offset="0.392"/>
+                        <av:GradientStop Color="#FF383838" Offset="0.104"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="1"/>
+                    </av:LinearGradientBrush>
+                </av:Path.Fill>
+                <av:Path.RenderTransform>
+                    <av:TransformGroup>
+                        <av:ScaleTransform ScaleX="0.99973313587476276" ScaleY="1.0002669353607088"/>
+                        <av:SkewTransform AngleX="-1.0976122192776074" AngleY="0"/>
+                        <av:RotateTransform Angle="1.5954866080759558"/>
+                        <av:TranslateTransform X="-0.003" Y="-0.14"/>
+                    </av:TransformGroup>
+                </av:Path.RenderTransform>
+            </av:Path>
+        </av:Canvas>
+        <av:Canvas x:Name="topBattery1" Width="41.06" Height="176" av:Canvas.Left="297.94">
+            <av:Path Width="40.429" Height="176" Stretch="Fill" av:Canvas.Left="0.631" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                <av:Path.Fill>
+                        <av:LinearGradientBrush EndPoint="0.321,0.919" StartPoint="0.333,1.001">
+                            <av:GradientStop Color="#FF000000" Offset="0.245"/>
+                            <av:GradientStop Color="#FF6B6969" Offset="0"/>
+                            </av:LinearGradientBrush>
+                        </av:Path.Fill>
+                    </av:Path>
+                <av:Path Width="40.429" Height="176" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                    <av:Path.Fill>
+                        <av:LinearGradientBrush EndPoint="0.486,0.741" StartPoint="0.508,0.979">
+                            <av:GradientStop Color="#FF6B6969" Offset="0.327"/>
+                            <av:GradientStop Color="#FF6B6969" Offset="0.154"/>
+                            <av:GradientStop Color="#00000000" Offset="0"/>
+                            <av:GradientStop Color="#00000000" Offset="1"/>
+                            </av:LinearGradientBrush>
+                        </av:Path.Fill>
+                    </av:Path>
+                <av:Path Width="40.429" Height="176" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                    <av:Path.Fill>
+                        <av:LinearGradientBrush EndPoint="0.666,-0.015" StartPoint="0.724,0.516">
+                            <av:GradientStop Color="#FF6B6969" Offset="0.327"/>
+                            <av:GradientStop Color="#FF6B6969" Offset="0.154"/>
+                            <av:GradientStop Color="#00000000" Offset="0"/>
+                            <av:GradientStop Color="#00000000" Offset="0.802"/>
+                            <av:GradientStop Color="#9DFFFFFF" Offset="0.698"/>
+                            <av:GradientStop Color="#CFFFFFFF" Offset="0.608"/>
+                            <av:GradientStop Color="#E1FFFFFF" Offset="0.476"/>
+                            </av:LinearGradientBrush>
+                        </av:Path.Fill>
+                    </av:Path>
+                <av:Path Width="40.429" Height="176" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                    <av:Path.Fill>
+                        <av:LinearGradientBrush EndPoint="0.469,-0.02" StartPoint="0.474,0.158">
+                            <av:GradientStop Color="#FF202020" Offset="0.344"/>
+                            <av:GradientStop Color="#FF383838" Offset="0.156"/>
+                            <av:GradientStop Color="#00000000" Offset="0"/>
+                            <av:GradientStop Color="#00000000" Offset="0.524"/>
+                        </av:LinearGradientBrush>
+                </av:Path.Fill>
+            </av:Path>
+            <av:Path Width="40.429" Height="176" Stretch="Fill" Data="F1 M273.57144,-1.6689301E-06 L289.84616,-1.6689301E-06 291.57141,-1.6689301E-06 291.57141,0.31739986 C304.11533,3.479948 314,41.534351 314,88 314,134.46565 304.11533,172.52005 291.57141,175.6826 L291.57141,176 289.84616,176 273.57144,176 273.57144,175.6826 C286.11533,172.52005 296,134.46565 296,88 296,41.534351 286.11533,3.479948 273.57144,0.31739986 L273.57144,-1.6689301E-06 z">
+                <av:Path.Fill>
+                    <av:LinearGradientBrush EndPoint="0.241,-0.111" StartPoint="0.238,0.065">
+                        <av:GradientStop Color="#FF848484" Offset="0.392"/>
+                        <av:GradientStop Color="#FF383838" Offset="0.104"/>
+                        <av:GradientStop Color="#00000000" Offset="0"/>
+                        <av:GradientStop Color="#00000000" Offset="1"/>
+                            </av:LinearGradientBrush>
+                        </av:Path.Fill>
+                    </av:Path>
+    </av:Canvas>
+    </av:Canvas>
+    <av:TextBlock Width="208" Height="24" av:Canvas.Left="88" av:Canvas.Top="216" FontFamily="Trebuchet MS" FontSize="20" Foreground="#FFFFFFFF" Text="Battery Recharging ..." TextWrapping="Wrap" x:Name="txtStatus"/>
+</av:Canvas>

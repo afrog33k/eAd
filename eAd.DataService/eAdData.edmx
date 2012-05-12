@@ -7,6 +7,7 @@
     <Schema Namespace="eAdData.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="eAdDataStoreContainer">
           <EntitySet Name="Cars" EntityType="eAdData.Store.Cars" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Clients" EntityType="eAdData.Store.Clients" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Customers" EntityType="eAdData.Store.Customers" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Groupings" EntityType="eAdData.Store.Groupings" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="GroupingStation" EntityType="eAdData.Store.GroupingStation" store:Type="Tables" Schema="dbo" />
@@ -24,6 +25,10 @@
           <AssociationSet Name="FK_CarCustomer" Association="eAdData.Store.FK_CarCustomer">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_Stations" Association="eAdData.Store.FK_Clients_Stations">
+            <End Role="Stations" EntitySet="Stations" />
+            <End Role="Clients" EntitySet="Clients" />
           </AssociationSet>
           <AssociationSet Name="FK_GroupingStation_Grouping" Association="eAdData.Store.FK_GroupingStation_Grouping">
             <End Role="Groupings" EntitySet="Groupings" />
@@ -85,6 +90,19 @@
           <Property Name="RFID" Type="nvarchar" MaxLength="100" />
           <Property Name="TotalUsage" Type="float" />
           <Property Name="BatteryCycle" Type="float" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="IP" Type="nvarchar" MaxLength="50" />
+          <Property Name="Approved" Type="bit" />
+          <Property Name="ActivatedOn" Type="datetime" />
+          <Property Name="HardwareKey" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClientID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StationID" Type="bigint" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
@@ -181,6 +199,7 @@
           <Property Name="Height" Type="int" Nullable="false" />
           <Property Name="Hash" Type="nchar" MaxLength="32" />
           <Property Name="Size" Type="bigint" Nullable="false" />
+          <Property Name="ResolutionID" Type="bigint" />
         </EntityType>
         <EntityType Name="PositionMedium">
           <Key>
@@ -257,6 +276,18 @@
             </Principal>
             <Dependent Role="Cars">
               <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_Stations">
+          <End Role="Stations" Type="eAdData.Store.Stations" Multiplicity="0..1" />
+          <End Role="Clients" Type="eAdData.Store.Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stations">
+              <PropertyRef Name="StationID" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="StationID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -440,6 +471,11 @@
             <End Role="Medium" EntitySet="Media" />
             <End Role="Theme" EntitySet="Themes" />
           </AssociationSet>
+          <EntitySet Name="Clients" EntityType="eAdData.Client" />
+          <AssociationSet Name="FK_Clients_Stations" Association="eAdData.FK_Clients_Stations">
+            <End Role="Station" EntitySet="Stations" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Car">
           <Key>
@@ -546,6 +582,7 @@
           <Property Type="Int64" Name="Size" Nullable="false" />
           <NavigationProperty Name="Groupings" Relationship="eAdData.FK_MosaicGrouping" FromRole="Mosaic" ToRole="Grouping" />
           <NavigationProperty Name="Positions" Relationship="eAdData.FK_Positions_Mosaics" FromRole="Mosaic" ToRole="Position" />
+          <Property Type="Int64" Name="ResolutionID" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -582,6 +619,7 @@
           <Property Type="Boolean" Name="Approved" Nullable="false" />
           <NavigationProperty Name="Messages" Relationship="eAdData.FK_MessageStation" FromRole="Station" ToRole="Message" />
           <NavigationProperty Name="Groupings" Relationship="eAdData.GroupingStation" FromRole="Station" ToRole="Grouping" />
+          <NavigationProperty Name="Clients" Relationship="eAdData.FK_Clients_Stations" FromRole="Station" ToRole="Client" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -666,6 +704,32 @@
         <Association Name="ThemeMedium">
           <End Type="eAdData.Medium" Role="Medium" Multiplicity="*" />
           <End Type="eAdData.Theme" Role="Theme" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Type="String" Name="Name" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Approved" />
+          <Property Type="DateTime" Name="ActivatedOn" Precision="3" />
+          <Property Type="String" Name="HardwareKey" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="ClientID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="StationID" />
+          <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Station" Relationship="eAdData.FK_Clients_Stations" FromRole="Client" ToRole="Station" />
+        </EntityType>
+        <Association Name="FK_Clients_Stations">
+          <End Type="eAdData.Station" Role="Station" Multiplicity="0..1" />
+          <End Type="eAdData.Client" Role="Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="StationID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="StationID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -765,6 +829,7 @@
           <EntitySetMapping Name="Mosaics">
             <EntityTypeMapping TypeName="eAdData.Mosaic">
               <MappingFragment StoreEntitySet="Mosaics">
+                <ScalarProperty Name="ResolutionID" ColumnName="ResolutionID" />
                 <ScalarProperty Name="Size" ColumnName="Size" />
                 <ScalarProperty Name="Hash" ColumnName="Hash" />
                 <ScalarProperty Name="Height" ColumnName="Height" />
@@ -864,6 +929,20 @@
               <ScalarProperty Name="MediaID" ColumnName="Media_MediaID" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="eAdData.Client">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="StationID" ColumnName="StationID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="HardwareKey" ColumnName="HardwareKey" />
+                <ScalarProperty Name="ActivatedOn" ColumnName="ActivatedOn" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -903,6 +982,8 @@
         <AssociationConnector Association="eAdData.GroupingTheme" />
         <AssociationConnector Association="eAdData.PositionMedium" />
         <AssociationConnector Association="eAdData.ThemeMedium" />
+        <EntityTypeShape EntityType="eAdData.Client" Width="1.5" PointX="3.438131825736785" PointY="12.689062452264626" />
+        <AssociationConnector Association="eAdData.FK_Clients_Stations" />
       </Diagram>
     </Diagrams>
   </Designer>

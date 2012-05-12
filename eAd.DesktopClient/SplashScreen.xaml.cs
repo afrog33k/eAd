@@ -2,14 +2,14 @@
 
 namespace DesktopClient
 {
-    /// <summary>
-    /// Interaction logic for SplashScreen.xaml
-    /// </summary>
-    public partial class SplashScreen : Window
+/// <summary>
+/// Interaction logic for SplashScreen.xaml
+/// </summary>
+public partial class SplashScreen : Window
+{
+    public SplashScreen ( )
     {
-        public SplashScreen ( )
-        {
-            InitializeComponent ( );
-        }
+        InitializeComponent ( );
     }
+}
 }

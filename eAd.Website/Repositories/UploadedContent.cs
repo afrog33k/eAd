@@ -4,11 +4,27 @@ using eAd.Website.Controllers;
 
 namespace eAd.Website.Repositories
 {
-    public class UploadedContent
+public class UploadedContent
+{
+    public TimeSpan Duration
     {
-        public TimeSpan Duration { get; set; }
-        public string MediaGuid { get; set; }
-        public UploadType Type { get; set; }
-        public List<string> Pictures { get; set; }
+        get;
+        set;
     }
+    public string MediaGuid
+    {
+        get;
+        set;
+    }
+    public UploadType Type
+    {
+        get;
+        set;
+    }
+    public List<string> Pictures
+    {
+        get;
+        set;
+    }
+}
 }

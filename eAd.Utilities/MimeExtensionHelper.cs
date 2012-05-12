@@ -1,15 +1,15 @@
 ﻿  using Microsoft.Win32;
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Runtime.CompilerServices;
-    using System.Runtime.InteropServices;
-    using System.Xml.Serialization;
-  namespace eAd.Utilities
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Xml.Serialization;
+namespace eAd.Utilities
 {
-  
 
-  public sealed class MimeExtensionHelper
+
+public sealed class MimeExtensionHelper
 {
     // Fields
     private static MimeTypeCollection _extensionTypes = null;
@@ -91,24 +91,24 @@
     {
         switch (Path.GetExtension(path).ToLower())
         {
-            case ".flv":
-            case ".m4v":
-            case ".mp4":
-            case ".avi":
-                return "Video";
+        case ".flv":
+        case ".m4v":
+        case ".mp4":
+        case ".avi":
+            return "Video";
 
-            case ".jpg":
-            case ".gif":
-            case ".bmp":
-            case ".png":
-                return "Image";
+        case ".jpg":
+        case ".gif":
+        case ".bmp":
+        case ".png":
+            return "Image";
 
-            case ".txt":
-                return "Marquee";
+        case ".txt":
+            return "Marquee";
 
-            case ".ppt":
-            case ".pptx":
-                return "Presentation";
+        case ".ppt":
+        case ".pptx":
+            return "Presentation";
         }
         return "Unknown";
     }
@@ -211,28 +211,36 @@
 
 
 
-  // Nested Types
-  [Serializable]
-  public class MimeTypeInfo
-  {
-      // Methods
-      public MimeTypeInfo()
-      {
-      }
+// Nested Types
+[Serializable]
+public class MimeTypeInfo
+{
+    // Methods
+    public MimeTypeInfo()
+    {
+    }
 
-      public MimeTypeInfo(string mimeType, List<string> extensions)
-      {
-          this.MimeType = mimeType;
-          this.Extensions = extensions;
-      }
+    public MimeTypeInfo(string mimeType, List<string> extensions)
+    {
+        this.MimeType = mimeType;
+        this.Extensions = extensions;
+    }
 
-      // Properties
-      [XmlElement("extension")]
-      public List<string> Extensions { get; set; }
+    // Properties
+    [XmlElement("extension")]
+    public List<string> Extensions
+    {
+        get;
+        set;
+    }
 
-      [XmlAttribute(AttributeName = "mimeType")]
-      public string MimeType { get; set; }
-  }
+    [XmlAttribute(AttributeName = "mimeType")]
+    public string MimeType
+    {
+        get;
+        set;
+    }
+}
 
 }
 

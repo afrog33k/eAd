@@ -44,6 +44,11 @@
       <End Role="Medium" EntitySet="Media" />
       <End Role="Theme" EntitySet="Themes" />
     </AssociationSet>
+    <EntitySet Name="Clients" EntityType="eAdData.Client" />
+    <AssociationSet Name="FK_Clients_Stations" Association="eAdData.FK_Clients_Stations">
+      <End Role="Station" EntitySet="Stations" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Car">
     <Key>
@@ -140,8 +145,8 @@
     </Key>
     <Property Type="Int64" Name="MosaicID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="Name" MaxLength="80" FixedLength="false" Unicode="true" />
-    <Property Type="DateTime" Name="Created" Precision="3" Nullable="false" />
-    <Property Type="DateTime" Name="Updated" Precision="3" Nullable="false" />
+    <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="Updated" Nullable="false" Precision="3" />
     <Property Type="String" Name="Background" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="BackgroundColor" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Type="Int32" Name="Width" Nullable="false" />
@@ -150,6 +155,7 @@
     <Property Type="Int64" Name="Size" Nullable="false" />
     <NavigationProperty Name="Groupings" Relationship="eAdData.FK_MosaicGrouping" FromRole="Mosaic" ToRole="Grouping" />
     <NavigationProperty Name="Positions" Relationship="eAdData.FK_Positions_Mosaics" FromRole="Mosaic" ToRole="Position" />
+    <Property Type="Int64" Name="ResolutionID" />
   </EntityType>
   <EntityType Name="Position">
     <Key>
@@ -182,10 +188,11 @@
     <Property Type="String" Name="PostalCode" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Type="Double" Name="Rate" />
     <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Messages" Relationship="eAdData.FK_MessageStation" FromRole="Station" ToRole="Message" />
-    <NavigationProperty Name="Groupings" Relationship="eAdData.GroupingStation" FromRole="Station" ToRole="Grouping" />
     <Property Type="String" Name="HardwareKey" MaxLength="32" FixedLength="true" Unicode="true" />
     <Property Type="Boolean" Name="Approved" Nullable="false" />
+    <NavigationProperty Name="Messages" Relationship="eAdData.FK_MessageStation" FromRole="Station" ToRole="Message" />
+    <NavigationProperty Name="Groupings" Relationship="eAdData.GroupingStation" FromRole="Station" ToRole="Grouping" />
+    <NavigationProperty Name="Clients" Relationship="eAdData.FK_Clients_Stations" FromRole="Station" ToRole="Client" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -270,5 +277,31 @@
   <Association Name="ThemeMedium">
     <End Type="eAdData.Medium" Role="Medium" Multiplicity="*" />
     <End Type="eAdData.Theme" Role="Theme" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ClientID" />
+    </Key>
+    <Property Type="String" Name="Name" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="IP" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Approved" />
+    <Property Type="DateTime" Name="ActivatedOn" Precision="3" />
+    <Property Type="String" Name="HardwareKey" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="ClientID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="StationID" />
+    <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Station" Relationship="eAdData.FK_Clients_Stations" FromRole="Client" ToRole="Station" />
+  </EntityType>
+  <Association Name="FK_Clients_Stations">
+    <End Type="eAdData.Station" Role="Station" Multiplicity="0..1" />
+    <End Type="eAdData.Client" Role="Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Station">
+        <PropertyRef Name="StationID" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="StationID" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

@@ -8,8 +8,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("datacache/ad1.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("datacache/ad2.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("datacache/blankii.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("datacache/cute-ball-go-icon32.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("datacache/cute-ball-stop-icon32.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("datacache/loadvideo.m4v")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ead.dataviewmodels.dll")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("updater.exe")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("navigator.htm")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("update/ead.dataviewmodels.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("update/ead.utilities.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("update/ionic.zip.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("update/updater.exe")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ionic.zip.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libraries/axinterop.shockwaveflashobjects.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("libraries/axinterop.wmplib.dll")]

@@ -12,92 +12,92 @@ using eAd.DataViewModels;
 
 namespace Client
 {
+/// <summary>
+/// Schedule manager controls the currently running schedule
+/// </summary>
+class ScheduleManager
+{
+    #region "Constructor"
+
+    // Member Varialbes
+    private string _location;
+    private Collection<LayoutSchedule> _layoutSchedule;
+    private Collection<LayoutSchedule> _currentSchedule;
+    private bool _refreshSchedule;
+    private CacheManager _cacheManager;
+
     /// <summary>
-    /// Schedule manager controls the currently running schedule
+    /// Creates a new schedule Manager
     /// </summary>
-    class ScheduleManager
+    /// <param name="scheduleLocation"></param>
+    public ScheduleManager(CacheManager cacheManager, string scheduleLocation)
     {
-        #region "Constructor"
+        _cacheManager = cacheManager;
+        _location = scheduleLocation;
 
-        // Member Varialbes
-        private string _location;
-        private Collection<LayoutSchedule> _layoutSchedule;
-        private Collection<LayoutSchedule> _currentSchedule;
-        private bool _refreshSchedule;
-        private CacheManager _cacheManager;
+        // Create an empty layout schedule
+        _layoutSchedule = new Collection<LayoutSchedule>();
+        _currentSchedule = new Collection<LayoutSchedule>();
 
-        /// <summary>
-        /// Creates a new schedule Manager
-        /// </summary>
-        /// <param name="scheduleLocation"></param>
-        public ScheduleManager(CacheManager cacheManager, string scheduleLocation)
+        // Evaluate the Schedule
+        IsNewScheduleAvailable();
+    }
+
+    #endregion
+
+    #region "Properties"
+
+    /// <summary>
+    /// Is there a new schedule available
+    /// </summary>
+    public bool NewScheduleAvailable
+    {
+        get
         {
-            _cacheManager = cacheManager;
-            _location = scheduleLocation;
-
-            // Create an empty layout schedule
-            _layoutSchedule = new Collection<LayoutSchedule>();
-            _currentSchedule = new Collection<LayoutSchedule>();
-
-            // Evaluate the Schedule
-            IsNewScheduleAvailable();
+            return IsNewScheduleAvailable();
         }
+    }
 
-        #endregion
-
-        #region "Properties"
-
-        /// <summary>
-        /// Is there a new schedule available
-        /// </summary>
-        public bool NewScheduleAvailable
+    /// <summary>
+    /// Tell the schedule manager to Refresh the Schedule
+    /// </summary>
+    public bool RefreshSchedule
+    {
+        get
         {
-            get
-            {
-                return IsNewScheduleAvailable();
-            }
+            return _refreshSchedule;
         }
-
-        /// <summary>
-        /// Tell the schedule manager to Refresh the Schedule
-        /// </summary>
-        public bool RefreshSchedule
+        set
         {
-            get
-            {
-                return _refreshSchedule;
-            }
-            set
-            {
-                _refreshSchedule = value;
-            }
+            _refreshSchedule = value;
         }
+    }
 
-        /// <summary>
-        /// The current layout schedule
-        /// </summary>
-        public Collection<LayoutSchedule> CurrentSchedule
+    /// <summary>
+    /// The current layout schedule
+    /// </summary>
+    public Collection<LayoutSchedule> CurrentSchedule
+    {
+        get
         {
-            get
-            {
-                return _currentSchedule;
-            }
+            return _currentSchedule;
         }
+    }
 
-        #endregion
+    #endregion
 
-        #region "Methods"
+    #region "Methods"
 
-        /// <summary>
-        /// Determine if there is a new schedule available
-        /// </summary>
-        /// <returns></returns>
-        private bool IsNewScheduleAvailable()
+    /// <summary>
+    /// Determine if there is a new schedule available
+    /// </summary>
+    /// <returns></returns>
+    private bool IsNewScheduleAvailable()
+    {
+        lock (_layoutSchedule)
         {
-            lock (_layoutSchedule)
-            {
-                
-           
+
+
             Debug.WriteLine("Checking if a new schedule is available", LogType.Info.ToString());
 
             // If we dont currently have a cached schedule load one from the scheduleLocation
@@ -111,8 +111,8 @@ namespace Client
                 }
                 catch (Exception ex)
                 {
-                    Trace.WriteLine(new LogMessage("IsNewScheduleAvailable", string.Format("Unable to load schedule from disk: {0}", ex.Message)), 
-                        LogType.Error.ToString());
+                    Trace.WriteLine(new LogMessage("IsNewScheduleAvailable", string.Format("Unable to load schedule from disk: {0}", ex.Message)),
+                                    LogType.Error.ToString());
 
                     // If we cant load the schedule from disk then use an empty schedule.
                     SetEmptySchedule();
@@ -148,193 +148,196 @@ namespace Client
             // We can update the current schedule and still return false - this will not trigger a schedule change event.
             // We do this if ALL the current layouts are still in the schedule
             return forceChange;
-            }
         }
+    }
 
-        /// <summary>
-        /// Loads a new schedule from _layoutSchedules
-        /// </summary>
-        /// <returns></returns>
-        private Collection<LayoutSchedule> LoadNewSchdule()
+    /// <summary>
+    /// Loads a new schedule from _layoutSchedules
+    /// </summary>
+    /// <returns></returns>
+    private Collection<LayoutSchedule> LoadNewSchdule()
+    {
+        // We need to build the current schedule from the layout schedule (obeying date/time)
+        Collection<LayoutSchedule> newSchedule = new Collection<LayoutSchedule>();
+        Collection<LayoutSchedule> prioritySchedule = new Collection<LayoutSchedule>();
+
+        // Temporary default Layout incase we have no layout nodes.
+        LayoutSchedule defaultLayout = new LayoutSchedule();
+
+        // For each layout in the schedule determine if it is currently inside the _currentSchedule, and whether it should be
+        foreach (LayoutSchedule layout in _layoutSchedule)
         {
-            // We need to build the current schedule from the layout schedule (obeying date/time)
-            Collection<LayoutSchedule> newSchedule = new Collection<LayoutSchedule>();
-            Collection<LayoutSchedule> prioritySchedule = new Collection<LayoutSchedule>();
-            
-            // Temporary default Layout incase we have no layout nodes.
-            LayoutSchedule defaultLayout = new LayoutSchedule();
-
-            // For each layout in the schedule determine if it is currently inside the _currentSchedule, and whether it should be
-            foreach (LayoutSchedule layout in _layoutSchedule)
+            // Is the layout valid in the cachemanager?
+            try
             {
-                // Is the layout valid in the cachemanager?
-                try
-                {
-                    if (!_cacheManager.IsValidLayout(layout.ID + ".mosaic"))
-                        continue;
-                }
-                catch
-                {
-                    // TODO: Ignore this layout.. raise an error?
-                    Trace.WriteLine("Unable to determine if layout is valid or not");
+                if (!_cacheManager.IsValidLayout(layout.ID + ".mosaic"))
                     continue;
-                }
-
-                // If this is the default, skip it
-                if (layout.NodeName == "default")
-                {
-                    // Store it before skipping it
-                    defaultLayout = layout;
-                    continue;
-                }
-
-                // Look at the Date/Time to see if it should be on the schedule or not
-                if (layout.FromDate <= DateTime.Now && layout.ToDate >= DateTime.Now)
-                {
-                    // Priority layouts should generate their own list
-                    if (layout.Priority != 0)
-                    {
-                        prioritySchedule.Add(layout);
-                    }
-                    else
-                    {
-                        newSchedule.Add(layout);
-                    }
-                }
+            }
+            catch
+            {
+                // TODO: Ignore this layout.. raise an error?
+                Trace.WriteLine("Unable to determine if layout is valid or not");
+                continue;
             }
 
-            // If we have any priority schedules then we need to return those instead
-            if (prioritySchedule.Count > 0)
-                return prioritySchedule;
+            // If this is the default, skip it
+            if (layout.NodeName == "default")
+            {
+                // Store it before skipping it
+                defaultLayout = layout;
+                continue;
+            }
 
-            // If the current schedule is empty by the end of all this, then slip the default in
-            if (newSchedule.Count == 0)
-                newSchedule.Add(defaultLayout);
-
-            return newSchedule;
+            // Look at the Date/Time to see if it should be on the schedule or not
+            if (layout.FromDate <= DateTime.Now && layout.ToDate >= DateTime.Now)
+            {
+                // Priority layouts should generate their own list
+                if (layout.Priority != 0)
+                {
+                    prioritySchedule.Add(layout);
+                }
+                else
+                {
+                    newSchedule.Add(layout);
+                }
+            }
         }
 
-        /// <summary>
-        /// Loads the schedule from file.
-        /// </summary>
-        /// <returns></returns>
-        private void LoadScheduleFromFile()
+        // If we have any priority schedules then we need to return those instead
+        if (prioritySchedule.Count > 0)
+            return prioritySchedule;
+
+        // If the current schedule is empty by the end of all this, then slip the default in
+        if (newSchedule.Count == 0)
+            newSchedule.Add(defaultLayout);
+
+        return newSchedule;
+    }
+
+    /// <summary>
+    /// Loads the schedule from file.
+    /// </summary>
+    /// <returns></returns>
+    private void LoadScheduleFromFile()
+    {
+        // Empty the current schedule collection
+        _layoutSchedule.Clear();
+
+        // Get the schedule XML
+        ScheduleModel schedule = GetSchedule();
+
+        // Parse the schedule xml
+        List<ScheduleLayout> layouts =  schedule.Items;
+
+        // Are there any nodes in the document
+        if (layouts.Count == 0)
         {
-            // Empty the current schedule collection
-            _layoutSchedule.Clear();
-
-            // Get the schedule XML
-            ScheduleModel schedule = GetSchedule();
-
-            // Parse the schedule xml
-            List<ScheduleLayout> layouts =  schedule.Items;
-
-            // Are there any nodes in the document
-            if (layouts.Count == 0)
-            {
-                SetEmptySchedule();
-                return;
-            }
-
-            // We have nodes, go through each one and add them to the layoutschedule collection
-            foreach (var layout in layouts)
-            {
-                LayoutSchedule temp = new LayoutSchedule();
-
-              // All nodes have file properties
-                temp.LayoutFile = layout.File;
-                
-                // Replace the .xml extension with nothing
-                string replace = ".xml";
-                string layoutFile = temp.LayoutFile.TrimEnd(replace.ToCharArray());
-
-                // Set these on the temp layoutschedule
-                temp.LayoutFile = Settings.Default.LibraryPath + "\\" +"Layouts\\"+ layoutFile + ".mosaic";
-                temp.ID = int.Parse(layoutFile);
-
-                // Get attributes that only exist on the default
-                if (temp.NodeName != "default")
-                {
-                    // Priority flag
-                    temp.Priority = layout.Priority;
-
-                    // Get the fromdt,todt
-                    temp.FromDate = DateTime.Parse(layout.FromDate);
-                    temp.ToDate = DateTime.Parse(layout.ToDate);
-
-                    // Pull out the scheduleid if there is one
-                    int scheduleId = -1;
-                    if (layout.ScheduleId != -1)
-                        scheduleId = layout.ScheduleId;
-
-                    // Add it to the layout schedule
-                    if (scheduleId != -1) 
-                        temp.Scheduleid = scheduleId;
-                }
-
-                _layoutSchedule.Add(temp);
-            }
-
-            // Clean up
-            layouts = null;
-            schedule = null;
-
-            // We now have the saved XML contained in the _layoutSchedule object
+            SetEmptySchedule();
+            return;
         }
 
-        /// <summary>
-        /// Sets an empty schedule into the _layoutSchedule Collection
-        /// </summary>
-        private void SetEmptySchedule()
+        // We have nodes, go through each one and add them to the layoutschedule collection
+        foreach (var layout in layouts)
         {
-            Debug.WriteLine("Setting an empty schedule", LogType.Info.ToString());
-
-            // Remove the existing schedule
-            _layoutSchedule.Clear();
-
-            // Schedule up the default
             LayoutSchedule temp = new LayoutSchedule();
-            temp.LayoutFile = Settings.Default.LibraryPath + @"\Default.xml";
-            temp.ID = 0;
-            temp.Scheduleid = 0;
+
+            // All nodes have file properties
+            temp.LayoutFile = layout.File;
+
+            // Replace the .xml extension with nothing
+            string replace = ".xml";
+            string layoutFile = temp.LayoutFile.TrimEnd(replace.ToCharArray());
+
+            // Set these on the temp layoutschedule
+            temp.LayoutFile = Settings.Default.LibraryPath + "\\" +"Layouts\\"+ layoutFile + ".mosaic";
+            temp.ID = int.Parse(layoutFile);
+
+            // Get attributes that only exist on the default
+            if (temp.NodeName != "default")
+            {
+                // Priority flag
+                temp.Priority = layout.Priority;
+
+                // Get the fromdt,todt
+                temp.FromDate = DateTime.Parse(layout.FromDate);
+                temp.ToDate = DateTime.Parse(layout.ToDate);
+
+                // Pull out the scheduleid if there is one
+                int scheduleId = -1;
+                if (layout.ScheduleId != -1)
+                    scheduleId = layout.ScheduleId;
+
+                // Add it to the layout schedule
+                if (scheduleId != -1)
+                    temp.Scheduleid = scheduleId;
+            }
 
             _layoutSchedule.Add(temp);
         }
 
-        /// <summary>
-        /// Gets the Schedule XML
-        /// </summary>
-        /// <returns></returns>
-        private ScheduleModel GetSchedule()
-        {
-            Debug.WriteLine("Getting the Schedule Xml", LogType.Info.ToString());
-            
-            ScheduleModel schedule = null;
-            
-            // Check the schedule file exists
-            if (File.Exists(_location))
-            {
-                using (var stream = File.Open(_location,FileMode.Open,FileAccess.Read))
-                {
-                    
-               
-                // Read the schedule file
-               XmlSerializer serializer = new XmlSerializer(typeof(ScheduleModel));
+        // Clean up
+        layouts = null;
+        schedule = null;
 
-
-               schedule=      (ScheduleModel) serializer.Deserialize(stream);
-            }
-            }
-            else
-            {
-                // Use the default XML
-                schedule = new ScheduleModel(){Items = new List<ScheduleLayout>()};
-             
-            }
-
-            return schedule;
-        }
-    
-        #endregion
+        // We now have the saved XML contained in the _layoutSchedule object
     }
+
+    /// <summary>
+    /// Sets an empty schedule into the _layoutSchedule Collection
+    /// </summary>
+    private void SetEmptySchedule()
+    {
+        Debug.WriteLine("Setting an empty schedule", LogType.Info.ToString());
+
+        // Remove the existing schedule
+        _layoutSchedule.Clear();
+
+        // Schedule up the default
+        LayoutSchedule temp = new LayoutSchedule();
+        temp.LayoutFile = Settings.Default.LibraryPath + @"\Default.xml";
+        temp.ID = 0;
+        temp.Scheduleid = 0;
+
+        _layoutSchedule.Add(temp);
+    }
+
+    /// <summary>
+    /// Gets the Schedule XML
+    /// </summary>
+    /// <returns></returns>
+    private ScheduleModel GetSchedule()
+    {
+        Debug.WriteLine("Getting the Schedule Xml", LogType.Info.ToString());
+
+        ScheduleModel schedule = null;
+
+        // Check the schedule file exists
+        if (File.Exists(_location))
+        {
+            using (var stream = File.Open(_location,FileMode.Open,FileAccess.Read))
+            {
+
+
+                // Read the schedule file
+                XmlSerializer serializer = new XmlSerializer(typeof(ScheduleModel));
+
+
+                schedule=      (ScheduleModel) serializer.Deserialize(stream);
+            }
+        }
+        else
+        {
+            // Use the default XML
+            schedule = new ScheduleModel()
+            {
+                Items = new List<ScheduleLayout>()
+            };
+
+        }
+
+        return schedule;
+    }
+
+    #endregion
+}
 }

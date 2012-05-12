@@ -256,3 +256,10 @@ C:\ProjectHub\eAd\eAd.Website\bin\Content\galleria\themes\classic\galleria.class
 C:\ProjectHub\eAd\eAd.Website\bin\Content\galleria\themes\classic\galleria.classic.js
 C:\ProjectHub\eAd\eAd.Website\bin\Content\galleria\themes\classic\galleria.classic.min.js
 C:\ProjectHub\eAd\eAd.Website\bin\Scripts\jail.0.9.5.js
+C:\ProjectHub\eAd\eAd.Website\bin\Content\galleria\themes\classic\down.gif
+C:\ProjectHub\eAd\eAd.Website\bin\Content\galleria\themes\classic\l.gif
+C:\ProjectHub\eAd\eAd.Website\bin\Content\galleria\themes\classic\loader.gif
+C:\ProjectHub\eAd\eAd.Website\bin\Content\galleria\themes\classic\n.gif
+C:\ProjectHub\eAd\eAd.Website\bin\Content\galleria\themes\classic\p.gif
+C:\ProjectHub\eAd\eAd.Website\bin\Content\galleria\themes\classic\r.gif
+C:\ProjectHub\eAd\eAd.Website\bin\Content\galleria\themes\classic\up.gif

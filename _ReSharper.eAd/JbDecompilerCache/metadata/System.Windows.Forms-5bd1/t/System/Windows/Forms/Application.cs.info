@@ -1,0 +1,20 @@
+﻿Code version: 6.1.37.86
+Assembly name System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 mvid {508732a7-ec70-4fad-8d2b-0cc3ed82e72d}
+* ref mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {b2429092-5963-4a29-8600-db4ae856c9d1}
+* ref System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+  mvid {881e1508-59e0-47db-a143-982f9ad099a8}
+* ref System.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+  mvid {fd5e171d-a13b-4391-8dec-6514f010658c}
+* ref System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {c1dd8a17-4e91-484e-9408-68247fd890e2}
+* ref Accessibility, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+  mvid {d0b6ce57-beae-4ae4-86da-4080b3cee671}
+* ref System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+  mvid {275dfa15-c566-407d-893a-33ef21db2cef}
+* ref System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {cd01f10b-db85-4a10-939f-a9760c3d199a}
+* ref System.Runtime.Serialization.Formatters.Soap, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+  mvid {8e981e11-85d9-47ba-8d91-9c3054b95e4e}
+* ref System.Deployment, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+  mvid {cae4a130-cfbb-43a6-b2c1-db433397519b}

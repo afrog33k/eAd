@@ -8,7 +8,7 @@
 //using eAd.DataAccess;
 
 //namespace eAd.Website.Controllers
-//{ 
+//{
 //    public class MosaicMockController : Controller
 //    {
 //        private eAdDataContainer db = new eAdDataContainer();
@@ -36,7 +36,7 @@
 //        public ActionResult Create()
 //        {
 //            return View();
-//        } 
+//        }
 
 //        //
 //        // POST: /MosaicMock/Create
@@ -48,15 +48,15 @@
 //            {
 //                db.Mosaics.AddObject(mosaic);
 //                db.SaveChanges();
-//                return RedirectToAction("Index");  
+//                return RedirectToAction("Index");
 //            }
 
 //            return View(mosaic);
 //        }
-        
+
 //        //
 //        // GET: /MosaicMock/Edit/5
- 
+
 //        public ActionResult Edit(long id)
 //        {
 //            Mosaic mosaic = db.Mosaics.Single(m => m.MosaicID == id);
@@ -81,7 +81,7 @@
 
 //        //
 //        // GET: /MosaicMock/Delete/5
- 
+
 //        public ActionResult Delete(long id)
 //        {
 //            Mosaic mosaic = db.Mosaics.Single(m => m.MosaicID == id);
@@ -93,7 +93,7 @@
 
 //        [HttpPost, ActionName("Delete")]
 //        public ActionResult DeleteConfirmed(long id)
-//        {            
+//        {
 //            Mosaic mosaic = db.Mosaics.Single(m => m.MosaicID == id);
 //            db.Mosaics.DeleteObject(mosaic);
 //            db.SaveChanges();

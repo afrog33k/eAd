@@ -31,378 +31,390 @@ using System.IO;
 
 namespace irio.mvc.fileupload
 {
+/// <summary>
+/// Implements the IFileSystemProcessor interface to provide a processor for streaming uploads into a SQL database.
+/// </summary>
+public class SQLProcessor : IFileProcessor
+{
+    #region Declarations
+
+    private SqlConnection _connection;
+    private string _connectionString;
+    private string _contentType;
+    private bool _errorState;
+    private string _fileName;
+    private Dictionary<string, string> _headerItems;
+    private string _tableName = "UploadedFile";
+    private SqlTransaction _tran;
+
+    #endregion
+
+    #region Properties
+
     /// <summary>
-    /// Implements the IFileSystemProcessor interface to provide a processor for streaming uploads into a SQL database.
+    /// Gets or sets the connection string.
     /// </summary>
-    public class SQLProcessor : IFileProcessor
+    /// <value>The connection string.</value>
+    public string ConnectionString
     {
-        #region Declarations
-
-        private SqlConnection _connection;
-        private string _connectionString;
-        private string _contentType;
-        private bool _errorState;
-        private string _fileName;
-        private Dictionary<string, string> _headerItems;
-        private string _tableName = "UploadedFile";
-        private SqlTransaction _tran;
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Gets or sets the connection string.
-        /// </summary>
-        /// <value>The connection string.</value>
-        public string ConnectionString
+        get
         {
-            get { return _connectionString; }
-            set { _connectionString = value; }
+            return _connectionString;
         }
-
-        /// <summary>
-        /// Gets/sets the table name to store the files in.
-        /// </summary>
-        public string TableName
+        set
         {
-            get { return _tableName; }
-            set { _tableName = value; }
+            _connectionString = value;
         }
+    }
 
-        #endregion
-
-        #region Constructor
-
-        #endregion
-
-        #region Data access
-
-        /// <summary>
-        /// Creates a SQL command object which performs an initial insert
-        /// of the blob row into the database.
-        /// </summary>
-        /// <param name="fileName">File name.</param>
-        /// <param name="contentType">Content type.</param>
-        /// <returns>A SQL command which creates the initial row in the database.</returns>
-        protected virtual SqlCommand CreateInitialInsertCommand(string fileName, string contentType)
+    /// <summary>
+    /// Gets/sets the table name to store the files in.
+    /// </summary>
+    public string TableName
+    {
+        get
         {
-            var cmd = new SqlCommand();
-
-            cmd.CommandText = "INSERT INTO " + TableName + " (FileName, ContentType, FileContents) " +
-                              "Values(@FileName, @ContentType, 0x0);" +
-                              "SELECT @Identity = SCOPE_IDENTITY();" +
-                              "SELECT @Pointer = TEXTPTR(FileContents) FROM UploadedFile WHERE Id = @Identity";
-
-            cmd.Parameters.Add(new SqlParameter("@FileName", Path.GetFileName(fileName)));
-            cmd.Parameters.Add(new SqlParameter("@ContentType", contentType));
-
-            SqlParameter idParm = cmd.Parameters.Add("@Identity", SqlDbType.Int);
-            idParm.Direction = ParameterDirection.Output;
-
-            SqlParameter ptrParm = cmd.Parameters.Add("@Pointer", SqlDbType.Binary, 16);
-            ptrParm.Direction = ParameterDirection.Output;
-
-            return cmd;
+            return _tableName;
         }
-
-        /// <summary>
-        /// Creates a SQL command object which appends incoming bytes onto the blob field.
-        /// </summary>
-        /// <param name="pointer">SQL pointer to the blob.</param>
-        /// <param name="offset">Offset in the blob.</param>
-        /// <param name="bytes">The bytes to write.</param>
-        /// <returns>A SQL command object which appends the bytes to the blob field.</returns>
-        protected virtual SqlCommand CreateBlobAppendCommand(byte[] pointer, long offset, byte[] bytes)
+        set
         {
-            var cmd = new SqlCommand();
-
-            cmd.CommandText = "UPDATETEXT " + TableName + ".FileContents @Pointer @Offset 0 @Bytes";
-
-            SqlParameter ptrParm = cmd.Parameters.Add("@Pointer", SqlDbType.Binary, 16);
-            ptrParm.Value = pointer;
-
-            SqlParameter bytesParam = cmd.Parameters.Add("@Bytes", SqlDbType.Image, bytes.Length);
-            bytesParam.Value = bytes;
-
-            SqlParameter offsetParm = cmd.Parameters.Add("@Offset", SqlDbType.Int);
-            offsetParm.Value = offset;
-
-            return cmd;
+            _tableName = value;
         }
+    }
 
-        /// <summary>
-        /// Creates a SQL command which reads the file name, content type, and image column of a file based on the ID.
-        /// </summary>
-        /// <param name="id">The ID to retrieve.</param>
-        /// <returns>A SQL command object which gets the image from the database.</returns>
-        protected virtual SqlCommand CreateSelectCommand(int id)
+    #endregion
+
+    #region Constructor
+
+    #endregion
+
+    #region Data access
+
+    /// <summary>
+    /// Creates a SQL command object which performs an initial insert
+    /// of the blob row into the database.
+    /// </summary>
+    /// <param name="fileName">File name.</param>
+    /// <param name="contentType">Content type.</param>
+    /// <returns>A SQL command which creates the initial row in the database.</returns>
+    protected virtual SqlCommand CreateInitialInsertCommand(string fileName, string contentType)
+    {
+        var cmd = new SqlCommand();
+
+        cmd.CommandText = "INSERT INTO " + TableName + " (FileName, ContentType, FileContents) " +
+                          "Values(@FileName, @ContentType, 0x0);" +
+                          "SELECT @Identity = SCOPE_IDENTITY();" +
+                          "SELECT @Pointer = TEXTPTR(FileContents) FROM UploadedFile WHERE Id = @Identity";
+
+        cmd.Parameters.Add(new SqlParameter("@FileName", Path.GetFileName(fileName)));
+        cmd.Parameters.Add(new SqlParameter("@ContentType", contentType));
+
+        SqlParameter idParm = cmd.Parameters.Add("@Identity", SqlDbType.Int);
+        idParm.Direction = ParameterDirection.Output;
+
+        SqlParameter ptrParm = cmd.Parameters.Add("@Pointer", SqlDbType.Binary, 16);
+        ptrParm.Direction = ParameterDirection.Output;
+
+        return cmd;
+    }
+
+    /// <summary>
+    /// Creates a SQL command object which appends incoming bytes onto the blob field.
+    /// </summary>
+    /// <param name="pointer">SQL pointer to the blob.</param>
+    /// <param name="offset">Offset in the blob.</param>
+    /// <param name="bytes">The bytes to write.</param>
+    /// <returns>A SQL command object which appends the bytes to the blob field.</returns>
+    protected virtual SqlCommand CreateBlobAppendCommand(byte[] pointer, long offset, byte[] bytes)
+    {
+        var cmd = new SqlCommand();
+
+        cmd.CommandText = "UPDATETEXT " + TableName + ".FileContents @Pointer @Offset 0 @Bytes";
+
+        SqlParameter ptrParm = cmd.Parameters.Add("@Pointer", SqlDbType.Binary, 16);
+        ptrParm.Value = pointer;
+
+        SqlParameter bytesParam = cmd.Parameters.Add("@Bytes", SqlDbType.Image, bytes.Length);
+        bytesParam.Value = bytes;
+
+        SqlParameter offsetParm = cmd.Parameters.Add("@Offset", SqlDbType.Int);
+        offsetParm.Value = offset;
+
+        return cmd;
+    }
+
+    /// <summary>
+    /// Creates a SQL command which reads the file name, content type, and image column of a file based on the ID.
+    /// </summary>
+    /// <param name="id">The ID to retrieve.</param>
+    /// <returns>A SQL command object which gets the image from the database.</returns>
+    protected virtual SqlCommand CreateSelectCommand(int id)
+    {
+        var cmd = new SqlCommand();
+
+        cmd.CommandText = "SELECT FileName, ContentType, FileContents FROM " + TableName + " WHERE Id=@ID";
+        cmd.Parameters.Add(new SqlParameter("@ID", id));
+
+        return cmd;
+    }
+
+    /// <summary>
+    /// Closes the connection and cleans up.
+    /// </summary>
+    /// <param name="commit">True to commit the transaction.</param>
+    private void CleanUp(bool commit)
+    {
+        if (_tran != null)
         {
-            var cmd = new SqlCommand();
-
-            cmd.CommandText = "SELECT FileName, ContentType, FileContents FROM " + TableName + " WHERE Id=@ID";
-            cmd.Parameters.Add(new SqlParameter("@ID", id));
-
-            return cmd;
-        }
-
-        /// <summary>
-        /// Closes the connection and cleans up.
-        /// </summary>
-        /// <param name="commit">True to commit the transaction.</param>
-        private void CleanUp(bool commit)
-        {
-            if (_tran != null)
+            if (commit)
             {
-                if (commit)
-                {
-                    _tran.Commit();
-                }
-                else
-                {
-                    _tran.Rollback();
-                }
-
-                _tran = null;
+                _tran.Commit();
+            }
+            else
+            {
+                _tran.Rollback();
             }
 
-            if (_connection != null)
-            {
-                _connection.Close();
-                _connection.Dispose();
-                _connection = null;
-            }
+            _tran = null;
         }
 
-        #endregion
-
-        private long _blobOffset;
-        private byte[] _pointer;
-        private int _rowId;
-
-        #region IFileProcessor Members
-
-        /// <summary>
-        /// Starts a new file.
-        /// </summary>
-        /// <param name="fileName">File name.</param>
-        /// <param name="contentType">The content type of the file.</param>
-        /// <param name="headerItems">A dictionary of items pulled from the header of the field.</param>
-        /// <returns>An optional object used to identify the item in the storage container.</returns>
-        public object StartNewFile(string fileName, string contentType, Dictionary<string, string> headerItems)
+        if (_connection != null)
         {
-            SqlCommand insertCommand;
-
-            _rowId = -1;
-            _errorState = false;
-
-            _fileName = fileName;
-            _headerItems = headerItems;
-            _contentType = contentType;
-            _blobOffset = 0;
-
-            try
-            {
-                _connection = new SqlConnection(_connectionString);
-                _connection.Open();
-                _tran = _connection.BeginTransaction();
-
-                insertCommand = CreateInitialInsertCommand(fileName, contentType);
-                insertCommand.Connection = _connection;
-                insertCommand.Transaction = _tran;
-                insertCommand.ExecuteNonQuery();
-
-                _pointer = (byte[]) insertCommand.Parameters["@Pointer"].Value;
-                _rowId = (int) insertCommand.Parameters["@Identity"].Value;
-            }
-            catch (Exception ex)
-            {
-                _errorState = true;
-                CleanUp(false);
-                throw ex;
-            }
-
-            return _rowId;
+            _connection.Close();
+            _connection.Dispose();
+            _connection = null;
         }
+    }
 
-        /// <summary>
-        /// Writes to the output file.
-        /// </summary>
-        /// <param name="buffer">Buffer to write from.</param>
-        /// <param name="offset">Offset in the buffer to write from.</param>
-        /// <param name="count">Count of bytes to write.</param>
-        public void Write(byte[] buffer, int offset, int count)
+    #endregion
+
+    private long _blobOffset;
+    private byte[] _pointer;
+    private int _rowId;
+
+    #region IFileProcessor Members
+
+    /// <summary>
+    /// Starts a new file.
+    /// </summary>
+    /// <param name="fileName">File name.</param>
+    /// <param name="contentType">The content type of the file.</param>
+    /// <param name="headerItems">A dictionary of items pulled from the header of the field.</param>
+    /// <returns>An optional object used to identify the item in the storage container.</returns>
+    public object StartNewFile(string fileName, string contentType, Dictionary<string, string> headerItems)
+    {
+        SqlCommand insertCommand;
+
+        _rowId = -1;
+        _errorState = false;
+
+        _fileName = fileName;
+        _headerItems = headerItems;
+        _contentType = contentType;
+        _blobOffset = 0;
+
+        try
         {
-            SqlCommand blobCommand;
-            byte[] toWrite;
+            _connection = new SqlConnection(_connectionString);
+            _connection.Open();
+            _tran = _connection.BeginTransaction();
 
-            if (_errorState) return;
+            insertCommand = CreateInitialInsertCommand(fileName, contentType);
+            insertCommand.Connection = _connection;
+            insertCommand.Transaction = _tran;
+            insertCommand.ExecuteNonQuery();
 
-            toWrite = new byte[count];
-            Buffer.BlockCopy(buffer, offset, toWrite, 0, count);
-
-            blobCommand = CreateBlobAppendCommand(_pointer, _blobOffset, toWrite);
-
-            try
-            {
-                blobCommand.Connection = _connection;
-                blobCommand.Transaction = _tran;
-                blobCommand.ExecuteNonQuery();
-                _blobOffset += count;
-            }
-            catch (Exception ex)
-            {
-                _errorState = true;
-                CleanUp(false);
-                throw ex;
-            }
+            _pointer = (byte[]) insertCommand.Parameters["@Pointer"].Value;
+            _rowId = (int) insertCommand.Parameters["@Identity"].Value;
         }
-
-        /// <summary>
-        /// Ends current file processing.
-        /// </summary>
-        public void EndFile()
+        catch (Exception ex)
         {
-            if (_errorState) return;
-
-            CleanUp(true);
-        }
-
-        /// <summary>
-        /// Returns the name of the file that is currently being processed.
-        /// Null if there is no file.
-        /// </summary>
-        /// <returns>The file name.</returns>
-        public string GetFileName()
-        {
-            return _fileName;
-        }
-
-        /// <summary>
-        /// Returns the container identifier.
-        /// </summary>
-        /// <returns>The container identifier.</returns>
-        public virtual object GetIdentifier()
-        {
-            return _rowId;
-        }
-
-        /// <summary>
-        /// Gets the header items.
-        /// </summary>
-        public Dictionary<string, string> GetHeaderItems()
-        {
-            return _headerItems;
-        }
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
+            _errorState = true;
             CleanUp(false);
+            throw ex;
         }
 
-        #endregion
+        return _rowId;
+    }
 
-        /// <summary>
-        /// Gets the file name and content type of the file.
-        /// </summary>
-        /// <param name="id">The ID of the file to get.</param>
-        /// <param name="fileName">File name.</param>
-        /// <param name="contentType">Content type.</param>
-        /// <returns>True if the file is found, otherwise false.</returns>
-        public virtual bool GetFileDetails(int id, out string fileName, out string contentType)
+    /// <summary>
+    /// Writes to the output file.
+    /// </summary>
+    /// <param name="buffer">Buffer to write from.</param>
+    /// <param name="offset">Offset in the buffer to write from.</param>
+    /// <param name="count">Count of bytes to write.</param>
+    public void Write(byte[] buffer, int offset, int count)
+    {
+        SqlCommand blobCommand;
+        byte[] toWrite;
+
+        if (_errorState) return;
+
+        toWrite = new byte[count];
+        Buffer.BlockCopy(buffer, offset, toWrite, 0, count);
+
+        blobCommand = CreateBlobAppendCommand(_pointer, _blobOffset, toWrite);
+
+        try
         {
-            SqlConnection conn = null;
-            SqlCommand selectCommand = CreateSelectCommand(id);
-            SqlDataReader reader = null;
+            blobCommand.Connection = _connection;
+            blobCommand.Transaction = _tran;
+            blobCommand.ExecuteNonQuery();
+            _blobOffset += count;
+        }
+        catch (Exception ex)
+        {
+            _errorState = true;
+            CleanUp(false);
+            throw ex;
+        }
+    }
 
-            try
+    /// <summary>
+    /// Ends current file processing.
+    /// </summary>
+    public void EndFile()
+    {
+        if (_errorState) return;
+
+        CleanUp(true);
+    }
+
+    /// <summary>
+    /// Returns the name of the file that is currently being processed.
+    /// Null if there is no file.
+    /// </summary>
+    /// <returns>The file name.</returns>
+    public string GetFileName()
+    {
+        return _fileName;
+    }
+
+    /// <summary>
+    /// Returns the container identifier.
+    /// </summary>
+    /// <returns>The container identifier.</returns>
+    public virtual object GetIdentifier()
+    {
+        return _rowId;
+    }
+
+    /// <summary>
+    /// Gets the header items.
+    /// </summary>
+    public Dictionary<string, string> GetHeaderItems()
+    {
+        return _headerItems;
+    }
+
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    public void Dispose()
+    {
+        CleanUp(false);
+    }
+
+    #endregion
+
+    /// <summary>
+    /// Gets the file name and content type of the file.
+    /// </summary>
+    /// <param name="id">The ID of the file to get.</param>
+    /// <param name="fileName">File name.</param>
+    /// <param name="contentType">Content type.</param>
+    /// <returns>True if the file is found, otherwise false.</returns>
+    public virtual bool GetFileDetails(int id, out string fileName, out string contentType)
+    {
+        SqlConnection conn = null;
+        SqlCommand selectCommand = CreateSelectCommand(id);
+        SqlDataReader reader = null;
+
+        try
+        {
+            conn = new SqlConnection(_connectionString);
+            conn.Open();
+            selectCommand.Connection = conn;
+            reader = selectCommand.ExecuteReader(CommandBehavior.SingleRow);
+
+            if (reader.Read())
             {
-                conn = new SqlConnection(_connectionString);
-                conn.Open();
-                selectCommand.Connection = conn;
-                reader = selectCommand.ExecuteReader(CommandBehavior.SingleRow);
-
-                if (reader.Read())
-                {
-                    fileName = reader.GetString(0);
-                    contentType = reader.GetString(1);
-                    return true;
-                }
-                else
-                {
-                    contentType = null;
-                    fileName = null;
-                    return false;
-                }
+                fileName = reader.GetString(0);
+                contentType = reader.GetString(1);
+                return true;
             }
-            finally
+            else
             {
-                if (reader != null)
-                {
-                    reader.Close();
-                    reader.Dispose();
-                }
-
-                if (conn != null)
-                {
-                    conn.Close();
-                    conn.Dispose();
-                }
+                contentType = null;
+                fileName = null;
+                return false;
             }
         }
-
-        /// <summary>
-        /// Gets the file from the database and writes it to a stream.
-        /// </summary>
-        /// <param name="stream">Stream to write to.</param>
-        /// <param name="id">The id of the record to get.</param>
-        /// <param name="blockSize">The size of blocks to stream the data in.</param>
-        public virtual void SaveFileToStream(Stream stream, int id, int blockSize)
+        finally
         {
-            SqlConnection conn = null;
-            SqlCommand selectCommand = CreateSelectCommand(id);
-            SqlDataReader reader = null;
-
-            try
+            if (reader != null)
             {
-                long count;
-                long index = 0;
-                var buffer = new byte[blockSize];
-
-                conn = new SqlConnection(_connectionString);
-                conn.Open();
-                selectCommand.Connection = conn;
-                reader = selectCommand.ExecuteReader(CommandBehavior.SequentialAccess);
-
-                while (reader.Read())
-                {
-                    count = reader.GetBytes(2, index, buffer, 0, blockSize);
-
-                    while (count > 0)
-                    {
-                        stream.Write(buffer, 0, (int) count);
-                        index += count;
-                        count = reader.GetBytes(2, index, buffer, 0, blockSize);
-                    }
-                }
+                reader.Close();
+                reader.Dispose();
             }
-            finally
-            {
-                if (reader != null)
-                {
-                    reader.Close();
-                    reader.Dispose();
-                }
 
-                if (conn != null)
-                {
-                    conn.Close();
-                    conn.Dispose();
-                }
+            if (conn != null)
+            {
+                conn.Close();
+                conn.Dispose();
             }
         }
     }
+
+    /// <summary>
+    /// Gets the file from the database and writes it to a stream.
+    /// </summary>
+    /// <param name="stream">Stream to write to.</param>
+    /// <param name="id">The id of the record to get.</param>
+    /// <param name="blockSize">The size of blocks to stream the data in.</param>
+    public virtual void SaveFileToStream(Stream stream, int id, int blockSize)
+    {
+        SqlConnection conn = null;
+        SqlCommand selectCommand = CreateSelectCommand(id);
+        SqlDataReader reader = null;
+
+        try
+        {
+            long count;
+            long index = 0;
+            var buffer = new byte[blockSize];
+
+            conn = new SqlConnection(_connectionString);
+            conn.Open();
+            selectCommand.Connection = conn;
+            reader = selectCommand.ExecuteReader(CommandBehavior.SequentialAccess);
+
+            while (reader.Read())
+            {
+                count = reader.GetBytes(2, index, buffer, 0, blockSize);
+
+                while (count > 0)
+                {
+                    stream.Write(buffer, 0, (int) count);
+                    index += count;
+                    count = reader.GetBytes(2, index, buffer, 0, blockSize);
+                }
+            }
+        }
+        finally
+        {
+            if (reader != null)
+            {
+                reader.Close();
+                reader.Dispose();
+            }
+
+            if (conn != null)
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+    }
+}
 }

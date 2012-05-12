@@ -8,9 +8,6 @@
     <Setting Name="ScheduleFile" Type="System.String" Scope="Application">
       <Value Profile="(Default)">schedule.xml</Value>
     </Setting>
-    <Setting Name="ServerKey" Type="System.String" Scope="User">
-      <Value Profile="(Default)">yourserverkey</Value>
-    </Setting>
     <Setting Name="displayName" Type="System.String" Scope="User">
       <Value Profile="(Default)">COMPUTERNAME</Value>
     </Setting>
@@ -103,6 +100,9 @@
     </Setting>
     <Setting Name="Xmds" Type="System.String" Scope="User">
       <Value Profile="(Default)">cool</Value>
+    </Setting>
+    <Setting Name="ServerKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">serverkey</Value>
     </Setting>
   </Settings>
 </SettingsFile>

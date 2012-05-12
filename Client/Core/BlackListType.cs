@@ -1,9 +1,9 @@
 namespace Client.Core
 {
-   
-    public enum BlackListType
-    {
-        Single,
-        All
-    }
+
+public enum BlackListType
+{
+    Single,
+    All
+}
 }

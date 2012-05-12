@@ -113,6 +113,9 @@
     <Compile Include="GoogleMaps.cs" />
     <Compile Include="IPlayer.cs" />
     <Compile Include="ISwitchable.cs" />
+    <Compile Include="Menu\MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Menu\Player.cs" />
     <Compile Include="Menu\RFIDDetected.xaml.cs">
       <DependentUpon>RFIDDetected.xaml</DependentUpon>
@@ -122,9 +125,6 @@
     </Compile>
     <Compile Include="Menu\CustomerPage.xaml.cs">
       <DependentUpon>CustomerPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Menu\MainMenu.xaml.cs">
-      <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Menu\Option.xaml.cs">
       <DependentUpon>Option.xaml</DependentUpon>

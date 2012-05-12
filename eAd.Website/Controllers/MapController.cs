@@ -9,37 +9,37 @@ using eAd.Website.eAdDataService;
 namespace eAd.Website.Controllers
 {
 
-    
 
-    public class MapController : Controller
+
+public class MapController : Controller
+{
+    //
+    // GET: /Map/
+
+    public ActionResult Index(int stationID)
     {
-        //
-        // GET: /Map/
+        var mapRepository = new MapRepository();
+        ServiceClient myService = new ServiceClient();
+        myService.ClientCredentials.Windows.ClientCredential.UserName = "admin";
+        myService.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
 
-        public ActionResult Index(int stationID)
-        {
-            var mapRepository = new MapRepository();
-            ServiceClient myService = new ServiceClient();
-            myService.ClientCredentials.Windows.ClientCredential.UserName = "admin";
-            myService.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
-  
-            var stations = myService.GetAllStations().Where(s=>s.StationID==stationID);
-         //   var map = mapRepository.GetById(stationID);
-            GoogleMaps.Locations = stations.ToArray();
-           ViewBag.Map =  (GoogleMaps.Webpage);
-            return View();
-        }
+        var stations = myService.GetAllStations().Where(s=>s.StationID==stationID);
+        //   var map = mapRepository.GetById(stationID);
+        GoogleMaps.Locations = stations.ToArray();
+        ViewBag.Map =  (GoogleMaps.Webpage);
+        return View();
+    }
 
-        public ActionResult Map()
-        {
+    public ActionResult Map()
+    {
 
-            var mapRepository = new MapRepository();
+        var mapRepository = new MapRepository();
 
-            var map = mapRepository.GetById(1);
+        var map = mapRepository.GetById(1);
 
-            return Json(map,JsonRequestBehavior.AllowGet);
-
-        }
+        return Json(map,JsonRequestBehavior.AllowGet);
 
     }
+
+}
 }

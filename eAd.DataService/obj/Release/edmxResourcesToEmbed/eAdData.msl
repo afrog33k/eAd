@@ -93,6 +93,7 @@
     <EntitySetMapping Name="Mosaics">
       <EntityTypeMapping TypeName="eAdData.Mosaic">
         <MappingFragment StoreEntitySet="Mosaics">
+          <ScalarProperty Name="ResolutionID" ColumnName="ResolutionID" />
           <ScalarProperty Name="Size" ColumnName="Size" />
           <ScalarProperty Name="Hash" ColumnName="Hash" />
           <ScalarProperty Name="Height" ColumnName="Height" />
@@ -192,5 +193,19 @@
         <ScalarProperty Name="MediaID" ColumnName="Media_MediaID" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="eAdData.Client">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="StationID" ColumnName="StationID" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="HardwareKey" ColumnName="HardwareKey" />
+          <ScalarProperty Name="ActivatedOn" ColumnName="ActivatedOn" />
+          <ScalarProperty Name="Approved" ColumnName="Approved" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
