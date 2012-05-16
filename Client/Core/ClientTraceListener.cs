@@ -3,10 +3,10 @@ using System.IO;
 using System.Text;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
-using Client.Properties;
-using Client.Service;
+using ClientApp.Properties;
+using ClientApp.Service;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
 class ClientTraceListener : TraceListener
 {

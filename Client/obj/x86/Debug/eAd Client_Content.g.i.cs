@@ -16,6 +16,7 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("datacache/loadvideo.m4v")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("ead.dataviewmodels.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("navigator.htm")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("update/updater.vshost.exe")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("update/ead.dataviewmodels.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("update/ead.utilities.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("update/ionic.zip.dll")]

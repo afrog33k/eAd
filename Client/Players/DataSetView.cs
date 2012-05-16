@@ -1,14 +1,13 @@
-
 using System;
 using System.IO;
 using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using Client.Core;
-using Client.Properties;
-using Client.Service;
+using ClientApp.Core;
+using ClientApp.Properties;
+using ClientApp.Service;
 
-namespace Client
+namespace ClientApp
 {
 class DataSetView :
     Media

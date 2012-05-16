@@ -90,6 +90,7 @@
     <Compile Include="Controllers\GroupingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Controllers\MobileClientController.cs" />
     <Compile Include="Controllers\MosaicController.cs" />
     <Compile Include="Controllers\MosaicMockController.cs" />
     <Compile Include="Controllers\StationController.cs" />
@@ -124,10 +125,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Client\App_Data\eAdData.sdf" />
-    <Content Include="Client\Update\DoNotDelete.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Client\Update\UpdateInfo.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -419,6 +416,9 @@
     <Content Include="Content\Common\orm-comparison.png" />
     <Content Include="Content\Common\sprite.png" />
     <Content Include="Content\Common\validation-error-message.png" />
+    <Content Include="Content\mosaic-mobile.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\DatePicker\Descriptions\Accessibility.html" />
     <Content Include="Content\DatePicker\Descriptions\AnimationEffects.html" />
     <Content Include="Content\DatePicker\Descriptions\ClientSideApi.html" />
@@ -1216,6 +1216,10 @@
     <Content Include="Content\mosaic.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Mosaics\battery-capacity.jpg" />
+    <Content Include="Content\Mosaics\dana-location-map.png" />
+    <Content Include="Content\Mosaics\profile-photo.jpg" />
+    <Content Include="Content\Mosaics\proton-saga-1-big.jpg" />
     <Content Include="Content\NumericTextBox\Descriptions\Accessibility.html" />
     <Content Include="Content\NumericTextBox\Descriptions\ClientSideApi.html" />
     <Content Include="Content\NumericTextBox\Descriptions\ClientSideEvents.html" />
@@ -1511,6 +1515,12 @@
     <Content Include="Scripts\common.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\mosaic-profile.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\mosaic-mobile.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\deletemosaic.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1692,8 +1702,9 @@
     <Content Include="Scripts\modernizr-1.7.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Client\Client1.2b.zip" />
-    <Content Include="Client\Update\Client.zip" />
+    <Content Include="Client\Update\Client.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\galleria\plugins\.DS_Store" />
     <None Include="Content\galleria\themes\.DS_Store" />
     <None Include="Content\Images\.svn\all-wcprops" />
@@ -1942,6 +1953,9 @@
     <Content Include="Views\Media\PickerList.cshtml" />
     <Content Include="Views\Mosaic\Delete.cshtml" />
     <Content Include="Views\Mosaic\DeletePosition.cshtml" />
+    <Content Include="Views\Mosaic\IndexProfile.cshtml" />
+    <Content Include="Views\Mosaic\IndexMobile.cshtml" />
+    <Content Include="Views\Mosaic\IndexGeneral.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\.svn\props\" />

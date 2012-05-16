@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Client.Properties;
+using ClientApp.Properties;
 
-namespace Client
+namespace ClientApp
 {
 /// <summary>
 /// Interaction logic for About.xaml

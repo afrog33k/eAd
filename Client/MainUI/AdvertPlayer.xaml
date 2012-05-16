@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="ClientApp.AdvertPlayer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     Height="1024" Width="1280"
+    
+       >
+    <Grid>
+        <Canvas x:Name="MediaCanvas"  Height="Auto" Width="Auto"  Opacity="100" Background="#694B0000">
+            <Canvas.Effect>
+                <DropShadowEffect Color="White" Opacity="1" BlurRadius="5" ShadowDepth="0"/></Canvas.Effect>
+        </Canvas>
+    </Grid>
+   
+  
+</UserControl>

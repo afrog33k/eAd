@@ -4,7 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
-namespace Client.Update
+namespace ClientApp.Update
 {
 public  class UpdateMe
 {
@@ -81,9 +81,12 @@ public  class UpdateMe
 
     public void StartUpdate()
     {
-
-        Update.InstallUpdateRestart(Info[3], Info[4], "\"" + Application.StartupPath + "\\", ProcessToEnd, PostProcess, "updated", UpdaterPath);
-        App.Close();
+        lock (UpdateLock)
+        {
+            Update.InstallUpdateRestart(Info[3], Info[4], "\"" + Application.StartupPath + "\\", ProcessToEnd,
+                                        PostProcess, "updated", UpdaterPath);
+            App.Close();
+        }
     }
 
     private void UnpackCommandline()

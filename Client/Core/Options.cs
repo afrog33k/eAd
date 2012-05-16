@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
 static class Options
 {

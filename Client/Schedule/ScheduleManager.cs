@@ -1,21 +1,20 @@
-
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Xml;
 using System.Diagnostics;
+using System.Linq;
 using System.Xml.Serialization;
-using Client.Core;
-using Client.Properties;
+using ClientApp.Core;
+using ClientApp.Properties;
 using eAd.DataViewModels;
 
-namespace Client
+namespace ClientApp
 {
 /// <summary>
 /// Schedule manager controls the currently running schedule
 /// </summary>
-class ScheduleManager
+public class ScheduleManager
 {
     #region "Constructor"
 
@@ -227,7 +226,16 @@ class ScheduleManager
         ScheduleModel schedule = GetSchedule();
 
         // Parse the schedule xml
-        List<ScheduleLayout> layouts =  schedule.Items;
+        List<ScheduleLayout> layouts =  schedule.Items.Where(s=>s.Type == "General").ToList();
+
+        //Setup Profile Layout
+        var profileLayout = schedule.Items.Except(layouts).FirstOrDefault();
+
+        if(profileLayout!=null)
+        {
+          ProfileLayout=  CreateLayoutSchedule(profileLayout);
+        }
+
 
         // Are there any nodes in the document
         if (layouts.Count == 0)
@@ -239,38 +247,7 @@ class ScheduleManager
         // We have nodes, go through each one and add them to the layoutschedule collection
         foreach (var layout in layouts)
         {
-            LayoutSchedule temp = new LayoutSchedule();
-
-            // All nodes have file properties
-            temp.LayoutFile = layout.File;
-
-            // Replace the .xml extension with nothing
-            string replace = ".xml";
-            string layoutFile = temp.LayoutFile.TrimEnd(replace.ToCharArray());
-
-            // Set these on the temp layoutschedule
-            temp.LayoutFile = Settings.Default.LibraryPath + "\\" +"Layouts\\"+ layoutFile + ".mosaic";
-            temp.ID = int.Parse(layoutFile);
-
-            // Get attributes that only exist on the default
-            if (temp.NodeName != "default")
-            {
-                // Priority flag
-                temp.Priority = layout.Priority;
-
-                // Get the fromdt,todt
-                temp.FromDate = DateTime.Parse(layout.FromDate);
-                temp.ToDate = DateTime.Parse(layout.ToDate);
-
-                // Pull out the scheduleid if there is one
-                int scheduleId = -1;
-                if (layout.ScheduleId != -1)
-                    scheduleId = layout.ScheduleId;
-
-                // Add it to the layout schedule
-                if (scheduleId != -1)
-                    temp.Scheduleid = scheduleId;
-            }
+            var temp = CreateLayoutSchedule(layout);
 
             _layoutSchedule.Add(temp);
         }
@@ -280,6 +257,45 @@ class ScheduleManager
         schedule = null;
 
         // We now have the saved XML contained in the _layoutSchedule object
+    }
+
+    public LayoutSchedule ProfileLayout { get; set; }
+
+    private static LayoutSchedule CreateLayoutSchedule(ScheduleLayout layout)
+    {
+        LayoutSchedule temp = new LayoutSchedule();
+
+        // All nodes have file properties
+        temp.LayoutFile = layout.File;
+
+        // Replace the .xml extension with nothing
+        string replace = ".xml";
+        string layoutFile = temp.LayoutFile.TrimEnd(replace.ToCharArray());
+
+        // Set these on the temp layoutschedule
+        temp.LayoutFile = Settings.Default.LibraryPath + "\\" + "Layouts\\" + layoutFile + ".mosaic";
+        temp.ID = int.Parse(layoutFile);
+
+        // Get attributes that only exist on the default
+        if (temp.NodeName != "default")
+        {
+            // Priority flag
+            temp.Priority = layout.Priority;
+
+            // Get the fromdt,todt
+            temp.FromDate = DateTime.Parse(layout.FromDate);
+            temp.ToDate = DateTime.Parse(layout.ToDate);
+
+            // Pull out the scheduleid if there is one
+            int scheduleId = -1;
+            if (layout.ScheduleId != -1)
+                scheduleId = layout.ScheduleId;
+
+            // Add it to the layout schedule
+            if (scheduleId != -1)
+                temp.Scheduleid = scheduleId;
+        }
+        return temp;
     }
 
     /// <summary>

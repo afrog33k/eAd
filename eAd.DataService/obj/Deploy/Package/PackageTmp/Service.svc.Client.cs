@@ -49,7 +49,10 @@ public partial class Service
         {
 
 
+            try
+            {
 
+           
             using (var stream = new FileStream((System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath + ServerPath + filePath), FileMode.OpenOrCreate, FileAccess.Read, FileShare.ReadWrite))//return actual byte stream
             {
 
@@ -65,6 +68,12 @@ public partial class Service
 
                 return documentcontents.Take(actual).ToArray();
 
+            }
+            }
+            catch (Exception)
+            {
+
+                return new byte[0];
             }
 
         }
@@ -85,156 +94,211 @@ public partial class Service
 
     }
 
+    static object RequiredFilesLock = new object();
+
     public FilesModel RequiredFiles(string serverKey, string hardwareKey, string version)
     {
-        // Get Mosaic For station
-        var container = new eAdDataContainer();
-
-        var thisStation = (from s in container.Stations
-                           where s.HardwareKey == hardwareKey
-                           select s).FirstOrDefault<Station>();
-
-        if(thisStation==null)
+        lock (RequiredFilesLock)
         {
-            thisStation = new Station();
-            thisStation.HardwareKey = hardwareKey;
-            thisStation.Name = hardwareKey;
-            thisStation.LastCheckIn = DateTime.Now;
-            thisStation.Status = "Registered";
-            container.Stations.AddObject(thisStation);
-            container.SaveChanges();
-        }
-        else
-        {
-            thisStation.LastCheckIn = DateTime.Now;
-            thisStation.Status = "Online";
-            container.SaveChanges();
-        }
 
-        Mosaic mosaic = null;
-        if (thisStation != null)
-        {
-            var grouping = (from m in container.Groupings
-                            where m.Mosaic != null
-                            select m).FirstOrDefault<Grouping>();
 
-            if (grouping != null)
+            // Get Mosaic For station
+            var container = new eAdDataContainer();
+
+            var thisStation = (from s in container.Stations
+                               where s.HardwareKey == hardwareKey
+                               select s).FirstOrDefault<Station>();
+
+            if (thisStation == null)
             {
-                mosaic= grouping.Mosaic;
+                thisStation = new Station();
+                thisStation.HardwareKey = hardwareKey;
+                thisStation.Name = hardwareKey;
+                thisStation.LastCheckIn = DateTime.Now;
+                thisStation.Status = "Registered";
+                container.Stations.AddObject(thisStation);
+                container.SaveChanges();
             }
-        }
-
-        if (mosaic==null)
-        {
-            mosaic=(from m in container.Mosaics
-                    where m.Name.Contains("as")
-                    select m).FirstOrDefault();
-        }
-
-
-        var mosaicCache = AppPath + "Layouts\\" + mosaic.MosaicID + ".mosaic";
-        if (File.Exists(mosaicCache))
-        {
-            if(new FileInfo(mosaicCache).CreationTime < mosaic.Updated)
+            else
             {
-                UpdateMosaicCache(mosaic,mosaicCache);
-
+                thisStation.LastCheckIn = DateTime.Now;
+                thisStation.Status = "Online";
+                container.SaveChanges();
             }
 
+            Mosaic mosaic = null;
+            Mosaic profilemosaic =null;
+            if (thisStation != null)
+            {
+                var grouping = (from m in container.Groupings
+                                where m.Mosaic != null
+                                select m).FirstOrDefault<Grouping>();
 
+                if (grouping != null)
+                {
+                    mosaic = grouping.Mosaic;
+                    profilemosaic = container.Mosaics.Where(mo => mo.MosaicID == grouping.ProfileMosaicID).FirstOrDefault();
+                }
+            }
+
+            if (mosaic == null)
+            {
+                mosaic = (from m in container.Mosaics
+                          where m.Name.Contains("as")
+                          select m).FirstOrDefault();
+            }
+
+            if (profilemosaic == null)
+            {
+                profilemosaic = container.Mosaics.Where(m => m.Type == "Profile").FirstOrDefault();
+            }
+
+            var mosaicCache = AppPath + "Layouts\\" + mosaic.MosaicID + ".mosaic";
+            var profilemosaicCache = AppPath + "Layouts\\" + profilemosaic.MosaicID + ".mosaic";
+
+            if (File.Exists(mosaicCache))
+            {
+                if (new FileInfo(mosaicCache).CreationTime < mosaic.Updated)
+                {
+                    UpdateMosaicCache(mosaic, mosaicCache);
+
+                }
+
+
+            }
+            else
+            {
+                UpdateMosaicCache(mosaic, mosaicCache);
+
+            }
+
+            if (File.Exists(profilemosaicCache))
+            {
+                if (new FileInfo(profilemosaicCache).CreationTime < mosaic.Updated)
+                {
+                    UpdateMosaicCache(profilemosaic, profilemosaicCache);
+
+                }
+
+
+            }
+            else
+            {
+                UpdateMosaicCache(profilemosaic, profilemosaicCache);
+
+            }
+
+
+            container.SaveChanges();
+            var files = CreateFileModel(new List<Mosaic>{mosaic,profilemosaic});
+            return files;
         }
-        else
-        {
-            UpdateMosaicCache(mosaic, mosaicCache);
-
-        }
-
-        container.SaveChanges();
-        var files = CreateFileModel(mosaicCache, mosaic);
-        return files;
-
-        //   StringWriter stringWriter = new StringWriter();
-        //   XmlSerializer serializer = new XmlSerializer(files.GetType());
-        //   serializer.Serialize(stringWriter,files);
-        ////   return stringWriter.ToString();
-        //   //      using (var stream = new StreamReader(System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath  +"/Media/files.xml"))
-
-        //        return stream.ReadToEnd();
-
-
-
     }
 
-    private static FilesModel CreateFileModel(string mosaicCache, Mosaic mosaic )
+    private static FilesModel CreateFileModel(List<Mosaic> mosaics )
     {
+       
+
         FilesModel files = new FilesModel();
 
         var list = new List<RequiredFileModel>();
 
-        var allMedia = mosaic.Positions.SelectMany(p => p.Media);
+        // Get Mosaic For station
+        var container = new eAdDataContainer();
 
-        foreach (var medium in allMedia)
+        
+
+        foreach (var mosaic in mosaics)
         {
-            if(list.Where(l=>l.Id==medium.MediaID).Count()<=0)
+
+            var mosaicCache = AppPath + "Layouts\\" + mosaic.MosaicID + ".mosaic";
+            var allMedia = mosaic.Positions.SelectMany(p => p.Media);
+
+            foreach (var medium in allMedia)
             {
-                bool shouldCalculatenewHash=false;
-
-                if (medium.Hash == null || medium.Size == 0)
+                if (list.Where(l => l.Id == medium.MediaID).Count() <= 0)
                 {
-                    shouldCalculatenewHash = true;
-                }
+                    bool shouldCalculatenewHash = false;
 
-                // Calculate new hash/size
-                if (shouldCalculatenewHash)
-                {
-
-                    using (var fs = new FileStream(System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath + ServerPath + medium.Location, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                    if (medium.Hash == null || medium.Size == 0)
                     {
-                        medium.Hash = Hashes.MD5(fs);
-                        medium.Size = new FileInfo(System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath + ServerPath + medium.Location).Length;
+                        shouldCalculatenewHash = true;
                     }
+
+                    // Calculate new hash/size
+                    if (shouldCalculatenewHash)
+                    {
+                        try
+                        {
+
+
+                            using (
+                                var fs =
+                                    new FileStream(
+                                        System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath + ServerPath +
+                                        medium.Location, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                            {
+                                medium.Hash = Hashes.MD5(fs);
+                                medium.Size =
+                                    new FileInfo(System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath +
+                                                 ServerPath + medium.Location).Length;
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+
+                        }
+                    }
+
+                    list.Add(new RequiredFileModel()
+                                 {
+                                     FileType = "media",
+                                     Path = medium.Location,
+                                     Id = medium.MediaID,
+                                     Size = (long) medium.Size,
+                                     MD5 = medium.Hash
+                                 });
+                }
+            }
+
+            if (!String.IsNullOrEmpty(mosaic.Background))
+                if (list.Where(l => l.Path == mosaic.Background).Count() <= 0)
+                    // Add Background to list if not already there
+                {
+                    var allmedia = (from s in container.Media
+                                    where s.Location == mosaic.Background
+                                    select s).FirstOrDefault();
+
+                    if (allmedia != null)
+                        list.Add(new RequiredFileModel
+                                     {
+                                         FileType = "media",
+                                         Path = mosaic.Background,
+                                         Id = mosaic.MosaicID,
+                                         Size = allmedia.Size,
+                                         //    (long)
+                                         //    new FileInfo(System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath +
+                                         //               ServerPath + mosaic.Background).Length,
+                                         MD5 =allmedia.Hash
+                                         //    Hashes.MD5(System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath +
+                                         //    ServerPath + mosaic.Background)
+                                     });
                 }
 
-                list.Add(new RequiredFileModel()
-                {
-                    FileType = "media",
-                    Path = medium.Location,
-                    Id = medium.MediaID,
-                    Size = (long) medium.Size,
-                    MD5 = medium.Hash
-                });
-            }
+            list.Add(new RequiredFileModel
+                         {
+                             FileType = "layout",
+                             Path = "Layouts\\" + Path.GetFileName(mosaicCache),
+                             Id = mosaic.MosaicID,
+                             Size = (long) mosaic.Size,
+                             MD5 = mosaic.Hash
+                         });
         }
-        if(!String.IsNullOrEmpty(mosaic.Background))
-            if (list.Where(l => l.Path == mosaic.Background).Count() <= 0) // Add Background to list if not already there
-            {
-                list.Add(new RequiredFileModel
-                {
-                    FileType = "media",
-                    Path = mosaic.Background,
-                    Id = mosaic.MosaicID,
-                    Size =
-                    (long)
-                    new FileInfo(System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath +
-                    ServerPath + mosaic.Background).Length,
-                    MD5 =
-                    Hashes.MD5(System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath +
-                    ServerPath + mosaic.Background)
-                });
-            }
-
-        list.Add(new RequiredFileModel
-        {
-            FileType = "layout",
-            Path = "Layouts\\" + Path.GetFileName(mosaicCache),
-            Id = mosaic.MosaicID,
-            Size = (long) mosaic.Size,
-            MD5 = mosaic.Hash
-        });
-
 
         files.Items = new List<RequiredFileModel>(list.ToArray());
         return files;
+         
     }
 
     private static void UpdateMosaicCache(Mosaic mosaic, string mosaicCache)
@@ -255,13 +319,36 @@ public partial class Service
             model.Width = (int) mosaic.Width;
             model.SchemaVersion = 1;
             model.Tags = new List<LayoutTags>();
-
+            model.Type = mosaic.Type;
             model.Regions = new List<LayoutRegion>();
+
+            if(model.Type=="Profile")
+            {
+                //Load Data
+                XmlSerializer xserializer = new XmlSerializer(typeof(List<PositionViewModel>));
+                var extraItems =
+                    (xserializer.
+                    Deserialize(new StringReader(mosaic.ExtraData))
+                    as List<PositionViewModel>).Select(position => new LayoutRegion
+                {
+                    Height = (int)position.Height,
+                    Width = (int)position.Width,
+                    Left = (int)position.X,
+                    Top = (int)position.Y,
+                    Type = "Widget",
+                    Name = position.Name
+                });
+              
+                model.Regions.AddRange(extraItems);
+               
+            }
 
             foreach (var position in mosaic.Positions)
             {
-                model.Regions.Add(
-                    new LayoutRegion
+
+
+
+                model.Regions.Add(new LayoutRegion
                 {
                     Height = (int) position.Height,
                     Width = (int) position.Width,
@@ -281,6 +368,7 @@ public partial class Service
                         Raw = new LayoutRegionMediaRaw()
                         {
                         },
+                        
                         SchemaVersion = 1,
                         Type = medium.Type,
                         UserId = (int) medium.UserID
@@ -304,6 +392,7 @@ public partial class Service
     {
         var container = new eAdDataContainer();
         Mosaic mosaic = null;
+        Mosaic profilemosaic = null;
         if ((from s in container.Stations
                 where s.HardwareKey == hardwareKey
                 select s).FirstOrDefault<Station>() != null)
@@ -315,14 +404,18 @@ public partial class Service
             if (grouping != null)
             {
                 mosaic = grouping.Mosaic;
+                profilemosaic = container.Mosaics.Where(mo=>mo.MosaicID== grouping.ProfileMosaicID).FirstOrDefault();
             }
         }
 
         if (mosaic == null)
         {
-            mosaic = (from m in container.Mosaics
-                      where m.Name.Contains("as")
-                      select m).FirstOrDefault();
+            mosaic = container.Mosaics.Where(m => m.Type == "General").FirstOrDefault();
+        }
+
+          if (profilemosaic == null)
+        {
+            profilemosaic = container.Mosaics.Where(m => m.Type == "Profile").FirstOrDefault();
         }
         var schedule = new ScheduleModel()
         {
@@ -336,8 +429,20 @@ public partial class Service
                     ScheduleId = 0,
                     Priority = 0,
                     Default = true,
+                    Type =mosaic.Type,
                     Hash = mosaic.Hash
                 },
+                 new ScheduleLayout()
+                {
+                    File = profilemosaic.MosaicID.ToString(),
+                    FromDate = "2000-01-01 00:00:00",
+                    ToDate = "2030-01-19 00:00:00",
+                    ScheduleId = 0,
+                    Priority = 0,
+                    Default = true,
+                    Type =profilemosaic.Type,
+                    Hash = profilemosaic.Hash
+                }
             }
         };
 

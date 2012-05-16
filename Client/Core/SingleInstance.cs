@@ -4,7 +4,7 @@ using System.IO;
 using System.IO.Pipes;
 using System.Threading;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
 public class SingleInstance : IDisposable
 {

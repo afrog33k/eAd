@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Threading;
 
-namespace Client.Controls
+namespace ClientApp.Controls
 {
 /// <summary>
 /// Interaction logic for DigitalClock.xaml

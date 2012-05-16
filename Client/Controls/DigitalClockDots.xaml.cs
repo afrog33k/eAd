@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Client.Controls
+namespace ClientApp.Controls
 {
 /// <summary>
 /// Interaction logic for DigitalClockDots.xaml

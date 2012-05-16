@@ -169,11 +169,11 @@ public partial class Service : IService
                            where s.HardwareKey == hardwareKey
                            select s).FirstOrDefault<Station>();
 
-        return (from c in
-                (from s in container.Messages
-                 where (s.StationID == thisStation.StationID) && !s.Sent
-                 select s).ToList<Message>()
-                select c.CreateModel()).ToList<MessageViewModel>();
+        //Compress up messages
+
+        //TODO:
+
+        return (container.Messages.Where(s => (s.StationID == thisStation.StationID) && !s.Sent)).ToList<Message>().Select(c => c.CreateModel()).ToList();
     }
 
     public List<StationViewModel> GetAllStations()

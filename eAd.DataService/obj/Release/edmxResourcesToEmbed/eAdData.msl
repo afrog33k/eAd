@@ -42,6 +42,7 @@
     <EntitySetMapping Name="Groupings">
       <EntityTypeMapping TypeName="eAdData.Grouping">
         <MappingFragment StoreEntitySet="Groupings">
+          <ScalarProperty Name="ProfileMosaicID" ColumnName="ProfileMosaicID" />
           <ScalarProperty Name="MosaicID" ColumnName="MosaicID" />
           <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -93,6 +94,9 @@
     <EntitySetMapping Name="Mosaics">
       <EntityTypeMapping TypeName="eAdData.Mosaic">
         <MappingFragment StoreEntitySet="Mosaics">
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="ExtraData" ColumnName="ExtraData" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="ResolutionID" ColumnName="ResolutionID" />
           <ScalarProperty Name="Size" ColumnName="Size" />
           <ScalarProperty Name="Hash" ColumnName="Hash" />
@@ -203,6 +207,36 @@
           <ScalarProperty Name="ActivatedOn" ColumnName="ActivatedOn" />
           <ScalarProperty Name="Approved" ColumnName="Approved" />
           <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClientUploads">
+      <EntityTypeMapping TypeName="eAdData.ClientUpload">
+        <MappingFragment StoreEntitySet="ClientUploads">
+          <ScalarProperty Name="ClientUploadID" ColumnName="ClientUploadID" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="DateUploaded" ColumnName="DateUploaded" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Resolutions">
+      <EntityTypeMapping TypeName="eAdData.Resolution">
+        <MappingFragment StoreEntitySet="Resolutions">
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="ResolutionID" ColumnName="ResolutionID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Widgets">
+      <EntityTypeMapping TypeName="eAdData.Widget">
+        <MappingFragment StoreEntitySet="Widgets">
+          <ScalarProperty Name="WidgetID" ColumnName="WidgetID" />
+          <ScalarProperty Name="PictureUrl" ColumnName="PictureUrl" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>

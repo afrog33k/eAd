@@ -76,5 +76,7 @@ public class ScheduleLayout
         get;
         set;
     }
+
+    public string Type { get; set; }
 }
 }

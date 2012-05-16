@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Client
+namespace ClientApp
 {
 /// <summary>
 /// Interaction logic for SplashScreen.xaml

@@ -1,12 +1,10 @@
-
-
 using System;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
-using Client.Core;
+using ClientApp.Core;
 
-namespace Client
+namespace ClientApp
 {
 class Video : Media
 {

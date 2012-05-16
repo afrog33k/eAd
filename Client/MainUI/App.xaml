@@ -1,7 +1,7 @@
-﻿<Application x:Class="Client.App"
+﻿<Application x:Class="ClientApp.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="PageSwitcher.xaml">
+             StartupUri="ClientManager.xaml">
     <Application.Resources>
          
     </Application.Resources>

@@ -31,73 +31,68 @@ using System.Windows.Shapes;
 using System.Windows.Shell;
 
 
-namespace DesktopClient.Controls
-{
-
-
-/// <summary>
-/// DigitalClockDots
-/// </summary>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
-public partial class DigitalClockDots : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector
-{
-
-
-#line 13 "..\..\..\..\Controls\DigitalClockDots.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Shapes.Ellipse p0;
-
-#line default
-#line hidden
-
-
-#line 14 "..\..\..\..\Controls\DigitalClockDots.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Shapes.Ellipse p1;
-
-#line default
-#line hidden
-
-    private bool _contentLoaded;
-
+namespace DesktopClient.Controls {
+    
+    
     /// <summary>
-    /// InitializeComponent
+    /// DigitalClockDots
     /// </summary>
-    [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    public void InitializeComponent()
-    {
-        if (_contentLoaded)
-        {
-            return;
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
+    public partial class DigitalClockDots : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
+        
+        
+        #line 13 "..\..\..\..\Controls\DigitalClockDots.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Shapes.Ellipse p0;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 14 "..\..\..\..\Controls\DigitalClockDots.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Shapes.Ellipse p1;
+        
+        #line default
+        #line hidden
+        
+        private bool _contentLoaded;
+        
+        /// <summary>
+        /// InitializeComponent
+        /// </summary>
+        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public void InitializeComponent() {
+            if (_contentLoaded) {
+                return;
+            }
+            _contentLoaded = true;
+            System.Uri resourceLocater = new System.Uri("/DesktopClient;component/controls/digitalclockdots.xaml", System.UriKind.Relative);
+            
+            #line 1 "..\..\..\..\Controls\DigitalClockDots.xaml"
+            System.Windows.Application.LoadComponent(this, resourceLocater);
+            
+            #line default
+            #line hidden
         }
-        _contentLoaded = true;
-        System.Uri resourceLocater = new System.Uri("/DesktopClient;component/controls/digitalclockdots.xaml", System.UriKind.Relative);
-
-#line 1 "..\..\..\..\Controls\DigitalClockDots.xaml"
-        System.Windows.Application.LoadComponent(this, resourceLocater);
-
-#line default
-#line hidden
-    }
-
-    [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
-    void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target)
-    {
-        switch (connectionId)
-        {
-        case 1:
+        
+        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
+        void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target) {
+            switch (connectionId)
+            {
+            case 1:
             this.p0 = ((System.Windows.Shapes.Ellipse)(target));
             return;
-        case 2:
+            case 2:
             this.p1 = ((System.Windows.Shapes.Ellipse)(target));
             return;
+            }
+            this._contentLoaded = true;
         }
-        this._contentLoaded = true;
     }
-}
 }
 

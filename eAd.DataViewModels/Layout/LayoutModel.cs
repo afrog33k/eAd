@@ -82,5 +82,8 @@ public  class LayoutModel
         get;
         set;
     }
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string Type { get; set; }
 }
 }

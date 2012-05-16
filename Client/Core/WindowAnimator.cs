@@ -2,7 +2,7 @@ using System;
 using System.Timers;
 using System.Windows.Controls;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
 public class WindowAnimator
 {

@@ -66,13 +66,13 @@ public static class ClassViewModelExtensions
         if (displayableurls.Contains(Path.GetExtension(location)))
         {
             model.DisplayLocation = !(String.IsNullOrEmpty(location))
-                                    ? "Uploads/Temp/Media" + "/" + "Thumb" +
+                                    ? "../Uploads/Temp/Media" + "/" + "Thumb" +
                                     Path.GetFileNameWithoutExtension(location) + ".jpg"
                                     : "/Content/Images/no_image.gif";
         }
         else
         {
-            model.DisplayLocation = "Uploads/Temp/Media" + "/" + "Thumb" +
+            model.DisplayLocation = "../Uploads/Temp/Media" + "/" + "Thumb" +
                                     Path.GetFileNameWithoutExtension(location) + ".jpg";
         }
 

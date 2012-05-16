@@ -5,11 +5,12 @@ using System.Text;
 using System.IO;
 using System.Xml;
 using System.Diagnostics;
-using Client.Properties;
-using Client.Service;
-using eAd.DataViewModels;
+using ClientApp.Properties;
+using ClientApp.Service;
+using FilesModel = eAd.DataViewModels.FilesModel;
+using RequiredFileModel = eAd.DataViewModels.RequiredFileModel;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
 class FileCollector
 {

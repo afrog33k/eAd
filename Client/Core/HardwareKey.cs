@@ -1,9 +1,9 @@
 using System;
 using System.Management;
-using Client.Properties;
+using ClientApp.Properties;
 using eAd.Utilities;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
 class HardwareKey
 {

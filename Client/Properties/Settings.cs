@@ -1,5 +1,5 @@
 
-namespace Client.Properties
+namespace ClientApp.Properties
 {
 
 

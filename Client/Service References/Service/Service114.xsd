@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/eAd.DataViewModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://1.9.13.61/DataAccess/Service.svc?xsd=xsd10" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfMediaListModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MediaListModel" nillable="true" type="tns:MediaListModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMediaListModel" nillable="true" type="tns:ArrayOfMediaListModel" />
+  <xs:complexType name="MediaListModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DisplayLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Downloaded" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Duration" type="ser:duration" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MediaID" type="xs:long" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Selected" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MediaListModel" nillable="true" type="tns:MediaListModel" />
+  <xs:complexType name="ArrayOfPositionViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PositionViewModel" nillable="true" type="tns:PositionViewModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPositionViewModel" nillable="true" type="tns:ArrayOfPositionViewModel" />
+  <xs:complexType name="PositionViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ContentURL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Height" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="Media" nillable="true" type="tns:ArrayOfMediaListModel" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="MediaUri" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="MosaicID" type="xs:long" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PositionID" type="xs:long" />
+      <xs:element minOccurs="0" name="Width" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="X" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="Y" nillable="true" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PositionViewModel" nillable="true" type="tns:PositionViewModel" />
+  <xs:complexType name="CustomerViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountBalance" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CarLicense" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CarMake" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CarModel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChargeRemaining" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerID" type="xs:long" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastBillAmount" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastRechargeDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Picture" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RFID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerViewModel" nillable="true" type="tns:CustomerViewModel" />
+  <xs:complexType name="MessageViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Command" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="Sent" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StationID" type="xs:long" />
+      <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserID" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MessageViewModel" nillable="true" type="tns:MessageViewModel" />
+  <xs:complexType name="ArrayOfMessageViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MessageViewModel" nillable="true" type="tns:MessageViewModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMessageViewModel" nillable="true" type="tns:ArrayOfMessageViewModel" />
+  <xs:complexType name="ArrayOfCustomerViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerViewModel" nillable="true" type="tns:CustomerViewModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomerViewModel" nillable="true" type="tns:ArrayOfCustomerViewModel" />
+  <xs:complexType name="ArrayOfStationViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StationViewModel" nillable="true" type="tns:StationViewModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStationViewModel" nillable="true" type="tns:ArrayOfStationViewModel" />
+  <xs:complexType name="StationViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Available" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsOnline" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastCheckIn" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationID" type="xs:long" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StationViewModel" nillable="true" type="tns:StationViewModel" />
+  <xs:complexType name="FilesModel">
+    <xs:sequence>
+      <xs:element name="_x003C_Items_x003E_k__BackingField" nillable="true" type="tns:ArrayOfRequiredFileModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FilesModel" nillable="true" type="tns:FilesModel" />
+  <xs:complexType name="ArrayOfRequiredFileModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RequiredFileModel" nillable="true" type="tns:RequiredFileModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRequiredFileModel" nillable="true" type="tns:ArrayOfRequiredFileModel" />
+  <xs:complexType name="RequiredFileModel">
+    <xs:sequence>
+      <xs:element name="_x003C_ChunkOffset_x003E_k__BackingField" type="xs:long" />
+      <xs:element name="_x003C_ChunkSize_x003E_k__BackingField" type="xs:long" />
+      <xs:element name="_x003C_Complete_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_Downloading_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_FileType_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Id_x003E_k__BackingField" type="xs:long" />
+      <xs:element name="_x003C_LastChecked_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_MD5_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Other_x003E_k__BackingField" nillable="true" type="xs:anyType" />
+      <xs:element name="_x003C_Path_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Retrys_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Size_x003E_k__BackingField" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RequiredFileModel" nillable="true" type="tns:RequiredFileModel" />
+  <xs:complexType name="ScheduleModel">
+    <xs:sequence>
+      <xs:element name="_x003C_Items_x003E_k__BackingField" nillable="true" type="tns:ArrayOfScheduleLayout" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ScheduleModel" nillable="true" type="tns:ScheduleModel" />
+  <xs:complexType name="ArrayOfScheduleLayout">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ScheduleLayout" nillable="true" type="tns:ScheduleLayout" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfScheduleLayout" nillable="true" type="tns:ArrayOfScheduleLayout" />
+  <xs:complexType name="ScheduleLayout">
+    <xs:sequence>
+      <xs:element name="_x003C_Default_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_File_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FromDate_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Hash_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Priority_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_ScheduleId_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_ToDate_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Type_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ScheduleLayout" nillable="true" type="tns:ScheduleLayout" />
+</xs:schema>

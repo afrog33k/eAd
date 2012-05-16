@@ -2,6 +2,8 @@
 <Schema Namespace="eAdData.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="eAdDataStoreContainer">
     <EntitySet Name="Cars" EntityType="eAdData.Store.Cars" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Clients" EntityType="eAdData.Store.Clients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClientUploads" EntityType="eAdData.Store.ClientUploads" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Customers" EntityType="eAdData.Store.Customers" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Groupings" EntityType="eAdData.Store.Groupings" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="GroupingStation" EntityType="eAdData.Store.GroupingStation" store:Type="Tables" Schema="dbo" />
@@ -12,13 +14,23 @@
     <EntitySet Name="Mosaics" EntityType="eAdData.Store.Mosaics" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PositionMedium" EntityType="eAdData.Store.PositionMedium" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Positions" EntityType="eAdData.Store.Positions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Resolutions" EntityType="eAdData.Store.Resolutions" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Stations" EntityType="eAdData.Store.Stations" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="sysdiagrams" EntityType="eAdData.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ThemeMedium" EntityType="eAdData.Store.ThemeMedium" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Themes" EntityType="eAdData.Store.Themes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Widgets" EntityType="eAdData.Store.Widgets" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_CarCustomer" Association="eAdData.Store.FK_CarCustomer">
       <End Role="Customers" EntitySet="Customers" />
       <End Role="Cars" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Clients_Stations" Association="eAdData.Store.FK_Clients_Stations">
+      <End Role="Stations" EntitySet="Stations" />
+      <End Role="Clients" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Groupings_Mosaics" Association="eAdData.Store.FK_Groupings_Mosaics">
+      <End Role="Mosaics" EntitySet="Mosaics" />
+      <End Role="Groupings" EntitySet="Groupings" />
     </AssociationSet>
     <AssociationSet Name="FK_GroupingStation_Grouping" Association="eAdData.Store.FK_GroupingStation_Grouping">
       <End Role="Groupings" EntitySet="Groupings" />
@@ -43,6 +55,10 @@
     <AssociationSet Name="FK_MosaicGrouping" Association="eAdData.Store.FK_MosaicGrouping">
       <End Role="Mosaics" EntitySet="Mosaics" />
       <End Role="Groupings" EntitySet="Groupings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mosaics_Resolutions" Association="eAdData.Store.FK_Mosaics_Resolutions">
+      <End Role="Resolutions" EntitySet="Resolutions" />
+      <End Role="Mosaics" EntitySet="Mosaics" />
     </AssociationSet>
     <AssociationSet Name="FK_PositionMedium_Medium" Association="eAdData.Store.FK_PositionMedium_Medium">
       <End Role="Media" EntitySet="Media" />
@@ -81,6 +97,29 @@
     <Property Name="TotalUsage" Type="float" />
     <Property Name="BatteryCycle" Type="float" />
   </EntityType>
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="ClientID" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="IP" Type="nvarchar" MaxLength="50" />
+    <Property Name="Approved" Type="bit" />
+    <Property Name="ActivatedOn" Type="datetime" />
+    <Property Name="HardwareKey" Type="nvarchar" MaxLength="50" />
+    <Property Name="ClientID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StationID" Type="bigint" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ClientUploads">
+    <Key>
+      <PropertyRef Name="ClientUploadID" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateUploaded" Type="datetime" />
+    <Property Name="Path" Type="nvarchar" MaxLength="500" />
+    <Property Name="Version" Type="nvarchar" MaxLength="50" />
+    <Property Name="ClientUploadID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
   <EntityType Name="Customers">
     <Key>
       <PropertyRef Name="CustomerID" />
@@ -107,6 +146,7 @@
     <Property Name="Name" Type="nvarchar" MaxLength="200" />
     <Property Name="DateAdded" Type="datetime" />
     <Property Name="MosaicID" Type="bigint" Nullable="false" />
+    <Property Name="ProfileMosaicID" Type="bigint" />
   </EntityType>
   <EntityType Name="GroupingStation">
     <Key>
@@ -176,6 +216,10 @@
     <Property Name="Height" Type="int" Nullable="false" />
     <Property Name="Hash" Type="nchar" MaxLength="32" />
     <Property Name="Size" Type="bigint" Nullable="false" />
+    <Property Name="ResolutionID" Type="bigint" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExtraData" Type="nvarchar" />
+    <Property Name="IsDefault" Type="bit" />
   </EntityType>
   <EntityType Name="PositionMedium">
     <Key>
@@ -198,6 +242,15 @@
     <Property Name="Width" Type="float" Nullable="false" />
     <Property Name="Height" Type="float" Nullable="false" />
     <Property Name="UserID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Resolutions">
+    <Key>
+      <PropertyRef Name="ResolutionID" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ResolutionID" Type="bigint" Nullable="false" />
+    <Property Name="Width" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Height" Type="int" />
   </EntityType>
   <EntityType Name="Stations">
     <Key>
@@ -243,6 +296,14 @@
     <Property Name="Name" Type="nvarchar" MaxLength="100" />
     <Property Name="DateAdded" Type="datetime" />
   </EntityType>
+  <EntityType Name="Widgets">
+    <Key>
+      <PropertyRef Name="WidgetID" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="PictureUrl" Type="nvarchar" MaxLength="500" />
+    <Property Name="WidgetID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
   <Association Name="FK_CarCustomer">
     <End Role="Customers" Type="eAdData.Store.Customers" Multiplicity="1" />
     <End Role="Cars" Type="eAdData.Store.Cars" Multiplicity="*" />
@@ -252,6 +313,30 @@
       </Principal>
       <Dependent Role="Cars">
         <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Clients_Stations">
+    <End Role="Stations" Type="eAdData.Store.Stations" Multiplicity="0..1" />
+    <End Role="Clients" Type="eAdData.Store.Clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stations">
+        <PropertyRef Name="StationID" />
+      </Principal>
+      <Dependent Role="Clients">
+        <PropertyRef Name="StationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Groupings_Mosaics">
+    <End Role="Mosaics" Type="eAdData.Store.Mosaics" Multiplicity="0..1" />
+    <End Role="Groupings" Type="eAdData.Store.Groupings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mosaics">
+        <PropertyRef Name="MosaicID" />
+      </Principal>
+      <Dependent Role="Groupings">
+        <PropertyRef Name="ProfileMosaicID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -324,6 +409,18 @@
       </Principal>
       <Dependent Role="Groupings">
         <PropertyRef Name="MosaicID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mosaics_Resolutions">
+    <End Role="Resolutions" Type="eAdData.Store.Resolutions" Multiplicity="0..1" />
+    <End Role="Mosaics" Type="eAdData.Store.Mosaics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resolutions">
+        <PropertyRef Name="ResolutionID" />
+      </Principal>
+      <Dependent Role="Mosaics">
+        <PropertyRef Name="ResolutionID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

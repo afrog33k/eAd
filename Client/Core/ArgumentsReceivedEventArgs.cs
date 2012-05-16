@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
 public class ArgumentsReceivedEventArgs : EventArgs
 {

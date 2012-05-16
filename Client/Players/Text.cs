@@ -1,4 +1,3 @@
-
 using System;
 using System.Reflection;
 using System.Threading;
@@ -7,10 +6,10 @@ using System.Windows.Controls;
 using System.Diagnostics;
 using System.Windows.Navigation;
 using System.Windows.Threading;
-using Client.Core;
-using Client.Properties;
+using ClientApp.Core;
+using ClientApp.Properties;
 
-namespace Client
+namespace ClientApp
 {
 class Text : Media
 {

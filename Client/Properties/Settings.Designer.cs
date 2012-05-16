@@ -8,501 +8,403 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Client.Properties
-{
-
-
-[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "10.0.0.0")]
-internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-{
-
-    private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-    public static Settings Default
-    {
-        get
-        {
-            return defaultInstance;
+namespace ClientApp.Properties {
+    
+    
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "10.0.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DEFAULT")]
+        public string LibraryPath {
+            get {
+                return ((string)(this["LibraryPath"]));
+            }
+            set {
+                this["LibraryPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("schedule.xml")]
+        public string ScheduleFile {
+            get {
+                return ((string)(this["ScheduleFile"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("COMPUTERNAME")]
+        public string displayName {
+            get {
+                return ((string)(this["displayName"]));
+            }
+            set {
+                this["displayName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int licensed {
+            get {
+                return ((int)(this["licensed"]));
+            }
+            set {
+                this["licensed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("log.xml")]
+        public string logLocation {
+            get {
+                return ((string)(this["logLocation"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool powerpointEnabled {
+            get {
+                return ((bool)(this["powerpointEnabled"]));
+            }
+            set {
+                this["powerpointEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool statsEnabled {
+            get {
+                return ((bool)(this["statsEnabled"]));
+            }
+            set {
+                this["statsEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/")]
+        public string serverURI {
+            get {
+                return ((string)(this["serverURI"]));
+            }
+            set {
+                this["serverURI"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ProxyUser {
+            get {
+                return ((string)(this["ProxyUser"]));
+            }
+            set {
+                this["ProxyUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ProxyPassword {
+            get {
+                return ((string)(this["ProxyPassword"]));
+            }
+            set {
+                this["ProxyPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ProxyDomain {
+            get {
+                return ((string)(this["ProxyDomain"]));
+            }
+            set {
+                this["ProxyDomain"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ProxyPort {
+            get {
+                return ((string)(this["ProxyPort"]));
+            }
+            set {
+                this["ProxyPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("blacklist.xml")]
+        public string blackListLocation {
+            get {
+                return ((string)(this["blackListLocation"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public string Version {
+            get {
+                return ((string)(this["Version"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string hardwareKey {
+            get {
+                return ((string)(this["hardwareKey"]));
+            }
+            set {
+                this["hardwareKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public int StatsFlushCount {
+            get {
+                return ((int)(this["StatsFlushCount"]));
+            }
+            set {
+                this["StatsFlushCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("stats.xml")]
+        public string StatsLogFile {
+            get {
+                return ((string)(this["StatsLogFile"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("04/13/2012 15:46:00")]
+        public global::System.DateTime XmdsLastConnection {
+            get {
+                return ((global::System.DateTime)(this["XmdsLastConnection"]));
+            }
+            set {
+                this["XmdsLastConnection"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("900")]
+        public decimal collectInterval {
+            get {
+                return ((decimal)(this["collectInterval"]));
+            }
+            set {
+                this["collectInterval"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("cacheManager.xml")]
+        public string CacheManagerFile {
+            get {
+                return ((string)(this["CacheManagerFile"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.3.2")]
+        public string ClientVersion {
+            get {
+                return ((string)(this["ClientVersion"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal scrollStepAmount {
+            get {
+                return ((decimal)(this["scrollStepAmount"]));
+            }
+            set {
+                this["scrollStepAmount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("900")]
+        public int xmdsResetTimeout {
+            get {
+                return ((int)(this["xmdsResetTimeout"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal sizeX {
+            get {
+                return ((decimal)(this["sizeX"]));
+            }
+            set {
+                this["sizeX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal sizeY {
+            get {
+                return ((decimal)(this["sizeY"]));
+            }
+            set {
+                this["sizeY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal offsetX {
+            get {
+                return ((decimal)(this["offsetX"]));
+            }
+            set {
+                this["offsetX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal offsetY {
+            get {
+                return ((decimal)(this["offsetY"]));
+            }
+            set {
+                this["offsetY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool expireModifiedLayouts {
+            get {
+                return ((bool)(this["expireModifiedLayouts"]));
+            }
+            set {
+                this["expireModifiedLayouts"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public decimal emptyLayoutDuration {
+            get {
+                return ((decimal)(this["emptyLayoutDuration"]));
+            }
+            set {
+                this["emptyLayoutDuration"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("requiredFiles.xml")]
+        public string RequiredFilesFile {
+            get {
+                return ((string)(this["RequiredFilesFile"]));
+            }
+            set {
+                this["RequiredFilesFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EnableMouse {
+            get {
+                return ((bool)(this["EnableMouse"]));
+            }
+            set {
+                this["EnableMouse"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DoubleBuffering {
+            get {
+                return ((bool)(this["DoubleBuffering"]));
+            }
+            set {
+                this["DoubleBuffering"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("cool")]
+        public string Xmds {
+            get {
+                return ((string)(this["Xmds"]));
+            }
+            set {
+                this["Xmds"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("serverkey")]
+        public string ServerKey {
+            get {
+                return ((string)(this["ServerKey"]));
+            }
+            set {
+                this["ServerKey"] = value;
+            }
         }
     }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("DEFAULT")]
-    public string LibraryPath
-    {
-        get
-        {
-            return ((string)(this["LibraryPath"]));
-        }
-        set
-        {
-            this["LibraryPath"] = value;
-        }
-    }
-
-    [global::System.Configuration.ApplicationScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("schedule.xml")]
-    public string ScheduleFile
-    {
-        get
-        {
-            return ((string)(this["ScheduleFile"]));
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("COMPUTERNAME")]
-    public string displayName
-    {
-        get
-        {
-            return ((string)(this["displayName"]));
-        }
-        set
-        {
-            this["displayName"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("0")]
-    public int licensed
-    {
-        get
-        {
-            return ((int)(this["licensed"]));
-        }
-        set
-        {
-            this["licensed"] = value;
-        }
-    }
-
-    [global::System.Configuration.ApplicationScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("log.xml")]
-    public string logLocation
-    {
-        get
-        {
-            return ((string)(this["logLocation"]));
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("False")]
-    public bool powerpointEnabled
-    {
-        get
-        {
-            return ((bool)(this["powerpointEnabled"]));
-        }
-        set
-        {
-            this["powerpointEnabled"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("True")]
-    public bool statsEnabled
-    {
-        get
-        {
-            return ((bool)(this["statsEnabled"]));
-        }
-        set
-        {
-            this["statsEnabled"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/")]
-    public string serverURI
-    {
-        get
-        {
-            return ((string)(this["serverURI"]));
-        }
-        set
-        {
-            this["serverURI"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("")]
-    public string ProxyUser
-    {
-        get
-        {
-            return ((string)(this["ProxyUser"]));
-        }
-        set
-        {
-            this["ProxyUser"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("")]
-    public string ProxyPassword
-    {
-        get
-        {
-            return ((string)(this["ProxyPassword"]));
-        }
-        set
-        {
-            this["ProxyPassword"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("")]
-    public string ProxyDomain
-    {
-        get
-        {
-            return ((string)(this["ProxyDomain"]));
-        }
-        set
-        {
-            this["ProxyDomain"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("")]
-    public string ProxyPort
-    {
-        get
-        {
-            return ((string)(this["ProxyPort"]));
-        }
-        set
-        {
-            this["ProxyPort"] = value;
-        }
-    }
-
-    [global::System.Configuration.ApplicationScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("blacklist.xml")]
-    public string blackListLocation
-    {
-        get
-        {
-            return ((string)(this["blackListLocation"]));
-        }
-    }
-
-    [global::System.Configuration.ApplicationScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("3")]
-    public string Version
-    {
-        get
-        {
-            return ((string)(this["Version"]));
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("")]
-    public string hardwareKey
-    {
-        get
-        {
-            return ((string)(this["hardwareKey"]));
-        }
-        set
-        {
-            this["hardwareKey"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("50")]
-    public int StatsFlushCount
-    {
-        get
-        {
-            return ((int)(this["StatsFlushCount"]));
-        }
-        set
-        {
-            this["StatsFlushCount"] = value;
-        }
-    }
-
-    [global::System.Configuration.ApplicationScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("stats.xml")]
-    public string StatsLogFile
-    {
-        get
-        {
-            return ((string)(this["StatsLogFile"]));
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("04/13/2012 15:46:00")]
-    public global::System.DateTime XmdsLastConnection
-    {
-        get
-        {
-            return ((global::System.DateTime)(this["XmdsLastConnection"]));
-        }
-        set
-        {
-            this["XmdsLastConnection"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("900")]
-    public decimal collectInterval
-    {
-        get
-        {
-            return ((decimal)(this["collectInterval"]));
-        }
-        set
-        {
-            this["collectInterval"] = value;
-        }
-    }
-
-    [global::System.Configuration.ApplicationScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("cacheManager.xml")]
-    public string CacheManagerFile
-    {
-        get
-        {
-            return ((string)(this["CacheManagerFile"]));
-        }
-    }
-
-    [global::System.Configuration.ApplicationScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("1.3.2")]
-    public string ClientVersion
-    {
-        get
-        {
-            return ((string)(this["ClientVersion"]));
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("1")]
-    public decimal scrollStepAmount
-    {
-        get
-        {
-            return ((decimal)(this["scrollStepAmount"]));
-        }
-        set
-        {
-            this["scrollStepAmount"] = value;
-        }
-    }
-
-    [global::System.Configuration.ApplicationScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("900")]
-    public int xmdsResetTimeout
-    {
-        get
-        {
-            return ((int)(this["xmdsResetTimeout"]));
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("0")]
-    public decimal sizeX
-    {
-        get
-        {
-            return ((decimal)(this["sizeX"]));
-        }
-        set
-        {
-            this["sizeX"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("0")]
-    public decimal sizeY
-    {
-        get
-        {
-            return ((decimal)(this["sizeY"]));
-        }
-        set
-        {
-            this["sizeY"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("0")]
-    public decimal offsetX
-    {
-        get
-        {
-            return ((decimal)(this["offsetX"]));
-        }
-        set
-        {
-            this["offsetX"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("0")]
-    public decimal offsetY
-    {
-        get
-        {
-            return ((decimal)(this["offsetY"]));
-        }
-        set
-        {
-            this["offsetY"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("True")]
-    public bool expireModifiedLayouts
-    {
-        get
-        {
-            return ((bool)(this["expireModifiedLayouts"]));
-        }
-        set
-        {
-            this["expireModifiedLayouts"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("10")]
-    public decimal emptyLayoutDuration
-    {
-        get
-        {
-            return ((decimal)(this["emptyLayoutDuration"]));
-        }
-        set
-        {
-            this["emptyLayoutDuration"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("requiredFiles.xml")]
-    public string RequiredFilesFile
-    {
-        get
-        {
-            return ((string)(this["RequiredFilesFile"]));
-        }
-        set
-        {
-            this["RequiredFilesFile"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("False")]
-    public bool EnableMouse
-    {
-        get
-        {
-            return ((bool)(this["EnableMouse"]));
-        }
-        set
-        {
-            this["EnableMouse"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("True")]
-    public bool DoubleBuffering
-    {
-        get
-        {
-            return ((bool)(this["DoubleBuffering"]));
-        }
-        set
-        {
-            this["DoubleBuffering"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("cool")]
-    public string Xmds
-    {
-        get
-        {
-            return ((string)(this["Xmds"]));
-        }
-        set
-        {
-            this["Xmds"] = value;
-        }
-    }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("serverkey")]
-    public string ServerKey
-    {
-        get
-        {
-            return ((string)(this["ServerKey"]));
-        }
-        set
-        {
-            this["ServerKey"] = value;
-        }
-    }
-}
 }

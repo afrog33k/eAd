@@ -4,10 +4,10 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
-using Client.Properties;
-using Client.Service;
+using ClientApp.Properties;
+using ClientApp.Service;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
 public class BlackList : IDisposable
 {

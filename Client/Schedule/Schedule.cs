@@ -4,22 +4,21 @@ using System.IO;
 using System.Text;
 using System.Diagnostics;
 using System.Threading;
-using System.Timers;
 using System.Xml.Serialization;
-using Client.Core;
-using Client.Properties;
-using Client.Service;
-using Client.Update;
-using eAd.DataViewModels;
+using ClientApp.Core;
+using ClientApp.Properties;
+using ClientApp.Service;
+using ClientApp.Update;
 using eAd.Utilities;
+using ScheduleModel = eAd.DataViewModels.ScheduleModel;
 using Timer = System.Timers.Timer;
 
-namespace Client
+namespace ClientApp
 {
 /// <summary>
 /// Reads the schedule
 /// </summary>
-class Schedule
+public class Schedule
 {
     public delegate void ScheduleChangeDelegate(string layoutPath, int scheduleId, int layoutId);
     public event ScheduleChangeDelegate ScheduleChangeEvent;
@@ -42,11 +41,16 @@ class Schedule
     // Schedule Manager
     private ScheduleManager _scheduleManager;
 
+    public ScheduleManager ScheduleManager
+    {
+        get { return _scheduleManager; }
+    }
+
     /// <summary>
     /// Create a schedule
     /// </summary>
     /// <param name="scheduleLocation"></param>
-    public Schedule(string scheduleLocation, ref CacheManager cacheManager)
+    public Schedule(string scheduleLocation,  CacheManager cacheManager)
     {
         Debug.WriteLine(string.Format("XMDS DisplayLocation: {0}", Settings.Default.Xmds));
 
@@ -88,13 +92,13 @@ class Schedule
         // The Timer for the Service call
         Timer xmdsTimer = new Timer();
         xmdsTimer.Interval = 1000;// (int) Settings.Default.collectInterval * 1000;
-        xmdsTimer.Elapsed += new ElapsedEventHandler(XmdsTimerTick);
+        xmdsTimer.Elapsed += XmdsTimerTick;
         xmdsTimer.Start();
 
         // The Timer for the Schedule Polling
         Timer scheduleTimer = new Timer();
         scheduleTimer.Interval = 10000; // 10 Seconds
-        scheduleTimer.Elapsed += new ElapsedEventHandler(ScheduleTimerTick);
+        scheduleTimer.Elapsed += ScheduleTimerTick;
         scheduleTimer.Start();
 
         // Manual first tick
@@ -182,7 +186,16 @@ class Schedule
         {
             try
             {
-                _updater.CheckForUpdate();
+                lock (CheckingForUpdate)
+                {
+                    if(!UpdateRunning)
+                    {
+                        UpdateRunning = true;
+                         _updater.CheckForUpdate();
+                         UpdateRunning = false;
+                    }
+                   
+                }
             }
             catch (Exception)
             {
@@ -190,13 +203,13 @@ class Schedule
 
             }
         });
-
-
-
+        
         // Flush the log
         System.Diagnostics.Trace.Flush();
     }
 
+    object CheckingForUpdate = new object();
+    private static bool UpdateRunning = false;
     readonly UpdateMe _updater = new UpdateMe();
 
     /// <summary>

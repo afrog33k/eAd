@@ -6,10 +6,11 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using System.Diagnostics;
-using Client.Properties;
+using Client;
+using ClientApp.Properties;
 using eAd.DataViewModels;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
     //<summary>
     //A screen region control
@@ -33,7 +34,7 @@ namespace Client.Core
         // Cache Manager
         private CacheManager _cacheManager;
 
-        public Region(ref StatLog statLog, ref CacheManager cacheManager)
+        public Region( StatLog statLog,  CacheManager cacheManager)
             : base(0, 0, 0, 0)
         {
             // Store the statLog
@@ -96,8 +97,9 @@ namespace Client.Core
 
             int temp = currentSequence;
 
+         
             //set the next media node for this panel
-            if (!SetNextMediaNode())
+            if (!SetNextMediaNode() && options.FileType!="Widget")
             {
                 // For some reason we cannot set a media node... so we need this region to become invalid
                 hasExpired = true;
@@ -106,7 +108,7 @@ namespace Client.Core
             }
 
             // If the sequence hasnt been changed, OR the layout has been expired
-            if (currentSequence == temp || layoutExpired)
+            if ((currentSequence == temp || layoutExpired) && options.FileType != "Widget")
             {
                 //there has been no change to the sequence, therefore the media we have already created is still valid
                 //or this media has actually been destroyed and we are working out way out the call stack
@@ -168,6 +170,11 @@ namespace Client.Core
                                                                                                       new DataSetView(regionOptions);
                                                                                                   break;
 
+                                                                                              case  "Widget":
+                                                                                                  media =
+                                                                                                      WidgetsFactory.CreateFrom(regionOptions);
+                                                                                                  break;
+
                                                                                               default:
                                                                                                   //do nothing
                                                                                                   SetNextMediaNode();
@@ -201,6 +208,7 @@ namespace Client.Core
                                                                                               //}
                                                                                               Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action<Media>((med) =>
                                                                                                                       {
+                                                                                                                          if(med!=null)
                                                                                                                           MediaCanvas.Children.Add(med);
                                                                                                                       }),media);
                                                                                           
@@ -388,27 +396,31 @@ namespace Client.Core
                     }
 
                     // There will be some stuff on option nodes
-
-                    options.direction = medium.Options.Direction;
-                    // Add this to the options object
-                    options.Dictionary.Add("direction", medium.Options.Direction);
-                    options.Uri = medium.Options.Uri;
-                    options.Dictionary.Add("Uri", medium.Options.Uri);
-                    options.copyrightNotice = medium.Options.Copyright;
-                    options.Dictionary.Add("copyrightNotice", medium.Options.Copyright);
-                    options.scrollSpeed = medium.Options.ScrollSpeed;
-                    options.Dictionary.Add("ScrollSpeed", (medium.Options.ScrollSpeed).ToString());
-                    if (medium.Options.ScrollSpeed == -1)
+                    if (medium.Options != null)
                     {
-                        System.Diagnostics.Trace.WriteLine("Non integer scrollSpeed in XLF", "Region - SetNextMediaNode");
+                        options.direction = medium.Options.Direction;
+                        // Add this to the options object
+                        options.Dictionary.Add("direction", medium.Options.Direction);
+                        options.Uri = medium.Options.Uri;
+                        options.Dictionary.Add("Uri", medium.Options.Uri);
+                        options.copyrightNotice = medium.Options.Copyright;
+                        options.Dictionary.Add("copyrightNotice", medium.Options.Copyright);
+                        options.scrollSpeed = medium.Options.ScrollSpeed;
+                        if (medium.Options != null)
+                            options.Dictionary.Add("ScrollSpeed",
+                                                   (medium.Options.ScrollSpeed).ToString());
+                        if (medium.Options.ScrollSpeed == -1)
+                        {
+                            System.Diagnostics.Trace.WriteLine("Non integer scrollSpeed in XLF",
+                                                               "Region - SetNextMediaNode");
+                        }
+                        options.updateInterval = medium.Options.UpdateInterval;
+                        if (medium.Options.UpdateInterval == -1)
+                        {
+                            System.Diagnostics.Trace.WriteLine("Non integer updateInterval in XLF",
+                                                               "Region - SetNextMediaNode");
+                        }
                     }
-                    options.updateInterval = medium.Options.UpdateInterval;
-                    if (medium.Options.UpdateInterval == -1)
-                    {
-                        System.Diagnostics.Trace.WriteLine("Non integer updateInterval in XLF",
-                                                           "Region - SetNextMediaNode");
-                    }
-
                     // And some stuff on Raw nodes
 
                     if (medium.Raw != null)

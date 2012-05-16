@@ -2,7 +2,7 @@ using System;
 using System.Net;
 using System.IO;
 
-namespace Client.Update
+namespace ClientApp.Update
 {
 class Webdata
 {

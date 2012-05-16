@@ -1,18 +1,15 @@
-
-
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Xml.Serialization;
 using System.Diagnostics;
 using System.Xml;
-using Client.Core;
-using Client.Properties;
+using ClientApp.Core;
+using ClientApp.Properties;
 using eAd.DataViewModels;
 using eAd.Utilities;
 
-namespace Client
+namespace ClientApp
 {
 public class CacheManager
 {

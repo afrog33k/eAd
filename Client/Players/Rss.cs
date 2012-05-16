@@ -1,4 +1,3 @@
-
 using System;
 using System.IO;
 using System.ServiceModel.Syndication;
@@ -6,10 +5,10 @@ using System.Windows.Controls;
 using System.Xml;
 using System.Net;
 using System.Diagnostics;
-using Client.Core;
-using Client.Properties;
+using ClientApp.Core;
+using ClientApp.Properties;
 
-namespace Client
+namespace ClientApp
 {
 class Rss
     : Media

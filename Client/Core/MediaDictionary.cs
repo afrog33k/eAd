@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
 class MediaDictionary
 {

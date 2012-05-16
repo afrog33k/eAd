@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Diagnostics;
 using System.Xml.Serialization;
-using Client.Properties;
-using Client.Service;
-using eAd.DataViewModels;
+using ClientApp.Properties;
+using ClientApp.Service;
+using RequiredFileModel = eAd.DataViewModels.RequiredFileModel;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
 public class RequiredFiles
 {

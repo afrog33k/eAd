@@ -32,504 +32,498 @@ using System.Windows.Shapes;
 using System.Windows.Shell;
 
 
-namespace DesktopClient.Menu
-{
-
-
-/// <summary>
-/// CustomerPage
-/// </summary>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
-public partial class CustomerPage : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector
-{
-
-
-#line 8 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal DesktopClient.Menu.CustomerPage eADWindow;
-
-#line default
-#line hidden
-
-
-#line 34 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Media.Animation.Storyboard FormFade;
-
-#line default
-#line hidden
-
-
-#line 35 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Media.Animation.DoubleAnimation FormFadeAnimation;
-
-#line default
-#line hidden
-
-
-#line 46 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Media.Animation.Storyboard FormFadeOut;
-
-#line default
-#line hidden
-
-
-#line 47 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Media.Animation.DoubleAnimation FormFadeOutAnimation;
-
-#line default
-#line hidden
-
-
-#line 59 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Grid LayoutRoot;
-
-#line default
-#line hidden
-
-
-#line 60 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.WebBrowser GoogleMap;
-
-#line default
-#line hidden
-
-
-#line 62 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Image bannerAd1;
-
-#line default
-#line hidden
-
-
-#line 63 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Image bannerAd3;
-
-#line default
-#line hidden
-
-
-#line 64 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Image CustomerProfilePicture;
-
-#line default
-#line hidden
-
-
-#line 65 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Image bannerAd2;
-
-#line default
-#line hidden
-
-
-#line 66 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label CustomerName;
-
-#line default
-#line hidden
-
-
-#line 67 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label label1;
-
-#line default
-#line hidden
-
-
-#line 68 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label label5;
-
-#line default
-#line hidden
-
-
-#line 69 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label label2;
-
-#line default
-#line hidden
-
-
-#line 70 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label CustomerPhone;
-
-#line default
-#line hidden
-
-
-#line 71 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label CustomerAddress;
-
-#line default
-#line hidden
-
-
-#line 72 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label CustomerEmail;
-
-#line default
-#line hidden
-
-
-#line 73 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label label4;
-
-#line default
-#line hidden
-
-
-#line 74 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label label6;
-
-#line default
-#line hidden
-
-
-#line 75 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label label7;
-
-#line default
-#line hidden
-
-
-#line 76 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label CarPlate;
-
-#line default
-#line hidden
-
-
-#line 77 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label CarModel;
-
-#line default
-#line hidden
-
-
-#line 78 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Separator separator1;
-
-#line default
-#line hidden
-
-
-#line 79 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label CarMake;
-
-#line default
-#line hidden
-
-
-#line 80 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label CustomerLocation;
-
-#line default
-#line hidden
-
-
-#line 81 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.ListView StationOverview;
-
-#line default
-#line hidden
-
-
-#line 92 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label label3;
-
-#line default
-#line hidden
-
-
-#line 93 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Separator separator2;
-
-#line default
-#line hidden
-
-
-#line 94 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label Profile;
-
-#line default
-#line hidden
-
-
-#line 95 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label label11;
-
-#line default
-#line hidden
-
-
-#line 96 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label label12;
-
-#line default
-#line hidden
-
-
-#line 97 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label CurrentCharge;
-
-#line default
-#line hidden
-
-
-#line 98 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label LastCharged;
-
-#line default
-#line hidden
-
-
-#line 99 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Separator separator3;
-
-#line default
-#line hidden
-
-
-#line 100 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label label17;
-
-#line default
-#line hidden
-
-
-#line 101 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Grid grid1;
-
-#line default
-#line hidden
-
-
-#line 102 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal DesktopClient.Controls.BatteryRecharging BatteryAnimation;
-
-#line default
-#line hidden
-
-
-#line 104 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label label8;
-
-#line default
-#line hidden
-
-
-#line 105 "..\..\..\..\Menu\CustomerPage.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label AccountBalance;
-
-#line default
-#line hidden
-
-    private bool _contentLoaded;
-
+namespace DesktopClient.Menu {
+    
+    
     /// <summary>
-    /// InitializeComponent
+    /// CustomerPage
     /// </summary>
-    [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    public void InitializeComponent()
-    {
-        if (_contentLoaded)
-        {
-            return;
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
+    public partial class CustomerPage : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
+        
+        
+        #line 8 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal DesktopClient.Menu.CustomerPage eADWindow;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 34 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Media.Animation.Storyboard FormFade;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 35 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Media.Animation.DoubleAnimation FormFadeAnimation;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 46 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Media.Animation.Storyboard FormFadeOut;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 47 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Media.Animation.DoubleAnimation FormFadeOutAnimation;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 59 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Grid LayoutRoot;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 60 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.WebBrowser GoogleMap;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 62 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Image bannerAd1;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 63 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Image bannerAd3;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 64 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Image CustomerProfilePicture;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 65 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Image bannerAd2;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 66 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label CustomerName;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 67 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label label1;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 68 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label label5;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 69 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label label2;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 70 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label CustomerPhone;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 71 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label CustomerAddress;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 72 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label CustomerEmail;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 73 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label label4;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 74 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label label6;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 75 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label label7;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 76 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label CarPlate;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 77 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label CarModel;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 78 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Separator separator1;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 79 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label CarMake;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 80 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label CustomerLocation;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 81 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ListView StationOverview;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 92 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label label3;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 93 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Separator separator2;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 94 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label Profile;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 95 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label label11;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 96 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label label12;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 97 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label CurrentCharge;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 98 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label LastCharged;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 99 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Separator separator3;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 100 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label label17;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 101 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Grid grid1;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 102 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal DesktopClient.Controls.BatteryRecharging BatteryAnimation;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 104 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label label8;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 105 "..\..\..\..\Menu\CustomerPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label AccountBalance;
+        
+        #line default
+        #line hidden
+        
+        private bool _contentLoaded;
+        
+        /// <summary>
+        /// InitializeComponent
+        /// </summary>
+        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public void InitializeComponent() {
+            if (_contentLoaded) {
+                return;
+            }
+            _contentLoaded = true;
+            System.Uri resourceLocater = new System.Uri("/DesktopClient;component/menu/customerpage.xaml", System.UriKind.Relative);
+            
+            #line 1 "..\..\..\..\Menu\CustomerPage.xaml"
+            System.Windows.Application.LoadComponent(this, resourceLocater);
+            
+            #line default
+            #line hidden
         }
-        _contentLoaded = true;
-        System.Uri resourceLocater = new System.Uri("/DesktopClient;component/menu/customerpage.xaml", System.UriKind.Relative);
-
-#line 1 "..\..\..\..\Menu\CustomerPage.xaml"
-        System.Windows.Application.LoadComponent(this, resourceLocater);
-
-#line default
-#line hidden
-    }
-
-    [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-    internal System.Delegate _CreateDelegate(System.Type delegateType, string handler)
-    {
-        return System.Delegate.CreateDelegate(delegateType, this, handler);
-    }
-
-    [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
-    void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target)
-    {
-        switch (connectionId)
-        {
-        case 1:
+        
+        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal System.Delegate _CreateDelegate(System.Type delegateType, string handler) {
+            return System.Delegate.CreateDelegate(delegateType, this, handler);
+        }
+        
+        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
+        void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target) {
+            switch (connectionId)
+            {
+            case 1:
             this.eADWindow = ((DesktopClient.Menu.CustomerPage)(target));
             return;
-        case 2:
+            case 2:
             this.FormFade = ((System.Windows.Media.Animation.Storyboard)(target));
             return;
-        case 3:
+            case 3:
             this.FormFadeAnimation = ((System.Windows.Media.Animation.DoubleAnimation)(target));
             return;
-        case 4:
+            case 4:
             this.FormFadeOut = ((System.Windows.Media.Animation.Storyboard)(target));
-
-#line 46 "..\..\..\..\Menu\CustomerPage.xaml"
+            
+            #line 46 "..\..\..\..\Menu\CustomerPage.xaml"
             this.FormFadeOut.Completed += new System.EventHandler(this.FormFadeOut_Completed);
-
-#line default
-#line hidden
+            
+            #line default
+            #line hidden
             return;
-        case 5:
+            case 5:
             this.FormFadeOutAnimation = ((System.Windows.Media.Animation.DoubleAnimation)(target));
             return;
-        case 6:
+            case 6:
             this.LayoutRoot = ((System.Windows.Controls.Grid)(target));
             return;
-        case 7:
+            case 7:
             this.GoogleMap = ((System.Windows.Controls.WebBrowser)(target));
             return;
-        case 8:
+            case 8:
             this.bannerAd1 = ((System.Windows.Controls.Image)(target));
             return;
-        case 9:
+            case 9:
             this.bannerAd3 = ((System.Windows.Controls.Image)(target));
             return;
-        case 10:
+            case 10:
             this.CustomerProfilePicture = ((System.Windows.Controls.Image)(target));
             return;
-        case 11:
+            case 11:
             this.bannerAd2 = ((System.Windows.Controls.Image)(target));
             return;
-        case 12:
+            case 12:
             this.CustomerName = ((System.Windows.Controls.Label)(target));
             return;
-        case 13:
+            case 13:
             this.label1 = ((System.Windows.Controls.Label)(target));
             return;
-        case 14:
+            case 14:
             this.label5 = ((System.Windows.Controls.Label)(target));
             return;
-        case 15:
+            case 15:
             this.label2 = ((System.Windows.Controls.Label)(target));
             return;
-        case 16:
+            case 16:
             this.CustomerPhone = ((System.Windows.Controls.Label)(target));
             return;
-        case 17:
+            case 17:
             this.CustomerAddress = ((System.Windows.Controls.Label)(target));
             return;
-        case 18:
+            case 18:
             this.CustomerEmail = ((System.Windows.Controls.Label)(target));
             return;
-        case 19:
+            case 19:
             this.label4 = ((System.Windows.Controls.Label)(target));
             return;
-        case 20:
+            case 20:
             this.label6 = ((System.Windows.Controls.Label)(target));
             return;
-        case 21:
+            case 21:
             this.label7 = ((System.Windows.Controls.Label)(target));
             return;
-        case 22:
+            case 22:
             this.CarPlate = ((System.Windows.Controls.Label)(target));
             return;
-        case 23:
+            case 23:
             this.CarModel = ((System.Windows.Controls.Label)(target));
             return;
-        case 24:
+            case 24:
             this.separator1 = ((System.Windows.Controls.Separator)(target));
             return;
-        case 25:
+            case 25:
             this.CarMake = ((System.Windows.Controls.Label)(target));
             return;
-        case 26:
+            case 26:
             this.CustomerLocation = ((System.Windows.Controls.Label)(target));
             return;
-        case 27:
+            case 27:
             this.StationOverview = ((System.Windows.Controls.ListView)(target));
             return;
-        case 28:
+            case 28:
             this.label3 = ((System.Windows.Controls.Label)(target));
             return;
-        case 29:
+            case 29:
             this.separator2 = ((System.Windows.Controls.Separator)(target));
             return;
-        case 30:
+            case 30:
             this.Profile = ((System.Windows.Controls.Label)(target));
             return;
-        case 31:
+            case 31:
             this.label11 = ((System.Windows.Controls.Label)(target));
             return;
-        case 32:
+            case 32:
             this.label12 = ((System.Windows.Controls.Label)(target));
             return;
-        case 33:
+            case 33:
             this.CurrentCharge = ((System.Windows.Controls.Label)(target));
             return;
-        case 34:
+            case 34:
             this.LastCharged = ((System.Windows.Controls.Label)(target));
             return;
-        case 35:
+            case 35:
             this.separator3 = ((System.Windows.Controls.Separator)(target));
             return;
-        case 36:
+            case 36:
             this.label17 = ((System.Windows.Controls.Label)(target));
             return;
-        case 37:
+            case 37:
             this.grid1 = ((System.Windows.Controls.Grid)(target));
             return;
-        case 38:
+            case 38:
             this.BatteryAnimation = ((DesktopClient.Controls.BatteryRecharging)(target));
             return;
-        case 39:
+            case 39:
             this.label8 = ((System.Windows.Controls.Label)(target));
             return;
-        case 40:
+            case 40:
             this.AccountBalance = ((System.Windows.Controls.Label)(target));
             return;
+            }
+            this._contentLoaded = true;
         }
-        this._contentLoaded = true;
     }
-}
 }
 

@@ -1,0 +1,79 @@
+C:\ProjectHub\eAd\Client\bin\Release\Ionic.Zip.dll
+C:\ProjectHub\eAd\Client\bin\Release\DataCache\Cute-Ball-Go-icon32.png
+C:\ProjectHub\eAd\Client\bin\Release\DataCache\Cute-Ball-Stop-icon32.png
+C:\ProjectHub\eAd\Client\bin\Release\Update\eAd.DataViewModels.dll
+C:\ProjectHub\eAd\Client\bin\Release\Update\eAd.Utilities.dll
+C:\ProjectHub\eAd\Client\bin\Release\Update\Ionic.Zip.dll
+C:\ProjectHub\eAd\Client\bin\Release\Update\Updater.exe
+C:\ProjectHub\eAd\Client\bin\Release\Interop.WMPLib.dll
+C:\ProjectHub\eAd\Client\bin\Release\Resources\splash.png
+C:\ProjectHub\eAd\Client\bin\Release\DataCache\ad1.png
+C:\ProjectHub\eAd\Client\bin\Release\DataCache\ad2.png
+C:\ProjectHub\eAd\Client\bin\Release\DataCache\blankii.jpg
+C:\ProjectHub\eAd\Client\bin\Release\DataCache\LoadVideo.m4v
+C:\ProjectHub\eAd\Client\bin\Release\Navigator.htm
+C:\ProjectHub\eAd\Client\bin\Release\Libraries\AxInterop.ShockwaveFlashObjects.dll
+C:\ProjectHub\eAd\Client\bin\Release\Libraries\AxInterop.WMPLib.dll
+C:\ProjectHub\eAd\Client\bin\Release\Libraries\Interop.ShockwaveFlashObjects.dll
+C:\ProjectHub\eAd\Client\bin\Release\Resources\HtmlTemplate.htm
+C:\ProjectHub\eAd\Client\bin\Release\eAd Client.exe.config
+C:\ProjectHub\eAd\Client\bin\Release\eAd Client.exe
+C:\ProjectHub\eAd\Client\bin\Release\eAd Client.pdb
+C:\ProjectHub\eAd\Client\bin\Release\AxInterop.ShockwaveFlashObjects.dll
+C:\ProjectHub\eAd\Client\bin\Release\AxInterop.WMPLib.dll
+C:\ProjectHub\eAd\Client\bin\Release\eAd.DataViewModels.dll
+C:\ProjectHub\eAd\Client\bin\Release\eAd.Utilities.dll
+C:\ProjectHub\eAd\Client\bin\Release\eAd.DataViewModels.pdb
+C:\ProjectHub\eAd\Client\bin\Release\eAd.Utilities.pdb
+C:\ProjectHub\eAd\Client\obj\x86\Release\ResolveAssemblyReference.cache
+C:\ProjectHub\eAd\Client\obj\x86\Release\Controls\BatteryRecharging.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\Controls\DigitalClockDots.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\Controls\DigitalClockElement.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\Controls\ImageListBox.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\About.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\Charging.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\AdvertPlayer.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\Option.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\Widgets\CarInfo.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\Widgets\Profile.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\ClientManager.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\Players\Media.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\Controls\BatteryRecharging.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\Controls\DigitalClockControl.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\Controls\DigitalClockDots.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\Controls\DigitalClockElement.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\Controls\DigitalControlWindow.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\Controls\ImageListBox.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\About.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\Charging.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\CustomerPage.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\AdvertPlayer.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\Option.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\SplashScreen.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\Widgets\BatteryInfo.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\Widgets\CarInfo.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\Widgets\Location.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\Widgets\Profile.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\ClientManager.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\Players\Media.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\Themes\Generic.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\App.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\eAd Client_Content.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\GeneratedInternalTypeHelper.g.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\eAd Client_MarkupCompile.cache
+C:\ProjectHub\eAd\Client\obj\x86\Release\eAd Client_MarkupCompile.lref
+C:\ProjectHub\eAd\Client\obj\x86\Release\Controls\DigitalClockControl.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\Controls\DigitalControlWindow.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\CustomerPage.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\SplashScreen.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\Widgets\BatteryInfo.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\MainUI\Widgets\Location.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\Themes\Generic.baml
+C:\ProjectHub\eAd\Client\obj\x86\Release\eAd Client.g.resources
+C:\ProjectHub\eAd\Client\obj\x86\Release\ClientApp.OptionForm.resources
+C:\ProjectHub\eAd\Client\obj\x86\Release\ClientApp.Properties.Resources.resources
+C:\ProjectHub\eAd\Client\obj\x86\Release\ClientApp.VideoPlayer.resources
+C:\ProjectHub\eAd\Client\obj\x86\Release\GenerateResource.read.1.tlog
+C:\ProjectHub\eAd\Client\obj\x86\Release\GenerateResource.write.1.tlog
+C:\ProjectHub\eAd\Client\obj\x86\Release\eAd Client.exe
+C:\ProjectHub\eAd\Client\obj\x86\Release\eAd Client.pdb

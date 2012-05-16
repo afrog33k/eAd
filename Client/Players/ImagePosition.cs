@@ -1,15 +1,12 @@
-
-
 using System;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using Client.Core;
+using ClientApp.Core;
 
-namespace Client
+namespace ClientApp
 {
 class ImagePosition : Media
 {

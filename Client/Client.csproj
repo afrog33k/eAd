@@ -8,7 +8,7 @@
     <ProjectGuid>{870155F1-F5FF-426A-9BBF-9779DBCBC9B8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Client</RootNamespace>
+    <RootNamespace>ClientApp</RootNamespace>
     <AssemblyName>eAd Client</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -53,7 +53,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Client.Core.Startup</StartupObject>
+    <StartupObject>ClientApp.Core.Startup</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
@@ -139,6 +139,7 @@
     <Compile Include="Core\SingleInstance.cs" />
     <Compile Include="Core\Splasher.cs" />
     <Compile Include="Core\StatType.cs" />
+    <Compile Include="Core\WidgetsFactory.cs" />
     <Compile Include="CustomInstall.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -153,6 +154,9 @@
     <Compile Include="Core\BlackListType.cs" />
     <Compile Include="CacheManager\CacheManager.cs" />
     <Compile Include="CacheManager\Md5Resource.cs" />
+    <Compile Include="MainUI\Charging.xaml.cs">
+      <DependentUpon>Charging.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainUI\CustomerPage.xaml.cs">
       <DependentUpon>CustomerPage.xaml</DependentUpon>
     </Compile>
@@ -174,8 +178,8 @@
     <Compile Include="MainUI\Widgets\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageSwitcher.xaml.cs">
-      <DependentUpon>PageSwitcher.xaml</DependentUpon>
+    <Compile Include="ClientManager.xaml.cs">
+      <DependentUpon>ClientManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="Players\DataSetView.cs" />
     <Compile Include="Core\FileCollector.cs" />
@@ -183,8 +187,8 @@
     <Compile Include="Core\HardwareKey.cs" />
     <Compile Include="Players\ImagePosition.cs" />
     <Compile Include="Core\LogMessage.cs" />
-    <Compile Include="MainUI\MainForm.xaml.cs">
-      <DependentUpon>MainForm.xaml</DependentUpon>
+    <Compile Include="MainUI\AdvertPlayer.xaml.cs">
+      <DependentUpon>AdvertPlayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Players\Media.xaml.cs">
       <DependentUpon>Media.xaml</DependentUpon>
@@ -258,11 +262,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="MainUI\Charging.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainUI\CustomerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainUI\MainForm.xaml">
+    <Page Include="MainUI\AdvertPlayer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -294,7 +302,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageSwitcher.xaml">
+    <Page Include="ClientManager.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -316,44 +324,44 @@
     <None Include="Properties\DataSources\eAd.DataViewModels.PositionViewModel.datasource" />
     <None Include="Properties\DataSources\eAd.DataViewModels.ScheduleModel.datasource" />
     <None Include="Properties\DataSources\eAd.DataViewModels.StationViewModel.datasource" />
-    <None Include="Service References\Service\Client.Service.FileMetaData.datasource">
+    <None Include="Service References\Service\ClientApp.Service.FileMetaData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\Service\Client.Service.Mosaic.datasource">
+    <None Include="Service References\Service\ClientApp.Service.Mosaic.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\Service\Service.wsdl" />
-    <None Include="Service References\Service\Service.xsd">
+    <None Include="Service References\Service\Service1.wsdl" />
+    <None Include="Service References\Service\Service11.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service1.xsd">
+    <None Include="Service References\Service\Service111.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service10.xsd">
+    <None Include="Service References\Service\Service1110.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service2.xsd">
+    <None Include="Service References\Service\Service112.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service3.xsd">
+    <None Include="Service References\Service\Service113.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service4.xsd">
+    <None Include="Service References\Service\Service114.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service5.xsd">
+    <None Include="Service References\Service\Service115.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service6.xsd">
+    <None Include="Service References\Service\Service116.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service7.xsd">
+    <None Include="Service References\Service\Service117.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service8.xsd">
+    <None Include="Service References\Service\Service118.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service9.xsd">
+    <None Include="Service References\Service\Service119.xsd">
       <SubType>Designer</SubType>
     </None>
     <Resource Include="Properties\AssemblyInfo.cs">
@@ -420,6 +428,13 @@
     <Content Include="Navigator.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Service References\Service\configuration91.svcinfo" />
+    <None Include="Service References\Service\configuration.svcinfo" />
+    <None Include="Service References\Service\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Update\Updater.vshost.exe" />
     <Content Include="Update\eAd.DataViewModels.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -457,12 +472,6 @@
     <Content Include="Resources\splash.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Service References\Service\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\Service\configuration.svcinfo" />
-    <None Include="Service References\Service\configuration91.svcinfo" />
     <Resource Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -477,9 +486,6 @@
       <Project>{ECD7174B-B905-46AF-B371-72D8A81103F1}</Project>
       <Name>eAd.Utilities</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\Service\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="updates\20120420\" />
@@ -505,6 +511,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

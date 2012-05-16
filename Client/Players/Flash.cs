@@ -1,10 +1,9 @@
-
 using System;
 using System.Windows.Controls;
 using System.Diagnostics;
-using Client.Core;
+using ClientApp.Core;
 
-namespace Client
+namespace ClientApp
 {
 internal class Flash
     : Media

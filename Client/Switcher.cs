@@ -1,24 +1,24 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
+using Client;
 
-namespace Client
+namespace ClientApp
 {
 public static class Switcher
 {
-    public static PageSwitcher PageSwitcher;
+    public static ClientManager ClientManager;
 
     public static UserControl CurrentPage;
 
     public static void Switch(UserControl newPage)
     {
   //      newPage.Visibility = Visibility.Visible;
-        PageSwitcher.Navigate(newPage);
+        ClientManager.Navigate(newPage);
         CurrentPage = newPage;
     }
 
     public static void Switch(UserControl newPage, object state)
     {
-        PageSwitcher.Navigate(newPage, state);
+        ClientManager.Navigate(newPage, state);
     }
 }
 }

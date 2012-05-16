@@ -44,6 +44,22 @@
       <End Role="Medium" EntitySet="Media" />
       <End Role="Theme" EntitySet="Themes" />
     </AssociationSet>
+    <EntitySet Name="Clients" EntityType="eAdData.Client" />
+    <AssociationSet Name="FK_Clients_Stations" Association="eAdData.FK_Clients_Stations">
+      <End Role="Station" EntitySet="Stations" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <EntitySet Name="ClientUploads" EntityType="eAdData.ClientUpload" />
+    <EntitySet Name="Resolutions" EntityType="eAdData.Resolution" />
+    <EntitySet Name="Widgets" EntityType="eAdData.Widget" />
+    <AssociationSet Name="FK_Groupings_Mosaics" Association="eAdData.FK_Groupings_Mosaics">
+      <End Role="Mosaic" EntitySet="Mosaics" />
+      <End Role="Grouping" EntitySet="Groupings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mosaics_Resolutions" Association="eAdData.FK_Mosaics_Resolutions">
+      <End Role="Resolution" EntitySet="Resolutions" />
+      <End Role="Mosaic" EntitySet="Mosaics" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Car">
     <Key>
@@ -92,6 +108,8 @@
     <NavigationProperty Name="Mosaic" Relationship="eAdData.FK_MosaicGrouping" FromRole="Grouping" ToRole="Mosaic" />
     <NavigationProperty Name="Stations" Relationship="eAdData.GroupingStation" FromRole="Grouping" ToRole="Station" />
     <NavigationProperty Name="Themes" Relationship="eAdData.GroupingTheme" FromRole="Grouping" ToRole="Theme" />
+    <Property Type="Int64" Name="ProfileMosaicID" />
+    <NavigationProperty Name="Mosaic_1" Relationship="eAdData.FK_Groupings_Mosaics" FromRole="Grouping" ToRole="Mosaic" />
   </EntityType>
   <EntityType Name="Medium">
     <Key>
@@ -150,6 +168,12 @@
     <Property Type="Int64" Name="Size" Nullable="false" />
     <NavigationProperty Name="Groupings" Relationship="eAdData.FK_MosaicGrouping" FromRole="Mosaic" ToRole="Grouping" />
     <NavigationProperty Name="Positions" Relationship="eAdData.FK_Positions_Mosaics" FromRole="Mosaic" ToRole="Position" />
+    <Property Type="Int64" Name="ResolutionID" />
+    <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Groupings_1" Relationship="eAdData.FK_Groupings_Mosaics" FromRole="Mosaic" ToRole="Grouping" />
+    <NavigationProperty Name="Resolution" Relationship="eAdData.FK_Mosaics_Resolutions" FromRole="Mosaic" ToRole="Resolution" />
+    <Property Type="String" Name="ExtraData" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsDefault" />
   </EntityType>
   <EntityType Name="Position">
     <Key>
@@ -186,6 +210,7 @@
     <Property Type="Boolean" Name="Approved" Nullable="false" />
     <NavigationProperty Name="Messages" Relationship="eAdData.FK_MessageStation" FromRole="Station" ToRole="Message" />
     <NavigationProperty Name="Groupings" Relationship="eAdData.GroupingStation" FromRole="Station" ToRole="Grouping" />
+    <NavigationProperty Name="Clients" Relationship="eAdData.FK_Clients_Stations" FromRole="Station" ToRole="Client" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -270,5 +295,83 @@
   <Association Name="ThemeMedium">
     <End Type="eAdData.Medium" Role="Medium" Multiplicity="*" />
     <End Type="eAdData.Theme" Role="Theme" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ClientID" />
+    </Key>
+    <Property Type="String" Name="Name" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="IP" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Approved" />
+    <Property Type="DateTime" Name="ActivatedOn" Precision="3" />
+    <Property Type="String" Name="HardwareKey" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="ClientID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="StationID" />
+    <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Station" Relationship="eAdData.FK_Clients_Stations" FromRole="Client" ToRole="Station" />
+  </EntityType>
+  <Association Name="FK_Clients_Stations">
+    <End Type="eAdData.Station" Role="Station" Multiplicity="0..1" />
+    <End Type="eAdData.Client" Role="Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Station">
+        <PropertyRef Name="StationID" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="StationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ClientUpload">
+    <Key>
+      <PropertyRef Name="ClientUploadID" />
+    </Key>
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DateUploaded" Precision="3" />
+    <Property Type="String" Name="Path" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Version" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="ClientUploadID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Resolution">
+    <Key>
+      <PropertyRef Name="ResolutionID" />
+    </Key>
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="ResolutionID" Nullable="false" />
+    <Property Type="Int32" Name="Width" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="Height" />
+    <NavigationProperty Name="Mosaics" Relationship="eAdData.FK_Mosaics_Resolutions" FromRole="Resolution" ToRole="Mosaic" />
+  </EntityType>
+  <EntityType Name="Widget">
+    <Key>
+      <PropertyRef Name="WidgetID" />
+    </Key>
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PictureUrl" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="WidgetID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <Association Name="FK_Groupings_Mosaics">
+    <End Type="eAdData.Mosaic" Role="Mosaic" Multiplicity="0..1" />
+    <End Type="eAdData.Grouping" Role="Grouping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mosaic">
+        <PropertyRef Name="MosaicID" />
+      </Principal>
+      <Dependent Role="Grouping">
+        <PropertyRef Name="ProfileMosaicID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mosaics_Resolutions">
+    <End Type="eAdData.Resolution" Role="Resolution" Multiplicity="0..1" />
+    <End Type="eAdData.Mosaic" Role="Mosaic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resolution">
+        <PropertyRef Name="ResolutionID" />
+      </Principal>
+      <Dependent Role="Mosaic">
+        <PropertyRef Name="ResolutionID" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

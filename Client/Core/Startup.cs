@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
 internal class Startup
 {

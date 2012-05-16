@@ -1,4 +1,4 @@
-namespace Client.Core
+namespace ClientApp.Core
 {
 struct MediaOption
 {

@@ -1,7 +1,7 @@
 <av:Canvas
 	xmlns="http://schemas.microsoft.com/client/2007"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	x:Class="Client.Controls.BatteryRecharging"
+	x:Class="ClientApp.Controls.BatteryRecharging"
 	xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	
 	x:Name="Battery" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="408" Width="400">

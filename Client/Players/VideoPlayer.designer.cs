@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Windows.Threading;
 
-namespace Client
+namespace ClientApp
 {
 sealed partial class VideoPlayer
 {

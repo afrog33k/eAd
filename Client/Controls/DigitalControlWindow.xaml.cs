@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Client.Controls
+namespace ClientApp.Controls
 {
 /// <summary>
 /// Interaction logic for DigitalControlWindow.xaml

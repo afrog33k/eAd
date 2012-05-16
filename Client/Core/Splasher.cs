@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
 /// <summary>
 /// Helper to show or close given splash window

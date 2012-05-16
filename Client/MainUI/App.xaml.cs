@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
-using Client.Core;
+using ClientApp.Core;
 
-namespace Client
+namespace ClientApp
 {
 /// <summary>
 /// Interaction logic for App.xaml
@@ -55,7 +51,7 @@ public partial class App : Application
     public App()
     {
 
-        base.StartupUri = new Uri("PageSwitcher.xaml", UriKind.Relative);
+        base.StartupUri = new Uri("ClientManager.xaml", UriKind.Relative);
 
         base.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
@@ -126,10 +122,10 @@ public partial class App : Application
     public static void SingleInstanceArgumentsReceived(object sender, ArgumentsReceivedEventArgs e)
     {
 
-        //if (PageSwitcher.Instance != null)
+        //if (ClientManager.Instance != null)
         //{
 
-        //    PageSwitcher.Instance.RunCommands(e.Args);
+        //    ClientManager.Instance.RunCommands(e.Args);
 
         //}
 

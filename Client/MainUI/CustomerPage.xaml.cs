@@ -10,11 +10,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Threading;
 using System.Reflection;
-using Client.Service;
+using Client;
+using ClientApp.Service;
 using eAd.Utilities;
 using mshtml;
 
-namespace Client
+namespace ClientApp
 {
 /// <summary>
 /// Interaction logic for CustomerPage.xaml
@@ -195,7 +196,7 @@ public partial class CustomerPage : UserControl, ISwitchable
                            _dismissTimer.Elapsed += delegate
                                                         {
 
-                                                            Switcher.Switch(MainForm.Instance);
+                                                            Switcher.Switch(AdvertPlayer.Instance);
                                                             _dismissTimer.Stop();
 
 

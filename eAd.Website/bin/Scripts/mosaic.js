@@ -6,7 +6,7 @@ $(function () {
     ReloadMosaicList();
     
     // Load the classic theme
-   Galleria.loadTheme("Content/galleria/themes/classic/galleria.classic.min.js");
+   Galleria.loadTheme("../Content/galleria/themes/classic/galleria.classic.min.js");
 
     
 });
@@ -23,7 +23,7 @@ function ResetDefaults() {
                     if (action == "edit") {
                         var mosaic = $("#MosaicID");
                         if (mosaic.val() != "") {
-                            ShowModalPage("EditMosaic",'Edit Mosaic', 'Mosaic/EditPartial/' + mosaic.val(), null, null);
+                            ShowModalPage("EditMosaic", 'Edit Mosaic', '../Mosaic/EditPartial/' + mosaic.val(), null, null);
                         }
                         else {
                             alert("Please Select A Mosaic to Work on");
@@ -32,7 +32,7 @@ function ResetDefaults() {
                     else if (action == "delete") {
                         var mosaic = $("#MosaicID");
                         if (mosaic.val() != "") {
-                            ShowModalPage("DeleteMosaic", 'Delete Mosaic', 'Mosaic/Delete/' + mosaic.val(), null, null);
+                            ShowModalPage("DeleteMosaic", 'Delete Mosaic', '../Mosaic/Delete/' + mosaic.val(), null, null);
                         }
                         else {
                             alert("Please Select A Mosaic to Work on");
@@ -60,6 +60,7 @@ function ResetDefaults() {
     var $gallery = $("#gallery"),
 			        $trash = $(".resizable");
 
+    $('#MosaicID').unbind('change');
     $("#MosaicID").change(function () {
         var val = $(this).val();
         if (val != "") {
@@ -102,7 +103,7 @@ function ResetDefaults() {
 
     $("#AddNewPosition").button();
     $('#AddNewPosition').unbind('click');
-    $("#AddNewPosition").click(function () { return false; });
+  
 
     // When the toolbar button is clicked...
     $('#AddNewPosition').click(function () {
@@ -258,7 +259,7 @@ function addPosition($item, $object) {
 
 
 function Preview() {
-    window.location.href = "Mosaic/Preview/" + $("#MosaicID").val();
+    window.location.href = "../Mosaic/Preview/" + $("#MosaicID").val();
 
 }
 
@@ -288,7 +289,7 @@ function SaveMosaic() {
 
     $.ajax({
         type: "AJAX",
-        url: "Mosaic/SaveMosaic",
+        url: "../Mosaic/SaveMosaic",
         data: JSON.stringify(plist),
         success: function (data) {
             alert(data);
@@ -299,7 +300,7 @@ function SaveMosaic() {
     });
     mosaic = $("#MosaicID");
     $.ajax({
-        url: "Mosaic/MosaicUpdated",
+        url: "../Mosaic/MosaicUpdated",
         type: 'AJAX',
         context: document.body,
         data:
@@ -322,7 +323,7 @@ function LoadMosaic(id) {
     //      var mosaic = $("#MosaicID");
     $("#MosaicID").attr("disabled", "disabled");
     $.ajax({
-        url: "Mosaic/LoadMosaic",
+        url: "../Mosaic/LoadMosaic",
         type: 'POST',
         context: document.body,
         data:
@@ -362,7 +363,7 @@ function SavePosition(name, px, py, pwidth, pheight, pitems) {
     //  var items = new Array();
     var mosaic = $("#MosaicID");
     $.ajax({
-        url: "Mosaic/SavePosition",
+        url: "../Mosaic/SavePosition",
         type: 'POST',
         context: document.body,
         async: false,
@@ -392,7 +393,7 @@ function getAndSetNewPosition(name) {
         });
     }
     else {
-        AddPosition(name, 0, 0, 0, 0, 0);
+        AddPosition(name, 0, 0, 100, 100, -1, null);
         ResetDefaults();
     }
 }
@@ -413,7 +414,7 @@ function CreateNewMosaic() {
                 $(this).dialog('close');
 
                 $.ajax({
-                    url: "Mosaic/Create",
+                    url: "../Mosaic/Create",
                     type: 'POST',
                     context: document.body,
                     data: { name: $(userInput).val() },
@@ -466,7 +467,7 @@ function checkString(strng) {
     return error;
 }
 
-function AddPosition(name, x, y, nwidth, nheight, id, media) {
+function    AddPosition(name, x, y, nwidth, nheight, id, media) {
 
 
     var recycleIcon = "<a href='' title='Recycle this image'  class='ui-icon ui-icon-refresh' style=\"z-index:50;top:-10px\">Recycle image</a>";
@@ -519,14 +520,14 @@ function AddPosition(name, x, y, nwidth, nheight, id, media) {
 
 					                if (mosaic.val() != "") {
 
-					                    ShowModalPage("MediaPicker", "Pick media to insert", 'Media/Picker?componentId=' + jsName, null, null);
+					                    ShowModalPage("MediaPicker", "Pick media to insert", '../Media/Picker?componentId=' + jsName, null, null);
 
 					                }
 					            }
 					            else if (action == "delete") {
 					                var mosaic = $("#MosaicID");
 					                if (mosaic.val() != "") {
-					                    ShowModalPage("DeletePosition", 'Delete Position', 'Mosaic/DeletePosition/?mosaic=' + mosaic.val() + "&position=" + jsName, null, null);
+					                    ShowModalPage("DeletePosition", 'Delete Position', '../Mosaic/DeletePosition/?mosaic=' + mosaic.val() + "&position=" + jsName, null, null);
 					                }
 
 
@@ -557,13 +558,14 @@ function AddPosition(name, x, y, nwidth, nheight, id, media) {
 
     var plist = [];
 
-    $.each(media, function (i, foo) {
-      
-        plist.push({ id: foo.MediaID, img: foo.DisplayLocation, name: foo.Name });
+    if (media != null) {
+    
+        $.each(media, function(i, foo) {
 
-    });
+            plist.push({ id: foo.MediaID, img: foo.DisplayLocation, name: foo.Name });
 
-
+        });
+    }
     CloseMediaPicker(plist, jsName);
     var TO = false;
    
@@ -737,7 +739,7 @@ function ResizeGallery(name) {
 
     function ReloadMosaicList(id)
     {
-        LoadDropDownList("Mosaic/GetMosaicList", "MosaicID");
+        LoadDropDownList("../Mosaic/GetMosaicList", "MosaicID");
         if(id>0) {
             $('#MosaicID').val(id);
         }
@@ -755,9 +757,15 @@ function ResizeGallery(name) {
 
         $("#MosaicID").attr("disabled", "disabled");
         $("#MosaicID").val("Loading");
-           $.getJSON(url, null,
+        $.getJSON(url, null,
            function (list) {
                $("#" + listId).empty();
+               if (list.length > 0) {
+                   $("#" + listId).append(new Option("Please Select A Mosaic", "##Select##"));
+               } else {
+                   $("#MosaicID").val("No Mosaics yet, Please Create One");
+                   $("#MosaicID").attr("disabled", "disabled");
+               }
                $.each(list, function (i, foo) {
                    $("#" + listId).append(new Option(foo.Text, foo.Value));
                });

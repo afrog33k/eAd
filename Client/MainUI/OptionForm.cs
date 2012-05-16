@@ -3,11 +3,11 @@ using System.Security.Cryptography.X509Certificates;
 using System.Net;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Client.Core;
-using Client.Properties;
-using Client.Service;
+using ClientApp.Core;
+using ClientApp.Properties;
+using ClientApp.Service;
 
-namespace Client
+namespace ClientApp
 {
 public partial class OptionForm : Form
 {

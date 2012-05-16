@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using Ionic.Zip;
 
-namespace Client.Update
+namespace ClientApp.Update
 {
 public class Update
 {

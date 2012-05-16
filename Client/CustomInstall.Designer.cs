@@ -1,4 +1,7 @@
-﻿namespace Client
+﻿using System.IO;
+using System.Security.AccessControl;
+
+namespace ClientApp
 {
 partial class CustomInstall
 {
@@ -31,6 +34,15 @@ partial class CustomInstall
         components = new System.ComponentModel.Container();
     }
 
+
+
+    protected override void OnAfterInstall(System.Collections.IDictionary savedState)
+    {
+        base.OnAfterInstall(savedState);
+
+       
+
+    }
     #endregion
 }
 }

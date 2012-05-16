@@ -1,7 +1,7 @@
 
 using System;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
 class LogMessage
 {

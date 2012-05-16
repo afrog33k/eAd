@@ -31,942 +31,937 @@ using System.Windows.Shapes;
 using System.Windows.Shell;
 
 
-namespace DesktopClient.Player
-{
-
-
-/// <summary>
-/// Window1
-/// </summary>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
-public partial class Window1 : System.Windows.Window, System.Windows.Markup.IComponentConnector
-{
-
-
-#line 21 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E1;
-
-#line default
-#line hidden
-
-
-#line 22 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E2;
-
-#line default
-#line hidden
-
-
-#line 23 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E3;
-
-#line default
-#line hidden
-
-
-#line 24 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E4;
-
-#line default
-#line hidden
-
-
-#line 25 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E5;
-
-#line default
-#line hidden
-
-
-#line 26 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E6;
-
-#line default
-#line hidden
-
-
-#line 27 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E7;
-
-#line default
-#line hidden
-
-
-#line 28 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E8;
-
-#line default
-#line hidden
-
-
-#line 29 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E9;
-
-#line default
-#line hidden
-
-
-#line 30 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E10;
-
-#line default
-#line hidden
-
-
-#line 31 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E11;
-
-#line default
-#line hidden
-
-
-#line 32 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E12;
-
-#line default
-#line hidden
-
-
-#line 33 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E13;
-
-#line default
-#line hidden
-
-
-#line 34 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E14;
-
-#line default
-#line hidden
-
-
-#line 35 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E15;
-
-#line default
-#line hidden
-
-
-#line 36 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E16;
-
-#line default
-#line hidden
-
-
-#line 37 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E17;
-
-#line default
-#line hidden
-
-
-#line 38 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E18;
-
-#line default
-#line hidden
-
-
-#line 39 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E19;
-
-#line default
-#line hidden
-
-
-#line 40 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E20;
-
-#line default
-#line hidden
-
-
-#line 41 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E21;
-
-#line default
-#line hidden
-
-
-#line 42 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E22;
-
-#line default
-#line hidden
-
-
-#line 43 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E23;
-
-#line default
-#line hidden
-
-
-#line 44 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E24;
-
-#line default
-#line hidden
-
-
-#line 45 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E25;
-
-#line default
-#line hidden
-
-
-#line 46 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E26;
-
-#line default
-#line hidden
-
-
-#line 47 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E27;
-
-#line default
-#line hidden
-
-
-#line 48 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E28;
-
-#line default
-#line hidden
-
-
-#line 49 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E29;
-
-#line default
-#line hidden
-
-
-#line 50 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E30;
-
-#line default
-#line hidden
-
-
-#line 51 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E31;
-
-#line default
-#line hidden
-
-
-#line 52 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem E32;
-
-#line default
-#line hidden
-
-
-#line 55 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem CPUEmboss;
-
-#line default
-#line hidden
-
-
-#line 56 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem CPUBlur;
-
-#line default
-#line hidden
-
-
-#line 57 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem CPUBevel;
-
-#line default
-#line hidden
-
-
-#line 58 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem CPUOuterGlow;
-
-#line default
-#line hidden
-
-
-#line 61 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem MaintainAspectRatio;
-
-#line default
-#line hidden
-
-
-#line 62 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem StretchMedia;
-
-#line default
-#line hidden
-
-
-#line 64 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem HalfSize;
-
-#line default
-#line hidden
-
-
-#line 66 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem rDefault;
-
-#line default
-#line hidden
-
-
-#line 67 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem r800x600;
-
-#line default
-#line hidden
-
-
-#line 68 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem r1024x768;
-
-#line default
-#line hidden
-
-
-#line 69 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem r1280x720;
-
-#line default
-#line hidden
-
-
-#line 70 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem r1280x800;
-
-#line default
-#line hidden
-
-
-#line 71 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem r1280x960;
-
-#line default
-#line hidden
-
-
-#line 72 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem r1280x1024;
-
-#line default
-#line hidden
-
-
-#line 73 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem r1440x900;
-
-#line default
-#line hidden
-
-
-#line 74 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem r1600x1200;
-
-#line default
-#line hidden
-
-
-#line 75 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem r1920x1200;
-
-#line default
-#line hidden
-
-
-#line 78 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem FPSOverlay;
-
-#line default
-#line hidden
-
-
-#line 79 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.MenuItem Sequential_Transitions;
-
-#line default
-#line hidden
-
-
-#line 84 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Button playBtn;
-
-#line default
-#line hidden
-
-
-#line 85 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Button stopBtn;
-
-#line default
-#line hidden
-
-
-#line 86 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Slider timeSlider;
-
-#line default
-#line hidden
-
-
-#line 87 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.TextBox nowPlayingBox;
-
-#line default
-#line hidden
-
-
-#line 88 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.GroupBox groupBox1;
-
-#line default
-#line hidden
-
-
-#line 90 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Slider parameterSlider;
-
-#line default
-#line hidden
-
-
-#line 91 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.ComboBox parameterBox;
-
-#line default
-#line hidden
-
-
-#line 92 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.TextBox minValueBox;
-
-#line default
-#line hidden
-
-
-#line 93 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.TextBox maxValueBox;
-
-#line default
-#line hidden
-
-
-#line 94 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.ComboBox effectBox;
-
-#line default
-#line hidden
-
-
-#line 95 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.TextBox parameterValueBox;
-
-#line default
-#line hidden
-
-
-#line 98 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.ListBox playlistBox;
-
-#line default
-#line hidden
-
-
-#line 99 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Button prevBtn;
-
-#line default
-#line hidden
-
-
-#line 100 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Button nextBtn;
-
-#line default
-#line hidden
-
-
-#line 101 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.GroupBox groupBox2;
-
-#line default
-#line hidden
-
-
-#line 107 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.ComboBox transitionBox;
-
-#line default
-#line hidden
-
-
-#line 108 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.TextBox transitionDurationBox;
-
-#line default
-#line hidden
-
-
-#line 109 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.CheckBox loopBox;
-
-#line default
-#line hidden
-
-
-#line 110 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.CheckBox shuffleBox;
-
-#line default
-#line hidden
-
-
-#line 111 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.CheckBox repeatBox;
-
-#line default
-#line hidden
-
-
-#line 112 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label label5;
-
-#line default
-#line hidden
-
-
-#line 113 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.CheckBox randomizePictureDurationBox;
-
-#line default
-#line hidden
-
-
-#line 114 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label label1;
-
-#line default
-#line hidden
-
-
-#line 115 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label label2;
-
-#line default
-#line hidden
-
-
-#line 116 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.CheckBox randomizeTransitionDurationBox;
-
-#line default
-#line hidden
-
-
-#line 117 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.CheckBox randomizeTransitionsBox;
-
-#line default
-#line hidden
-
-
-#line 118 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.Label label6;
-
-#line default
-#line hidden
-
-
-#line 119 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.TextBox pictureDurationBox;
-
-#line default
-#line hidden
-
-
-#line 122 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.TextBox totalTimeBox;
-
-#line default
-#line hidden
-
-
-#line 123 "..\..\..\..\Player\Window1.xaml"
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-    internal System.Windows.Controls.TextBox currentTimeBox;
-
-#line default
-#line hidden
-
-    private bool _contentLoaded;
-
+namespace DesktopClient.Player {
+    
+    
     /// <summary>
-    /// InitializeComponent
+    /// Window1
     /// </summary>
-    [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    public void InitializeComponent()
-    {
-        if (_contentLoaded)
-        {
-            return;
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
+    public partial class Window1 : System.Windows.Window, System.Windows.Markup.IComponentConnector {
+        
+        
+        #line 21 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E1;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 22 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E2;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 23 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E3;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 24 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E4;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 25 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E5;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 26 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E6;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 27 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E7;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 28 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E8;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 29 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E9;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 30 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E10;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 31 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E11;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 32 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E12;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 33 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E13;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 34 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E14;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 35 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E15;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 36 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E16;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 37 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E17;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 38 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E18;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 39 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E19;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 40 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E20;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 41 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E21;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 42 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E22;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 43 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E23;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 44 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E24;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 45 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E25;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 46 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E26;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 47 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E27;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 48 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E28;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 49 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E29;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 50 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E30;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 51 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E31;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 52 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem E32;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 55 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem CPUEmboss;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 56 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem CPUBlur;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 57 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem CPUBevel;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 58 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem CPUOuterGlow;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 61 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem MaintainAspectRatio;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 62 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem StretchMedia;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 64 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem HalfSize;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 66 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem rDefault;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 67 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem r800x600;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 68 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem r1024x768;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 69 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem r1280x720;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 70 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem r1280x800;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 71 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem r1280x960;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 72 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem r1280x1024;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 73 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem r1440x900;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 74 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem r1600x1200;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 75 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem r1920x1200;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 78 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem FPSOverlay;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 79 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.MenuItem Sequential_Transitions;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 84 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button playBtn;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 85 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button stopBtn;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 86 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Slider timeSlider;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 87 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox nowPlayingBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 88 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.GroupBox groupBox1;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 90 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Slider parameterSlider;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 91 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBox parameterBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 92 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox minValueBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 93 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox maxValueBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 94 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBox effectBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 95 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox parameterValueBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 98 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ListBox playlistBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 99 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button prevBtn;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 100 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button nextBtn;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 101 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.GroupBox groupBox2;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 107 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBox transitionBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 108 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox transitionDurationBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 109 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.CheckBox loopBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 110 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.CheckBox shuffleBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 111 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.CheckBox repeatBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 112 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label label5;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 113 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.CheckBox randomizePictureDurationBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 114 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label label1;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 115 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label label2;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 116 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.CheckBox randomizeTransitionDurationBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 117 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.CheckBox randomizeTransitionsBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 118 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label label6;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 119 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox pictureDurationBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 122 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox totalTimeBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 123 "..\..\..\..\Player\Window1.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox currentTimeBox;
+        
+        #line default
+        #line hidden
+        
+        private bool _contentLoaded;
+        
+        /// <summary>
+        /// InitializeComponent
+        /// </summary>
+        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public void InitializeComponent() {
+            if (_contentLoaded) {
+                return;
+            }
+            _contentLoaded = true;
+            System.Uri resourceLocater = new System.Uri("/DesktopClient;component/player/window1.xaml", System.UriKind.Relative);
+            
+            #line 1 "..\..\..\..\Player\Window1.xaml"
+            System.Windows.Application.LoadComponent(this, resourceLocater);
+            
+            #line default
+            #line hidden
         }
-        _contentLoaded = true;
-        System.Uri resourceLocater = new System.Uri("/DesktopClient;component/player/window1.xaml", System.UriKind.Relative);
-
-#line 1 "..\..\..\..\Player\Window1.xaml"
-        System.Windows.Application.LoadComponent(this, resourceLocater);
-
-#line default
-#line hidden
-    }
-
-    [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
-    void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target)
-    {
-        switch (connectionId)
-        {
-        case 1:
+        
+        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
+        void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target) {
+            switch (connectionId)
+            {
+            case 1:
             this.E1 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 2:
+            case 2:
             this.E2 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 3:
+            case 3:
             this.E3 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 4:
+            case 4:
             this.E4 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 5:
+            case 5:
             this.E5 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 6:
+            case 6:
             this.E6 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 7:
+            case 7:
             this.E7 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 8:
+            case 8:
             this.E8 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 9:
+            case 9:
             this.E9 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 10:
+            case 10:
             this.E10 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 11:
+            case 11:
             this.E11 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 12:
+            case 12:
             this.E12 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 13:
+            case 13:
             this.E13 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 14:
+            case 14:
             this.E14 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 15:
+            case 15:
             this.E15 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 16:
+            case 16:
             this.E16 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 17:
+            case 17:
             this.E17 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 18:
+            case 18:
             this.E18 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 19:
+            case 19:
             this.E19 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 20:
+            case 20:
             this.E20 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 21:
+            case 21:
             this.E21 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 22:
+            case 22:
             this.E22 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 23:
+            case 23:
             this.E23 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 24:
+            case 24:
             this.E24 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 25:
+            case 25:
             this.E25 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 26:
+            case 26:
             this.E26 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 27:
+            case 27:
             this.E27 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 28:
+            case 28:
             this.E28 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 29:
+            case 29:
             this.E29 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 30:
+            case 30:
             this.E30 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 31:
+            case 31:
             this.E31 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 32:
+            case 32:
             this.E32 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 33:
+            case 33:
             this.CPUEmboss = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 34:
+            case 34:
             this.CPUBlur = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 35:
+            case 35:
             this.CPUBevel = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 36:
+            case 36:
             this.CPUOuterGlow = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 37:
+            case 37:
             this.MaintainAspectRatio = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 38:
+            case 38:
             this.StretchMedia = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 39:
+            case 39:
             this.HalfSize = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 40:
+            case 40:
             this.rDefault = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 41:
+            case 41:
             this.r800x600 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 42:
+            case 42:
             this.r1024x768 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 43:
+            case 43:
             this.r1280x720 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 44:
+            case 44:
             this.r1280x800 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 45:
+            case 45:
             this.r1280x960 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 46:
+            case 46:
             this.r1280x1024 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 47:
+            case 47:
             this.r1440x900 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 48:
+            case 48:
             this.r1600x1200 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 49:
+            case 49:
             this.r1920x1200 = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 50:
+            case 50:
             this.FPSOverlay = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 51:
+            case 51:
             this.Sequential_Transitions = ((System.Windows.Controls.MenuItem)(target));
             return;
-        case 52:
+            case 52:
             this.playBtn = ((System.Windows.Controls.Button)(target));
             return;
-        case 53:
+            case 53:
             this.stopBtn = ((System.Windows.Controls.Button)(target));
             return;
-        case 54:
+            case 54:
             this.timeSlider = ((System.Windows.Controls.Slider)(target));
             return;
-        case 55:
+            case 55:
             this.nowPlayingBox = ((System.Windows.Controls.TextBox)(target));
             return;
-        case 56:
+            case 56:
             this.groupBox1 = ((System.Windows.Controls.GroupBox)(target));
             return;
-        case 57:
+            case 57:
             this.parameterSlider = ((System.Windows.Controls.Slider)(target));
             return;
-        case 58:
+            case 58:
             this.parameterBox = ((System.Windows.Controls.ComboBox)(target));
             return;
-        case 59:
+            case 59:
             this.minValueBox = ((System.Windows.Controls.TextBox)(target));
             return;
-        case 60:
+            case 60:
             this.maxValueBox = ((System.Windows.Controls.TextBox)(target));
             return;
-        case 61:
+            case 61:
             this.effectBox = ((System.Windows.Controls.ComboBox)(target));
             return;
-        case 62:
+            case 62:
             this.parameterValueBox = ((System.Windows.Controls.TextBox)(target));
             return;
-        case 63:
+            case 63:
             this.playlistBox = ((System.Windows.Controls.ListBox)(target));
             return;
-        case 64:
+            case 64:
             this.prevBtn = ((System.Windows.Controls.Button)(target));
             return;
-        case 65:
+            case 65:
             this.nextBtn = ((System.Windows.Controls.Button)(target));
             return;
-        case 66:
+            case 66:
             this.groupBox2 = ((System.Windows.Controls.GroupBox)(target));
             return;
-        case 67:
+            case 67:
             this.transitionBox = ((System.Windows.Controls.ComboBox)(target));
             return;
-        case 68:
+            case 68:
             this.transitionDurationBox = ((System.Windows.Controls.TextBox)(target));
             return;
-        case 69:
+            case 69:
             this.loopBox = ((System.Windows.Controls.CheckBox)(target));
             return;
-        case 70:
+            case 70:
             this.shuffleBox = ((System.Windows.Controls.CheckBox)(target));
             return;
-        case 71:
+            case 71:
             this.repeatBox = ((System.Windows.Controls.CheckBox)(target));
             return;
-        case 72:
+            case 72:
             this.label5 = ((System.Windows.Controls.Label)(target));
             return;
-        case 73:
+            case 73:
             this.randomizePictureDurationBox = ((System.Windows.Controls.CheckBox)(target));
             return;
-        case 74:
+            case 74:
             this.label1 = ((System.Windows.Controls.Label)(target));
             return;
-        case 75:
+            case 75:
             this.label2 = ((System.Windows.Controls.Label)(target));
             return;
-        case 76:
+            case 76:
             this.randomizeTransitionDurationBox = ((System.Windows.Controls.CheckBox)(target));
             return;
-        case 77:
+            case 77:
             this.randomizeTransitionsBox = ((System.Windows.Controls.CheckBox)(target));
             return;
-        case 78:
+            case 78:
             this.label6 = ((System.Windows.Controls.Label)(target));
             return;
-        case 79:
+            case 79:
             this.pictureDurationBox = ((System.Windows.Controls.TextBox)(target));
             return;
-        case 80:
+            case 80:
             this.totalTimeBox = ((System.Windows.Controls.TextBox)(target));
             return;
-        case 81:
+            case 81:
             this.currentTimeBox = ((System.Windows.Controls.TextBox)(target));
             return;
+            }
+            this._contentLoaded = true;
         }
-        this._contentLoaded = true;
     }
-}
 }
 

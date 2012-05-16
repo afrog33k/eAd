@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Threading;
-using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
-using Client.Properties;
-using Control = System.Windows.Controls.Control;
+using ClientApp.Properties;
 using Timer = System.Timers.Timer;
-using UserControl = System.Windows.Controls.UserControl;
 
-namespace Client
+namespace ClientApp
 {
 /// <summary>
 /// Interaction logic for Media.xaml
@@ -347,7 +344,7 @@ public partial class Media : IDisposable
 
                     }));
                 };
-                this.BeginAnimation(Control.OpacityProperty, ani);
+                this.BeginAnimation(OpacityProperty, ani);
             }));
 
         }

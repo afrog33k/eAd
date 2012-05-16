@@ -1,11 +1,10 @@
-
 using System;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using Client.Core;
-using Client.Properties;
+using ClientApp.Core;
+using ClientApp.Properties;
 
-namespace Client
+namespace ClientApp
 {
 class WebContent : Media
 {

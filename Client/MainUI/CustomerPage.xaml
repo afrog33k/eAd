@@ -2,9 +2,8 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Controls1="clr-namespace:Client.Controls"
-	xmlns:Widgets="clr-namespace:Client.MainUI.Widgets" xmlns:Widgets1="clr-namespace:Client.Widgets" mc:Ignorable="d" 
-	x:Class="Client.CustomerPage"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Widgets="clr-namespace:ClientApp.Widgets" mc:Ignorable="d" 
+	x:Class="ClientApp.CustomerPage"
 	x:Name="eADWindow"
 	d:DesignWidth="768" d:DesignHeight="1360" >
 
@@ -47,9 +46,9 @@
    
     <Grid x:Name="LayoutRoot" Background="White" Height="Auto" Width="Auto">
             <Widgets:Profile x:Name="CustomerProfile" Margin="12,12,269,1066"></Widgets:Profile>
-                <Widgets1:Location x:Name="LocationWidget" Margin="505,12,12,358"></Widgets1:Location>
+                <Widgets:Location x:Name="LocationWidget" Margin="505,12,12,358"></Widgets:Location>
         <Widgets:CarInfo  x:Name="CarInfoWidget" Margin="12,296,269,-296"></Widgets:CarInfo>
-        <Widgets1:BatteryInfo x:Name="BatteryInfoWidget" Margin="12,652,269,358"></Widgets1:BatteryInfo>
+        <Widgets:BatteryInfo x:Name="BatteryInfoWidget" Margin="12,652,269,358"></Widgets:BatteryInfo>
         </Grid>
     
 </UserControl>

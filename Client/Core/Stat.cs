@@ -1,8 +1,8 @@
 using System;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
-class Stat
+    public class Stat
 {
     public StatType FileType;
     public String FromDate;

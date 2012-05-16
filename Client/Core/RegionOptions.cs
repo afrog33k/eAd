@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using eAd.DataViewModels;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
 /// <summary>
 /// The options specific to a region
@@ -45,6 +45,8 @@ struct RegionOptions
     public string backgroundColor;
 
     public MediaDictionary Dictionary;
+
+    public string Name { get; set; }
 
     public override string ToString()
     {

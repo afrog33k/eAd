@@ -3,7 +3,13 @@
   <Items>
     <ScheduleLayout File="11" FromDate="2000-01-01 00:00:00" ToDate="2030-01-19 00:00:00" ScheduleId="0" Priority="0">
       <Default>true</Default>
-      <Hash>bf0c73b929ab784e6fb38b11c6963fd4</Hash>
+      <Hash>5daa3ea53d9d7812e0a7e29c2652ea8b</Hash>
+      <Type>General</Type>
+    </ScheduleLayout>
+    <ScheduleLayout File="20" FromDate="2000-01-01 00:00:00" ToDate="2030-01-19 00:00:00" ScheduleId="0" Priority="0">
+      <Default>true</Default>
+      <Hash>34add15cf1fdc8f325f0b4d178a8f432</Hash>
+      <Type>Profile</Type>
     </ScheduleLayout>
   </Items>
 </ScheduleModel>

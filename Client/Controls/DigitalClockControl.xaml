@@ -1,6 +1,6 @@
-﻿<UserControl x:Class="Client.Controls.DigitalClockControl"
+﻿<UserControl x:Class="ClientApp.Controls.DigitalClockControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Client.Controls">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:ClientApp.Controls">
     <Border BorderThickness="3" BorderBrush="Gray" CornerRadius="10" x:Name="masterBorder">
         <Grid>
             <Grid.ColumnDefinitions>

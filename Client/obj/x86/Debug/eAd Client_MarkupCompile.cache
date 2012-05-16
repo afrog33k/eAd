@@ -5,16 +5,16 @@ winexe
 C#
 .cs
 C:\ProjectHub\eAd\Client\obj\x86\Debug\
-Client
+ClientApp
 none
 false
 DEBUG;TRACE
 C:\ProjectHub\eAd\Client\MainUI\App.xaml
-18-217624955
-19-1821618817
-76-348183510
+19-72886157
+201271925915
+78786790192
 271271577185
-Controls\BatteryRecharging.xaml;Controls\DigitalClockControl.xaml;Controls\DigitalClockDots.xaml;Controls\DigitalClockElement.xaml;Controls\DigitalControlWindow.xaml;Controls\ImageListBox.xaml;MainUI\About.xaml;MainUI\CustomerPage.xaml;MainUI\MainForm.xaml;MainUI\Option.xaml;MainUI\SplashScreen.xaml;MainUI\Widgets\BatteryInfo.xaml;MainUI\Widgets\CarInfo.xaml;MainUI\Widgets\Location.xaml;MainUI\Widgets\Profile.xaml;PageSwitcher.xaml;Players\Media.xaml;Themes\Generic.xaml;
+Controls\BatteryRecharging.xaml;Controls\DigitalClockControl.xaml;Controls\DigitalClockDots.xaml;Controls\DigitalClockElement.xaml;Controls\DigitalControlWindow.xaml;Controls\ImageListBox.xaml;MainUI\About.xaml;MainUI\Charging.xaml;MainUI\CustomerPage.xaml;MainUI\AdvertPlayer.xaml;MainUI\Option.xaml;MainUI\SplashScreen.xaml;MainUI\Widgets\BatteryInfo.xaml;MainUI\Widgets\CarInfo.xaml;MainUI\Widgets\Location.xaml;MainUI\Widgets\Profile.xaml;ClientManager.xaml;Players\Media.xaml;Themes\Generic.xaml;
 
 False
 

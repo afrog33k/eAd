@@ -2,8 +2,8 @@
 
 namespace eAd.Utilities
 {
-using eAd.DataViewModels;
-using System;
+
+
 
 public class GoogleMaps
 {

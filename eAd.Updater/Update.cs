@@ -256,10 +256,14 @@ public partial class Update : Form,IReporter
             {
                 progressBar1.Value += e.Downloaded;
                 SetLabel(line1, "Downloading Update...");
+                SetLabel(lblPercentage, (progressBar1.Value*100 / progressBar1.Maximum) + "%");
             }
             else
             {
                 SetLabel(line1, "Download complete.");
+
+                SetLabel(lblPercentage, (progressBar1.Value*100 / progressBar1.Maximum) + "%");        
+              
             }
 
             progressBar1.Refresh();

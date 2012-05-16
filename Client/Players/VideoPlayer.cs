@@ -1,10 +1,8 @@
-
-
 using System.Windows;
 using System.Windows.Forms.Integration;
 using AxWMPLib;
 
-namespace Client
+namespace ClientApp
 {
 public sealed partial class VideoPlayer : Media
 {

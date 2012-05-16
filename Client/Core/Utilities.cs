@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
 public class Utilities
 {

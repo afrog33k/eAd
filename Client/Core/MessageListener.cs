@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Diagnostics;
 
-namespace Client.Core
+namespace ClientApp.Core
 {
 /// <summary>
 /// Message listener, singlton pattern.

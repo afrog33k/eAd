@@ -1,0 +1,20 @@
+﻿eAd Client
+
+
+winexe
+C#
+.cs
+C:\ProjectHub\eAd\Client\obj\x86\Release\
+ClientApp
+none
+false
+TRACE
+C:\ProjectHub\eAd\Client\MainUI\App.xaml
+19-72886157
+201271925915
+771746330432
+27435686532
+Controls\BatteryRecharging.xaml;Controls\DigitalClockControl.xaml;Controls\DigitalClockDots.xaml;Controls\DigitalClockElement.xaml;Controls\DigitalControlWindow.xaml;Controls\ImageListBox.xaml;MainUI\About.xaml;MainUI\Charging.xaml;MainUI\CustomerPage.xaml;MainUI\AdvertPlayer.xaml;MainUI\Option.xaml;MainUI\SplashScreen.xaml;MainUI\Widgets\BatteryInfo.xaml;MainUI\Widgets\CarInfo.xaml;MainUI\Widgets\Location.xaml;MainUI\Widgets\Profile.xaml;ClientManager.xaml;Players\Media.xaml;Themes\Generic.xaml;
+
+False
+

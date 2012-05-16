@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Client.Widgets
+namespace ClientApp.Widgets
 {
     /// <summary>
     /// Interaction logic for BatteryInfo.xaml

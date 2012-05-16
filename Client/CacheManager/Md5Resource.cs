@@ -1,6 +1,6 @@
 using System;
 
-namespace Client
+namespace ClientApp
 {
 public struct Md5Resource
 {

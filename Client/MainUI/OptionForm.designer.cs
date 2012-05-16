@@ -1,7 +1,7 @@
-using Client.Properties;
-using Client.Service;
+using ClientApp.Properties;
+using ClientApp.Service;
 
-namespace Client
+namespace ClientApp
 {
 partial class OptionForm
 {

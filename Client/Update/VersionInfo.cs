@@ -1,6 +1,6 @@
 using System;
 
-namespace Client.Update
+namespace ClientApp.Update
 {
 public class VersionInfo
 {

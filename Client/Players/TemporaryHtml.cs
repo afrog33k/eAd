@@ -1,10 +1,9 @@
 using System;
 using System.IO;
 using System.Text;
-using System.Reflection;
 using System.Diagnostics;
 
-namespace Client
+namespace ClientApp
 {
 /// <summary>
 /// A temporary html object.

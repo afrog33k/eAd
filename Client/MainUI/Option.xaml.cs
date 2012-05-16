@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Controls;
+using Client;
 
-namespace Client
+namespace ClientApp
 {
 public partial class Option : ISwitchable
 {

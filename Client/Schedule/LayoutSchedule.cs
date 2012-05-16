@@ -1,6 +1,6 @@
 using System;
 
-namespace Client
+namespace ClientApp
 {
 /// <summary>
 /// A LayoutSchedule

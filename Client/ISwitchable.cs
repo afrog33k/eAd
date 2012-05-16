@@ -1,5 +1,5 @@
 ﻿
-namespace Client
+namespace ClientApp
 {
 public interface ISwitchable
 {

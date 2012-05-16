@@ -27,6 +27,8 @@ public static class CopyUtility
     public static void CopyAllFiles(DirectoryInfo source, DirectoryInfo target, bool recursive, IReporter reporter
                                    )
     {
+      
+
         if (source == null)
             throw new ArgumentNullException("source");
         if (target == null)
