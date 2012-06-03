@@ -55,6 +55,7 @@
     <Compile Include="MessageViewModel.cs" />
     <Compile Include="PositionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScheduleLayout.cs" />
     <Compile Include="ScheduleModel.cs" />
     <Compile Include="StationViewModel.cs" />
   </ItemGroup>

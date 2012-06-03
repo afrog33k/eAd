@@ -1,6 +1,21 @@
 <?xml version="1.0"?>
-<LayoutModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SchemaVersion="1" Width="768" Height="1366" Type="Profile">
+<LayoutModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SchemaVersion="1" Width="768" Height="1366" Background="\\uploads\media\50\50\dhx7smlfje6w4fiwv7stog.jpg" Type="Profile">
   <region>
+    <Media>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>None</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>-1</Id>
+        <Type>PlaceHolder</Type>
+        <Duration>1000000</Duration>
+        <Lkid>-1</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+    </Media>
     <UserId>0</UserId>
     <Width>331</Width>
     <Height>330</Height>
@@ -10,6 +25,21 @@
     <Name>PersonalInfo</Name>
   </region>
   <region>
+    <Media>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>None</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>-1</Id>
+        <Type>PlaceHolder</Type>
+        <Duration>1000000</Duration>
+        <Lkid>-1</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+    </Media>
     <UserId>0</UserId>
     <Width>211</Width>
     <Height>241</Height>
@@ -19,6 +49,21 @@
     <Name>LocationInfo</Name>
   </region>
   <region>
+    <Media>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>None</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>-1</Id>
+        <Type>PlaceHolder</Type>
+        <Duration>1000000</Duration>
+        <Lkid>-1</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+    </Media>
     <UserId>0</UserId>
     <Width>282</Width>
     <Height>417</Height>
@@ -28,6 +73,21 @@
     <Name>BatteryInfo</Name>
   </region>
   <region>
+    <Media>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>None</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>-1</Id>
+        <Type>PlaceHolder</Type>
+        <Duration>1000000</Duration>
+        <Lkid>-1</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+    </Media>
     <UserId>0</UserId>
     <Width>386</Width>
     <Height>393</Height>

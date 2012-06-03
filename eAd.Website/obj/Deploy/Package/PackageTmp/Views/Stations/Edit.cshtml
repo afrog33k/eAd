@@ -46,8 +46,8 @@
             @Html.ValidationMessageFor(model => model.HardwareKey)
         </div>
 
-       
-
+    
+        @Html.HiddenFor(model => model.UniqueID)
         @Html.HiddenFor(model => model.StationID)
 
         <div class="editor-label">

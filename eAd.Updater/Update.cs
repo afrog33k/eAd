@@ -223,9 +223,19 @@ public partial class Update : Form,IReporter
 
     private void WrapUp()
     {
+        try
+        {
+
+     
         if (Directory.Exists(_tempDownloadFolder))
         {
             Directory.Delete(_tempDownloadFolder, true);
+        }  
+        }
+        catch (Exception)
+        {
+            
+           
         }
     }
 

@@ -1,0 +1,20 @@
+﻿<trace date="2012-05-16 17:41:12" category="Info"><message>Client Started</message><method>Main</method>
+</trace>
+<trace date="2012-05-16 17:41:12" category="Audit"><message>Unable to reuse the Cache Manager because: Could not find file 'C:\ProjectHub\eAd\Client\bin\Release\cacheManager.xml'.</message><method>AdvertPlayer - SetCacheManager</method>
+</trace>
+<trace date="2012-05-16 17:41:12" category="Schedule - InitializeComponents">Collection Interval: 900
+</trace>
+<trace date="2012-05-16 17:41:13" category="Error"><message>XMDS reset, last connection was at 13/04/2012 15:46:00</message><method>xmdsTimer_Tick</method>
+</trace>
+<trace date="2012-05-16 17:41:14" category="Error"><message>XMDS reset, last connection was at 13/04/2012 15:46:00</message><method>xmdsTimer_Tick</method>
+</trace>
+<trace date="2012-05-16 17:47:51" category="Info"><message>Client Started</message><method>Main</method>
+</trace>
+<trace date="2012-05-16 17:47:53" category="Schedule - InitializeComponents">Collection Interval: 900
+</trace>
+<trace date="2012-05-16 17:47:54" category="Error"><message>XMDS reset, last connection was at 13/04/2012 15:46:00</message><method>xmdsTimer_Tick</method>
+</trace>
+<trace date="2012-05-16 17:47:56" category="Error"><message>XMDS reset, last connection was at 13/04/2012 15:46:00</message><method>xmdsTimer_Tick</method>
+</trace>
+<trace date="2012-05-16 17:47:56" category="Error"><message>XMDS reset, last connection was at 13/04/2012 15:46:00</message><method>xmdsTimer_Tick</method>
+</trace>

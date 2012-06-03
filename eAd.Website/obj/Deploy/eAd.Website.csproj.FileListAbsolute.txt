@@ -248,3 +248,17 @@ C:\ProjectHub\eAd\eAd.Website\bin\Scripts\common.js
 C:\ProjectHub\eAd\eAd.Website\bin\eAd.Website.dll
 C:\ProjectHub\eAd\eAd.Website\bin\Client\Update\UpdateInfo.txt
 C:\ProjectHub\eAd\eAd.Website\bin\Client\Update\Client.zip
+C:\ProjectHub\eAd\eAd.Website\bin\Content\Images\powerpoint.jpg
+C:\ProjectHub\eAd\eAd.Website\bin\Content\Images\powerpoint.png
+C:\ProjectHub\eAd\eAd.Website\bin\Scripts\Uploadify\cancel.png
+C:\ProjectHub\eAd\eAd.Website\bin\Scripts\Uploadify\check.php
+C:\ProjectHub\eAd\eAd.Website\bin\Scripts\Uploadify\expressInstall.swf
+C:\ProjectHub\eAd\eAd.Website\bin\Scripts\Uploadify\jquery.uploadify.v2.1.4.js
+C:\ProjectHub\eAd\eAd.Website\bin\Scripts\Uploadify\jquery.uploadify.v2.1.4.min.js
+C:\ProjectHub\eAd\eAd.Website\bin\Scripts\Uploadify\swfobject.js
+C:\ProjectHub\eAd\eAd.Website\bin\Scripts\Uploadify\uploadify.allglyphs.swf
+C:\ProjectHub\eAd\eAd.Website\bin\Scripts\Uploadify\uploadify.css
+C:\ProjectHub\eAd\eAd.Website\bin\Scripts\Uploadify\uploadify.php
+C:\ProjectHub\eAd\eAd.Website\bin\Scripts\Uploadify\uploadify.swf
+C:\ProjectHub\eAd\eAd.Website\bin\Scripts\Uploadify\Thumbs.db
+C:\ProjectHub\eAd\eAd.Website\bin\Scripts\Uploadify\uploadify.fla

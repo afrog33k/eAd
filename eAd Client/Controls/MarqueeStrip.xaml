@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="ClientApp.Controls.MarqueeStrip"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             SizeChanged="MarqueeStrip_SizeChanged" Unloaded="MarqueeStrip_Unloaded"
+             d:DesignHeight="86" d:DesignWidth="485">
+    <UserControl.Resources>
+        <LinearGradientBrush x:Key="brHBar" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#14FFFFFF" Offset="0" />
+            <GradientStop Color="#C0000000" Offset="0.5" />
+            <GradientStop Color="#14FFFFFF" Offset="1" />
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="brVBar" EndPoint="1,0.5" StartPoint="0,0.5">
+            <GradientStop Color="#14FFFFFF" Offset="0" />
+            <GradientStop Color="#C0000000" Offset="0.5" />
+            <GradientStop Color="#14FFFFFF" Offset="1" />
+        </LinearGradientBrush>
+    </UserControl.Resources>
+    <Grid>
+        <Border Name="bkgPlane" Background="White" OpacityMask="{StaticResource brVBar}">
+            <Border.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsVerticalFlow}" Value="false">
+                            <Setter Property="Border.OpacityMask" Value="{Binding Source={StaticResource brHBar}}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <TextBlock Name="txtBanner" Text="Status" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" LineHeight="{Binding RelativeSource={RelativeSource Self},Path=FontSize}" Height="31" Width="148" FontSize="36">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <TranslateTransform />
+                    </TransformGroup>
+                </TextBlock.RenderTransform></TextBlock>
+        </Border>
+        <Canvas Height="{Binding ElementName=txtBanner,Path=ActualHeight}"
+                Width="{Binding ElementName=txtBanner,Path=ActualWidth}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"></Canvas>
+    </Grid>
+</UserControl>
+

@@ -436,7 +436,7 @@ public partial class ClientManager : Window, IComponentConnector
                 if (command == "Make Available")
                 {
                    // Switcher.Switch(CustomerPage.Instance);
-                    //CustomerPage.Instance.Update(20000); //20000
+                    Charging.Instance.Update(20000); //20000
                     Switcher.Switch(Charging.Instance);
                   
                     goto SendReceipt;
@@ -516,7 +516,7 @@ public partial class ClientManager : Window, IComponentConnector
 
             //    CustomerPage.CurrentRFID = message.Text;
                 Switcher.Switch(Charging.Instance);
-               // CustomerPage.Instance.Update(60000); //60000
+                CustomerPage.Instance.Update(60000); //60000
 
                 goto SendReceipt;
 

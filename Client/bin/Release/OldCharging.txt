@@ -1,0 +1,951 @@
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Threading;
+using System.Xml.Serialization;
+using ClientApp.Core;
+using ClientApp.MainUI;
+using ClientApp.Properties;
+using ClientApp.Service;
+using ClientApp.Widgets;
+using eAd.DataViewModels;
+using eAd.Utilities;
+using mshtml;
+using Brushes = System.Windows.Media.Brushes;
+using Color = System.Windows.Media.Color;
+using ColorConverter = System.Windows.Media.ColorConverter;
+using Image = System.Drawing.Image;
+using Region = ClientApp.Core.Region;
+using Size = System.Drawing.Size;
+using Timer = System.Timers.Timer;
+
+namespace ClientApp
+{
+    /// <summary>
+    /// Interaction logic for Charging.xaml
+    /// </summary>
+    public partial class Charging : UserControl
+    {
+        #region Fields (15)
+
+        private static Charging _instance;
+        private static Collection<Region> _regions;
+        private readonly object UpdateLock = new object();
+        private Size _clientSize;
+        private Timer _dismissTimer;
+        private bool _isExpired;
+        private double _layoutHeight;
+        private int _layoutId;
+        private double _layoutWidth;
+        private double _scaleFactor;
+        private BitmapImage image;
+
+        #endregion Fields
+
+        #region Constructors (1)
+
+        public Charging()
+        {
+            Instance = this;
+            InitializeComponent();
+
+            // UserApp data
+            Debug.WriteLine(new LogMessage("Charging Load", "User AppData Path: " + App.UserAppDataPath),
+                            LogType.Info.ToString());
+
+
+            // Override the default size if necessary
+            if (Settings.Default.sizeX != 0)
+            {
+                _clientSize = new Size((int) Settings.Default.sizeX, (int) Settings.Default.sizeY);
+            }
+            else
+            {
+                _clientSize = new Size((int) SystemParameters.PrimaryScreenWidth,
+                                       (int) SystemParameters.PrimaryScreenHeight);
+                Visibility = Visibility.Visible;
+                Width = _clientSize.Width;
+                Height = _clientSize.Height;
+            }
+
+
+            // Process any stuff that has happened during the loading process
+            App.DoEvents();
+        }
+
+        #endregion Constructors
+
+        #region Properties (1)
+
+        private static string _currentRFID;
+
+        public static Charging Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new Charging();
+                return _instance;
+            }
+            set { _instance = value; }
+        }
+
+        public int LayoutId
+        {
+            get { return _layoutId; }
+            set { _layoutId = value; }
+        }
+
+        public bool IsExpired
+        {
+            get { return _isExpired; }
+            set { _isExpired = value; }
+        }
+
+        public static string CurrentRFID
+        {
+            get { return _currentRFID; }
+            set
+            {
+                _currentRFID = value;
+                if (Instance != null)
+                    Instance.ClearAllInfo();
+            }
+        }
+
+        #endregion Properties
+
+        #region Methods (9)
+
+        // Public Methods (1) 
+
+        /// <summary>
+        /// Force a flush of the stats log
+        /// </summary>
+        public void FlushStats()
+        {
+            try
+            {
+                ClientManager.Instance.StatLog.Flush();
+            }
+            catch
+            {
+                Trace.WriteLine(new LogMessage("MainPlayer - FlushStats", "Unable to Flush Stats"),
+                                LogType.Error.ToString());
+            }
+        }
+
+        // Private Methods (8) 
+
+        /// <summary>
+        /// Disposes Layout - removes the controls
+        /// </summary>
+        public void DestroyLayout()
+        {
+            Debug.WriteLine("Destroying Layout", "MainPlayer - DestoryLayout");
+
+            App.DoEvents();
+
+            if (_regions == null) return;
+
+            if (_regions.Count == 0)
+            {
+                _regions = null;
+                return;
+            }
+
+            for (int i = 0; i < _regions.Count; i++)
+            {
+                Region region = _regions[i];
+                region.Clear();
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new ThreadStart(() =>
+                                                                                          {
+                                                                                              if (region != null)
+                                                                                                  MediaCanvas.Children.
+                                                                                                      Remove(region);
+                                                                                          }));
+
+
+                try
+                {
+                    Debug.WriteLine("Calling Dispose Region", "MainPlayer - DestoryLayout");
+                    region.Dispose();
+                }
+                catch (Exception e)
+                {
+                    //do nothing (perhaps write to some error xml somewhere?)
+                    Debug.WriteLine(e.Message);
+                }
+            }
+
+            _regions.Clear();
+            _regions = null;
+        }
+
+        private void FormFadeOutCompleted(object sender, EventArgs e)
+        {
+        }
+
+        /// <summary>
+        /// Returns the image codec with the given mime type
+        /// </summary>
+        private static ImageCodecInfo GetEncoderInfo(string mimeType)
+        {
+            // Get image codecs for all image formats
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+
+            // Find the correct image codec
+            for (int i = 0; i < codecs.Length; i++)
+                if (codecs[i].MimeType == mimeType)
+                    return codecs[i];
+            return null;
+        }
+
+
+        /// <summary>
+        /// Prepares the Layout.. rendering all the necessary controls
+        /// </summary>
+        public void PrepareLayout(string layoutPath)
+        {
+            // Create a start record for this layout
+            //  ClientManager.Instance.Stat = new Stat();
+            // ClientManager.Instance.Stat.FileType = StatType.Layout;
+            //   ClientManager.Instance.Stat.ScheduleID = ClientManager.Instance.ScheduleId;
+            //    ClientManager.Instance.Stat.LayoutID = _layoutId;
+            //   ClientManager.Instance.Stat.FromDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            LayoutModel layout;
+
+            // Default or not
+            if (layoutPath == Settings.Default.LibraryPath + @"\Default.xml" || String.IsNullOrEmpty(layoutPath))
+            {
+                throw new Exception("Default layout");
+            }
+            else
+            {
+                try
+                {
+                    // Get this layouts XML
+                    using (FileStream file = File.Open(layoutPath, FileMode.Open, FileAccess.Read, FileShare.Write))
+                    {
+                        var serializer = new XmlSerializer(typeof (LayoutModel));
+                        layout = (LayoutModel) serializer.Deserialize(file);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Trace.WriteLine(string.Format("Could not find the layout file {0}: {1}", layoutPath, ex.Message));
+                    throw;
+                }
+            }
+
+            // Attributes of the main layout node
+
+
+            // Set the background and size of the form
+            _layoutWidth = layout.Width;
+            _layoutHeight = layout.Height;
+
+
+            //// Scaling factor, will be applied to all regions
+            //_scaleFactor = Math.Max(_clientSize.Width / _layoutWidth, _clientSize.Height / _layoutHeight);
+
+            //// Want to be able to center this shiv - therefore work out which one of these is going to have left overs
+            int backgroundWidth = _clientSize.Width; // (int)(_layoutWidth * _scaleFactor);
+            int backgroundHeight = _clientSize.Height; //(int)(_layoutHeight * _scaleFactor);
+
+            //double leftOverX;
+            //double leftOverY;
+
+            //try
+            //{
+            //    leftOverX = Math.Abs(_clientSize.Width - backgroundWidth);
+            //    leftOverY = Math.Abs(_clientSize.Height - backgroundHeight);
+
+            //    if (leftOverX != 0) leftOverX = leftOverX / 2;
+            //    if (leftOverY != 0) leftOverY = leftOverY / 2;
+            //}
+            //catch
+            //{
+            //    leftOverX = 0;
+            //    leftOverY = 0;
+            //}
+
+
+            // New region and region options objects
+            _regions = new Collection<Region>();
+            var options = new RegionOptions();
+
+            // Deal with the color
+            try
+            {
+                if (!String.IsNullOrEmpty(layout.Bgcolor))
+                {
+                    Dispatcher.BeginInvoke(DispatcherPriority.Background, new ThreadStart(() =>
+                                                                                              {
+                                                                                                  MediaCanvas.Background
+                                                                                                      =
+                                                                                                      new SolidColorBrush
+                                                                                                          ((Color)
+                                                                                                           ColorConverter
+                                                                                                               .
+                                                                                                               ConvertFromString
+                                                                                                               (layout.
+                                                                                                                    Bgcolor));
+                                                                                              }));
+                    options.backgroundColor = layout.Bgcolor;
+                }
+            }
+            catch
+            {
+                Dispatcher.BeginInvoke(DispatcherPriority.Background,
+                                       new ThreadStart(
+                                           () =>
+                                               {
+                                                   MediaCanvas.Background = new SolidColorBrush(Colors.Black);
+                                                       // Default black
+                                               }));
+
+
+                options.backgroundColor = "#000000";
+            }
+
+            // Get the background
+            try
+            {
+                if (layout.Background == null)
+                {
+                    // Assume there is no background image
+                    MediaCanvas.Background = null;
+                    options.backgroundImage = "";
+                }
+                else
+                {
+                    string bgFilePath = Settings.Default.LibraryPath + @"\backgrounds\" + backgroundWidth + "x" +
+                                        backgroundHeight + "_" + layout.Background;
+                    Utilities.CreateFolder(Path.GetDirectoryName(bgFilePath));
+                    // Create a correctly sized background image in the temp folder
+                    if (!File.Exists(bgFilePath))
+                    {
+                        Image img = Image.FromFile(Settings.Default.LibraryPath + @"\" + layout.Background);
+
+                        var bmp = new Bitmap(img, backgroundWidth, backgroundHeight);
+                        var encoderParameters = new EncoderParameters(1);
+                        var qualityParam = new EncoderParameter(Encoder.Quality, 90L);
+                        encoderParameters.Param[0] = qualityParam;
+
+                        ImageCodecInfo jpegCodec = GetEncoderInfo("image/jpeg");
+
+                        bmp.Save(bgFilePath, jpegCodec, encoderParameters);
+
+                        img.Dispose();
+                        bmp.Dispose();
+                    }
+
+                    Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+                                           new ThreadStart(
+                                               () =>
+                                                   {
+                                                       MediaCanvas.Background =
+                                                           new ImageBrush(
+                                                               new BitmapImage(new Uri(bgFilePath.Replace("\\", "/"),
+                                                                                       UriKind.Relative)));
+                                                   }));
+
+                    options.backgroundImage = bgFilePath;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Unable to set background: " + ex.Message);
+
+                // Assume there is no background image
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+                                       new ThreadStart(() => { MediaCanvas.Background = Brushes.Black; }));
+
+                options.backgroundImage = "";
+            }
+
+            // Get it to paint the background now
+            App.DoEvents();
+
+            // Get the regions
+            List<LayoutRegion> listRegions = layout.Regions;
+            List<List<LayoutRegionMedia>> listMedia = layout.Regions.Select(r => r.Media).ToList();
+
+            // Check to see if there are any regions on this layout.
+            if (listRegions.Count == 0 || listMedia.Count == 0)
+            {
+                Trace.WriteLine(new LogMessage("PrepareLayout",
+                                               string.Format(
+                                                   "A layout with {0} regions and {1} media has been detected.",
+                                                   listRegions.Count.ToString(), listMedia.Count.ToString())),
+                                LogType.Info.ToString());
+
+                if (ClientManager.Instance.Schedule.ActiveLayouts == 1)
+                {
+                    Trace.WriteLine(
+                        new LogMessage("PrepareLayout", "Only 1 layout scheduled and it has nothing to show."),
+                        LogType.Info.ToString());
+
+                    throw new Exception("Only 1 layout schduled and it has nothing to show");
+                }
+                else
+                {
+                    Trace.WriteLine(new LogMessage("PrepareLayout",
+                                                   string.Format(
+                                                       string.Format(
+                                                           "An empty layout detected, will show for {0} seconds.",
+                                                           Settings.Default.emptyLayoutDuration.ToString()))),
+                                    LogType.Info.ToString());
+
+                    // Put a small dummy region in place, with a small dummy media node - which expires in 10 seconds.
+                    // Replace the list of regions (they mean nothing as they are empty)
+                    listRegions = new List<LayoutRegion>
+                                      {
+                                          new LayoutRegion
+                                              {
+                                                  Id = "blah",
+                                                  Width = 1,
+                                                  Height = 1,
+                                                  Top = 1,
+                                                  Left = 1,
+                                                  Media = new List<LayoutRegionMedia>
+                                                              {
+                                                                  new LayoutRegionMedia
+                                                                      {
+                                                                          Id = "blah",
+                                                                          Type = "Text",
+                                                                          Duration = 0,
+                                                                          Raw = new LayoutRegionMediaRaw
+                                                                                    {
+                                                                                        Text = ""
+                                                                                    }
+                                                                      }
+                                                              }
+                                              }
+                                      };
+                }
+            }
+
+            foreach (LayoutRegion region in listRegions)
+            {
+                // Is there any media
+                if (region.Media.Count == 0)
+                {
+                    if (region.Type != "Widget")
+                    {
+                        Debug.WriteLine("A region with no media detected");
+                        continue;
+                    }
+                }
+
+                //each region
+                options.scheduleId = ClientManager.Instance.ScheduleId;
+                options.layoutId = _layoutId;
+                options.regionId = region.Id;
+                options.Name = region.Name;
+                options.FileType = region.Type;
+                options.Width = (int) ((region.Width + 14)/_layoutWidth*_clientSize.Width);
+                    //(int)((region.Width + 15.0) * _scaleFactor);
+                options.Height = (int) ((region.Height + 14)/_layoutHeight*_clientSize.Height);
+                    //(int)((region.Height + 15.0) * _scaleFactor);
+                int left = region.Left;
+                if (left < 0)
+                    left = 0;
+
+                int top = region.Top;
+                if (top < 0)
+                    top = 0;
+
+                options.Left = (int) (left/_layoutWidth*_clientSize.Width); //(int)(region.Left * _scaleFactor);
+                options.Top = (int) (top/_layoutHeight*_clientSize.Height); //(int)(region.Top * _scaleFactor);
+
+                options.ScaleFactor = _scaleFactor;
+
+                // Set the backgrounds (used for Web content offsets)
+                options.BackgroundLeft = options.Left*-1;
+                options.BackgroundTop = options.Top*-1;
+
+                //Account for scaling
+                //       options.Left = options.Left + (int)leftOverX;
+                //        options.Top = options.Top + (int)leftOverY;
+
+                // All the media nodes for this region / layout combination
+                options.mediaNodes = region.Media;
+
+                ThreadPool.QueueUserWorkItem((state) =>
+                                                 {
+                                                     //  Thread.Sleep(150);
+                                                     Dispatcher.BeginInvoke(DispatcherPriority.Background,
+                                                                            new Action<RegionOptions>(
+                                                                                (opts) =>
+                                                                                    {
+                                                                                        var temp =
+                                                                                            new Region(
+                                                                                                ClientManager.Instance.
+                                                                                                    StatLog,
+                                                                                                ClientManager.Instance.
+                                                                                                    CacheManager);
+                                                                                        temp.DurationElapsedEvent +=
+                                                                                            TempDurationElapsedEvent;
+
+                                                                                        Debug.WriteLine(
+                                                                                            "Created new region",
+                                                                                            "Charging Player - Prepare Layout");
+
+                                                                                        // Dont be fooled, this innocent little statement kicks everything off
+                                                                                        temp.RegionOptions = opts;
+
+                                                                                        _regions.Add(temp);
+
+                                                                                        temp.Opacity = 0;
+
+                                                                                        MediaCanvas.Children.Add(temp);
+
+                                                                                        temp.AnimateIn();
+
+
+                                                                                        //          new TextBox(){
+                                                                                        //Text                                                                        = "Hey",
+                                                                                        //                                                                          Margin = new Thickness(options.left,options.top,0,0),
+                                                                                        //                                                                          Height = options.Height,
+                                                                                        //                                                                          Width = options.Width
+                                                                                        //                                                                        })
+                                                                                        ;
+                                                                                        //   temp.Background = new SolidColorBrush(Colors.Coral);
+                                                                                    }), options);
+                                                 });
+
+                Debug.WriteLine("Adding region", "Charging - Prepare Layout");
+
+
+                App.DoEvents();
+            }
+
+            // Null stuff
+            listRegions = null;
+            listMedia = null;
+        }
+
+
+        /// <summary>
+        /// The duration of a Region has been reached
+        /// </summary>
+        private void TempDurationElapsedEvent()
+        {
+            Debug.WriteLine("Region Elapsed", "Charging - DurationElapsedEvent");
+
+            _isExpired = true;
+
+            // Check the other regions to see if they are also expired.
+            foreach (Region temp in _regions)
+            {
+                if (!temp.hasExpired)
+                {
+                    _isExpired = false;
+                }
+            }
+
+            if (_isExpired)
+            {
+                // Inform each region that the layout containing it has expired
+                foreach (Region temp in _regions)
+                {
+                    temp.layoutExpired = true;
+                }
+
+                Debug.WriteLine("Region Expired - Next Region.", "Charging - DurationElapsedEvent");
+                ClientManager.Instance.Schedule.NextLayout("Charging");
+            }
+
+            App.DoEvents();
+        }
+
+        #endregion Methods
+
+        private const string DisableScriptError =
+            @"function noError() {
+
+          return true;
+       }
+       window.onerror = noError;";
+
+        private static bool Cleared;
+
+
+        private static readonly BitmapImage OnlineIcon =
+            new BitmapImage(new Uri("pack://application:,,,/DataCache/Cute-Ball-Go-icon32.png"));
+
+        private static readonly BitmapImage OfflineIcon =
+            new BitmapImage(new Uri("pack://application:,,,/DataCache/Cute-Ball-Stop-icon32.png"));
+
+        private BatteryInfo BatteryInfoWidget;
+        private CarInfo CarInfoWidget;
+        private Profile CustomerProfile;
+        public Location LocationWidget;
+
+        public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj != null)
+            {
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+                    if (child != null && child is T)
+                    {
+                        yield return (T) child;
+                    }
+
+                    foreach (T childOfChild in FindVisualChildren<T>(child))
+                    {
+                        yield return childOfChild;
+                    }
+                }
+            }
+        }
+
+        public void ClearAllInfo()
+        {
+            Cleared = false;
+            try
+            {
+                Dispatcher.BeginInvoke(
+                    DispatcherPriority.Normal
+                    , new Action(() =>
+                                     {
+                                         if (WidgetsFactory.Widgets["PersonalInfo"] == null ||
+                                             WidgetsFactory.Widgets["CarInfo"] == null ||
+                                             WidgetsFactory.Widgets["BatteryInfo"] == null
+                                             || WidgetsFactory.Widgets["LocationInfo"] == null)
+                                         {
+                                             return;
+                                         }
+                                         CustomerProfile = WidgetsFactory.Widgets["PersonalInfo"] as Profile;
+                                         CarInfoWidget = WidgetsFactory.Widgets["CarInfo"] as CarInfo;
+                                         BatteryInfoWidget = WidgetsFactory.Widgets["BatteryInfo"] as BatteryInfo;
+
+                                         LocationWidget = WidgetsFactory.Widgets["LocationInfo"] as Location;
+                                         CustomerProfile.CustomerProfilePicture.Source = null;
+                                         CarInfoWidget.CarMake.Content = "";
+                                         CarInfoWidget.CarModel.Content = "";
+                                         CarInfoWidget.CarPlate.Content = "";
+                                         CustomerProfile.CustomerName.Content = "";
+                                         CustomerProfile.CustomerEmail.Content = "";
+                                         CustomerProfile.CustomerPhone.Content = "";
+                                         CustomerProfile.CustomerAddress.Text = "";
+
+
+                                         string charge = "0";
+
+                                         BatteryInfoWidget.CurrentCharge.Content = charge;
+                                         BatteryInfoWidget.BatteryAnimation.PercentCharged =
+                                             Convert.ToInt32(charge);
+                                         BatteryInfoWidget.LastCharged.Content = "";
+                                         BatteryInfoWidget.AccountBalance.Content = "";
+                                         Cleared = true;
+                                     }));
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+
+        public void Update(int milliseconds)
+        {
+            ThreadPool.QueueUserWorkItem(
+                (hg) =>
+                    {
+                        //       Thread.Sleep(50);
+
+                    //    lock (UpdateLock)
+                        {
+                            try
+                            {
+                                while (!Cleared)
+                                {
+                                }
+                                int sleepTime = milliseconds;
+
+                                //   var items = myService.GetRecords().Select(p => p.Name);
+
+                                try
+                                {
+                                    int sleepTime2 = sleepTime;
+                                    Dispatcher.BeginInvoke(
+                                        DispatcherPriority.Normal
+                                        , new Action(() => { LoadingProfile.Instance.progressBar.Value = 10; }));
+                                    using (
+                                        var myService2 = new ServiceClient("BasicHttpBinding_IService",
+                                                                           Constants.ServerAddress))
+                                    {
+                                        myService2.ClientCredentials.Windows.ClientCredential.UserName = "admin";
+                                        myService2.ClientCredentials.Windows.ClientCredential.Password = "Green2o11";
+                                        CustomerViewModel customer = myService2.GetCustomerByRFID(CurrentRFID);
+                                        StationViewModel[] stations = myService2.GetAllStations();
+                                        // LocationOverview.ItemsSource = items;
+                                        Dispatcher.BeginInvoke(
+                                            DispatcherPriority.Normal
+                                            , new Action(() => { LoadingProfile.Instance.progressBar.Value = 20; }));
+
+
+                                        GoogleMaps.Locations = stations.ToArray();
+
+                                        Dispatcher.BeginInvoke(
+                                            DispatcherPriority.Normal
+                                            , new Action(() =>
+                                                             {
+                                                                 //    ThreadPool.QueueUserWorkItem((state) =>
+                                                                 //                              { //try
+                                                                 // {
+                                                                 //                                            image = null;
+                                                                 //    int BytesToRead = 100;
+
+                                                                 //    WebRequest request = WebRequest.Create(new Uri(customer.Picture, UriKind.Absolute));
+                                                                 //    request.Timeout = -1;
+                                                                 //    WebResponse response = request.GetResponse();
+                                                                 //    Stream responseStream = response.GetResponseStream();
+                                                                 //    if (responseStream != null)
+                                                                 //    {
+                                                                 //        var reader = new BinaryReader(responseStream);
+                                                                 //        var memoryStream = new MemoryStream();
+
+                                                                 //        var bytebuffer = new byte[BytesToRead];
+                                                                 //        int bytesRead = reader.Read(bytebuffer, 0, BytesToRead);
+
+                                                                 //        while (bytesRead > 0)
+                                                                 //        {
+                                                                 //            memoryStream.Write(bytebuffer, 0, bytesRead);
+                                                                 //            bytesRead = reader.Read(bytebuffer, 0, BytesToRead);
+                                                                 //        }
+                                                                 //        image = new BitmapImage();
+                                                                 //        image.BeginInit();
+                                                                 //        memoryStream.Seek(0, SeekOrigin.Begin);
+                                                                 //        image.StreamSource = memoryStream;
+                                                                 //    }
+                                                                 //    image.EndInit();
+
+                                                                 //}
+                                                                 //catch (Exception)
+                                                                 //{
+
+                                                                 //    //Default no pic pic
+                                                                 //}
+
+
+                                                                 //    if (image != null && image.StreamSource.CanRead)
+                                                                 //this.Dispatcher.BeginInvoke(
+                                                                 //    DispatcherPriority.Normal
+                                                                 //    , new Action<BitmapImage>((img) =>
+                                                                 //                     {
+
+                                                                 //    image;
+                                                                 //}),image);
+
+                                                                 //  });
+                                                                 if (customer.Picture != null)
+                                                                     CustomerProfile.CustomerProfilePicture.
+                                                                         Source =
+                                                                         new BitmapImage(new Uri(customer.Picture,
+                                                                                                 UriKind.Absolute));
+                                                                 LoadingProfile.Instance.progressBar.Value += 10;
+                                                                 CarInfoWidget.CarMake.Content = customer.CarMake;
+                                                                 LoadingProfile.Instance.progressBar.Value += 10;
+                                                                 CarInfoWidget.CarModel.Content = customer.CarModel;
+                                                                 LoadingProfile.Instance.progressBar.Value += 10;
+                                                                 CarInfoWidget.CarPlate.Content = customer.CarLicense;
+                                                                 LoadingProfile.Instance.progressBar.Value += 10;
+                                                                 CustomerProfile.CustomerName.Content = (customer).Name;
+                                                                 LoadingProfile.Instance.progressBar.Value += 10;
+                                                                 CustomerProfile.CustomerEmail.Content = customer.Email;
+                                                                 LoadingProfile.Instance.progressBar.Value += 10;
+                                                                 CustomerProfile.CustomerPhone.Content = customer.Phone;
+                                                                 CustomerProfile.CustomerAddress.Text = customer.Address;
+                                                                 LoadingProfile.Instance.progressBar.Value += 10;
+                                                                 try
+                                                                 {
+                                                                     string charge = customer.ChargeRemaining;
+                                                                     if (charge == null)
+                                                                         charge = "0";
+                                                                     BatteryInfoWidget.CurrentCharge.Content = charge;
+                                                                     BatteryInfoWidget.BatteryAnimation.PercentCharged =
+                                                                         Convert.ToInt32(charge);
+                                                                     BatteryInfoWidget.LastCharged.Content =
+                                                                         customer.LastRechargeDate;
+                                                                     BatteryInfoWidget.AccountBalance.Content =
+                                                                         customer.AccountBalance;
+                                                                     LoadingProfile.Instance.progressBar.Value += 10;
+                                                                 }
+                                                                 catch (Exception ex)
+                                                                 {
+                                                                 }
+                                                                 var stationlist = new Dictionary<string, BitmapImage>();
+                                                                 int count = 0;
+                                                                 foreach (StationViewModel stationViewModel in stations)
+                                                                 {
+                                                                     if (stationlist.Count >= 6)
+                                                                         break;
+
+                                                                     if (stationlist.ContainsKey(stationViewModel.Name))
+                                                                         stationViewModel.Name =
+                                                                             stationViewModel.Name + count;
+                                                                     stationlist.Add(stationViewModel.Name,
+                                                                                     stationViewModel.Available
+                                                                                         ? OnlineIcon
+                                                                                         : OfflineIcon);
+                                                                 }
+
+                                                                 LocationWidget.StationList.Images.ItemsSource =
+                                                                     stationlist;
+
+                                                                 // .Content = (customer).Name;
+                                                                 NavigatePage();
+                                                                 LoadingProfile.Instance.progressBar.Value += 10;
+                                                                 // Show this page now
+                                                                 Instance.LocationWidget.Visibility = Visibility.Hidden;
+                                                                 Switcher.Switch(Instance);
+                                                             }));
+
+
+                                        if (_dismissTimer != null)
+                                        {
+                                            _dismissTimer.Stop();
+                                            _dismissTimer = null;
+                                        }
+
+                                        _dismissTimer = new Timer();
+
+                                        _dismissTimer.Elapsed += delegate
+                                                                     {
+                                                                         Switcher.Switch(MainPlayer.Instance);
+                                                                         Instance.Dispatcher.BeginInvoke(
+                                                                             new Action(() =>
+                                                                                            {
+                                                                                                Instance.LocationWidget.
+                                                                                                    Visibility
+                                                                                                    = Visibility.Hidden;
+                                                                                            }));
+
+                                                                         _dismissTimer.Stop();
+                                                                     };
+
+                                        _dismissTimer.Interval = (milliseconds);
+                                        _dismissTimer.Start();
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Trace.WriteLine(ex.StackTrace + "\n" + ex.Message);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Instance.Dispatcher.BeginInvoke(
+                                    DispatcherPriority.Normal, new DispatcherOperationCallback(delegate
+                                                                                                   {
+                                                                                                       CustomerProfile.
+                                                                                                           CustomerName.
+                                                                                                           Content =
+                                                                                                           "Invalid Customer";
+
+                                                                                                       return null;
+                                                                                                   }));
+                                Trace.WriteLine(ex.StackTrace + "\n" + ex.Message);
+                                ;
+                            }
+                        }
+                    });
+        }
+
+
+        private void NavigatePage()
+        {
+            Instance.Dispatcher.BeginInvoke(
+                DispatcherPriority.Normal, new ThreadStart(() =>
+                                                               {
+                                                                   // Uri uri = new Uri(@"pack://application:,,,/Navigator.htm");
+                                                                   //Stream source = n// Application.GetContentStream(uri).Stream;
+                                                                   LocationWidget.GoogleMap.
+                                                                       NavigateToString(
+                                                                           GoogleMaps.Webpage);
+                                                                   LocationWidget.GoogleMap.
+                                                                       Navigated +=
+                                                                       GoogleMapNavigated;
+                                                               }));
+        }
+
+        private void GoogleMapNavigated(object sender, NavigationEventArgs e)
+        {
+            SuppressScriptErrors(LocationWidget.GoogleMap, true);
+            InjectDisableScript();
+            Instance.Dispatcher.BeginInvoke(
+                new Action(() => { Instance.LocationWidget.Visibility = Visibility.Visible; }));
+        }
+
+        private void InjectDisableScript()
+        {
+            var doc = LocationWidget.GoogleMap.Document as HTMLDocument;
+
+            var doc2 = LocationWidget.GoogleMap.Document as HTMLDocument;
+
+
+            //Questo crea lo script per la soprressione degli errori
+
+            var scriptErrorSuppressed = (IHTMLScriptElement) doc2.createElement("SCRIPT");
+            scriptErrorSuppressed.type = "text/javascript";
+
+            scriptErrorSuppressed.text = DisableScriptError;
+
+
+            IHTMLElementCollection nodes = doc.getElementsByTagName("head");
+
+
+            foreach (IHTMLElement elem in nodes)
+            {
+                //Appendo lo script all'head cosi è attivo
+
+
+                var head = (HTMLHeadElement) elem;
+
+                head.appendChild((IHTMLDOMNode) scriptErrorSuppressed);
+            }
+        }
+
+        /// <summary>
+        /// Supress Script Errors
+        /// </summary>
+        /// <param name="wb"></param>
+        /// <param name="hide"></param>
+        public void SuppressScriptErrors(WebBrowser wb, bool hide)
+        {
+            FieldInfo fi = typeof (WebBrowser).GetField(
+                "_axIWebBrowser2",
+                BindingFlags.Instance | BindingFlags.NonPublic);
+
+            if (fi != null)
+            {
+                object browser = fi.GetValue(wb);
+
+                if (browser != null)
+                {
+                    browser.GetType().InvokeMember("Silent", BindingFlags.SetProperty,
+                                                   null, browser, new object[] {hide});
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,6 @@
+﻿<Window x:Class="ClientApp.Controls.DigitalClockWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:ClientApp.Controls"
+        Title="Digital Clock" Height="166" Width="403" Closing="Window_Closing">
+    <local:DigitalClockControl x:Name="clock" />
+</Window>

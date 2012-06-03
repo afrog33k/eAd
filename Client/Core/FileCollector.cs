@@ -521,7 +521,7 @@ class FileCollector
             System.Diagnostics.Debug.WriteLine(String.Format("Getting the file : {0} chunk : {1}", _currentFileList.Path, _currentFileList.ChunkOffset.ToString()));
 
             // Request the file
-            xmdsFile.GetFileAsync(Settings.Default.ServerKey, hardwareKey.Key, _currentFileList.Path, _currentFileList.FileType, (int) _currentFileList.ChunkOffset, (int) _currentFileList.ChunkSize, Settings.Default.Version);
+            xmdsFile.GetFileAsync(Settings.Default.ServerKey, hardwareKey.Key, _currentFileList.Path, _currentFileList.FileType,  _currentFileList.ChunkOffset,  _currentFileList.ChunkSize, Settings.Default.Version);
 
             _currentFileList.Downloading = true;
         }

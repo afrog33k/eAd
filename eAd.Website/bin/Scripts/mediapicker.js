@@ -5,7 +5,7 @@
     $('#MediaName').keyup(function () {
         if ($('#MediaName').val() != content) {
             content = $('#MediaName').val();
-            $("#results").load("../Media/PickerList?name=" + $("#MediaName").val() + "&type=" + $("#Types").val());
+            $("#results").load("../Media/PickerList?name=" + $("#MediaName").val() + "&type=" + $("#Types").val() + "&theme=" + $("#Themes").val());
 
         }
     });
@@ -13,8 +13,13 @@
     $("#MediaName").change(function () {
     });
 
+
+    $("#Themes").change(function () {
+        $("#results").load("../Media/PickerList?name=" + $("#MediaName").val() + "&type=" + $("#Types").val() + "&theme=" + $("#Themes").val());
+    });
+
     $("#Types").change(function () {
-        $("#results").load("../Media/PickerList?name=" + $("#MediaName").val() + "&type=" + $("#Types").val());
+        $("#results").load("../Media/PickerList?name=" + $("#MediaName").val() + "&type=" + $("#Types").val() + "&theme=" + $("#Themes").val());
     });
 });
 

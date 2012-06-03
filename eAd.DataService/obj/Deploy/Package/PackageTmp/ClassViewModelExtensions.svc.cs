@@ -7,6 +7,8 @@ namespace eAd.DataAccess
 {
 public static class ClassViewModelExtensions
 {
+   public static readonly string[] Displayableurls = new string[] { ".jpg", ".png", ".gif" };
+   public static readonly string[] PowerpointExtensions= new string[] { ".ppt", ".pptx", ".pps" };
     public static CustomerViewModel CreateModel(this Customer customer)
     {
         var model = new CustomerViewModel();
@@ -58,17 +60,21 @@ public static class ClassViewModelExtensions
         model.MediaID = medium.MediaID;
         model.Name = medium.Name;
         model.Location = medium.Location;
-
+        
         var location = medium.Location;
 
-        var displayableurls = new string[] {".jpg",".png",".gif"};
+     
 
-        if (displayableurls.Contains(Path.GetExtension(location)))
+        if (Displayableurls.Contains(Path.GetExtension(location)))
         {
             model.DisplayLocation = !(String.IsNullOrEmpty(location))
                                     ? "../Uploads/Temp/Media" + "/" + "Thumb" +
                                     Path.GetFileNameWithoutExtension(location) + ".jpg"
                                     : "/Content/Images/no_image.gif";
+        }
+        else if (!String.IsNullOrEmpty(medium.ThumbnailUrl)&& Displayableurls.Contains(Path.GetExtension( medium.ThumbnailUrl)))
+        {
+            model.DisplayLocation = "../" + medium.ThumbnailUrl;
         }
         else
         {
@@ -76,6 +82,8 @@ public static class ClassViewModelExtensions
                                     Path.GetFileNameWithoutExtension(location) + ".jpg";
         }
 
+        model.DisplayLocation = model.DisplayLocation.Replace("\\","/");
+        
         return model;
     }
 

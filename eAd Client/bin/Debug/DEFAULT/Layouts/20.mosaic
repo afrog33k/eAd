@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<LayoutModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="1" Width="768" Height="1366" Background="\uploads\media\71\71\8phbsbqtzeq0bgckvz38lq.jpg" Type="Profile">
+  <region>
+    <Media>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>None</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>-1</Id>
+        <Type>PlaceHolder</Type>
+        <Duration>1000000</Duration>
+        <Lkid>-1</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+    </Media>
+    <UserId>0</UserId>
+    <Width>342</Width>
+    <Height>400</Height>
+    <Top>256</Top>
+    <Left>1</Left>
+    <Type>Widget</Type>
+    <Name>PersonalInfo</Name>
+  </region>
+  <region>
+    <Media>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>None</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>-1</Id>
+        <Type>PlaceHolder</Type>
+        <Duration>1000000</Duration>
+        <Lkid>-1</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+    </Media>
+    <UserId>0</UserId>
+    <Width>394</Width>
+    <Height>735</Height>
+    <Top>255</Top>
+    <Left>359</Left>
+    <Type>Widget</Type>
+    <Name>LocationInfo</Name>
+  </region>
+  <region>
+    <Media>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>None</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>-1</Id>
+        <Type>PlaceHolder</Type>
+        <Duration>1000000</Duration>
+        <Lkid>-1</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+    </Media>
+    <UserId>0</UserId>
+    <Width>549</Width>
+    <Height>348</Height>
+    <Top>1005</Top>
+    <Left>1</Left>
+    <Type>Widget</Type>
+    <Name>BatteryInfo</Name>
+  </region>
+  <region>
+    <Media>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>None</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>-1</Id>
+        <Type>PlaceHolder</Type>
+        <Duration>1000000</Duration>
+        <Lkid>-1</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+    </Media>
+    <UserId>0</UserId>
+    <Width>344</Width>
+    <Height>321</Height>
+    <Top>670</Top>
+    <Left>1</Left>
+    <Type>Widget</Type>
+    <Name>CarInfo</Name>
+  </region>
+  <region>
+    <Media>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\65\65\mdev53trrkorqnysure_iq.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>65</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>65</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\66\66\ix9etanzl0gvvg6gxejboq.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>66</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>66</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+    </Media>
+    <Id>36</Id>
+    <UserId>0</UserId>
+    <Width>724</Width>
+    <Height>176</Height>
+    <Top>36</Top>
+    <Left>14</Left>
+  </region>
+  <region>
+    <Media>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\56\56\fb-3ipld9uo4_zxzegc7hq.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>56</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>56</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\57\57\qpeicakkg0-h9hjbc67yhq.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>57</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>57</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+    </Media>
+    <Id>45</Id>
+    <UserId>0</UserId>
+    <Width>191</Width>
+    <Height>349</Height>
+    <Top>1004</Top>
+    <Left>564</Left>
+  </region>
+</LayoutModel>

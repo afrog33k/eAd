@@ -22,7 +22,7 @@ public static class Logger
 
 
         using (
-            FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Write, FileShare.ReadWrite)
+            FileStream stream = new FileStream(path, FileMode.Append, FileAccess.Write, FileShare.ReadWrite)
         )
         {
             // This text is always added, making the file longer over time

@@ -12,11 +12,6 @@ internal class Webdata
     {
         try
         {
-            byte[] downloadedData;
-
-
-            downloadedData = new byte[0];
-
             //open a data stream from the supplied URL
             WebRequest webReq = WebRequest.Create(url + file);
             WebResponse webResponse = webReq.GetResponse();
@@ -66,7 +61,7 @@ internal class Webdata
             }
 
             //Convert the downloaded stream to a byte array
-            downloadedData = memoryStream.ToArray();
+            byte[] downloadedData = memoryStream.ToArray();
 
             //Release resources
             dataStream.Close();

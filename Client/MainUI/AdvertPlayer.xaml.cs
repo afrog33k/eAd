@@ -507,6 +507,7 @@ namespace ClientApp
 
             _isExpired = true;
 
+            if (_regions!=null)
             // Check the other regions to see if they are also expired.
             foreach (Region temp in _regions)
             {
@@ -516,9 +517,10 @@ namespace ClientApp
                 }
             }
 
-            if (_isExpired)
+            if (_isExpired || _regions==null)
             {
                 // Inform each region that the layout containing it has expired
+                if (_regions != null)
                 foreach (Region temp in _regions)
                 {
                     temp.layoutExpired = true;

@@ -3,12 +3,7 @@ using System.IO;
 
 namespace eAd.Utilities
 {
-public interface  IReporter
-{
-    void Report(string message);
-}
-
-public static class CopyUtility
+    public static class CopyUtility
 {
     private static string _currentPath = "";
     // Copies all files from one directory to another.

@@ -25,12 +25,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "irio.utilities", "irio.util
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eAd.DesktopClient", "eAd.DesktopClient\eAd.DesktopClient.csproj", "{1B762266-9A36-4131-913E-80716070360E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{870155F1-F5FF-426A-9BBF-9779DBCBC9B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Old Client", "Client\Old Client.csproj", "{870155F1-F5FF-426A-9BBF-9779DBCBC9B8}"
 	ProjectSection(ProjectDependencies) = postProject
 		{0FCFE42B-027D-43DB-9149-068ED514303C} = {0FCFE42B-027D-43DB-9149-068ED514303C}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eAd.Updater", "eAd.Updater\eAd.Updater.csproj", "{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "eAd Client\Client.csproj", "{12580009-41D3-4A89-AD9C-0C4554FCB2F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerpointTest", "PowerpointTest\PowerpointTest.csproj", "{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -258,6 +262,36 @@ Global
 		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Release|Mixed Platforms.Build.0 = Release|x86
 		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Release|x86.ActiveCfg = Release|x86
 		{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}.Release|x86.Build.0 = Release|x86
+		{12580009-41D3-4A89-AD9C-0C4554FCB2F7}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{12580009-41D3-4A89-AD9C-0C4554FCB2F7}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{12580009-41D3-4A89-AD9C-0C4554FCB2F7}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{12580009-41D3-4A89-AD9C-0C4554FCB2F7}.Debug|x86.ActiveCfg = Debug|x86
+		{12580009-41D3-4A89-AD9C-0C4554FCB2F7}.Debug|x86.Build.0 = Debug|x86
+		{12580009-41D3-4A89-AD9C-0C4554FCB2F7}.Deploy|Any CPU.ActiveCfg = Debug|x86
+		{12580009-41D3-4A89-AD9C-0C4554FCB2F7}.Deploy|Mixed Platforms.ActiveCfg = Debug|x86
+		{12580009-41D3-4A89-AD9C-0C4554FCB2F7}.Deploy|Mixed Platforms.Build.0 = Debug|x86
+		{12580009-41D3-4A89-AD9C-0C4554FCB2F7}.Deploy|x86.ActiveCfg = Debug|x86
+		{12580009-41D3-4A89-AD9C-0C4554FCB2F7}.Deploy|x86.Build.0 = Debug|x86
+		{12580009-41D3-4A89-AD9C-0C4554FCB2F7}.Release|Any CPU.ActiveCfg = Release|x86
+		{12580009-41D3-4A89-AD9C-0C4554FCB2F7}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{12580009-41D3-4A89-AD9C-0C4554FCB2F7}.Release|Mixed Platforms.Build.0 = Release|x86
+		{12580009-41D3-4A89-AD9C-0C4554FCB2F7}.Release|x86.ActiveCfg = Release|x86
+		{12580009-41D3-4A89-AD9C-0C4554FCB2F7}.Release|x86.Build.0 = Release|x86
+		{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}.Debug|x86.ActiveCfg = Debug|x86
+		{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}.Debug|x86.Build.0 = Debug|x86
+		{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}.Deploy|Any CPU.ActiveCfg = Debug|x86
+		{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}.Deploy|Mixed Platforms.ActiveCfg = Debug|x86
+		{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}.Deploy|Mixed Platforms.Build.0 = Debug|x86
+		{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}.Deploy|x86.ActiveCfg = Debug|x86
+		{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}.Deploy|x86.Build.0 = Debug|x86
+		{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}.Release|Any CPU.ActiveCfg = Release|x86
+		{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}.Release|Mixed Platforms.Build.0 = Release|x86
+		{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}.Release|x86.ActiveCfg = Release|x86
+		{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3204,7 +3204,7 @@
             if (this.getDataLength()) {
                 this._parseData().trigger(Galleria.DATA);
             } else {
-                Galleria.raise('Load failed: no data found.');
+             //   Galleria.raise('Load failed: no data found.');
             }
             return this;
 
@@ -5139,7 +5139,7 @@
     Galleria.requires = function (version, msg) {
         msg = msg || 'You need to upgrade Galleria to version ' + version + ' to use one or more components.';
         if (Galleria.version < version) {
-            Galleria.raise(msg, true);
+           // Galleria.raise(msg, true);
         }
         return Galleria;
     };
@@ -5328,8 +5328,8 @@
                                         $(new Image()).load(onload).attr('src', img.src);
                                         resort = true;
                                     } else {
-                                        Galleria.raise('Could not extract width/height from image: ' + img.src +
-                                            '. Traced measures: width:' + img.width + 'px, height: ' + img.height + 'px.');
+//                                        Galleria.raise('Could not extract width/height from image: ' + img.src +
+//                                            '. Traced measures: width:' + img.width + 'px, height: ' + img.height + 'px.');
                                     }
                                 }
                             };
@@ -5377,7 +5377,7 @@
                     if (DUMMY) {
                         $(this).attr('src', DUMMY);
                     } else {
-                        Galleria.raise('Image not found: ' + src);
+                       // Galleria.raise('Image not found: ' + src);
                     }
                 }
             }).attr('src', src);

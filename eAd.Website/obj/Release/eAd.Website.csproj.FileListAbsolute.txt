@@ -250,3 +250,5 @@ C:\ProjectHub\eAd\eAd.Website\bin\irio.utilities.pdb
 C:\ProjectHub\eAd\eAd.Website\obj\Release\ResolveAssemblyReference.cache
 C:\ProjectHub\eAd\eAd.Website\obj\Release\eAd.Website.dll
 C:\ProjectHub\eAd\eAd.Website\obj\Release\eAd.Website.pdb
+C:\ProjectHub\eAd\eAd.Website\bin\Content\Images\powerpoint.jpg
+C:\ProjectHub\eAd\eAd.Website\bin\Content\Images\powerpoint.png

@@ -184,6 +184,8 @@
           <Property Name="Size" Type="bigint" Nullable="false" />
           <Property Name="UserID" Type="bigint" Nullable="false" />
           <Property Name="Updated" Type="datetime" />
+          <Property Name="Url" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ThumbnailUrl" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="MediaTypes">
           <Key>
@@ -233,6 +235,7 @@
           </Key>
           <Property Name="Media_MediaID" Type="bigint" Nullable="false" />
           <Property Name="Positions_PositionID" Type="bigint" Nullable="false" />
+          <Property Name="Duration" Type="time" />
         </EntityType>
         <EntityType Name="Positions">
           <Key>
@@ -621,6 +624,8 @@
           <Property Type="DateTime" Name="Updated" Precision="3" />
           <NavigationProperty Name="Positions" Relationship="eAdData.PositionMedium" FromRole="Medium" ToRole="Position" />
           <NavigationProperty Name="Themes" Relationship="eAdData.ThemeMedium" FromRole="Medium" ToRole="Theme" />
+          <Property Type="String" Name="Url" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ThumbnailUrl" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MediaType">
           <Key>
@@ -925,6 +930,8 @@
           <EntitySetMapping Name="Media">
             <EntityTypeMapping TypeName="eAdData.Medium">
               <MappingFragment StoreEntitySet="Media">
+                <ScalarProperty Name="ThumbnailUrl" ColumnName="ThumbnailUrl" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
                 <ScalarProperty Name="Updated" ColumnName="Updated" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Size" ColumnName="Size" />

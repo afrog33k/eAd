@@ -1,46 +1,111 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Objects.DataClasses;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using eAd.DataAccess;
+using eAd.Utilities;
+using irio.utilities;
 
 namespace eAd.Website.Controllers
 {
-    public class MobileJSON
-    {
-        public List<MobileAdvert> Adverts { get; set; }
-    }
-
-    public class MobileAdvert
-    {
-        
-        public int AdvertisementId { get; set; }
-        public string MediaUrl { get; set; }
-        public string ContentUrl { get; set; }
-        public string MediaType { get; set; }
-        public string Type { get; set; }
-        public string Hash { get; set; }
-    }
-
     public class MobileClientController : Controller
     {
 
-       
+        private readonly eAdDataContainer _db = new eAdDataContainer();
 
         //
         // GET: /MobileClient/
 
         public ActionResult GetAds()
         {
-            MobileJSON test = new MobileJSON();
-            test.Adverts = new List<MobileAdvert>();
-            test.Adverts.Add(new MobileAdvert(){AdvertisementId = 1, ContentUrl = "www", MediaUrl = "ppp", Hash = "dasdasdas", MediaType = "image", Type = "fullscreen"});
-           test.Adverts.Add(new MobileAdvert(){AdvertisementId = 1, ContentUrl = "www", MediaUrl = "ppp", Hash = "dasdasdas", MediaType = "image", Type = "fullscreen"});
-           test.Adverts.Add(new MobileAdvert(){AdvertisementId = 1, ContentUrl = "www", MediaUrl = "ppp", Hash = "dasdasdas", MediaType = "image", Type = "fullscreen"});
-           test.Adverts.Add(new MobileAdvert(){AdvertisementId = 1, ContentUrl = "www", MediaUrl = "ppp", Hash = "dasdasdas", MediaType = "image", Type = "fullscreen"});
-           test.Adverts.Add(new MobileAdvert(){AdvertisementId = 1, ContentUrl = "www", MediaUrl = "ppp", Hash = "dasdasdas", MediaType = "image", Type = "fullscreen"});
-     
-            return Json(test,JsonRequestBehavior.AllowGet);
+            var mobileMosaic = _db.Mosaics.Where(m=>m.Type=="Mobile");
+            var adsNotFull = mobileMosaic.SelectMany(m=>m.Positions).Where(p => p.Height < 100);
+            var adsFull = mobileMosaic.SelectMany(m=>m.Positions).Where(p => p.Height > 100);
+          
+            var Adverts = new List<MobileAdvert>();
+
+            //Create files + hash
+            foreach (var position in adsFull)
+            {
+                var media = position.Media;
+                int height = 480;
+                CreateMobileAds(Adverts, height, media, 0);
+            }
+
+            //Create files + hash
+            foreach (var position in adsNotFull)
+            {
+                var media = position.Media;
+                int height = 50;
+                CreateMobileAds(Adverts, height, media, 120000);
+            }
+
+         
+      
+            return Json(Adverts,JsonRequestBehavior.AllowGet);
+        }
+
+        private void CreateMobileAds(List<MobileAdvert> adverts, int height, EntityCollection<Medium> media, int prefix)
+        {
+            string hash;
+            foreach (var medium in media)
+            {
+                var loc = Server.MapPath("~/"+medium.Location);
+                var newName = Path.GetDirectoryName(loc) + Path.GetFileNameWithoutExtension(loc) + height +
+                              Path.GetExtension(loc);
+                var hashName = Path.GetDirectoryName(loc) + Path.GetFileNameWithoutExtension(loc) + height +
+                               ".hash";
+                var clientName = (Request.Url.GetLeftPart(System.UriPartial.Authority) +
+                                  Path.GetDirectoryName(medium.Location) +
+                                  Path.GetFileNameWithoutExtension(loc) + height +
+                                  Path.GetExtension(loc)).Replace("////","//").Replace("\\","/");
+                    ;
+                try
+                {
+
+               
+                if (System.IO.File.Exists(loc))
+                {
+                    if (!System.IO.File.Exists(newName))
+                    {
+                        //Create Image
+                        Bitmap originalFile = new Bitmap(loc);
+                        Bitmap smallImage = new Bitmap(ImageUtilities.Crop(originalFile, 320, height, 0, 0));
+                        smallImage.Save(newName, ImageFormat.Jpeg);
+                    }
+                    if (!System.IO.File.Exists(hashName))
+                    {
+                        //Calculate Hash
+                        hash = Hashes.MD5(newName);
+                        System.IO.File.WriteAllText(hashName, hash);
+                    }
+                    else
+                    {
+                        hash = System.IO.File.ReadAllText(hashName);
+                    }
+
+                    adverts.Add(new MobileAdvert()
+                                         {
+                                             AdvertisementId = (int) medium.MediaID + prefix,
+                                             ContentUrl = medium.Url,
+                                             MediaUrl = clientName,
+                                             MediaType = medium.Type.ToLower().Contains("image") ? "image" : "video",
+                                             Type = height == 480 ? "fullscreen" : "banner",
+                                             Hash = hash,
+                                         });
+                }
+                }
+                catch (Exception)
+                {
+
+                   
+                }
+            }
         }
 
         //

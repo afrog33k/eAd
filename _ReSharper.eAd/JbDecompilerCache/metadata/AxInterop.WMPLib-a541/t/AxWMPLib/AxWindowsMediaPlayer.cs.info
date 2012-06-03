@@ -1,0 +1,10 @@
+﻿Code version: 6.1.37.86
+Assembly name AxInterop.WMPLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null mvid {9f90b4da-941d-4a07-918a-905cd683dc45}
+* ref System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {3c86022e-d9a8-4103-ae56-e3c81370b109}
+* ref mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {b2dd7fad-f33e-483a-8e08-5d9b09c1f0fb}
+* ref Interop.WMPLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  mvid {0602b676-1d2c-4b4a-9b19-7591a6581f4d}
+* ref System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  mvid {fa32f5ae-6217-44a5-a3ce-fdeb5c4a66b8}

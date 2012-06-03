@@ -5,6 +5,8 @@ using System.Runtime.CompilerServices;
 
 public class MediaListModel
 {
+    public string ThumbnailUrl;
+
     public bool Downloaded
     {
         get;

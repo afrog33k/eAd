@@ -16,7 +16,7 @@ public static class DispatcherHelper
     public static void DoEvents ( )
     {
         DispatcherFrame frame = new DispatcherFrame ( );
-        Dispatcher.CurrentDispatcher.BeginInvoke ( DispatcherPriority.Background,
+        Dispatcher.CurrentDispatcher.BeginInvoke( DispatcherPriority.Background,
                 new DispatcherOperationCallback ( ExitFrames ), frame );
 
         try

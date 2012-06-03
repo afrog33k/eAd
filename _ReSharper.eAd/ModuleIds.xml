@@ -13,5 +13,6 @@
   <Module PersistentId="37201E0B-014E-4EA6-9F84-9551DD2DDFE8" ModuleId="irio.mvc.htmlhelpers" />
   <Module PersistentId="d:eAd.Setup" ModuleId="mscorlib" />
   <Module PersistentId="BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0" ModuleId="eAd.Updater" />
-  <Module PersistentId="PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" ModuleId="PresentationFramework" />
+  <Module PersistentId="12580009-41D3-4A89-AD9C-0C4554FCB2F7" ModuleId="Client_1" />
+  <Module PersistentId="9AC3EADA-5A97-41A1-B341-E7BDE3A841E9" ModuleId="PowerpointTest" />
 </Modules>

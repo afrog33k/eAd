@@ -31,9 +31,4 @@ public class FileMetaData
         StationID = stationID;
     }
 }
-
-public enum FileTypeEnum
-{
-    Generic
-}
 }

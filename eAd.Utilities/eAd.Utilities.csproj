@@ -46,8 +46,10 @@
     <Compile Include="Constants.cs" />
     <Compile Include="CopyUtility.cs" />
     <Compile Include="Hashes.cs" />
+    <Compile Include="IReporter.cs" />
     <Compile Include="MimeExtensionHelper.cs" />
     <Compile Include="GoogleMaps.cs" />
+    <Compile Include="MimeTypeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -542,6 +542,15 @@ namespace ClientApp
         }
 
         #endregion Methods
+
+        public void Update(int p0)
+        {
+            ThreadPool.QueueUserWorkItem((r) =>
+                                             {
+                                                 Thread.Sleep(p0/10);
+                                                 Switcher.Switch(AdvertPlayer.Instance);
+                                             });
+        }
     }
 }
 

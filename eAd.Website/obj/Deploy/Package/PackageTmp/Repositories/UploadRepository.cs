@@ -5,12 +5,16 @@ using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Web;
 using Microsoft.Office.Core;
+using Microsoft.Office.Interop.PowerPoint;
+using eAd.DataAccess;
 using eAd.Utilities;
 using eAd.Website.Controllers;
 using irio.utilities;
 using System.Linq;
+using Font = System.Drawing.Font;
 
 namespace eAd.Website.Repositories
 {
@@ -31,9 +35,30 @@ public class UploadRepository
         if (fileName != null)
         {
             if (type == UploadType.Media)
-                physicalPath =
-                    Path.Combine(context.Server.MapPath("~/Uploads/Media/" + owner + "/" + id),
-                                 ((bool)isThumb ? "Thumb" : "") + filename + Path.GetExtension(fileName));
+            {
+                if (!((bool) (isThumb)))
+                {
+                    physicalPath =
+                  Path.Combine(context.Server.MapPath("~/Uploads/Media/" + owner + "/" + id), filename + Path.GetExtension(fileName));
+                }
+                else
+                {
+         //      if (ClassViewModelExtensions.Displayableurls.Contains(Path.GetExtension(path)))
+                   // { 
+                   physicalPath =
+                  Path.Combine(context.Server.MapPath("~/Uploads/Media/" + owner + "/" + id),
+                                "Thumb"  + filename + ".jpg");//Path.GetExtension(fileName));
+                  //  }
+               //else
+               //{
+               //    if(ClassViewModelExtensions.PowerpointExtensions.Contains(Path.GetExtension(path)))
+               //    {
+               //        physicalPath = Path.Combine(context.Server.MapPath("~/Content/Images/powerpoint.png"));
+               //    }
+               //}
+                }
+            }
+              
             //else if (type == UploadType.Coupon)
             //{
             //    physicalPath =
@@ -86,7 +111,7 @@ public class UploadRepository
         }
     }
 
-    public static string GetFileUrl(HttpContextBase context, string mediaID, string ownerID , UploadType type, out UploadedContent upload)
+    public static string[] GetFileUrl(HttpContextBase context, string mediaID, string ownerID , UploadType type, out UploadedContent upload)
     {
         upload = null;
         try
@@ -130,17 +155,22 @@ public class UploadRepository
 
 
                     FileUtilities.FolderCreate(Path.GetDirectoryName(newPath));
-                    System.IO.File.Move(
-                        TempPathForUpload(context, pictures[0], type, guid)
-                        ,
-                        newPath);
+                    System.IO.File.Move(TempPathForUpload(context, pictures[0], type, guid),newPath);
                     try //Maybe No Thumbnail
                     {
-
-
-                        File.Move(
-                            TempPathForUpload(context, pictures[1], type, guid),
-                            thumbPath);
+                        if (!pictures[1].ToLower().Contains("Content\\".ToLower()))
+                        {
+                            File.Move(
+                         TempPathForUpload(context, pictures[1], type, guid),
+                         thumbPath);
+                        }
+                        else
+                        {
+                            File.Copy(
+                                context.Server.MapPath("~/"+pictures[1]),
+                        thumbPath);
+                        }
+                     
                     }
                     catch (Exception ex)
                     {
@@ -151,7 +181,7 @@ public class UploadRepository
 
                     context.Session["SavedFileList"] = uploadedContents;
 
-                    return ResolvePath(context, newPath);
+                    return new string[] { ResolvePath(context, newPath), ResolvePath(context, thumbPath) };
                 }
             }
         }
@@ -342,20 +372,28 @@ public class UploadRepository
 
                 fileType = "Marquee";
             }
-            else if (Path.GetExtension(file.FileName).ToLower() == (".ppt") || Path.GetExtension(file.FileName).ToLower() == (".pptx") || Path.GetExtension(file.FileName).ToLower() == (".odt")) // Powerpoint presentation
+            else if (Path.GetExtension(file.FileName).ToLower() == (".ppt") || Path.GetExtension(file.FileName).ToLower() == (".pps") || Path.GetExtension(file.FileName).ToLower() == (".pptx") || Path.GetExtension(file.FileName).ToLower() == (".odt")) // Powerpoint presentation
             {
+                string path = context.Server.MapPath("~/Logs/" + "serverlog.txt");
+
+                Logger.WriteLine(path, "UploadRepository:  Powerpoint");
 
                 FileUtilities.SaveStream(file.InputStream, physicalPath, false);
 
-
+                Logger.WriteLine(path, "UploadRepository:  Saved File @ " + physicalPath);
                 var finalPath = Path.ChangeExtension(physicalPath, "wmv");
                 Microsoft.Office.Interop.PowerPoint._Presentation objPres;
                 var objApp = new Microsoft.Office.Interop.PowerPoint.Application();
-                //objApp.Visible = Microsoft.Office.Core.MsoTriState.msoTrue;
+
+                objApp.Visible = Microsoft.Office.Core.MsoTriState.msoTrue;
+                objApp.Activate();
                 try
                 {
-                    objPres = objApp.Presentations.Open(physicalPath, MsoTriState.msoTrue, MsoTriState.msoTrue, MsoTriState.msoTrue);
-                    objPres.SaveAs(Path.GetFullPath(finalPath), Microsoft.Office.Interop.PowerPoint.PpSaveAsFileType.ppSaveAsWMV, MsoTriState.msoTriStateMixed);
+                    objPres = objApp.Presentations.Open(physicalPath, MsoTriState.msoTrue, MsoTriState.msoTrue, MsoTriState.msoFalse); //Last value causes powerpoint to physically open
+                   // Thread.Sleep(10000);
+                    objPres.SaveAs(Path.GetFullPath(finalPath), Microsoft.Office.Interop.PowerPoint.PpSaveAsFileType.ppSaveAsWMV);
+                    Logger.WriteLine(path, "UploadRepository:  SaveCopy As Successfully Started @ " + physicalPath + " to "+ finalPath);
+               
                     long len = 0;
                     do
                     {
@@ -364,28 +402,42 @@ public class UploadRepository
                         {
                             FileInfo f = new FileInfo(finalPath);
                             len = f.Length;
+                            Logger.WriteLine(path, "UploadRepository:  SaveCopy Current Length  " + len);
+               
                         }
                         catch
                         {
-                            continue;
+                            //continue;
                         }
                     }
                     while (len == 0);
+                    objPres.Close();
                     objApp.Quit();
 
-                    thumbPath = thumbPath.Replace(Path.GetExtension(thumbPath), ".jpg");
-                    duration = VideoUtilities.GetVideoDuration(finalPath);
+                    Marshal.ReleaseComObject(objPres);
+                    Marshal.ReleaseComObject(objApp);
 
+                    objApp = null;
+                    objPres = null;
+
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    Logger.WriteLine(path, "UploadRepository:  SaveCopy Done, Creating Thumbnails  ");
+           
+
+                   thumbPath = thumbPath.Replace(Path.GetExtension(thumbPath), ".jpg");
+               // thumbPath = "Content\\Images\\powerpoint.jpg";
+                 duration = VideoUtilities.GetVideoDuration(finalPath);
+               // duration = new TimeSpan(0, 0, 0,60);
                     VideoUtilities.GetVideoThumbnail(finalPath, thumbPath);
 
-                    physicalPath = finalPath;
-                    fileType = "Powerpoint Presentation";
+                  physicalPath = finalPath;
+                    fileType = "Powerpoint";
                 }
                 catch (COMException exception)
                 {
-                    string path = context.Server.MapPath("~/Logs/" + "serverlog.txt");
-
-                    Logger.WriteLine(path, "UploadRepository: " + exception.StackTrace +"\n"+ exception.Message);
+              
+                    Logger.WriteLine(path, "UploadRepository: " + exception.StackTrace + "\n" + exception.Message + " Powerpoint fin:" + finalPath +" phys:" +physicalPath);
 
                     //   Logger.WriteLine(path, greenlotsInfo.email);
 

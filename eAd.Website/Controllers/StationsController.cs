@@ -157,7 +157,34 @@ public class StationsController : Controller
     public ActionResult DeleteConfirmed(long id)
     {
         Station station = db.Stations.Single(s => s.StationID == id);
-        db.Stations.DeleteObject(station);
+
+        //Delete Messages
+        List<object> stuffToDelete = new List<object>(); 
+        foreach (var message in station.Messages)
+        {
+            stuffToDelete.Add(message);
+        }
+
+        foreach (var o in stuffToDelete)
+        {
+            db.Messages.DeleteObject(o as Message);
+        }
+
+        stuffToDelete.Clear();
+
+        foreach (var message in station.Groupings)
+        {
+            stuffToDelete.Add(message);
+        }
+
+        foreach (var group in stuffToDelete)
+        {
+            (group as Grouping).Stations.Remove(station);
+        }
+
+        stuffToDelete.Clear();
+
+     db.Stations.DeleteObject(station);
         db.SaveChanges();
         return RedirectToAction("Index");
     }

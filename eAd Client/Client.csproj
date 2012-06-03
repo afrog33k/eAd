@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{12580009-41D3-4A89-AD9C-0C4554FCB2F7}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>eAd Client</AssemblyName>
+    <OutputType>WinExe</OutputType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ClientApp.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>ClientApp</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="Controls\MarqueeEffect.cs" />
+    <Compile Include="Controls\MarqueeStrip.xaml.cs">
+      <DependentUpon>MarqueeStrip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MarqueeTextControl.xaml.cs">
+      <DependentUpon>MarqueeTextControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SigFont.cs" />
+    <Compile Include="Controls\SigMarquee.cs" />
+    <Compile Include="Core\KeepAlive.cs" />
+    <Compile Include="IPausableControl.cs" />
+    <Compile Include="Players\VideoPlayer.cs" />
+    <Compile Include="Players\VideoPlayer.designer.cs">
+      <DependentUpon>VideoPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Widgets\BatteryInfo.xaml.cs">
+      <DependentUpon>BatteryInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Widgets\CarInfo.xaml.cs">
+      <DependentUpon>CarInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Widgets\Location.xaml.cs">
+      <DependentUpon>Location.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Widgets\Profile.xaml.cs">
+      <DependentUpon>Profile.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Players\VideoPlayer.resx">
+      <DependentUpon>VideoPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <Reference Include="Interop.WMPLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ISymWrapper" />
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="eAd.DataViewModels" />
+    <Reference Include="AxInterop.WMPLib" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Ionic.Zip" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="eAd.Utilities" />
+    <Reference Include="System.Management" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="ClientManager.xaml.cs">
+      <DependentUpon>ClientManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DigitalClockControl.xaml.cs">
+      <DependentUpon>DigitalClockControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DigitalClockDots.xaml.cs">
+      <DependentUpon>DigitalClockDots.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DigitalClockElement.xaml.cs">
+      <DependentUpon>DigitalClockElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DigitalControlWindow.xaml.cs">
+      <DependentUpon>DigitalControlWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImageListBox.xaml.cs">
+      <DependentUpon>ImageListBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OptionForm.designer.cs">
+      <DependentUpon>OptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Global.cs" />
+    <Compile Include="Players\Media.xaml.cs">
+      <DependentUpon>Media.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Update\Webdata.cs" />
+    <Compile Include="Update\Update.cs" />
+    <Compile Include="Players\Rss.cs" />
+    <Compile Include="Update\BytesDownloadedEventHandler.cs" />
+    <Compile Include="Core\RequiredFiles.cs" />
+    <Compile Include="Core\DispatcherHelper.cs" />
+    <Compile Include="Update\UpdateMe.cs" />
+    <Compile Include="Core\Region.cs" />
+    <Compile Include="Core\MediaOption.cs" />
+    <Compile Include="Core\LogType.cs" />
+    <Compile Include="Core\ArgumentsReceivedEventArgs.cs" />
+    <Compile Include="Controls\BatteryRecharging.cs" />
+    <Compile Include="Players\WebContent.cs" />
+    <Compile Include="Core\HardwareKey.cs" />
+    <Compile Include="MainUI\LoadingProfile.cs" />
+    <Compile Include="Charging.cs" />
+    <Compile Include="Players\Text.cs" />
+    <Compile Include="Core\MessageListener.cs" />
+    <Compile Include="App.cs" />
+    <Compile Include="DataSetView.cs" />
+    <Compile Include="ISwitchable.cs" />
+    <Compile Include="Properties\Resources.cs" />
+    <Compile Include="Update\ByteArgs.cs" />
+    <Compile Include="TemporaryHtml.cs" />
+    <Compile Include="Screenshot.cs" />
+    <Compile Include="ScreenCapture.cs" />
+    <Compile Include="CustomInstall.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AdvertPlayer.cs" />
+    <Compile Include="Md5Resource.cs" />
+    <Compile Include="Core\StatType.cs" />
+    <Compile Include="Core\SingleInstance.cs" />
+    <Compile Include="Core\RegionOptions.cs" />
+    <Compile Include="ScheduleManager.cs" />
+    <Compile Include="Core\BlackList.cs" />
+    <Compile Include="Core\WidgetsFactory.cs" />
+    <Compile Include="Core\ClientTraceListener.cs" />
+    <Compile Include="Core\TraceMessage.cs" />
+    <Compile Include="LayoutSchedule.cs" />
+    <Compile Include="Properties\Settings.cs" />
+    <Compile Include="Core\Utilities.cs" />
+    <Compile Include="Core\StatLog.cs" />
+    <Compile Include="Schedule.cs" />
+    <Compile Include="Flash.cs" />
+    <Compile Include="Core\Options.cs" />
+    <Compile Include="CacheManager.cs" />
+    <Compile Include="Update\VersionInfo.cs" />
+    <Compile Include="Core\LogMessage.cs" />
+    <Compile Include="Core\WindowAnimator.cs" />
+    <Compile Include="Players\Video.cs" />
+    <Compile Include="Core\BlackListType.cs" />
+    <Compile Include="About.cs" />
+    <Compile Include="Core\Splasher.cs" />
+    <Compile Include="Switcher.cs" />
+    <Compile Include="Core\Startup.cs" />
+    <Compile Include="Core\MediaDictionary.cs" />
+    <Compile Include="Core\Stat.cs" />
+    <Compile Include="Players\Picture.cs" />
+    <Compile Include="Core\FileCollector.cs" />
+    <Compile Include="SplashScreen.cs" />
+    <Compile Include="Themes\x__ead_new_ead_desktopclient_ead_desktopclient_themes_generic_xaml.cs" />
+    <Compile Include="Service References\Service\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="OptionForm.resx">
+      <DependentUpon>OptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AxInterop.ShockwaveFlashObjects.dll" />
+    <Content Include="AxInterop.WMPLib.dll" />
+    <Content Include="DataCache\ad1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataCache\ad2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataCache\blankii.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataCache\Cute-Ball-Go-icon32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataCache\Cute-Ball-Stop-icon32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="eAd.DataViewModels.dll" />
+    <Content Include="eAd.Utilities.dll" />
+    <Content Include="Interop.WMPLib.dll" />
+    <Content Include="Ionic.Zip.dll" />
+    <Content Include="Resources\greencar.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\HtmlTemplate.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\splash.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\splash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\w0000114.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Update\eAd.DataViewModels.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Update\eAd.DataViewModels.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Update\eAd.Utilities.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Update\eAd.Utilities.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Update\Ionic.Zip.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Update\Ionic.Zip.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Update\Ionic.Zip.xml" />
+    <Content Include="Update\Updater.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Update\Updater.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Update\Updater.vshost.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="version.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\DataSources\eAd.DataViewModels.CustomerViewModel.datasource" />
+    <None Include="Properties\DataSources\eAd.DataViewModels.FilesModel.datasource" />
+    <None Include="Properties\DataSources\eAd.DataViewModels.MediaListModel.datasource" />
+    <None Include="Properties\DataSources\eAd.DataViewModels.MessageViewModel.datasource" />
+    <None Include="Properties\DataSources\eAd.DataViewModels.PositionViewModel.datasource" />
+    <None Include="Properties\DataSources\eAd.DataViewModels.ScheduleModel.datasource" />
+    <None Include="Properties\DataSources\eAd.DataViewModels.StationViewModel.datasource" />
+    <None Include="Service References\Service\ClientApp.Service.FileMetaData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Service\ClientApp.Service.Mosaic.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Service\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\Service\configuration.svcinfo" />
+    <None Include="Service References\Service\configuration91.svcinfo" />
+    <None Include="Service References\Service\Service.wsdl" />
+    <None Include="Service References\Service\Service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Service\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Service\Service10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Service\Service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Service\Service3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Service\Service4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Service\Service5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Service\Service6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Service\Service7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Service\Service8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Service\Service9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="About.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AdvertPlayer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Charging.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientManager.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\BatteryRecharging.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\DigitalClockControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\DigitalClockDots.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\DigitalClockElement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\DigitalControlWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ImageListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\MarqueeStrip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MarqueeTextControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainUI\LoadingProfile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Players\Media.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RegionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SplashScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Widgets\BatteryInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Widgets\CarInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Widgets\Location.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Widgets\Profile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

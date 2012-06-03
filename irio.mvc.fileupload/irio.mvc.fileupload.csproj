@@ -45,6 +45,10 @@
     <Compile Include="DJFileUpload.cs" />
     <Compile Include="DJUploadController.cs" />
     <Compile Include="DummyProcessor.cs" />
+    <Compile Include="FileErrorEventHandler.cs" />
+    <Compile Include="FileEventHandler.cs" />
+    <Compile Include="FileProcessorInitEventArgs.cs" />
+    <Compile Include="FileProcessorInitEventHandler.cs" />
     <Compile Include="FileSystemProcessor.cs" />
     <Compile Include="FormStream.cs" />
     <Compile Include="IFileProcessor.cs" />

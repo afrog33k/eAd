@@ -31,30 +31,7 @@ using System.Text.RegularExpressions;
 
 namespace irio.mvc.fileupload
 {
-/// <summary>
-/// Delegate for file events.
-/// </summary>
-/// <param name="sender">Sender.</param>
-/// <param name="fileName">File name.</param>
-/// <param name="identifier">
-/// An optional identifier passed from the processor and
-/// used to identify the item in the storage container.
-/// </param>
-public delegate void FileEventHandler(object sender, string fileName, object identifier, Dictionary<string, string> headerItems);
-
-/// <summary>
-/// Delegate for file error events.
-/// </summary>
-/// <param name="sender">Sender.</param>
-/// <param name="fileName">File name.</param>
-/// <param name="identifier">
-/// An optional identifier passed from the processor and
-/// used to identify the item in the storage container.
-/// </param>
-/// <param name="ex">The exception that was raised.</param>
-public delegate void FileErrorEventHandler(object sender, string fileName, object identifier, Dictionary<string, string> headerItems, Exception exception);
-
-/// <summary>
+    /// <summary>
 /// Implements a stream which can be used to parse an RFC1867 (HTTP upload)
 /// compliant HTTP request.
 ///

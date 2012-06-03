@@ -2265,6 +2265,54 @@ namespace eAd.DataAccess
         private Nullable<global::System.DateTime> _Updated;
         partial void OnUpdatedChanging(Nullable<global::System.DateTime> value);
         partial void OnUpdatedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Url
+        {
+            get
+            {
+                return _Url;
+            }
+            set
+            {
+                OnUrlChanging(value);
+                ReportPropertyChanging("Url");
+                _Url = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Url");
+                OnUrlChanged();
+            }
+        }
+        private global::System.String _Url;
+        partial void OnUrlChanging(global::System.String value);
+        partial void OnUrlChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ThumbnailUrl
+        {
+            get
+            {
+                return _ThumbnailUrl;
+            }
+            set
+            {
+                OnThumbnailUrlChanging(value);
+                ReportPropertyChanging("ThumbnailUrl");
+                _ThumbnailUrl = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ThumbnailUrl");
+                OnThumbnailUrlChanged();
+            }
+        }
+        private global::System.String _ThumbnailUrl;
+        partial void OnThumbnailUrlChanging(global::System.String value);
+        partial void OnThumbnailUrlChanged();
 
         #endregion
 

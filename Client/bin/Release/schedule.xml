@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ScheduleModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Items>
+    <ScheduleLayout File="11" FromDate="2000-01-01 00:00:00" ToDate="2030-01-19 00:00:00" ScheduleId="0" Priority="0">
+      <Default>true</Default>
+      <Hash>b1c6612caf36ac74ed2471deeeb7192a</Hash>
+      <Type>General</Type>
+    </ScheduleLayout>
+    <ScheduleLayout File="20" FromDate="2000-01-01 00:00:00" ToDate="2030-01-19 00:00:00" ScheduleId="0" Priority="0">
+      <Default>true</Default>
+      <Hash>f0e5e5d7407cedbf1b1833a222c4c40f</Hash>
+      <Type>Profile</Type>
+    </ScheduleLayout>
+  </Items>
+</ScheduleModel>

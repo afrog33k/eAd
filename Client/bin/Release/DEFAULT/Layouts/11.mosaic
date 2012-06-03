@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+<LayoutModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="1" Width="768" Height="1366" Background="\uploads\media\72\72\x_utswlva0ymxkrmcww3ea.jpg" Type="General">
+  <region>
+    <Media>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\55\55\e0kmxhvjikg0lzpeeefeuw.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>55</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>55</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\56\56\fb-3ipld9uo4_zxzegc7hq.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>56</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>56</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\58\58\hiw-33sqvegeltz0pqqukq.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>58</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>58</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\61\61\kay7cpsqw0qeycywbly6rg.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>61</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>61</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\62\62\jlqzgttq_uelms_na5hg1w.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>62</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>62</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\64\64\lzd1bwqezkggcsgqjlgxxa.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>64</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>64</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\65\65\mdev53trrkorqnysure_iq.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>65</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>65</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\66\66\ix9etanzl0gvvg6gxejboq.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>66</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>66</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+    </Media>
+    <Id>26</Id>
+    <UserId>-1</UserId>
+    <Width>182</Width>
+    <Height>334</Height>
+    <Top>256</Top>
+    <Left>286</Left>
+  </region>
+  <region>
+    <Media>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\55\55\e0kmxhvjikg0lzpeeefeuw.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>55</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>55</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\56\56\fb-3ipld9uo4_zxzegc7hq.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>56</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>56</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\61\61\kay7cpsqw0qeycywbly6rg.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>61</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>61</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\64\64\lzd1bwqezkggcsgqjlgxxa.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>64</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>64</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+    </Media>
+    <Id>28</Id>
+    <UserId>-1</UserId>
+    <Width>182</Width>
+    <Height>892</Height>
+    <Top>251</Top>
+    <Left>47</Left>
+  </region>
+  <region>
+    <Media>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\55\55\e0kmxhvjikg0lzpeeefeuw.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>55</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>55</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\56\56\fb-3ipld9uo4_zxzegc7hq.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>56</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>56</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>\uploads\media\61\61\kay7cpsqw0qeycywbly6rg.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>61</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>61</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+    </Media>
+    <Id>31</Id>
+    <UserId>0</UserId>
+    <Width>185</Width>
+    <Height>895</Height>
+    <Top>246</Top>
+    <Left>523</Left>
+  </region>
+  <region>
+    <Media />
+    <Id>40</Id>
+    <UserId>0</UserId>
+    <Width>694</Width>
+    <Height>100</Height>
+    <Top>52</Top>
+    <Left>32</Left>
+  </region>
+</LayoutModel>

@@ -1,0 +1,9 @@
+C:\ProjectHub\eAd\PowerpointTest\bin\Release\PowerpointTest.exe
+C:\ProjectHub\eAd\PowerpointTest\bin\Release\PowerpointTest.pdb
+C:\ProjectHub\eAd\PowerpointTest\obj\x86\Release\ResolveAssemblyReference.cache
+C:\ProjectHub\eAd\PowerpointTest\obj\x86\Release\PowerpointTest.Form1.resources
+C:\ProjectHub\eAd\PowerpointTest\obj\x86\Release\PowerpointTest.Properties.Resources.resources
+C:\ProjectHub\eAd\PowerpointTest\obj\x86\Release\GenerateResource.read.1.tlog
+C:\ProjectHub\eAd\PowerpointTest\obj\x86\Release\GenerateResource.write.1.tlog
+C:\ProjectHub\eAd\PowerpointTest\obj\x86\Release\PowerpointTest.exe
+C:\ProjectHub\eAd\PowerpointTest\obj\x86\Release\PowerpointTest.pdb
