@@ -317,8 +317,12 @@ public class MediaController : Controller
       //
     // GET: /Default1/Delete/5
 
-    public ActionResult ResizeAndSave()
+    public ActionResult ResizeAndSave(int Id=-1)
     {
+        if(Id!=-1)
+        {
+            ViewBag.Image =  "../" +_db.Media.SingleOrDefault(d => d.MediaID == Id).Location;
+        }
         return View();
     }
 
@@ -496,14 +500,14 @@ public class MediaController : Controller
         /// <param name="w">The w.</param>
         /// <param name="h">The h.</param>
         /// <returns>Image Id</returns>
-        public JsonResult CropImage(int x, int y, int w, int h)
+        public JsonResult CropImage(int x, int y, int w, int h, string url)
         {
             try
             {
                 if (w == 0 && h == 0) // Make sure the user selected a crop area
                     throw new Exception("A crop selection was not made.");
-
-                string imageId = ModifyImage(x, y, w, h, ImageModificationType.Crop);
+                url = Server.MapPath(url);
+                string imageId = ModifyImage(x, y, w, h, ImageModificationType.Crop,url);
                 return Json(imageId);
             }
             catch (Exception ex)
@@ -523,7 +527,7 @@ public class MediaController : Controller
         {
             try
             {
-                string imageId = ModifyImage(0, 0, W_FixedSize, H_FixedSize, ImageModificationType.Resize);
+                string imageId = ModifyImage(0, 0, W_FixedSize, H_FixedSize, ImageModificationType.Resize, "");
                 return Json(imageId);
             }
             catch (Exception ex)
@@ -535,19 +539,21 @@ public class MediaController : Controller
             }
         }
 
-        /// <summary>
-        /// Modifies an image image.
-        /// </summary>
-        /// <param name="x">The x.</param>
-        /// <param name="y">The y.</param>
-        /// <param name="w">The w.</param>
-        /// <param name="h">The h.</param>
-        /// <param name="modType">Type of the mod. Crop or Resize</param>
-        /// <returns>New Image Id</returns>
-        private string ModifyImage(int x, int y, int w, int h, ImageModificationType modType)
+    /// <summary>
+    /// Modifies an image image.
+    /// </summary>
+    /// <param name="x">The x.</param>
+    /// <param name="y">The y.</param>
+    /// <param name="w">The w.</param>
+    /// <param name="h">The h.</param>
+    /// <param name="modType">Type of the mod. Crop or Resize</param>
+    /// <param name="url"> </param>
+    /// <returns>New Image Id</returns>
+    private string ModifyImage(int x, int y, int w, int h, ImageModificationType modType, string url)
         {
-            ModifiedImageId = Guid.NewGuid();
-            Image img = ImageHelper.ByteArrayToImage(WorkingImage);
+         //   ModifiedImageId = Guid.NewGuid();
+        string finalUrl = "";
+        Image img = new Bitmap(url);//ImageHelper.ByteArrayToImage();//WorkingImage);
 
             using (System.Drawing.Bitmap _bitmap = new System.Drawing.Bitmap(w, h))
             {
@@ -570,7 +576,7 @@ public class MediaController : Controller
                         _graphic.DrawImage(img, new Rectangle(0, 0, W_FixedSize, H_FixedSize), 0, 0, img.Width, img.Height, GraphicsUnit.Pixel);
                     }
 
-                    string extension = WorkingImageExtension;
+                    string extension =Path.GetExtension(url);// WorkingImageExtension;
 
                     // If the image is a gif file, change it into png
                     if (extension.EndsWith("gif", StringComparison.OrdinalIgnoreCase))
@@ -581,12 +587,17 @@ public class MediaController : Controller
                     using (EncoderParameters encoderParameters = new EncoderParameters(1))
                     {
                         encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 100L);
-                        ModifiedImage = ImageHelper.ImageToByteArray(_bitmap, extension, encoderParameters);
+                        finalUrl = Path.GetDirectoryName(url) + Path.GetFileNameWithoutExtension(url) + "-" + x + "-" + y + "-" + w + "-" + h +
+                                   extension;
+                        _bitmap.Save(finalUrl,ImageHelper.GetImageFormat(extension));
+
+                        finalUrl = "../"+finalUrl.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
+                      //  ModifiedImage = ImageHelper.ImageToByteArray(_bitmap, extension, encoderParameters);
                     }
                 }
             }
 
-            return ModifiedImageId.ToString();
+            return finalUrl;
         }
     }
 

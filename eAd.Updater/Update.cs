@@ -216,6 +216,7 @@ public partial class Update : Form,IReporter
     {
         var startInfo = new ProcessStartInfo();
         startInfo.FileName = _postProcessFile.Replace(".vshost", "");
+        startInfo.UseShellExecute = false;
         //  startInfo.Arguments = _postProcessCommand;
         Process.Start(startInfo);
     }

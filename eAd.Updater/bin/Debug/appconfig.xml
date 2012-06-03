@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ClientConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AppPath>C:\ProjectHub\eAd\Client\bin\Debug\</AppPath>
+  <DefaultDuration>10000</DefaultDuration>
+  <MessageWaitTime>1000</MessageWaitTime>
+  <MyStationID>17</MyStationID>
+  <PlayListFile>playlist.xml</PlayListFile>
+  <ServerUrl>http://1.9.13.61</ServerUrl>
+  <CurrentMosaic>0</CurrentMosaic>
+</ClientConfiguration>

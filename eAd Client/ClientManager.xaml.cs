@@ -67,7 +67,7 @@ namespace ClientApp
 
         public ClientManager()
         {
-            RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly; 
+      //      RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly; 
 
             //Listeners 
 

@@ -26,6 +26,29 @@ namespace eAd.Website
         }
 
         /// <summary>
+        /// Find the right codec
+        /// </summary>
+        /// <param name="extension"></param>
+        /// <returns></returns>
+        public static ImageFormat GetImageFormat(string extension)
+        {
+            if (extension == ".jpg")
+                return ImageFormat.Jpeg;
+
+            if (extension == ".png")
+                return ImageFormat.Png;
+
+            if (extension == ".gif")
+                return ImageFormat.Gif;
+
+            if (extension == ".bmp")
+                return ImageFormat.Bmp;
+
+            return ImageFormat.Jpeg;
+        }
+
+
+        /// <summary>
         /// Images to byte array.
         /// </summary>
         /// <param name="imageIn">The image in.</param>

@@ -2,6 +2,7 @@
 
 using System;
 using System.Drawing;
+using System.IO;
 using System.Web;
 using ImageUploadAndCrop;
 using eAd.Website;
@@ -9,7 +10,8 @@ using eAd.Website;
 public class ImageHandler : IHttpHandler {
     
     public void ProcessRequest (HttpContext context) {
-        byte[] image = GetImage(context.Request.QueryString["id"], context);
+        //byte[] image = GetImage(context.Request.QueryString["id"], context);
+        byte[] image = File.ReadAllBytes(context.Request.QueryString["id"]);
         context.Response.Clear();
         context.Response.ContentType = "image/pjpeg";
         context.Response.BinaryWrite(image);

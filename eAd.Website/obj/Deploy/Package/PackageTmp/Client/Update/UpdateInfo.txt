@@ -1,2 +1,2 @@
 ﻿app|version|release date|url|file
-eAd Client|2.4|08/10/2012|http://1.9.13.61/Client/Update/|Client.zip
+eAd Client|2.6|08/10/2012|http://1.9.13.61/Client/Update/|Client.zip
