@@ -13,8 +13,9 @@ namespace ClientApp.Update
     {
         public string Downloadsurl = "http://1.9.13.61/Client/Update/";
         public static List<string> Info = new List<string>();
+
+        private static readonly string ProcessToEnd = Process.GetCurrentProcess().ProcessName; 
         private static readonly string PostProcess = (Application.StartupPath + @"\" + ProcessToEnd + ".exe");
-        private static readonly string ProcessToEnd = Process.GetCurrentProcess().ProcessName;
         public const string UPDATE_CURRENT = "No updates available for eAd Client";
         public const string UPDATE_INFO_ERROR = "Error in retrieving eAd Client information";
         public const string UPDATE_SUCCESS = "eAd Client has been successfully updated";
@@ -23,6 +24,12 @@ namespace ClientApp.Update
         public const string UPDATER_PREFIX = "M1234_";
         public static string UpdaterPath = (Application.StartupPath + @"\Update\Updater.exe");
         public string Versionfilename = "UpdateInfo.txt";
+
+        static  UpdateMe()
+        {
+            ProcessToEnd = Process.GetCurrentProcess().ProcessName;
+            PostProcess = (Application.StartupPath + @"\" + ProcessToEnd + ".exe");
+        }
 
         public void CheckForUpdate()
         {

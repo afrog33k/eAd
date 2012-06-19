@@ -1,13 +1,37 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Web;
 using eAd.DataViewModels;
 
 namespace eAd.DataAccess
 {
+   
+
+
+        public partial class Position
+        {
+            public IEnumerable<Medium> Media
+            {
+                get { return this.PositionMediums.Select(p => p.Medium); }
+            }
+        }
+
+        public partial class Medium
+        {
+            public IEnumerable<Position> Positions
+            {
+                get { return this.PositionMediums.Select(p => p.Position); }
+            }
+        }
+
 public static class ClassViewModelExtensions
 {
-   public static readonly string[] Displayableurls = new string[] { ".jpg", ".png", ".gif" };
+
+ 
+
+    public static readonly string[] Displayableurls = new string[] { ".jpg", ".png", ".gif" };
    public static readonly string[] PowerpointExtensions= new string[] { ".ppt", ".pptx", ".pps" };
     public static CustomerViewModel CreateModel(this Customer customer)
     {
@@ -65,7 +89,7 @@ public static class ClassViewModelExtensions
 
         var extension = Path.GetExtension(location);
 
-        model.ThumbnailUrl = "../" + medium.ThumbnailUrl;
+        model.ThumbnailUrl = ("../" + medium.ThumbnailUrl).Replace("localhost", "localhost/eAd.Website");
 
         if (Displayableurls.Contains(Path.GetExtension(location)))
         {
@@ -83,12 +107,21 @@ public static class ClassViewModelExtensions
             model.DisplayLocation = "../Uploads/Temp/Media" + "/" + "Thumb" +
                                     Path.GetFileNameWithoutExtension(location) + ".jpg";
         }
-
-        model.DisplayLocation = model.DisplayLocation.Replace("\\","/");
-        
+      var path=  VirtualPathUtility.ToAbsolute("~/");
+        if(path.Contains("eAd.Website"))
+        {
+            model.DisplayLocation = path+ model.DisplayLocation.Replace("\\", "/").Replace("localhost", "localhost/eAd.Website");
+       
+        }
+        else
+        {
+            model.DisplayLocation = model.DisplayLocation.Replace("\\", "/").Replace("localhost", "localhost/eAd.Website");   
+        }
+       
         return model;
     }
 
+    
 
     public static PositionViewModel CreateModel(this Position position)
     {

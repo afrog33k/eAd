@@ -1,4 +1,6 @@
-﻿namespace ClientApp
+﻿using System.IO;
+
+namespace ClientApp
 {
     using ClientApp.Core;
     using System;
@@ -56,9 +58,24 @@
         [STAThread, DebuggerNonUserCode]
         public static void Main()
         {
+            AppDomain.CurrentDomain.UnhandledException+=ReportAndRestart;
             App app = new App();
             app.InitializeComponent();
             app.Run();
+        }
+
+        private static void ReportAndRestart(object sender, UnhandledExceptionEventArgs e)
+        {
+            string info = e.ExceptionObject.ToString();
+            if(File.Exists("crash.log")) 
+                File.Delete("crash.log");
+            File.Create("crash.log");
+            File.WriteAllText("crash.log","App Crashed: " + DateTime.Now.ToString() + " : " + info);
+            System.Diagnostics.Process.Start(
+                System.Reflection.Assembly.GetEntryAssembly().Location,
+                string.Join(" ",  Environment.GetCommandLineArgs()))
+                ;
+            Environment.Exit(1);
         }
 
         private static void RunApp(string[] arguments)

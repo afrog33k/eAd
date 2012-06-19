@@ -202,16 +202,16 @@ namespace eAd.Website.Controllers
 
                 Position pos = db.Positions.Single(m => m.Name == position && m.MosaicID == mosaic);
 
-                var mediaList = new List<Medium>();
+                var mediaList = new List<PositionMedium>();
 
-                foreach (var medium in pos.Media)
+                foreach (var medium in pos.PositionMediums)
                 {
                     mediaList.Add(medium);
                 }
 
                 foreach (var medium in mediaList)
                 {
-                    pos.Media.Remove(medium);
+                    pos.PositionMediums.Remove(medium);
                 }
                 
                 db.Positions.DeleteObject(pos);
@@ -359,14 +359,15 @@ namespace eAd.Website.Controllers
                         }
                     }
                 }
-                
+
+                var posns = (mosaic.Positions.Select(d => d.CreateModel()).Union(extraItems)).ToArray();
 
                 if (mosaic != null)
                     return Json(new
                 {
                     background =
                     !String.IsNullOrEmpty(mosaic.Background) ? mosaic.Background.Replace("\\", "/") : "",
-                    positions = (mosaic.Positions.Select(d => d.CreateModel()).Union(extraItems)).ToArray()
+                    positions =posns
                 }, JsonRequestBehavior.AllowGet);
             }
             return null;
@@ -480,11 +481,11 @@ namespace eAd.Website.Controllers
                     position.Width = width;
                     position.Height = height;
                 }
-                var list = position.Media.ToList();
+                var list = position.PositionMediums.ToList();
 
                 foreach (var medium in list)
                 {
-                    position.Media.Remove(medium);
+                    position.PositionMediums.Remove(medium);
 
                 }
                 db.SaveChanges();
@@ -497,7 +498,12 @@ namespace eAd.Website.Controllers
                             var nname = Path.GetFileNameWithoutExtension(item).Replace("Thumb", "");
                             //item.Remove("Uploads/Temp/Media/Thumb".Length);
                             // name =
-                            position.Media.Add(db.Media.Where(m => m.Location.Contains(nname)).FirstOrDefault());
+                            position.PositionMediums.Add(new PositionMedium()
+                                                             {
+                                                                 Medium = db.Media.Where(m => m.Location.Contains(nname)).FirstOrDefault()
+                                                                 ,Position = position
+                                                             });
+                                
                         }
                 }
 
@@ -523,15 +529,18 @@ namespace eAd.Website.Controllers
                     var extra = positionList.Where(p => p.Name == "PersonalInfo" || p.Name == "CarInfo"
                                                         || p.Name == "LocationInfo" || p.Name == "BatteryInfo"
                         );
+
+                    
                     var posn = positionList.Except(extra);
                     var mosaic = db.Mosaics.Where(m => m.MosaicID == MosaicID).FirstOrDefault();
+                   
                     if (mosaic != null)
                     {
                         mosaic.Updated = DateTime.Now;
                         if (positionList != null)
                             foreach (var positionItem in posn)
                             {
-
+                                
                                 Position position =
                                     mosaic.Positions.Where(p => p.Name == positionItem.Name).FirstOrDefault();
                                 if (position == null)
@@ -548,29 +557,45 @@ namespace eAd.Website.Controllers
                                 position.Y = (double) positionItem.Y;
                                 position.Width = (double) positionItem.Width;
                                 position.Height = (double) positionItem.Height;
-                                var list = position.Media.ToList();
+                                var list = position.PositionMediums.ToList();
 
                                 for (int i = 0; i < list.Count; i++)
                                 {
                                     var medium = list[i];
-                                    position.Media.Remove(medium);
+                                     db.PositionMediums.DeleteObject(medium);
                                     list[i] = null;
                                 }
                                 db.SaveChanges();
-
+                                var order = 0;
                                 if (positionItem.MediaUri != null)
                                     foreach (var path in positionItem.MediaUri)
                                     {
                                         if (!String.IsNullOrEmpty(path))
-                                            if (!position.Media.Any(i => Path.GetFileNameWithoutExtension(i.Name).ToLower().Replace("thumb", "") ==  Path.GetFileNameWithoutExtension(path).ToLower().Replace("thumb", "")))
+                                       //     if (!position.Media.Any(i => Path.GetFileNameWithoutExtension(i.Name).ToLower().Replace("thumb", "") ==  Path.GetFileNameWithoutExtension(path).ToLower().Replace("thumb", "")))  // Duplicates now allowed
                                             {
+                                            if(order%2==0)  //Deal with duplication bug from js
+                                            {
+                                                
+                                            
                                                 var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(path);
                                                 if (fileNameWithoutExtension != null)
                                                 {
                                                     var nname = fileNameWithoutExtension.ToLower().Replace("thumb", "");
                                                     //item.Remove("Uploads/Temp/Media/Thumb".Length);
                                                     // name =
-                                                    position.Media.Add(db.Media.Where(m => m.Location.Contains(nname)).FirstOrDefault());
+                                                    position.PositionMediums.Add(new PositionMedium()
+                                                                                     {
+                                                                                         Medium =
+                                                                                             db.Media.Where(
+                                                                                                 m =>
+                                                                                                 m.Location.Contains(
+                                                                                                     nname)).
+                                                                                             FirstOrDefault(),
+                                                                                         Position = position,
+                                                                                         PlayOrder = (short?) order
+                                                                                     });
+                                                }
+                                                order++;
                                                 }
                                             }
                                     }

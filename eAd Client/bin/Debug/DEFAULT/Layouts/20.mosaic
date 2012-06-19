@@ -17,8 +17,8 @@
       </LayoutRegionMedia>
     </Media>
     <UserId>0</UserId>
-    <Width>342</Width>
-    <Height>400</Height>
+    <Width>479</Width>
+    <Height>432</Height>
     <Top>256</Top>
     <Left>1</Left>
     <Type>Widget</Type>
@@ -41,10 +41,10 @@
       </LayoutRegionMedia>
     </Media>
     <UserId>0</UserId>
-    <Width>394</Width>
-    <Height>735</Height>
-    <Top>255</Top>
-    <Left>359</Left>
+    <Width>507</Width>
+    <Height>373</Height>
+    <Top>617</Top>
+    <Left>2</Left>
     <Type>Widget</Type>
     <Name>LocationInfo</Name>
   </region>
@@ -65,7 +65,7 @@
       </LayoutRegionMedia>
     </Media>
     <UserId>0</UserId>
-    <Width>549</Width>
+    <Width>757</Width>
     <Height>348</Height>
     <Top>1005</Top>
     <Left>1</Left>
@@ -89,10 +89,10 @@
       </LayoutRegionMedia>
     </Media>
     <UserId>0</UserId>
-    <Width>344</Width>
-    <Height>321</Height>
-    <Top>670</Top>
-    <Left>1</Left>
+    <Width>258</Width>
+    <Height>315</Height>
+    <Top>256</Top>
+    <Left>496</Left>
     <Type>Widget</Type>
     <Name>CarInfo</Name>
   </region>
@@ -163,9 +163,9 @@
     </Media>
     <Id>45</Id>
     <UserId>0</UserId>
-    <Width>191</Width>
-    <Height>349</Height>
-    <Top>1004</Top>
-    <Left>564</Left>
+    <Width>257</Width>
+    <Height>407</Height>
+    <Top>582</Top>
+    <Left>496</Left>
   </region>
 </LayoutModel>

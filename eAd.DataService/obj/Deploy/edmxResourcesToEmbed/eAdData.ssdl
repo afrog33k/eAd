@@ -16,7 +16,6 @@
     <EntitySet Name="Positions" EntityType="eAdData.Store.Positions" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Resolutions" EntityType="eAdData.Store.Resolutions" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Stations" EntityType="eAdData.Store.Stations" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="sysdiagrams" EntityType="eAdData.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ThemeMedium" EntityType="eAdData.Store.ThemeMedium" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Themes" EntityType="eAdData.Store.Themes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Widgets" EntityType="eAdData.Store.Widgets" store:Type="Tables" Schema="dbo" />
@@ -225,12 +224,14 @@
   </EntityType>
   <EntityType Name="PositionMedium">
     <Key>
-      <PropertyRef Name="Media_MediaID" />
-      <PropertyRef Name="Positions_PositionID" />
+      <PropertyRef Name="PositionMediumID" />
     </Key>
     <Property Name="Media_MediaID" Type="bigint" Nullable="false" />
     <Property Name="Positions_PositionID" Type="bigint" Nullable="false" />
     <Property Name="Duration" Type="time" />
+    <Property Name="PlayOrder" Type="smallint" />
+    <Property Name="Size" Type="nvarchar" MaxLength="50" />
+    <Property Name="PositionMediumID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
   </EntityType>
   <EntityType Name="Positions">
     <Key>
@@ -272,16 +273,6 @@
     <Property Name="Status" Type="nvarchar" MaxLength="50" />
     <Property Name="HardwareKey" Type="nchar" MaxLength="32" />
     <Property Name="Approved" Type="bit" Nullable="false" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="ThemeMedium">
     <Key>

@@ -426,7 +426,7 @@ function CreateNewMosaic() {
             'Cancel': function () {
                 $(this).dialog('close');
             }
-
+          
         }
     });
 }
@@ -522,14 +522,12 @@ function AddPosition(name, x, y, nwidth, nheight, id, media) {
 
 					                }
 					            }
-					            else if (action == "delete") {
-					                var mosaic = $("#MosaicID");
-					                if (mosaic.val() != "") {
-					                    ShowModalPage("DeletePosition", 'Delete Position', '../Mosaic/DeletePosition/?mosaic=' + mosaic.val() + "&position=" + jsName, null, null);
-					                }
-
-
-					            }
+//					            else if (action == "delete") {
+//					                var mosaic = $("#MosaicID");
+//					                if (mosaic.val() != "") {
+//					                    ShowModalPage("DeletePosition", 'Delete Position', '../Mosaic/DeletePosition/?mosaic=' + mosaic.val() + "&position=" + jsName, null, null);
+//					                }
+//					            }
 					        });
 
     $('#' + jsName).append(recycleIcon);

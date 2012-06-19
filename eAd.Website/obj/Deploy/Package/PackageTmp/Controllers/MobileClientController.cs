@@ -50,7 +50,7 @@ namespace eAd.Website.Controllers
             return Json(Adverts,JsonRequestBehavior.AllowGet);
         }
 
-        private void CreateMobileAds(List<MobileAdvert> adverts, int height, EntityCollection<Medium> media, int prefix)
+        private void CreateMobileAds(List<MobileAdvert> adverts, int height, IEnumerable<Medium> media, int prefix)
         {
             string hash;
             foreach (var medium in media)
@@ -92,7 +92,7 @@ namespace eAd.Website.Controllers
                     adverts.Add(new MobileAdvert()
                                          {
                                              AdvertisementId = (int) medium.MediaID + prefix,
-                                             ContentUrl = medium.Url,
+                                             ContentUrl = medium.Url.Contains("http://")?medium.Url:"http://" +medium.Url,
                                              MediaUrl = clientName,
                                              MediaType = medium.Type.ToLower().Contains("image") ? "image" : "video",
                                              Type = height == 480 ? "fullscreen" : "banner",

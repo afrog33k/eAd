@@ -1,50 +1,37 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:HomeController.cs" caret="165" fromTop="0" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MobileClientController.cs" caret="3404" fromTop="5" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:Flash.cs" caret="0" fromTop="0" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:DataSetView.cs" caret="0" fromTop="0" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/d:Players/f:Media.xaml.cs" caret="0" fromTop="0" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/d:Players/f:Picture.cs" caret="0" fromTop="0" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/d:Core/f:KeepAlive.cs" caret="0" fromTop="0" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:Schedule.cs" caret="0" fromTop="0" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:ScheduleManager.cs" caret="0" fromTop="0" />
+    <File id="BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0/f:Update.cs" caret="6326" fromTop="9" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/d:Update/f:UpdateMe.cs" caret="160" fromTop="1" />
     <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Client/d:Update/f:UpdateInfo.txt" caret="105" fromTop="2" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/f:Globals.cs" caret="0" fromTop="0" />
-    <File id="BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0/f:webdata.cs" caret="2218" fromTop="0" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/f:Web.config" caret="2514" fromTop="0" />
-    <File id="47A32603-2D64-4BD5-A503-F1142A5C2733/f:MediaListModel.cs" caret="152" fromTop="7" />
-    <File id="0FCFE42B-027D-43DB-9149-068ED514303C/f:ClassViewModelExtensions.cs" caret="2921" fromTop="6" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MosaicController.cs" caret="21248" fromTop="7" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/f:Global.asax.cs" caret="2255" fromTop="10" />
-    <File id="BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0/f:Update.cs" caret="6042" fromTop="4" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/f:ImageHelper.cs" caret="1374" fromTop="15" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Media/f:ResizeAndSave.cshtml" caret="3669" fromTop="3" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MediaController.cs" caret="19043" fromTop="8" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/f:ImageHandler.ashx" caret="228" fromTop="7" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/d:Players/f:Media.xaml" caret="0" fromTop="0" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/d:Widgets/f:Location.xaml" caret="0" fromTop="0" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/d:Widgets/f:BatteryInfo.xaml" caret="0" fromTop="0" />
+    <File id="1B762266-9A36-4131-913E-80716070360E/d:Menu/f:CustomerPage.xaml" caret="0" fromTop="0" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/d:Controls/f:MarqueeTextControl.xaml" caret="0" fromTop="0" />
+    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:HomeController.cs" caret="1360" fromTop="0" />
+    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Mosaic/f:IndexMobile.cshtml" caret="0" fromTop="0" />
+    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Scripts/f:mosaic-mobile.js" caret="13531" fromTop="12" />
+    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MobileClientController.cs" caret="3989" fromTop="9" />
+    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MediaController.cs" caret="1628" fromTop="8" />
+    <File id="0FCFE42B-027D-43DB-9149-068ED514303C/f:Service.cs" caret="0" fromTop="0" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/d:Core/f:Options.cs" caret="0" fromTop="0" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:App.cs" caret="0" fromTop="0" />
+    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/f:ImageHandler.ashx" caret="0" fromTop="0" />
     <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Home/f:Index.cshtml" caret="0" fromTop="0" />
     <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Shared/f:_LogOnPartial.cshtml" caret="0" fromTop="0" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/d:Players/f:WebContent.cs" caret="0" fromTop="0" />
     <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Media/f:PickerList.cshtml" caret="0" fromTop="0" />
     <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Media/f:Edit.cshtml" caret="0" fromTop="0" />
-    <File id="1B762266-9A36-4131-913E-80716070360E/d:Menu/f:CustomerPage.xaml" caret="0" fromTop="0" />
+    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MosaicController.cs" caret="24337" fromTop="4" />
   </RecentFiles>
   <RecentEdits>
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Media/f:ResizeAndSave.cshtml" caret="5357" fromTop="12" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Media/f:ResizeAndSave.cshtml" caret="4836" fromTop="9" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Media/f:ResizeAndSave.cshtml" caret="136" fromTop="5" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Media/f:ResizeAndSave.cshtml" caret="768" fromTop="3" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Media/f:ResizeAndSave.cshtml" caret="2802" fromTop="11" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Media/f:ResizeAndSave.cshtml" caret="3061" fromTop="0" />
-    <File id="0FCFE42B-027D-43DB-9149-068ED514303C/f:ClassViewModelExtensions.cs" caret="2653" fromTop="12" />
-    <File id="0FCFE42B-027D-43DB-9149-068ED514303C/f:ClassViewModelExtensions.cs" caret="3146" fromTop="10" />
-    <File id="47A32603-2D64-4BD5-A503-F1142A5C2733/f:MediaListModel.cs" caret="139" fromTop="7" />
-    <File id="0FCFE42B-027D-43DB-9149-068ED514303C/f:ClassViewModelExtensions.cs" caret="2330" fromTop="5" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MediaController.cs" caret="9163" fromTop="10" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Media/f:ResizeAndSave.cshtml" caret="4287" fromTop="8" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/f:ImageHandler.ashx" caret="438" fromTop="6" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MediaController.cs" caret="14790" fromTop="2" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MediaController.cs" caret="15794" fromTop="10" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Media/f:ResizeAndSave.cshtml" caret="3621" fromTop="10" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Media/f:ResizeAndSave.cshtml" caret="3497" fromTop="6" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MediaController.cs" caret="15034" fromTop="15" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MediaController.cs" caret="18206" fromTop="9" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MediaController.cs" caret="16726" fromTop="7" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MediaController.cs" caret="19295" fromTop="12" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/f:ImageHelper.cs" caret="782" fromTop="15" />
-    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/f:ImageHelper.cs" caret="1385" fromTop="19" />
     <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/f:ImageHelper.cs" caret="1174" fromTop="13" />
     <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/f:ImageHelper.cs" caret="1093" fromTop="11" />
     <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/f:ImageHelper.cs" caret="1374" fromTop="15" />
@@ -52,5 +39,28 @@
     <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Views/d:Media/f:ResizeAndSave.cshtml" caret="3818" fromTop="6" />
     <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MediaController.cs" caret="19023" fromTop="8" />
     <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MediaController.cs" caret="18841" fromTop="4" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:ClientManager.xaml.cs" caret="5433" fromTop="13" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:ClientManager.xaml.cs" caret="19896" fromTop="13" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:ClientManager.xaml.cs" caret="16381" fromTop="24" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:ClientManager.xaml.cs" caret="16372" fromTop="19" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:ClientManager.xaml.cs" caret="16370" fromTop="9" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:ClientManager.xaml.cs" caret="100" fromTop="24" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:ClientManager.xaml.cs" caret="100" fromTop="17" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:ClientManager.xaml.cs" caret="100" fromTop="0" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:ClientManager.xaml.cs" caret="16381" fromTop="5" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:ClientManager.xaml.cs" caret="20025" fromTop="6" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:ClientManager.xaml.cs" caret="5416" fromTop="8" />
+    <File id="BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0/f:Update.cs" caret="6157" fromTop="4" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:ClientManager.xaml.cs" caret="2589" fromTop="3" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:App.cs" caret="1734" fromTop="4" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/f:App.cs" caret="2480" fromTop="11" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/d:Core/f:Options.cs" caret="247" fromTop="5" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/d:Core/f:Options.cs" caret="1198" fromTop="12" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/d:Update/f:UpdateMe.cs" caret="1435" fromTop="12" />
+    <File id="12580009-41D3-4A89-AD9C-0C4554FCB2F7/d:Update/f:UpdateMe.cs" caret="457" fromTop="10" />
+    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Client/d:Update/f:UpdateInfo.txt" caret="49" fromTop="1" />
+    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Scripts/f:mosaic-mobile.js" caret="1898" fromTop="13" />
+    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Controllers/f:MobileClientController.cs" caret="3715" fromTop="6" />
+    <File id="4C3B8286-7F61-49E4-8D88-0293F18C2C37/d:Scripts/f:mosaic-mobile.js" caret="13224" fromTop="0" />
   </RecentEdits>
 </RecentFiles>

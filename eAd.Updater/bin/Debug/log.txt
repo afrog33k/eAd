@@ -36,3 +36,21 @@ Error: <message>XMDS reset, last connection was at 13/04/2012 15:46:00</message>
 Error: <message>XMDS reset, last connection was at 13/04/2012 15:46:00</message><method>xmdsTimer_Tick</method>
 Error: <message>XMDS reset, last connection was at 13/04/2012 15:46:00</message><method>xmdsTimer_Tick</method>
 Error: <message>XMDS reset, last connection was at 13/04/2012 15:46:00</message><method>xmdsTimer_Tick</method>
+SetGlobalProxy: [IN]
+SetGlobalProxy: Trying to detect a proxy.
+SetGlobalProxy: No Proxy.
+SetGlobalProxy: [OUT]
+SetGlobalProxy: [IN]
+SetGlobalProxy: Trying to detect a proxy.
+SetGlobalProxy: No Proxy.
+SetGlobalProxy: [OUT]
+Unable to determine if layout is valid or not
+Schedule - InitializeComponents: Collection Interval: 900
+Unable to determine if layout is valid or not
+Error: <message>XMDS reset, last connection was at 13/04/2012 15:46:00</message><method>xmdsTimer_Tick</method>
+Switching to new View AdvertPlayer
+Error: <message>XMDS reset, last connection was at 13/04/2012 15:46:00</message><method>xmdsTimer_Tick</method>
+Error: <message>XMDS reset, last connection was at 13/04/2012 15:46:00</message><method>xmdsTimer_Tick</method>
+Error: <message>XMDS reset, last connection was at 13/04/2012 15:46:00</message><method>xmdsTimer_Tick</method>
+Error: <message>XMDS reset, last connection was at 13/04/2012 15:46:00</message><method>xmdsTimer_Tick</method>
+Error: <message>XMDS reset, last connection was at 13/04/2012 15:46:00</message><method>xmdsTimer_Tick</method>

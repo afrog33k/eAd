@@ -266,11 +266,11 @@ public class MediaController : Controller
 
         foreach (var position in positions)
         {
-            var mediaPositions =  position.Media.Where(m => m.MediaID == medium.MediaID).ToList();
+            var mediaPositions =  position.PositionMediums.Where(m => m.Media_MediaID == medium.MediaID).ToList();
 
             foreach (var mediaPosition in mediaPositions)
             {
-                position.Media.Remove(mediaPosition);
+                position.PositionMediums.Remove(mediaPosition);
             }
 
         }

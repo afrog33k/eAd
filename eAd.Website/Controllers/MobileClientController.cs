@@ -30,17 +30,20 @@ namespace eAd.Website.Controllers
             var Adverts = new List<MobileAdvert>();
 
             //Create files + hash
-            foreach (var position in adsFull)
+            //foreach (var position in adsFull)
             {
-                var media = position.Media;
+             //   var media = position.Media; // until fix these are hard_coded
+                var media = _db.Media.Where(m => m.Name.Contains("mobile_fs_"));
                 int height = 480;
                 CreateMobileAds(Adverts, height, media, 0);
             }
 
             //Create files + hash
-            foreach (var position in adsNotFull)
+       //     foreach (var position in adsNotFull)
             {
-                var media = position.Media;
+       //         var media = position.Media;
+                var media = _db.Media.Where(m => m.Name.Contains("mobile_bnr_"));
+
                 int height = 50;
                 CreateMobileAds(Adverts, height, media, 120000);
             }
@@ -50,7 +53,7 @@ namespace eAd.Website.Controllers
             return Json(Adverts,JsonRequestBehavior.AllowGet);
         }
 
-        private void CreateMobileAds(List<MobileAdvert> adverts, int height, EntityCollection<Medium> media, int prefix)
+        private void CreateMobileAds(List<MobileAdvert> adverts, int height, IEnumerable<Medium> media, int prefix)
         {
             string hash;
             foreach (var medium in media)
@@ -92,7 +95,7 @@ namespace eAd.Website.Controllers
                     adverts.Add(new MobileAdvert()
                                          {
                                              AdvertisementId = (int) medium.MediaID + prefix,
-                                             ContentUrl = medium.Url,
+                                             ContentUrl = medium.Url.Contains("http://")?medium.Url:"http://" +medium.Url,
                                              MediaUrl = clientName,
                                              MediaType = medium.Type.ToLower().Contains("image") ? "image" : "video",
                                              Type = height == 480 ? "fullscreen" : "banner",

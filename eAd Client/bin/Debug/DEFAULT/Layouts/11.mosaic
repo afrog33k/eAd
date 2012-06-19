@@ -82,7 +82,7 @@
     <UserId>-1</UserId>
     <Width>495</Width>
     <Height>346</Height>
-    <Top>926</Top>
+    <Top>927</Top>
     <Left>119</Left>
   </region>
   <region>
@@ -141,7 +141,7 @@
     <UserId>0</UserId>
     <Width>753</Width>
     <Height>52</Height>
-    <Top>1300</Top>
+    <Top>1301</Top>
     <Left>2</Left>
   </region>
   <region>
@@ -188,7 +188,7 @@
     </Media>
     <Id>53</Id>
     <UserId>0</UserId>
-    <Width>496</Width>
+    <Width>495</Width>
     <Height>343</Height>
     <Top>81</Top>
     <Left>120</Left>
