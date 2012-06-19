@@ -348,7 +348,7 @@ public class UploadRepository
 
 
                 Bitmap fullImage =
-                    (Bitmap) ImageUtilities.Resize(image, 900, 750, RotateFlipType.RotateNoneFlipNone);
+                    (Bitmap) ImageUtilities.Resize(image, image.Width, image.Height, RotateFlipType.RotateNoneFlipNone); //No need to resize
                 ImageUtilities.SaveImage(fullImage, physicalPath, ImageFormat.Jpeg, true);
 
 

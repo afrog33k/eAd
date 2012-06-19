@@ -59,12 +59,12 @@ namespace eAd.Website.Controllers
             foreach (var medium in media)
             {
                 var loc = Server.MapPath("~/"+medium.Location);
-                var newName = Path.GetDirectoryName(loc) + Path.GetFileNameWithoutExtension(loc) + height +
+                var newName = Path.GetDirectoryName(loc) +"/"+ Path.GetFileNameWithoutExtension(loc) + height +
                               Path.GetExtension(loc);
-                var hashName = Path.GetDirectoryName(loc) + Path.GetFileNameWithoutExtension(loc) + height +
+                var hashName = Path.GetDirectoryName(loc) + "/" + Path.GetFileNameWithoutExtension(loc) + height +
                                ".hash";
                 var clientName = (Request.Url.GetLeftPart(System.UriPartial.Authority) +
-                                  Path.GetDirectoryName(medium.Location) +
+                                  Path.GetDirectoryName(medium.Location) + "/" +
                                   Path.GetFileNameWithoutExtension(loc) + height +
                                   Path.GetExtension(loc)).Replace("////","//").Replace("\\","/");
                     ;
@@ -78,7 +78,7 @@ namespace eAd.Website.Controllers
                     {
                         //Create Image
                         Bitmap originalFile = new Bitmap(loc);
-                        Bitmap smallImage = new Bitmap(ImageUtilities.Crop(originalFile, 320, height, 0, 0));
+                        Bitmap smallImage = new Bitmap(ImageUtilities.Resize(originalFile, 320, height,RotateFlipType.RotateNoneFlipNone));
                         smallImage.Save(newName, ImageFormat.Jpeg);
                     }
                     if (!System.IO.File.Exists(hashName))
