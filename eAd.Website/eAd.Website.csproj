@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <AutoParameterizationWebConfigConnectionStrings>False</AutoParameterizationWebConfigConnectionStrings>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -16,6 +17,11 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -101,6 +107,8 @@
     <Compile Include="Controllers\ThemesController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\UploadType.cs" />
+    <Compile Include="CustomControls\DialogBox.cs" />
+    <Compile Include="CustomControls\FileUpload.cs" />
     <Compile Include="Extensions\ExampleConfigurator.cs" />
     <Compile Include="Extensions\FileUpload.cs" />
     <Compile Include="Extensions\FileUploadJsonResult.cs" />
@@ -358,6 +366,7 @@
     <Content Include="Content\Black\treeview-line.png" />
     <Content Include="Content\Black\treeview-nodes-rtl.png" />
     <Content Include="Content\Black\treeview-nodes.png" />
+    <Content Include="Content\blank.gif" />
     <Content Include="Content\busy.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -375,6 +384,19 @@
     <Content Include="Content\coin-slider-styles.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\colorpicker.css" />
+    <Content Include="Content\colorpicker_background.png" />
+    <Content Include="Content\colorpicker_hex.png" />
+    <Content Include="Content\colorpicker_hsb_b.png" />
+    <Content Include="Content\colorpicker_hsb_h.png" />
+    <Content Include="Content\colorpicker_hsb_s.png" />
+    <Content Include="Content\colorpicker_indic.gif" />
+    <Content Include="Content\colorpicker_overlay.png" />
+    <Content Include="Content\colorpicker_rgb_b.png" />
+    <Content Include="Content\colorpicker_rgb_g.png" />
+    <Content Include="Content\colorpicker_rgb_r.png" />
+    <Content Include="Content\colorpicker_select.gif" />
+    <Content Include="Content\colorpicker_submit.png" />
     <Content Include="Content\ComboBox\Descriptions\Accessibility.html" />
     <Content Include="Content\ComboBox\Descriptions\AjaxLoading.html" />
     <Content Include="Content\ComboBox\Descriptions\AnimationEffects.html" />
@@ -434,6 +456,16 @@
     <Content Include="Content\Common\orm-comparison.png" />
     <Content Include="Content\Common\sprite.png" />
     <Content Include="Content\Common\validation-error-message.png" />
+    <Content Include="Content\custom_background.png" />
+    <Content Include="Content\custom_hex.png" />
+    <Content Include="Content\custom_hsb_b.png" />
+    <Content Include="Content\custom_hsb_h.png" />
+    <Content Include="Content\custom_hsb_s.png" />
+    <Content Include="Content\custom_indic.gif" />
+    <Content Include="Content\custom_rgb_b.png" />
+    <Content Include="Content\custom_rgb_g.png" />
+    <Content Include="Content\custom_rgb_r.png" />
+    <Content Include="Content\custom_submit.png" />
     <Content Include="Content\Images\powerpoint.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -442,6 +474,7 @@
     </Content>
     <Content Include="Content\Jcrop.gif" />
     <Content Include="Content\jquery.Jcrop.css" />
+    <Content Include="Content\layout.css" />
     <Content Include="Content\mosaic-mobile.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1302,6 +1335,8 @@
     <Content Include="Content\reset.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\select.png" />
+    <Content Include="Content\select2.png" />
     <Content Include="Content\Simple\editor.png" />
     <Content Include="Content\Simple\loading.gif" />
     <Content Include="Content\Simple\sprite.png" />
@@ -1314,6 +1349,7 @@
     <Content Include="Content\Sitefinity\treeview-line.png" />
     <Content Include="Content\Sitefinity\treeview-nodes-rtl.png" />
     <Content Include="Content\Sitefinity\treeview-nodes.png" />
+    <Content Include="Content\slider.png" />
     <Content Include="Content\SpryCollapsiblePanel.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1499,7 +1535,40 @@
     <Content Include="Content\ajax-loader.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\colorpicker.js" />
+    <Content Include="Scripts\imageresizer.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\eye.js" />
     <Content Include="Scripts\jquery.Jcrop.min.js" />
+    <Content Include="Scripts\jscolor\arrow.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\jscolor\cross.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\jscolor\demo.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\jscolor\hs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\jscolor\hv.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\jscolor\jscolor.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\layout.js" />
+    <Content Include="Scripts\modcoder_excolor\bg.png" />
+    <Content Include="Scripts\modcoder_excolor\hue.png" />
+    <Content Include="Scripts\modcoder_excolor\jquery.modcoder.excolor.js" />
+    <Content Include="Scripts\modcoder_excolor\ok.png" />
+    <Content Include="Scripts\modcoder_excolor\sel.gif" />
+    <Content Include="Scripts\modcoder_excolor\shbg.png" />
+    <Content Include="Scripts\modcoder_excolor\slider.gif" />
+    <Content Include="Scripts\modcoder_excolor\transp.gif" />
+    <Content Include="Scripts\modcoder_excolor\transp0.gif" />
     <Content Include="Scripts\Uploadify\cancel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1615,6 +1684,7 @@
     <Content Include="Scripts\mediapicker.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\utils.js" />
     <Content Include="Scripts\webfxlayout.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1808,6 +1878,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="ImageHandler.ashx" />
+    <None Include="Properties\DataSources\eAd.DataAccess.Mosaic.datasource" />
+    <None Include="Properties\DataSources\eAd.DataViewModels.FilesModel.datasource" />
+    <None Include="Properties\DataSources\eAd.DataViewModels.PositionViewModel.datasource" />
+    <None Include="Properties\DataSources\eAd.DataViewModels.ScheduleModel.datasource" />
     <None Include="Scripts\Uploadify\com\adobe\air\logging\FileTarget.as" />
     <None Include="Scripts\Uploadify\com\adobe\crypto\HMAC.as" />
     <None Include="Scripts\Uploadify\com\adobe\crypto\MD5.as" />
@@ -1952,7 +2026,9 @@
     <Content Include="Uploadify\uploadify.css" />
     <Content Include="Uploadify\uploadify.php" />
     <Content Include="Uploadify\uploadify.swf" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -2057,6 +2133,9 @@
     <None Include="Service References\eAdDataService\Service31.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\eAdDataService\Service310.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\eAdDataService\Service32.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -2149,6 +2228,26 @@
     <EmbeddedResource Include="Uploadify\com\adobe\webapis\URLLoaderBase.as" />
     <Content Include="Uploadify\Thumbs.db" />
     <Content Include="Uploadify\uploadify.fla" />
+    <None Include="Service References\eAdDataService\Service36.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\eAdDataService\Service37.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\eAdDataService\Service38.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\eAdDataService\Service39.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\Media\CreatePicture.cshtml" />
+    <Content Include="Views\Media\CreateVideo.cshtml" />
+    <Content Include="Views\Media\CreateFlash.cshtml" />
+    <Content Include="Views\Media\CreateMarquee.cshtml" />
+    <Content Include="Views\Media\CreatePowerpoint.cshtml" />
+    <Content Include="Views\Home\DialogBoxTest.cshtml" />
+    <Content Include="Views\Shared\DialogBox.cshtml" />
+    <Content Include="Views\Shared\FileUpload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\.svn\props\" />
@@ -2216,8 +2315,13 @@
       <Name>irio.utilities</Name>
     </ProjectReference>
   </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

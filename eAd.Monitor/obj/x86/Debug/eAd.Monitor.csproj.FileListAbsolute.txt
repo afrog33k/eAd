@@ -46,15 +46,3 @@ X:\eAd.New\eAd\eAd.Monitor\obj\x86\Debug\GenerateResource.read.1.tlog
 X:\eAd.New\eAd\eAd.Monitor\obj\x86\Debug\GenerateResource.write.1.tlog
 X:\eAd.New\eAd\eAd.Monitor\obj\x86\Debug\eAd.Monitor.exe
 X:\eAd.New\eAd\eAd.Monitor\obj\x86\Debug\eAd.Monitor.pdb
-C:\ProjectHub\eAd\eAd.Monitor\bin\Debug\eAd.Monitor.exe
-C:\ProjectHub\eAd\eAd.Monitor\bin\Debug\eAd.Monitor.pdb
-C:\ProjectHub\eAd\eAd.Monitor\bin\Debug\eAd.Utilities.dll
-C:\ProjectHub\eAd\eAd.Monitor\bin\Debug\eAd.DataViewModels.dll
-C:\ProjectHub\eAd\eAd.Monitor\bin\Debug\eAd.Utilities.pdb
-C:\ProjectHub\eAd\eAd.Monitor\bin\Debug\eAd.DataViewModels.pdb
-C:\ProjectHub\eAd\eAd.Monitor\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\ProjectHub\eAd\eAd.Monitor\obj\x86\Debug\eAd.Monitor.Service1.resources
-C:\ProjectHub\eAd\eAd.Monitor\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\ProjectHub\eAd\eAd.Monitor\obj\x86\Debug\GenerateResource.write.1.tlog
-C:\ProjectHub\eAd\eAd.Monitor\obj\x86\Debug\eAd.Monitor.exe
-C:\ProjectHub\eAd\eAd.Monitor\obj\x86\Debug\eAd.Monitor.pdb

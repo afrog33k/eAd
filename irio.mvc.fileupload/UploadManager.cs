@@ -169,7 +169,9 @@ public sealed class UploadManager
         }
     }
 
-    /// <summary>
+        public bool ModuleInstalled { get; set; }
+
+        /// <summary>
     /// Sets the upload status.
     /// </summary>
     /// <param name="status">Status to set.</param>

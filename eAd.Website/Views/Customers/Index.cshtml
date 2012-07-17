@@ -20,12 +20,12 @@
         <th>
             Balance
         </th>
-        <th>
+      @*  <th>
             LastBillAmount
-        </th>
-        <th>
+        </th>*@
+       @* <th>
             Picture
-        </th>
+        </th>*@
         <th>
             Email
         </th>
@@ -41,6 +41,8 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            <img src="@item.Picture" width="100" height="100" alt="No Picture"/>
+            <br/>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
        @* <td>
@@ -49,12 +51,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.Balance)
         </td>
-        <td>
+       @* <td>
             @Html.DisplayFor(modelItem => item.LastBillAmount)
-        </td>
-        <td>
+        </td>*@
+        @*<td>
             @Html.DisplayFor(modelItem => item.Picture)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Email)
         </td>

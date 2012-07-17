@@ -67,17 +67,17 @@ namespace ClientApp
 
         public ClientManager()
         {
-      //      RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly; 
+            //      RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly; 
 
             //Listeners 
 
-            TextWriterTraceListener [] listeners = new TextWriterTraceListener[]
-                                                       {
-                                                           new TextWriterTraceListener("log.txt"),
-                                                           new TextWriterTraceListener(Console.Out), 
-                                                       };
+            TextWriterTraceListener[] listeners = new TextWriterTraceListener[]
+                                                      {
+                                                          new TextWriterTraceListener("log.txt"),
+                                                          new TextWriterTraceListener(Console.Out),
+                                                      };
 
-           
+
             Debug.Listeners.AddRange(listeners);
 
             EventHandler handler = null;
@@ -85,7 +85,8 @@ namespace ClientApp
             this.ScheduleChangeLock = new object();
             Instance = this;
             this.InitializeComponent();
-            if (!Directory.Exists(Settings.Default.LibraryPath) || !Directory.Exists(Settings.Default.LibraryPath + @"\backgrounds\"))
+            if (!Directory.Exists(Settings.Default.LibraryPath) ||
+                !Directory.Exists(Settings.Default.LibraryPath + @"\backgrounds\"))
             {
                 Directory.CreateDirectory(Settings.Default.LibraryPath + @"\backgrounds");
                 Directory.CreateDirectory(Settings.Default.LibraryPath + @"\Layouts");
@@ -97,14 +98,15 @@ namespace ClientApp
             if (handler == null)
             {
                 handler = new EventHandler((y, t) =>
-                {
-                    this.Closing();
-                    Environment.Exit(0);
-                });
+                                               {
+                                                   this.Closing();
+                                                   Environment.Exit(0);
+                                               });
             }
             base.Closed += handler;
             MyCommand.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
-            base.CommandBindings.Add(new CommandBinding(MyCommand, new ExecutedRoutedEventHandler(this.MyCommandExecuted)));
+            base.CommandBindings.Add(new CommandBinding(MyCommand,
+                                                        new ExecutedRoutedEventHandler(this.MyCommandExecuted)));
             this.InitializeComponent();
             Switcher.ClientManager = this;
             OptionForm.SetGlobalProxy();
@@ -114,8 +116,10 @@ namespace ClientApp
             this.StartMessageReceiveThread();
             try
             {
-                this._schedule = new ClientApp.Schedule(App.UserAppDataPath + @"\" + Settings.Default.ScheduleFile, Instance.CacheManager);
-                this._schedule.ScheduleChangeEvent += new ClientApp.Schedule.ScheduleChangeDelegate(this.ScheduleScheduleChangeEvent);
+                this._schedule = new ClientApp.Schedule(App.UserAppDataPath + @"\" + Settings.Default.ScheduleFile,
+                                                        Instance.CacheManager);
+                this._schedule.ScheduleChangeEvent +=
+                    new ClientApp.Schedule.ScheduleChangeDelegate(this.ScheduleScheduleChangeEvent);
                 this._schedule.InitializeComponents();
             }
             catch (Exception)
@@ -124,11 +128,20 @@ namespace ClientApp
                 Environment.Exit(0);
             }
 
-       
+
             Charging instance = Charging.Instance;
             LoadingProfile profile1 = LoadingProfile.Instance;
 
-           
+
+            //Todo: Make this an option ... Lower fps of  app
+            Timeline.DesiredFrameRateProperty.OverrideMetadata(
+
+                typeof (Timeline),
+
+                new FrameworkPropertyMetadata {DefaultValue = 20}
+
+                );
+
         }
 
 

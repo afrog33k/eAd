@@ -16,7 +16,7 @@ namespace eAd.Website.Controllers
     public class MobileClientController : Controller
     {
 
-        private readonly eAdDataContainer _db = new eAdDataContainer();
+        private readonly eAdEntities _db = new eAdEntities();
 
         //
         // GET: /MobileClient/

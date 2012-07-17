@@ -28,9 +28,8 @@ C:\ProjectHub\eAd\eAd.Monitor\bin\Release\eAd.Utilities.dll
 C:\ProjectHub\eAd\eAd.Monitor\bin\Release\eAd.DataViewModels.dll
 C:\ProjectHub\eAd\eAd.Monitor\bin\Release\eAd.Utilities.pdb
 C:\ProjectHub\eAd\eAd.Monitor\bin\Release\eAd.DataViewModels.pdb
-C:\ProjectHub\eAd\eAd.Monitor\obj\x86\Release\ResolveAssemblyReference.cache
 C:\ProjectHub\eAd\eAd.Monitor\obj\x86\Release\eAd.Monitor.Service1.resources
-C:\ProjectHub\eAd\eAd.Monitor\obj\x86\Release\GenerateResource.read.1.tlog
-C:\ProjectHub\eAd\eAd.Monitor\obj\x86\Release\GenerateResource.write.1.tlog
 C:\ProjectHub\eAd\eAd.Monitor\obj\x86\Release\eAd.Monitor.exe
 C:\ProjectHub\eAd\eAd.Monitor\obj\x86\Release\eAd.Monitor.pdb
+C:\ProjectHub\eAd\eAd.Monitor\obj\x86\Release\eAd.Monitor.csprojResolveAssemblyReference.cache
+C:\ProjectHub\eAd\eAd.Monitor\obj\x86\Release\eAd.Monitor.csproj.GenerateResource.Cache

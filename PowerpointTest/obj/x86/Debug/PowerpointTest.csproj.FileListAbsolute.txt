@@ -1,9 +1,0 @@
-C:\ProjectHub\eAd\PowerpointTest\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\ProjectHub\eAd\PowerpointTest\obj\x86\Debug\PowerpointTest.Form1.resources
-C:\ProjectHub\eAd\PowerpointTest\obj\x86\Debug\PowerpointTest.Properties.Resources.resources
-C:\ProjectHub\eAd\PowerpointTest\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\ProjectHub\eAd\PowerpointTest\obj\x86\Debug\GenerateResource.write.1.tlog
-C:\ProjectHub\eAd\PowerpointTest\bin\Debug\PowerpointTest.exe
-C:\ProjectHub\eAd\PowerpointTest\bin\Debug\PowerpointTest.pdb
-C:\ProjectHub\eAd\PowerpointTest\obj\x86\Debug\PowerpointTest.exe
-C:\ProjectHub\eAd\PowerpointTest\obj\x86\Debug\PowerpointTest.pdb

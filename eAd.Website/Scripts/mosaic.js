@@ -274,7 +274,7 @@ function SaveMosaic() {
     positions.each(function () {
         var position = $(this).position();
         var imglist = new Array();
-        var list = $($(this).find('div.content')[0]).find("img");
+        var list = $($(this).find('div.galleria-thumbnails')[0]).find("img");
         list = jQuery.unique(list);
         list.each(function () {
             imglist.push($(this).attr("src"));
@@ -520,7 +520,7 @@ function    AddPosition(name, x, y, nwidth, nheight, id, media) {
 
 					                if (mosaic.val() != "") {
 
-					                    ShowModalPage("MediaPicker", "Pick media to insert", '../Media/Picker?componentId=' + jsName, null, null);
+					                    ShowModalPage("MediaPicker", "Pick media to insert", '../Media/Picker?componentId=' + jsName + "&height=" + $('#' + jsName).height() + "&width=" + $('#' + jsName).width(), null, null);
 
 					                }
 					            }
@@ -528,7 +528,10 @@ function    AddPosition(name, x, y, nwidth, nheight, id, media) {
 					                var mosaic = $("#MosaicID");
 					                if (mosaic.val() != "") {
 					                    ShowModalPage("DeletePosition", 'Delete Position', '../Mosaic/DeletePosition/?mosaic=' + mosaic.val() + "&position=" + jsName, null, null);
-					                }
+					                    //hide a div after 3 seconds
+					                    setTimeout(function () { CloseDeletePositionMenu(); }, 2000);
+					                 
+                                    }
 
 
 					            }
@@ -588,9 +591,9 @@ function    AddPosition(name, x, y, nwidth, nheight, id, media) {
             //            $(this).find(".content").width(width);
             //   $(this).find(".content").css("height", height+"px");
             //      $(this).find(".content").css("width", "100%");
-            $(this).find(".content").galleria.resize({width:width, height: height });
-          
-       
+
+            $("#" + jsName + "  div").data('galleria').resize({ width: width, height: height });
+            
             //            var gallery = $(this).find("gallery");
             //            gallery.height(height);
             //            gallery.width(width);
@@ -656,6 +659,15 @@ function ResizeGallery(name) {
     });
 }
 
+
+function CloseDeletePositionMenu() {
+    $('#DeletePosition').dialog('destroy');
+    $('#DeletePosition').remove();
+    var mosId = $('#MosaicID').val();
+    ReloadMosaicList();
+    LoadMosaic(mosId);
+}
+
     function CloseMosaicMenu(id) {
 
         ReloadMosaicList(id);
@@ -681,6 +693,17 @@ function ResizeGallery(name) {
             $('#MediaPicker').dialog('destroy');
             $('#MediaPicker').remove();
             var position = $('#' + positionName);
+            var galleryExists = false;
+
+            try {
+                if ($("#" + positionName).find("div.galleria-container").length >0) {
+                    galleryExists = true;
+                }
+
+                // $("#" + positionName + "  div").destroy();
+            } catch (e) {
+
+            } 
 
             if (plist != null && plist.length > 0) {
 
@@ -699,7 +722,15 @@ function ResizeGallery(name) {
 
                     item.find("a.ui-icon-trash").remove();
                     item.append(recycleIcon);
-                    $list.append(item);
+
+                    if (!galleryExists) {
+                        $list.append(item);
+                    } else {
+
+                        $("#" + positionName + "  div").data('galleria').push({ image: plist[i].img }); 
+                        
+                    }
+                   
                     //.fadeIn(function() {
 //                        item
 //                            .animate({ width: "48px" })
@@ -707,15 +738,20 @@ function ResizeGallery(name) {
 //                            .animate({ height: "36px" });
 //                    });
 
-                       };
+                };
 
-                $("#" + positionName + "  div").galleria({
-                    responsive: true, transition: 'fade',
-                    imageCrop: 'landscape'
-                });
-             
+                if (!galleryExists) {
 
-    position.css("background", "rgba(0,0,0,0.5)");
+
+                    $("#" + positionName + "  div").galleria({
+                        responsive: true,
+                        transition: 'fade',
+                        imageCrop: 'landscape'
+                    });
+                    
+                }
+
+                position.css("background", "rgba(0,0,0,0.5)");
     position.css("background-size", "100% 100%");
     position.css("filter", "alpha(opacity=80)");
     position.css("opacity", "0.8");
@@ -726,9 +762,6 @@ function ResizeGallery(name) {
             $('#BackgroundPicker').remove();
 
             $('#Background').val(plist[0].img);
-
-
-
         }
 
     

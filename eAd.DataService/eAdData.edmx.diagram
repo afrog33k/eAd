@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7c0bdd57a0664bbbba3dc372478d12b4" Name="Diagram1">
+        <EntityTypeShape EntityType="eAdModel.Car" Width="1.5" PointX="9.6628757313186657" PointY="12.869411638411419" />
+        <EntityTypeShape EntityType="eAdModel.Client" Width="1.5" PointX="1.0866632596993182" PointY="16.798105575515937" />
+        <EntityTypeShape EntityType="eAdModel.ClientUpload" Width="1.5" PointX="9.1445105137045068" PointY="14.579294151896281" />
+        <EntityTypeShape EntityType="eAdModel.Customer" Width="1.5" PointX="1.3027227564261867" PointY="2.1722154925447961" />
+        <EntityTypeShape EntityType="eAdModel.Grouping" Width="1.5" PointX="8.0977137368627421" PointY="18.32767913598925" />
+        <EntityTypeShape EntityType="eAdModel.Medium" Width="1.5" PointX="0.596127022335365" PointY="8.5913450906944213" />
+        <EntityTypeShape EntityType="eAdModel.MediaType" Width="1.5" PointX="11.106157360182216" PointY="15.02127524419747" />
+        <EntityTypeShape EntityType="eAdModel.Message" Width="1.5" PointX="4.1832040269780926" PointY="24.374470796610449" />
+        <EntityTypeShape EntityType="eAdModel.Mosaic" Width="1.5" PointX="8.0482454039381111" PointY="1.9567993441395459" />
+        <EntityTypeShape EntityType="eAdModel.PositionMedium" Width="1.5" PointX="5.9041296438798909" PointY="11.027991955647241" />
+        <EntityTypeShape EntityType="eAdModel.Position" Width="1.5" PointX="3.8135936184849557" PointY="5.713123443402873" />
+        <EntityTypeShape EntityType="eAdModel.Resolution" Width="1.5" PointX="6.8291686544330634" PointY="16.162014268414126" />
+        <EntityTypeShape EntityType="eAdModel.Station" Width="1.5" PointX="7.3678582996911643" PointY="2.6368570936084059" />
+        <EntityTypeShape EntityType="eAdModel.sysdiagram" Width="1.5" PointX="7.5613174250169273" PointY="11.132706915555851" />
+        <EntityTypeShape EntityType="eAdModel.Theme" Width="1.5" PointX="1.9196817585824439" PointY="26.456389856737289" />
+        <EntityTypeShape EntityType="eAdModel.Widget" Width="1.5" PointX="11.956380676457837" PointY="10.195727874616035" />
+        <AssociationConnector Association="eAdModel.FK_CarCustomer" />
+        <AssociationConnector Association="eAdModel.FK_Clients_Stations" />
+        <AssociationConnector Association="eAdModel.FK_Groupings_Mosaics" />
+        <AssociationConnector Association="eAdModel.FK_MosaicGrouping" />
+        <AssociationConnector Association="eAdModel.FK_PositionMedium_Medium" />
+        <AssociationConnector Association="eAdModel.FK_MessageStation" />
+        <AssociationConnector Association="eAdModel.FK_Mosaics_Resolutions" />
+        <AssociationConnector Association="eAdModel.FK_Positions_Mosaics" />
+        <AssociationConnector Association="eAdModel.FK_PositionMedium_Position" />
+        <AssociationConnector Association="eAdModel.GroupingStation" />
+        <AssociationConnector Association="eAdModel.GroupingTheme" />
+        <AssociationConnector Association="eAdModel.ThemeMedium" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

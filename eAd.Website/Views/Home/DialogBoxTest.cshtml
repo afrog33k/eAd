@@ -1,0 +1,10 @@
+﻿@using eAd.Website.Controllers
+@using eAd.Website.CustomControls
+@{
+    ViewBag.Title = "About Us";
+}
+
+@{
+    DialogBox.Render("This is cool custom control", "This is the message to display.");
+    FileUpload.Render("TestUpload",Url.Action("AjaxUpload","Upload", new {type="Media"}),"Please Choose a file","","HandleType");
+}

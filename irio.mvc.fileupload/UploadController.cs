@@ -33,7 +33,7 @@ namespace irio.mvc.fileupload
 /// </summary>
 public class UploadController : WebControl
 {
-    internal static string UPLOAD_ID_TAG = "::DJ_UPLOAD_ID::";
+    internal static string UPLOAD_ID_TAG = "::IRIO_UPLOAD_ID::";
     private UploadStatus _status;
     private string _uploadKey;
 

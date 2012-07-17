@@ -36,7 +36,7 @@ public class DJUploadController : WebControl
 {
     #region Declarations
 
-    internal static string UPLOAD_ID_TAG = "::DJ_UPLOAD_ID::";
+    internal static string UPLOAD_ID_TAG = "::IRIO_UPLOAD_ID::";
 
     private string DEFAULT_CSS_PATH = "upload_styles";
     private string DEFAULT_IMAGE_PATH = "upload_images";

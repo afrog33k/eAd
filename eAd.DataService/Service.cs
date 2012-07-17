@@ -103,7 +103,7 @@ namespace eAd.DataAccess
 
 
                 // Get Mosaic For station
-                var container = new eAdDataContainer();
+                var container = new eAdEntities();
 
                 var thisStation = (from s in container.Stations
                                    where s.HardwareKey == hardwareKey
@@ -191,6 +191,7 @@ namespace eAd.DataAccess
 
                 container.SaveChanges();
                 var files = CreateFileModel(new List<Mosaic> { mosaic, profilemosaic });
+                container.SaveChanges();
                 return files;
             }
         }
@@ -204,7 +205,7 @@ namespace eAd.DataAccess
             var list = new List<RequiredFileModel>();
 
             // Get Mosaic For station
-            var container = new eAdDataContainer();
+            var container = new eAdEntities();
 
 
 
@@ -212,56 +213,113 @@ namespace eAd.DataAccess
             {
 
                 var mosaicCache = AppPath + "Layouts\\" + mosaic.MosaicID + ".mosaic";
-                var allMedia = mosaic.Positions.SelectMany(p => p.Media);
+                var allPositions = mosaic.Positions.SelectMany(p => p.PositionMediums);
 
-                foreach (var medium in allMedia)
+                foreach (var positionMedium in allPositions)
                 {
-                    if (list.Where(l => l.Id == medium.MediaID).Count() <= 0)
+
+                    var medium = positionMedium.Medium;
+
+                    //  foreach (var medium in allMedia)
                     {
-                        bool shouldCalculatenewHash = false;
 
-                        if (medium.Hash == null || medium.Size == 0)
+                        if (list.Where(l => l.Id == medium.MediaID).Count() <= 0)
                         {
-                            shouldCalculatenewHash = true;
-                        }
-
-                        // Calculate new hash/size
-                        if (shouldCalculatenewHash)
-                        {
-                            try
+                            bool shouldCalculatenewHash = false;
+                            if (String.IsNullOrEmpty(positionMedium.Location))
                             {
 
 
-                                using (
-                                    var fs =
-                                        new FileStream(
-                                            System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath + ServerPath +
-                                            medium.Location, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                                if (medium.Hash == null || medium.Size == 0)
                                 {
-                                    medium.Hash = Hashes.MD5(fs);
-                                    medium.Size =
-                                        new FileInfo(System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath +
-                                                     ServerPath + medium.Location).Length;
+                                    shouldCalculatenewHash = true;
                                 }
+
+                                // Calculate new hash/size
+                                if (shouldCalculatenewHash)
+                                {
+                                    try
+                                    {
+
+                                        using (
+                                            var fs =
+                                                new FileStream(
+                                                    System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath +
+                                                    ServerPath +
+                                                    medium.Location, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
+                                            )
+                                        {
+                                            medium.Hash = Hashes.MD5(fs);
+                                            medium.Size =
+                                                new FileInfo(
+                                                    System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath +
+                                                    ServerPath + medium.Location).Length;
+                                        }
+                                    }
+                                    catch (Exception)
+                                    {
+
+
+                                    }
+                                }
+                                list.Add(new RequiredFileModel()
+                                {
+                                    FileType = "media",
+                                    Path = medium.Location,
+                                    Id = medium.MediaID,
+                                    Size = (long)medium.Size,
+                                    MD5 = medium.Hash
+                                });
                             }
-                            catch (Exception)
+                            else
                             {
+                                if (positionMedium.Hash == null || medium.Size == 0)
+                                {
+                                    shouldCalculatenewHash = true;
+                                }
+
+                                // Calculate new hash/size
+                                if (shouldCalculatenewHash)
+                                {
+                                    try
+                                    {
+
+                                        using (
+                                            var fs =
+                                                new FileStream(
+                                                    System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath +
+                                                    ServerPath +
+                                                    positionMedium.Location, FileMode.Open, FileAccess.Read,
+                                                    FileShare.ReadWrite)
+                                            )
+                                        {
+                                            positionMedium.Hash = Hashes.MD5(fs);
+                                            positionMedium.Size =
+                                                new FileInfo(
+                                                    System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath +
+                                                    ServerPath + medium.Location).Length;
+                                        }
+                                    }
+                                    catch (Exception)
+                                    {
 
 
+                                    }
+                                }
+                                list.Add(new RequiredFileModel()
+                                {
+                                    FileType = "media",
+                                    Path = positionMedium.Location,
+                                    Id = medium.MediaID,
+                                    Size = (long)positionMedium.Size,
+                                    MD5 = positionMedium.Hash
+                                });
+                              
                             }
                         }
-
-                        list.Add(new RequiredFileModel()
-                                     {
-                                         FileType = "media",
-                                         Path = medium.Location,
-                                         Id = medium.MediaID,
-                                         Size = (long)medium.Size,
-                                         MD5 = medium.Hash
-                                     });
+                        
                     }
                 }
-
                 if (!String.IsNullOrEmpty(mosaic.Background))
                     if (list.Where(l => l.Path == mosaic.Background).Count() <= 0)
                     // Add Background to list if not already there
@@ -272,30 +330,28 @@ namespace eAd.DataAccess
 
                         if (allmedia != null)
                             list.Add(new RequiredFileModel
-                                         {
-                                             FileType = "media",
-                                             Path = mosaic.Background,
-                                             Id = mosaic.MosaicID,
-                                             Size = allmedia.Size,
-                                             //    (long)
-                                             //    new FileInfo(System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath +
-                                             //               ServerPath + mosaic.Background).Length,
-                                             MD5 = allmedia.Hash
-                                             //    Hashes.MD5(System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath +
-                                             //    ServerPath + mosaic.Background)
-                                         });
+                            {
+                                FileType = "media",
+                                Path = mosaic.Background,
+                                Id = mosaic.MosaicID,
+                                Size = allmedia.Size,
+                                //    (long)
+                                //    new FileInfo(System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath +
+                                //               ServerPath + mosaic.Background).Length,
+                                MD5 = allmedia.Hash
+                                //    Hashes.MD5(System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath +
+                                //    ServerPath + mosaic.Background)
+                            });
                     }
-
                 list.Add(new RequiredFileModel
-                             {
-                                 FileType = "layout",
-                                 Path = "Layouts\\" + Path.GetFileName(mosaicCache),
-                                 Id = mosaic.MosaicID,
-                                 Size = (long)mosaic.Size,
-                                 MD5 = mosaic.Hash
-                             });
+                {
+                    FileType = "layout",
+                    Path = "Layouts\\" + Path.GetFileName(mosaicCache),
+                    Id = mosaic.MosaicID,
+                    Size = (long)mosaic.Size,
+                    MD5 = mosaic.Hash
+                });
             }
-
             files.Items = new List<RequiredFileModel>(list.ToArray());
             return files;
 
@@ -381,7 +437,8 @@ namespace eAd.DataAccess
                             Lkid = (int)medium.MediaID,
                             Options = new LayoutRegionMediaOptions()
                             {
-                                Uri = medium.Location
+                                Uri = medium.Type!="Image"? medium.Location: (String.IsNullOrEmpty(medium.PositionMediums.Where(p=>p.Position==position).SingleOrDefault().Location))?medium.Location
+                                :medium.PositionMediums.Where(p=>p.Position==position).SingleOrDefault().Location
                             },
                             Raw = new LayoutRegionMediaRaw()
                             {
@@ -408,14 +465,15 @@ namespace eAd.DataAccess
 
         public ScheduleModel Schedule(string serverKey, string hardwareKey, string version)
         {
-            var container = new eAdDataContainer();
+            var container = new eAdEntities();
             Mosaic mosaic = null;
             Mosaic profilemosaic = null;
-            if ((from s in container.Stations
-                 where s.HardwareKey == hardwareKey
-                 select s).FirstOrDefault<Station>() != null)
+            Station station = (from s in container.Stations
+                         where s.HardwareKey == hardwareKey
+                         select s).FirstOrDefault<Station>();
+            if (station != null)
             {
-                var grouping = (from m in container.Groupings
+                var grouping = (from m in station.Groupings
                                 where m.Mosaic != null
                                 select m).FirstOrDefault<Grouping>();
 

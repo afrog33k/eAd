@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -19,7 +20,7 @@ namespace eAd.Website.Controllers
 {
 public class MediaController : Controller
 {
-    private readonly eAdDataContainer _db = new eAdDataContainer();
+    private readonly eAdEntities _db = new eAdEntities();
 
     //
     // GET: /Default1/
@@ -38,36 +39,169 @@ public class MediaController : Controller
         return View(medium);
     }
 
+    private readonly string[] _types = new string[]
+                                 {
+                                     "Video",
+                                     "Powerpoint", "Image", "Flash",
+                                     "Marquee"
+                                 };
     //
     // GET: /Default1/Create
 
     public ActionResult Create()
     {
         UploadRepository.CreateUploadGUID(HttpContext);
-        Medium medium = new Medium();
-        medium.Duration = TimeSpan.Zero;
-
+        var medium = new Medium {Duration = TimeSpan.Zero};
+        ViewBag.MediaType = new SelectList(_types.Distinct().ToList(), "", "");
         return View(medium);
     }
 
 
+   //
+    // GET: /Default1/Create
+    public ActionResult CreateVideo(string uploadid, string type, string thumbnail, string text, string path, string duration, string originalFileName)
+    {
+        var medium = new Medium { Duration = TimeSpan.Zero };
+        medium.Duration = TimeSpan.Parse(duration);
+        medium.Location = path;
+        medium.Type = type;
+        medium.ThumbnailUrl = thumbnail;
+        medium.Name = Path.GetFileNameWithoutExtension(originalFileName).Replace("-", " ").Replace("_", " ");
+        return View(medium);
+    }
+    [HttpPost]
+    public ActionResult CreateVideo(Medium medium)
+    {
+        return Create(medium);
+    }
+      //
+    // GET: /Default1/Create
+    public ActionResult CreateFlash(string uploadid, string type, string thumbnail, string text, string path, string duration, string originalFileName)
+    {
+        var medium = new Medium { Duration = TimeSpan.Zero };
+        medium.Duration = TimeSpan.Parse(duration);
+        medium.Location = path;
+        medium.Type = type;
+        medium.ThumbnailUrl = thumbnail;
+        medium.Name = Path.GetFileNameWithoutExtension(originalFileName).Replace("-", " ").Replace("_", " ");
+        return View(medium);
+    }
+
+    [HttpPost]
+    public ActionResult CreateFlash(Medium medium)
+    {
+     return  Create(medium);
+    }
+     //
+    // GET: /Default1/Create
+    public ActionResult CreatePicture(string uploadid, string type, string thumbnail, string text, string path, string duration, string originalFileName)
+    {
+        var medium = new Medium { Duration = TimeSpan.Zero };
+        medium.Duration = TimeSpan.Parse(duration);
+        medium.Location = path;
+        medium.Type = type;
+        medium.ThumbnailUrl = thumbnail;
+        medium.Name = Path.GetFileNameWithoutExtension(originalFileName).Replace("-", " ").Replace("_", " ");
+        return View(medium);
+    }
+
+    [HttpPost]
+    public ActionResult CreatePicture(Medium medium)
+    {
+        return Create(medium);
+    }
+
+    //
+    // GET: /Default1/Create
+    public ActionResult CreatePowerpoint(string uploadid, string type, string thumbnail, string text, string path, string duration, string originalFileName)
+    {
+        var medium = new Medium { Duration = TimeSpan.Zero };
+        medium.Duration = TimeSpan.Parse(duration);
+        medium.Location = path;
+        medium.Type = type;
+        medium.ThumbnailUrl = thumbnail;
+        medium.Name = Path.GetFileNameWithoutExtension(originalFileName).Replace("-", " ").Replace("_"," ");
+        return View(medium);
+    }
+
+    [HttpPost]
+    public ActionResult CreatePowerpoint(Medium medium)
+    {
+        return Create(medium);
+    }
+
+    //
+    // GET: /Default1/Create
+    public ActionResult CreateMarquee(string uploadid, string type, string thumbnail, string text, string path, string duration, string originalFileName)
+    {
+     
+        var medium = new Medium { Duration = TimeSpan.Zero };
+        medium.Duration = TimeSpan.Parse(duration);
+        medium.Location = path;
+        medium.Type = type;
+        medium.ThumbnailUrl = thumbnail;
+        medium.Name = Path.GetFileNameWithoutExtension(originalFileName).Replace("-", " ").Replace("_", " ");
+        ViewBag.ForeColor = "000000";
+        ViewBag.BackColor = "FFFFFF";
+        return View(medium);
+    }
+    [HttpPost]
+    public ActionResult CreateMarquee(Medium medium, string foreColor,string backColor)
+    {
+        medium.Options = "foreColor=" + foreColor + ";backColor=" + backColor;
+        return Create(medium);
+    }
     //public ActionResult Picker(string name, string type)
     //{
     //   var media =  _db.Media
     //    return View();
     //}
 
-    public ActionResult Picker(string componentId    )
+    public ActionResult Picker(string componentId, float width, float height)
     {
 
-        ViewBag.Types = new SelectList(_db.Media.Select(m=>m.Type).Distinct().ToList(), "", "");
+        ViewBag.Types = new SelectList(_db.Media.Select(m => m.Type).Distinct().ToList(), "", "");
         ViewBag.Themes = new SelectList(_db.Themes.Select(m => m.Name).Distinct().ToList(), "", "");
         ViewBag.ComponentId = componentId;
-
+        ViewBag.Width = width;
+        ViewBag.Height = height;
+   
         var media = _db.Media.ToList();
 
 
-        return View(media.Select(m=> m.CreateModel()));
+          List<MediaListModel> mediaList = new List<MediaListModel>();
+          foreach (var medium in media)
+          {
+              try
+              {
+                  var model = medium.CreateModel();
+                  mediaList.Add(model);
+              }
+              catch (Exception)
+              {
+
+
+              }
+          }
+        return View(mediaList);
+
+        //var aString = "";
+
+        //foreach (var VARIABLE in ViewBag.Types)
+        //{
+        //    aString += VARIABLE;
+        //}
+
+        //foreach (var VARIABLE in ViewBag.Themes)
+        //{
+        //    aString += VARIABLE;
+        //}
+
+        //foreach (var VARIABLE in media)
+        //{
+        //    aString += VARIABLE.Name;
+        //}
+        //return Content(aString);
     }
 
     public ActionResult PickerList(string name, string type, string theme="")
@@ -92,9 +226,32 @@ public class MediaController : Controller
                 n.Themes.Where(t=>t.Name.ToLower().Contains(type.ToLower())).Count()>0)
                 );
         }
-        var mediaList = media.Select(m => m.CreateModel());
+
+        List<MediaListModel> mediaList = new List<MediaListModel>(); 
+        foreach (var medium in media)
+        {
+            try
+            {
+  var model = medium.CreateModel();
+            mediaList.Add(model);
+            }
+            catch (Exception)
+            {
+                
+              
+            }
+          
+        }
+      //  var mediaList = media.Select(m => m.CreateModel()).ToList();
 
         return View(mediaList);
+        var aString = "";
+        foreach (var VARIABLE in media)
+        {
+             aString += VARIABLE.Name;
+        }
+        
+       // return Content(aString);
     }
 
     //
@@ -108,13 +265,10 @@ public class MediaController : Controller
             medium.Created = DateTime.Now;
             _db.Media.AddObject(medium);
             _db.SaveChanges();
-
             UploadedContent upload;
 
-
-
-            var   location = UploadRepository.GetFileUrl(this.HttpContext, medium.MediaID.ToString(),
-                             medium.MediaID.ToString(), UploadType.Media, out upload);
+            var   location = UploadRepository.GetFileUrl(this.HttpContext, medium.MediaID.ToString(CultureInfo.InvariantCulture),
+                             medium.MediaID.ToString(CultureInfo.InvariantCulture), UploadType.Media, out upload);
 
 
             if (upload != null)
@@ -161,11 +315,7 @@ public class MediaController : Controller
         if(medium.Duration==null)
             medium.Duration = TimeSpan.Zero;
         medium.Updated = DateTime.Now;
-        bool shouldCalculatenewHash =false;
-        if (medium.Hash == null || medium.Size == 0)
-        {
-            shouldCalculatenewHash = true;
-        }
+        bool shouldCalculatenewHash = medium.Hash == null || medium.Size == 0;
 
         // Calculate new hash/size
         if (shouldCalculatenewHash)
@@ -317,11 +467,17 @@ public class MediaController : Controller
       //
     // GET: /Default1/Delete/5
 
-    public ActionResult ResizeAndSave(int Id=-1)
+    public ActionResult ResizeAndSave(int id, float width, float height)
     {
-        if(Id!=-1)
+        ViewBag.Width = width;
+        ViewBag.Height = height;
+        if(id!=-1)
         {
-            ViewBag.Image =  "../" +_db.Media.SingleOrDefault(d => d.MediaID == Id).Location;
+            ViewBag.Image =  _db.Media.SingleOrDefault(d => d.MediaID == id).CreateModel().Location;
+        }
+        else
+        {
+            ViewBag.Image = _db.Media.FirstOrDefault().CreateModel().Location;
         }
         return View();
     }
@@ -500,14 +656,16 @@ public class MediaController : Controller
         /// <param name="w">The w.</param>
         /// <param name="h">The h.</param>
         /// <returns>Image Id</returns>
-        public JsonResult CropImage(int x, int y, int w, int h, string url)
+        public JsonResult CropImage(float x, float y, float w, float h, string url)
         {
             try
             {
+                var path = HttpContext.Request.Url.GetLeftPart(UriPartial.Authority) +
+                      HttpRuntime.AppDomainAppVirtualPath;
                 if (w == 0 && h == 0) // Make sure the user selected a crop area
                     throw new Exception("A crop selection was not made.");
-                url = Server.MapPath(url);
-                string imageId = ModifyImage(x, y, w, h, ImageModificationType.Crop,url);
+                url = Server.MapPath(url.Replace(path,"~/"));
+                string imageId = path+"/"+ ModifyImage(x, y, w, h, ImageModificationType.Crop,url);
                 return Json(imageId);
             }
             catch (Exception ex)
@@ -549,13 +707,13 @@ public class MediaController : Controller
     /// <param name="modType">Type of the mod. Crop or Resize</param>
     /// <param name="url"> </param>
     /// <returns>New Image Id</returns>
-    private string ModifyImage(int x, int y, int w, int h, ImageModificationType modType, string url)
+        private string ModifyImage(float x, float y, float w, float h, ImageModificationType modType, string url)
         {
          //   ModifiedImageId = Guid.NewGuid();
         string finalUrl = "";
         Image img = new Bitmap(url);//ImageHelper.ByteArrayToImage();//WorkingImage);
 
-            using (System.Drawing.Bitmap _bitmap = new System.Drawing.Bitmap(w, h))
+            using (System.Drawing.Bitmap _bitmap = new System.Drawing.Bitmap((int)w, (int)h))
             {
                 _bitmap.SetResolution(img.HorizontalResolution, img.VerticalResolution);
                 using (Graphics _graphic = Graphics.FromImage(_bitmap))
@@ -568,7 +726,7 @@ public class MediaController : Controller
                     if (modType == ImageModificationType.Crop)
                     {
                         _graphic.DrawImage(img, 0, 0, w, h);
-                        _graphic.DrawImage(img, new Rectangle(0, 0, w, h), x, y, w, h, GraphicsUnit.Pixel);
+                        _graphic.DrawImage(img, new Rectangle(0, 0, (int)w, (int)h), x, y, w, h, GraphicsUnit.Pixel);
                     }
                     else if (modType == ImageModificationType.Resize)
                     {
@@ -587,11 +745,11 @@ public class MediaController : Controller
                     using (EncoderParameters encoderParameters = new EncoderParameters(1))
                     {
                         encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 100L);
-                        finalUrl = Path.GetDirectoryName(url) + Path.GetFileNameWithoutExtension(url) + "-" + x + "-" + y + "-" + w + "-" + h +
+                        finalUrl = Path.GetDirectoryName(url) + "/" + Path.GetFileNameWithoutExtension(url) + "-Crop-" + x + "-" + y + "-" + w + "-" + h +
                                    extension;
                         _bitmap.Save(finalUrl,ImageHelper.GetImageFormat(extension));
 
-                        finalUrl = "../"+finalUrl.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
+                        finalUrl =finalUrl.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
                       //  ModifiedImage = ImageHelper.ImageToByteArray(_bitmap, extension, encoderParameters);
                     }
                 }

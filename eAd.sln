@@ -1,5 +1,5 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eAd", "eAd\eAd.csproj", "{A9B1A6B8-D69A-4430-BE67-6FA4BB6E5B4B}"
 EndProject
@@ -33,6 +33,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eAd.Updater", "eAd.Updater\eAd.Updater.csproj", "{BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "eAd Client\Client.csproj", "{12580009-41D3-4A89-AD9C-0C4554FCB2F7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0FCFE42B-027D-43DB-9149-068ED514303C} = {0FCFE42B-027D-43DB-9149-068ED514303C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerpointTest", "PowerpointTest\PowerpointTest.csproj", "{9AC3EADA-5A97-41A1-B341-E7BDE3A841E9}"
 EndProject
@@ -140,23 +143,14 @@ Global
 		{D27EA795-2586-4E57-823C-C3078534F942}.Release|x86.ActiveCfg = Release|x86
 		{D27EA795-2586-4E57-823C-C3078534F942}.Release|x86.Build.0 = Release|x86
 		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Debug|Any CPU.ActiveCfg = Debug
-		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Debug|Any CPU.Build.0 = Debug
 		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Debug|Mixed Platforms.Build.0 = Debug
 		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Debug|x86.ActiveCfg = Debug
-		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Debug|x86.Build.0 = Debug
 		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Deploy|Any CPU.ActiveCfg = Debug
-		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Deploy|Any CPU.Build.0 = Debug
 		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Deploy|Mixed Platforms.ActiveCfg = Debug
-		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Deploy|Mixed Platforms.Build.0 = Debug
 		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Deploy|x86.ActiveCfg = Debug
-		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Deploy|x86.Build.0 = Debug
 		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Release|Any CPU.ActiveCfg = Release
-		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Release|Any CPU.Build.0 = Release
 		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Release|Mixed Platforms.ActiveCfg = Release
-		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Release|Mixed Platforms.Build.0 = Release
 		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Release|x86.ActiveCfg = Release
-		{7D15554C-1032-460D-8E22-67916FDB0BC7}.Release|x86.Build.0 = Release
 		{ECD7174B-B905-46AF-B371-72D8A81103F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ECD7174B-B905-46AF-B371-72D8A81103F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECD7174B-B905-46AF-B371-72D8A81103F1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

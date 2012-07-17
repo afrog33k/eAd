@@ -19,7 +19,7 @@
         </LinearGradientBrush>
     </UserControl.Resources>
     <Grid>
-        <Border Name="bkgPlane" Background="White" OpacityMask="{StaticResource brVBar}">
+        <Border Name="bkgPlane" Background="#FFFFCDFF" OpacityMask="{StaticResource brVBar}">
             <Border.Style>
                 <Style>
                     <Style.Triggers>
@@ -29,16 +29,14 @@
                     </Style.Triggers>
                 </Style>
             </Border.Style>
-            <TextBlock Name="txtBanner" Text="Status" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" LineHeight="{Binding RelativeSource={RelativeSource Self},Path=FontSize}" Height="31" Width="148" FontSize="36">
+            <TextBlock Name="TextBanner" Text="Status" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" LineHeight="{Binding RelativeSource={RelativeSource Self},Path=FontSize}"  FontSize="36" Foreground="#FF005E00" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <TranslateTransform />
                     </TransformGroup>
                 </TextBlock.RenderTransform></TextBlock>
         </Border>
-        <Canvas Height="{Binding ElementName=txtBanner,Path=ActualHeight}"
-                Width="{Binding ElementName=txtBanner,Path=ActualWidth}"
-                VerticalAlignment="Center" HorizontalAlignment="Center"></Canvas>
+      
     </Grid>
 </UserControl>
 

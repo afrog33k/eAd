@@ -39,6 +39,9 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="Controls\Marquee.xaml.cs">
+      <DependentUpon>Marquee.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MarqueeEffect.cs" />
     <Compile Include="Controls\MarqueeStrip.xaml.cs">
       <DependentUpon>MarqueeStrip.xaml</DependentUpon>
@@ -48,6 +51,7 @@
     </Compile>
     <Compile Include="Controls\SigFont.cs" />
     <Compile Include="Controls\SigMarquee.cs" />
+    <Compile Include="Core\Converters\RectConverter.cs" />
     <Compile Include="Core\KeepAlive.cs" />
     <Compile Include="IPausableControl.cs" />
     <Compile Include="Players\VideoPlayer.cs" />
@@ -368,6 +372,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\ImageListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Marquee.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

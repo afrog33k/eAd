@@ -1,4 +1,5 @@
-﻿@using eAd.Utilities
+﻿@using eAd.DataAccess
+@using eAd.Utilities
 @model eAd.DataAccess.Medium
 
 @{
@@ -13,7 +14,7 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>     <img src="@( !(String.IsNullOrEmpty(Model.ThumbnailUrl)) ? /*Path.GetDirectoryName(item.DisplayLocation) QuickHacktm*/ Url.Content("~/Uploads/Temp/Media" + "/" + "Thumb" + Path.GetFileNameWithoutExtension(Model.Location) + ".jpg") : "/Content/Images/no_image.gif")"  alt="[@(MimeExtensionHelper.GetSimpleType(Model.Location))]" width="96" height="72"/>
+        <legend>     <img src="@(Model.CreateModel().ThumbnailUrl)"   alt="[@(MimeExtensionHelper.GetSimpleType(Model.Location))]" width="96" height="72"/>
                       </legend>
 
         @Html.HiddenFor(model => model.MediaID)

@@ -18,16 +18,3 @@ U:\eAd.Website\eAd.DataService\bin\eAd.DataViewModels.dll
 U:\eAd.Website\eAd.DataService\bin\eAd.DataViewModels.pdb
 U:\eAd.Website\eAd.DataService\obj\Deploy\ResolveAssemblyReference.cache
 U:\eAd.Website\eAd.DataService\obj\Deploy\eAd.DataAccess.dll
-C:\ProjectHub\eAd\eAd.DataService\bin\Media\files.xml
-C:\ProjectHub\eAd\eAd.DataService\bin\Media\schedule.xml
-C:\ProjectHub\eAd\eAd.DataService\bin\Media\web.config
-C:\ProjectHub\eAd\eAd.DataService\bin\files.xml
-C:\ProjectHub\eAd\eAd.DataService\bin\eAd.DataAccess.dll
-C:\ProjectHub\eAd\eAd.DataService\bin\eAd.DataViewModels.dll
-C:\ProjectHub\eAd\eAd.DataService\bin\eAd.Utilities.dll
-C:\ProjectHub\eAd\eAd.DataService\bin\irio.utilities.dll
-C:\ProjectHub\eAd\eAd.DataService\bin\eAd.DataViewModels.pdb
-C:\ProjectHub\eAd\eAd.DataService\bin\eAd.Utilities.pdb
-C:\ProjectHub\eAd\eAd.DataService\bin\irio.utilities.pdb
-C:\ProjectHub\eAd\eAd.DataService\obj\Deploy\ResolveAssemblyReference.cache
-C:\ProjectHub\eAd\eAd.DataService\obj\Deploy\eAd.DataAccess.dll

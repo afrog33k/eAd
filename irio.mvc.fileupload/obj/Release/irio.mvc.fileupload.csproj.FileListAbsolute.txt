@@ -10,6 +10,5 @@ X:\eAd.New\eAd\irio.mvc.fileupload\obj\Release\irio.mvc.fileupload.dll
 X:\eAd.New\eAd\irio.mvc.fileupload\obj\Release\irio.mvc.fileupload.pdb
 C:\ProjectHub\eAd\irio.mvc.fileupload\bin\Release\irio.mvc.fileupload.dll
 C:\ProjectHub\eAd\irio.mvc.fileupload\bin\Release\irio.mvc.fileupload.pdb
-C:\ProjectHub\eAd\irio.mvc.fileupload\obj\Release\ResolveAssemblyReference.cache
 C:\ProjectHub\eAd\irio.mvc.fileupload\obj\Release\irio.mvc.fileupload.dll
 C:\ProjectHub\eAd\irio.mvc.fileupload\obj\Release\irio.mvc.fileupload.pdb

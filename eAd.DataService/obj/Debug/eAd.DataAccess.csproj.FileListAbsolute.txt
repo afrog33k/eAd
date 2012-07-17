@@ -31,6 +31,6 @@ C:\ProjectHub\eAd\eAd.DataService\bin\irio.utilities.dll
 C:\ProjectHub\eAd\eAd.DataService\bin\eAd.DataViewModels.pdb
 C:\ProjectHub\eAd\eAd.DataService\bin\eAd.Utilities.pdb
 C:\ProjectHub\eAd\eAd.DataService\bin\irio.utilities.pdb
-C:\ProjectHub\eAd\eAd.DataService\obj\Debug\ResolveAssemblyReference.cache
+C:\ProjectHub\eAd\eAd.DataService\obj\Debug\eAd.DataAccess.csprojResolveAssemblyReference.cache
 C:\ProjectHub\eAd\eAd.DataService\obj\Debug\eAd.DataAccess.dll
 C:\ProjectHub\eAd\eAd.DataService\obj\Debug\eAd.DataAccess.pdb

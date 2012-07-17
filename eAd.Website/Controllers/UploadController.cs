@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using eAd.Utilities;
+using eAd.Website.CustomControls;
 using eAd.Website.Extensions;
 using eAd.Website.Repositories;
 using irio.mvc.fileupload;
@@ -110,6 +111,7 @@ public class UploadController : Controller
                             type = !String.IsNullOrEmpty(filetype)?filetype : MimeExtensionHelper.FindMime(uploadPath, true),
                             text = MimeExtensionHelper.FindMime(uploadPath, true).Contains("text") ? thumbPath : "",
                             path = uploadPath.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty),
+                            originalFileName = postedFile.FileName,
                             duration = aduration.ToString()
                         }
                     };
@@ -129,7 +131,7 @@ public class UploadController : Controller
     public FileUploadJsonResult AjaxUploadStatus(string ID)
     {
 
-
+        ID = FileUpload.UploadIDTag +ID;
 
         return new FileUploadJsonResult { Data = UploadManager.GetStatus(ID), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 

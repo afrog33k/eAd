@@ -23,8 +23,3 @@ X:\eAd.New\eAd\eAd.DataViewModels\bin\Debug\eAd.DataViewModels.pdb
 X:\eAd.New\eAd\eAd.DataViewModels\obj\Debug\ResolveAssemblyReference.cache
 X:\eAd.New\eAd\eAd.DataViewModels\obj\Debug\eAd.DataViewModels.dll
 X:\eAd.New\eAd\eAd.DataViewModels\obj\Debug\eAd.DataViewModels.pdb
-C:\ProjectHub\eAd\eAd.DataViewModels\bin\Debug\eAd.DataViewModels.dll
-C:\ProjectHub\eAd\eAd.DataViewModels\bin\Debug\eAd.DataViewModels.pdb
-C:\ProjectHub\eAd\eAd.DataViewModels\obj\Debug\ResolveAssemblyReference.cache
-C:\ProjectHub\eAd\eAd.DataViewModels\obj\Debug\eAd.DataViewModels.dll
-C:\ProjectHub\eAd\eAd.DataViewModels\obj\Debug\eAd.DataViewModels.pdb

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-21-2004585689
+22395176688
 27-1650321573
-86-391015194
-231947660898
-About.xaml;AdvertPlayer.xaml;App.xaml;Charging.xaml;ClientManager.xaml;Controls\BatteryRecharging.xaml;Controls\DigitalClockControl.xaml;Controls\DigitalClockDots.xaml;Controls\DigitalClockElement.xaml;Controls\DigitalControlWindow.xaml;Controls\ImageListBox.xaml;Controls\MarqueeStrip.xaml;Controls\MarqueeTextControl.xaml;MainUI\LoadingProfile.xaml;Players\Media.xaml;RegionControl.xaml;SplashScreen.xaml;Widgets\BatteryInfo.xaml;Widgets\CarInfo.xaml;Widgets\Location.xaml;Widgets\Profile.xaml;
+88-1294938203
+232078317715
+About.xaml;AdvertPlayer.xaml;App.xaml;Charging.xaml;ClientManager.xaml;Controls\BatteryRecharging.xaml;Controls\DigitalClockControl.xaml;Controls\DigitalClockDots.xaml;Controls\DigitalClockElement.xaml;Controls\DigitalControlWindow.xaml;Controls\ImageListBox.xaml;Controls\Marquee.xaml;Controls\MarqueeStrip.xaml;Controls\MarqueeTextControl.xaml;MainUI\LoadingProfile.xaml;Players\Media.xaml;RegionControl.xaml;SplashScreen.xaml;Widgets\BatteryInfo.xaml;Widgets\CarInfo.xaml;Widgets\Location.xaml;Widgets\Profile.xaml;
 
-True
+False
 

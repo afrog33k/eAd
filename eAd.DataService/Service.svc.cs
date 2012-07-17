@@ -53,7 +53,7 @@ public partial class Service : IService
     {
         try
         {
-            var container = new eAdDataContainer();
+            var container = new eAdEntities();
 
             var station = (from s in container.Stations
                            where s.StationID == stationID
@@ -90,7 +90,7 @@ public partial class Service : IService
 
     public bool DoIHaveUpdates(long stationID)
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         return ((from s in container.Messages
                  where (s.StationID == stationID) && !s.Sent
@@ -99,7 +99,7 @@ public partial class Service : IService
 
     public bool DoIHaveUpdatesKey(string hardwareKey)
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         var thisStation = (from s in container.Stations
                            where s.HardwareKey == hardwareKey
@@ -143,7 +143,7 @@ public partial class Service : IService
 
     public List<CustomerViewModel> GetAllCustomers()
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         return (from c in container.Customers.ToList() select c.CreateModel()).ToList<CustomerViewModel>();
     }
@@ -151,7 +151,7 @@ public partial class Service : IService
 
     public List<MessageViewModel> GetAllMyMessages(long clientID)
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         return (from c in
                 (from s in container.Messages
@@ -163,7 +163,7 @@ public partial class Service : IService
 
     public List<MessageViewModel> GetAllMyMessagesKey(string hardwareKey)
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         var thisStation = (from s in container.Stations
                            where s.HardwareKey == hardwareKey
@@ -178,7 +178,7 @@ public partial class Service : IService
 
     public List<StationViewModel> GetAllStations()
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         return (from c in container.Stations.ToList() select c.CreateModel()).ToList<StationViewModel>();
     }
@@ -186,7 +186,7 @@ public partial class Service : IService
 
     public CustomerViewModel GetCustomerByRFID(string tag)
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         var car = (from e in container.Cars
                    where e.RFID == tag
@@ -214,7 +214,7 @@ public partial class Service : IService
 
     public TimeSpan GetMediaDuration(long mediaID)
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         return (from s in container.Media
                 where s.MediaID == mediaID
@@ -224,7 +224,7 @@ public partial class Service : IService
 
     public string GetMediaLocation(long mediaID)
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         return (from s in container.Media
                 where s.MediaID == mediaID
@@ -234,7 +234,7 @@ public partial class Service : IService
 
     public Mosaic GetMosaicForStation(long stationID)
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         if ((from s in container.Stations
                 where s.StationID == stationID
@@ -263,7 +263,7 @@ public partial class Service : IService
 
     public long GetMosaicIDForStation(long stationID)
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         if ((from s in container.Stations
                 where s.StationID == stationID
@@ -287,7 +287,7 @@ public partial class Service : IService
     public long GetMosaicIDForStationKey(string hardwareKey)
     {
         // Get Mosaic For station
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         var thisStation = (from s in container.Stations
                            where s.HardwareKey == hardwareKey
@@ -316,7 +316,7 @@ public partial class Service : IService
 
     public List<MediaListModel> GetMyMedia(long stationID)
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         var source = new List<MediaListModel>();
 
@@ -383,7 +383,7 @@ public partial class Service : IService
 
     public List<PositionViewModel> GetPositionsForMosaic(long mosaicID)
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         List<PositionViewModel> list = new List<PositionViewModel>();
         var firstOrDefault = (container.Mosaics.Where(m => m.MosaicID == mosaicID)).FirstOrDefault();
@@ -398,7 +398,7 @@ public partial class Service : IService
     {
         try
         {
-            var container = new eAdDataContainer();
+            var container = new eAdEntities();
 
             var station = (from s in container.Stations
                            where s.StationID == stationID
@@ -437,7 +437,7 @@ public partial class Service : IService
     {
         try
         {
-            var container = new eAdDataContainer();
+            var container = new eAdEntities();
 
             var station = (from s in container.Stations
                            where s.StationID == stationID
@@ -474,7 +474,7 @@ public partial class Service : IService
 
     public bool MessageRead(long messageID)
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         IQueryable<Message> queryable = from s in container.Messages
                                         where (s.MessageID == messageID) && !s.Sent
@@ -495,7 +495,7 @@ public partial class Service : IService
 
     public string SayHi(long clientID)
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         var station = (from s in container.Stations
                        where s.StationID == clientID
@@ -517,7 +517,7 @@ public partial class Service : IService
 
     public string SayHiKey(string hardwareKey)
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         var station = (from s in container.Stations
                        where s.HardwareKey == hardwareKey
@@ -540,7 +540,7 @@ public partial class Service : IService
     {
         try
         {
-            var container = new eAdDataContainer();
+            var container = new eAdEntities();
 
             var grouping = (from s in container.Groupings
                             where s.GroupingID == groupID
@@ -582,7 +582,7 @@ public partial class Service : IService
     {
         try
         {
-            var container = new eAdDataContainer();
+            var container = new eAdEntities();
 
             var station = (from s in container.Stations
                            where s.StationID == stationID
@@ -619,7 +619,7 @@ public partial class Service : IService
 
     public void SetStationStatus(long stationID, string status)
     {
-        var container = new eAdDataContainer();
+        var container = new eAdEntities();
 
         foreach (Station station in from s in container.Stations
                  where s.StationID == stationID

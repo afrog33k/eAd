@@ -3,8 +3,3 @@ X:\eAd.New\eAd\eAd\bin\Debug\eAd.pdb
 X:\eAd.New\eAd\eAd\obj\x86\Debug\ResolveAssemblyReference.cache
 X:\eAd.New\eAd\eAd\obj\x86\Debug\eAd.exe
 X:\eAd.New\eAd\eAd\obj\x86\Debug\eAd.pdb
-C:\ProjectHub\eAd\eAd\bin\Debug\eAd.exe
-C:\ProjectHub\eAd\eAd\bin\Debug\eAd.pdb
-C:\ProjectHub\eAd\eAd\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\ProjectHub\eAd\eAd\obj\x86\Debug\eAd.exe
-C:\ProjectHub\eAd\eAd\obj\x86\Debug\eAd.pdb

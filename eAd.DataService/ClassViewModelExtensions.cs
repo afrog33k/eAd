@@ -84,40 +84,51 @@ public static class ClassViewModelExtensions
         model.MediaID = medium.MediaID;
         model.Name = medium.Name;
         model.Location = medium.Location;
-        
+
+        try
+        {
         var location = medium.Location;
 
         var extension = Path.GetExtension(location);
+        if (!String.IsNullOrEmpty(extension) && !String.IsNullOrEmpty(location) && !String.IsNullOrEmpty(extension))
+        {
+            var path = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) +
+                       HttpRuntime.AppDomainAppVirtualPath;
+            // var path = VirtualPathUtility.ToAbsolute("~/");
 
-        model.ThumbnailUrl = ("../" + medium.ThumbnailUrl).Replace("localhost", "localhost/eAd.Website");
+            if (path.Contains("eAd.Website"))
+            {
+                path = "http://localhost/eAd.Website/";
+            }
 
-        if (Displayableurls.Contains(Path.GetExtension(location)))
-        {
-            model.DisplayLocation = !(String.IsNullOrEmpty(location))
-                                    ? "../Uploads/Temp/Media" + "/" + "Thumb" +
-                                    Path.GetFileNameWithoutExtension(location) + extension
-                                    : "/Content/Images/no_image.gif";
+            model.ThumbnailUrl = medium.ThumbnailUrl;
+
+            if (Displayableurls.Contains(Path.GetExtension(location)))
+            {
+                model.DisplayLocation = !(String.IsNullOrEmpty(location))
+                                            ? "/Uploads/Temp/Media" + "/" + "Thumb" +
+                                              Path.GetFileNameWithoutExtension(location) + extension
+                                            : "/Content/Images/no_image.gif";
+            }
+            if (!String.IsNullOrEmpty(medium.ThumbnailUrl) &&
+                     Displayableurls.Contains(Path.GetExtension(medium.ThumbnailUrl)))
+            {
+                model.DisplayLocation = medium.ThumbnailUrl;
+            }
+            else
+            {
+                model.DisplayLocation = "/Uploads/Temp/Media" + "/" + "Thumb" +
+                                        Path.GetFileNameWithoutExtension(location) + ".jpg";
+            }
+            model.Location = path + model.Location.Replace("\\", "/");
+            model.DisplayLocation = path + model.DisplayLocation.Replace("\\", "/");
+            model.ThumbnailUrl = path + model.ThumbnailUrl.Replace("\\", "/");
+
         }
-        else if (!String.IsNullOrEmpty(medium.ThumbnailUrl)&& Displayableurls.Contains(Path.GetExtension( medium.ThumbnailUrl)))
-        {
-            model.DisplayLocation = "../" + medium.ThumbnailUrl;
         }
-        else
+        catch (Exception)
         {
-            model.DisplayLocation = "../Uploads/Temp/Media" + "/" + "Thumb" +
-                                    Path.GetFileNameWithoutExtension(location) + ".jpg";
         }
-      var path=  VirtualPathUtility.ToAbsolute("~/");
-        if(path.Contains("eAd.Website"))
-        {
-            model.DisplayLocation = path+ model.DisplayLocation.Replace("\\", "/").Replace("localhost", "localhost/eAd.Website");
-       
-        }
-        else
-        {
-            model.DisplayLocation = model.DisplayLocation.Replace("\\", "/").Replace("localhost", "localhost/eAd.Website");   
-        }
-       
         return model;
     }
 

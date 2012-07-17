@@ -65,7 +65,6 @@ C:\ProjectHub\eAd\eAd.DesktopClient\bin\Release\irio.utilities.dll
 C:\ProjectHub\eAd\eAd.DesktopClient\bin\Release\eAd.DataViewModels.pdb
 C:\ProjectHub\eAd\eAd.DesktopClient\bin\Release\eAd.Utilities.pdb
 C:\ProjectHub\eAd\eAd.DesktopClient\bin\Release\irio.utilities.pdb
-C:\ProjectHub\eAd\eAd.DesktopClient\obj\x86\Release\ResolveAssemblyReference.cache
 C:\ProjectHub\eAd\eAd.DesktopClient\obj\x86\Release\Controls\BatteryRecharging.baml
 C:\ProjectHub\eAd\eAd.DesktopClient\obj\x86\Release\Controls\DigitalClockDots.baml
 C:\ProjectHub\eAd\eAd.DesktopClient\obj\x86\Release\Controls\DigitalClockElement.baml
@@ -102,7 +101,7 @@ C:\ProjectHub\eAd\eAd.DesktopClient\obj\x86\Release\Menu\CustomerPage.baml
 C:\ProjectHub\eAd\eAd.DesktopClient\obj\x86\Release\SplashScreen.baml
 C:\ProjectHub\eAd\eAd.DesktopClient\obj\x86\Release\DesktopClient.g.resources
 C:\ProjectHub\eAd\eAd.DesktopClient\obj\x86\Release\DesktopClient.Properties.Resources.resources
-C:\ProjectHub\eAd\eAd.DesktopClient\obj\x86\Release\GenerateResource.read.1.tlog
-C:\ProjectHub\eAd\eAd.DesktopClient\obj\x86\Release\GenerateResource.write.1.tlog
 C:\ProjectHub\eAd\eAd.DesktopClient\obj\x86\Release\DesktopClient.exe
 C:\ProjectHub\eAd\eAd.DesktopClient\obj\x86\Release\DesktopClient.pdb
+C:\ProjectHub\eAd\eAd.DesktopClient\obj\x86\Release\eAd.DesktopClient.csprojResolveAssemblyReference.cache
+C:\ProjectHub\eAd\eAd.DesktopClient\obj\x86\Release\eAd.DesktopClient.csproj.GenerateResource.Cache

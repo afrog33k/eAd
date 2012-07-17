@@ -5,7 +5,7 @@
     Title="eAd Advetising System" ResizeMode="NoResize"
         Height="1024" Width="1280" Name="eAdWindow"  >
     <Grid Name ="MediaGrid">
-        <Controls:MarqueeStrip Height="50" VerticalAlignment="Bottom"></Controls:MarqueeStrip>
+        <Controls:MarqueeStrip Height="60" VerticalAlignment="Bottom"></Controls:MarqueeStrip>
         
     </Grid>
         

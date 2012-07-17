@@ -23,6 +23,6 @@ C:\ProjectHub\eAd\eAd.Utilities\bin\Release\eAd.Utilities.dll
 C:\ProjectHub\eAd\eAd.Utilities\bin\Release\eAd.Utilities.pdb
 C:\ProjectHub\eAd\eAd.Utilities\bin\Release\eAd.DataViewModels.dll
 C:\ProjectHub\eAd\eAd.Utilities\bin\Release\eAd.DataViewModels.pdb
-C:\ProjectHub\eAd\eAd.Utilities\obj\Release\ResolveAssemblyReference.cache
 C:\ProjectHub\eAd\eAd.Utilities\obj\Release\eAd.Utilities.dll
 C:\ProjectHub\eAd\eAd.Utilities\obj\Release\eAd.Utilities.pdb
+C:\ProjectHub\eAd\eAd.Utilities\obj\Release\eAd.Utilities.csprojResolveAssemblyReference.cache

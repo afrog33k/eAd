@@ -50,16 +50,3 @@ X:\eAd.New\eAd\eAd.ClientConfiguration\obj\x86\Debug\GenerateResource.read.1.tlo
 X:\eAd.New\eAd\eAd.ClientConfiguration\obj\x86\Debug\GenerateResource.write.1.tlog
 X:\eAd.New\eAd\eAd.ClientConfiguration\obj\x86\Debug\eAd.ClientConfiguration.exe
 X:\eAd.New\eAd\eAd.ClientConfiguration\obj\x86\Debug\eAd.ClientConfiguration.pdb
-C:\ProjectHub\eAd\eAd.ClientConfiguration\bin\Debug\eAd.ClientConfiguration.exe
-C:\ProjectHub\eAd\eAd.ClientConfiguration\bin\Debug\eAd.ClientConfiguration.pdb
-C:\ProjectHub\eAd\eAd.ClientConfiguration\bin\Debug\eAd.Utilities.dll
-C:\ProjectHub\eAd\eAd.ClientConfiguration\bin\Debug\eAd.DataViewModels.dll
-C:\ProjectHub\eAd\eAd.ClientConfiguration\bin\Debug\eAd.Utilities.pdb
-C:\ProjectHub\eAd\eAd.ClientConfiguration\bin\Debug\eAd.DataViewModels.pdb
-C:\ProjectHub\eAd\eAd.ClientConfiguration\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\ProjectHub\eAd\eAd.ClientConfiguration\obj\x86\Debug\eAd.ClientConfiguration.Main.resources
-C:\ProjectHub\eAd\eAd.ClientConfiguration\obj\x86\Debug\eAd.ClientConfiguration.Properties.Resources.resources
-C:\ProjectHub\eAd\eAd.ClientConfiguration\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\ProjectHub\eAd\eAd.ClientConfiguration\obj\x86\Debug\GenerateResource.write.1.tlog
-C:\ProjectHub\eAd\eAd.ClientConfiguration\obj\x86\Debug\eAd.ClientConfiguration.exe
-C:\ProjectHub\eAd\eAd.ClientConfiguration\obj\x86\Debug\eAd.ClientConfiguration.pdb

@@ -134,9 +134,7 @@ public class UploadRepository
                     List<string> pictures = thisContent.
                                             Pictures;
 
-
                     string newPath = PathForUpload(context,
-
                                                    pictures[0],
                                                    ownerID,
                                                    mediaID,
@@ -145,7 +143,6 @@ public class UploadRepository
                                                    false);
 
                     string thumbPath = PathForUpload(context,
-
                                                      pictures[0],
                                                      ownerID,
                                                      mediaID,
@@ -155,26 +152,20 @@ public class UploadRepository
 
 
                     FileUtilities.FolderCreate(Path.GetDirectoryName(newPath));
-                    System.IO.File.Move(TempPathForUpload(context, pictures[0], type, guid),newPath);
+                    File.Copy(TempPathForUpload(context, pictures[0], type, guid),newPath);
                     try //Maybe No Thumbnail
                     {
                         if (!pictures[1].ToLower().Contains("Content\\".ToLower()))
                         {
-                            File.Move(
-                         TempPathForUpload(context, pictures[1], type, guid),
-                         thumbPath);
+                            File.Copy(TempPathForUpload(context, pictures[1], type, guid, true), thumbPath);
                         }
                         else
                         {
-                            File.Copy(
-                                context.Server.MapPath("~/"+pictures[1]),
-                        thumbPath);
+                            File.Copy(context.Server.MapPath("~/"+pictures[1]),thumbPath);
                         }
-                     
                     }
                     catch (Exception ex)
                     {
-
                         Console.WriteLine("No Thumbnail" + ex.Message);
                     }
                     uploadedContents.Remove(thisContent);
@@ -344,16 +335,16 @@ public class UploadRepository
             //Todo: Use mimes here instead of basic extension check
             if (ImageExtensions.Contains(Path.GetExtension(file.FileName).ToLower()))
             {
-                Bitmap image = (Bitmap) Bitmap.FromStream(file.InputStream);
+                var image = (Bitmap) Image.FromStream(file.InputStream);
 
 
-                Bitmap fullImage =
+                var fullImage =
                     (Bitmap) ImageUtilities.Resize(image, image.Width, image.Height, RotateFlipType.RotateNoneFlipNone); //No need to resize
                 ImageUtilities.SaveImage(fullImage, physicalPath, ImageFormat.Jpeg, true);
 
 
 
-                Bitmap thumbNail =
+                var thumbNail =
                     (Bitmap) ImageUtilities.Resize(image, 216, 132, RotateFlipType.RotateNoneFlipNone);
                 ImageUtilities.SaveImage(thumbNail, thumbPath, ImageFormat.Jpeg, true);
 
@@ -361,107 +352,117 @@ public class UploadRepository
 
                 fileType = "Image";
             }
-            else if (Path.GetExtension(file.FileName).ToLower()==(".txt"))
+            else
             {
-                FileUtilities.SaveStream(file.InputStream,physicalPath,false);
-                duration = new TimeSpan(0, 0, 20);
-                var text = new StreamReader(physicalPath).ReadToEnd();
-                var ssHot = CreateImage(text.Substring(0, text.Length>15?15:text.Length));
-                thumbPath = thumbPath.Replace(Path.GetExtension(thumbPath), ".jpg");
-                ssHot.Save(thumbPath);
-
-                fileType = "Marquee";
-            }
-            else if (Path.GetExtension(file.FileName).ToLower() == (".ppt") || Path.GetExtension(file.FileName).ToLower() == (".pps") || Path.GetExtension(file.FileName).ToLower() == (".pptx") || Path.GetExtension(file.FileName).ToLower() == (".odt")) // Powerpoint presentation
-            {
-                string path = context.Server.MapPath("~/Logs/" + "serverlog.txt");
-
-                Logger.WriteLine(path, "UploadRepository:  Powerpoint");
-
-                FileUtilities.SaveStream(file.InputStream, physicalPath, false);
-
-                Logger.WriteLine(path, "UploadRepository:  Saved File @ " + physicalPath);
-                var finalPath = Path.ChangeExtension(physicalPath, "wmv");
-                Microsoft.Office.Interop.PowerPoint._Presentation objPres;
-                var objApp = new Microsoft.Office.Interop.PowerPoint.Application();
-
-                objApp.Visible = Microsoft.Office.Core.MsoTriState.msoTrue;
-                objApp.Activate();
-                try
+                var extension = Path.GetExtension(file.FileName);
+                if (extension != null && extension.ToLower()==(".txt"))
                 {
-                    objPres = objApp.Presentations.Open(physicalPath, MsoTriState.msoTrue, MsoTriState.msoTrue, MsoTriState.msoFalse); //Last value causes powerpoint to physically open
-                   // Thread.Sleep(10000);
-                    objPres.SaveAs(Path.GetFullPath(finalPath), Microsoft.Office.Interop.PowerPoint.PpSaveAsFileType.ppSaveAsWMV);
-                    Logger.WriteLine(path, "UploadRepository:  SaveCopy As Successfully Started @ " + physicalPath + " to "+ finalPath);
-               
-                    long len = 0;
-                    do
+                    FileUtilities.SaveStream(file.InputStream,physicalPath,false);
+                    duration = new TimeSpan(0, 0, 20);
+                    var text = new StreamReader(physicalPath).ReadToEnd();
+                    var ssHot = CreateImage(text.Substring(0, text.Length>15?15:text.Length));
+                    thumbPath = thumbPath.Replace(Path.GetExtension(thumbPath), ".jpg");
+                    ssHot.Save(thumbPath);
+
+                    fileType = "Marquee";
+                }
+                else
+                {
+                    var s = Path.GetExtension(file.FileName);
+                    if (s != null && (s.ToLower() == (".ppt") || s.ToLower() == (".pps") || s.ToLower() == (".pptx") || s.ToLower() == (".odt"))) // Powerpoint presentation
                     {
-                        System.Threading.Thread.Sleep(500);
+                        string path = context.Server.MapPath("~/Logs/" + "serverlog.txt");
+
+                        Logger.WriteLine(path, "UploadRepository:  Powerpoint");
+
+                        FileUtilities.SaveStream(file.InputStream, physicalPath, false);
+
+                        Logger.WriteLine(path, "UploadRepository:  Saved File @ " + physicalPath);
+                        var finalPath = Path.ChangeExtension(physicalPath, "wmv");
+                        Microsoft.Office.Interop.PowerPoint._Presentation objPres;
+                        var objApp = new Microsoft.Office.Interop.PowerPoint.Application();
+
+                        objApp.Visible = Microsoft.Office.Core.MsoTriState.msoTrue;
+                        objApp.Activate();
                         try
                         {
-                            FileInfo f = new FileInfo(finalPath);
-                            len = f.Length;
-                            Logger.WriteLine(path, "UploadRepository:  SaveCopy Current Length  " + len);
+                            objPres = objApp.Presentations.Open(physicalPath, MsoTriState.msoTrue, MsoTriState.msoTrue, MsoTriState.msoFalse); //Last value causes powerpoint to physically open
+                            // Thread.Sleep(10000);
+                            objPres.SaveAs(Path.GetFullPath(finalPath), Microsoft.Office.Interop.PowerPoint.PpSaveAsFileType.ppSaveAsWMV);
+                            Logger.WriteLine(path, "UploadRepository:  SaveCopy As Successfully Started @ " + physicalPath + " to "+ finalPath);
                
-                        }
-                        catch
-                        {
-                            //continue;
-                        }
-                    }
-                    while (len == 0);
-                    objPres.Close();
-                    objApp.Quit();
+                            long len = 0;
+                            do
+                            {
+                                System.Threading.Thread.Sleep(500);
+                                try
+                                {
+                                    FileInfo f = new FileInfo(finalPath);
+                                    len = f.Length;
+                                    Logger.WriteLine(path, "UploadRepository:  SaveCopy Current Length  " + len);
+               
+                                }
+                                catch
+                                {
+                                    //continue;
+                                }
+                            }
+                            while (len == 0);
+                            objPres.Close();
+                            objApp.Quit();
 
-                    Marshal.ReleaseComObject(objPres);
-                    Marshal.ReleaseComObject(objApp);
+                            Marshal.ReleaseComObject(objPres);
+                            Marshal.ReleaseComObject(objApp);
 
-                    objApp = null;
-                    objPres = null;
+                            objApp = null;
+                            objPres = null;
 
-                    GC.Collect();
-                    GC.WaitForPendingFinalizers();
-                    Logger.WriteLine(path, "UploadRepository:  SaveCopy Done, Creating Thumbnails  ");
+                            GC.Collect();
+                            GC.WaitForPendingFinalizers();
+                            Logger.WriteLine(path, "UploadRepository:  SaveCopy Done, Creating Thumbnails  ");
            
 
-                   thumbPath = thumbPath.Replace(Path.GetExtension(thumbPath), ".jpg");
-               // thumbPath = "Content\\Images\\powerpoint.jpg";
-                 duration = VideoUtilities.GetVideoDuration(finalPath);
-               // duration = new TimeSpan(0, 0, 0,60);
-                    VideoUtilities.GetVideoThumbnail(finalPath, thumbPath);
+                            thumbPath = thumbPath.Replace(Path.GetExtension(thumbPath), ".jpg");
+                            // thumbPath = "Content\\Images\\powerpoint.jpg";
+                            duration = VideoUtilities.GetVideoDuration(finalPath);
+                            // duration = new TimeSpan(0, 0, 0,60);
+                            VideoUtilities.GetVideoThumbnail(finalPath, thumbPath);
 
-                  physicalPath = finalPath;
-                    fileType = "Powerpoint";
-                }
-                catch (COMException exception)
-                {
+                            physicalPath = finalPath;
+                            fileType = "Powerpoint";
+                        }
+                        catch (COMException exception)
+                        {
               
-                    Logger.WriteLine(path, "UploadRepository: " + exception.StackTrace + "\n" + exception.Message + " Powerpoint fin:" + finalPath +" phys:" +physicalPath);
+                            Logger.WriteLine(path, "UploadRepository: " + exception.StackTrace + "\n" + exception.Message + " Powerpoint fin:" + finalPath +" phys:" +physicalPath);
 
-                    //   Logger.WriteLine(path, greenlotsInfo.email);
+                            //   Logger.WriteLine(path, greenlotsInfo.email);
 
-                    //    throw exception;
+                            //    throw exception;
+                        }
+
+                    }
+                    else // Must Be Video
+                    {
+                        FileUtilities.SaveStream(file.InputStream, physicalPath, false);
+
+                        thumbPath= thumbPath.Replace(Path.GetExtension(thumbPath), ".jpg");
+                        duration = VideoUtilities.GetVideoDuration(physicalPath);
+
+                        VideoUtilities.GetVideoThumbnail(physicalPath,thumbPath);
+
+                        fileType = "Video";
+                    }
                 }
-
-            }
-            else // Must Be Video
-            {
-                FileUtilities.SaveStream(file.InputStream, physicalPath, false);
-
-                thumbPath= thumbPath.Replace(Path.GetExtension(thumbPath), ".jpg");
-                duration = VideoUtilities.GetVideoDuration(physicalPath);
-
-                VideoUtilities.GetVideoThumbnail(physicalPath,thumbPath);
-
-                fileType = "Video";
             }
 
-            UploadedContent uploadedContent = new UploadedContent();
-            uploadedContent.MediaGuid = GUID;
-            uploadedContent.Type = type;
-            uploadedContent.Pictures = new List<string>(2);
-            uploadedContent.Duration = duration;
+            var uploadedContent = new UploadedContent
+                                      {
+                                          MediaGuid = GUID,
+                                          Type = type,
+                                          Pictures = new List<string>(2),
+                                          Duration = duration
+                                      };
 
             if (physicalPath != null)
                 uploadedContent.Pictures.Add(ResolvePath(context, physicalPath));

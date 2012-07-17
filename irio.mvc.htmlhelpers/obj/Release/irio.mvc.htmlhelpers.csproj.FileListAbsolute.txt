@@ -10,6 +10,6 @@ X:\eAd.New\eAd\irio.mvc.htmlhelpers\obj\Release\irio.mvc.htmlhelpers.dll
 X:\eAd.New\eAd\irio.mvc.htmlhelpers\obj\Release\irio.mvc.htmlhelpers.pdb
 C:\ProjectHub\eAd\irio.mvc.htmlhelpers\bin\Release\irio.mvc.htmlhelpers.dll
 C:\ProjectHub\eAd\irio.mvc.htmlhelpers\bin\Release\irio.mvc.htmlhelpers.pdb
-C:\ProjectHub\eAd\irio.mvc.htmlhelpers\obj\Release\ResolveAssemblyReference.cache
 C:\ProjectHub\eAd\irio.mvc.htmlhelpers\obj\Release\irio.mvc.htmlhelpers.dll
 C:\ProjectHub\eAd\irio.mvc.htmlhelpers\obj\Release\irio.mvc.htmlhelpers.pdb
+C:\ProjectHub\eAd\irio.mvc.htmlhelpers\obj\Release\irio.mvc.htmlhelpers.csprojResolveAssemblyReference.cache

@@ -18,8 +18,3 @@ X:\eAd.New\eAd\irio.mvc.fileupload\bin\Debug\irio.mvc.fileupload.pdb
 X:\eAd.New\eAd\irio.mvc.fileupload\obj\Debug\ResolveAssemblyReference.cache
 X:\eAd.New\eAd\irio.mvc.fileupload\obj\Debug\irio.mvc.fileupload.dll
 X:\eAd.New\eAd\irio.mvc.fileupload\obj\Debug\irio.mvc.fileupload.pdb
-C:\ProjectHub\eAd\irio.mvc.fileupload\bin\Debug\irio.mvc.fileupload.dll
-C:\ProjectHub\eAd\irio.mvc.fileupload\bin\Debug\irio.mvc.fileupload.pdb
-C:\ProjectHub\eAd\irio.mvc.fileupload\obj\Debug\ResolveAssemblyReference.cache
-C:\ProjectHub\eAd\irio.mvc.fileupload\obj\Debug\irio.mvc.fileupload.dll
-C:\ProjectHub\eAd\irio.mvc.fileupload\obj\Debug\irio.mvc.fileupload.pdb

@@ -18,7 +18,7 @@ using IHtmlString = System.String;
 public static class HtmlHelpersExtensions
 {
     public    static string appPath = HttpContext.Current.Request.ApplicationPath;
-    internal static string UPLOAD_ID_TAG = "::DJ_UPLOAD_ID::";
+    internal static string UPLOAD_ID_TAG = "::IRIO_UPLOAD_ID::";
     /// <summary>
     /// Renders JavaScript to turn the specified file input control into an
     /// Uploadify upload control.
@@ -32,7 +32,7 @@ public static class HtmlHelpersExtensions
     public static MvcHtmlString AjaxUpload(this HtmlHelper helper, string name, string action, string legend, string label)
     {
         // string scriptPath = ("~/Content/jqueryPlugins/uploadify/");
-
+      
         StringBuilder sb = new StringBuilder();
         //Include the JS file.
 
@@ -53,7 +53,7 @@ public static class HtmlHelpersExtensions
                           "$(\"#{0}\").resetForm();" + Environment.NewLine +
                           "$.growlUI('Upload Status',result.message);" + Environment.NewLine +
                           "$(\"#{0}preview\").attr(\"src\",result.thumbnail);" + Environment.NewLine +
-                          "HandleType(\"{0}\",result.type,result.thumbnail,result.text,result.path,result.duration);" + Environment.NewLine +
+                          "HandleType(\"{0}\",result.type,result.thumbnail,result.text,result.path,result.duration,result.originalFileName);" + Environment.NewLine +
                           "}}," +
                           "error: function(xhr, textStatus, errorThrown) {{" + Environment.NewLine +
                           "$(\"#{0}\").unblock();" + Environment.NewLine +
@@ -94,29 +94,33 @@ public static class HtmlHelpersExtensions
         TagBuilder inputBuilder = new TagBuilder("input");
         inputBuilder.Attributes["type"] = "file";
         inputBuilder.Attributes["name"] = name + "file";
-
-        labelBuilder.InnerHtml = label + inputBuilder.ToString() + "(" + PrettyPrinter.FormatByteCount((ulong)((HttpRuntimeSection)ConfigurationManager.GetSection("system.web/httpRuntime")).MaxRequestLength * 100) + " Max Upload Size)" + "<br/>";
-
-        //<img id="@(ViewBag.Name)preview" alt="Preview" src="../../Content/check48.png"/>
-
-        TagBuilder imagePreview = new TagBuilder("img");
-        imagePreview.GenerateId(name + "preview");
-        imagePreview.Attributes["src"] = "../../Content/check48.png";
-
-        imagePreview.Attributes["alt"] = "Preview";
+        inputBuilder.MergeAttribute("onchange", "document.getElementById('" + name + "ajaxUploadButton" + "').click();");
 
         TagBuilder ajaxUploadButtonBuilder = new TagBuilder("input");
         ajaxUploadButtonBuilder.GenerateId(name + "ajaxUploadButton");
         ajaxUploadButtonBuilder.Attributes["type"] = "submit";
+        ajaxUploadButtonBuilder.Attributes["value"] = "Upload";
+        ajaxUploadButtonBuilder.Attributes["style"] = "display:none";
 
-        ajaxUploadButtonBuilder.Attributes["value"] = "Submit";
+
+        labelBuilder.InnerHtml = label + "  "+ inputBuilder.ToString() + "(" + PrettyPrinter.FormatByteCount((ulong)((HttpRuntimeSection)ConfigurationManager.GetSection("system.web/httpRuntime")).MaxRequestLength * 100) + " Max Upload Size)" + ajaxUploadButtonBuilder.ToString() + "<br/>"; //removed submit button
+
+        //<img id="@(ViewBag.Name)preview" alt="Preview" src="../../Content/check48.png"/>
+
+        var imagePreview = new TagBuilder("img");
+        imagePreview.GenerateId(name + "preview");
+        imagePreview.Attributes["src"] = "../../Content/check48.png";
+
+        imagePreview.Attributes["alt"] = " ";
+
+       
 
         fieldsetBuilder.InnerHtml = legendBuilder.ToString() + Environment.NewLine +
                                     labelBuilder.ToString() + Environment.NewLine +
                                     imagePreview.ToString() + Environment.NewLine +
-                                    hiddenTagBuilder + Environment.NewLine +
+                                    hiddenTagBuilder + Environment.NewLine 
 
-                                    ajaxUploadButtonBuilder.ToString();
+                                   ;
 
         uploadFormTagBuilder.InnerHtml = fieldsetBuilder.ToString();
 

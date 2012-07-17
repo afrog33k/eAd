@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<LayoutModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SchemaVersion="1" Width="768" Height="1366" Type="General">
+  <region>
+    <Media>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>//uploads\media\102\102/dzj7e62xaugdacrim05bsg-Crop-199-186-2233-1750.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>102</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>102</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+    </Media>
+    <Id>20</Id>
+    <UserId>-1</UserId>
+    <Width>759</Width>
+    <Height>594</Height>
+    <Top>63</Top>
+    <Left>-39</Left>
+  </region>
+  <region>
+    <Media>
+      <LayoutRegionMedia UserId="0">
+        <Options>
+          <ScrollSpeed>0</ScrollSpeed>
+          <Uri>//uploads\media\103\103/jeka-ur_zeasvg7yax_gha-Crop-0-385-2592-458.jpg</Uri>
+          <UpdateInterval>0</UpdateInterval>
+        </Options>
+        <Raw />
+        <Id>103</Id>
+        <Type>Image</Type>
+        <Duration>10</Duration>
+        <Lkid>103</Lkid>
+        <SchemaVersion>1</SchemaVersion>
+      </LayoutRegionMedia>
+    </Media>
+    <Id>21</Id>
+    <UserId>-1</UserId>
+    <Width>758</Width>
+    <Height>134</Height>
+    <Top>749</Top>
+    <Left>-3</Left>
+  </region>
+</LayoutModel>

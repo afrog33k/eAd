@@ -29,7 +29,7 @@ namespace ClientApp
                 try
                 {
                     this._pictureBox = new MediaElement();
-                    this._pictureBox.Stretch = Stretch.UniformToFill;
+                    this._pictureBox.Stretch = Stretch.Fill;
                     Uri uriSource = new Uri(this._filePath.Replace(@"\", "/"), UriKind.Relative);
                     this._pictureBox.Source = uriSource;
                     base.MediaCanvas.Background = new ImageBrush(new BitmapImage(uriSource));

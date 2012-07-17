@@ -1,0 +1,3 @@
+<message>Unable to reuse the Cache Manager because: Could not find file 'C:\ProjectHub\eAd\eAd Client\bin\Release\cacheManager.xml'.</message><method>AdvertPlayer - SetCacheManager</method>
+Schedule - InitializeComponents: Collection Interval: 900
+Error: <message>XMDS reset, last connection was at 13/04/2012 15:46:00</message><method>xmdsTimer_Tick</method>

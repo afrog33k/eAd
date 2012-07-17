@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Media.Animation;
 using System.Xml;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,7 +31,7 @@ namespace ClientApp.Controls
         public MarqueeStrip(SigMarquee amarquee)
         {
             InitializeComponent();
-
+          
             AttachMarquee(amarquee == null ? new SigMarquee() : amarquee);
             CompositionTarget.Rendering += Animating;
             //logFile_ = new System.IO.StreamWriter(string.Format("marquee{0}.log", this.GetHashCode()));
@@ -42,16 +43,17 @@ namespace ClientApp.Controls
                 Amarquee= new SigMarquee();
             Marquee = Amarquee;
 
-            txtBanner.FontFamily = Marquee.font.Family;
-            txtBanner.FontSize = Marquee.font.Size;
-            txtBanner.Foreground = new SolidColorBrush(Marquee.font.ForeColor);
-            txtBanner.FontWeight = Marquee.font.Weight;
-            txtBanner.FontStyle = Marquee.font.Style;
-            txtBanner.Text = Marquee.message;
-            txtBanner.Width = Marquee.IsVerticalFlow ? Marquee.font.Size : double.NaN;
+            //TextBanner.FontFamily = Marquee.font.Family;
+            TextBanner.FontSize = Marquee.Font.Size;
+            //TextBanner.Foreground =  new SolidColorBrush(Marquee.font.ForeColor);
+            TextBanner.FontWeight = Marquee.Font.Weight;
+            //TextBanner.FontStyle = Marquee.font.Style;
+            TextBanner.Text = Marquee.Message;
+            
+            TextBanner.Width = Marquee.IsVerticalFlow ? Marquee.Font.Size : double.NaN;
 
-            Background = new SolidColorBrush(Marquee.font.BackColor);
-            if (Marquee.font.IsGradient)
+            Background = new SolidColorBrush(Marquee.Font.BackColor);
+            if (Marquee.Font.IsGradient)
             {
                 bkgPlane.Visibility = Visibility.Visible;
                 if (marquee_.IsVerticalFlow)
@@ -61,8 +63,8 @@ namespace ClientApp.Controls
             }
             else
             {
-                bkgPlane.Visibility = Visibility.Hidden;
-                bkgPlane.OpacityMask = null;
+         //       bkgPlane.Visibility = Visibility.Hidden;
+           //     bkgPlane.OpacityMask = null;
             }
 
             if (Marquee.IsRemote)
@@ -79,7 +81,7 @@ namespace ClientApp.Controls
                 var doc = new XmlDocument();
                 try
                 {
-                    doc.Load(Marquee.remoteUrl);
+                    doc.Load(Marquee.RemoteUrl);
                     var nodes = doc.GetElementsByTagName("item");
                     items_.Clear();
                     foreach (var elem in nodes.OfType<XmlElement>())
@@ -93,7 +95,7 @@ namespace ClientApp.Controls
                 }
                 catch (Exception ex)
                 {
-                    var msg = string.Format("url: {0} - {1}", Marquee.remoteUrl, ex.Message);
+                    var msg = string.Format("url: {0} - {1}", Marquee.RemoteUrl, ex.Message);
                     System.Diagnostics.Debug.WriteLine(msg);
                 }
                 lastUrlUpdate_ = DateTime.Now;
@@ -115,8 +117,8 @@ namespace ClientApp.Controls
                 if (item != null)
                 {
                     // HINT: new text may longer and exceed the old boundary
-                    txtBanner.Visibility = Visibility.Hidden;
-                    txtBanner.Text = item.title;
+                    TextBanner.Visibility = Visibility.Hidden;
+                    TextBanner.Text = item.title;
                     delayedReset_ = 3;
                 }
             }
@@ -126,21 +128,23 @@ namespace ClientApp.Controls
         {
             double span;
             if (Marquee.IsVerticalFlow)
-                span = ActualHeight + txtBanner.ActualHeight;
+                span = ActualHeight + TextBanner.ActualHeight;
             else
-                span = ActualWidth + txtBanner.ActualWidth;
+                span = ActualWidth + TextBanner.ActualWidth;
 
-            if (Marquee.dir == FlowDirection.LeftToRight)
+            if (Marquee.Dir == FlowDirection.LeftToRight)
             {
-                step_ = span / Marquee.interval.TotalMilliseconds;
+                step_ = span / Marquee.Interval.TotalMilliseconds;
                 halfSpan_ = span / 2;
             }
             else
             {
-                step_ = -span / Marquee.interval.TotalMilliseconds;
+                step_ = -span / Marquee.Interval.TotalMilliseconds;
                 halfSpan_ = -span / 2;
             }
         }
+
+      
 
         void MarqueeStrip_Unloaded(object sender, RoutedEventArgs e)
         {
@@ -167,7 +171,7 @@ namespace ClientApp.Controls
 
         void Animating(object sender, EventArgs e)
         {
-            TranslateTransform tt = (txtBanner.RenderTransform as TransformGroup).Children[0] as TranslateTransform;
+            TranslateTransform tt = (TextBanner.RenderTransform as TransformGroup).Children[0] as TranslateTransform;
             if (delayedReset_ > 0)
             {
                 delayedReset_--;
@@ -178,7 +182,7 @@ namespace ClientApp.Controls
                         tt.Y = -halfSpan_;
                     else
                         tt.X = -halfSpan_;
-                    txtBanner.Visibility = Visibility.Visible;
+                    TextBanner.Visibility = Visibility.Visible;
                 }
                 else
                     return;

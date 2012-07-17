@@ -38,10 +38,20 @@ function ShowModalPage(name, title, page, sucess, failure) {
     // Build dialog markup
     var win = $('<div id="' + name + '"></div>');
     // Display dialog
-   showAjaxLoader();
-   win.load(page, function (data) {
-       hideAjaxLoader();
-   }
+    showAjaxLoader();
+
+
+    win.load(page, {limit: 25}, 
+    function (responseText, textStatus, req) {
+        if (textStatus == "error") {
+       //     return "oh noes!!!!";
+           if(failure!=null) failure();
+        } else {
+            if(sucess!=null) sucess();
+        }
+         hideAjaxLoader();
+     //   return "Success";
+    }   
     ).dialog({
         modal: true,
         position: ['center', 'top'],

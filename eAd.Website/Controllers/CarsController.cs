@@ -7,7 +7,7 @@ namespace eAd.Website.Controllers
 {
 public class CarsController : Controller
 {
-    private eAdDataContainer db = new eAdDataContainer();
+    private eAdEntities db = new eAdEntities();
 
     //
     // GET: /Car/

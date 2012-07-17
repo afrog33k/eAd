@@ -11,7 +11,7 @@ namespace eAd.Website.Controllers
 {
 public class Default1Controller : Controller
 {
-    private eAdDataContainer db = new eAdDataContainer();
+    private eAdEntities db = new eAdEntities();
 
     //
     // GET: /Default1/

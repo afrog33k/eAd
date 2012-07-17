@@ -1,0 +1,89 @@
+﻿@using eAd.Website.CustomControls
+@model eAd.Website.CustomControls.FileUpload
+
+@{
+    ViewBag.Title = "Error";
+}
+<script src="@Url.Content("~/Scripts/jquery.form.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.blockUI.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#@(Model.Name+ "-Form")").ajaxForm({
+            iframe: true,
+            dataType: "json",
+            beforeSubmit: function () {
+                $("#@(Model.Name+ "-Form")").block({ message: '<h1><img src="@Url.Content("~/Content/busy.gif")" /> Uploading file...</h1>' });
+                
+                // Start Progress Monitoring
+               var  intervalID = window.setInterval(function(){
+                 
+                  $.ajax({
+        type: "AJAX",
+        url: "@Url.Action("AjaxUploadStatus","Upload", new {ID=Model.UploadID.Replace(FileUpload.UploadIDTag,"")})",
+        data: null,
+        success: function (data) {
+            $("#Status").val(data);
+//             var e = executor.get_xml().documentElement;                   
+//                        var empty = e.getAttribute('empty');
+//                    
+//                        if(!empty){
+//                            var percent = e.getAttribute('progress');
+//                            var file = e.getAttribute('file');
+//                            var kbs = Math.round(parseInt(e.getAttribute('bytes')) / 1024);    
+//                            var size = Math.round(parseInt(e.getAttribute('size')) / 1024);                        
+//                        
+//                            //  update the progressbar to the new value
+//                            progressBar.set_percentage(percent);
+//                            //  upadte the message
+//                            updateMessage('info', 'Uploading ' + file + ' ... ' + kbs + ' of ' + size + ' KB');
+//                            
+//                            if(percent == 100){
+//                                //  clear the interval
+//                                window.clearInterval(intervalID);                        
+//                            }                        
+        },
+        dataType: "json",
+        traditional: true,
+        contentType: 'application/json; charset=utf-8'
+    });
+    }, 500);
+
+
+
+            }, success: function (result) {
+                $("#@(Model.Name+ "-Form")").unblock();
+                $("#@(Model.Name+ "-Form")").resetForm();
+                $.growlUI('Upload Status', result.message);
+                $("#@(Model.Name+ "-Preview")").attr("src", result.thumbnail);
+                @{
+                if(!String.IsNullOrEmpty(Model.OnComplete))
+                {
+                    <text> @Model.OnComplete (result); </text>;
+                }
+                }
+             }, error: function (xhr, textStatus, errorThrown) {
+                $("#@(Model.Name+ "-Form")").unblock();
+                $("#@(Model.Name+ "-Form")").resetForm();
+                $.growlUI(null, 'Error uploading file');
+            }
+        });
+    });
+</script>
+<form action="@Model.Action"
+      enctype="multipart/form-data" id="@(Model.Name+ "-Form")" method="post">
+    <fieldset>
+        <legend>@Model.Title</legend>
+        <label>@Model.Label <input name="@(Model.Name+ "-Uploader")" 
+                                   onchange='document.getElementById("@(Model.Name+ "-SubmitButton")").click();' type="file" />
+                                   (@Model.MaxFileSize Max Upload Size)
+           
+            <input id="@(Model.Name+ "-SubmitButton")" 
+                   style="display:none" type="submit" value="Upload"/>
+            <input id="Status" type="text"></input>
+            <br/>
+            </label>
+        <img alt=" " id="@(Model.Name+ "-Preview")" src="@Url.Content("~/Content/check48.png")"/>
+        <input name="@string.Format("{0}-UploadID", Model.Name)" type="hidden" value="@Model.UploadID"/>
+    </fieldset>
+</form>
+

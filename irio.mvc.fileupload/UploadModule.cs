@@ -25,8 +25,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
+using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 
@@ -41,10 +44,10 @@ public class UploadModule : IHttpModule
 {
     #region Declarations
 
-    private const string C_MARKER = "multipart/form-data; boundary=";
-    private const string B_MARKER = "boundary=";
-    //private IFileProcessor _processor;
-    private UploadStatus _status;
+    const string C_MARKER = "multipart/form-data; boundary=";
+    const string B_MARKER = "boundary=";
+    UploadStatus _status;
+    IFileProcessor _processor;
 
     #endregion
 
@@ -55,15 +58,19 @@ public class UploadModule : IHttpModule
     /// </summary>
     public UploadStatus Status
     {
-        get
-        {
-            return _status;
-        }
+        get { return _status; }
     }
 
     #endregion
 
     #region Constructor
+
+    /// <summary>
+    /// Constructor.
+    /// </summary>
+    public UploadModule()
+    {
+    }
 
     #endregion
 
@@ -75,7 +82,21 @@ public class UploadModule : IHttpModule
     /// <param name="context">Application context.</param>
     public void Init(HttpApplication context)
     {
-        context.AuthenticateRequest += Context_AuthenticateRequest;
+        context.BeginRequest += new EventHandler(Context_AuthenticateRequest);
+        context.AddOnBeginRequestAsync(AsyncBeginRequest,AsyncBeginRequestEnd);
+    }
+
+    private void AsyncBeginRequestEnd(IAsyncResult ar)
+    {
+        
+
+    }
+
+    private IAsyncResult AsyncBeginRequest(object sender, EventArgs e, AsyncCallback cb, object extradata)
+    {
+        Context_AuthenticateRequest(sender, e);
+        IAsyncResult result = null;
+        return result;
     }
 
     /// <summary>
@@ -89,128 +110,191 @@ public class UploadModule : IHttpModule
 
     #region Event handlers
 
-    /// <summary>
-    /// Called when a new request commences (but after authentication).
-    /// Preloads the request header and initialises the form stream.
-    ///
-    /// We do this after authentication so that the file processor will
-    /// have access to the security context if it is required.
-    /// </summary>
-    /// <param name="sender">Sender.</param>
-    /// <param name="e">Event args.</param>
-    private void Context_AuthenticateRequest(object sender, EventArgs e)
+    ///// <summary>
+    ///// Called when a new request commences (but after authentication).
+    ///// Preloads the request header and initialises the form stream.
+    ///// 
+    ///// We do this after authentication so that the file processor will
+    ///// have access to the security context if it is required.
+    ///// </summary>
+    ///// <param name="sender">Sender.</param>
+    ///// <param name="e">Event args.</param>
+    //void Context_AuthenticateRequest(object sender, EventArgs e)
+    //{
+    //    HttpApplication app = sender as HttpApplication;
+    //    HttpWorkerRequest worker = GetWorkerRequest(app.Context);
+    //    int bufferSize;
+    //    string boundary;
+    //    string ct;
+    //    bool statusPersisted = false;
+
+    //    bufferSize = UploadManager.Instance.BufferSize;
+
+    //    ct = worker.GetKnownRequestHeader(HttpWorkerRequest.HeaderContentType);
+
+    //    // Is this a multi-part form which may contain file uploads?
+    //    if (ct != null && string.Compare(ct, 0, C_MARKER, 0, C_MARKER.Length, true, CultureInfo.InvariantCulture) == 0)
+    //    {
+    //        // Get the content length from the header. Don't use Request.ContentLength as this is cached
+    //        // and we don't want it to be calculated until we're done stripping out the files.
+    //        long length = long.Parse(worker.GetKnownRequestHeader(HttpWorkerRequest.HeaderContentLength));
+
+    //        if (length > 0)
+    //        {
+    //            if (length / 1024 > GetMaxRequestLength(app.Context))
+    //            {
+    //                // End the request if the maximum request length is exceeded.
+    //                EndRequestOnRequestLengthExceeded(app.Context.Response);
+    //                return;
+    //            }
+
+    //            boundary = "--" + ct.Substring(ct.IndexOf(B_MARKER) + B_MARKER.Length);
+
+    //            InitStatus(length);
+
+    //            using (FormStream fs = new FormStream(GetProcessor(), boundary, app.Request.ContentEncoding))
+    //            {
+    //                // Set up events
+    //                fs.FileCompleted += new FileEventHandler(fs_FileCompleted);
+    //                fs.FileCompletedError += new FileErrorEventHandler(fs_FileCompletedError);
+    //                fs.FileStarted += new FileEventHandler(fs_FileStarted);
+
+    //                byte[] data = null;
+    //                int read = 0;
+    //                int counter = 0;
+
+    //                if (worker.GetPreloadedEntityBodyLength() > 0)
+    //                {
+    //                    // Read the first portion of data from the client
+    //                    data = worker.GetPreloadedEntityBody();
+
+    //                    fs.Write(data, 0, data.Length);
+
+    //                    if (!String.IsNullOrEmpty(fs.StatusKey))
+    //                    {
+    //                        if (!statusPersisted) PersistStatus(fs.StatusKey);
+    //                        statusPersisted = true;
+    //                        _status.UpdateBytes(data.Length, _processor.GetFileName(), _processor.GetIdentifier());
+    //                    }
+
+    //                    counter = data.Length;
+    //                }
+
+    //                bool disconnected = false;
+
+    //                // Read data    
+    //                while (counter < length && worker.IsClientConnected() && !disconnected)
+    //                {
+    //                    if (counter + bufferSize > length)
+    //                    {
+    //                        bufferSize = (int)length - counter;
+    //                    }
+
+    //                    data = new byte[bufferSize];
+    //                    read = worker.ReadEntityBody(data, bufferSize);
+
+    //                    if (read > 0)
+    //                    {
+    //                        counter += read;
+    //                        fs.Write(data, 0, read);
+
+    //                        if (!String.IsNullOrEmpty(fs.StatusKey))
+    //                        {
+    //                            if (!statusPersisted) PersistStatus(fs.StatusKey);
+    //                            statusPersisted = true;
+    //                            _status.UpdateBytes(counter, _processor.GetFileName(), _processor.GetIdentifier());
+    //                        }
+    //                    }
+    //                    else
+    //                    {
+    //                        disconnected = true;
+    //                    }
+    //                }
+
+    //                if (!worker.IsClientConnected() || disconnected)
+    //                {
+    //                    app.Context.Response.End();
+    //                    return;
+    //                }
+
+    //                if (fs.ContentMinusFiles != null)
+    //                {
+    //                    BindingFlags ba = BindingFlags.Instance | BindingFlags.NonPublic;
+
+    //                    // Replace the worker process with our own version using reflection
+    //                    UploadWorkerRequest wr = new UploadWorkerRequest(worker, fs.ContentMinusFiles);
+    //                    app.Context.Request.GetType().GetField("_wr", ba).SetValue(app.Context.Request, wr);
+    //                }
+
+    //                // Check that the query key is in the request
+    //                app.Context.Items[UploadManager.STATUS_KEY] = fs.StatusKey;
+    //            }
+    //        }
+
+    //    }
+    //}
+
+    void Context_AuthenticateRequest(object sender, EventArgs e)
     {
-        var app = sender as HttpApplication;
-        HttpWorkerRequest worker = GetWorkerRequest(app.Context);
-        int bufferSize;
-        string boundary;
-        string ct;
-        bool statusPersisted = false;
+        HttpApplication application = (HttpApplication)sender;
+        HttpContext context = application.Context;
+        IServiceProvider provider = (IServiceProvider)context;
+        HttpWorkerRequest workerRequest = (HttpWorkerRequest)provider.GetService(typeof(HttpWorkerRequest));
+      
+        var ct = workerRequest.GetKnownRequestHeader(HttpWorkerRequest.HeaderContentType);
 
-        bufferSize = UploadManager.Instance.BufferSize;
-
-        ct = worker.GetKnownRequestHeader(HttpWorkerRequest.HeaderContentType);
-
-        // Is this a multi-part form which may contain file uploads?
-        if (ct != null &&
-                string.Compare(ct, 0, C_MARKER, 0, C_MARKER.Length, true, CultureInfo.InvariantCulture) == 0)
+        //    // Is this a multi-part form which may contain file uploads?
+        if (ct != null && string.Compare(ct, 0, C_MARKER, 0, C_MARKER.Length, true, CultureInfo.InvariantCulture) == 0)
         {
-            // Get the content length from the header. Don't use Request.ContentLength as this is cached
-            // and we don't want it to be calculated until we're done stripping out the files.
-            long length = long.Parse(worker.GetKnownRequestHeader(HttpWorkerRequest.HeaderContentLength));
-
-            if (length > 0)
-            {
-                if (length/1024 > GetMaxRequestLength(app.Context))
+            HttpRequest request = context.Request;
+            if (request.Files.Count > 0)
+            { 
+                foreach (string key in request.Files.Keys)
                 {
-                    // End the request if the maximum request length is exceeded.
-                    EndRequestOnRequestLengthExceeded(app.Context.Response);
-                    return;
-                }
-
-                boundary = "--" + ct.Substring(ct.IndexOf(B_MARKER) + B_MARKER.Length);
-
-                InitStatus(length);
-
-                using (var fs = new FormStream( boundary, app.Request.ContentEncoding))
-                {
-                    // Set up events
-                    fs.FileCompleted += fs_FileCompleted;
-                    fs.FileCompletedError += fs_FileCompletedError;
-                    fs.FileStarted += fs_FileStarted;
-
-                    byte[] data = null;
-                    int read = 0;
-                    int counter = 0;
-
-
-                    Console.WriteLine("Status Key: " + fs.StatusKey);
-                    if (worker.GetPreloadedEntityBodyLength() > 0)
+                    FileStream fs = null;
+                    // Check if body contains data
+                  //  if (workerRequest.HasEntityBody())
                     {
-                        // Read the first portion of data from the client
-                        data = worker.GetPreloadedEntityBody();
-
-                        fs.Write(data, 0, data.Length);
-
-                        if (!String.IsNullOrEmpty(fs.StatusKey))
+                        // get the total body length
+                     //  int requestLength = workerRequest.GetTotalEntityBodyLength();
+                    
+                    //    if (!workerRequest.IsEntireEntityBodyIsPreloaded())
                         {
-                            if (!statusPersisted) PersistStatus(fs.StatusKey);
-                            statusPersisted = true;
-                            _status.UpdateBytes(data.Length, fs.FileName, null);
-                        }
+                            byte[] buffer = new byte[512000];
+                            string fileName =request.Files[key].FileName;//context.Request.QueryString["fileName"].Split(new char[] { '\\' });
+                            int requestLength = request.Files[key].ContentLength;
+                            var uploadFolder = ConfigurationManager.AppSettings["TemporaryUploadFolder"];
 
-                        counter = data.Length;
-                    }
-
-                    bool disconnected = false;
-
-                    // Read data
-                    while (counter < length && worker.IsClientConnected() && !disconnected)
-                    {
-                        if (counter + bufferSize > length)
-                        {
-                            bufferSize = (int) length - counter;
-                        }
-
-                        data = new byte[bufferSize];
-                        read = worker.ReadEntityBody(data, bufferSize);
-
-                        if (read > 0)
-                        {
-                            counter += read;
-                            fs.Write(data, 0, read);
-
-                            if (!String.IsNullOrEmpty(fs.StatusKey))
+                            Console.WriteLine("Starting Download " + DateTime.Now.ToString(CultureInfo.InvariantCulture));
+                        
+                                fs = new FileStream(context.Server.MapPath(uploadFolder + fileName), FileMode.Create);
+                            // Set the received bytes to initial bytes before start reading
+                            int initialBytes = 0;
+                            int receivedBytes = initialBytes;
+                            while (requestLength - receivedBytes >= initialBytes)
                             {
-                                if (!statusPersisted) PersistStatus(fs.StatusKey);
-                                statusPersisted = true;
-                                _status.UpdateBytes(counter, fs.FileName, null);
+                                // Read another set of bytes
+                                 initialBytes = request.Files[key].InputStream.Read(buffer,0, buffer.Length);
+                          //    request.Files[key].ContentType); //workerRequest.ReadEntityBody(buffer, buffer.Length);
+                                // Write the chunks to the physical file
+                                fs.Write(buffer, 0, buffer.Length);
+                                // Update the received bytes
+                                receivedBytes += initialBytes;
+                                Console.WriteLine("Saving file " + receivedBytes/requestLength + " bytes downloaded @ " + DateTime.Now.ToString(CultureInfo.InvariantCulture));
                             }
-                        }
-                        else
-                        {
-                            disconnected = true;
+                            initialBytes = workerRequest.ReadEntityBody(buffer, requestLength - receivedBytes);
+
                         }
                     }
+                    fs.Flush();
+                    fs.Close();
 
-                    if (!worker.IsClientConnected() || disconnected)
-                    {
-                        app.Context.Response.End();
-                        return;
-                    }
+                   
 
-                    if (fs.ContentMinusFiles != null)
-                    {
-                        BindingFlags ba = BindingFlags.Instance | BindingFlags.NonPublic;
-
-                        // Replace the worker process with our own version using reflection
-                        var wr = new UploadWorkerRequest(worker, fs.ContentMinusFiles);
-                        app.Context.Request.GetType().GetField("_wr", ba).SetValue(app.Context.Request, wr);
-                    }
-
-                    // Check that the query key is in the request
-                    app.Context.Items[UploadManager.STATUS_KEY] = fs.StatusKey;
                 }
+
+
+
             }
         }
     }
@@ -222,7 +306,7 @@ public class UploadModule : IHttpModule
     /// <param name="sender">Sender.</param>
     /// <param name="fileName">File name.</param>
     /// <param name="identifier">Container identifier.</param>
-    private void fs_FileStarted(object sender, string fileName, object identifier, Dictionary<string, string> headerItems)
+    void fs_FileStarted(object sender, string fileName, object identifier)
     {
         _status.UpdateFile(fileName, identifier);
     }
@@ -234,11 +318,10 @@ public class UploadModule : IHttpModule
     /// <param name="sender">Sender</param>
     /// <param name="fileName">File name</param>
     /// <param name="identifier">Container identifier.</param>
-    /// <param name="headerItems"></param>
     /// <param name="ex">The exception that was raised.</param>
-    private void fs_FileCompletedError(object sender, string fileName, object identifier,Dictionary<string,string> headerItems, Exception ex)
+    void fs_FileCompletedError(object sender, string fileName, object identifier, Exception ex)
     {
-        _status.ErrorFiles.Add(new UploadedFile(fileName, identifier, headerItems, ex));
+        _status.ErrorFiles.Add(new UploadedFile(fileName, identifier, _processor.GetHeaderItems(), ex));
     }
 
     /// <summary>
@@ -248,10 +331,9 @@ public class UploadModule : IHttpModule
     /// <param name="sender">Sender</param>
     /// <param name="fileName">File name</param>
     /// <param name="identifier">Container identifier.</param>
-    /// <param name="headerItems"></param>
-    private void fs_FileCompleted(object sender, string fileName, object identifier, Dictionary<string,string> headerItems )
+    void fs_FileCompleted(object sender, string fileName, object identifier)
     {
-        _status.UploadedFiles.Add(new UploadedFile(fileName, identifier, headerItems));
+        _status.UploadedFiles.Add(new UploadedFile(fileName, identifier, _processor.GetHeaderItems()));
     }
 
     #endregion
@@ -263,29 +345,29 @@ public class UploadModule : IHttpModule
     /// </summary>
     /// <param name="context">Http context.</param>
     /// <returns>Worker request.</returns>
-    private HttpWorkerRequest GetWorkerRequest(HttpContext context)
+    HttpWorkerRequest GetWorkerRequest(HttpContext context)
     {
-        IServiceProvider provider = HttpContext.Current;
+        IServiceProvider provider = (IServiceProvider)HttpContext.Current;
 
-        return (HttpWorkerRequest) provider.GetService(typeof (HttpWorkerRequest));
+        return (HttpWorkerRequest)provider.GetService(typeof(HttpWorkerRequest));
     }
 
-    ///// <summary>
-    ///// Gets a new file processor from the upload manager.
-    ///// </summary>
-    ///// <returns>A file processor.</returns>
-    //private IFileProcessor GetProcessor()
-    //{
-    //    _processor = UploadManager.Instance.GetProcessor();
-    //    return _processor;
-    //}
+    /// <summary>
+    /// Gets a new file processor from the upload manager.
+    /// </summary>
+    /// <returns>A file processor.</returns>
+    IFileProcessor GetProcessor()
+    {
+        _processor = UploadManager.Instance.GetProcessor();
+        return _processor;
+    }
 
     /// <summary>
     /// Initialises the upload status which is held as an application
     /// variable using a unique key.
     /// </summary>
     /// <param name="length">The content length.</param>
-    private void InitStatus(long length)
+    void InitStatus(long length)
     {
         _status = new UploadStatus(length);
     }
@@ -294,7 +376,7 @@ public class UploadModule : IHttpModule
     /// Perists the status.
     /// </summary>
     /// <param name="key">The status key.</param>
-    private void PersistStatus(string key)
+    void PersistStatus(string key)
     {
         UploadManager.Instance.SetStatus(_status, key);
     }
@@ -304,12 +386,12 @@ public class UploadModule : IHttpModule
     /// </summary>
     /// <param name="context">Http context.</param>
     /// <returns>The maximum request length (in kb).</returns>
-    private int GetMaxRequestLength(HttpContext context)
+    int GetMaxRequestLength(HttpContext context)
     {
         int DEFAULT_MAX = 4096;
 
         // Look up the config setting
-        var config = context.GetSection("system.web/httpRuntime") as HttpRuntimeSection;
+        System.Web.Configuration.HttpRuntimeSection config = context.GetSection("system.web/httpRuntime") as System.Web.Configuration.HttpRuntimeSection;
 
         if (config == null)
         {
@@ -325,7 +407,7 @@ public class UploadModule : IHttpModule
     /// Ends the request if the maximum request length is exceeded.
     /// </summary>
     /// <param name="response">The HTTP response.</param>
-    private void EndRequestOnRequestLengthExceeded(HttpResponse response)
+    void EndRequestOnRequestLengthExceeded(HttpResponse response)
     {
         response.StatusCode = 400; // Generic 400 error just like ASP.Net
         response.StatusDescription = "Maximum request size exceeded";
@@ -335,4 +417,5 @@ public class UploadModule : IHttpModule
 
     #endregion
 }
+
 }

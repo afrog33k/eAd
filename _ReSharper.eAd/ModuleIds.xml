@@ -15,4 +15,5 @@
   <Module PersistentId="BA292BF6-82DE-4CF5-8A77-ACBA8D1AE1D0" ModuleId="eAd.Updater" />
   <Module PersistentId="12580009-41D3-4A89-AD9C-0C4554FCB2F7" ModuleId="Client_1" />
   <Module PersistentId="9AC3EADA-5A97-41A1-B341-E7BDE3A841E9" ModuleId="PowerpointTest" />
+  <Module PersistentId="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" ModuleId="System.Web" />
 </Modules>

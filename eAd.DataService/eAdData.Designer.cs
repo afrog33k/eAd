@@ -18,18 +18,18 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("eAdData", "FK_CarCustomer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eAd.DataAccess.Customer), "Car", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Car), true)]
-[assembly: EdmRelationshipAttribute("eAdData", "FK_Clients_Stations", "Station", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eAd.DataAccess.Station), "Client", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Client), true)]
-[assembly: EdmRelationshipAttribute("eAdData", "FK_Groupings_Mosaics", "Mosaic", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eAd.DataAccess.Mosaic), "Grouping", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Grouping), true)]
-[assembly: EdmRelationshipAttribute("eAdData", "FK_MosaicGrouping", "Mosaic", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eAd.DataAccess.Mosaic), "Grouping", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Grouping), true)]
-[assembly: EdmRelationshipAttribute("eAdData", "FK_PositionMedium_Medium", "Medium", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eAd.DataAccess.Medium), "PositionMedium", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.PositionMedium), true)]
-[assembly: EdmRelationshipAttribute("eAdData", "FK_MessageStation", "Station", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eAd.DataAccess.Station), "Message", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Message), true)]
-[assembly: EdmRelationshipAttribute("eAdData", "FK_Mosaics_Resolutions", "Resolution", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eAd.DataAccess.Resolution), "Mosaic", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Mosaic), true)]
-[assembly: EdmRelationshipAttribute("eAdData", "FK_Positions_Mosaics", "Mosaic", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eAd.DataAccess.Mosaic), "Position", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Position), true)]
-[assembly: EdmRelationshipAttribute("eAdData", "FK_PositionMedium_Position", "Position", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eAd.DataAccess.Position), "PositionMedium", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.PositionMedium), true)]
-[assembly: EdmRelationshipAttribute("eAdData", "GroupingStation", "Grouping", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Grouping), "Station", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Station))]
-[assembly: EdmRelationshipAttribute("eAdData", "GroupingTheme", "Grouping", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Grouping), "Theme", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Theme))]
-[assembly: EdmRelationshipAttribute("eAdData", "ThemeMedium", "Medium", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Medium), "Theme", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Theme))]
+[assembly: EdmRelationshipAttribute("eAdModel", "FK_CarCustomer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eAd.DataAccess.Customer), "Car", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Car), true)]
+[assembly: EdmRelationshipAttribute("eAdModel", "FK_Clients_Stations", "Station", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eAd.DataAccess.Station), "Client", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Client), true)]
+[assembly: EdmRelationshipAttribute("eAdModel", "FK_Groupings_Mosaics", "Mosaic", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eAd.DataAccess.Mosaic), "Grouping", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Grouping), true)]
+[assembly: EdmRelationshipAttribute("eAdModel", "FK_MosaicGrouping", "Mosaic", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eAd.DataAccess.Mosaic), "Grouping", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Grouping), true)]
+[assembly: EdmRelationshipAttribute("eAdModel", "FK_PositionMedium_Medium", "Medium", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eAd.DataAccess.Medium), "PositionMedium", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.PositionMedium), true)]
+[assembly: EdmRelationshipAttribute("eAdModel", "FK_MessageStation", "Station", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eAd.DataAccess.Station), "Message", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Message), true)]
+[assembly: EdmRelationshipAttribute("eAdModel", "FK_Mosaics_Resolutions", "Resolution", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eAd.DataAccess.Resolution), "Mosaic", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Mosaic), true)]
+[assembly: EdmRelationshipAttribute("eAdModel", "FK_Positions_Mosaics", "Mosaic", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eAd.DataAccess.Mosaic), "Position", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Position), true)]
+[assembly: EdmRelationshipAttribute("eAdModel", "FK_PositionMedium_Position", "Position", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eAd.DataAccess.Position), "PositionMedium", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.PositionMedium), true)]
+[assembly: EdmRelationshipAttribute("eAdModel", "GroupingStation", "Grouping", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Grouping), "Station", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Station))]
+[assembly: EdmRelationshipAttribute("eAdModel", "GroupingTheme", "Grouping", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Grouping), "Theme", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Theme))]
+[assembly: EdmRelationshipAttribute("eAdModel", "ThemeMedium", "Medium", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Medium), "Theme", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eAd.DataAccess.Theme))]
 
 #endregion
 
@@ -40,32 +40,32 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    public partial class eAdDataContainer : ObjectContext
+    public partial class eAdEntities : ObjectContext
     {
         #region Constructors
     
         /// <summary>
-        /// Initializes a new eAdDataContainer object using the connection string found in the 'eAdDataContainer' section of the application configuration file.
+        /// Initializes a new eAdEntities object using the connection string found in the 'eAdEntities' section of the application configuration file.
         /// </summary>
-        public eAdDataContainer() : base("name=eAdDataContainer", "eAdDataContainer")
+        public eAdEntities() : base("name=eAdEntities", "eAdEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new eAdDataContainer object.
+        /// Initialize a new eAdEntities object.
         /// </summary>
-        public eAdDataContainer(string connectionString) : base(connectionString, "eAdDataContainer")
+        public eAdEntities(string connectionString) : base(connectionString, "eAdEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new eAdDataContainer object.
+        /// Initialize a new eAdEntities object.
         /// </summary>
-        public eAdDataContainer(EntityConnection connection) : base(connection, "eAdDataContainer")
+        public eAdEntities(EntityConnection connection) : base(connection, "eAdEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
@@ -292,6 +292,22 @@ namespace eAd.DataAccess
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<sysdiagram> sysdiagrams
+        {
+            get
+            {
+                if ((_sysdiagrams == null))
+                {
+                    _sysdiagrams = base.CreateObjectSet<sysdiagram>("sysdiagrams");
+                }
+                return _sysdiagrams;
+            }
+        }
+        private ObjectSet<sysdiagram> _sysdiagrams;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Theme> Themes
         {
             get
@@ -430,6 +446,14 @@ namespace eAd.DataAccess
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the sysdiagrams EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTosysdiagrams(sysdiagram sysdiagram)
+        {
+            base.AddObject("sysdiagrams", sysdiagram);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Themes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToThemes(Theme theme)
@@ -456,7 +480,7 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="eAdData", Name="Car")]
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="Car")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Car : EntityObject
@@ -758,16 +782,16 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_CarCustomer", "Customer")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_CarCustomer", "Customer")]
         public Customer Customer
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("eAdData.FK_CarCustomer", "Customer").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("eAdModel.FK_CarCustomer", "Customer").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("eAdData.FK_CarCustomer", "Customer").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("eAdModel.FK_CarCustomer", "Customer").Value = value;
             }
         }
         /// <summary>
@@ -779,13 +803,13 @@ namespace eAd.DataAccess
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("eAdData.FK_CarCustomer", "Customer");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("eAdModel.FK_CarCustomer", "Customer");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Customer>("eAdData.FK_CarCustomer", "Customer", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Customer>("eAdModel.FK_CarCustomer", "Customer", value);
                 }
             }
         }
@@ -797,7 +821,7 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="eAdData", Name="Client")]
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="Client")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Client : EntityObject
@@ -1025,16 +1049,16 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_Clients_Stations", "Station")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_Clients_Stations", "Station")]
         public Station Station
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Station>("eAdData.FK_Clients_Stations", "Station").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Station>("eAdModel.FK_Clients_Stations", "Station").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Station>("eAdData.FK_Clients_Stations", "Station").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Station>("eAdModel.FK_Clients_Stations", "Station").Value = value;
             }
         }
         /// <summary>
@@ -1046,13 +1070,13 @@ namespace eAd.DataAccess
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Station>("eAdData.FK_Clients_Stations", "Station");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Station>("eAdModel.FK_Clients_Stations", "Station");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Station>("eAdData.FK_Clients_Stations", "Station", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Station>("eAdModel.FK_Clients_Stations", "Station", value);
                 }
             }
         }
@@ -1064,7 +1088,7 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="eAdData", Name="ClientUpload")]
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="ClientUpload")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ClientUpload : EntityObject
@@ -1217,7 +1241,7 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="eAdData", Name="Customer")]
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="Customer")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Customer : EntityObject
@@ -1565,18 +1589,18 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_CarCustomer", "Car")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_CarCustomer", "Car")]
         public EntityCollection<Car> Cars
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Car>("eAdData.FK_CarCustomer", "Car");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Car>("eAdModel.FK_CarCustomer", "Car");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Car>("eAdData.FK_CarCustomer", "Car", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Car>("eAdModel.FK_CarCustomer", "Car", value);
                 }
             }
         }
@@ -1588,7 +1612,7 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="eAdData", Name="Grouping")]
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="Grouping")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Grouping : EntityObject
@@ -1746,16 +1770,54 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_Groupings_Mosaics", "Mosaic")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_Groupings_Mosaics", "Mosaic")]
+        public Mosaic ProfileMosaic
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdModel.FK_Groupings_Mosaics", "Mosaic").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdModel.FK_Groupings_Mosaics", "Mosaic").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Mosaic> ProfileMosaicReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdModel.FK_Groupings_Mosaics", "Mosaic");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Mosaic>("eAdModel.FK_Groupings_Mosaics", "Mosaic", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_MosaicGrouping", "Mosaic")]
         public Mosaic Mosaic
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdData.FK_Groupings_Mosaics", "Mosaic").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdModel.FK_MosaicGrouping", "Mosaic").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdData.FK_Groupings_Mosaics", "Mosaic").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdModel.FK_MosaicGrouping", "Mosaic").Value = value;
             }
         }
         /// <summary>
@@ -1767,13 +1829,13 @@ namespace eAd.DataAccess
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdData.FK_Groupings_Mosaics", "Mosaic");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdModel.FK_MosaicGrouping", "Mosaic");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Mosaic>("eAdData.FK_Groupings_Mosaics", "Mosaic", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Mosaic>("eAdModel.FK_MosaicGrouping", "Mosaic", value);
                 }
             }
         }
@@ -1784,56 +1846,18 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_MosaicGrouping", "Mosaic")]
-        public Mosaic Mosaic1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdData.FK_MosaicGrouping", "Mosaic").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdData.FK_MosaicGrouping", "Mosaic").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Mosaic> Mosaic1Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdData.FK_MosaicGrouping", "Mosaic");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Mosaic>("eAdData.FK_MosaicGrouping", "Mosaic", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "GroupingStation", "Station")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "GroupingStation", "Station")]
         public EntityCollection<Station> Stations
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Station>("eAdData.GroupingStation", "Station");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Station>("eAdModel.GroupingStation", "Station");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Station>("eAdData.GroupingStation", "Station", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Station>("eAdModel.GroupingStation", "Station", value);
                 }
             }
         }
@@ -1844,18 +1868,18 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "GroupingTheme", "Theme")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "GroupingTheme", "Theme")]
         public EntityCollection<Theme> Themes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Theme>("eAdData.GroupingTheme", "Theme");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Theme>("eAdModel.GroupingTheme", "Theme");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Theme>("eAdData.GroupingTheme", "Theme", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Theme>("eAdModel.GroupingTheme", "Theme", value);
                 }
             }
         }
@@ -1867,7 +1891,7 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="eAdData", Name="MediaType")]
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="MediaType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class MediaType : EntityObject
@@ -1972,7 +1996,7 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="eAdData", Name="Medium")]
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="Medium")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Medium : EntityObject
@@ -2314,6 +2338,30 @@ namespace eAd.DataAccess
         private global::System.String _ThumbnailUrl;
         partial void OnThumbnailUrlChanging(global::System.String value);
         partial void OnThumbnailUrlChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Options
+        {
+            get
+            {
+                return _Options;
+            }
+            set
+            {
+                OnOptionsChanging(value);
+                ReportPropertyChanging("Options");
+                _Options = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Options");
+                OnOptionsChanged();
+            }
+        }
+        private global::System.String _Options;
+        partial void OnOptionsChanging(global::System.String value);
+        partial void OnOptionsChanged();
 
         #endregion
 
@@ -2326,18 +2374,18 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_PositionMedium_Medium", "PositionMedium")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_PositionMedium_Medium", "PositionMedium")]
         public EntityCollection<PositionMedium> PositionMediums
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PositionMedium>("eAdData.FK_PositionMedium_Medium", "PositionMedium");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PositionMedium>("eAdModel.FK_PositionMedium_Medium", "PositionMedium");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PositionMedium>("eAdData.FK_PositionMedium_Medium", "PositionMedium", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PositionMedium>("eAdModel.FK_PositionMedium_Medium", "PositionMedium", value);
                 }
             }
         }
@@ -2348,18 +2396,18 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "ThemeMedium", "Theme")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "ThemeMedium", "Theme")]
         public EntityCollection<Theme> Themes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Theme>("eAdData.ThemeMedium", "Theme");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Theme>("eAdModel.ThemeMedium", "Theme");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Theme>("eAdData.ThemeMedium", "Theme", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Theme>("eAdModel.ThemeMedium", "Theme", value);
                 }
             }
         }
@@ -2371,7 +2419,7 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="eAdData", Name="Message")]
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="Message")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Message : EntityObject
@@ -2633,16 +2681,16 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_MessageStation", "Station")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_MessageStation", "Station")]
         public Station Station
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Station>("eAdData.FK_MessageStation", "Station").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Station>("eAdModel.FK_MessageStation", "Station").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Station>("eAdData.FK_MessageStation", "Station").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Station>("eAdModel.FK_MessageStation", "Station").Value = value;
             }
         }
         /// <summary>
@@ -2654,13 +2702,13 @@ namespace eAd.DataAccess
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Station>("eAdData.FK_MessageStation", "Station");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Station>("eAdModel.FK_MessageStation", "Station");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Station>("eAdData.FK_MessageStation", "Station", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Station>("eAdModel.FK_MessageStation", "Station", value);
                 }
             }
         }
@@ -2672,7 +2720,7 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="eAdData", Name="Mosaic")]
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="Mosaic")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Mosaic : EntityObject
@@ -3054,18 +3102,40 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_Groupings_Mosaics", "Grouping")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_Groupings_Mosaics", "Grouping")]
+        public EntityCollection<Grouping> ProfileGroupings
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Grouping>("eAdModel.FK_Groupings_Mosaics", "Grouping");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Grouping>("eAdModel.FK_Groupings_Mosaics", "Grouping", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_MosaicGrouping", "Grouping")]
         public EntityCollection<Grouping> Groupings
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Grouping>("eAdData.FK_Groupings_Mosaics", "Grouping");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Grouping>("eAdModel.FK_MosaicGrouping", "Grouping");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Grouping>("eAdData.FK_Groupings_Mosaics", "Grouping", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Grouping>("eAdModel.FK_MosaicGrouping", "Grouping", value);
                 }
             }
         }
@@ -3076,38 +3146,16 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_MosaicGrouping", "Grouping")]
-        public EntityCollection<Grouping> Groupings1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Grouping>("eAdData.FK_MosaicGrouping", "Grouping");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Grouping>("eAdData.FK_MosaicGrouping", "Grouping", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_Mosaics_Resolutions", "Resolution")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_Mosaics_Resolutions", "Resolution")]
         public Resolution Resolution
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Resolution>("eAdData.FK_Mosaics_Resolutions", "Resolution").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Resolution>("eAdModel.FK_Mosaics_Resolutions", "Resolution").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Resolution>("eAdData.FK_Mosaics_Resolutions", "Resolution").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Resolution>("eAdModel.FK_Mosaics_Resolutions", "Resolution").Value = value;
             }
         }
         /// <summary>
@@ -3119,13 +3167,13 @@ namespace eAd.DataAccess
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Resolution>("eAdData.FK_Mosaics_Resolutions", "Resolution");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Resolution>("eAdModel.FK_Mosaics_Resolutions", "Resolution");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Resolution>("eAdData.FK_Mosaics_Resolutions", "Resolution", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Resolution>("eAdModel.FK_Mosaics_Resolutions", "Resolution", value);
                 }
             }
         }
@@ -3136,18 +3184,18 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_Positions_Mosaics", "Position")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_Positions_Mosaics", "Position")]
         public EntityCollection<Position> Positions
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Position>("eAdData.FK_Positions_Mosaics", "Position");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Position>("eAdModel.FK_Positions_Mosaics", "Position");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Position>("eAdData.FK_Positions_Mosaics", "Position", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Position>("eAdModel.FK_Positions_Mosaics", "Position", value);
                 }
             }
         }
@@ -3159,7 +3207,7 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="eAdData", Name="Position")]
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="Position")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Position : EntityObject
@@ -3421,16 +3469,16 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_Positions_Mosaics", "Mosaic")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_Positions_Mosaics", "Mosaic")]
         public Mosaic Mosaic
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdData.FK_Positions_Mosaics", "Mosaic").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdModel.FK_Positions_Mosaics", "Mosaic").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdData.FK_Positions_Mosaics", "Mosaic").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdModel.FK_Positions_Mosaics", "Mosaic").Value = value;
             }
         }
         /// <summary>
@@ -3442,13 +3490,13 @@ namespace eAd.DataAccess
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdData.FK_Positions_Mosaics", "Mosaic");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Mosaic>("eAdModel.FK_Positions_Mosaics", "Mosaic");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Mosaic>("eAdData.FK_Positions_Mosaics", "Mosaic", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Mosaic>("eAdModel.FK_Positions_Mosaics", "Mosaic", value);
                 }
             }
         }
@@ -3459,18 +3507,18 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_PositionMedium_Position", "PositionMedium")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_PositionMedium_Position", "PositionMedium")]
         public EntityCollection<PositionMedium> PositionMediums
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PositionMedium>("eAdData.FK_PositionMedium_Position", "PositionMedium");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PositionMedium>("eAdModel.FK_PositionMedium_Position", "PositionMedium");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PositionMedium>("eAdData.FK_PositionMedium_Position", "PositionMedium", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PositionMedium>("eAdModel.FK_PositionMedium_Position", "PositionMedium", value);
                 }
             }
         }
@@ -3482,7 +3530,7 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="eAdData", Name="PositionMedium")]
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="PositionMedium")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class PositionMedium : EntityObject
@@ -3609,7 +3657,7 @@ namespace eAd.DataAccess
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Size
+        public Nullable<global::System.Int64> Size
         {
             get
             {
@@ -3619,13 +3667,13 @@ namespace eAd.DataAccess
             {
                 OnSizeChanging(value);
                 ReportPropertyChanging("Size");
-                _Size = StructuralObject.SetValidValue(value, true);
+                _Size = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("Size");
                 OnSizeChanged();
             }
         }
-        private global::System.String _Size;
-        partial void OnSizeChanging(global::System.String value);
+        private Nullable<global::System.Int64> _Size;
+        partial void OnSizeChanging(Nullable<global::System.Int64> value);
         partial void OnSizeChanged();
     
         /// <summary>
@@ -3654,6 +3702,78 @@ namespace eAd.DataAccess
         private global::System.Int64 _PositionMediumID;
         partial void OnPositionMediumIDChanging(global::System.Int64 value);
         partial void OnPositionMediumIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Options
+        {
+            get
+            {
+                return _Options;
+            }
+            set
+            {
+                OnOptionsChanging(value);
+                ReportPropertyChanging("Options");
+                _Options = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Options");
+                OnOptionsChanged();
+            }
+        }
+        private global::System.String _Options;
+        partial void OnOptionsChanging(global::System.String value);
+        partial void OnOptionsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Hash
+        {
+            get
+            {
+                return _Hash;
+            }
+            set
+            {
+                OnHashChanging(value);
+                ReportPropertyChanging("Hash");
+                _Hash = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Hash");
+                OnHashChanged();
+            }
+        }
+        private global::System.String _Hash;
+        partial void OnHashChanging(global::System.String value);
+        partial void OnHashChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Location
+        {
+            get
+            {
+                return _Location;
+            }
+            set
+            {
+                OnLocationChanging(value);
+                ReportPropertyChanging("Location");
+                _Location = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Location");
+                OnLocationChanged();
+            }
+        }
+        private global::System.String _Location;
+        partial void OnLocationChanging(global::System.String value);
+        partial void OnLocationChanged();
 
         #endregion
 
@@ -3666,16 +3786,16 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_PositionMedium_Medium", "Medium")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_PositionMedium_Medium", "Medium")]
         public Medium Medium
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Medium>("eAdData.FK_PositionMedium_Medium", "Medium").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Medium>("eAdModel.FK_PositionMedium_Medium", "Medium").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Medium>("eAdData.FK_PositionMedium_Medium", "Medium").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Medium>("eAdModel.FK_PositionMedium_Medium", "Medium").Value = value;
             }
         }
         /// <summary>
@@ -3687,13 +3807,13 @@ namespace eAd.DataAccess
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Medium>("eAdData.FK_PositionMedium_Medium", "Medium");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Medium>("eAdModel.FK_PositionMedium_Medium", "Medium");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Medium>("eAdData.FK_PositionMedium_Medium", "Medium", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Medium>("eAdModel.FK_PositionMedium_Medium", "Medium", value);
                 }
             }
         }
@@ -3704,16 +3824,16 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_PositionMedium_Position", "Position")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_PositionMedium_Position", "Position")]
         public Position Position
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Position>("eAdData.FK_PositionMedium_Position", "Position").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Position>("eAdModel.FK_PositionMedium_Position", "Position").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Position>("eAdData.FK_PositionMedium_Position", "Position").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Position>("eAdModel.FK_PositionMedium_Position", "Position").Value = value;
             }
         }
         /// <summary>
@@ -3725,13 +3845,13 @@ namespace eAd.DataAccess
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Position>("eAdData.FK_PositionMedium_Position", "Position");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Position>("eAdModel.FK_PositionMedium_Position", "Position");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Position>("eAdData.FK_PositionMedium_Position", "Position", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Position>("eAdModel.FK_PositionMedium_Position", "Position", value);
                 }
             }
         }
@@ -3743,7 +3863,7 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="eAdData", Name="Resolution")]
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="Resolution")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Resolution : EntityObject
@@ -3877,18 +3997,18 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_Mosaics_Resolutions", "Mosaic")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_Mosaics_Resolutions", "Mosaic")]
         public EntityCollection<Mosaic> Mosaics
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Mosaic>("eAdData.FK_Mosaics_Resolutions", "Mosaic");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Mosaic>("eAdModel.FK_Mosaics_Resolutions", "Mosaic");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Mosaic>("eAdData.FK_Mosaics_Resolutions", "Mosaic", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Mosaic>("eAdModel.FK_Mosaics_Resolutions", "Mosaic", value);
                 }
             }
         }
@@ -3900,7 +4020,7 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="eAdData", Name="Station")]
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="Station")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Station : EntityObject
@@ -4250,18 +4370,18 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_Clients_Stations", "Client")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_Clients_Stations", "Client")]
         public EntityCollection<Client> Clients
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Client>("eAdData.FK_Clients_Stations", "Client");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Client>("eAdModel.FK_Clients_Stations", "Client");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Client>("eAdData.FK_Clients_Stations", "Client", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Client>("eAdModel.FK_Clients_Stations", "Client", value);
                 }
             }
         }
@@ -4272,18 +4392,18 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "FK_MessageStation", "Message")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "FK_MessageStation", "Message")]
         public EntityCollection<Message> Messages
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Message>("eAdData.FK_MessageStation", "Message");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Message>("eAdModel.FK_MessageStation", "Message");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Message>("eAdData.FK_MessageStation", "Message", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Message>("eAdModel.FK_MessageStation", "Message", value);
                 }
             }
         }
@@ -4294,18 +4414,18 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "GroupingStation", "Grouping")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "GroupingStation", "Grouping")]
         public EntityCollection<Grouping> Groupings
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Grouping>("eAdData.GroupingStation", "Grouping");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Grouping>("eAdModel.GroupingStation", "Grouping");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Grouping>("eAdData.GroupingStation", "Grouping", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Grouping>("eAdModel.GroupingStation", "Grouping", value);
                 }
             }
         }
@@ -4317,7 +4437,164 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="eAdData", Name="Theme")]
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="sysdiagram")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class sysdiagram : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new sysdiagram object.
+        /// </summary>
+        /// <param name="name">Initial value of the name property.</param>
+        /// <param name="principal_id">Initial value of the principal_id property.</param>
+        /// <param name="diagram_id">Initial value of the diagram_id property.</param>
+        public static sysdiagram Createsysdiagram(global::System.String name, global::System.Int32 principal_id, global::System.Int32 diagram_id)
+        {
+            sysdiagram sysdiagram = new sysdiagram();
+            sysdiagram.name = name;
+            sysdiagram.principal_id = principal_id;
+            sysdiagram.diagram_id = diagram_id;
+            return sysdiagram;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                OnnameChanging(value);
+                ReportPropertyChanging("name");
+                _name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("name");
+                OnnameChanged();
+            }
+        }
+        private global::System.String _name;
+        partial void OnnameChanging(global::System.String value);
+        partial void OnnameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 principal_id
+        {
+            get
+            {
+                return _principal_id;
+            }
+            set
+            {
+                Onprincipal_idChanging(value);
+                ReportPropertyChanging("principal_id");
+                _principal_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("principal_id");
+                Onprincipal_idChanged();
+            }
+        }
+        private global::System.Int32 _principal_id;
+        partial void Onprincipal_idChanging(global::System.Int32 value);
+        partial void Onprincipal_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 diagram_id
+        {
+            get
+            {
+                return _diagram_id;
+            }
+            set
+            {
+                if (_diagram_id != value)
+                {
+                    Ondiagram_idChanging(value);
+                    ReportPropertyChanging("diagram_id");
+                    _diagram_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("diagram_id");
+                    Ondiagram_idChanged();
+                }
+            }
+        }
+        private global::System.Int32 _diagram_id;
+        partial void Ondiagram_idChanging(global::System.Int32 value);
+        partial void Ondiagram_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> version
+        {
+            get
+            {
+                return _version;
+            }
+            set
+            {
+                OnversionChanging(value);
+                ReportPropertyChanging("version");
+                _version = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("version");
+                OnversionChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _version;
+        partial void OnversionChanging(Nullable<global::System.Int32> value);
+        partial void OnversionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] definition
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_definition);
+            }
+            set
+            {
+                OndefinitionChanging(value);
+                ReportPropertyChanging("definition");
+                _definition = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("definition");
+                OndefinitionChanged();
+            }
+        }
+        private global::System.Byte[] _definition;
+        partial void OndefinitionChanging(global::System.Byte[] value);
+        partial void OndefinitionChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="Theme")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Theme : EntityObject
@@ -4425,18 +4702,18 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "GroupingTheme", "Grouping")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "GroupingTheme", "Grouping")]
         public EntityCollection<Grouping> Groupings
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Grouping>("eAdData.GroupingTheme", "Grouping");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Grouping>("eAdModel.GroupingTheme", "Grouping");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Grouping>("eAdData.GroupingTheme", "Grouping", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Grouping>("eAdModel.GroupingTheme", "Grouping", value);
                 }
             }
         }
@@ -4447,18 +4724,18 @@ namespace eAd.DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("eAdData", "ThemeMedium", "Medium")]
+        [EdmRelationshipNavigationPropertyAttribute("eAdModel", "ThemeMedium", "Medium")]
         public EntityCollection<Medium> Media
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Medium>("eAdData.ThemeMedium", "Medium");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Medium>("eAdModel.ThemeMedium", "Medium");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Medium>("eAdData.ThemeMedium", "Medium", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Medium>("eAdModel.ThemeMedium", "Medium", value);
                 }
             }
         }
@@ -4470,7 +4747,7 @@ namespace eAd.DataAccess
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="eAdData", Name="Widget")]
+    [EdmEntityTypeAttribute(NamespaceName="eAdModel", Name="Widget")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Widget : EntityObject

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Globalization;
+using System.IO;
 using System.Windows.Media;
 using ClientApp.Controls;
 using ClientApp.Core;
@@ -28,7 +29,9 @@ namespace ClientApp.Players
         private int _scrollSpeed;
         private TemporaryHtml _tempHtml;
         private WebBrowser _webBrowser;
-        private MarqueeText marquee;
+//        private MarqueeText marquee;
+
+        private Marquee marquee;
 
         public Text(RegionOptions options) : base(options.Width, options.Height, options.Top, options.Left)
         {
@@ -60,15 +63,64 @@ namespace ClientApp.Players
             //this._webBrowser.Navigated += handler;
             //this._webBrowser.Navigate(this._tempHtml.Path);
             //base.MediaCanvas.Children.Add(this._webBrowser);
+            //Todo : Detect newlines and replace with tabs on horiz scroll
+            var text = File.ReadAllText(_filePath).Replace("\n", " ").Replace("\r", " ") + "      ";
+           // var text = "Welcome to this cool app Welcome to this cool app Welcome to this cool app Welcome to this cool app Welcome to this cool app ";
+         //   text =
+             //   "WELCOME TO THIS COOL APP WELCOME TO THIS COOL APP WELCOME TO THIS COOL APP WELCOME TO THIS COOL APP ";
+            marquee =new Marquee();
 
-            marquee = new MarqueeText();
-            marquee.Background =System.Windows.Media.Brushes.Red;
-            marquee.MarqueeTimeInSeconds = options.Duration;
-            marquee.Foreground = System.Windows.Media.Brushes.Black;
-            marquee.Height = options.Height;
+       
+
+        //    options.Height = options.Height/2;
+         //   options.Width = options.Width/5;
+
+            // Create the initial formatted text string.
+            FormattedText formattedText = new FormattedText(
+                text,
+                CultureInfo.GetCultureInfo("en-us"),
+                FlowDirection.LeftToRight,
+                new Typeface("Arial"),
+                options.Height,
+                Brushes.Black);
+
+            //// Set a maximum width and height. If the text overflows these values, an ellipsis "..." appears.
+            //formattedText.MaxTextWidth = 300;
+            //formattedText.MaxTextHeight = 240;
+            
+            marquee.MarqueeContent = new TextBlock();
             marquee.Width = options.Width;
-            marquee.MarqueeType = MarqueeType.RightToLeft; ;
-            marquee.MarqueeContent = File.ReadAllText(_filePath);
+            marquee.Height = options.Height;
+            marquee.MarqueeContent.Text = text; //_marquee.MarqueeContent.ActualWidth.ToString();
+            marquee.MarqueeContent.FontFamily = new FontFamily("Arial");
+            marquee.MarqueeContent.Height = options.Height;
+            marquee.MarqueeContent.FontSize = options.Height;
+            marquee.MarqueeContent.TextWrapping = TextWrapping.NoWrap;
+            marquee.VerticalAlignment = VerticalAlignment.Center;
+            marquee.DesiredWidth = options.Width;
+            var dur = ((formattedText.Width / options.Height)) /2  ;//1.2;
+                
+         //       (((options.Width)*options.Height) * text.Length)/
+       //          211637
+            ;
+            marquee.Duration = new Duration(
+                TimeSpan.FromSeconds(dur
+              
+                ));
+            marquee.MarqueeContent.Foreground = System.Windows.Media.Brushes.Black;
+
+            marquee.MarqueeContent.Background = System.Windows.Media.Brushes.LawnGreen;
+
+       //     marquee.LeftToRight = true;
+            //new SigMarquee()
+                               //      {Message = text, Font = new SigFont() {Size = options.Height}, Speed = 8, Interval=TimeSpan.FromSeconds(100)})
+               //     {TextBanner = {TextWrapping = TextWrapping.NoWrap}, Height = options.Height, Width = options.Width};
+            //marquee = new MarqueeText();
+            //marquee.Background =System.Windows.Media.Brushes.Red;
+            //marquee.MarqueeTimeInSeconds = options.Duration;
+            //marquee.Foreground = System.Windows.Media.Brushes.Black;
+            //marquee.MarqueeType = MarqueeType.RightToLeft; ;
+            //marquee.MarqueeContent = File.ReadAllText(_filePath);
             base.MediaCanvas.Children.Add(this.marquee);
         }
 

@@ -43,10 +43,9 @@ C:\ProjectHub\eAd\eAd.ClientConfiguration\bin\Release\eAd.Utilities.dll
 C:\ProjectHub\eAd\eAd.ClientConfiguration\bin\Release\eAd.DataViewModels.dll
 C:\ProjectHub\eAd\eAd.ClientConfiguration\bin\Release\eAd.Utilities.pdb
 C:\ProjectHub\eAd\eAd.ClientConfiguration\bin\Release\eAd.DataViewModels.pdb
-C:\ProjectHub\eAd\eAd.ClientConfiguration\obj\x86\Release\ResolveAssemblyReference.cache
 C:\ProjectHub\eAd\eAd.ClientConfiguration\obj\x86\Release\eAd.ClientConfiguration.Main.resources
 C:\ProjectHub\eAd\eAd.ClientConfiguration\obj\x86\Release\eAd.ClientConfiguration.Properties.Resources.resources
-C:\ProjectHub\eAd\eAd.ClientConfiguration\obj\x86\Release\GenerateResource.read.1.tlog
-C:\ProjectHub\eAd\eAd.ClientConfiguration\obj\x86\Release\GenerateResource.write.1.tlog
 C:\ProjectHub\eAd\eAd.ClientConfiguration\obj\x86\Release\eAd.ClientConfiguration.exe
 C:\ProjectHub\eAd\eAd.ClientConfiguration\obj\x86\Release\eAd.ClientConfiguration.pdb
+C:\ProjectHub\eAd\eAd.ClientConfiguration\obj\x86\Release\eAd.ClientConfiguration.csprojResolveAssemblyReference.cache
+C:\ProjectHub\eAd\eAd.ClientConfiguration\obj\x86\Release\eAd.ClientConfiguration.csproj.GenerateResource.Cache

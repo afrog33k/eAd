@@ -11,7 +11,7 @@
 //{
 //    public class MosaicMockController : Controller
 //    {
-//        private eAdDataContainer db = new eAdDataContainer();
+//        private eAdEntities db = new eAdEntities();
 
 //        //
 //        // GET: /MosaicMock/

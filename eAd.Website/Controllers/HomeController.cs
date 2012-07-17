@@ -12,7 +12,7 @@ namespace eAd.Website.Controllers
 public class HomeController : Controller
 {
     public static Controller Instance = null;
-    private eAdDataContainer db = new eAdDataContainer();
+    private eAdEntities db = new eAdEntities();
     public void DownloadInfo(HttpContextBase httpContext,string xmlUrl, string stationID, bool start=true)
     {
         try
@@ -176,6 +176,11 @@ public class HomeController : Controller
         {
             return Content(new StreamReader(stream).ReadToEnd().Replace("\n", "<br/>"));
         }
+    }
+
+    public ActionResult DialogBoxTest()
+    {
+        return View();
     }
 
     public ActionResult ServerLog()

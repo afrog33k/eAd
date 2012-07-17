@@ -98,7 +98,7 @@ public partial class Media : IDisposable
                 timer.Interval = (1000*duration);
                 timer.Start();
 
-                timer.Elapsed += timer_Tick;
+                timer.Elapsed += TimerTick;
 
                 timerStarted = true;
             }
@@ -177,11 +177,20 @@ public partial class Media : IDisposable
 
     }
 
-    protected virtual void timer_Tick(object sender, EventArgs e)
+    protected virtual void TimerTick(object sender, EventArgs e)
     {
-        // Once it has expired we might as well stop the timer?
-        if(timer!=null)
-            timer.Stop();
+        try
+        {
+            // Once it has expired we might as well stop the timer?
+            if (timer != null)
+                timer.Stop();
+        }
+        catch (Exception ex)
+        {
+            
+         
+        }
+     
 
         SignalElapsedEvent();
     }

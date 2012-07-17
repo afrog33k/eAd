@@ -25,7 +25,6 @@ C:\ProjectHub\eAd\eAd Client\bin\Release\AxInterop.WMPLib.dll
 C:\ProjectHub\eAd\eAd Client\bin\Release\eAd.DataViewModels.dll
 C:\ProjectHub\eAd\eAd Client\bin\Release\eAd.Utilities.dll
 C:\ProjectHub\eAd\eAd Client\bin\Release\Ionic.Zip.dll
-C:\ProjectHub\eAd\eAd Client\obj\x86\Release\ResolveAssemblyReference.cache
 C:\ProjectHub\eAd\eAd Client\obj\x86\Release\About.baml
 C:\ProjectHub\eAd\eAd Client\obj\x86\Release\AdvertPlayer.baml
 C:\ProjectHub\eAd\eAd Client\obj\x86\Release\App.baml
@@ -75,7 +74,9 @@ C:\ProjectHub\eAd\eAd Client\obj\x86\Release\Widgets\Location.baml
 C:\ProjectHub\eAd\eAd Client\obj\x86\Release\eAd Client.g.resources
 C:\ProjectHub\eAd\eAd Client\obj\x86\Release\ClientApp.VideoPlayer.resources
 C:\ProjectHub\eAd\eAd Client\obj\x86\Release\ClientApp.OptionForm.resources
-C:\ProjectHub\eAd\eAd Client\obj\x86\Release\GenerateResource.read.1.tlog
-C:\ProjectHub\eAd\eAd Client\obj\x86\Release\GenerateResource.write.1.tlog
 C:\ProjectHub\eAd\eAd Client\obj\x86\Release\eAd Client.exe
 C:\ProjectHub\eAd\eAd Client\obj\x86\Release\eAd Client.pdb
+C:\ProjectHub\eAd\eAd Client\obj\x86\Release\Controls\Marquee.g.cs
+C:\ProjectHub\eAd\eAd Client\obj\x86\Release\Controls\Marquee.baml
+C:\ProjectHub\eAd\eAd Client\obj\x86\Release\Client.csproj.GenerateResource.Cache
+C:\ProjectHub\eAd\eAd Client\obj\x86\Release\Client.csprojResolveAssemblyReference.cache

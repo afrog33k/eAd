@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Xml.Serialization;
 using eAd.DataAccess;
@@ -15,7 +16,7 @@ namespace eAd.Website.Controllers
 {
     public class MosaicController : Controller
     {
-        private eAdDataContainer db = new eAdDataContainer();
+        private eAdEntities db = new eAdEntities();
         private ServiceClient _service;
         private ServiceClient Service
         {
@@ -204,14 +205,15 @@ namespace eAd.Website.Controllers
 
                 var mediaList = new List<PositionMedium>();
 
-                foreach (var medium in pos.PositionMediums)
+                foreach (var posmedium in pos.PositionMediums)
                 {
-                    mediaList.Add(medium);
+                    mediaList.Add(posmedium);
                 }
 
-                foreach (var medium in mediaList)
+                foreach (var posmedium in mediaList)
                 {
-                    pos.PositionMediums.Remove(medium);
+                //    pos.PositionMediums.Remove(posmedium);
+                    db.PositionMediums.DeleteObject(posmedium);
                 }
                 
                 db.Positions.DeleteObject(pos);
@@ -220,8 +222,8 @@ namespace eAd.Website.Controllers
             }
             catch (Exception ex)
             {
-                return Json("Sucessfully Deleted Position", JsonRequestBehavior.AllowGet);
-              //  return Json("Failed To Delete Position", JsonRequestBehavior.AllowGet);
+              //  return Json("Sucessfully Deleted Position", JsonRequestBehavior.AllowGet);
+                return Json("Failed To Delete Position" + ex.Message, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -573,7 +575,7 @@ namespace eAd.Website.Controllers
                                         if (!String.IsNullOrEmpty(path))
                                        //     if (!position.Media.Any(i => Path.GetFileNameWithoutExtension(i.Name).ToLower().Replace("thumb", "") ==  Path.GetFileNameWithoutExtension(path).ToLower().Replace("thumb", "")))  // Duplicates now allowed
                                             {
-                                            if(order%2==0)  //Deal with duplication bug from js
+                                          // if(order%2==0)  //Deal with duplication bug from js ... Fixed already
                                             {
                                                 
                                             
@@ -581,6 +583,15 @@ namespace eAd.Website.Controllers
                                                 if (fileNameWithoutExtension != null)
                                                 {
                                                     var nname = fileNameWithoutExtension.ToLower().Replace("thumb", "");
+
+                                                    var newpath = "";
+                                                    if(nname.Contains("-crop-"))
+                                                    {
+                                                        nname = nname.Substring(0,nname.IndexOf("-crop-"));
+                                                        var serverpath = HttpContext.Request.Url.GetLeftPart(UriPartial.Authority) +
+                   HttpRuntime.AppDomainAppVirtualPath;
+                                                        newpath = path.Replace(serverpath, "/");
+                                                    }
                                                     //item.Remove("Uploads/Temp/Media/Thumb".Length);
                                                     // name =
                                                     position.PositionMediums.Add(new PositionMedium()
@@ -591,7 +602,9 @@ namespace eAd.Website.Controllers
                                                                                                  m.Location.Contains(
                                                                                                      nname)).
                                                                                              FirstOrDefault(),
+                                                                                             Options = nname,
                                                                                          Position = position,
+                                                                                         Location =!(String.IsNullOrEmpty(newpath)) ?newpath:"",
                                                                                          PlayOrder = (short?) order
                                                                                      });
                                                 }

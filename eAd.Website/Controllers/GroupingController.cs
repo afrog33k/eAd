@@ -14,7 +14,7 @@ namespace eAd.Website.Controllers
 {
 public class GroupingController : Controller
 {
-    private eAdDataContainer db = new eAdDataContainer();
+    private eAdEntities db = new eAdEntities();
 
     private ServiceClient _service;
     private ServiceClient Service

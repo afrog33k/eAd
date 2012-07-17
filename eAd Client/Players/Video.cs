@@ -73,24 +73,24 @@ namespace ClientApp
             catch (Exception exception)
             {
                 Trace.WriteLine(exception.Message);
-                base.timer_Tick(null, null);
+                base.TimerTick(null, null);
             }
         }
 
         
 
-        protected override void timer_Tick(object sender, EventArgs e)
+        protected override void TimerTick(object sender, EventArgs e)
         {
             if (this.duration == 0)
             {
                 if (this.videoPlayer.FinishedPlaying)
                 {
-                    base.timer_Tick(sender, e);
+                    base.TimerTick(sender, e);
                 }
             }
             else
             {
-                base.timer_Tick(sender, e);
+                base.TimerTick(sender, e);
             }
         }
     }

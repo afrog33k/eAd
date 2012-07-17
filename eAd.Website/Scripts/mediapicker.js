@@ -1,5 +1,8 @@
 ﻿$(document).ready(function () {
 
+
+    var componentId, plist;
+    
     var content = $('#MediaName').val();
 
     $('#MediaName').keyup(function () {
@@ -27,8 +30,8 @@ $(function () {
     $("[id^=Accept]").button();
     $("[id^=CancelChoose]").button();
     $('[id^=CancelChoose]').click(function () {
-        var componentId = $('#componentId');
-        window.parent.CloseMediaPicker(null, componentId.val());
+        window.componentId = $('#componentId');
+        window.parent.CloseMediaPicker(null, window.componentId.val());
     });
     $('[id^=Accept]').click(function () {
         var no = 0;
@@ -36,17 +39,35 @@ $(function () {
         var selections = $("[id^=select-]");
 
         selections = jQuery.unique(selections);
-        var plist = [];
+        window.plist = [];
         selections.each(function () {
             if ($(this).attr('checked')) {
                 no++;
                 var img = $(this).parent().parent().find("img");
                 var name = $(this).parent().find("[id^=hidden]");
-                plist.push({ id: $(this).attr('id').split('-')[1], img: img.attr('src'), name: name.val() });
+                window.plist.push({ id: $(this).attr('id').split('-')[1], img: img.attr('src'), name: name.val() });
             }
 
         });
-        var componentId = $('#componentId');
-        window.parent.CloseMediaPicker(plist, componentId.val());
+        window.componentId = $('#componentId');
+        LoadResizer();
     });
+
+    function LoadResizer() {
+        //Load Resizer, if failed close
+        ShowModalPage("ResizeImage", 'ResizeImage', '../Media/ResizeAndSave?id=' + plist[0].id + "&width=" + $("#positionWidth").val() + "&height=" + $("#positionHeight").val(), null, LoadFailed);
+
+        function LoadFailed() {
+            $('#ResizeImage').dialog('destroy');
+            $('#ResizeImage').remove();
+            window.parent.CloseMediaPicker(plist, componentId.val());
+        }
+
+        function LoadComplete(newImage) {
+            $('#ResizeImage').dialog('destroy');
+            $('#ResizeImage').remove();
+            plist[0].img = newImage;
+            window.parent.CloseMediaPicker(plist, componentId.val());
+        }
+    }
 });
